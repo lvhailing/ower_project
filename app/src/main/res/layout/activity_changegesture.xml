@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/low_gray"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        style="@style/WidgetDirver"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/changephone_phone" />
+
+        <TextView
+            android:id="@+id/changegesture_phonenum"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/changegesture_pwd"
+        style="@style/WidgetDirver"
+        android:layout_width="fill_parent"
+        android:layout_height="60dip"
+        android:paddingLeft="10dip"
+        android:background="@drawable/shape_center_white_gray"
+        android:hint="@string/changegesture_loginpwd"
+        android:inputType="textPassword" />
+
+    <Button
+        android:id="@+id/changegesture_next"
+        style="@style/WidgetDirver"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shape_button"
+        android:text="@string/changegesture_ok"
+        android:textColor="@color/txt_white" />
+
+</LinearLayout>

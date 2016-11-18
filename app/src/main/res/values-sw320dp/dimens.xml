@@ -1,0 +1,25 @@
+<resources>
+
+    <!--
+         Example customization of dimensions originally defined in res/values/dimens.xml
+         (such as screen margins) for screens with more than 820dp of available width. This
+         would include 7" and 10" devices in landscape (~480dp and ~800dp respectively).
+    -->
+    <dimen name="activity_horizontal_margin_imge_height_1">300dp</dimen>
+    <dimen name="activity_horizontal_margin_imge_height_2">100dp</dimen>
+	<dimen name="activity_horizontal_margin_imge_width_1">300dp</dimen>
+	<dimen name="activity_horizontal_margin_imge_width_2">300dp</dimen>
+	
+	<dimen name="activity_horizontal_myhome_imge_viewpager">160dp</dimen>
+	<dimen name="activity_horizontal_myhome2_wykrelayout">70dp</dimen>
+	<dimen name="activity_horizontal_layout_marginTop">10dp</dimen>
+	<dimen name="activity_horizontal_layout_marginbotton">6dp</dimen>
+	<dimen name="activity_horizontal_layout_myhome2_wykimg_height">30dp</dimen>
+	<dimen name="activity_horizontal_layout_myhome2_wykimg_wigth">35dp</dimen>
+	
+	<dimen name="activity_horizontal_layout_mypersonal_layout">1dp</dimen>
+	<dimen name="activity_horizontal_layout_mypersonal_img">80dp</dimen>
+	<dimen name="activity_horizontal_layout_mypersonal">120dp</dimen>
+	
+	
+</resources>

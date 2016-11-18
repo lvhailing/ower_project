@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:background="@color/bg_gray"
+	android:orientation="vertical"
+	tools:context=".activity.MainActivity">
+
+	<RelativeLayout
+		android:id="@+id/id_account_txt_title"
+		android:layout_width="match_parent"
+		android:layout_height="51dp"
+		android:background="@color/orange">
+
+		<ImageView
+			android:id="@+id/id_img_back"
+			android:layout_width="30dp"
+			android:layout_height="30dp"
+			android:src="@drawable/back"
+			android:layout_centerVertical="true"
+			android:layout_marginLeft="10dp"
+			android:padding="5dp"/>
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="版本号"
+			android:layout_centerInParent="true"
+			android:textColor="@color/white"
+			android:textSize="18sp" />
+	</RelativeLayout>
+
+	<LinearLayout
+		android:id="@+id/id_layout_top"
+		android:layout_below="@+id/id_account_txt_title"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:orientation="vertical"
+		android:gravity="center"
+		android:padding="30dp"
+		android:background="#F5F5F5">
+
+		<ImageView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:src="@mipmap/login_logo"/>
+		<TextView
+			android:id="@+id/id_txt_version_number"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:textColor="@color/txt_gray_dark"
+			android:layout_marginTop="10dp"/>
+	</LinearLayout>
+
+<TextView
+	android:layout_below="@+id/id_layout_top"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:lineSpacingExtra="5dp"
+	android:background="@color/white"
+	android:textSize="13sp"
+	android:padding="15sp"
+	android:text="君德汇，汇集君德精选优质金融产品，为中国广大投资者提供一对一贴身专业理财服务，根据客户自身特点进行私人资产配置，力争使投资者的资产得到保值增值，立志成为客户值得信赖的财富领航者。"/>
+
+	</RelativeLayout>

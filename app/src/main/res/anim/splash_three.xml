@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animation-list xmlns:android="http://schemas.android.com/apk/res/android"
+    android:oneshot="true" >
+
+    <item
+        android:drawable="@drawable/splash_three1"
+        android:duration="150"/>
+    <item
+        android:drawable="@drawable/splash_three2"
+        android:duration="150"/>
+    <item
+        android:drawable="@drawable/splash_three3"
+        android:duration="150"/>
+    <item
+        android:drawable="@drawable/splash_three4"
+        android:duration="150"/>
+    <item
+        android:drawable="@drawable/splash_three5"
+        android:duration="150"/>
+    <item
+        android:drawable="@drawable/splash_three6"
+        android:duration="150"/>
+    <item
+        android:drawable="@drawable/splash_three7"
+        android:duration="150"/>
+    <item
+        android:drawable="@drawable/splash_three8"
+        android:duration="150"/>
+    <item
+        android:drawable="@drawable/splash_three9"
+        android:duration="150"/>
+    <item
+        android:drawable="@drawable/splash_three10"
+        android:duration="150"/>
+    <item
+        android:drawable="@drawable/splash_three11"
+        android:duration="150"/>
+    <item
+        android:drawable="@drawable/splash_three12"
+        android:duration="150"/>
+    <item
+        android:drawable="@drawable/splash_three13"
+        android:duration="150"/>
+
+</animation-list>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_gray"
+    android:orientation="vertical"
+    android:paddingBottom="10dp"
+    >
+    <RelativeLayout
+        android:id="@+id/id_asset_float_txt_title"
+        android:layout_width="match_parent"
+        android:layout_height="51dp"
+        android:background="@color/orange">
+
+        <ImageView
+            android:id="@+id/id_img_back"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/back"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:padding="5dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="浮动收益"
+            android:layout_centerInParent="true"
+            android:textColor="@color/white"
+            android:textSize="18sp" />
+    </RelativeLayout>
+    <LinearLayout
+        android:id="@+id/ll_asset_fixed"
+        android:layout_below="@id/id_asset_float_txt_title"
+        android:layout_width="match_parent"
+        android:layout_height="50dip"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:background="@color/white"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:text="该类产品购买金额"
+            android:textColor="@color/txt_orange_gray"
+            />
+        <TextView
+            android:id="@+id/tv_asset_float_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="----"
+            android:layout_marginLeft="5dp"
+            android:textColor="@color/txt_orange_gray"
+            />
+    </LinearLayout>
+    <com.handmark.pulltorefresh.library.PullToRefreshListView
+        xmlns:ptr="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/listview_asset_float"
+        android:layout_width="match_parent"
+        android:layout_below="@id/ll_asset_fixed"
+        android:layout_height="match_parent"
+        android:layout_marginTop="10dp"
+        android:scrollbars="none"
+        ptr:ptrAnimationStyle="flip"
+        ptr:ptrMode="both"/>
+
+
+</RelativeLayout>

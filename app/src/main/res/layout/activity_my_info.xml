@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_gray"
+    android:orientation="vertical"
+    android:paddingBottom="10dp"
+    >
+
+    <RelativeLayout
+        android:id="@+id/id_account_txt_title"
+        android:layout_width="match_parent"
+        android:layout_height="51dp"
+        android:background="@color/orange">
+
+        <ImageView
+            android:id="@+id/id_img_back"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/back"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:padding="5dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="我的信息"
+            android:layout_centerInParent="true"
+            android:textColor="@color/white"
+            android:textSize="18sp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/id_my_info_layout_photo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/id_account_txt_title"
+        android:background="@color/white"
+        android:padding="15dp"
+        android:gravity="center_vertical"
+        android:layout_marginTop="10dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="头像"
+            android:layout_centerVertical="true"
+            android:textSize="16sp"
+            android:textColor="@color/txt_gray_dark"/>
+        <ImageView
+            android:id="@+id/id_my_info_img_arrow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/arrow"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"/>
+
+        <com.jdhui.view.CircularImage
+            android:id="@+id/id_my_info_img_user"
+            android:layout_toLeftOf="@+id/id_my_info_img_arrow"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/user_photo"
+            android:layout_marginRight="10dp"
+            android:layout_centerVertical="true"
+
+            />
+    </RelativeLayout>
+    <ImageView
+        android:id="@+id/id_my_info_layout_photo_img"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scaleType="fitXY"
+        android:layout_below="@+id/id_my_info_layout_photo"
+        android:src="@drawable/tab_lines"/>
+    <RelativeLayout
+        android:id="@+id/id_my_info_layout_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/id_my_info_layout_photo_img"
+        android:background="@color/white"
+        android:padding="15dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="姓名"
+            android:textSize="16sp"
+            android:textColor="@color/txt_gray_dark"/>
+
+        <TextView
+            android:id="@+id/id_my_info_tv_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerInParent="true"
+            android:layout_marginRight="10dp"
+            android:textColor="@color/txt_gray_light"/>
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/id_my_info_layout_name_img"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scaleType="fitXY"
+        android:layout_below="@+id/id_my_info_layout_name"
+        android:src="@drawable/tab_lines"/>
+
+    <RelativeLayout
+        android:id="@+id/id_my_info_layout_idcard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/id_my_info_layout_name_img"
+        android:background="@color/white"
+        android:padding="15dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="身份证"
+            android:textSize="16sp"
+            android:textColor="@color/txt_gray_dark"/>
+
+        <TextView
+            android:id="@+id/id_my_info_tv_idcard"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerInParent="true"
+            android:layout_marginRight="10dp"
+            android:textColor="@color/txt_gray_light"
+            />
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/id_my_info_layout_idcard_img"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scaleType="fitXY"
+        android:layout_below="@+id/id_my_info_layout_idcard"
+        android:src="@drawable/tab_lines"/>
+    <LinearLayout
+
+        android:id="@+id/id_my_info_layout_address"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/id_my_info_layout_idcard_img"
+        android:background="@color/white"
+        android:padding="15dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="地址"
+            android:textSize="16sp"
+            android:textColor="@color/txt_gray_dark"/>
+
+        <EditText
+            android:id="@+id/id_my_info_edit_adress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="10dip"
+            android:layout_marginRight="10dp"
+            android:gravity="right"
+            android:background="@color/white"
+            android:singleLine="true"
+            android:maxLines="1"
+            android:textColor="@color/txt_gray_light"
+            android:textSize="14sp"
+            android:maxLength="50"
+            android:hint="请输入地址"/>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/id_my_info_btn_save"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/shape_button_orange"
+        android:text="保存"
+        android:textColor="@color/white" />
+
+
+</RelativeLayout>

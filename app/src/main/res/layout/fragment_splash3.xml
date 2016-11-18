@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/splashbg3"
+    android:orientation="vertical" >
+
+    <ImageView
+        android:id="@+id/splash_threetop"
+        android:layout_width="@dimen/activity_horizontal_margin_imge_width_1"
+        android:layout_height="@dimen/activity_horizontal_margin_imge_height_1"
+        android:layout_centerHorizontal="true"
+        android:scaleType="centerInside" />
+
+    <ImageView
+        android:id="@+id/splash_threecenter"
+        android:layout_width="@dimen/activity_horizontal_margin_imge_width_2"
+        android:layout_height="@dimen/activity_horizontal_margin_imge_height_2"
+        android:layout_below="@+id/splash_threetop"
+        android:layout_centerHorizontal="true"
+        android:scaleType="centerInside"
+        android:src="@drawable/splash_t_three" />
+
+    <Button
+        android:id="@+id/splash_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="25dip"
+        android:paddingRight="25dip"
+        android:background="@drawable/shape_center_light"
+        android:layout_below="@id/splash_threecenter"
+        android:layout_marginTop="20dip"
+        android:layout_centerHorizontal="true"
+        android:text="立即体验"
+        android:textColor="@color/txt_white"
+         />
+
+</RelativeLayout>

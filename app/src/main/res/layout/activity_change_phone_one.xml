@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_gray"
+    android:orientation="vertical"
+    android:paddingBottom="10dp"
+    tools:context=".activity.MainActivity">
+
+    <RelativeLayout
+        android:id="@+id/id_txt_title"
+        android:layout_width="match_parent"
+        android:layout_height="51dp"
+        android:background="@color/orange">
+
+        <ImageView
+            android:id="@+id/id_img_back"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:padding="5dp"
+            android:src="@drawable/back" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="修改手机号"
+            android:textColor="@color/white"
+            android:textSize="18sp" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/id_txt_title"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:id="@+id/id_change_phone_layout"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentLeft="true"
+                    android:background="@drawable/shape_center_white"
+                    android:text="+86"
+                    android:gravity="center"
+                    android:paddingRight="15dp"
+                    android:paddingLeft="15dp"/>
+
+                <LinearLayout
+                    android:id="@+id/id_change_phone_layout_phone"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_width="fill_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/shape_center_white"
+                    android:orientation="horizontal">
+
+                    <EditText
+                        android:id="@+id/id_inut_pw"
+                        android:layout_width="0dip"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="6"
+                        android:background="@null"
+                        android:hint="请填写新的手机号码"
+                        android:inputType="number"
+                        android:maxLength="11"
+                        android:padding="10dp" />
+
+                    <ImageView
+                        android:id="@+id/id_btn_delete"
+                        android:layout_width="0dip"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginRight="5dp"
+                        android:layout_weight="1.0"
+                        android:padding="5dp"
+                        android:src="@drawable/delete"
+                        android:visibility="gone"/>
+                </LinearLayout>
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/id_change_phone_one_info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/id_change_phone_layout"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="10dp"
+                android:padding="5dp"
+                android:text=""
+                android:textSize="13sp" />
+
+
+            <Button
+                android:id="@+id/id_btn_next"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="15dip"
+                android:layout_marginLeft="15.0dip"
+                android:layout_marginRight="15.0dip"
+                android:background="@drawable/shape_button_gray_gray"
+                android:text="下一步"
+                android:textColor="@color/white" />
+        </RelativeLayout>
+
+    </LinearLayout>
+</RelativeLayout>

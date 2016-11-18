@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/light_gray"
+    android:orientation="vertical"
+    android:paddingBottom="10dp"
+    tools:context=".activity.MainActivity">
+
+    <RelativeLayout
+        android:id="@+id/id_account_txt_title"
+        android:layout_width="match_parent"
+        android:layout_height="51dp"
+        android:background="@color/orange">
+
+        <ImageView
+            android:id="@+id/id_img_back"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/back"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:padding="5dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="修改登录密码"
+            android:layout_centerInParent="true"
+            android:textColor="@color/white"
+            android:textSize="18sp" />
+    </RelativeLayout>
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_below="@+id/id_account_txt_title">
+
+        <EditText
+            android:id="@+id/changepwd_old"
+            style="@style/WidgetDirver"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dip"
+            android:background="@drawable/shape_center_white"
+            android:hint="请输入旧密码"
+            android:inputType="textPassword"
+            android:textColorHint="@color/edit_gray_light"/>
+
+        <EditText
+            android:id="@+id/changepwd_new"
+            style="@style/WidgetDirver"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dip"
+            android:background="@drawable/shape_center_white"
+            android:hint="请输入新密码（8-16位字母数字组合）"
+            android:textColorHint="@color/edit_gray_light"
+            android:inputType="textPassword" />
+
+        <EditText
+            android:id="@+id/changepwd_new2"
+            style="@style/WidgetDirver"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dip"
+            android:background="@drawable/shape_center_white"
+            android:hint="请重复新密码"
+            android:textColorHint="@color/edit_gray_light"
+            android:inputType="textPassword" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/changepwd_ok"
+        style="@style/WidgetDirver"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="20dip"
+        android:background="@drawable/shape_button_gray_gray"
+        android:text="提交"
+        android:textColor="@color/txt_white" />
+
+</RelativeLayout>

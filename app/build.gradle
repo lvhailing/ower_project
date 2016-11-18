@@ -1,0 +1,64 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 22
+    buildToolsVersion '22.0.1'
+
+    defaultConfig {
+        applicationId "com.jdhui"
+        minSdkVersion 15
+        targetSdkVersion 22
+        versionCode 2
+        versionName "1.0.3"
+        multiDexEnabled true
+    }
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+        }
+
+    }
+    buildTypes {
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    productFlavors {
+        jundehui {}
+    }
+
+    applicationVariants.all { variant ->
+        variant.outputs.each { output ->
+            def outputFile = output.outputFile
+            if (outputFile != null && outputFile.name.endsWith('.apk')) {
+                def fileName = variant.productFlavors[0].name + "_103.apk";
+                println "[FileName]: ${fileName}"
+                if (variant.buildType.name.equals('release')) {
+                    output.outputFile = file("${outputFile.parent}/release/${fileName}")
+                } else {
+                    output.outputFile = file("${outputFile.parent}/${fileName}")
+                }
+            }
+        }
+    }
+
+}
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    testCompile 'junit:junit:4.12'
+    compile files('libs/universal-image-loader-1.9.1-with-sources.jar')
+    compile files('libs/gson-2.3.jar')
+    compile files('libs/MobLogCollector.jar')
+    compile files('libs/MobTools.jar')
+    compile files('libs/zxing.jar')
+    compile project(':PullToRefreshListFragment')
+    compile project(':PullToRefreshViewPager')
+    compile project(':MPChartLib')
+    compile files('libs/alicloud-android-push-sdk-2.3.1.jar')
+    compile files('libs/alisdk-ut-5.jar')
+    compile files('libs/utdid4all-1.0.4.jar')
+    compile 'com.alibaba:fastjson:1.2.21'
+}

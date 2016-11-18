@@ -1,0 +1,171 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_gray">
+
+    <ScrollView
+        android:id="@+id/fragment_home_scrollview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="51dp"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="vertical">
+
+
+            <RelativeLayout
+                android:id="@+id/viewpager_layout"
+                android:layout_width="match_parent"
+                android:layout_height="145dp">
+
+                <LinearLayout
+                    android:id="@+id/viewpager"
+                    android:layout_width="fill_parent"
+                    android:layout_height="160dp"
+                    android:orientation="horizontal" />
+
+                <LinearLayout
+                    android:id="@+id/down_dots_ll"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginBottom="5dip"
+                    android:gravity="center_horizontal"
+                    android:orientation="horizontal" />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:padding="5dp"
+                    android:src="@drawable/img_home_notice" />
+
+                <ImageView
+                    android:layout_width="1dp"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/vertical_lines" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="10dp"
+                    android:gravity="center"
+                    android:singleLine="true"
+                    android:text="华物---------------------上线了" />
+
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/tab_lines" />
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingBottom="10dip"
+                android:paddingLeft="10dip"
+                android:paddingRight="10dip"
+                android:paddingTop="10dip">
+
+                <TextView
+                    android:id="@+id/id_tab_home_tv_gushou"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:drawablePadding="5dp"
+                    android:drawableTop="@drawable/img_home_fixed"
+                    android:gravity="center_horizontal"
+                    android:text="固收" />
+
+                <TextView
+                    android:id="@+id/id_tab_home_tv_float"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:drawablePadding="5dp"
+                    android:drawableTop="@drawable/img_home_fixed"
+                    android:gravity="center_horizontal"
+                    android:text="浮动收益" />
+
+                <TextView
+                    android:id="@+id/id_tab_home_tv_insurance"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:drawablePadding="5dp"
+                    android:drawableTop="@drawable/img_home_fixed"
+                    android:gravity="center_horizontal"
+                    android:text="保险" />
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text="热销产品"
+                android:background="@color/bg_gray"/>
+
+            <com.jdhui.view.MyListView
+                android:id="@+id/lv_home_hot_product"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/ll_button"
+                android:divider="@color/bg_gray"
+                android:dividerHeight="10dp"
+                android:layout_marginBottom="5dip"
+                android:listSelector="@color/bg_gray"
+                android:cacheColorHint="@color/white"
+                android:scrollbars="none"/>
+
+
+        </LinearLayout>
+    </ScrollView>
+
+    <RelativeLayout
+        android:id="@+id/fragment_home_layout_title"
+        android:layout_width="match_parent"
+        android:layout_height="51dp"
+        android:background="@color/orange">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:text="君德汇"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+             />
+
+        <LinearLayout
+            android:id="@+id/id_badgeView"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/id_tab_home_img"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/tab_one_normal" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+</FrameLayout>

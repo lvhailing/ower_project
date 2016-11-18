@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_gray"
+    android:orientation="vertical"
+    android:paddingBottom="10dp"
+    tools:context=".activity.MainActivity">
+
+    <RelativeLayout
+        android:id="@+id/id_txt_title"
+        android:layout_width="match_parent"
+        android:layout_height="51dp"
+        android:background="@color/orange">
+
+        <ImageView
+            android:id="@+id/id_img_back"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:padding="5dp"
+            android:src="@drawable/back" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="修改手机号"
+            android:textColor="@color/white"
+            android:textSize="18sp" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/id_change_phone_tv_number"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@+id/id_txt_title"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/shape_center_white"
+        android:gravity="center_vertical"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:textColor="@color/txt_gray" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/id_change_phone_tv_number"
+        android:layout_marginTop="10dp"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:id="@+id/id_change_phone_layout"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/id_code"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentLeft="true"
+                    android:gravity="center_vertical"
+                    android:text="验证码:"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="10dp"
+                    android:paddingLeft="10dp"
+                    android:background="@drawable/shape_left_white"/>
+
+                <LinearLayout
+                    android:id="@+id/id_change_phone_layout_phone"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="3"
+                    android:background="@drawable/shape_right_white"
+                    android:orientation="horizontal">
+
+                    <EditText
+                        android:id="@+id/id_inut_verify_code"
+                        android:layout_width="0dip"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="6"
+                        android:background="@null"
+                        android:inputType="number"
+                        android:maxLength="6"
+                        android:paddingRight="10dp"
+                        android:paddingBottom="10dp"
+                        android:paddingTop="10dp"
+                        android:textSize="14sp" />
+
+                    <ImageView
+                        android:id="@+id/id_btn_delete"
+                        android:layout_width="0dip"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginRight="5dp"
+                        android:layout_weight="1.0"
+                        android:padding="5dp"
+                        android:src="@drawable/delete"
+                        android:visibility="gone" />
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/changephone_getSMS"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="3"
+                    android:background="@drawable/shape_center_orange"
+                    android:gravity="center"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:text="获取验证码"
+                    android:textColor="@color/white"
+                    android:textSize="12.0sp" />
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/id_btn_next"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="15dip"
+                android:layout_marginLeft="15.0dip"
+                android:layout_marginRight="15.0dip"
+                android:background="@drawable/shape_button_gray_gray"
+                android:text="提交"
+                android:textColor="@color/white" />
+        </RelativeLayout>
+
+    </LinearLayout>
+</RelativeLayout>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    >
+
+    <ImageView
+        android:id="@+id/iv_asset_fixed_arrow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/img_arrow"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="10dp"
+        />
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:layout_toLeftOf="@id/iv_asset_fixed_arrow"
+    >
+    <LinearLayout
+        android:layout_width="0dip"
+        android:layout_weight="10"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="15dp"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="15dp"
+        >
+        <TextView
+            android:id="@+id/tv_asset_fixed_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="华物量化均太一号"
+            android:textSize="15sp"
+            android:textColor="@color/txt_black"
+            />
+        <TextView
+            android:id="@+id/tv_asset_fixed_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:text="购买金额：1000.00"
+            android:textSize="13sp"/>
+
+    </LinearLayout>
+    <TextView
+        android:id="@+id/tv_asset_fixed_scale"
+        android:layout_width="0dip"
+        android:layout_weight="4"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:text="占比：50%"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="5dp"
+        android:textColor="@color/txt_orange_gray"
+        />
+
+</LinearLayout>
+
+
+</RelativeLayout>

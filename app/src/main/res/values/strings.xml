@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
+
+    <string name="app_name">君德汇</string>
+    <string name="app_chinesename">君德汇版本更新</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="back">返回</string>
+    <string name="btn_true">确认</string>
+    <string name="app_id">vjinke</string>
+    <string name="order_load_toast">正在加载数据，请稍候…</string>
+    <!-- uitl -->
+    <string name="net_fail_text">当前网络不可用，点此检查网络设置</string>
+    <string name="home_transfer_reast">剩余 &lt;font color= #ff9911 &gt;%s&lt;/font&gt; 天</string>
+    <string name="home_transfer_percent">&lt;font size = "35" color = #ff9911 &gt;%s&lt;/font&gt; %%</string>
+
+    <!-- 登录 -->
+    <string name="login_username">手机号/昵称</string>
+    <string name="login_password">密码</string>
+    <string name="login_authcode">验证码</string>
+    <string name="login_getpassword">找回密码？</string>
+    <string name="login_noauthcode">验证码不正确,请重新输入</string>
+    <string name="login_nouserorpass">用户名或密码不正确，请重新输入</string>
+    <string name="login_title">登录君德汇</string>
+
+    <!-- 手势密码 -->
+    <string name="setup_gesture_code">设置手势密码</string>
+    <string name="setup_gesture_pattern">绘制解锁图案</string>
+    <string name="setup_gesture_pattern_again">再次绘制解锁图案</string>
+    <string name="forget_gesture_code">忘记手势密码</string>
+    <string name="use_other_account_login">用其他账号登录</string>
+    <string name="set_gesture_pattern">绘制解锁图案</string>
+    <string name="set_gesture_pattern_reason">设置手势密码，防止他人未经授权查看</string>
+    <string name="set_gesture_pattern_jump">跳过</string>
+    <string name="reset_gesture_code">重新设置</string>
+
+
+    <!-- 修改手势密码 -->
+    <string name="changegesture_loginpwd">请输入登录密码</string>
+    <string name="changephone_phone">手机号：</string>
+    <string name="changegesture_ok">验证</string>
+
+    <!-- 找回密码 -->
+    <string name="findpd_next">下一步</string>
+    <string name="findpd_auth">短信验证码</string>
+    <string name="findpd_phone">输入注册手机号</string>
+    <string name="findpd_newpwd">新密码（8-16位字母数字组合）</string>
+    <string name="findpd_newnickname">用户名</string>
+    <string name="findpd_newpwd2">确认密码</string>
+    <string name="findpd_text">密码长度在6–16个字符之间，不能包含空格</string>
+    <string name="findpd_success">修改成功</string>
+    <string name="findpd_null">密码不能为空，请重新输入</string>
+    <string name="findpd_short">登录密码为8~16位字母数字组合</string>
+    <string name="findpd_noequal">两次密码不一致，请重新输入</string>
+    <string name="findpd_hasspace">密码中不能含有空格</string>
+    <string name="findpd_getphoneauth">获取验证码</string>
+    <string name="findpd_phoneauth">验证码</string>
+    <string name="signup_time">秒后重新获取</string>
+
+
+    <!-- title -->
+    <string name="title_login">登录</string>
+    <string name="title_changegesture">修改手势密码</string>
+    <string name="title_logintv">登录君德汇</string>
+    <string name="title_account">账户中心</string>
+    <string name="title_no"></string>
+    <string name="title_gestureset">设置手势密码</string>
+    <string name="title_gestureunlock">请解锁</string>
+    <string name="title_changepwd">修改密码</string>
+
+    <string name="feed_back_content">请输入您的意见及建议，我们将为您不断改进！</string>
+
+    <!-- tel -->
+    <string name="tellphone_num">01052297188</string>
+    <string name="tellphone_num_format">010-5229 7188</string>
+    <string name="tellphone_num_format_name">客服热线: 010-5229 7188</string>
+
+</resources>

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- 背景色 -->
+    <color name="light_gray">#FFEDEDED</color>
+    <color name="light_gray_r">#F7F7F7</color>
+    <color name="low_gray">#fff9f9f9</color>
+    <color name="bg_black">#a0000000</color>
+    <color name="bg_blue">#ffe6f2f8</color>
+    <color name="bg_white_gray">#F4F4F4</color>
+    <color name="bg_white_gray_d">#E5E5E5</color>
+    <color name="bg_gray">#F5F5F5</color>
+    <color name="bg_gray_gray">#CCCCCC</color>
+
+
+    <!-- 按钮色值 -->
+    <color name="white">#fefefefe</color>
+    <color name="black">#404040</color>
+    <color name="blue_overlay">#ff3392c9</color>
+    <color name="blue_d">#ff0077bb</color>
+    <color name="blue_light">#ff11bbee</color>
+    <color name="red">#FFb30000</color>
+    <color name="red1">#FF3030</color>
+    <color name="red2">#FF2311</color>
+    <color name="red3">#CF0000</color>
+   
+    <color name="title_bg">#ffdddddd</color>
+    <color name="title_bgnew">#ff3392c9</color>
+    <color name="transparent">#00000000</color>
+    <color name="green">#ff55ccaa</color>
+     <color name="green1">#090</color>
+     <color name="green2">#009900</color>
+    <color name="pink">#ffff4c4c</color>
+    <color name="orange">#BC8856</color>
+    <color name="orange_d">#ffc97300</color>
+    <color name="gray">#ffbbbbbb</color>
+    <color name="gray_d">#ff999999</color>
+    <color name="gray_d_d">#A9A9A9</color>
+    <color name="gray_dark">#696969</color>
+    <color name="blue_two">#11BBEE</color>
+    <color name="gray_light">#F2F2F2</color>
+    <!-- 字体颜色 -->
+    <color name="txt_blue">#ff3392c9</color>
+    <color name="txt_red">#FFff4c4c</color>
+    <color name="txt_black">#FF333333</color>
+    <color name="txt_orange">#ffff9911</color>
+    <color name="txt_gray">#ffbbbbbb</color>
+    <color name="txt_gray_d">#ff666666</color>
+    <color name="txt_white">#fff9f9f9</color>
+    <color name="txt_orange_light">#F91</color>
+    <color name="txt_gray_light_l">#999</color>
+    <color name="txt_orange_gray">#bb8854</color>
+    <color name="txt_gray_dark">#343434</color>
+    <color name="txt_gray_light">#959595</color>
+    <color name="edit_gray_light">#CCCCCC</color>
+    <!-- web -->
+    <color name="web_gray">#f0f2f5</color>
+
+    <color name="holo_purple">#ff3392c9</color>
+	<color name="holo_purple2">#FFEDEDED</color>
+
+    <!--资产-->
+
+    <color name="asset_fixed_income">#5d7bca</color>
+    <color name="asset_float_incomea">#e6795b</color>
+    <color name="asset_insurance">#6dc47a</color>
+    <color name="asset_null">#ffbbbbbb</color>
+
+</resources>

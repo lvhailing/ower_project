@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:padding="5dp"
+    android:layout_marginTop="10dp"
+    android:layout_marginRight="5dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="20dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:paddingTop="10dip"
+            android:paddingBottom="10dip"
+            android:paddingLeft="5dip"
+            android:paddingRight="5dip"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/id_notice_item_tv_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:text="dgadtgd"
+                android:textSize="16sp"/>
+
+            <TextView
+                android:id="@+id/id_notice_item_tv_time"
+                android:layout_width="0dp"
+                android:layout_weight="2.3"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/id_notice_item_tv_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:paddingBottom="10dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"/>
+
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:src="@mipmap/img_arrow_right"
+        android:layout_marginRight="10dp"/>
+
+</RelativeLayout>
