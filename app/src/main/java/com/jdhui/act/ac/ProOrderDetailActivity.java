@@ -131,7 +131,7 @@ public class ProOrderDetailActivity extends BaseActivity implements View.OnClick
                 startActivity(i_web);
 
                 break;
-            case R.id.ll_asset_fixed:
+            case R.id.rl_pro_name:
                 if(assetFixedBean!=null){
                     Intent i_fixedProductDetail = new Intent();
                     i_fixedProductDetail.setClass(ProOrderDetailActivity.this,FixedProductDetailActivity.class);
