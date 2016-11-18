@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="D:\studioSpace\JunDeHui_copy\app\libs\ShareSDK-Email-2.6.2.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="0258e65adf343e5a2535659589538e653067a819">
+        <dex dex="D:\studioSpace\JunDeHui_copy\app\build\intermediates\pre-dexed\debug\ShareSDK-Email-2.6.2_172a9ea7587640aa45d54ed9aa0ab0dc3bdf6ef8.jar" />
+    </item>
+    <item
+        jar="D:\studioSpace\JunDeHui_copy\app\libs\ShareSDK-TencentWeibo-2.6.2.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="32c5df61af5e1efb9fb0eb20bfd1d0123c462ef8">
+        <dex dex="D:\studioSpace\JunDeHui_copy\app\build\intermediates\pre-dexed\debug\ShareSDK-TencentWeibo-2.6.2_16be144c06e4e396b1bdf31e3cf1dc3de26dddb0.jar" />
+    </item>
+    <item
+        jar="D:\studioSpace\JunDeHui_copy\app\libs\MobTools.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="729a7c1d26c5902662316960cf282647b8d81cab">
+        <dex dex="D:\studioSpace\JunDeHui_copy\app\build\intermediates\pre-dexed\debug\MobTools_6710ce344d9f1236fa0dd7f2b3ad690b1cd0895a.jar" />
+    </item>
+    <item
+        jar="D:\studioSpace\JunDeHui_copy\app\libs\MobLogCollector.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="c804b0e7238e94bb9c89381c90336116509473d7">
+        <dex dex="D:\studioSpace\JunDeHui_copy\app\build\intermediates\pre-dexed\debug\MobLogCollector_bf37949b3e8913e820a1766e9178c88c97a9b7cb.jar" />
+    </item>
+    <item
+        jar="D:\studioSpace\JunDeHui_copy\app\libs\gson-2.3.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="5fc52c41ef0239d1093a1eb7c3697036183677ce">
+        <dex dex="D:\studioSpace\JunDeHui_copy\app\build\intermediates\pre-dexed\debug\gson-2.3_f1cca7acc5299979be3c835697444c734ac0e4d4.jar" />
+    </item>
+    <item
+        jar="D:\studioSpace\JunDeHui_copy\app\libs\ShareSDK-Wechat-Moments-2.6.5.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="ef808de23dbf4d18312d7bbd790f1511957202bc">
+        <dex dex="D:\studioSpace\JunDeHui_copy\app\build\intermediates\pre-dexed\debug\ShareSDK-Wechat-Moments-2.6.5_c19664ad3829db7e6fe0b62d5a77dfb4e46a493e.jar" />
+    </item>
+    <item
+        jar="D:\studioSpace\JunDeHui_copy\app\libs\pushservice-5.0.0.66.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="9afe4817302f358bdd51cc7c4c88f5ede2e70168">
+        <dex dex="D:\studioSpace\JunDeHui_copy\app\build\intermediates\pre-dexed\debug\pushservice-5.0.0.66_b3dca7443498f2d49b39b787a57b21dd1488943b.jar" />
+    </item>
+    <item
+        jar="D:\studioSpace\JunDeHui_copy\app\libs\ShareSDK-Core-2.6.2.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="e44531695e0bcfd747ffbdda3f083b7b41a5fe14">
+        <dex dex="D:\studioSpace\JunDeHui_copy\app\build\intermediates\pre-dexed\debug\ShareSDK-Core-2.6.2_8a4eb44757a2a5312c59ea9a5a881af81a768d8a.jar" />
+    </item>
+    <item
+        jar="D:\studioSpace\JunDeHui_copy\app\libs\ShareSDK-Wechat-Core-2.6.5.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="158796f5d03642141aeb87176152f513a6ae2734">
+        <dex dex="D:\studioSpace\JunDeHui_copy\app\build\intermediates\pre-dexed\debug\ShareSDK-Wechat-Core-2.6.5_b5f3e7435e0da7f346e4067365bb1a92c464ae0e.jar" />
+    </item>
+    <item
+        jar="D:\studioSpace\JunDeHui_copy\app\libs\ShareSDK-QQ-2.6.2.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="26c991c29049a91e34eb78d260d5384437411f13">
+        <dex dex="D:\studioSpace\JunDeHui_copy\app\build\intermediates\pre-dexed\debug\ShareSDK-QQ-2.6.2_908ecfedcc4287133acced7fb018d7f47974e246.jar" />
+    </item>
+    <item
+        jar="D:\studioSpace\JunDeHui_copy\app\libs\ShareSDK-QZone-2.6.2.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="53661a165bdf35b59961d314ba218681ff3a4980">
+        <dex dex="D:\studioSpace\JunDeHui_copy\app\build\intermediates\pre-dexed\debug\ShareSDK-QZone-2.6.2_af813609762168c5d9c31015a8fe5f341d825eed.jar" />
+    </item>
+    <item
+        jar="D:\studioSpace\JunDeHui_copy\app\build\intermediates\exploded-aar\JunDeHui_copy\pulllibrary\unspecified\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="6683ce4e651f7d757ecbb9ccb8cb364b46a53766">
+        <dex dex="D:\studioSpace\JunDeHui_copy\app\build\intermediates\pre-dexed\debug\JunDeHui_copy-pulllibrary-unspecified_8b706a40006d6e2cc83e56c9c1343548d5934e40.jar" />
+    </item>
+    <item
+        jar="D:\studioSpace\JunDeHui_copy\app\build\intermediates\exploded-aar\JunDeHui_copy\pulllibrary\unspecified\jars\libs\android-support-v4.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="c6d7522c71debe0f9195ed0523e62965ead43a03">
+        <dex dex="D:\studioSpace\JunDeHui_copy\app\build\intermediates\pre-dexed\debug\android-support-v4_ded61ffadc4db49c492fa21322067500a3f84d1e.jar" />
+    </item>
+    <item
+        jar="D:\studioSpace\JunDeHui_copy\app\libs\ShareSDK-SinaWeibo-2.6.1.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="b119f644319636ab1806b48fe46020adc36e6643">
+        <dex dex="D:\studioSpace\JunDeHui_copy\app\build\intermediates\pre-dexed\debug\ShareSDK-SinaWeibo-2.6.1_e67856db4f9a2cd999eb7a3ddd99578881ddee47.jar" />
+    </item>
+    <item
+        jar="D:\studioSpace\JunDeHui_copy\app\libs\zxing.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="96b67e377ff4637ff1fa3bbe9ad7183773935f39">
+        <dex dex="D:\studioSpace\JunDeHui_copy\app\build\intermediates\pre-dexed\debug\zxing_b044af8785cd7b891a03e4d430a7f83fa53fefcf.jar" />
+    </item>
+    <item
+        jar="D:\studioSpace\JunDeHui_copy\app\build\intermediates\exploded-aar\JunDeHui_copy\PullToRefreshViewPager\unspecified\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="385745b21732020b40b585060e9b10717369b845">
+        <dex dex="D:\studioSpace\JunDeHui_copy\app\build\intermediates\pre-dexed\debug\JunDeHui_copy-PullToRefreshViewPager-unspecified_eec7a60796fa059661da510e53580e9921c58bdf.jar" />
+    </item>
+    <item
+        jar="D:\studioSpace\JunDeHui_copy\app\libs\ShareSDK-ShortMessage-2.6.2.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="7c49c8741e25c83d8d08f360cea77a25960aa742">
+        <dex dex="D:\studioSpace\JunDeHui_copy\app\build\intermediates\pre-dexed\debug\ShareSDK-ShortMessage-2.6.2_0980b5f5ac2af1e9b429e5d92a8acd8996ae7fbf.jar" />
+    </item>
+    <item
+        jar="D:\studioSpace\JunDeHui_copy\app\build\intermediates\exploded-aar\JunDeHui_copy\PullToRefreshListFragment\unspecified\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="4eb8ae414700489b9df782b4ddd181797a53e1d4">
+        <dex dex="D:\studioSpace\JunDeHui_copy\app\build\intermediates\pre-dexed\debug\JunDeHui_copy-PullToRefreshListFragment-unspecified_7a4df02ddd8ce9dec8205521536c10811c7f7d86.jar" />
+    </item>
+    <item
+        jar="D:\studioSpace\JunDeHui_copy\app\libs\ShareSDK-Wechat-2.6.5.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="b052f69d45e5adf9adb887053ae844c9c638b63f">
+        <dex dex="D:\studioSpace\JunDeHui_copy\app\build\intermediates\pre-dexed\debug\ShareSDK-Wechat-2.6.5_6b8d7d539dcb9aaf95f9bd3c4b77714ba5bfe15d.jar" />
+    </item>
+    <item
+        jar="D:\studioSpace\JunDeHui_copy\app\libs\universal-image-loader-1.9.1-with-sources.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="d2a1c7db3817af8381daa80201bc549be3e884c5">
+        <dex dex="D:\studioSpace\JunDeHui_copy\app\build\intermediates\pre-dexed\debug\universal-image-loader-1.9.1-with-sources_87591ab536fd3cbc665c28452f538999721d81c9.jar" />
+    </item>
+
+</items>

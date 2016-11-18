@@ -1,15 +1,15 @@
-.gradle
-.idea
+#.gradle
+#.idea
 .svn
 
 /app/src/androidTest
 /app/src/test
 /app/build
 
-/build
-/gradle
+#/build
+#/gradle
 
-/MPChartLib/.settings
+#/MPChartLib/.settings
 /MPChartLib/src/test
 /MPChartLib/build
 
@@ -29,7 +29,7 @@
 /PullToRefreshViewPager/build
 
 
-gradlew
-gradlew.bat
-local.properties
-*.iml
+#gradlew
+#gradlew.bat
+#local.properties
+#*.iml

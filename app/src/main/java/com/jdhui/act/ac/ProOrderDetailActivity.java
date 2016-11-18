@@ -25,18 +25,18 @@ import com.jdhui.uitls.StringUtil;
  */
 public class ProOrderDetailActivity extends BaseActivity implements View.OnClickListener{
 
+    private RelativeLayout mRlProName;
     private TextView mTvTitle;
     private TextView mTvtype;
     private TextView mTvOrderName;
     private TextView mTvPhone;
     private TextView mTvIDNum;
     private TextView mTvOrderStatus;
-    private TextView mTvOrderTime;
 
+    private TextView mTvOrderTime;
     private ImageView mIvBack;
     private String tenderId;
     private ResultAssetFixedProductDetailBean assetFixedBean;
-    private RelativeLayout ll_asset_fixed;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +56,7 @@ public class ProOrderDetailActivity extends BaseActivity implements View.OnClick
         assetFixedBean = new ResultAssetFixedProductDetailBean();
 
         mIvBack = (ImageView) findViewById(R.id.iv_back);
+        mRlProName = (RelativeLayout) findViewById(R.id.rl_pro_name);
         mTvTitle = (TextView) findViewById(R.id.tv_title);
         mTvtype = (TextView) findViewById(R.id.tv_type);
         mTvOrderName = (TextView) findViewById(R.id.tv_order_name);
@@ -63,10 +64,9 @@ public class ProOrderDetailActivity extends BaseActivity implements View.OnClick
         mTvIDNum = (TextView) findViewById(R.id.tv_ID_num);
         mTvOrderStatus = (TextView) findViewById(R.id.tv_order_status);
         mTvOrderTime = (TextView) findViewById(R.id.tv_order_time);
-        ll_asset_fixed = (RelativeLayout) findViewById(R.id.ll_asset_fixed);
 
         mIvBack.setOnClickListener(this);
-        ll_asset_fixed.setOnClickListener(this);
+        mRlProName.setOnClickListener(this);
     }
 
     public void setView(){
