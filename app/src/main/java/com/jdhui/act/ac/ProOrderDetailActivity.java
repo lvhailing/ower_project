@@ -27,9 +27,14 @@ public class ProOrderDetailActivity extends BaseActivity implements View.OnClick
 
     private TextView mTvTitle;
     private TextView mTvtype;
+    private TextView mTvOrderName;
+    private TextView mTvPhone;
+    private TextView mTvIDNum;
+    private TextView mTvOrderStatus;
+    private TextView mTvOrderTime;
+
     private ImageView mIvBack;
     private String tenderId;
-    private String productName;
     private ResultAssetFixedProductDetailBean assetFixedBean;
     private RelativeLayout ll_asset_fixed;
 
@@ -45,32 +50,28 @@ public class ProOrderDetailActivity extends BaseActivity implements View.OnClick
     }
 
     private void initView(){
-        tenderId = getIntent().getStringExtra("tenderId");
-        productName = getIntent().getStringExtra("productName");
+//        tenderId = getIntent().getStringExtra("tenderId");
+//        productName = getIntent().getStringExtra("productName");
 
         assetFixedBean = new ResultAssetFixedProductDetailBean();
 
         mIvBack = (ImageView) findViewById(R.id.iv_back);
         mTvTitle = (TextView) findViewById(R.id.tv_title);
         mTvtype = (TextView) findViewById(R.id.tv_type);
-        tvordername = (TextView) findViewById(R.id.tv_order_name);
-        tv_asset_fixed_goumaijine = (TextView) findViewById(R.id.tv_asset_fixed_goumaijine);
-        tv_asset_fixed_yujishouyi = (TextView) findViewById(R.id.tv_asset_fixed_yujishouyi);
-        tv_asset_fixed_chanpinqixian = (TextView) findViewById(R.id.tv_asset_fixed_chanpinqixian);
-        tv_asset_fixed_goumairiqi = (TextView) findViewById(R.id.tv_asset_fixed_goumairiqi);
-        tv_asset_fixed_chengliriqi = (TextView) findViewById(R.id.tv_asset_fixed_chengliriqi);
-        tv_asset_fixed_fuxinjiange = (TextView) findViewById(R.id.tv_asset_fixed_fuxinjiange);
-        tv_asset_fixed_beizhu = (TextView) findViewById(R.id.tv_asset_fixed_beizhu);
+        mTvOrderName = (TextView) findViewById(R.id.tv_order_name);
+        mTvPhone = (TextView) findViewById(R.id.tv_phone);
+        mTvIDNum = (TextView) findViewById(R.id.tv_ID_num);
+        mTvOrderStatus = (TextView) findViewById(R.id.tv_order_status);
+        mTvOrderTime = (TextView) findViewById(R.id.tv_order_time);
         ll_asset_fixed = (RelativeLayout) findViewById(R.id.ll_asset_fixed);
 
         mIvBack.setOnClickListener(this);
-        tv_asset_fixed_call.setOnClickListener(this);
         ll_asset_fixed.setOnClickListener(this);
     }
 
     public void setView(){
 
-
+/*
         tv_asset_fixed_title.setText(productName);
         tv_asset_fixed_name.setText(assetFixedBean.getProductName());
         tv_asset_fixed_goumaijine.setText(StringUtil.formatNum(assetFixedBean.getTenderAmount()));
@@ -86,7 +87,7 @@ public class ProOrderDetailActivity extends BaseActivity implements View.OnClick
         }else{
             tv_asset_fixed_call.setClickable(false);
             tv_asset_fixed_call.setVisibility(View.GONE);
-        }
+        }*/
     }
 
 
