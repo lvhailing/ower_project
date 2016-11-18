@@ -57,8 +57,6 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@id/tv_asset_fixed_call"
-        android:layout_below="@id/ll_asset_fixed"
         android:layout_marginBottom="10dp"
         android:background="@color/white"
         android:orientation="vertical">

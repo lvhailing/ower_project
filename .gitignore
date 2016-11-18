@@ -1,5 +1,5 @@
-#.gradle
-#.idea
+.gradle
+.idea
 .svn
 
 /app/src/androidTest
@@ -29,7 +29,7 @@
 /PullToRefreshViewPager/build
 
 
-#gradlew
-#gradlew.bat
-#local.properties
-#*.iml
+gradlew
+gradl、ew.bat
+local.properties
+*.iml
