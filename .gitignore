@@ -6,8 +6,8 @@
 /app/src/test
 /app/build
 
-#/build
-#/gradle
+/build
+/gradle
 
 #/MPChartLib/.settings
 /MPChartLib/src/test
@@ -35,4 +35,3 @@ local.properties
 *.iml
 
 
-#dddsssddd
