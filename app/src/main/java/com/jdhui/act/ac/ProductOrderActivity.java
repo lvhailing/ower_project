@@ -82,7 +82,7 @@ public class ProductOrderActivity extends BaseActivity implements View.OnClickLi
             @Override
             public void onItemClick(AdapterView<?> arg0, View arg1, int position, long arg3) {
                 Intent intent = new Intent(ProductOrderActivity.this, ProOrderDetailActivity.class);
-                intent.putExtra("userInfoId",userInfoId);
+                intent.putExtra("userInfoId",totalList.get(position).getId());
                 intent.putExtra("ProductName",totalList.get(position).getProductName());
                 intent.putExtra("category",category);
                 intent.putExtra("status",status);

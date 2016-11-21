@@ -1384,7 +1384,7 @@ public class HtmlRequest extends BaseRequester {
                     if (result != null) {
                         String data = DESUtil.decrypt(result);
                         Gson json = new Gson();
-                        Product1B b = json.fromJson(data, Product1B.class);
+                        ProductDetail1B b = json.fromJson(data, ProductDetail1B.class);
                         resultEncrypt(context, b.getCode());
                         return b.getData();
                     }
