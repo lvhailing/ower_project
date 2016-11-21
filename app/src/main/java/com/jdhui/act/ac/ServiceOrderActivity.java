@@ -33,6 +33,7 @@ public class ServiceOrderActivity extends BaseActivity implements View.OnClickLi
     private ServiceOrderAdapter mAdapter;
     private ImageView mBtnBack;
     private MouldList<Service3B> totalList = new MouldList<>();
+    private View v_hidden; //隐藏的类型或状态布局背景
     private LinearLayout ll_hidden; //隐藏的类型或状态布局
     private RelativeLayout rl_type; //类型按钮
     private TextView tv_1, tv_2, tv_3;  //类型的下面的text
@@ -82,6 +83,7 @@ public class ServiceOrderActivity extends BaseActivity implements View.OnClickLi
     private void initView() {
         mBtnBack = (ImageView) findViewById(R.id.iv_back);
         listView = (PullToRefreshListView) findViewById(R.id.listview);
+        v_hidden = findViewById(R.id.v_hidden);
         ll_hidden = (LinearLayout) findViewById(R.id.ll_hidden);
         rl_type = (RelativeLayout) findViewById(R.id.rl_type);
         tv_1 = (TextView) findViewById(R.id.tv_1);
@@ -89,7 +91,7 @@ public class ServiceOrderActivity extends BaseActivity implements View.OnClickLi
         tv_3 = (TextView) findViewById(R.id.tv_3);
 
         mBtnBack.setOnClickListener(this);
-        ll_hidden.setOnClickListener(this);
+        v_hidden.setOnClickListener(this);
         rl_type.setOnClickListener(this);
         tv_1.setOnClickListener(this);
         tv_2.setOnClickListener(this);
@@ -144,25 +146,22 @@ public class ServiceOrderActivity extends BaseActivity implements View.OnClickLi
     //开启动画
     private void openShopping() {
         ObjectAnimator oa = ObjectAnimator.ofFloat(ll_hidden, "translationY", -ll_hidden.getMeasuredHeight(), 0f);
-        oa.setDuration(1000);
+        oa.setDuration(200);
         oa.start();
-        oa.addListener(new AnimatorListenerAdapter() {
-            @Override
-            public void onAnimationStart(Animator animation) {
-                ll_hidden.setVisibility(View.VISIBLE);
-            }
-        });
+        v_hidden.setVisibility(View.VISIBLE);
+        ll_hidden.setVisibility(View.VISIBLE);
         isOpened = true;
     }
 
     //关闭动画
     private void closeShopping() {
         ObjectAnimator oa = ObjectAnimator.ofFloat(ll_hidden, "translationY", 0f, -ll_hidden.getMeasuredHeight());
-        oa.setDuration(1000);
+        oa.setDuration(200);
         oa.start();
         oa.addListener(new AnimatorListenerAdapter() {
             @Override
             public void onAnimationEnd(Animator animation) {
+                v_hidden.setVisibility(View.GONE);
                 ll_hidden.setVisibility(View.GONE);
             }
         });
@@ -175,7 +174,7 @@ public class ServiceOrderActivity extends BaseActivity implements View.OnClickLi
             case R.id.iv_back:
                 finish();
                 break;
-            case R.id.ll_hidden:  //隐藏布局 关闭动画
+            case R.id.v_hidden:  //隐藏布局 关闭动画
                 closeShopping();
                 break;
             case R.id.rl_type:  //类型

@@ -36,6 +36,7 @@ public class ProductOrderActivity extends BaseActivity implements View.OnClickLi
     private ProductOrderAdapter mAdapter;
     private ImageView mBtnBack;
     private MouldList<Product3B> totalList = new MouldList<>();
+    private View v_hidden; //隐藏的类型或状态布局背景
     private LinearLayout ll_hidden; //隐藏的类型或状态布局
     private RelativeLayout rl_category; //类型按钮
     private RelativeLayout rl_status; //状态按钮
@@ -90,6 +91,7 @@ public class ProductOrderActivity extends BaseActivity implements View.OnClickLi
     private void initView() {
         mBtnBack = (ImageView) findViewById(R.id.iv_back);
         listView = (PullToRefreshListView) findViewById(R.id.listview);
+        v_hidden = findViewById(R.id.v_hidden);
         ll_hidden = (LinearLayout) findViewById(R.id.ll_hidden);
         rl_category = (RelativeLayout) findViewById(R.id.rl_category);
         rl_status = (RelativeLayout) findViewById(R.id.rl_status);
@@ -99,7 +101,7 @@ public class ProductOrderActivity extends BaseActivity implements View.OnClickLi
         tv_4 = (TextView) findViewById(R.id.tv_4);
 
         mBtnBack.setOnClickListener(this);
-        ll_hidden.setOnClickListener(this);
+        v_hidden.setOnClickListener(this);
         rl_category.setOnClickListener(this);
         rl_status.setOnClickListener(this);
         tv_1.setOnClickListener(this);
@@ -157,14 +159,10 @@ public class ProductOrderActivity extends BaseActivity implements View.OnClickLi
     //开启动画
     private void openShopping() {
         ObjectAnimator oa = ObjectAnimator.ofFloat(ll_hidden, "translationY", -ll_hidden.getMeasuredHeight(), 0f);
-        oa.setDuration(1000);
+        oa.setDuration(200);
         oa.start();
-        oa.addListener(new AnimatorListenerAdapter() {
-            @Override
-            public void onAnimationStart(Animator animation) {
-                ll_hidden.setVisibility(View.VISIBLE);
-            }
-        });
+        v_hidden.setVisibility(View.VISIBLE);
+        ll_hidden.setVisibility(View.VISIBLE);
         freshUI();
         isOpened = true;
     }
@@ -172,11 +170,12 @@ public class ProductOrderActivity extends BaseActivity implements View.OnClickLi
     //关闭动画
     private void closeShopping() {
         ObjectAnimator oa = ObjectAnimator.ofFloat(ll_hidden, "translationY", 0f, -ll_hidden.getMeasuredHeight());
-        oa.setDuration(1000);
+        oa.setDuration(200);
         oa.start();
         oa.addListener(new AnimatorListenerAdapter() {
             @Override
             public void onAnimationEnd(Animator animation) {
+                v_hidden.setVisibility(View.GONE);
                 ll_hidden.setVisibility(View.GONE);
             }
         });
@@ -207,7 +206,7 @@ public class ProductOrderActivity extends BaseActivity implements View.OnClickLi
             case R.id.iv_back:
                 finish();
                 break;
-            case R.id.ll_hidden:  //隐藏布局 关闭动画
+            case R.id.v_hidden:  //隐藏布局 关闭动画
                 closeShopping();
                 break;
             case R.id.rl_category:  //类型
