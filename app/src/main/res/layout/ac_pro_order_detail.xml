@@ -3,9 +3,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/bg_gray"
-    android:orientation="vertical"
-    android:paddingBottom="10dp">
+    android:background="@color/white"
+    android:orientation="vertical">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -56,9 +55,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginBottom="10dp"
-        android:background="@color/white"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
 
         <LinearLayout
@@ -133,6 +130,7 @@
                 android:text="预约状态"/>
 
             <TextView
+                android:id="@+id/tv_order_status"
                 style="@style/product_text_detail_rt"
                 android:text=""/>
         </LinearLayout>

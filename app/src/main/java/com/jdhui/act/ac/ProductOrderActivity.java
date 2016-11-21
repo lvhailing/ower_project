@@ -28,6 +28,8 @@ import com.jdhui.mould.types.MouldList;
 import com.jdhui.uitls.DESUtil;
 import com.jdhui.uitls.PreferenceUtil;
 
+import static android.R.id.list;
+
 /**
  * 更多--产品预约
  */
@@ -81,6 +83,7 @@ public class ProductOrderActivity extends BaseActivity implements View.OnClickLi
             public void onItemClick(AdapterView<?> arg0, View arg1, int position, long arg3) {
                 Intent intent = new Intent(ProductOrderActivity.this, ProOrderDetailActivity.class);
                 intent.putExtra("userInfoId",userInfoId);
+                intent.putExtra("ProductName",totalList.get(position).getProductName());
                 intent.putExtra("category",category);
                 intent.putExtra("status",status);
                 startActivity(intent);

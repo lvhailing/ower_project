@@ -31,6 +31,7 @@ import com.jdhui.bean.ResultProductIndexContentBean;
 import com.jdhui.bean.ResultSentSMSBean;
 import com.jdhui.bean.ResultVerifyPassWordBean;
 import com.jdhui.bean.mybean.Product1B;
+import com.jdhui.bean.mybean.ProductDetail1B;
 import com.jdhui.bean.mybean.Service1B;
 import com.jdhui.http.SimpleHttpClient;
 import com.jdhui.mould.types.IMouldType;
@@ -1308,6 +1309,62 @@ public class HtmlRequest extends BaseRequester {
             return null;
         }
         getTaskManager().addTask(new MouldAsyncTask(tid, buildParams(Constants.TASK_TYPE_PRODUCT_ORDER, context, listener, url, 0)) {
+
+            @Override
+            public IMouldType doTask(BaseParams params) {
+                SimpleHttpClient client = new SimpleHttpClient(context, SimpleHttpClient.RESULT_STRING);
+                HttpEntity entity = null;
+                try {
+                    entity = new StringEntity(data);
+                } catch (UnsupportedEncodingException e1) {
+                    e1.printStackTrace();
+                }
+                client.post(url, entity);
+                String result = (String) client.getResult();
+                try {
+                    if (isCancelled()) {
+                        return null;
+                    }
+                    if (result != null) {
+                        String data = DESUtil.decrypt(result);
+                        Gson json = new Gson();
+                        Product1B b = json.fromJson(data, Product1B.class);
+                        resultEncrypt(context, b.getCode());
+                        return b.getData();
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                } finally {
+                    unRegisterId(getTaskId());
+                }
+                return null;
+            }
+
+            @Override
+            public void onPostExecute(IMouldType result, BaseParams params) {
+                params.result = result;
+                params.sendResult();
+            }
+        });
+        return tid;
+    }
+
+    /**
+     * 更多--产品预约详情
+     *
+     * @param context  上下文
+     * @param listener 监听
+     * @return 返回数据
+     */
+    public static String getProOrderDetail(final Context context, String id, String category, OnRequestListener listener) {
+
+        final String data = HtmlLoadUtil.getProOrderDetail(id, category);
+        final String url = ApplicationConsts.URL_PRODUCT_ORDER_DETAIL;
+        String tid = registerId(Constants.TASK_TYPE_PRODUCT_ORDER_DETAIL, url);
+        if (tid == null) {
+            return null;
+        }
+        getTaskManager().addTask(new MouldAsyncTask(tid, buildParams(Constants.TASK_TYPE_PRODUCT_ORDER_DETAIL, context, listener, url, 0)) {
 
             @Override
             public IMouldType doTask(BaseParams params) {

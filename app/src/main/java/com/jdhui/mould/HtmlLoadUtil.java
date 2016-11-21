@@ -26,6 +26,7 @@ import com.jdhui.bean.UserPageBean;
 import com.jdhui.bean.UserProductTendersBean;
 import com.jdhui.bean.VerifyPassWordBean;
 import com.jdhui.bean.mybean.Product0B;
+import com.jdhui.bean.mybean.ProductDetail0B;
 import com.jdhui.bean.mybean.Service0B;
 import com.jdhui.uitls.DESUtil;
 import com.jdhui.uitls.MD5;
@@ -269,6 +270,18 @@ public class HtmlLoadUtil {
      */
     public static String getProductOrderList(String userInfoId, String category, String status, String page) {
         Product0B b = new Product0B(userInfoId, category, status, page);
+        return getResult(b);
+    }
+
+    /**
+     * 更多--产品预约详情
+     *
+     * @param id 用户id
+     * @param category 产品类型
+     * @return
+     */
+    public static String getProOrderDetail(String id, String category) {
+        ProductDetail0B b = new ProductDetail0B(id, category);
         return getResult(b);
     }
 

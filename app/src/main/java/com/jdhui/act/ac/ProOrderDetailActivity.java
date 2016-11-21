@@ -12,6 +12,8 @@ import com.jdhui.act.BaseActivity;
 import com.jdhui.act.FixedProductDetailActivity;
 import com.jdhui.act.WebActivity;
 import com.jdhui.bean.ResultAssetFixedProductDetailBean;
+import com.jdhui.bean.ResultAssetInsuranceProductDetailBean;
+import com.jdhui.bean.mybean.ProductDetail2B;
 import com.jdhui.mould.BaseParams;
 import com.jdhui.mould.BaseRequester;
 import com.jdhui.mould.HtmlRequest;
@@ -21,7 +23,7 @@ import com.jdhui.uitls.PreferenceUtil;
 /**
  * 产品预约--预约详情
  */
-public class ProOrderDetailActivity extends BaseActivity implements View.OnClickListener{
+public class ProOrderDetailActivity extends BaseActivity implements View.OnClickListener {
 
     private RelativeLayout mRlProName;
     private TextView mTvTitle;
@@ -33,8 +35,12 @@ public class ProOrderDetailActivity extends BaseActivity implements View.OnClick
 
     private TextView mTvOrderTime;
     private ImageView mIvBack;
-    private String tenderId;
-    private ResultAssetFixedProductDetailBean assetFixedBean;
+    private String userInfoId;
+    private String category;
+    private String status;
+    private ProductDetail2B ProDetail2B;
+    private TextView mTvProName;
+    private String proName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,19 +49,22 @@ public class ProOrderDetailActivity extends BaseActivity implements View.OnClick
         initView();
         initData();
     }
-    private void initData(){
-        requestAssetFixedDetail();
+
+    private void initData() {
+        requestProOrderDetailData();
     }
 
-    private void initView(){
-//        tenderId = getIntent().getStringExtra("tenderId");
-//        productName = getIntent().getStringExtra("productName");
+    private void initView() {
+        userInfoId = getIntent().getStringExtra("userInfoId");
+        proName = getIntent().getStringExtra("ProductName");
+        category = getIntent().getStringExtra("category");
+        status = getIntent().getStringExtra("status");
 
-        assetFixedBean = new ResultAssetFixedProductDetailBean();
 
         mIvBack = (ImageView) findViewById(R.id.iv_back);
         mRlProName = (RelativeLayout) findViewById(R.id.rl_pro_name);
         mTvTitle = (TextView) findViewById(R.id.tv_title);
+        mTvProName = (TextView) findViewById(R.id.tv_pro_name);
         mTvtype = (TextView) findViewById(R.id.tv_type);
         mTvOrderName = (TextView) findViewById(R.id.tv_order_name);
         mTvPhone = (TextView) findViewById(R.id.tv_phone);
@@ -67,104 +76,57 @@ public class ProOrderDetailActivity extends BaseActivity implements View.OnClick
         mRlProName.setOnClickListener(this);
     }
 
-    public void setView(){
-
-/*
-        tv_asset_fixed_title.setText(productName);
-        tv_asset_fixed_name.setText(assetFixedBean.getProductName());
-        tv_asset_fixed_goumaijine.setText(StringUtil.formatNum(assetFixedBean.getTenderAmount()));
-        tv_asset_fixed_yujishouyi.setText(assetFixedBean.getAnnualRate());
-        tv_asset_fixed_chanpinqixian.setText(assetFixedBean.getTimeLimit());
-        tv_asset_fixed_goumairiqi.setText(assetFixedBean.getPurchaseDate());
-        tv_asset_fixed_chengliriqi.setText(assetFixedBean.getEstablishmentDate());
-        tv_asset_fixed_fuxinjiange.setText(assetFixedBean.getRepayType());
-        tv_asset_fixed_beizhu.setText(assetFixedBean.getRemark());
-
-        if(assetFixedBean.getIsAnnualReport().equals("yes")){           // 是否有年度报告		yes:有;no:无
-            tv_asset_fixed_call.setVisibility(View.VISIBLE);
-        }else{
-            tv_asset_fixed_call.setClickable(false);
-            tv_asset_fixed_call.setVisibility(View.GONE);
-        }*/
-    }
-
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-    }
-
     @Override
     protected void onResume() {
         super.onResume();
     }
 
-    @Override
-    protected void onPause() {
-        super.onPause();
-    }
 
     @Override
-    protected void onDestroy() {
-        super.onDestroy();
-    }
-    @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.iv_back:
                 finish();
                 break;
-            case R.id.tv_asset_fixed_call:              //年度报告
-//                finish();
-                Intent i_web = new Intent();
-                i_web.setClass(this,WebActivity.class);
-                i_web.putExtra("id",assetFixedBean.getProductId());
-                i_web.putExtra("type",WebActivity.WEBTYPE_PRODUCT_CALL);
-                i_web.putExtra("title","年度报告");
-                startActivity(i_web);
-
-                break;
             case R.id.rl_pro_name:
-                if(assetFixedBean!=null){
-                    Intent i_fixedProductDetail = new Intent();
-                    i_fixedProductDetail.setClass(ProOrderDetailActivity.this,FixedProductDetailActivity.class);
-                    i_fixedProductDetail.putExtra("productId",assetFixedBean.getProductId());
-                    i_fixedProductDetail.putExtra("type","optimum");
-                    this.startActivity(i_fixedProductDetail);
-                }
 
                 break;
         }
     }
 
-    private void requestAssetFixedDetail(){
-        String userId = null;
+    private void requestProOrderDetailData() {
+       /* String userId = null;
         try {
             userId = DESUtil.decrypt(PreferenceUtil.getUserId());
         } catch (Exception e) {
             e.printStackTrace();
-        }
+        }*/
 
-
-        HtmlRequest.getAssetProductDetail(this, userId,tenderId,"optimum" ,new BaseRequester.OnRequestListener() {
+        HtmlRequest.getProOrderDetail(this, userInfoId,category ,new BaseRequester.OnRequestListener() {
             @Override
             public void onRequestFinished(BaseParams params) {
                 if(params!=null){
-                    assetFixedBean = (ResultAssetFixedProductDetailBean)params.result;
-                    if(assetFixedBean!=null){
+                    ProDetail2B = (ProductDetail2B)params.result;
+                    if(ProDetail2B!=null){
                         setView();
                     }
+
 
                 }
 
             }
         });
+    }
 
+    private void setView() {
+        mTvTitle.setText(proName);
+        mTvProName.setText(ProDetail2B.getProductName());
+        mTvtype.setText(category);
+        mTvOrderName.setText(ProDetail2B.getUserInfoName());
+        mTvPhone.setText(ProDetail2B.getMobile());
+        mTvIDNum.setText(ProDetail2B.getIdNo());
+        mTvOrderStatus.setText(ProDetail2B.getStatus());
+        mTvOrderTime.setText(ProDetail2B.getBookingTime());
     }
 
 }
