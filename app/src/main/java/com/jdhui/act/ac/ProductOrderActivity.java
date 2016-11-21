@@ -1,10 +1,16 @@
 package com.jdhui.act.ac;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.ObjectAnimator;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
@@ -29,7 +35,16 @@ public class ProductOrderActivity extends BaseActivity implements View.OnClickLi
     private ProductOrderAdapter mAdapter;
     private ImageView mBtnBack;
     private MouldList<Product3B> totalList = new MouldList<>();
-    private int currentPage = 1;
+    private LinearLayout ll_hidden; //隐藏的类型或状态布局
+    private RelativeLayout rl_category; //类型按钮
+    private RelativeLayout rl_status; //状态按钮
+    private TextView tv_1, tv_2, tv_3, tv_4;  //状态或类型的下面的text
+
+    private int currentPage = 1;    //当前页
+    private int currentFlag;  //当前选择哪个按钮  1、类型按钮  2、状态按钮
+    private String category;    //当前产品类型
+    private String status;    //当前预约状态   （submit:待确认;confirm:已确认;cancel:无效预约）
+    private boolean isOpened = false;   //动画是否开启
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +56,8 @@ public class ProductOrderActivity extends BaseActivity implements View.OnClickLi
     }
 
     private void initData() {
+        category = "";  //首次默认"" ，代表全部类型
+        status = "";  //首次默认"" ，代表全部状态
         requestData();
 
         listView.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ListView>() {
@@ -51,8 +68,8 @@ public class ProductOrderActivity extends BaseActivity implements View.OnClickLi
                 } else {
                     //上划加载下一页
                     currentPage++;
-                    requestData();
                 }
+                requestData();
             }
         });
 
@@ -71,53 +88,114 @@ public class ProductOrderActivity extends BaseActivity implements View.OnClickLi
     private void initView() {
         mBtnBack = (ImageView) findViewById(R.id.iv_back);
         listView = (PullToRefreshListView) findViewById(R.id.listview);
+        ll_hidden = (LinearLayout) findViewById(R.id.ll_hidden);
+        rl_category = (RelativeLayout) findViewById(R.id.rl_category);
+        rl_status = (RelativeLayout) findViewById(R.id.rl_status);
+        tv_1 = (TextView) findViewById(R.id.tv_1);
+        tv_2 = (TextView) findViewById(R.id.tv_2);
+        tv_3 = (TextView) findViewById(R.id.tv_3);
+        tv_4 = (TextView) findViewById(R.id.tv_4);
+
         mBtnBack.setOnClickListener(this);
+        ll_hidden.setOnClickListener(this);
+        rl_category.setOnClickListener(this);
+        rl_status.setOnClickListener(this);
+        tv_1.setOnClickListener(this);
+        tv_2.setOnClickListener(this);
+        tv_3.setOnClickListener(this);
+        tv_4.setOnClickListener(this);
     }
 
     private void requestData() {
         try {
-            HtmlRequest.getProductOrderList(ProductOrderActivity.this, DESUtil.decrypt(PreferenceUtil.getUserId()), "", "", currentPage + "",
-                    new BaseRequester.OnRequestListener() {
-                        @Override
-                        public void onRequestFinished(BaseParams params) {
+            HtmlRequest.getProductOrderList(ProductOrderActivity.this, DESUtil.decrypt(PreferenceUtil.getUserId()), category, status, currentPage + "", new BaseRequester.OnRequestListener() {
+                @Override
+                public void onRequestFinished(BaseParams params) {
 
-                            ProductOrderActivity.this.stopLoading();
-                            if (params.result == null) {
-                                listView.onRefreshComplete();
-                                Toast.makeText(ProductOrderActivity.this, "加载失败，请确认网络通畅", Toast.LENGTH_LONG).show();
-                                return;
-                            }
+                    ProductOrderActivity.this.stopLoading();
+                    if (params.result == null) {
+                        listView.onRefreshComplete();
+                        Toast.makeText(ProductOrderActivity.this, "加载失败，请确认网络通畅", Toast.LENGTH_LONG).show();
+                        return;
+                    }
 
-                            Product2B data = (Product2B) params.result;
-                            MouldList<Product3B> everyList = data.getList();
-                            if (everyList == null || everyList.size() == 0) {
-                                Toast.makeText(ProductOrderActivity.this, "没有数据了", Toast.LENGTH_SHORT).show();
-                                return;
-                            }
+                    Product2B data = (Product2B) params.result;
+                    MouldList<Product3B> everyList = data.getList();
+                    if (everyList == null || everyList.size() == 0) {
+                        Toast.makeText(ProductOrderActivity.this, "没有数据了", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
 
-                            listView.getRefreshableView().smoothScrollToPositionFromTop(0, 80, 100);
-                            listView.onRefreshComplete();
+                    listView.getRefreshableView().smoothScrollToPositionFromTop(0, 80, 100);
+                    listView.onRefreshComplete();
 
-                            if (currentPage == 1) {
-                                //刚进来时 加载第一页数据，或下拉刷新 重新加载数据 。这两种情况之前的数据都清掉
-                                totalList.clear();
-                            }
-                            totalList.addAll(everyList);
+                    if (currentPage == 1) {
+                        //刚进来时 加载第一页数据，或下拉刷新 重新加载数据 。这两种情况之前的数据都清掉
+                        totalList.clear();
+                    }
+                    totalList.addAll(everyList);
 
-                            //刷新数据
-                            if(mAdapter==null) {
-                                //第一次创建adpter
-                                mAdapter = new ProductOrderAdapter(ProductOrderActivity.this, totalList);
-                                listView.setAdapter(mAdapter);
-                            }else {
-                                //以后直接刷新
-                                mAdapter.notifyDataSetChanged();
-                            }
-                        }
-                    });
+                    //刷新数据
+                    if (mAdapter == null) {
+                        //第一次创建adpter
+                        mAdapter = new ProductOrderAdapter(ProductOrderActivity.this, totalList);
+                        listView.setAdapter(mAdapter);
+                    } else {
+                        //以后直接刷新
+                        mAdapter.notifyDataSetChanged();
+                    }
+                }
+            });
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    //开启动画
+    private void openShopping() {
+        ObjectAnimator oa = ObjectAnimator.ofFloat(ll_hidden, "translationY", -ll_hidden.getMeasuredHeight(), 0f);
+        oa.setDuration(1000);
+        oa.start();
+        oa.addListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationStart(Animator animation) {
+                ll_hidden.setVisibility(View.VISIBLE);
+            }
+        });
+        freshUI();
+        isOpened = true;
+    }
+
+    //关闭动画
+    private void closeShopping() {
+        ObjectAnimator oa = ObjectAnimator.ofFloat(ll_hidden, "translationY", 0f, -ll_hidden.getMeasuredHeight());
+        oa.setDuration(1000);
+        oa.start();
+        oa.addListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                ll_hidden.setVisibility(View.GONE);
+            }
+        });
+        isOpened = false;
+    }
+
+    //点按钮后 需要刷新UI
+    private void freshUI() {
+        if (currentFlag == 1) {
+            //点了类型按钮
+            tv_1.setText("全部类型");
+            tv_2.setText("固定收益");
+            tv_3.setText("浮动收益");
+            tv_4.setText("保险");
+        } else {
+            //点了状态按钮
+            tv_1.setText("全部状态");
+            tv_2.setText("已确认");
+            tv_3.setText("待确认");
+            tv_4.setText("无效预约");
+        }
+
     }
 
     @Override
@@ -125,6 +203,75 @@ public class ProductOrderActivity extends BaseActivity implements View.OnClickLi
         switch (v.getId()) {
             case R.id.iv_back:
                 finish();
+                break;
+            case R.id.ll_hidden:  //隐藏布局 关闭动画
+                closeShopping();
+                break;
+            case R.id.rl_category:  //类型
+                if (isOpened && currentFlag == 2) {
+                    //状态展开着，只刷新UI即可
+                    currentFlag = 1;
+                    freshUI();
+                } else if (isOpened) {
+                    //类型是开启状态 则需关闭动画
+                    currentFlag = 1;
+                    closeShopping();
+                } else {
+                    //否则开启动画
+                    currentFlag = 1;
+                    openShopping();
+                }
+                break;
+            case R.id.rl_status:  //状态
+                if (isOpened && currentFlag == 1) {
+                    //状态展开着，只刷新UI即可
+                    currentFlag = 2;
+                    freshUI();
+                } else if (isOpened) {
+                    //类型是开启状态 则需关闭动画
+                    currentFlag = 2;
+                    closeShopping();
+                } else {
+                    //否则开启动画
+                    currentFlag = 2;
+                    openShopping();
+                }
+                break;
+            case R.id.tv_1:  //全部类型、或全部状态
+                if (currentFlag == 1) {
+                    category = "";
+                } else {
+                    status = "";
+                }
+                closeShopping();
+                requestData();
+                break;
+            case R.id.tv_2:  //固定收益、或已确认
+                if (currentFlag == 1) {
+                    category = "gudingshouyi";
+                } else {
+                    status = "confirm";
+                }
+                closeShopping();
+                requestData();
+                break;
+            case R.id.tv_3:  //浮动收益、或待确认
+                if (currentFlag == 1) {
+                    category = "fudongshouyi";
+                } else {
+                    status = "submit";
+                }
+                closeShopping();
+                requestData();
+                break;
+            case R.id.tv_4:  //保险、或无效预约
+                if (currentFlag == 1) {
+                    category = "baoxian";
+                } else {
+                    status = "cancel";
+                }
+                closeShopping();
+                requestData();
                 break;
         }
     }

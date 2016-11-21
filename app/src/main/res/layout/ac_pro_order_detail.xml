@@ -106,7 +106,7 @@
                 android:id="@+id/tv_type"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="aaa"
+                android:text="aaaa"
                 android:textColor="@color/txt_black"
                 android:textSize="16sp"/>
         </LinearLayout>

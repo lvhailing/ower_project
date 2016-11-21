@@ -5,9 +5,6 @@ import android.content.Intent;
 import android.webkit.CookieManager;
 import android.webkit.CookieSyncManager;
 
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONArray;
-import com.alibaba.fastjson.JSONObject;
 import com.google.gson.Gson;
 import com.jdhui.ApplicationConsts;
 import com.jdhui.act.LoginActivity;
@@ -29,12 +26,12 @@ import com.jdhui.bean.ResultMessageListContentBean;
 import com.jdhui.bean.ResultMoreInfoBean;
 import com.jdhui.bean.ResultMyInfoBean;
 import com.jdhui.bean.ResultNewsListBean;
-import com.jdhui.bean.ResultNoticeContentBean;
 import com.jdhui.bean.ResultNoticeListBean;
 import com.jdhui.bean.ResultProductIndexContentBean;
-import com.jdhui.bean.mybean.Product1B;
 import com.jdhui.bean.ResultSentSMSBean;
 import com.jdhui.bean.ResultVerifyPassWordBean;
+import com.jdhui.bean.mybean.Product1B;
+import com.jdhui.bean.mybean.Service1B;
 import com.jdhui.http.SimpleHttpClient;
 import com.jdhui.mould.types.IMouldType;
 import com.jdhui.uitls.DESUtil;
@@ -45,8 +42,6 @@ import org.apache.http.entity.StringEntity;
 
 import java.io.File;
 import java.io.UnsupportedEncodingException;
-import java.util.List;
-import java.util.Map;
 
 public class HtmlRequest extends BaseRequester {
 
@@ -1333,6 +1328,62 @@ public class HtmlRequest extends BaseRequester {
                         String data = DESUtil.decrypt(result);
                         Gson json = new Gson();
                         Product1B b = json.fromJson(data, Product1B.class);
+                        resultEncrypt(context, b.getCode());
+                        return b.getData();
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                } finally {
+                    unRegisterId(getTaskId());
+                }
+                return null;
+            }
+
+            @Override
+            public void onPostExecute(IMouldType result, BaseParams params) {
+                params.result = result;
+                params.sendResult();
+            }
+        });
+        return tid;
+    }
+
+    /**
+     * 更多--服务预约
+     *
+     * @param context  上下文
+     * @param listener 监听
+     * @return 返回数据
+     */
+    public static String getServiceOrderList(final Context context, String serviceItems, String page, OnRequestListener listener) {
+
+        final String data = HtmlLoadUtil.getServicetOrderList(serviceItems, page);
+        final String url = ApplicationConsts.URL_SERVICE_ORDER;
+        String tid = registerId(Constants.TASK_TYPE_SERVICE_ORDER, url);
+        if (tid == null) {
+            return null;
+        }
+        getTaskManager().addTask(new MouldAsyncTask(tid, buildParams(Constants.TASK_TYPE_SERVICE_ORDER, context, listener, url, 0)) {
+
+            @Override
+            public IMouldType doTask(BaseParams params) {
+                SimpleHttpClient client = new SimpleHttpClient(context, SimpleHttpClient.RESULT_STRING);
+                HttpEntity entity = null;
+                try {
+                    entity = new StringEntity(data);
+                } catch (UnsupportedEncodingException e1) {
+                    e1.printStackTrace();
+                }
+                client.post(url, entity);
+                String result = (String) client.getResult();
+                try {
+                    if (isCancelled()) {
+                        return null;
+                    }
+                    if (result != null) {
+                        String data = DESUtil.decrypt(result);
+                        Gson json = new Gson();
+                        Service1B b = json.fromJson(data, Service1B.class);
                         resultEncrypt(context, b.getCode());
                         return b.getData();
                     }

@@ -89,6 +89,7 @@
         <item name="android:layout_marginRight">@dimen/activity_horizontal_layout_marginTop</item>
         <item name="android:layout_marginLeft">@dimen/activity_horizontal_layout_marginTop</item>
     </style>
+
     <style name="RepayPlanStyle">
         <item name="android:layout_marginTop">10dp</item>
         <item name="android:layout_marginRight">10dp</item>
@@ -131,20 +132,25 @@
         <item name="android:layout_marginLeft">25dp</item>
         <item name="android:layout_marginBottom">15dp</item>
     </style>
+
     <style name="recordbuttonStyle">
         <item name="android:layout_marginTop">15dp</item>
         <item name="android:layout_marginRight">35dp</item>
         <item name="android:layout_marginLeft">35dp</item>
         <item name="android:layout_marginBottom">15dp</item>
     </style>
-    
+
     <style name="recordBackground">
-       <item name="android:background">@android:color/darker_gray</item>
+        <item name="android:background">@android:color/darker_gray</item>
     </style>
-        <style name="mystyle" parent="android:Animation">  
-        <item name="@android:windowEnterAnimation">@anim/head_in</item>  //进入时的动画   
-        <item name="@android:windowExitAnimation">@anim/head_out</item>    //退出时的动画   
-    </style> 
+
+    <style name="mystyle" parent="android:Animation">
+        <item name="@android:windowEnterAnimation">@anim/head_in</item>
+        //进入时的动画
+        <item name="@android:windowExitAnimation">@anim/head_out</item>
+        //退出时的动画
+    </style>
+
     <style name="Dialog" parent="@android:style/Theme.Dialog">
         <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:windowFrame">@null</item>
@@ -155,12 +161,14 @@
         <item name="android:background">@null</item>
         <item name="android:backgroundDimEnabled">true</item>
     </style>
+
     <style name="testStyle">
         <item name="android:fillViewport">true</item>
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowBackground">@android:color/black</item>
         <item name="android:colorBackground">@android:color/black</item>
     </style>
+
     <style name="hot_product_linear_Style">
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">wrap_content</item>
@@ -169,6 +177,23 @@
         <item name="android:orientation">vertical</item>
         <item name="android:layout_marginLeft">5dip</item>
         <item name="android:layout_marginRight">5dip</item>
+    </style>
+
+    <!--产品预约列表中，状态和类型的下拉列表text style-->
+    <style name="product_text">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">46dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:background">#ffffff</item>
+        <item name="android:textColor">#000000</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <!--产品预约列表中，状态和类型的下拉列表text的下划线 style-->
+    <style name="product_text_line">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1dp</item>
+        <item name="android:background">#cccccc</item>
     </style>
 
 </resources>
