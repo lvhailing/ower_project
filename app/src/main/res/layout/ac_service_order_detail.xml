@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_gray"
+    android:orientation="vertical"
+    android:paddingBottom="10dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="51dp"
+        android:background="@color/orange">
+
+        <ImageView
+            android:id="@+id/iv_back"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:padding="5dp"
+            android:src="@drawable/back"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="预约详情"
+            android:textColor="@color/white"
+            android:textSize="18sp"/>
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:id="@+id/rl_pro_name"
+                android:layout_width="match_parent"
+                android:layout_height="50dip"
+                android:background="#f2f2f2"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:id="@+id/tv_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:text="请保持电话畅通我们会尽快与您进行联系！"
+                    android:textColor="@color/txt_orange_gray"
+                    android:textSize="16sp"/>
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="10dp"
+                android:background="@color/white"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    style="@style/product_linearlayout">
+
+                    <TextView
+                        style="@style/product_text_detail_lt"
+                        android:text="预约服务"/>
+
+                    <TextView
+                        android:id="@+id/tv_order_service"
+                        style="@style/product_text_detail_rt"
+                        android:text="aaaa"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    style="@style/product_linearlayout">
+
+                    <TextView
+                        style="@style/product_text_detail_lt"
+                        android:text="预约人"/>
+
+                    <TextView
+                        android:id="@+id/tv_order_name"
+                        style="@style/product_text_detail_rt"
+                        android:text="aaaa"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    style="@style/product_linearlayout">
+
+                    <TextView
+                        style="@style/product_text_detail_lt"
+                        android:text="性别"/>
+
+                    <TextView
+                        android:id="@+id/tv_sex"
+                        style="@style/product_text_detail_rt"
+                        android:text="aaaa"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    style="@style/product_linearlayout">
+
+                    <TextView
+                        style="@style/product_text_detail_lt"
+                        android:text="年龄"/>
+
+                    <TextView
+                        android:id="@+id/tv_age"
+                        style="@style/product_text_detail_rt"
+                        android:text="aaaa"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    style="@style/product_linearlayout">
+
+                    <TextView
+                        style="@style/product_text_detail_lt"
+                        android:text="社保号码"/>
+
+                    <TextView
+                        android:id="@+id/tv_social_security_num"
+                        style="@style/product_text_detail_rt"
+                        android:text=""/>
+                </LinearLayout>
+
+                <LinearLayout
+                    style="@style/product_linearlayout">
+
+                    <TextView
+                        style="@style/product_text_detail_lt"
+                        android:text="身份证号"/>
+
+                    <TextView
+                        android:id="@+id/tv_ID_num"
+                        style="@style/product_text_detail_rt"
+                        android:text=""/>
+                </LinearLayout>
+
+                <LinearLayout
+                    style="@style/product_linearlayout">
+
+                    <TextView
+                        style="@style/product_text_detail_lt"
+                        android:text="联系电话"/>
+
+                    <TextView
+                        android:id="@+id/tv_phone"
+                        style="@style/product_text_detail_rt"
+                        android:text=""/>
+                </LinearLayout>
+
+                <LinearLayout
+                    style="@style/product_linearlayout">
+
+                    <TextView
+                        style="@style/product_text_detail_lt"
+                        android:text="备选时间"/>
+
+                    <TextView
+                        android:id="@+id/tv_spare_time1"
+                        style="@style/product_text_detail_rt"
+                        android:text=""/>
+                </LinearLayout>
+
+                <LinearLayout
+                    style="@style/product_linearlayout">
+
+                    <TextView
+                        style="@style/product_text_detail_lt"
+                        android:text="备选时间"/>
+
+                    <TextView
+                        android:id="@+id/tv_spare_time2"
+                        style="@style/product_text_detail_rt"
+                        android:text=""/>
+                </LinearLayout>
+
+                <LinearLayout
+                    style="@style/product_linearlayout">
+
+                    <TextView
+                        style="@style/product_text_detail_lt"
+                        android:text="预约医院"/>
+
+                    <TextView
+                        android:id="@+id/tv_order_hospital"
+                        style="@style/product_text_detail_rt"
+                        android:text=""/>
+                </LinearLayout>
+
+                <LinearLayout
+                    style="@style/product_linearlayout">
+
+                    <TextView
+                        style="@style/product_text_detail_lt"
+                        android:text="预约科室"/>
+
+                    <TextView
+                        android:id="@+id/tv_order_department"
+                        style="@style/product_text_detail_rt"
+                        android:text=""/>
+                </LinearLayout>
+
+                <LinearLayout
+                    style="@style/product_linearlayout">
+
+                    <TextView
+                        style="@style/product_text_detail_lt"
+                        android:text="预约医生"/>
+
+                    <TextView
+                        android:id="@+id/tv_order_doctor"
+                        style="@style/product_text_detail_rt"
+                        android:text=""/>
+                </LinearLayout>
+
+                <LinearLayout
+                    style="@style/product_linearlayout">
+
+                    <TextView
+                        style="@style/product_text_detail_lt"
+                        android:text="主诉病情"/>
+
+                    <TextView
+                        android:id="@+id/tv_desc_illness"
+                        style="@style/product_text_detail_rt"
+                        android:text=""/>
+                </LinearLayout>
+
+                <LinearLayout
+                    style="@style/product_linearlayout">
+
+                    <TextView
+                        style="@style/product_text_detail_lt"
+                        android:text="预约时间"/>
+
+                    <TextView
+                        android:id="@+id/tv_order_time"
+                        style="@style/product_text_detail_rt"
+                        android:text=""/>
+                </LinearLayout>
+
+            </LinearLayout>
+        </LinearLayout>
+
+    </ScrollView>
+</LinearLayout>

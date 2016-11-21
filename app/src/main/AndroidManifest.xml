@@ -160,6 +160,8 @@
         <activity
             android:name=".act.VersionNumberActivity"
             android:screenOrientation="portrait"/>
+
+        <!--君德汇二期新增类-->
         <activity
             android:name=".act.ac.NewsActivity"
             android:screenOrientation="portrait"/>
@@ -169,6 +171,14 @@
 
         <activity
             android:name=".act.ac.ProOrderDetailActivity"
+            android:screenOrientation="portrait"/>
+
+        <activity
+            android:name=".act.ac.ServiceOrderActivity"
+            android:screenOrientation="portrait"/>
+
+        <activity
+            android:name=".act.ac.ServiceOrderDetailActivity"
             android:screenOrientation="portrait"/>
 
 

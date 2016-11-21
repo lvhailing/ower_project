@@ -196,4 +196,34 @@
         <item name="android:background">#cccccc</item>
     </style>
 
+    <!--产品预约详情整条item ll布局 style-->
+    <style name="product_linearlayout">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginBottom">10dp</item>
+        <item name="android:layout_marginTop">15dp</item>
+        <item name="android:layout_marginLeft">12dp</item>
+        <item name="android:orientation">horizontal</item>
+    </style>
+
+    <!--产品预约详情左侧text style-->
+    <style name="product_text_detail_lt">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">0.6</item>
+        <item name="android:textColor">@color/txt_gray</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:gravity">right</item>
+    </style>
+
+    <!--产品预约详情右侧text style-->
+    <style name="product_text_detail_rt">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">2</item>
+        <item name="android:layout_marginLeft">30dp</item>
+        <item name="android:textColor">@color/txt_black</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
 </resources>

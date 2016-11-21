@@ -70,7 +70,7 @@ public class ServiceOrderActivity extends BaseActivity implements View.OnClickLi
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> arg0, View arg1, int position, long arg3) {
-               /* Intent i_web = new Intent(ProductOrderActivity.this, WebActivity.class);
+               /* Intent i_web = new Intent(ServiceOrderActivity.this, ServiceO.class);
                 i_web.putExtra("type", WebActivity.WEBTYPE_NOTICE_DETAILS);
                 i_web.putExtra("id", totalList.get(position - 1).getBulletinId());
                 i_web.putExtra("title", "详情");

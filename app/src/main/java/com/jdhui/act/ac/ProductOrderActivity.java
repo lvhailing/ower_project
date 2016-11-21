@@ -3,6 +3,7 @@ package com.jdhui.act.ac;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ObjectAnimator;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -42,6 +43,7 @@ public class ProductOrderActivity extends BaseActivity implements View.OnClickLi
 
     private int currentPage = 1;    //当前页
     private int currentFlag;  //当前选择哪个按钮  1、类型按钮  2、状态按钮
+    private String userInfoId; //用户id
     private String category;    //当前产品类型
     private String status;    //当前预约状态   （submit:待确认;confirm:已确认;cancel:无效预约）
     private boolean isOpened = false;   //动画是否开启
@@ -76,11 +78,11 @@ public class ProductOrderActivity extends BaseActivity implements View.OnClickLi
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> arg0, View arg1, int position, long arg3) {
-               /* Intent i_web = new Intent(ProductOrderActivity.this, WebActivity.class);
-                i_web.putExtra("type", WebActivity.WEBTYPE_NOTICE_DETAILS);
-                i_web.putExtra("id", totalList.get(position - 1).getBulletinId());
-                i_web.putExtra("title", "详情");
-                startActivity(i_web);*/
+                Intent intent = new Intent(ProductOrderActivity.this, ProOrderDetailActivity.class);
+                intent.putExtra("userInfoId",userInfoId);
+                intent.putExtra("category",category);
+                intent.putExtra("status",status);
+                startActivity(intent);
             }
         });
     }
@@ -108,7 +110,8 @@ public class ProductOrderActivity extends BaseActivity implements View.OnClickLi
 
     private void requestData() {
         try {
-            HtmlRequest.getProductOrderList(ProductOrderActivity.this, DESUtil.decrypt(PreferenceUtil.getUserId()), category, status, currentPage + "", new BaseRequester.OnRequestListener() {
+            userInfoId = DESUtil.decrypt(PreferenceUtil.getUserId());
+            HtmlRequest.getProductOrderList(ProductOrderActivity.this, userInfoId, category, status, currentPage + "", new BaseRequester.OnRequestListener() {
                 @Override
                 public void onRequestFinished(BaseParams params) {
 
