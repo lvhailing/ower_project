@@ -23,69 +23,33 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:text="产品预约"
+            android:text="服务预约"
             android:textColor="@color/white"
             android:textSize="18sp"/>
     </RelativeLayout>
 
-    <LinearLayout
+    <RelativeLayout
+        android:id="@+id/rl_type"
         android:layout_width="match_parent"
         android:layout_height="46dp"
-        android:orientation="horizontal">
+        android:gravity="center_horizontal">
 
-        <RelativeLayout
-            android:id="@+id/rl_category"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center_horizontal">
+        <TextView
+            android:id="@+id/tv_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="全部"
+            android:textSize="18sp"/>
 
-            <TextView
-                android:id="@+id/tv_type"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:text="全部类型"
-                android:textSize="18sp"/>
-
-            <ImageView
-                android:layout_width="10dp"
-                android:layout_height="10dp"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="10dp"
-                android:layout_toRightOf="@+id/tv_type"
-                android:background="@drawable/arrow"/>
-        </RelativeLayout>
-
-        <View
-            android:layout_width="1dp"
-            android:layout_height="match_parent"
-            android:background="#ccc"/>
-
-        <RelativeLayout
-            android:id="@+id/rl_status"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center_horizontal">
-
-            <TextView
-                android:id="@+id/tv_status"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:text="全部状态"
-                android:textSize="18sp"/>
-
-            <ImageView
-                android:layout_width="10dp"
-                android:layout_height="10dp"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="10dp"
-                android:layout_toRightOf="@+id/tv_status"
-                android:background="@drawable/arrow"/>
-        </RelativeLayout>
-    </LinearLayout>
+        <ImageView
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/tv_type"
+            android:background="@drawable/arrow"/>
+    </RelativeLayout>
 
     <View
         android:layout_width="match_parent"
@@ -113,12 +77,12 @@
             android:layout_height="match_parent"
             android:background="#66000000"
             android:orientation="vertical"
-            android:visibility="gone">
+            android:visibility="visible">
 
             <TextView
                 android:id="@+id/tv_1"
                 style="@style/product_text"
-                android:text="全部类型"/>
+                android:text="绿通就医"/>
 
             <View
                 style="@style/product_text_line"/>
@@ -126,21 +90,13 @@
             <TextView
                 android:id="@+id/tv_2"
                 style="@style/product_text"
-                android:text="固定收益"/>
+                android:text="基因检测"/>
 
             <View
                 style="@style/product_text_line"/>
 
             <TextView
                 android:id="@+id/tv_3"
-                style="@style/product_text"
-                android:text="浮动收益"/>
-
-            <View
-                style="@style/product_text_line"/>
-
-            <TextView
-                android:id="@+id/tv_4"
                 style="@style/product_text"
                 android:text="保险"/>
         </LinearLayout>

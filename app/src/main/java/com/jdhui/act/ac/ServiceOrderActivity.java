@@ -17,47 +17,41 @@ import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.jdhui.R;
 import com.jdhui.act.BaseActivity;
-import com.jdhui.adapter.ProductOrderAdapter;
-import com.jdhui.bean.mybean.Product2B;
-import com.jdhui.bean.mybean.Product3B;
+import com.jdhui.adapter.ServiceOrderAdapter;
+import com.jdhui.bean.mybean.Service2B;
+import com.jdhui.bean.mybean.Service3B;
 import com.jdhui.mould.BaseParams;
 import com.jdhui.mould.BaseRequester;
 import com.jdhui.mould.HtmlRequest;
 import com.jdhui.mould.types.MouldList;
-import com.jdhui.uitls.DESUtil;
-import com.jdhui.uitls.PreferenceUtil;
 
 /**
- * 更多--产品预约
+ * 更多--服务预约
  */
-public class ProductOrderActivity extends BaseActivity implements View.OnClickListener {
+public class ServiceOrderActivity extends BaseActivity implements View.OnClickListener {
     private PullToRefreshListView listView;
-    private ProductOrderAdapter mAdapter;
+    private ServiceOrderAdapter mAdapter;
     private ImageView mBtnBack;
-    private MouldList<Product3B> totalList = new MouldList<>();
+    private MouldList<Service3B> totalList = new MouldList<>();
     private LinearLayout ll_hidden; //隐藏的类型或状态布局
-    private RelativeLayout rl_category; //类型按钮
-    private RelativeLayout rl_status; //状态按钮
-    private TextView tv_1, tv_2, tv_3, tv_4;  //状态或类型的下面的text
+    private RelativeLayout rl_type; //类型按钮
+    private TextView tv_1, tv_2, tv_3;  //类型的下面的text
 
     private int currentPage = 1;    //当前页
-    private int currentFlag;  //当前选择哪个按钮  1、类型按钮  2、状态按钮
-    private String category;    //当前产品类型
-    private String status;    //当前预约状态   （submit:待确认;confirm:已确认;cancel:无效预约）
+    private String type;    //当前服务类型
     private boolean isOpened = false;   //动画是否开启
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        baseSetContentView(R.layout.ac_product_order);
+        baseSetContentView(R.layout.ac_service_order);
 
         initView();
         initData();
     }
 
     private void initData() {
-        category = "";  //首次默认"" ，代表全部类型
-        status = "";  //首次默认"" ，代表全部状态
+        type = "";  //首次默认"" ，代表全部类型
         requestData();
 
         listView.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ListView>() {
@@ -89,40 +83,36 @@ public class ProductOrderActivity extends BaseActivity implements View.OnClickLi
         mBtnBack = (ImageView) findViewById(R.id.iv_back);
         listView = (PullToRefreshListView) findViewById(R.id.listview);
         ll_hidden = (LinearLayout) findViewById(R.id.ll_hidden);
-        rl_category = (RelativeLayout) findViewById(R.id.rl_category);
-        rl_status = (RelativeLayout) findViewById(R.id.rl_status);
+        rl_type = (RelativeLayout) findViewById(R.id.rl_type);
         tv_1 = (TextView) findViewById(R.id.tv_1);
         tv_2 = (TextView) findViewById(R.id.tv_2);
         tv_3 = (TextView) findViewById(R.id.tv_3);
-        tv_4 = (TextView) findViewById(R.id.tv_4);
 
         mBtnBack.setOnClickListener(this);
         ll_hidden.setOnClickListener(this);
-        rl_category.setOnClickListener(this);
-        rl_status.setOnClickListener(this);
+        rl_type.setOnClickListener(this);
         tv_1.setOnClickListener(this);
         tv_2.setOnClickListener(this);
         tv_3.setOnClickListener(this);
-        tv_4.setOnClickListener(this);
     }
 
     private void requestData() {
         try {
-            HtmlRequest.getProductOrderList(ProductOrderActivity.this, DESUtil.decrypt(PreferenceUtil.getUserId()), category, status, currentPage + "", new BaseRequester.OnRequestListener() {
+            HtmlRequest.getServiceOrderList(ServiceOrderActivity.this, type, currentPage + "", new BaseRequester.OnRequestListener() {
                 @Override
                 public void onRequestFinished(BaseParams params) {
 
-                    ProductOrderActivity.this.stopLoading();
+                    ServiceOrderActivity.this.stopLoading();
                     if (params.result == null) {
                         listView.onRefreshComplete();
-                        Toast.makeText(ProductOrderActivity.this, "加载失败，请确认网络通畅", Toast.LENGTH_LONG).show();
+                        Toast.makeText(ServiceOrderActivity.this, "加载失败，请确认网络通畅", Toast.LENGTH_LONG).show();
                         return;
                     }
 
-                    Product2B data = (Product2B) params.result;
-                    MouldList<Product3B> everyList = data.getList();
+                    Service2B data = (Service2B) params.result;
+                    MouldList<Service3B> everyList = data.getList();
                     if (everyList == null || everyList.size() == 0) {
-                        Toast.makeText(ProductOrderActivity.this, "没有数据了", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(ServiceOrderActivity.this, "没有数据了", Toast.LENGTH_SHORT).show();
                         return;
                     }
 
@@ -138,7 +128,7 @@ public class ProductOrderActivity extends BaseActivity implements View.OnClickLi
                     //刷新数据
                     if (mAdapter == null) {
                         //第一次创建adpter
-                        mAdapter = new ProductOrderAdapter(ProductOrderActivity.this, totalList);
+                        mAdapter = new ServiceOrderAdapter(ServiceOrderActivity.this, totalList);
                         listView.setAdapter(mAdapter);
                     } else {
                         //以后直接刷新
@@ -162,7 +152,6 @@ public class ProductOrderActivity extends BaseActivity implements View.OnClickLi
                 ll_hidden.setVisibility(View.VISIBLE);
             }
         });
-        freshUI();
         isOpened = true;
     }
 
@@ -180,24 +169,6 @@ public class ProductOrderActivity extends BaseActivity implements View.OnClickLi
         isOpened = false;
     }
 
-    //点按钮后 需要刷新UI
-    private void freshUI() {
-        if (currentFlag == 1) {
-            //点了类型按钮
-            tv_1.setText("全部类型");
-            tv_2.setText("固定收益");
-            tv_3.setText("浮动收益");
-            tv_4.setText("保险");
-        } else {
-            //点了状态按钮
-            tv_1.setText("全部状态");
-            tv_2.setText("已确认");
-            tv_3.setText("待确认");
-            tv_4.setText("无效预约");
-        }
-
-    }
-
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -207,69 +178,27 @@ public class ProductOrderActivity extends BaseActivity implements View.OnClickLi
             case R.id.ll_hidden:  //隐藏布局 关闭动画
                 closeShopping();
                 break;
-            case R.id.rl_category:  //类型
-                if (isOpened && currentFlag == 2) {
-                    //状态展开着，只刷新UI即可
-                    currentFlag = 1;
-                    freshUI();
-                } else if (isOpened) {
+            case R.id.rl_type:  //类型
+                if (isOpened) {
                     //类型是开启状态 则需关闭动画
-                    currentFlag = 1;
                     closeShopping();
                 } else {
                     //否则开启动画
-                    currentFlag = 1;
                     openShopping();
                 }
                 break;
-            case R.id.rl_status:  //状态
-                if (isOpened && currentFlag == 1) {
-                    //状态展开着，只刷新UI即可
-                    currentFlag = 2;
-                    freshUI();
-                } else if (isOpened) {
-                    //类型是开启状态 则需关闭动画
-                    currentFlag = 2;
-                    closeShopping();
-                } else {
-                    //否则开启动画
-                    currentFlag = 2;
-                    openShopping();
-                }
-                break;
-            case R.id.tv_1:  //全部类型、或全部状态
-                if (currentFlag == 1) {
-                    category = "";
-                } else {
-                    status = "";
-                }
+            case R.id.tv_1:  //绿通就医
+                type = "hospitalBooking";
                 closeShopping();
                 requestData();
                 break;
-            case R.id.tv_2:  //固定收益、或已确认
-                if (currentFlag == 1) {
-                    category = "gudingshouyi";
-                } else {
-                    status = "confirm";
-                }
+            case R.id.tv_2:  //基因检测
+                type = "geneticBooking";
                 closeShopping();
                 requestData();
                 break;
-            case R.id.tv_3:  //浮动收益、或待确认
-                if (currentFlag == 1) {
-                    category = "fudongshouyi";
-                } else {
-                    status = "submit";
-                }
-                closeShopping();
-                requestData();
-                break;
-            case R.id.tv_4:  //保险、或无效预约
-                if (currentFlag == 1) {
-                    category = "baoxian";
-                } else {
-                    status = "cancel";
-                }
+            case R.id.tv_3:  //高尔夫球场
+                type = "golfBooking";
                 closeShopping();
                 requestData();
                 break;
