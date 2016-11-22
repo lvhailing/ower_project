@@ -4,12 +4,12 @@ package com.jdhui.bean.mybean;
  * 更多--服务预约  准备入参
  */
 public class Service0B {
-    private String page;  //页码
     private String serviceItems; //服务类型，绿通就医：hospitalBooking、基因检测：geneticBooking、高尔夫球场：golfBooking
+    private String page;  //页码
 
-    public Service0B(String page, String serviceItems) {
-        this.page = page;
+    public Service0B(String serviceItems, String page) {
         this.serviceItems = serviceItems;
+        this.page = page;
     }
 
     public String getPage() {

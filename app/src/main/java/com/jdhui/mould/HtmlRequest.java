@@ -1469,9 +1469,9 @@ public class HtmlRequest extends BaseRequester {
      * @param listener 监听
      * @return 返回数据
      */
-    public static String getServiceDetail(final Context context, String id, String category, OnRequestListener listener) {
+    public static String getServiceDetail(final Context context, String serviceItems, String id, OnRequestListener listener) {
 
-        final String data = HtmlLoadUtil.getServiceDetail(id, category);
+        final String data = HtmlLoadUtil.getServiceDetail(serviceItems, id);
         final String url = ApplicationConsts.URL_SERVICE_DETAIL;
         String tid = registerId(Constants.TASK_TYPE_SERVICE_DETAIL, url);
         if (tid == null) {

@@ -3,6 +3,7 @@ package com.jdhui.act.ac;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ObjectAnimator;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -34,13 +35,14 @@ public class ServiceOrderActivity extends BaseActivity implements View.OnClickLi
     private ImageView mBtnBack;
     private MouldList<Service3B> totalList = new MouldList<>();
     private View v_hidden; //隐藏的类型或状态布局背景
-    private LinearLayout ll_hidden; //隐藏的类型或状态布局
+    private LinearLayout ll_hidden; //隐藏的类型布局
     private RelativeLayout rl_type; //类型按钮
-    private TextView tv_1, tv_2, tv_3;  //类型的下面的text
+    private TextView tv_1, tv_2, tv_3;  //类型的下面的text tv_1：绿通就医  tv_2：基因检测  tv_3：保险
 
     private int currentPage = 1;    //当前页
     private String type;    //当前服务类型
     private boolean isOpened = false;   //动画是否开启
+    private TextView mTvType;//服务类型  全部
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,17 +73,17 @@ public class ServiceOrderActivity extends BaseActivity implements View.OnClickLi
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> arg0, View arg1, int position, long arg3) {
-               /* Intent i_web = new Intent(ServiceOrderActivity.this, ServiceO.class);
-                i_web.putExtra("type", WebActivity.WEBTYPE_NOTICE_DETAILS);
-                i_web.putExtra("id", totalList.get(position - 1).getBulletinId());
-                i_web.putExtra("title", "详情");
-                startActivity(i_web);*/
+                Intent intent = new Intent(ServiceOrderActivity.this, ServiceOrderDetailActivity.class);
+                intent.putExtra("serviceItems", totalList.get(position).getServiceItems());
+                intent.putExtra("id", totalList.get(position).getId());
+                startActivity(intent);
             }
         });
     }
 
     private void initView() {
         mBtnBack = (ImageView) findViewById(R.id.iv_back);
+        mTvType = (TextView) findViewById(R.id.tv_type);
         listView = (PullToRefreshListView) findViewById(R.id.listview);
         v_hidden = findViewById(R.id.v_hidden);
         ll_hidden = (LinearLayout) findViewById(R.id.ll_hidden);
@@ -188,16 +190,19 @@ public class ServiceOrderActivity extends BaseActivity implements View.OnClickLi
                 break;
             case R.id.tv_1:  //绿通就医
                 type = "hospitalBooking";
+                mTvType.setText("绿通就医");
                 closeShopping();
                 requestData();
                 break;
             case R.id.tv_2:  //基因检测
                 type = "geneticBooking";
+                mTvType.setText("基因检测");
                 closeShopping();
                 requestData();
                 break;
             case R.id.tv_3:  //高尔夫球场
                 type = "golfBooking";
+                mTvType.setText("高尔夫球场地");
                 closeShopping();
                 requestData();
                 break;

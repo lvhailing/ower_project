@@ -18,7 +18,7 @@ public class ServiceDetail2B implements IMouldType {
 	private String bookingTime; //预约时间 3个公用
 	private String bakTimeOne; //备份时间一
 	private String bakTimeTwo; //备份时间二
-	private String name; //绿通就医和基因检测的医院名称、或检测项目名称
+	private String name; //绿通就医的医院名称或基因检测的检测项目名称
 	private String departments; //科室
 	private String doctor; //医生
 	private String illnessCondition; //主诉病情

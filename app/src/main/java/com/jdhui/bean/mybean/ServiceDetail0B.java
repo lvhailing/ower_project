@@ -7,9 +7,9 @@ public class ServiceDetail0B {
     private String id;  //服务Id
     private String serviceItems; //服务类型，绿通就医：hospitalBooking、基因检测：geneticBooking、高尔夫球场：golfBooking
 
-    public ServiceDetail0B(String id, String serviceItems) {
-        this.id = id;
+    public ServiceDetail0B(String serviceItems, String id) {
         this.serviceItems = serviceItems;
+        this.id = id;
     }
 
     public String getId() {

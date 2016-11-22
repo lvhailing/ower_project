@@ -28,6 +28,7 @@ import com.jdhui.bean.VerifyPassWordBean;
 import com.jdhui.bean.mybean.Product0B;
 import com.jdhui.bean.mybean.ProductDetail0B;
 import com.jdhui.bean.mybean.Service0B;
+import com.jdhui.bean.mybean.ServiceDetail0B;
 import com.jdhui.uitls.DESUtil;
 import com.jdhui.uitls.MD5;
 
@@ -276,7 +277,7 @@ public class HtmlLoadUtil {
     /**
      * 更多--产品预约详情
      *
-     * @param id 用户id
+     * @param id       用户id
      * @param category 产品类型
      * @return
      */
@@ -296,12 +297,12 @@ public class HtmlLoadUtil {
     /**
      * 更多--服务预约详情
      *
-     * @param id 用户id
-     * @param category 产品类型
+     * @param id           服务id
+     * @param serviceItems 服务类型
      * @return
      */
-    public static String getServiceDetail(String id, String category) {
-        Service0B b = new Service0B(id, category);
+    public static String getServiceDetail(String serviceItems, String id) {
+        ServiceDetail0B b = new ServiceDetail0B(serviceItems, id);
         return getResult(b);
     }
 

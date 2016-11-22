@@ -121,6 +121,32 @@
 
                     <TextView
                         style="@style/product_text_detail_lt"
+                        android:text="检测套餐"/>
+
+                    <TextView
+                        android:id="@+id/tv_genetic_test_name"
+                        style="@style/product_text_detail_rt"
+                        android:text=""/>
+                </LinearLayout>
+
+                <LinearLayout
+                    style="@style/product_linearlayout">
+
+                    <TextView
+                        style="@style/product_text_detail_lt"
+                        android:text="通讯地址"/>
+
+                    <TextView
+                        android:id="@+id/tv_genetic_test_address"
+                        style="@style/product_text_detail_rt"
+                        android:text=""/>
+                </LinearLayout>
+
+                <LinearLayout
+                    style="@style/product_linearlayout">
+
+                    <TextView
+                        style="@style/product_text_detail_lt"
                         android:text="社保号码"/>
 
                     <TextView
