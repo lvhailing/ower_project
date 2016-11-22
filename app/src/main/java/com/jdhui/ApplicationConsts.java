@@ -236,6 +236,11 @@ public class ApplicationConsts {
     /**
      * 服务预约详情
      */
+    public static final String URL_SERVICE_DETAIL = EC_HOST + "/service/bookingList/view";
+
+    /**
+     * 服务预约详情
+     */
     public static final String URL_SERVICE_ORDER_DETAIL = EC_HOST + "/service/bookingList/view";
 
     /**

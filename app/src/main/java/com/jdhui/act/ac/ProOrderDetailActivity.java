@@ -1,6 +1,5 @@
 package com.jdhui.act.ac;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -9,16 +8,10 @@ import android.widget.TextView;
 
 import com.jdhui.R;
 import com.jdhui.act.BaseActivity;
-import com.jdhui.act.FixedProductDetailActivity;
-import com.jdhui.act.WebActivity;
-import com.jdhui.bean.ResultAssetFixedProductDetailBean;
-import com.jdhui.bean.ResultAssetInsuranceProductDetailBean;
 import com.jdhui.bean.mybean.ProductDetail2B;
 import com.jdhui.mould.BaseParams;
 import com.jdhui.mould.BaseRequester;
 import com.jdhui.mould.HtmlRequest;
-import com.jdhui.uitls.DESUtil;
-import com.jdhui.uitls.PreferenceUtil;
 
 /**
  * 产品预约--预约详情
@@ -35,11 +28,10 @@ public class ProOrderDetailActivity extends BaseActivity implements View.OnClick
 
     private TextView mTvOrderTime;
     private ImageView mIvBack;
-    private String userInfoId;
+    private String id;
     private String category;
-    private String optimum;
     private String status;
-    private ProductDetail2B ProDetail2B;
+    private ProductDetail2B proDetail2B;
     private TextView mTvProName;
     private String proName;
 
@@ -52,16 +44,14 @@ public class ProOrderDetailActivity extends BaseActivity implements View.OnClick
     }
 
     private void initData() {
+        id = getIntent().getStringExtra("id");
+        proName = getIntent().getStringExtra("productName");
+        category = getIntent().getStringExtra("category");
+        status = getIntent().getStringExtra("status");
         requestProOrderDetailData();
     }
 
     private void initView() {
-        userInfoId = getIntent().getStringExtra("userInfoId");
-        proName = getIntent().getStringExtra("ProductName");
-        category = getIntent().getStringExtra("category");
-        status = getIntent().getStringExtra("status");
-
-
         mIvBack = (ImageView) findViewById(R.id.iv_back);
         mRlProName = (RelativeLayout) findViewById(R.id.rl_pro_name);
         mTvTitle = (TextView) findViewById(R.id.tv_title);
@@ -97,38 +87,28 @@ public class ProOrderDetailActivity extends BaseActivity implements View.OnClick
     }
 
     private void requestProOrderDetailData() {
-       /* String userId = null;
-        try {
-            userId = DESUtil.decrypt(PreferenceUtil.getUserId());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }*/
-
-        HtmlRequest.getProOrderDetail(this, userInfoId,"optimum" ,new BaseRequester.OnRequestListener() {
+        HtmlRequest.getProOrderDetail(this, id, category, new BaseRequester.OnRequestListener() {
             @Override
             public void onRequestFinished(BaseParams params) {
-                if(params!=null){
-                    ProDetail2B = (ProductDetail2B)params.result;
-                    if(ProDetail2B!=null){
+                if (params != null) {
+                    proDetail2B = (ProductDetail2B) params.result;
+                    if (proDetail2B != null) {
                         setView();
                     }
-
-
                 }
-
             }
         });
     }
 
     private void setView() {
         mTvTitle.setText(proName);
-        mTvProName.setText(ProDetail2B.getProductName());
+        mTvProName.setText(proDetail2B.getProductName());
         mTvtype.setText(category);
-        mTvOrderName.setText(ProDetail2B.getUserInfoName());
-        mTvPhone.setText(ProDetail2B.getMobile());
-//        mTvIdNum.setText(ProDetail2B.getIdNo());
-        mTvOrderStatus.setText(ProDetail2B.getStatus());
-        mTvOrderTime.setText(ProDetail2B.getBookingTime());
+        mTvOrderName.setText(proDetail2B.getUserInfoName());
+        mTvPhone.setText(proDetail2B.getMobile());
+        mTvIdNum.setText(proDetail2B.getIdNo());
+        mTvOrderStatus.setText(proDetail2B.getStatus());
+        mTvOrderTime.setText(proDetail2B.getBookingTime());
     }
 
 }

@@ -118,6 +118,7 @@
                 android:text="证件号码"/>
 
             <TextView
+                android:id="@+id/tv_id_num"
                 style="@style/product_text_detail_rt"
                 android:text=""/>
         </LinearLayout>

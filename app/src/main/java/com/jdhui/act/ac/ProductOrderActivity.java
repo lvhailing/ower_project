@@ -28,8 +28,6 @@ import com.jdhui.mould.types.MouldList;
 import com.jdhui.uitls.DESUtil;
 import com.jdhui.uitls.PreferenceUtil;
 
-import static android.R.id.list;
-
 /**
  * 更多--产品预约
  */
@@ -82,8 +80,8 @@ public class ProductOrderActivity extends BaseActivity implements View.OnClickLi
             @Override
             public void onItemClick(AdapterView<?> arg0, View arg1, int position, long arg3) {
                 Intent intent = new Intent(ProductOrderActivity.this, ProOrderDetailActivity.class);
-                intent.putExtra("userInfoId",totalList.get(position).getId());
-                intent.putExtra("ProductName",totalList.get(position).getProductName());
+                intent.putExtra("id",totalList.get(position).getId());
+                intent.putExtra("productName",totalList.get(position).getProductName());
                 intent.putExtra("category",category);
                 intent.putExtra("status",status);
                 startActivity(intent);
@@ -253,7 +251,7 @@ public class ProductOrderActivity extends BaseActivity implements View.OnClickLi
                 break;
             case R.id.tv_2:  //固定收益、或已确认
                 if (currentFlag == 1) {
-                    category = "gudingshouyi";
+                    category = "optimum";
                 } else {
                     status = "confirm";
                 }
@@ -262,7 +260,7 @@ public class ProductOrderActivity extends BaseActivity implements View.OnClickLi
                 break;
             case R.id.tv_3:  //浮动收益、或待确认
                 if (currentFlag == 1) {
-                    category = "fudongshouyi";
+                    category = "floating";
                 } else {
                     status = "submit";
                 }
@@ -271,7 +269,7 @@ public class ProductOrderActivity extends BaseActivity implements View.OnClickLi
                 break;
             case R.id.tv_4:  //保险、或无效预约
                 if (currentFlag == 1) {
-                    category = "baoxian";
+                    category = "insurance";
                 } else {
                     status = "cancel";
                 }

@@ -294,6 +294,18 @@ public class HtmlLoadUtil {
     }
 
     /**
+     * 更多--服务预约详情
+     *
+     * @param id 用户id
+     * @param category 产品类型
+     * @return
+     */
+    public static String getServiceDetail(String id, String category) {
+        Service0B b = new Service0B(id, category);
+        return getResult(b);
+    }
+
+    /**
      * 君德公告
      *
      * @param page

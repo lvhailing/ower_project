@@ -7,6 +7,10 @@ import android.widget.TextView;
 
 import com.jdhui.R;
 import com.jdhui.act.BaseActivity;
+import com.jdhui.bean.mybean.ServiceDetail2B;
+import com.jdhui.mould.BaseParams;
+import com.jdhui.mould.BaseRequester;
+import com.jdhui.mould.HtmlRequest;
 
 /**
  * 更多--服务预约详情
@@ -29,6 +33,10 @@ public class ServiceOrderDetailActivity extends BaseActivity implements View.OnC
     private TextView mTvDescIllness; //主诉病情
     private TextView mTvOrderTime; //预约时间
 
+    private String id;
+    private String category;
+    private ServiceDetail2B detail2B;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,9 +44,6 @@ public class ServiceOrderDetailActivity extends BaseActivity implements View.OnC
 
         initView();
         initData();
-    }
-
-    private void initData() {
     }
 
     private void initView() {
@@ -61,6 +66,45 @@ public class ServiceOrderDetailActivity extends BaseActivity implements View.OnC
         mBtnBack.setOnClickListener(this);
     }
 
+    private void initData() {
+        id = getIntent().getStringExtra("id");
+        category = getIntent().getStringExtra("category");
+
+        requestDetailData();
+    }
+
+
+    private void requestDetailData() {
+        HtmlRequest.getServiceDetail(this, id, category, new BaseRequester.OnRequestListener() {
+            @Override
+            public void onRequestFinished(BaseParams params) {
+                if (params != null) {
+                    detail2B = (ServiceDetail2B) params.result;
+                    if (detail2B != null) {
+                        setView();
+                    }
+                }
+            }
+        });
+    }
+
+    private void setView() {
+        //绿通就医：hospitalBooking、基因检测：geneticBooking、高尔夫球场：golfBooking
+
+        if (detail2B.getServiceItems().equals("hospitalBooking")) {
+            //是绿通就医
+            mTvOrderService.setText("绿通就医");
+            mTvOrderName.setText(detail2B.getBookingClient());
+            mTvSex.setVisibility(View.GONE);
+        } else if (detail2B.getServiceItems().equals("geneticBooking")) {
+            //是基因检测
+
+        } else {
+            //是高尔夫
+
+        }
+    }
+
 
     @Override
     public void onClick(View v) {
@@ -70,4 +114,5 @@ public class ServiceOrderDetailActivity extends BaseActivity implements View.OnC
                 break;
         }
     }
+
 }

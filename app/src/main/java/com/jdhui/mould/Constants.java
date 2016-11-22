@@ -122,6 +122,12 @@ public class Constants {
      * 更多--服务预约
      */
     public static final String TASK_TYPE_SERVICE_ORDER = String.valueOf(index++);
+
+    /***
+     * 更多--服务预约详情
+     */
+    public static final String TASK_TYPE_SERVICE_DETAIL = String.valueOf(index++);
+
     /***
      * 君德公告
      */
