@@ -17,7 +17,7 @@ public class ApplicationConsts {
 //	public static final String URL_DEBUG ="http://192.168.1.106:9999/junde-hui-app/";
 
     // 张殿阳
-//	public static final String URL_DEBUG ="http://192.168.1.138:9999/junde-hui-app/";
+	public static final String URL_DEBUG ="http://192.168.1.138:9999/junde-hui-app/";
 
     //张亚磊
 //	public static final String URL_DEBUG ="http://192.168.1.193:9997/junde-hui-app/";
@@ -31,7 +31,7 @@ public class ApplicationConsts {
 //	public static final String URL_DEBUG ="http://192.168.1.193:9997/junde-hui-app/";
 
     // 邢玉洁
-    public static final String URL_DEBUG = "http://192.168.1.125:9999/junde-hui-app/";
+//    public static final String URL_DEBUG = "http://192.168.1.125:9999/junde-hui-app/";
 
     // 正式环境IP M版
 //	 public static final String URL_DEBUG_M ="http://m.vjinke.com/";
@@ -257,26 +257,32 @@ public class ApplicationConsts {
      * 快讯
      */
     public static final String URL_NEWS = EC_HOST + "news/list";
+
     /**
      * 快讯详情
      */
     public static final String URL_NEWS_DETAILS = EC_HOST + "news/detail/";
+
     /**
      * 验证登录=密码
      */
     public static final String URL_VERIFY_PASSWORD = EC_HOST + "account/user/password/valid";
+
     /**
      * 保存修改后手机号
      */
     public static final String URL_SAVE_PHONE = EC_HOST + "account/mobile/bind";
+
     /**
      * 保存修改后的地址
      */
     public static final String URL_SAVE_ADDRESS = EC_HOST + "account/user/address/save";
+
     /**
      * 意见反馈
      */
     public static final String URL_FEED_BACK = EC_HOST + "problem/reply/save";
+
     /**
      * 我同意该承诺、跳过 接口
      */
@@ -286,18 +292,22 @@ public class ApplicationConsts {
      * 问卷调查
      */
     public static final String URL_SURVEY = EC_HOST + "user/questionnaires/survey/";
+
     /**
      * 填写问卷
      */
     public static final String URL_WRITTEN = EC_HOST + "android/user/questionnaires/written/";
+
     /**
      * 问卷评估
      */
     public static final String URL_ASSESSMENT = EC_HOST + "user/questionnaires/assessment/";
+
     /**
      * 投资者承诺函
      */
     public static final String URL_INVESTOR_COMMITMENT = EC_HOST + "user/questionnaires/investor/commitment/";
+
     /**
      * 投资者判定
      */
@@ -307,27 +317,34 @@ public class ApplicationConsts {
      * 关于我们
      */
     public static final String URL_ABOUT_US = EC_HOST + "regarding/us";
+
     /**
      * 服务条款
      */
     public static final String URL_SERVERS = EC_HOST + "servers/list ";
+
     /**
      * 隐私协议
      */
     public static final String URL_AGREEMENTS = EC_HOST + "privacy/agreements";
+
     /**
      * 版本号
      */
     public static final String URL_VERSION_NUMBER = EC_HOST + "android/version?num=";
 
+    /**
+     * 提交预约医院
+     */
+    public static final String URL_SERVICE_BOOKINGHOSPITAL = EC_HOST + "service/bookingHospital/add";
 
-    // */ 手势密码点的状态
+
+    // 手势密码点的状态
     public static final int POINT_STATE_NORMAL = 0; // 正常状态
 
     public static final int POINT_STATE_SELECTED = 1; // 按下状态
 
     public static final int POINT_STATE_WRONG = 2; // 错误状态
-    // */
 
     /**
      * register:用户注册

@@ -91,6 +91,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/ll_sex"
                     style="@style/product_linearlayout">
 
                     <TextView
@@ -104,6 +105,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/ll_age"
                     style="@style/product_linearlayout">
 
                     <TextView
@@ -117,6 +119,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/ll_genetic_test"
                     style="@style/product_linearlayout">
 
                     <TextView
@@ -130,6 +133,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/ll_address"
                     style="@style/product_linearlayout">
 
                     <TextView
@@ -143,6 +147,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/ll_security_num"
                     style="@style/product_linearlayout">
 
                     <TextView
@@ -156,6 +161,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/ll_id_num"
                     style="@style/product_linearlayout">
 
                     <TextView
@@ -169,6 +175,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/ll_phone"
                     style="@style/product_linearlayout">
 
                     <TextView
@@ -182,6 +189,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/ll_spare_time1"
                     style="@style/product_linearlayout">
 
                     <TextView
@@ -195,6 +203,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/ll_spare_time2"
                     style="@style/product_linearlayout">
 
                     <TextView
@@ -208,6 +217,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/ll_order_hospital"
                     style="@style/product_linearlayout">
 
                     <TextView
@@ -221,6 +231,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/ll_order_department"
                     style="@style/product_linearlayout">
 
                     <TextView
@@ -234,6 +245,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/ll_order_doctor"
                     style="@style/product_linearlayout">
 
                     <TextView
@@ -247,6 +259,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/ll_desc_illness"
                     style="@style/product_linearlayout">
 
                     <TextView
