@@ -48,6 +48,8 @@ public class ProductOrderActivity extends BaseActivity implements View.OnClickLi
     private String category;    //当前产品类型
     private String status;    //当前预约状态   （submit:待确认;confirm:已确认;cancel:无效预约）
     private boolean isOpened = false;   //动画是否开启
+    private TextView mTvType; //全部类型
+    private TextView mTvStatus; //全部状态
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,6 +93,8 @@ public class ProductOrderActivity extends BaseActivity implements View.OnClickLi
 
     private void initView() {
         mBtnBack = (ImageView) findViewById(R.id.iv_back);
+        mTvType = (TextView) findViewById(R.id.tv_type);
+        mTvStatus = (TextView) findViewById(R.id.tv_status);
         listView = (PullToRefreshListView) findViewById(R.id.listview);
         v_hidden = findViewById(R.id.v_hidden);
         ll_hidden = (LinearLayout) findViewById(R.id.ll_hidden);
@@ -243,8 +247,10 @@ public class ProductOrderActivity extends BaseActivity implements View.OnClickLi
             case R.id.tv_1:  //全部类型、或全部状态
                 if (currentFlag == 1) {
                     category = "";
+                    mTvType.setText("全部类型");
                 } else {
                     status = "";
+                    mTvStatus.setText("全部状态");
                 }
                 closeShopping();
                 requestData();
@@ -252,8 +258,10 @@ public class ProductOrderActivity extends BaseActivity implements View.OnClickLi
             case R.id.tv_2:  //固定收益、或已确认
                 if (currentFlag == 1) {
                     category = "optimum";
+                    mTvType.setText("固定收益");
                 } else {
                     status = "confirm";
+                    mTvStatus.setText("已确认");
                 }
                 closeShopping();
                 requestData();
@@ -261,8 +269,10 @@ public class ProductOrderActivity extends BaseActivity implements View.OnClickLi
             case R.id.tv_3:  //浮动收益、或待确认
                 if (currentFlag == 1) {
                     category = "floating";
+                    mTvType.setText("浮动收益");
                 } else {
                     status = "submit";
+                    mTvStatus.setText("待确认");
                 }
                 closeShopping();
                 requestData();
@@ -270,8 +280,10 @@ public class ProductOrderActivity extends BaseActivity implements View.OnClickLi
             case R.id.tv_4:  //保险、或无效预约
                 if (currentFlag == 1) {
                     category = "insurance";
+                    mTvType.setText("保险");
                 } else {
                     status = "cancel";
+                    mTvStatus.setText("无效预约");
                 }
                 closeShopping();
                 requestData();
