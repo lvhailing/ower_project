@@ -19,6 +19,7 @@ import android.widget.Toast;
 
 import com.jdhui.JdehuiApplication;
 import com.jdhui.R;
+import com.jdhui.act.ac.SubBookingHospitalActivity;
 import com.jdhui.bean.ResultCheckVersionContentBean;
 import com.jdhui.fragment.AssetFragment;
 import com.jdhui.fragment.MoreFragment;
@@ -341,6 +342,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 break;
             case R.id.ll_tab_service:
                 setSelect(2);
+                Intent intent =new Intent(this,SubBookingHospitalActivity.class);
+                startActivity(intent);
                 break;
             case R.id.ll_tab_more:
                 setSelect(3);

@@ -171,10 +171,6 @@ public class ServiceOrderDetailActivity extends BaseActivity implements View.OnC
 
         } else if (detail2B.getGolfBooking() != null) {
             //是高尔夫
-            mTvOrderService.setText("高尔夫球场地");
-            mTvOrderName.setText(detail2B.getGolfBooking().getUserInfoName());  //预约人
-            mTvOrderTime.setText(detail2B.getGolfBooking().getBookingTime()); //预约时间
-
             mLlSecurityNum.setVisibility(View.GONE);
             mLlIdNum.setVisibility(View.GONE);
             mLlSpareTime1.setVisibility(View.GONE);
@@ -188,6 +184,11 @@ public class ServiceOrderDetailActivity extends BaseActivity implements View.OnC
             mLlAge.setVisibility(View.GONE);
             mLlGeneticTest.setVisibility(View.GONE); //基因 检测套餐
             mLlAddress.setVisibility(View.GONE); //基因 通讯地址
+
+            mTvOrderService.setText("高尔夫球场地");
+            mTvOrderName.setText(detail2B.getGolfBooking().getUserInfoName());  //预约人
+            mTvOrderTime.setText(detail2B.getGolfBooking().getBookingTime()); //预约时间
+
         }
     }
 

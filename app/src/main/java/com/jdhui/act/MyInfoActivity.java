@@ -75,12 +75,11 @@ public class MyInfoActivity extends BaseActivity implements View.OnClickListener
     /**
      * 图片保存SD卡位置
      */
-    private final static String IMG_PATH = Environment
-            .getExternalStorageDirectory() + "/Jdehui/imgs/";
+    private final static String IMG_PATH = Environment.getExternalStorageDirectory() + "/Jdehui/imgs/";
 
     private ResultMyInfoContentBean bean;
-    private String userInfoId=null;
-    private TextView mTvName,mTvID;
+    private String userInfoId = null;
+    private TextView mTvName, mTvID;
     private EditText mEditAdress;
 
     @Override
@@ -95,18 +94,19 @@ public class MyInfoActivity extends BaseActivity implements View.OnClickListener
     }
 
     private void initView() {
-        userInfoId= getIntent().getStringExtra("userInfoId");
+        userInfoId = getIntent().getStringExtra("userInfoId");
         mImgBack = (ImageView) findViewById(R.id.id_img_back);
         mLayoutPhoto = (RelativeLayout) findViewById(R.id.id_my_info_layout_photo);
         mImgPhoto = (ImageView) findViewById(R.id.id_my_info_img_user);
-        mTvName= (TextView) findViewById(R.id.id_my_info_tv_name);
-        mTvID= (TextView) findViewById(R.id.id_my_info_tv_idcard);
-        mEditAdress= (EditText) findViewById(R.id.id_my_info_edit_adress);
+        mTvName = (TextView) findViewById(R.id.id_my_info_tv_name);
+        mTvID = (TextView) findViewById(R.id.id_my_info_tv_idcard);
+        mEditAdress = (EditText) findViewById(R.id.id_my_info_edit_adress);
         mBtnSave = (Button) findViewById(R.id.id_my_info_btn_save);
         mImgBack.setOnClickListener(this);
         mLayoutPhoto.setOnClickListener(this);
         mBtnSave.setOnClickListener(this);
     }
+
     /**
      * 请求数据
      */
@@ -126,6 +126,7 @@ public class MyInfoActivity extends BaseActivity implements View.OnClickListener
 
         });
     }
+
     private void setData(ResultMyInfoContentBean bean) {
         if (bean != null) {
             String url = bean.getPictureServerURL();
@@ -136,12 +137,10 @@ public class MyInfoActivity extends BaseActivity implements View.OnClickListener
                 new ImageViewService().execute(url);
                 // Toast.makeText(activity,"成功", 0).show();
             } else {
-                mImgPhoto.setImageDrawable(getResources()
-                        .getDrawable(R.drawable.user_photo));
+                mImgPhoto.setImageDrawable(getResources().getDrawable(R.drawable.user_photo));
             }
         } else {
-            mImgPhoto.setImageDrawable(getResources().getDrawable(
-                    R.drawable.user_photo));
+            mImgPhoto.setImageDrawable(getResources().getDrawable(R.drawable.user_photo));
         }
     }
 
@@ -156,20 +155,19 @@ public class MyInfoActivity extends BaseActivity implements View.OnClickListener
                 selectPhoto();
                 break;
             case R.id.id_my_info_btn_save:
-                String address=mEditAdress.getText().toString();
-                if (TextUtils.isEmpty(address)){
-                    Toast.makeText(MyInfoActivity.this,
-                            "请输入地址", Toast.LENGTH_LONG).show();
-                }else {
+                String address = mEditAdress.getText().toString();
+                if (TextUtils.isEmpty(address)) {
+                    Toast.makeText(MyInfoActivity.this, "请输入地址", Toast.LENGTH_LONG).show();
+                } else {
                     requestData(address);
                 }
                 break;
         }
     }
+
     private void requestData(String address) {
         try {
-            HtmlRequest.saveAddress(MyInfoActivity.this, DESUtil
-                            .decrypt(PreferenceUtil.getUserId()), address,
+            HtmlRequest.saveAddress(MyInfoActivity.this, DESUtil.decrypt(PreferenceUtil.getUserId()), address,
                     new BaseRequester.OnRequestListener() {
 
                         @Override
@@ -183,8 +181,7 @@ public class MyInfoActivity extends BaseActivity implements View.OnClickListener
                                     Toast.makeText(MyInfoActivity.this, bean.getMsg(), Toast.LENGTH_SHORT).show();
                                 }
                             } else {
-                                Toast.makeText(MyInfoActivity.this,
-                                        "加载失败，请确认网络通畅", Toast.LENGTH_LONG).show();
+                                Toast.makeText(MyInfoActivity.this, "加载失败，请确认网络通畅", Toast.LENGTH_LONG).show();
                             }
                         }
                     });
@@ -192,8 +189,9 @@ public class MyInfoActivity extends BaseActivity implements View.OnClickListener
             e.printStackTrace();
         }
     }
+
     private void selectPhoto() {
-        SelectPhotoDialog mDialog = new SelectPhotoDialog(this,new SelectPhotoDialog.OnSelectPhotoChanged() {
+        SelectPhotoDialog mDialog = new SelectPhotoDialog(this, new SelectPhotoDialog.OnSelectPhotoChanged() {
             @Override
             public void onAlbum() {//相册
                 Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
@@ -209,11 +207,11 @@ public class MyInfoActivity extends BaseActivity implements View.OnClickListener
 
             @Override
             public void onCancel() {
-
             }
         });
         mDialog.show();
     }
+
     // 根据用户选择，返回图片资源
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -254,7 +252,6 @@ public class MyInfoActivity extends BaseActivity implements View.OnClickListener
     }
 
 
-
     private Uri saveBitmap(Bitmap bm) {
         File tmpDir = new File(IMG_PATH);
         if (!tmpDir.exists()) {
@@ -276,6 +273,7 @@ public class MyInfoActivity extends BaseActivity implements View.OnClickListener
         }
 
     }
+
     private Uri convertUri(Uri uri) {
         InputStream is = null;
         try {
@@ -292,6 +290,7 @@ public class MyInfoActivity extends BaseActivity implements View.OnClickListener
             return null;
         }
     }
+
     private void startImageZoom(Uri uri) {
         Intent intent = new Intent("com.android.camera.action.CROP");
         intent.setDataAndType(uri, "image/*");
@@ -303,8 +302,8 @@ public class MyInfoActivity extends BaseActivity implements View.OnClickListener
         intent.putExtra("return-data", true);
         startActivityForResult(intent, CROP_REQUEST_CODE);
     }
-    public static Bitmap zoomImage(Bitmap bgimage, double newWidth,
-                                   double newHeight) {
+
+    public static Bitmap zoomImage(Bitmap bgimage, double newWidth, double newHeight) {
         // 获取这个图片的宽和高
         float width = bgimage.getWidth();
         float height = bgimage.getHeight();
@@ -333,8 +332,8 @@ public class MyInfoActivity extends BaseActivity implements View.OnClickListener
             RequestParams params = new RequestParams();
             // String img = GetImageStr(IMG_PATH+"abc.jpg");
             params.add("photo", img);
-           params.add("name", "abc.jpg");
-           params.add("id", id);
+            params.add("name", "abc.jpg");
+            params.add("id", id);
             String url = ApplicationConsts.URL_UPLOADPHOTO;
             client.post(url, params, new AsyncHttpResponseHandler() {
                 @Override
@@ -381,6 +380,7 @@ public class MyInfoActivity extends BaseActivity implements View.OnClickListener
             mHandler.sendMessage(msg);
         }
     };
+
     /**
      * 下载图片(用户头像 )
      */
@@ -415,7 +415,6 @@ public class MyInfoActivity extends BaseActivity implements View.OnClickListener
     /**
      * 获取网落图片资源
      *
-     *
      * @return
      */
     class ImageViewService extends AsyncTask<String, Void, Bitmap> {
@@ -440,6 +439,7 @@ public class MyInfoActivity extends BaseActivity implements View.OnClickListener
         }
 
     }
+
     private Bitmap getImageBitmap(String url) {
         URL imgUrl = null;
         Bitmap bitmap = null;

@@ -181,6 +181,10 @@
             android:name=".act.ac.ServiceOrderDetailActivity"
             android:screenOrientation="portrait"/>
 
+        <activity
+            android:name=".act.ac.SubBookingHospitalActivity"
+            android:screenOrientation="portrait"/>
+
 
         <!-- 通道保持服务 -->
         <service

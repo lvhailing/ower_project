@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/rl_service_type"
+        android:layout_width="match_parent"
+        android:layout_height="51dp"
+        android:background="@color/orange">
+
+        <ImageView
+            android:id="@+id/iv_back"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:padding="5dp"
+            android:src="@drawable/back"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="绿通就医"
+            android:textColor="@color/white"
+            android:textSize="18sp"/>
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/rl_service_type"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingBottom="80dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginLeft="12dp">
+
+                <TextView
+                    style="@style/tv_style"
+                    android:text="预约人"/>
+
+                <EditText
+                    style="@style/et_style"
+                    android:hint="请输入姓名"
+                    android:maxLength="10"
+                    android:maxLines="1"/>
+
+                <View
+                    style="@style/v_line_style"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginLeft="12dp">
+
+                <TextView
+                    style="@style/tv_style"
+                    android:text="社保号码"/>
+
+                <EditText
+                    style="@style/et_style"
+                    android:hint=""
+                    android:inputType="number"
+                    android:maxLength="16"
+                    android:maxLines="1"/>
+
+                <View
+                    style="@style/v_line_style"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginLeft="12dp">
+
+                <TextView
+                    style="@style/tv_style"
+                    android:text="身份证号"/>
+
+                <EditText
+                    style="@style/et_style"
+                    android:hint=""
+                    android:inputType="number"
+                    android:maxLength="18"
+                    android:maxLines="1"/>
+
+                <View
+                    style="@style/v_line_style"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginLeft="12dp">
+
+                <TextView
+                    style="@style/tv_style"
+                    android:text="联系电话"/>
+
+                <EditText
+                    style="@style/et_style"
+                    android:inputType="phone"
+                    android:maxLength="11"
+                    android:maxLines="1"/>
+
+                <View
+                    style="@style/v_line_style"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginLeft="12dp">
+
+                <TextView
+                    style="@style/tv_style"
+                    android:text="预约时间"/>
+
+
+                <ImageView
+                    android:id="@+id/iv_arrow1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="12dp"
+                    android:src="@drawable/arrow"/>
+
+                <EditText
+                    style="@style/et_style"
+                    android:layout_marginRight="5dp"
+                    android:layout_toLeftOf="@id/iv_arrow1"
+                    android:hint="qqq"
+                    android:inputType="date"
+                    android:maxLength="14"
+                    android:maxLines="1"/>
+
+                <View
+                    style="@style/v_line_style"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginLeft="12dp">
+
+                <TextView
+                    style="@style/tv_style"
+                    android:text="备选时间"/>
+
+
+                <ImageView
+                    android:id="@+id/iv_arrow2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="12dp"
+                    android:src="@drawable/arrow"/>
+
+                <EditText
+                    style="@style/et_style"
+                    android:layout_marginRight="5dp"
+                    android:layout_toLeftOf="@id/iv_arrow2"
+                    android:hint="qqq"
+                    android:inputType="date"
+                    android:maxLength="14"
+                    android:maxLines="1"/>
+
+                <View
+                    style="@style/v_line_style"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginLeft="12dp">
+
+                <TextView
+                    style="@style/tv_style"
+                    android:text="备选时间"/>
+
+
+                <ImageView
+                    android:id="@+id/iv_arrow3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="12dp"
+                    android:src="@drawable/arrow"/>
+
+                <EditText
+                    style="@style/et_style"
+                    android:layout_marginRight="5dp"
+                    android:layout_toLeftOf="@id/iv_arrow3"
+                    android:hint="qqq"
+                    android:inputType="date"
+                    android:maxLength="14"
+                    android:maxLines="1"/>
+
+                <View
+                    style="@style/v_line_style"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginLeft="12dp">
+
+                <TextView
+                    style="@style/tv_style"
+                    android:text="预约医院"/>
+
+
+                <ImageView
+                    android:id="@+id/iv_arrow4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="12dp"
+                    android:src="@drawable/arrow"/>
+
+                <EditText
+                    style="@style/et_style"
+                    android:layout_marginRight="5dp"
+                    android:layout_toLeftOf="@id/iv_arrow4"
+                    android:hint="qqq"
+                    android:inputType="text"
+                    android:maxLength="14"
+                    android:maxLines="1"/>
+
+                <View
+                    style="@style/v_line_style"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginLeft="12dp">
+
+                <TextView
+                    style="@style/tv_style"
+                    android:text="预约科室"/>
+
+                <EditText
+                    style="@style/et_style"
+                    android:hint=""
+                    android:inputType="text"
+                    android:maxLength="10"
+                    android:maxLines="1"
+                    android:text=""/>
+
+                <View
+                    style="@style/v_line_style"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginLeft="12dp">
+
+                <TextView
+                    style="@style/tv_style"
+                    android:text="预约医生"/>
+
+                <EditText
+                    style="@style/et_style"
+                    android:hint=""
+                    android:inputType="text"
+                    android:maxLength="10"
+                    android:maxLines="1"/>
+
+                <View
+                    style="@style/v_line_style"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginLeft="12dp">
+
+                <TextView
+                    style="@style/tv_style"
+                    android:text="主诉病情"/>
+
+                <EditText
+                    style="@style/et_style"
+                    android:hint=""
+                    android:inputType="text"
+                    android:maxLength="10"
+                    android:maxLines="1"/>
+
+                <View
+                    style="@style/v_line_style"/>
+            </RelativeLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <Button
+        android:id="@+id/btn_submit"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/shape_button_orange"
+        android:text="提交预约"
+        android:textColor="@color/white"/>
+
+</RelativeLayout>

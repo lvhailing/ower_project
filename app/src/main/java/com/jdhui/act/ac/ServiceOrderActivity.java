@@ -37,7 +37,7 @@ public class ServiceOrderActivity extends BaseActivity implements View.OnClickLi
     private View v_hidden; //隐藏的类型或状态布局背景
     private LinearLayout ll_hidden; //隐藏的类型布局
     private RelativeLayout rl_type; //类型按钮
-    private TextView tv_1, tv_2, tv_3;  //类型的下面的text tv_1：绿通就医  tv_2：基因检测  tv_3：保险
+    private TextView tv_1, tv_2, tv_3;  //类型的下面的text tv_1：绿通就医  tv_2：基因检测  tv_3：高尔夫球场地
 
     private int currentPage = 1;    //当前页
     private String type;    //当前服务类型
@@ -74,8 +74,8 @@ public class ServiceOrderActivity extends BaseActivity implements View.OnClickLi
             @Override
             public void onItemClick(AdapterView<?> arg0, View arg1, int position, long arg3) {
                 Intent intent = new Intent(ServiceOrderActivity.this, ServiceOrderDetailActivity.class);
-                intent.putExtra("serviceItems", totalList.get(position).getServiceItems());
-                intent.putExtra("id", totalList.get(position).getId());
+                intent.putExtra("serviceItems", totalList.get(position-1).getServiceItems());
+                intent.putExtra("id", totalList.get(position-1).getId());
                 startActivity(intent);
             }
         });

@@ -30,10 +30,12 @@ import com.jdhui.bean.ResultNoticeListBean;
 import com.jdhui.bean.ResultProductIndexContentBean;
 import com.jdhui.bean.ResultSentSMSBean;
 import com.jdhui.bean.ResultVerifyPassWordBean;
+import com.jdhui.bean.mybean.BookingHospitalList1B;
 import com.jdhui.bean.mybean.Product1B;
 import com.jdhui.bean.mybean.ProductDetail1B;
 import com.jdhui.bean.mybean.Service1B;
 import com.jdhui.bean.mybean.ServiceDetail1B;
+import com.jdhui.bean.mybean.SubmitBookingHospital1B;
 import com.jdhui.http.SimpleHttpClient;
 import com.jdhui.mould.types.IMouldType;
 import com.jdhui.uitls.DESUtil;
@@ -1651,9 +1653,7 @@ public class HtmlRequest extends BaseRequester {
      * @param listener 监听
      * @return 返回数据
      */
-    public static String verifyPassWord(final Context context, String userId,
-                                        String password,
-                                        OnRequestListener listener) {
+    public static String verifyPassWord(final Context context, String userId, String password, OnRequestListener listener) {
         final String data = HtmlLoadUtil.verifyPassWord(userId, password);
         final String url = ApplicationConsts.URL_VERIFY_PASSWORD;
         String tid = registerId(Constants.TASK_TYPE_VERIFY_PASSWORD, url);
@@ -1661,14 +1661,11 @@ public class HtmlRequest extends BaseRequester {
             return null;
         }
         getTaskManager().addTask(
-                new MouldAsyncTask(tid, buildParams(
-                        Constants.TASK_TYPE_VERIFY_PASSWORD, context, listener,
-                        url, 0)) {
+                new MouldAsyncTask(tid, buildParams(Constants.TASK_TYPE_VERIFY_PASSWORD, context, listener, url, 0)) {
 
                     @Override
                     public IMouldType doTask(BaseParams params) {
-                        SimpleHttpClient client = new SimpleHttpClient(context,
-                                SimpleHttpClient.RESULT_STRING);
+                        SimpleHttpClient client = new SimpleHttpClient(context, SimpleHttpClient.RESULT_STRING);
                         HttpEntity entity = null;
                         try {
                             entity = new StringEntity(data);
@@ -1685,8 +1682,7 @@ public class HtmlRequest extends BaseRequester {
                             if (result != null) {
                                 String data = DESUtil.decrypt(result);
                                 Gson json = new Gson();
-                                ResultVerifyPassWordBean b = json.fromJson(
-                                        data, ResultVerifyPassWordBean.class);
+                                ResultVerifyPassWordBean b = json.fromJson(data, ResultVerifyPassWordBean.class);
                                 resultEncrypt(context, b.getCode());
                                 return b.getData();
                             }
@@ -1699,8 +1695,7 @@ public class HtmlRequest extends BaseRequester {
                     }
 
                     @Override
-                    public void onPostExecute(IMouldType result,
-                                              BaseParams params) {
+                    public void onPostExecute(IMouldType result, BaseParams params) {
                         params.result = result;
                         params.sendResult();
                     }
@@ -1715,30 +1710,25 @@ public class HtmlRequest extends BaseRequester {
      * @param listener 监听
      * @return 返回数据
      */
-    public static String savePhone(final Context context, String mobile, String validateCode,
-                                   OnRequestListener listener) {
+    public static String savePhone(final Context context, String mobile, String validateCode, OnRequestListener listener) {
         String userId = null;
         try {
             userId = DESUtil.decrypt(PreferenceUtil.getUserId());
         } catch (Exception e) {
             e.printStackTrace();
         }
-        final String data = HtmlLoadUtil.savePhone(userId, mobile,
-                validateCode);
+        final String data = HtmlLoadUtil.savePhone(userId, mobile, validateCode);
         final String url = ApplicationConsts.URL_SAVE_PHONE;
         String tid = registerId(Constants.TASK_TYPE_SAVE_PHONE, url);
         if (tid == null) {
             return null;
         }
         getTaskManager().addTask(
-                new MouldAsyncTask(tid, buildParams(
-                        Constants.TASK_TYPE_SAVE_PHONE, context, listener,
-                        url, 0)) {
+                new MouldAsyncTask(tid, buildParams(Constants.TASK_TYPE_SAVE_PHONE, context, listener, url, 0)) {
 
                     @Override
                     public IMouldType doTask(BaseParams params) {
-                        SimpleHttpClient client = new SimpleHttpClient(context,
-                                SimpleHttpClient.RESULT_STRING);
+                        SimpleHttpClient client = new SimpleHttpClient(context, SimpleHttpClient.RESULT_STRING);
                         HttpEntity entity = null;
                         try {
                             entity = new StringEntity(data);
@@ -1755,8 +1745,7 @@ public class HtmlRequest extends BaseRequester {
                             if (result != null) {
                                 String data = DESUtil.decrypt(result);
                                 Gson json = new Gson();
-                                ResultCodeBean b = json.fromJson(
-                                        data, ResultCodeBean.class);
+                                ResultCodeBean b = json.fromJson(data, ResultCodeBean.class);
                                 resultEncrypt(context, b.getCode());
                                 return b.getData();
                             }
@@ -1769,8 +1758,7 @@ public class HtmlRequest extends BaseRequester {
                     }
 
                     @Override
-                    public void onPostExecute(IMouldType result,
-                                              BaseParams params) {
+                    public void onPostExecute(IMouldType result, BaseParams params) {
                         params.result = result;
                         params.sendResult();
                     }
@@ -1785,10 +1773,8 @@ public class HtmlRequest extends BaseRequester {
      * @param listener
      * @return
      */
-    public static String changePassword(final Context context, String userId,
-                                        String oldpassword, String newpassword, OnRequestListener listener) {
-        final String data = HtmlLoadUtil.changePassword(userId, oldpassword,
-                newpassword);
+    public static String changePassword(final Context context, String userId, String oldpassword, String newpassword, OnRequestListener listener) {
+        final String data = HtmlLoadUtil.changePassword(userId, oldpassword, newpassword);
         final String url = ApplicationConsts.URL_CHANGEPWD;
         String tid = registerId(Constants.TASK_TYPE_CHANGE_PASSWORD, url);
         if (tid == null) {
@@ -1980,14 +1966,10 @@ public class HtmlRequest extends BaseRequester {
             return null;
         }
         getTaskManager().addTask(
-                new MouldAsyncTask(tid, buildParams(
-                        Constants.TASK_TYPE_INVESTOR_JUDGE_SAVE, context, listener, url,
-                        0)) {
-
+                new MouldAsyncTask(tid, buildParams(Constants.TASK_TYPE_INVESTOR_JUDGE_SAVE, context, listener, url, 0)) {
                     @Override
                     public IMouldType doTask(BaseParams params) {
-                        SimpleHttpClient client = new SimpleHttpClient(context,
-                                SimpleHttpClient.RESULT_STRING);
+                        SimpleHttpClient client = new SimpleHttpClient(context, SimpleHttpClient.RESULT_STRING);
 
                         HttpEntity entity = null;
                         try {
@@ -2006,8 +1988,7 @@ public class HtmlRequest extends BaseRequester {
                             if (result != null) {
                                 Gson json = new Gson();
                                 String data = DESUtil.decrypt(result);
-                                ResultCodeBean b = json.fromJson(data,
-                                        ResultCodeBean.class);
+                                ResultCodeBean b = json.fromJson(data, ResultCodeBean.class);
                                 resultEncrypt(context, b.getCode());
                                 return b.getData();
                             }
@@ -2022,6 +2003,123 @@ public class HtmlRequest extends BaseRequester {
                     @Override
                     public void onPostExecute(IMouldType result,
                                               BaseParams params) {
+                        params.result = result;
+                        params.sendResult();
+                    }
+                });
+        return tid;
+    }
+
+    /**
+     * 服务--提交预约医院
+     *
+     * @param context  上下文
+     * @param listener 监听
+     * @return 返回数据
+     */
+    public static String submitBookingHospital(final Context context, String userId, String hospitalId, String departments, String doctor,
+                                               String bookingTime, String bakTimeOne, String bakTimeTwo, String illnessCondition, String bookingClient,
+                                               String securityNum, String clientPhone, String clientIdNo, OnRequestListener listener) {
+        final String data = HtmlLoadUtil.submitBookingHospital(userId, hospitalId, departments, doctor, bookingTime, bakTimeOne, bakTimeTwo, illnessCondition,
+                bookingClient, securityNum, clientPhone, clientIdNo);
+        final String url = ApplicationConsts.URL_SERVICE_BOOKINGHOSPITAL;
+        String tid = registerId(Constants.TASK_TYPE_BOOKING_HOSPITAL, url);
+        if (tid == null) {
+            return null;
+        }
+        getTaskManager().addTask(
+                new MouldAsyncTask(tid, buildParams(Constants.TASK_TYPE_BOOKING_HOSPITAL, context, listener, url, 0)) {
+                    @Override
+                    public IMouldType doTask(BaseParams params) {
+                        SimpleHttpClient client = new SimpleHttpClient(context, SimpleHttpClient.RESULT_STRING);
+
+                        HttpEntity entity = null;
+                        try {
+                            entity = new StringEntity(data);
+                        } catch (UnsupportedEncodingException e1) {
+                            e1.printStackTrace();
+                        }
+
+                        client.post(url, entity);
+                        String result = (String) client.getResult();
+                        try {
+                            if (isCancelled()) {
+                                return null;
+                            }
+                            if (result != null) {
+                                Gson json = new Gson();
+                                String data = DESUtil.decrypt(result);
+                                SubmitBookingHospital1B b = json.fromJson(data, SubmitBookingHospital1B.class);
+                                resultEncrypt(context, b.getCode());
+                                return b.getData();
+                            }
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        } finally {
+                            unRegisterId(getTaskId());
+                        }
+                        return null;
+                    }
+
+                    @Override
+                    public void onPostExecute(IMouldType result, BaseParams params) {
+                        params.result = result;
+                        params.sendResult();
+                    }
+                });
+        return tid;
+    }
+
+    /**
+     * 服务--展示预约医院列表
+     *
+     * @param context  上下文
+     * @param listener 监听
+     * @return 返回数据
+     */
+    public static String getBookingHospitalList(final Context context, String province, String city, String page, OnRequestListener listener) {
+        final String data = HtmlLoadUtil.getBookingHospitalList(province, city, page);
+        final String url = ApplicationConsts.URL_SERVICE_BOOKINGHOSPITAL_LIST;
+        String tid = registerId(Constants.TASK_TYPE_BOOKING_HOSPITAL_LIST, url);
+        if (tid == null) {
+            return null;
+        }
+        getTaskManager().addTask(
+                new MouldAsyncTask(tid, buildParams(Constants.TASK_TYPE_BOOKING_HOSPITAL_LIST, context, listener, url, 0)) {
+                    @Override
+                    public IMouldType doTask(BaseParams params) {
+                        SimpleHttpClient client = new SimpleHttpClient(context, SimpleHttpClient.RESULT_STRING);
+
+                        HttpEntity entity = null;
+                        try {
+                            entity = new StringEntity(data);
+                        } catch (UnsupportedEncodingException e1) {
+                            e1.printStackTrace();
+                        }
+
+                        client.post(url, entity);
+                        String result = (String) client.getResult();
+                        try {
+                            if (isCancelled()) {
+                                return null;
+                            }
+                            if (result != null) {
+                                Gson json = new Gson();
+                                String data = DESUtil.decrypt(result);
+                                BookingHospitalList1B b = json.fromJson(data, BookingHospitalList1B.class);
+                                resultEncrypt(context, b.getCode());
+                                return b.getData();
+                            }
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        } finally {
+                            unRegisterId(getTaskId());
+                        }
+                        return null;
+                    }
+
+                    @Override
+                    public void onPostExecute(IMouldType result, BaseParams params) {
                         params.result = result;
                         params.sendResult();
                     }

@@ -104,7 +104,7 @@
             <TextView
                 android:id="@+id/tv_3"
                 style="@style/product_text"
-                android:text="保险"/>
+                android:text="高尔夫球场地"/>
         </LinearLayout>
     </RelativeLayout>
 </LinearLayout>

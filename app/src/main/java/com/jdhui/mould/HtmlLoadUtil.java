@@ -25,10 +25,12 @@ import com.jdhui.bean.UserLoginBean;
 import com.jdhui.bean.UserPageBean;
 import com.jdhui.bean.UserProductTendersBean;
 import com.jdhui.bean.VerifyPassWordBean;
+import com.jdhui.bean.mybean.BookingHospitalList0B;
 import com.jdhui.bean.mybean.Product0B;
 import com.jdhui.bean.mybean.ProductDetail0B;
 import com.jdhui.bean.mybean.Service0B;
 import com.jdhui.bean.mybean.ServiceDetail0B;
+import com.jdhui.bean.mybean.SubmitBookingHospital0B;
 import com.jdhui.uitls.DESUtil;
 import com.jdhui.uitls.MD5;
 
@@ -386,6 +388,25 @@ public class HtmlLoadUtil {
      */
     public static String investorJudgeSave(String userId, String qualifiedInvestor) {
         InvestorJudgeBean b = new InvestorJudgeBean(userId, qualifiedInvestor);
+        return getResult(b);
+    }
+    /**
+     * 服务--提交预约医院
+     */
+    public static String submitBookingHospital(String userId, String hospitalId, String departments, String doctor, String bookingTime, String bakTimeOne,
+                                               String bakTimeTwo, String illnessCondition, String bookingClient, String securityNum, String clientPhone, String clientIdNo) {
+        SubmitBookingHospital0B b = new SubmitBookingHospital0B(userId, hospitalId, departments, doctor, bookingTime, bakTimeOne, bakTimeTwo, illnessCondition,
+                bookingClient, securityNum, clientPhone, clientIdNo);
+        return getResult(b);
+    }
+
+    /**
+     * 服务--展示预约医院列表
+     *
+     * @return
+     */
+    public static String getBookingHospitalList(String province, String city, String page) {
+        BookingHospitalList0B b = new BookingHospitalList0B(province, city, page);
         return getResult(b);
     }
 

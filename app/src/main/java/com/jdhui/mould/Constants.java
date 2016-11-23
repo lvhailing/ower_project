@@ -131,42 +131,42 @@ public class Constants {
     /***
      * 君德公告
      */
-    public static final String TASK_TYPE_NOTICE = String
-            .valueOf(index++);
+    public static final String TASK_TYPE_NOTICE = String.valueOf(index++);
     /***
      * 快讯
      */
-    public static final String TASK_TYPE_NEWS = String
-            .valueOf(index++);
+    public static final String TASK_TYPE_NEWS = String.valueOf(index++);
     /***
      * 验证登录密码
      */
-    public static final String TASK_TYPE_VERIFY_PASSWORD = String
-            .valueOf(index++);
+    public static final String TASK_TYPE_VERIFY_PASSWORD = String.valueOf(index++);
     /***
      * 保存修改后手机号
      */
-    public static final String TASK_TYPE_SAVE_PHONE = String
-            .valueOf(index++);
+    public static final String TASK_TYPE_SAVE_PHONE = String.valueOf(index++);
     /***
      * 修改密码
      */
-    public static final String TASK_TYPE_CHANGE_PASSWORD = String
-            .valueOf(index++);
+    public static final String TASK_TYPE_CHANGE_PASSWORD = String.valueOf(index++);
     /***
      * 保存修改后的地址
      */
-    public static final String TASK_TYPE_SAVE_ADDRESS = String
-            .valueOf(index++);
+    public static final String TASK_TYPE_SAVE_ADDRESS = String.valueOf(index++);
     /***
      * 意见反馈
      */
-    public static final String TASK_TYPE_FEED_BACK = String
-            .valueOf(index++);
+    public static final String TASK_TYPE_FEED_BACK = String.valueOf(index++);
     /***
      * 我同意该承诺、跳过 接口
      */
-    public static final String TASK_TYPE_INVESTOR_JUDGE_SAVE = String
-            .valueOf(index++);
+    public static final String TASK_TYPE_INVESTOR_JUDGE_SAVE = String.valueOf(index++);
+    /***
+     * 服务--提交预约医院
+     */
+    public static final String TASK_TYPE_BOOKING_HOSPITAL = String.valueOf(index++);
+    /***
+     * 服务--展示预约医院列表
+     */
+    public static final String TASK_TYPE_BOOKING_HOSPITAL_LIST = String.valueOf(index++);
 
 }

@@ -199,9 +199,8 @@
     <!--产品预约详情整条item ll布局 style-->
     <style name="product_linearlayout">
         <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_marginBottom">10dp</item>
-        <item name="android:layout_marginTop">15dp</item>
+        <item name="android:layout_height">48dp</item>
+        <item name="android:gravity">center_vertical</item>
         <item name="android:layout_marginLeft">12dp</item>
         <item name="android:orientation">horizontal</item>
     </style>
@@ -224,6 +223,33 @@
         <item name="android:layout_marginLeft">30dp</item>
         <item name="android:textColor">@color/txt_black</item>
         <item name="android:textSize">16sp</item>
+    </style>
+
+    <!--服务 预约医院左侧 TextView  style-->
+    <style name="tv_style">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:textColor">@color/txt_black</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <!--服务 预约医院右侧EditText style-->
+    <style name="et_style">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:background">@color/white</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:textColor">@color/txt_black</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <!--view 底部线条 style-->
+    <style name="v_line_style">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1dp</item>
+        <item name="android:background">@color/bg_gray_gray</item>
+        <item name="android:layout_alignParentBottom">true</item>
     </style>
 
 </resources>
