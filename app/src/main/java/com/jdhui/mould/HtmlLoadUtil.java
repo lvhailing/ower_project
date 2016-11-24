@@ -405,8 +405,8 @@ public class HtmlLoadUtil {
      *
      * @return
      */
-    public static String getBookingHospitalList(String province, String city, String page) {
-        BookingHospitalList0B b = new BookingHospitalList0B(province, city, page);
+    public static String getBookingHospitalList(String province, String city, String hospitalName, String page) {
+        BookingHospitalList0B b = new BookingHospitalList0B(province, hospitalName, city, page);
         return getResult(b);
     }
 

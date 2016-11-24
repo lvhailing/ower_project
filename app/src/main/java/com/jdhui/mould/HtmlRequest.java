@@ -2077,8 +2077,8 @@ public class HtmlRequest extends BaseRequester {
      * @param listener 监听
      * @return 返回数据
      */
-    public static String getBookingHospitalList(final Context context, String province, String city, String page, OnRequestListener listener) {
-        final String data = HtmlLoadUtil.getBookingHospitalList(province, city, page);
+    public static String getBookingHospitalList(final Context context, String province, String city, String hospitalName, String page, OnRequestListener listener) {
+        final String data = HtmlLoadUtil.getBookingHospitalList(province, hospitalName, city, page);
         final String url = ApplicationConsts.URL_SERVICE_BOOKINGHOSPITAL_LIST;
         String tid = registerId(Constants.TASK_TYPE_BOOKING_HOSPITAL_LIST, url);
         if (tid == null) {
@@ -2104,8 +2104,8 @@ public class HtmlRequest extends BaseRequester {
                                 return null;
                             }
                             if (result != null) {
-                                Gson json = new Gson();
                                 String data = DESUtil.decrypt(result);
+                                Gson json = new Gson();
                                 BookingHospitalList1B b = json.fromJson(data, BookingHospitalList1B.class);
                                 resultEncrypt(context, b.getCode());
                                 return b.getData();

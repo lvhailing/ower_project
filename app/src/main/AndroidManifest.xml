@@ -165,6 +165,7 @@
         <activity
             android:name=".act.ac.NewsActivity"
             android:screenOrientation="portrait"/>
+
         <activity
             android:name=".act.ac.ProductOrderActivity"
             android:screenOrientation="portrait"/>
@@ -185,6 +186,10 @@
             android:name=".act.ac.SubBookingHospitalActivity"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Holo.Light"/>
+
+        <activity
+            android:name=".act.ac.BookingHospitalListActivity"
+            android:screenOrientation="portrait"/>
 
 
         <!-- 通道保持服务 -->

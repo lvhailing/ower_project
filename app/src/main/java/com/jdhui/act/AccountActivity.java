@@ -20,17 +20,18 @@ import com.jdhui.uitls.PreferenceUtil;
 /**
  * 账户中心
  */
-public class AccountActivity extends BaseActivity implements View.OnClickListener{
+public class AccountActivity extends BaseActivity implements View.OnClickListener {
     private ImageButton mImageButton;
     private RelativeLayout mLayoutChangeGesture;
-    private String tomain=null;
+    private String tomain = null;
     private ImageView mImgChangeGesTabLines;
     private RelativeLayout mLayoutMyInfo;
     private ImageView mImgBack;
     private RelativeLayout mLayoutChangePW;
     private RelativeLayout mLayoutModifyPhone;
     private Button id_account_btn_exit;
-    private String userInfoId=null;
+    private String userInfoId = null;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,25 +41,25 @@ public class AccountActivity extends BaseActivity implements View.OnClickListene
     }
 
     private void initView() {
-        ActivityStack stack= ActivityStack.getActivityManage();
+        ActivityStack stack = ActivityStack.getActivityManage();
         stack.addActivity(this);
         userInfoId = getIntent().getStringExtra("userInfoId");
-        mImgBack= (ImageView) findViewById(R.id.id_img_back);
-        mLayoutMyInfo= (RelativeLayout) findViewById(R.id.id_account_layout_modify_info);
-        mImageButton= (ImageButton) findViewById(R.id.accountset_recive);
-        mLayoutChangeGesture= (RelativeLayout) findViewById(R.id.id_account_layout_gesture_change);
-        mImgChangeGesTabLines= (ImageView) findViewById(R.id.id_account_img_gesture_edit_lines);
-        mLayoutModifyPhone= (RelativeLayout) findViewById(R.id.id_account_layout_modify_phone);
-        mLayoutChangePW= (RelativeLayout) findViewById(R.id.id_account_layout_change_password);
+        mImgBack = (ImageView) findViewById(R.id.id_img_back);
+        mLayoutMyInfo = (RelativeLayout) findViewById(R.id.id_account_layout_modify_info);
+        mImageButton = (ImageButton) findViewById(R.id.accountset_recive);
+        mLayoutChangeGesture = (RelativeLayout) findViewById(R.id.id_account_layout_gesture_change);
+        mImgChangeGesTabLines = (ImageView) findViewById(R.id.id_account_img_gesture_edit_lines);
+        mLayoutModifyPhone = (RelativeLayout) findViewById(R.id.id_account_layout_modify_phone);
+        mLayoutChangePW = (RelativeLayout) findViewById(R.id.id_account_layout_change_password);
         id_account_btn_exit = (Button) findViewById(R.id.id_account_btn_exit);
         id_account_btn_exit.setOnClickListener(this);
 
-        if(PreferenceUtil.isGestureChose()){
+        if (PreferenceUtil.isGestureChose()) {
             mImageButton.setImageResource(R.drawable.message2);
             mLayoutChangeGesture.setVisibility(View.VISIBLE);
             mImgChangeGesTabLines.setVisibility(View.VISIBLE);
 
-        }else{
+        } else {
             mImageButton.setImageResource(R.drawable.message1);
             mLayoutChangeGesture.setVisibility(View.GONE);
             mImgChangeGesTabLines.setVisibility(View.GONE);
@@ -72,30 +73,30 @@ public class AccountActivity extends BaseActivity implements View.OnClickListene
         mLayoutChangePW.setOnClickListener(this);
 
     }
+
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.id_img_back:
                 finish();
                 break;
             case R.id.id_account_layout_modify_info:
-                Intent i_myInfo=new Intent(this,MyInfoActivity.class);
-                i_myInfo.putExtra("userInfoId",userInfoId);
+                Intent i_myInfo = new Intent(this, MyInfoActivity.class);
+                i_myInfo.putExtra("userInfoId", userInfoId);
                 startActivity(i_myInfo);
                 break;
             case R.id.accountset_recive:
-                if(PreferenceUtil.isGestureChose()){
-                    Intent i = new Intent(this,
-                            GestureVerifyActivity.class);
+                if (PreferenceUtil.isGestureChose()) {
+                    Intent i = new Intent(this, GestureVerifyActivity.class);
                     i.putExtra("from", ApplicationConsts.ACTIVITY_ACCOUNT);
-                    i.putExtra("title","手势密码登录");
-                    i.putExtra("message","请画出手势密码解锁");
+                    i.putExtra("title", "手势密码登录");
+                    i.putExtra("message", "请画出手势密码解锁");
                     startActivityForResult(i, 1000);
-                }else{
+                } else {
                     Intent i = new Intent(this,
                             GestureEditActivity.class);
                     i.putExtra("comeflag", 4);
-                    if(tomain!=null){
+                    if (tomain != null) {
                         i.putExtra("tomain", tomain);
                     }
                     i.putExtra("title", R.string.title_gestureset);
@@ -108,8 +109,8 @@ public class AccountActivity extends BaseActivity implements View.OnClickListene
                 Intent i = new Intent(this,
                         GestureVerifyActivity.class);
                 i.putExtra("from", ApplicationConsts.ACTIVITY_CHANGE_GESTURE);
-                i.putExtra("title","修改手势密码");
-                i.putExtra("message","请绘制旧的解锁图案");
+                i.putExtra("title", "修改手势密码");
+                i.putExtra("message", "请绘制旧的解锁图案");
                 startActivity(i);
                 break;
             case R.id.id_account_layout_modify_phone:
@@ -118,7 +119,7 @@ public class AccountActivity extends BaseActivity implements View.OnClickListene
                 startActivity(i_modify_phone);
                 break;
             case R.id.id_account_layout_change_password:
-                Intent i_changePW=new Intent(this,ChangePasswordActivity.class);
+                Intent i_changePW = new Intent(this, ChangePasswordActivity.class);
                 startActivity(i_changePW);
                 break;
             case R.id.id_account_btn_exit:                  //退出登录
@@ -131,9 +132,9 @@ public class AccountActivity extends BaseActivity implements View.OnClickListene
     }
 
     @Override
-       protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode==1000){
-           if(resultCode==2000){
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == 1000) {
+            if (resultCode == 2000) {
                 PreferenceUtil.setGestureChose(false);
                 mImageButton.setImageResource(R.drawable.message1);
                 mLayoutChangeGesture.setVisibility(View.GONE);
@@ -141,8 +142,10 @@ public class AccountActivity extends BaseActivity implements View.OnClickListene
             }
         }
     }
+
     private ReceiveBroadCast receiveBroadCast; // 广播实例
     String myActionName = "gestureChooseState";
+
     // 注册广播
     public void registerBoradcastReceiver() {
         receiveBroadCast = new ReceiveBroadCast();
@@ -161,9 +164,9 @@ public class AccountActivity extends BaseActivity implements View.OnClickListene
                 mImageButton.setImageResource(R.drawable.message2);
                 mLayoutChangeGesture.setVisibility(View.VISIBLE);
                 mImgChangeGesTabLines.setVisibility(View.VISIBLE);
-                }
             }
         }
+    }
 
     @Override
     protected void onDestroy() {

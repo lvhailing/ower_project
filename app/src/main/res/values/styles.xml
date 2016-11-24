@@ -225,21 +225,31 @@
         <item name="android:textSize">16sp</item>
     </style>
 
+    <!--服务 预约医院整条item Linealayout  style-->
+    <style name="ll_style">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">48dp</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:orientation">horizontal</item>
+    </style>
+
     <!--服务 预约医院左侧 TextView  style-->
     <style name="tv_style">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_centerVertical">true</item>
         <item name="android:textColor">@color/txt_black</item>
         <item name="android:textSize">16sp</item>
     </style>
 
-    <!--服务 预约医院右侧EditText style-->
+    <!--服务 预约医院右侧EditText  style-->
     <style name="et_style">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">3</item>
+        <item name="android:paddingBottom">12dp</item>
+        <item name="android:paddingTop">12dp</item>
         <item name="android:background">@color/white</item>
-        <item name="android:layout_centerVertical">true</item>
+        <item name="android:gravity">right</item>
         <item name="android:textColor">@color/txt_black</item>
         <item name="android:textSize">16sp</item>
     </style>
@@ -249,7 +259,6 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">1dp</item>
         <item name="android:background">@color/bg_gray_gray</item>
-        <item name="android:layout_alignParentBottom">true</item>
     </style>
 
     <!--预约医院的日期对话框样式-->

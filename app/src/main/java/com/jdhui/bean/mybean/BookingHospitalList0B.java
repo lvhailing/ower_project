@@ -7,10 +7,12 @@ public class BookingHospitalList0B {
     private final String province; //省份
     private final String city; //地级市
     private final String page; //页码
+    private final String hospitalName;//搜索时输入的医院名称
 
-    public BookingHospitalList0B(String province, String city, String page) {
+    public BookingHospitalList0B(String province, String city, String hospitalName, String page) {
         this.province = province;
         this.city = city;
+        this.hospitalName = hospitalName;
         this.page = page;
     }
 
@@ -24,5 +26,9 @@ public class BookingHospitalList0B {
 
     public String getPage() {
         return page;
+    }
+
+    public String getHospitalName() {
+        return hospitalName;
     }
 }
