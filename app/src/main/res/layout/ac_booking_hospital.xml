@@ -121,6 +121,7 @@
             </RelativeLayout>
 
             <RelativeLayout
+                android:id="@+id/rl_time1"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
                 android:layout_marginLeft="12dp">
@@ -139,20 +140,19 @@
                     android:layout_marginRight="12dp"
                     android:src="@drawable/arrow"/>
 
-                <EditText
-                    style="@style/et_style"
+                <TextView
+                    android:id="@+id/tv_time1"
+                    style="@style/tv_style"
                     android:layout_marginRight="5dp"
                     android:layout_toLeftOf="@id/iv_arrow1"
-                    android:hint="qqq"
-                    android:inputType="date"
-                    android:maxLength="14"
-                    android:maxLines="1"/>
+                    android:text=""/>
 
                 <View
                     style="@style/v_line_style"/>
             </RelativeLayout>
 
             <RelativeLayout
+                android:id="@+id/rl_time2"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
                 android:layout_marginLeft="12dp">
@@ -171,20 +171,19 @@
                     android:layout_marginRight="12dp"
                     android:src="@drawable/arrow"/>
 
-                <EditText
-                    style="@style/et_style"
+                <TextView
+                    android:id="@+id/tv_time2"
+                    style="@style/tv_style"
                     android:layout_marginRight="5dp"
                     android:layout_toLeftOf="@id/iv_arrow2"
-                    android:hint="qqq"
-                    android:inputType="date"
-                    android:maxLength="14"
-                    android:maxLines="1"/>
+                    android:text=""/>
 
                 <View
                     style="@style/v_line_style"/>
             </RelativeLayout>
 
             <RelativeLayout
+                android:id="@+id/rl_time3"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
                 android:layout_marginLeft="12dp">
@@ -203,20 +202,19 @@
                     android:layout_marginRight="12dp"
                     android:src="@drawable/arrow"/>
 
-                <EditText
-                    style="@style/et_style"
+                <TextView
+                    android:id="@+id/tv_time3"
+                    style="@style/tv_style"
                     android:layout_marginRight="5dp"
                     android:layout_toLeftOf="@id/iv_arrow3"
-                    android:hint="qqq"
-                    android:inputType="date"
-                    android:maxLength="14"
-                    android:maxLines="1"/>
+                    android:text=""/>
 
                 <View
                     style="@style/v_line_style"/>
             </RelativeLayout>
 
             <RelativeLayout
+                android:id="@+id/rl_hospital"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
                 android:layout_marginLeft="12dp">
@@ -235,14 +233,12 @@
                     android:layout_marginRight="12dp"
                     android:src="@drawable/arrow"/>
 
-                <EditText
-                    style="@style/et_style"
+                <TextView
+                    android:id="@+id/tv_hospital"
+                    style="@style/tv_style"
                     android:layout_marginRight="5dp"
                     android:layout_toLeftOf="@id/iv_arrow4"
-                    android:hint="qqq"
-                    android:inputType="text"
-                    android:maxLength="14"
-                    android:maxLines="1"/>
+                    android:text=""/>
 
                 <View
                     style="@style/v_line_style"/>
