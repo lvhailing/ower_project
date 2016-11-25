@@ -48,7 +48,7 @@ public class JdehuiApplication extends Application {
 		mAppId = getString(R.string.app_id);
 		mDownloadPath = "/" + mAppId + "/download";
 
-//		initCloudChannel(this);
+		initCloudChannel(this);
 	}
 
 	/****
