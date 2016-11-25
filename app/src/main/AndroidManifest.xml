@@ -25,6 +25,7 @@
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
     <!--允许对sd卡进行读写操作-->
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <!--网络库使用，当网络操作时需要确保事务完成不被杀掉-->
     <uses-permission android:name="android.permission.WAKE_LOCK"/>
     <!--用于读取手机硬件信息等，用于机型过滤-->

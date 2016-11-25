@@ -1,7 +1,5 @@
 package com.jdhui;
 
-import java.util.HashSet;
-
 import android.app.Application;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -14,15 +12,17 @@ import android.util.Log;
 import com.alibaba.sdk.android.push.CloudPushService;
 import com.alibaba.sdk.android.push.CommonCallback;
 import com.alibaba.sdk.android.push.noonesdk.PushServiceFactory;
+import com.jdhui.uitls.APNManager;
+import com.jdhui.uitls.NetworkUtils;
+import com.jdhui.uitls.PreferenceUtil;
+import com.jdhui.uitls.SystemInfo;
 import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
 import com.nostra13.universalimageloader.cache.memory.impl.WeakMemoryCache;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
-import com.jdhui.uitls.APNManager;
-import com.jdhui.uitls.NetworkUtils;
-import com.jdhui.uitls.PreferenceUtil;
-import com.jdhui.uitls.SystemInfo;
+
+import java.util.HashSet;
 
 public class JdehuiApplication extends Application {
 	private static JdehuiApplication instance;
@@ -48,7 +48,7 @@ public class JdehuiApplication extends Application {
 		mAppId = getString(R.string.app_id);
 		mDownloadPath = "/" + mAppId + "/download";
 
-		initCloudChannel(this);
+//		initCloudChannel(this);
 	}
 
 	/****
