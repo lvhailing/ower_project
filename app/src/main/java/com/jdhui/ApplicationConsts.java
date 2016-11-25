@@ -343,6 +343,16 @@ public class ApplicationConsts {
      */
     public static final String URL_SERVICE_BOOKINGHOSPITAL_LIST = EC_HOST + "service/bookingHospital/list";
 
+    /**
+     * 展示预约基因检测列表
+     */
+    public static final String URL_SERVICE_BOOKINGGENETICTESTING_LIST = EC_HOST + "service/bookingGeneticTesting/list";
+
+    /**
+     * 展示预约基因检测详情
+     */
+    public static final String URL_SERVICE_BOOKINGGENETICTESTING_DETAIL = EC_HOST + "service/bookingGeneticTesting/view";
+
 
     // 手势密码点的状态
     public static final int POINT_STATE_NORMAL = 0; // 正常状态

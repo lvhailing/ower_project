@@ -31,6 +31,8 @@ import com.jdhui.bean.ResultProductIndexContentBean;
 import com.jdhui.bean.ResultSentSMSBean;
 import com.jdhui.bean.ResultVerifyPassWordBean;
 import com.jdhui.bean.mybean.BookingHospitalList1B;
+import com.jdhui.bean.mybean.GeneticTestingDetail1B;
+import com.jdhui.bean.mybean.GeneticTestingList1B;
 import com.jdhui.bean.mybean.Product1B;
 import com.jdhui.bean.mybean.ProductDetail1B;
 import com.jdhui.bean.mybean.Service1B;
@@ -2107,6 +2109,119 @@ public class HtmlRequest extends BaseRequester {
                                 String data = DESUtil.decrypt(result);
                                 Gson json = new Gson();
                                 BookingHospitalList1B b = json.fromJson(data, BookingHospitalList1B.class);
+                                resultEncrypt(context, b.getCode());
+                                return b.getData();
+                            }
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        } finally {
+                            unRegisterId(getTaskId());
+                        }
+                        return null;
+                    }
+
+                    @Override
+                    public void onPostExecute(IMouldType result, BaseParams params) {
+                        params.result = result;
+                        params.sendResult();
+                    }
+                });
+        return tid;
+    }
+
+    /**
+     * 服务--展示预约基因检测列表
+     *
+     * @param context  上下文
+     * @param listener 监听
+     * @return 返回数据
+     */
+    public static String getGeneticTestingList(final Context context, String page, OnRequestListener listener) {
+        final String data = HtmlLoadUtil.getGeneticTestingList(page);
+        final String url = ApplicationConsts.URL_SERVICE_BOOKINGGENETICTESTING_LIST;
+        String tid = registerId(Constants.TASK_TYPE_BOOKING_GENETICTESTING_LIST, url);
+        if (tid == null) {
+            return null;
+        }
+        getTaskManager().addTask(
+                new MouldAsyncTask(tid, buildParams(Constants.TASK_TYPE_BOOKING_GENETICTESTING_LIST, context, listener, url, 0)) {
+                    @Override
+                    public IMouldType doTask(BaseParams params) {
+                        SimpleHttpClient client = new SimpleHttpClient(context, SimpleHttpClient.RESULT_STRING);
+
+                        HttpEntity entity = null;
+                        try {
+                            entity = new StringEntity(data);
+                        } catch (UnsupportedEncodingException e1) {
+                            e1.printStackTrace();
+                        }
+
+                        client.post(url, entity);
+                        String result = (String) client.getResult();
+                        try {
+                            if (isCancelled()) {
+                                return null;
+                            }
+                            if (result != null) {
+                                String data = DESUtil.decrypt(result);
+                                Gson json = new Gson();
+                                GeneticTestingList1B b = json.fromJson(data, GeneticTestingList1B.class);
+                                resultEncrypt(context, b.getCode());
+                                return b.getData();
+                            }
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        } finally {
+                            unRegisterId(getTaskId());
+                        }
+                        return null;
+                    }
+
+                    @Override
+                    public void onPostExecute(IMouldType result, BaseParams params) {
+                        params.result = result;
+                        params.sendResult();
+                    }
+                });
+        return tid;
+    }
+    /**
+     * 服务--展示预约基因检测详情
+     *
+     * @param context  上下文
+     * @param listener 监听
+     * @return 返回数据
+     */
+    public static String getGeneticTestingDetail(final Context context, String id, OnRequestListener listener) {
+        final String data = HtmlLoadUtil.getGeneticTestingDetail(id);
+        final String url = ApplicationConsts.URL_SERVICE_BOOKINGGENETICTESTING_DETAIL;
+        String tid = registerId(Constants.TASK_TYPE_BOOKING_GENETICTESTING_DETAIL, url);
+        if (tid == null) {
+            return null;
+        }
+        getTaskManager().addTask(
+                new MouldAsyncTask(tid, buildParams(Constants.TASK_TYPE_BOOKING_GENETICTESTING_DETAIL, context, listener, url, 0)) {
+                    @Override
+                    public IMouldType doTask(BaseParams params) {
+                        SimpleHttpClient client = new SimpleHttpClient(context, SimpleHttpClient.RESULT_STRING);
+
+                        HttpEntity entity = null;
+                        try {
+                            entity = new StringEntity(data);
+                        } catch (UnsupportedEncodingException e1) {
+                            e1.printStackTrace();
+                        }
+
+                        client.post(url, entity);
+                        String result = (String) client.getResult();
+                        try {
+                            if (isCancelled()) {
+                                return null;
+                            }
+                            if (result != null) {
+                                String data = DESUtil.decrypt(result);
+                                Gson json = new Gson();
+                                GeneticTestingDetail1B b = json.fromJson(data, GeneticTestingDetail1B.class);
                                 resultEncrypt(context, b.getCode());
                                 return b.getData();
                             }

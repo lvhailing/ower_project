@@ -9,7 +9,7 @@ public class Province {
 
     @Id
     private int _id;
-    private String pid;     //省id 根据省id查市
+    private String pid;     //省id    根据省id查市
     private String name;    //省名称
 
     public Province() {

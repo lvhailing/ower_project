@@ -168,5 +168,13 @@ public class Constants {
      * 服务--展示预约医院列表
      */
     public static final String TASK_TYPE_BOOKING_HOSPITAL_LIST = String.valueOf(index++);
+    /***
+     * 服务--展示预约基因检测列表
+     */
+    public static final String TASK_TYPE_BOOKING_GENETICTESTING_LIST = String.valueOf(index++);
+    /***
+     * 服务--展示预约基因检测详情
+     */
+    public static final String TASK_TYPE_BOOKING_GENETICTESTING_DETAIL = String.valueOf(index++);
 
 }

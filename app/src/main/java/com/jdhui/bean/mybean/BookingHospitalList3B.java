@@ -4,7 +4,7 @@ package com.jdhui.bean.mybean;
 import com.jdhui.mould.types.IMouldType;
 
 /**
- * 服务--展示预约医院列表
+ * 服务--展示预约医院列表  接收后台返回数据
  */
 public class BookingHospitalList3B implements IMouldType {
 

@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
@@ -45,15 +46,16 @@ public class BookingHospitalListActivity extends BaseActivity implements View.On
     private ListView lv_right;   //右侧市lv
     private View v_hidden; //隐藏的省市布局背景
     private LinearLayout ll_hidden; //隐藏的省市布局
-    private RelativeLayout rl_type; //类型按钮
-    private boolean isOpened = false;   //动画是否开启
+    private RelativeLayout rl_type; //全部地区按钮
+    private TextView tv_type;
 
+    private boolean isOpened = false;   //动画是否开启
     private List<Province> provinceList;    //所有省
     private List<City> cityList;    //所有市
     private DownloadUtils downloadUtils;
     private ProvinceAdapter provinceAdapter;    //省份的ad
-    private CityAdapter cityAdapter;    //市的ad
 
+    private CityAdapter cityAdapter;    //市的ad
     private String selectProvince = "";  //当前选中的省份
     private String selectCity = "";  //当前选中的市
 
@@ -68,14 +70,16 @@ public class BookingHospitalListActivity extends BaseActivity implements View.On
 
     private void initData() {
         downloadUtils = new DownloadUtils();
-//        requestData();
+        requestData();
 
         listView.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ListView>() {
             public void onRefresh(PullToRefreshBase<ListView> refreshView) {
                 if (refreshView.isHeaderShown()) {
                     //下拉刷新
+                    currentPage = 1;
                 } else {
                     //上划加载下一页
+                    currentPage++;
                 }
                 requestData();
             }
@@ -95,6 +99,7 @@ public class BookingHospitalListActivity extends BaseActivity implements View.On
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
                 selectProvince = provinceList.get(position).getName();
+                tv_type.setText(selectProvince);
                 //改变点击的背景色
                 provinceAdapter.changeBg(position);
                 //刷新市数据
@@ -106,6 +111,7 @@ public class BookingHospitalListActivity extends BaseActivity implements View.On
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
                 selectCity = cityList.get(position).getName();
+                tv_type.setText(selectCity);
                 //关闭动画
                 closeShopping();
                 //访问接口
@@ -137,6 +143,7 @@ public class BookingHospitalListActivity extends BaseActivity implements View.On
         v_hidden = findViewById(R.id.v_hidden);
         ll_hidden = (LinearLayout) findViewById(R.id.ll_hidden);
         rl_type = (RelativeLayout) findViewById(R.id.rl_type);
+        tv_type = (TextView) findViewById(R.id.tv_type);
 
         mBtnBack.setOnClickListener(this);
         v_hidden.setOnClickListener(this);
@@ -144,9 +151,9 @@ public class BookingHospitalListActivity extends BaseActivity implements View.On
     }
 
     private void requestData() {
-        Toast.makeText(this, selectCity + ":" + selectProvince, Toast.LENGTH_SHORT).show();
+//        Toast.makeText(this, selectCity + ":" + selectProvince, Toast.LENGTH_SHORT).show();
         try {
-            HtmlRequest.getBookingHospitalList(BookingHospitalListActivity.this, selectProvince, selectCity, "", "1", new BaseRequester.OnRequestListener() {
+            HtmlRequest.getBookingHospitalList(BookingHospitalListActivity.this, selectProvince, selectCity, "", "", new BaseRequester.OnRequestListener() {
                 @Override
                 public void onRequestFinished(BaseParams params) {
                     BookingHospitalListActivity.this.stopLoading();

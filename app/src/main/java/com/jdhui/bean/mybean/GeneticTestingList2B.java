@@ -5,9 +5,9 @@ import com.jdhui.mould.types.IMouldType;
 import com.jdhui.mould.types.MouldList;
 
 /**
- * 服务--展示预约医院列表
+ * 服务--展示预约基因检测列表
  */
-public class BookingHospitalList2B implements IMouldType {
+public class GeneticTestingList2B implements IMouldType {
     private MouldList<BookingHospitalList3B> list;
     private String flag;
     private String msg;

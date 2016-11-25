@@ -26,6 +26,8 @@ import com.jdhui.bean.UserPageBean;
 import com.jdhui.bean.UserProductTendersBean;
 import com.jdhui.bean.VerifyPassWordBean;
 import com.jdhui.bean.mybean.BookingHospitalList0B;
+import com.jdhui.bean.mybean.GeneticTestingDetail0B;
+import com.jdhui.bean.mybean.GeneticTestingList0B;
 import com.jdhui.bean.mybean.Product0B;
 import com.jdhui.bean.mybean.ProductDetail0B;
 import com.jdhui.bean.mybean.Service0B;
@@ -407,6 +409,24 @@ public class HtmlLoadUtil {
      */
     public static String getBookingHospitalList(String province, String city, String hospitalName, String page) {
         BookingHospitalList0B b = new BookingHospitalList0B(province, hospitalName, city, page);
+        return getResult(b);
+    }
+    /**
+     * 服务--展示预约基因检测列表
+     *
+     * @return
+     */
+    public static String getGeneticTestingList(String page) {
+        GeneticTestingList0B b = new GeneticTestingList0B(page);
+        return getResult(b);
+    }
+    /**
+     * 服务--展示预约基因检测详情
+     *
+     * @return
+     */
+    public static String getGeneticTestingDetail(String id) {
+        GeneticTestingDetail0B b = new GeneticTestingDetail0B(id);
         return getResult(b);
     }
 

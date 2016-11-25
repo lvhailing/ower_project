@@ -2,27 +2,32 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginLeft="12dp"
-    android:background="@color/white"
-    android:orientation="vertical">
+    android:layout_height="60dp"
+    android:orientation="vertical" >
 
-    <TextView
-        android:id="@+id/tv_hospita_name"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="君享20号现金管理投资基金"
-        android:textColor="#333"
-        android:textSize="16sp"/>
+        android:layout_height="match_parent"
+        android:gravity="center_vertical"
+        android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/tv_hospital_level"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="三级甲等"
-        android:textColor="#999"
-        android:textSize="14sp"/>
+        <TextView
+            android:id="@+id/tv_hospita_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="北京协和医院"
+            android:textColor="#333"
+            android:textSize="16sp"/>
+
+        <TextView
+            android:id="@+id/tv_hospital_level"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="三级甲等"
+            android:textColor="#999"
+            android:textSize="14sp"/>
+    </LinearLayout>
 
     <View
         style="@style/v_line_style"/>
