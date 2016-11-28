@@ -2,47 +2,64 @@ package com.jdhui.bean.mybean;
 
 
 import com.jdhui.mould.types.IMouldType;
-import com.jdhui.mould.types.MouldList;
 
 /**
- * 服务--展示预约基因检测列表
+ * 服务--展示预约基因检测详情
  */
 public class GeneticTestingDetail2B implements IMouldType {
-    private MouldList<GeneticTestingDetail3B> list;
-    private String flag;
-    private String msg;
-    private int count;
+    private String id; //基因检测 id
+    private String name; //基因检测名称
+    private String items; //检测项目
+    private String unvipPrice; //非会员价
+    private String vipPrice; //会员价
+    private String balancePrice; //结算价
 
-    public String getFlag() {
-        return flag;
+    public String getId() {
+        return id;
     }
 
-    public void setFlag(String flag) {
-        this.flag = flag;
+    public void setId(String id) {
+        this.id = id;
     }
 
-    public String getMsg() {
-        return msg;
+    public String getName() {
+        return name;
     }
 
-    public void setMsg(String msg) {
-        this.msg = msg;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public int getCount() {
-        return count;
+    public String getItems() {
+        return items;
     }
 
-    public void setCount(int count) {
-        this.count = count;
+    public void setItems(String items) {
+        this.items = items;
     }
 
-    public MouldList<GeneticTestingDetail3B> getList() {
-        return list;
+    public String getUnvipPrice() {
+        return unvipPrice;
     }
 
-    public void setList(MouldList<GeneticTestingDetail3B> list) {
-        this.list = list;
+    public void setUnvipPrice(String unvipPrice) {
+        this.unvipPrice = unvipPrice;
+    }
+
+    public String getVipPrice() {
+        return vipPrice;
+    }
+
+    public void setVipPrice(String vipPrice) {
+        this.vipPrice = vipPrice;
+    }
+
+    public String getBalancePrice() {
+        return balancePrice;
+    }
+
+    public void setBalancePrice(String balancePrice) {
+        this.balancePrice = balancePrice;
     }
 }
 

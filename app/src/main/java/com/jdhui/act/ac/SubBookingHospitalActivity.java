@@ -18,7 +18,7 @@ import com.jdhui.mould.BaseParams;
 import com.jdhui.mould.BaseRequester;
 import com.jdhui.mould.HtmlRequest;
 import com.jdhui.uitls.DESUtil;
-import com.jdhui.uitls.DatePickDialogUtil;
+import com.jdhui.dialog.DatePickDialog;
 import com.jdhui.uitls.PreferenceUtil;
 
 import java.text.ParseException;
@@ -139,8 +139,8 @@ public class SubBookingHospitalActivity extends BaseActivity implements View.OnC
     }
 
     private void showDatePickerDialog(final int type) {
-        DatePickDialogUtil dialog = new DatePickDialogUtil(this);
-        dialog.setDateDialog(new DatePickDialogUtil.MyCallback() {
+        DatePickDialog dialog = new DatePickDialog(this);
+        dialog.setDateDialog(new DatePickDialog.MyCallback() {
 
             public void processTime(Dialog ad, String selectedTime) {
                 //如2016年11月30日

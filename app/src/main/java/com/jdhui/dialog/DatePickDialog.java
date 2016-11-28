@@ -1,4 +1,4 @@
-package com.jdhui.uitls;
+package com.jdhui.dialog;
 
 import android.app.Activity;
 import android.app.Dialog;
@@ -19,7 +19,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
 
-public class DatePickDialogUtil implements OnDateChangedListener {
+public class DatePickDialog implements OnDateChangedListener {
     private DatePicker datePicker;
     private TextView cancel;
     private TextView sure;
@@ -31,7 +31,7 @@ public class DatePickDialogUtil implements OnDateChangedListener {
         void processTime(Dialog ad, String selectedTime);
     }
 
-    public DatePickDialogUtil(Activity activity) {
+    public DatePickDialog(Activity activity) {
         this.activity = activity;
     }
 

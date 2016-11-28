@@ -1,40 +1,27 @@
 package com.jdhui.act.ac;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.animation.ObjectAnimator;
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.jdhui.R;
 import com.jdhui.act.BaseActivity;
-import com.jdhui.adapter.CityAdapter;
 import com.jdhui.adapter.GeneticTestingListAdapter;
-import com.jdhui.adapter.HospitalListAdapter;
-import com.jdhui.adapter.ProvinceAdapter;
-import com.jdhui.bean.mybean.BookingHospitalList2B;
-import com.jdhui.bean.mybean.BookingHospitalList3B;
+import com.jdhui.bean.mybean.GeneticTestingDetail2B;
 import com.jdhui.bean.mybean.GeneticTestingList2B;
 import com.jdhui.bean.mybean.GeneticTestingList3B;
-import com.jdhui.db.model.City;
-import com.jdhui.db.model.Province;
+import com.jdhui.dialog.GeneticTestingDialog;
 import com.jdhui.mould.BaseParams;
 import com.jdhui.mould.BaseRequester;
 import com.jdhui.mould.HtmlRequest;
 import com.jdhui.mould.types.MouldList;
-import com.jdhui.uitls.DownloadUtils;
-
-import java.util.List;
 
 /**
  * 服务--基因检测列表
@@ -45,6 +32,7 @@ public class GeneticTestingListActivity extends BaseActivity implements View.OnC
     private ImageView mBtnBack;
     private MouldList<GeneticTestingList3B> totalList = new MouldList<>();
     private int currentPage = 1;    //当前页
+    private GeneticTestingDetail2B detail2B;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,7 +44,10 @@ public class GeneticTestingListActivity extends BaseActivity implements View.OnC
     }
 
     private void initData() {
-        requestData();
+        mAdapter = new GeneticTestingListAdapter(GeneticTestingListActivity.this, totalList);
+        listView.setAdapter(mAdapter);
+
+        requestListData();
 
         listView.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ListView>() {
             public void onRefresh(PullToRefreshBase<ListView> refreshView) {
@@ -67,20 +58,55 @@ public class GeneticTestingListActivity extends BaseActivity implements View.OnC
                     //上划加载下一页
                     currentPage++;
                 }
-                requestData();
+                requestListData();
             }
         });
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> arg0, View arg1, int position, long arg3) {
-               /* Intent intent = new Intent();
-                intent.putExtra("id", totalList.get(position).getId());
-                setResult(100, intent);
-                finish();*/
+                String id = totalList.get(position).getId();
+                //带着点击的那一项的id去访问接口
+                requestDetailData(id);
             }
         });
 
+    }
+
+    //请求详情
+    private void requestDetailData(String id) {
+        HtmlRequest.getGeneticTestingDetail(GeneticTestingListActivity.this, id, new BaseRequester.OnRequestListener() {
+            @Override
+            public void onRequestFinished(BaseParams params) {
+                GeneticTestingListActivity.this.stopLoading();
+                if (params.result == null) {
+                    Toast.makeText(GeneticTestingListActivity.this, "加载失败，请确认网络通畅", Toast.LENGTH_LONG).show();
+                    return;
+                }
+
+                detail2B = (GeneticTestingDetail2B) params.result;
+
+                showDialog();
+            }
+        });
+        //数据回来后 弹框
+    }
+
+    //展示详情对话框
+    private void showDialog() {
+        GeneticTestingDialog dialog = new GeneticTestingDialog(this, detail2B);
+        dialog.setDateDialog(new GeneticTestingDialog.MyCallback() {
+            @Override
+            public void onMyclick(Dialog ad) {
+                Intent intent = new Intent(GeneticTestingListActivity.this, SubGeneticTestingActivity.class);
+                intent.putExtra("id", detail2B.getId());
+                intent.putExtra("name", detail2B.getName());    //基因检测套餐名字
+                startActivity(intent);
+
+                ad.dismiss();
+                ad = null;
+            }
+        });
     }
 
 
@@ -91,10 +117,10 @@ public class GeneticTestingListActivity extends BaseActivity implements View.OnC
         mBtnBack.setOnClickListener(this);
     }
 
-    private void requestData() {
+    private void requestListData() {
 //        Toast.makeText(this, selectCity + ":" + selectProvince, Toast.LENGTH_SHORT).show();
         try {
-            HtmlRequest.getGeneticTestingList(GeneticTestingListActivity.this,  "1", new BaseRequester.OnRequestListener() {
+            HtmlRequest.getGeneticTestingList(GeneticTestingListActivity.this, "1", new BaseRequester.OnRequestListener() {
                 @Override
                 public void onRequestFinished(BaseParams params) {
                     GeneticTestingListActivity.this.stopLoading();
@@ -121,14 +147,7 @@ public class GeneticTestingListActivity extends BaseActivity implements View.OnC
                     totalList.addAll(everyList);
 
                     //刷新数据
-                    if (mAdapter == null) {
-                        //第一次创建adpter
-                        mAdapter = new GeneticTestingListAdapter(GeneticTestingListActivity.this, totalList);
-                        listView.setAdapter(mAdapter);
-                    } else {
-                        //以后直接刷新
-                        mAdapter.notifyDataSetChanged();
-                    }
+                    mAdapter.notifyDataSetChanged();
                 }
             });
         } catch (Exception e) {

@@ -1,31 +1,16 @@
 package com.jdhui.act.ac;
 
-import android.app.Dialog;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.jdhui.R;
 import com.jdhui.act.BaseActivity;
-import com.jdhui.bean.mybean.SubmitBookingHospital2B;
-import com.jdhui.mould.BaseParams;
-import com.jdhui.mould.BaseRequester;
-import com.jdhui.mould.HtmlRequest;
 import com.jdhui.uitls.DESUtil;
-import com.jdhui.uitls.DatePickDialogUtil;
 import com.jdhui.uitls.PreferenceUtil;
-
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.Locale;
 
 /**
  * 服务--提交基因检测预约
@@ -40,6 +25,7 @@ public class SubGeneticTestingActivity extends BaseActivity implements View.OnCl
     private EditText et_phone;
     private TextView et_address;
     private Button btn_submit;
+    private String id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +33,13 @@ public class SubGeneticTestingActivity extends BaseActivity implements View.OnCl
         baseSetContentView(R.layout.ac_sub_genetic_testing);
 
         initView();
+        initData();
+    }
+
+    private void initData() {
+        id = getIntent().getStringExtra("id");   //提交时 会用到 上个界面传来
+        String name = getIntent().getStringExtra("name");
+        tv_test_set.setText(name);  //先设置上套餐名字  是从上个界面传来的
     }
 
     private void initView() {
@@ -115,7 +108,6 @@ public class SubGeneticTestingActivity extends BaseActivity implements View.OnCl
             }
         });*/
     }
-
 
 
 }

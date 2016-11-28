@@ -8,9 +8,7 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.jdhui.R;
-import com.jdhui.bean.mybean.BookingHospitalList3B;
 import com.jdhui.bean.mybean.GeneticTestingList3B;
-import com.jdhui.bean.mybean.Product3B;
 import com.jdhui.mould.types.MouldList;
 
 public class GeneticTestingListAdapter extends BaseAdapter {
@@ -25,12 +23,12 @@ public class GeneticTestingListAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return list.size();
+        return list == null ? 0 : list.size();
     }
 
     @Override
     public Object getItem(int arg0) {
-        return getItem(arg0);
+        return list.get(arg0);
     }
 
     @Override
