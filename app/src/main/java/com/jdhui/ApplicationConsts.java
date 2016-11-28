@@ -353,6 +353,11 @@ public class ApplicationConsts {
      */
     public static final String URL_SERVICE_BOOKINGGENETICTESTING_DETAIL = EC_HOST + "service/bookingGeneticTesting/view";
 
+    /**
+     * 提交基因检测预约
+     */
+    public static final String URL_SERVICE_BOOKINGGENETICTESTING_ADD = EC_HOST + "service/bookingGeneticTesting/add";
+
 
     // 手势密码点的状态
     public static final int POINT_STATE_NORMAL = 0; // 正常状态

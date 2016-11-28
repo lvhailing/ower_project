@@ -177,4 +177,11 @@ public class Constants {
      */
     public static final String TASK_TYPE_BOOKING_GENETICTESTING_DETAIL = String.valueOf(index++);
 
+
+    /***
+     * 服务--提交基因检测预约
+     */
+    public static final String TASK_TYPE_BOOKING_GENETICTESTING_ADD = String.valueOf(index++);
+
+
 }

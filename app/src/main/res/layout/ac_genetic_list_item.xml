@@ -2,27 +2,26 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="58dp"
-    android:minHeight="58dp">
+    android:layout_height="50dp"
+    android:minHeight="50dp">
+
 
     <TextView
-        android:id="@+id/tv_hospita_name"
+        android:id="@+id/tv_genetic_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:text="北京协和医院"
+        android:layout_centerVertical="true"
+        android:text=""
         android:textColor="#333"
         android:textSize="16sp"/>
 
-    <TextView
-        android:id="@+id/tv_hospital_level"
+    <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/tv_hospita_name"
-        android:layout_marginTop="6dp"
-        android:text="三级甲等"
-        android:textColor="#999"
-        android:textSize="14sp"/>
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:src="@drawable/arrow"/>
+
 
     <View
         style="@style/v_line_style"

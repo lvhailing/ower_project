@@ -229,7 +229,7 @@ public class BookingHospitalListActivity extends BaseActivity implements View.On
             case R.id.v_hidden:  //隐藏布局 关闭动画
                 closeShopping();
                 break;
-            case R.id.rl_area:  //类型
+            case R.id.rl_area:  //全部地区
                 getProvinceDatas();
                 if (isOpened) {
                     //类型是开启状态 则需关闭动画

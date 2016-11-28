@@ -32,6 +32,7 @@ import com.jdhui.bean.mybean.Product0B;
 import com.jdhui.bean.mybean.ProductDetail0B;
 import com.jdhui.bean.mybean.Service0B;
 import com.jdhui.bean.mybean.ServiceDetail0B;
+import com.jdhui.bean.mybean.SubGeneticTesting0B;
 import com.jdhui.bean.mybean.SubmitBookingHospital0B;
 import com.jdhui.uitls.DESUtil;
 import com.jdhui.uitls.MD5;
@@ -392,6 +393,7 @@ public class HtmlLoadUtil {
         InvestorJudgeBean b = new InvestorJudgeBean(userId, qualifiedInvestor);
         return getResult(b);
     }
+
     /**
      * 服务--提交预约医院
      */
@@ -411,6 +413,7 @@ public class HtmlLoadUtil {
         BookingHospitalList0B b = new BookingHospitalList0B(province, hospitalName, city, page);
         return getResult(b);
     }
+
     /**
      * 服务--展示预约基因检测列表
      *
@@ -420,6 +423,7 @@ public class HtmlLoadUtil {
         GeneticTestingList0B b = new GeneticTestingList0B(page);
         return getResult(b);
     }
+
     /**
      * 服务--展示预约基因检测详情
      *
@@ -427,6 +431,17 @@ public class HtmlLoadUtil {
      */
     public static String getGeneticTestingDetail(String id) {
         GeneticTestingDetail0B b = new GeneticTestingDetail0B(id);
+        return getResult(b);
+    }
+
+    /**
+     * 服务--提交基因检测预约
+     *
+     * @return
+     */
+    public static String subGeneticTesting(String userInfoId, String geneticTestingId, String userSex, String userAge, String bookingTime,
+                                           String userAddress, String bookingClient, String clientPhone) {
+        SubGeneticTesting0B b = new SubGeneticTesting0B(userInfoId, geneticTestingId, userSex, userAge, bookingTime, userAddress, bookingClient, clientPhone);
         return getResult(b);
     }
 

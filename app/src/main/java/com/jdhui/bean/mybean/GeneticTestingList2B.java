@@ -8,16 +8,16 @@ import com.jdhui.mould.types.MouldList;
  * 服务--展示预约基因检测列表
  */
 public class GeneticTestingList2B implements IMouldType {
-    private MouldList<BookingHospitalList3B> list;
+    private MouldList<GeneticTestingList3B> list;
     private String flag;
     private String msg;
     private int count;
 
-    public MouldList<BookingHospitalList3B> getList() {
+    public MouldList<GeneticTestingList3B> getList() {
         return list;
     }
 
-    public void setList(MouldList<BookingHospitalList3B> list) {
+    public void setList(MouldList<GeneticTestingList3B> list) {
         this.list = list;
     }
 

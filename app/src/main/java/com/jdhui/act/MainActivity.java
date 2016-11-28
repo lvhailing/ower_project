@@ -23,7 +23,7 @@ import com.jdhui.act.ac.SubBookingHospitalActivity;
 import com.jdhui.bean.ResultCheckVersionContentBean;
 import com.jdhui.fragment.AssetFragment;
 import com.jdhui.fragment.MoreFragment;
-import com.jdhui.fragment.NewsFragment;
+import com.jdhui.fragment.ServiceFragment;
 import com.jdhui.fragment.ProductFragment;
 import com.jdhui.mould.BaseParams;
 import com.jdhui.mould.BaseRequester.OnRequestListener;
@@ -63,7 +63,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     private List<Fragment> mFragments;
     private AssetFragment tab_asset;
     private ProductFragment tab_product;
-    private NewsFragment tab_news;
+    private ServiceFragment tab_news;
     private MoreFragment tab_more;
 
     @Override
@@ -104,7 +104,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         mFragments = new ArrayList<Fragment>();
         tab_asset = new AssetFragment();
         tab_product = new ProductFragment();
-        tab_news = new NewsFragment();
+        tab_news = new ServiceFragment();
         tab_more = new MoreFragment();
 
         mFragments.add(tab_asset);
@@ -341,8 +341,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 break;
             case R.id.ll_tab_service:
                 setSelect(2);
-                Intent intent = new Intent(this, SubBookingHospitalActivity.class);
-                startActivity(intent);
+//                Intent intent = new Intent(this, SubBookingHospitalActivity.class);
+//                startActivity(intent);
                 break;
             case R.id.ll_tab_more:
                 setSelect(3);

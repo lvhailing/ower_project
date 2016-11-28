@@ -192,6 +192,10 @@
             android:name=".act.ac.BookingHospitalListActivity"
             android:screenOrientation="portrait"/>
 
+        <activity
+            android:name=".act.ac.GeneticTestingListActivity"
+            android:screenOrientation="portrait"/>
+
 
         <!-- 通道保持服务 -->
         <service
