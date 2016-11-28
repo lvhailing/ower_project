@@ -31,13 +31,13 @@
 
 
     <RelativeLayout
-        android:id="@+id/rl_type"
+        android:id="@+id/rl_area"
         android:layout_width="match_parent"
         android:layout_height="46dp"
         android:gravity="center_horizontal">
 
         <TextView
-            android:id="@+id/tv_type"
+            android:id="@+id/tv_area"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
@@ -49,7 +49,7 @@
             android:layout_height="10dp"
             android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"
-            android:layout_toRightOf="@+id/tv_type"
+            android:layout_toRightOf="@+id/tv_area"
             android:background="@drawable/arrow"/>
     </RelativeLayout>
 

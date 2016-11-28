@@ -281,18 +281,17 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                     }
 
                     if (isAppInstalled("com.jundehui")) {
-                        MessageDialog dialog = new MessageDialog(MainActivity.this,
-                                new MessageDialog.OnCheckVersion() {
-                                    @Override
-                                    public void onConfim() {
+                        MessageDialog dialog = new MessageDialog(MainActivity.this, new MessageDialog.OnCheckVersion() {
+                            @Override
+                            public void onConfim() {
 
-                                    }
+                            }
 
-                                    @Override
-                                    public void onCancel() {
+                            @Override
+                            public void onCancel() {
 
-                                    }
-                                }, "由于版本更新问题，请您手动卸载之前旧版本，祝您生活愉快");
+                            }
+                        }, "由于版本更新问题，请您手动卸载之前旧版本，祝您生活愉快");
                         dialog.show();
                     } else {
 //								Toast.makeText(MainActivity.this,"未安装",Toast.LENGTH_SHORT).show();
@@ -342,7 +341,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 break;
             case R.id.ll_tab_service:
                 setSelect(2);
-                Intent intent =new Intent(this,SubBookingHospitalActivity.class);
+                Intent intent = new Intent(this, SubBookingHospitalActivity.class);
                 startActivity(intent);
                 break;
             case R.id.ll_tab_more:

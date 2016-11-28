@@ -58,7 +58,7 @@ public class DBManager {
         } finally {
             db.endTransaction();
             long endTime = System.currentTimeMillis();
-            Log.i("aaa", (endTime - beginTime) + "");
+            Log.i("aaa_db_province_time", (endTime - beginTime) + "");
         }
     }
 

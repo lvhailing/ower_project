@@ -46,8 +46,8 @@ public class BookingHospitalListActivity extends BaseActivity implements View.On
     private ListView lv_right;   //右侧市lv
     private View v_hidden; //隐藏的省市布局背景
     private LinearLayout ll_hidden; //隐藏的省市布局
-    private RelativeLayout rl_type; //全部地区按钮
-    private TextView tv_type;
+    private RelativeLayout rl_area; //全部地区按钮
+    private TextView tv_area;
 
     private boolean isOpened = false;   //动画是否开启
     private List<Province> provinceList;    //所有省
@@ -88,7 +88,7 @@ public class BookingHospitalListActivity extends BaseActivity implements View.On
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> arg0, View arg1, int position, long arg3) {
-                Intent intent = new Intent(BookingHospitalListActivity.this, SubBookingHospitalActivity.class);
+                Intent intent = new Intent();
                 intent.putExtra("id", totalList.get(position).getId());
                 setResult(100, intent);
                 finish();
@@ -99,7 +99,7 @@ public class BookingHospitalListActivity extends BaseActivity implements View.On
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
                 selectProvince = provinceList.get(position).getName();
-                tv_type.setText(selectProvince);
+                tv_area.setText(selectProvince);
                 //改变点击的背景色
                 provinceAdapter.changeBg(position);
                 //刷新市数据
@@ -111,7 +111,7 @@ public class BookingHospitalListActivity extends BaseActivity implements View.On
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
                 selectCity = cityList.get(position).getName();
-                tv_type.setText(selectCity);
+                tv_area.setText(selectCity);
                 //关闭动画
                 closeShopping();
                 //访问接口
@@ -142,12 +142,12 @@ public class BookingHospitalListActivity extends BaseActivity implements View.On
         lv_right = (ListView) findViewById(R.id.lv_right);
         v_hidden = findViewById(R.id.v_hidden);
         ll_hidden = (LinearLayout) findViewById(R.id.ll_hidden);
-        rl_type = (RelativeLayout) findViewById(R.id.rl_type);
-        tv_type = (TextView) findViewById(R.id.tv_type);
+        rl_area = (RelativeLayout) findViewById(R.id.rl_area);
+        tv_area = (TextView) findViewById(R.id.tv_area);
 
         mBtnBack.setOnClickListener(this);
         v_hidden.setOnClickListener(this);
-        rl_type.setOnClickListener(this);
+        rl_area.setOnClickListener(this);
     }
 
     private void requestData() {
@@ -229,7 +229,7 @@ public class BookingHospitalListActivity extends BaseActivity implements View.On
             case R.id.v_hidden:  //隐藏布局 关闭动画
                 closeShopping();
                 break;
-            case R.id.rl_type:  //类型
+            case R.id.rl_area:  //类型
                 getProvinceDatas();
                 if (isOpened) {
                     //类型是开启状态 则需关闭动画

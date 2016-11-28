@@ -255,6 +255,7 @@
                     android:text="预约科室"/>
 
                 <EditText
+                    android:id="@+id/et_departments"
                     style="@style/et_style"
                     android:hint=""
                     android:inputType="text"

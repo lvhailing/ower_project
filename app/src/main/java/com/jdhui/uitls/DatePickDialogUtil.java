@@ -49,15 +49,16 @@ public class DatePickDialogUtil implements OnDateChangedListener {
         dialog.setContentView(dateTimeLayout);
         dialog.setCanceledOnTouchOutside(true);
 
+        //设置dialog全屏宽
+        Window window = dialog.getWindow();
         WindowManager windowManager = activity.getWindowManager();
         Display display = windowManager.getDefaultDisplay();
-        WindowManager.LayoutParams lp = dialog.getWindow().getAttributes();
-        lp.width = display.getWidth(); //设置全屏宽
-        dialog.getWindow().setAttributes(lp);
-
-        Window window = dialog.getWindow();
-        window.setWindowAnimations(R.style.date_picker_anim);    //设置进出动画
-        window.setGravity(Gravity.BOTTOM);  //设置dialog显示的位置
+        WindowManager.LayoutParams lp = window.getAttributes();
+        lp.width = display.getWidth();
+        window.setAttributes(lp);
+        //设置弹出动画及弹出位置
+        window.setWindowAnimations(R.style.date_picker_anim);
+        window.setGravity(Gravity.BOTTOM);
 
         cancel.setOnClickListener(new OnClickListener() {
 

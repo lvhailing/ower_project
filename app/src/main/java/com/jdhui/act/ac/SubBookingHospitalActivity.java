@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -16,11 +17,15 @@ import com.jdhui.bean.mybean.SubmitBookingHospital2B;
 import com.jdhui.mould.BaseParams;
 import com.jdhui.mould.BaseRequester;
 import com.jdhui.mould.HtmlRequest;
+import com.jdhui.uitls.DESUtil;
 import com.jdhui.uitls.DatePickDialogUtil;
+import com.jdhui.uitls.PreferenceUtil;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 
 /**
  * 服务--提交预约医院
@@ -39,6 +44,7 @@ public class SubBookingHospitalActivity extends BaseActivity implements View.OnC
     private RelativeLayout rl_hospital; //预约医院
     private TextView tv_hospital;
     private String id; //医院id
+    private EditText et_departments;   //科室
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +65,7 @@ public class SubBookingHospitalActivity extends BaseActivity implements View.OnC
         tv_time2 = (TextView) findViewById(R.id.tv_time2);
         tv_time3 = (TextView) findViewById(R.id.tv_time3);
         tv_hospital = (TextView) findViewById(R.id.tv_hospital);
+        et_departments = (EditText) findViewById(R.id.et_departments);
 
         mBtnBack.setOnClickListener(this);
         btn_submit.setOnClickListener(this);
@@ -88,7 +95,7 @@ public class SubBookingHospitalActivity extends BaseActivity implements View.OnC
                 break;
             case R.id.rl_hospital: //预约医院
                 Intent intent = new Intent(this, BookingHospitalListActivity.class);
-                startActivityForResult(intent, 100);
+                startActivityForResult(intent, 0);
                 break;
         }
     }
@@ -96,15 +103,22 @@ public class SubBookingHospitalActivity extends BaseActivity implements View.OnC
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 100 && resultCode == RESULT_OK) {
-           id = data.getStringExtra("id");
+        if (resultCode == 100 && data != null) {
+            id = data.getStringExtra("id");
             tv_hospital.setText(id);
         }
     }
 
     private void submit() {
         //hospitalId:16102616045315630527   北京协和医院
-        HtmlRequest.submitBookingHospital(this, "", id, "", "", "", "", "", "", "", "", "", "", new BaseRequester.OnRequestListener() {
+        String userId = null;
+        try {
+            userId = DESUtil.decrypt(PreferenceUtil.getUserId());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        String departments = et_departments.getText().toString();
+        HtmlRequest.submitBookingHospital(this, userId, id, departments, "", "", "", "", "", "", "", "", "", new BaseRequester.OnRequestListener() {
             @Override
             public void onRequestFinished(BaseParams params) {
                 if (params != null) {
@@ -151,13 +165,20 @@ public class SubBookingHospitalActivity extends BaseActivity implements View.OnC
     }
 
     private boolean isTimeValue(String selectedTime) {
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy年MM月dd日");
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy年MM月dd日", Locale.CHINA);
         try {
-            Date date = simpleDateFormat.parse(selectedTime);
-            long now = new Date().getTime();
-            if (now > date.getTime()) {
+            Date selectDate = simpleDateFormat.parse(selectedTime);
+
+            //获取今天的0时 时间戳
+            Calendar cal = Calendar.getInstance();
+            cal.set(Calendar.HOUR, 0);
+            cal.set(Calendar.SECOND, 0);
+            cal.set(Calendar.MINUTE, 0);
+            cal.set(Calendar.MILLISECOND, 0);
+
+            if (cal.getTimeInMillis() > selectDate.getTime()) {
                 //选择的时间必须是从今天开始包含今天
-                Toast.makeText(SubBookingHospitalActivity.this, "时间不能晚于今天", Toast.LENGTH_SHORT).show();
+                Toast.makeText(SubBookingHospitalActivity.this, "时间只能是今天或今天以后", Toast.LENGTH_SHORT).show();
                 return false;
             }
         } catch (ParseException e) {

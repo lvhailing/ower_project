@@ -295,12 +295,13 @@ public class DownloadUtils {
         List<City> list = DBManager.getCityList(context, pid);
         if (list == null || list.size() == 0) {
             //创建数据
-            list = makeCityList(context);
+            makeCityList(context);
+            list = DBManager.getCityList(context, pid);
         }
         return list;
     }
 
-    private List<City> makeCityList(Context context) {
+    private void makeCityList(Context context) {
         List<City> list = new ArrayList<>();
         //全部地区
         list.add(new City("全部", "000"));
@@ -718,6 +719,5 @@ public class DownloadUtils {
         list.add(new City("台北市", "034"));
 
         DBManager.saveCityList(context, list);
-        return list;
     }
 }
