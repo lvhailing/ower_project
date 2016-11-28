@@ -10,6 +10,7 @@ import android.widget.TextView;
 import com.jdhui.R;
 import com.jdhui.bean.mybean.BookingHospitalList3B;
 import com.jdhui.bean.mybean.GeneticTestingList3B;
+import com.jdhui.bean.mybean.Product3B;
 import com.jdhui.mould.types.MouldList;
 
 public class GeneticTestingListAdapter extends BaseAdapter {
@@ -46,7 +47,7 @@ public class GeneticTestingListAdapter extends BaseAdapter {
             holder.tv_genetic_name = (TextView) convertView.findViewById(R.id.tv_genetic_name);
             convertView.setTag(holder);
         } else {
-            holder = (Holder) convertView.getTag();
+            holder = (GeneticTestingListAdapter.Holder) convertView.getTag();
         }
         holder.tv_genetic_name.setText(list.get(position).getName());
 
@@ -55,5 +56,6 @@ public class GeneticTestingListAdapter extends BaseAdapter {
 
     class Holder {
         TextView tv_genetic_name;
+
     }
 }
