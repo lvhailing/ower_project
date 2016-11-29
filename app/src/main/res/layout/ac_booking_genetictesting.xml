@@ -3,8 +3,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@color/white">
 
     <RelativeLayout
         android:id="@+id/rl_service_type"
@@ -32,26 +32,18 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_marginLeft="12dp">
 
         <com.handmark.pulltorefresh.library.PullToRefreshListView
             xmlns:ptr="http://schemas.android.com/apk/res-auto"
             android:id="@+id/listview"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:divider="@color/bg_gray"
-            android:dividerHeight="1dp"
+            android:divider="@color/bg_gray_gray"
+            android:dividerHeight="0dp"
             android:scrollbars="none"
             ptr:ptrAnimationStyle="flip"
             ptr:ptrMode="both"/>
     </RelativeLayout>
-    <!-- <Button
-         android:id="@+id/btn_submit"
-         android:layout_width="match_parent"
-         android:layout_height="48dp"
-         android:layout_alignParentBottom="true"
-         android:background="@drawable/shape_button_orange"
-         android:text="提交预约"
-         android:textColor="@color/white"/>-->
-
 </LinearLayout>

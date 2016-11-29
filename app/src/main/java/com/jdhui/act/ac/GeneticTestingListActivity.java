@@ -15,6 +15,7 @@ import com.jdhui.R;
 import com.jdhui.act.BaseActivity;
 import com.jdhui.adapter.GeneticTestingListAdapter;
 import com.jdhui.bean.mybean.GeneticTestingDetail2B;
+import com.jdhui.bean.mybean.GeneticTestingDetail3B;
 import com.jdhui.bean.mybean.GeneticTestingList2B;
 import com.jdhui.bean.mybean.GeneticTestingList3B;
 import com.jdhui.dialog.GeneticTestingDialog;
@@ -85,22 +86,22 @@ public class GeneticTestingListActivity extends BaseActivity implements View.OnC
                 }
 
                 detail2B = (GeneticTestingDetail2B) params.result;
-
+                //数据回来后 弹框
                 showDialog();
             }
         });
-        //数据回来后 弹框
+
     }
 
-    //展示详情对话框
+    //展示立即预约详情对话框
     private void showDialog() {
         GeneticTestingDialog dialog = new GeneticTestingDialog(this, detail2B);
-        dialog.setDateDialog(new GeneticTestingDialog.MyCallback() {
+        dialog.subGeneticTestingDialog(new GeneticTestingDialog.MyCallback() {
             @Override
             public void onMyclick(Dialog ad) {
                 Intent intent = new Intent(GeneticTestingListActivity.this, SubGeneticTestingActivity.class);
-                intent.putExtra("id", detail2B.getId());
-                intent.putExtra("name", detail2B.getName());    //基因检测套餐名字
+                intent.putExtra("id", detail2B.getGeneticTesting().getId());  //基因检测 id
+                intent.putExtra("name", detail2B.getGeneticTesting().getName());    //基因检测套餐名字
                 startActivity(intent);
 
                 ad.dismiss();
@@ -109,7 +110,6 @@ public class GeneticTestingListActivity extends BaseActivity implements View.OnC
         });
     }
 
-
     private void initView() {
         mBtnBack = (ImageView) findViewById(R.id.iv_back);
         listView = (PullToRefreshListView) findViewById(R.id.listview);
@@ -117,8 +117,7 @@ public class GeneticTestingListActivity extends BaseActivity implements View.OnC
         mBtnBack.setOnClickListener(this);
     }
 
-    private void requestListData() {
-//        Toast.makeText(this, selectCity + ":" + selectProvince, Toast.LENGTH_SHORT).show();
+    private void requestListData() {  //请求基因列表的数据
         try {
             HtmlRequest.getGeneticTestingList(GeneticTestingListActivity.this, "1", new BaseRequester.OnRequestListener() {
                 @Override
@@ -154,7 +153,6 @@ public class GeneticTestingListActivity extends BaseActivity implements View.OnC
             e.printStackTrace();
         }
     }
-
 
     @Override
     public void onClick(View v) {

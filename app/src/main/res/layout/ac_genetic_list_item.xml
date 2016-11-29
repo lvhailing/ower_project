@@ -5,7 +5,6 @@
     android:layout_height="50dp"
     android:minHeight="50dp">
 
-
     <TextView
         android:id="@+id/tv_genetic_name"
         android:layout_width="match_parent"
@@ -18,10 +17,10 @@
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
         android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="12dp"
         android:src="@drawable/arrow"/>
-
 
     <View
         style="@style/v_line_style"

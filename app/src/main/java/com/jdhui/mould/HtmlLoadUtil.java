@@ -439,9 +439,8 @@ public class HtmlLoadUtil {
      *
      * @return
      */
-    public static String subGeneticTesting(String userInfoId, String geneticTestingId, String userSex, String userAge, String bookingTime,
-                                           String userAddress, String bookingClient, String clientPhone) {
-        SubGeneticTesting0B b = new SubGeneticTesting0B(userInfoId, geneticTestingId, userSex, userAge, bookingTime, userAddress, bookingClient, clientPhone);
+    public static String subGeneticTesting(String geneticTestingId, String userSex, String userAge, String userAddress, String bookingClient, String clientPhone) {
+        SubGeneticTesting0B b = new SubGeneticTesting0B(geneticTestingId, userSex, userAge, userAddress, bookingClient, clientPhone);
         return getResult(b);
     }
 

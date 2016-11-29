@@ -2251,9 +2251,9 @@ public class HtmlRequest extends BaseRequester {
      * @param listener 监听
      * @return 返回数据
      */
-    public static String subGeneticTesting(final Context context, String userInfoId, String geneticTestingId, String userSex, String userAge, String bookingTime,
-                                           String userAddress, String bookingClient, String clientPhone, OnRequestListener listener) {
-        final String data = HtmlLoadUtil.subGeneticTesting(userInfoId, geneticTestingId, userSex, userAge, bookingTime, userAddress, bookingClient, clientPhone);
+    public static String subGeneticTesting(final Context context, String geneticTestingId, String userSex, String userAge, String userAddress,
+                                           String bookingClient, String clientPhone, OnRequestListener listener) {
+        final String data = HtmlLoadUtil.subGeneticTesting(geneticTestingId, userSex, userAge, userAddress, bookingClient, clientPhone);
         final String url = ApplicationConsts.URL_SERVICE_BOOKINGGENETICTESTING_ADD;
         String tid = registerId(Constants.TASK_TYPE_BOOKING_GENETICTESTING_ADD, url);
         if (tid == null) {

@@ -4,33 +4,20 @@ package com.jdhui.bean.mybean;
  * 服务--提交基因检测预约  准备入参
  */
 public class SubGeneticTesting0B {
-    private String userInfoId;  //当前用户Id
     private String geneticTestingId; //基因检测Id
     private String userSex; //预约人性别
     private String userAge; //预约人年龄
-    private String bookingTime; //预约时间
     private String userAddress; //预约人地址
     private String bookingClient; //预约人
     private String clientPhone; //预约人电话号
 
-    public SubGeneticTesting0B(String userInfoId, String geneticTestingId, String userSex, String userAge, String bookingTime,
-                               String userAddress, String bookingClient, String clientPhone) {
-        this.userInfoId = userInfoId;
+    public SubGeneticTesting0B(String geneticTestingId, String userSex, String userAge, String userAddress, String bookingClient, String clientPhone) {
         this.geneticTestingId = geneticTestingId;
         this.userSex = userSex;
         this.userAge = userAge;
-        this.bookingTime = bookingTime;
         this.userAddress = userAddress;
         this.bookingClient = bookingClient;
         this.clientPhone = clientPhone;
-    }
-
-    public String getUserInfoId() {
-        return userInfoId;
-    }
-
-    public void setUserInfoId(String userInfoId) {
-        this.userInfoId = userInfoId;
     }
 
     public String getGeneticTestingId() {
@@ -55,14 +42,6 @@ public class SubGeneticTesting0B {
 
     public void setUserAge(String userAge) {
         this.userAge = userAge;
-    }
-
-    public String getBookingTime() {
-        return bookingTime;
-    }
-
-    public void setBookingTime(String bookingTime) {
-        this.bookingTime = bookingTime;
     }
 
     public String getUserAddress() {
