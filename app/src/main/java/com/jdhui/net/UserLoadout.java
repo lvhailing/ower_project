@@ -37,7 +37,7 @@ public class UserLoadout {
 //				PreferenceUtil.setAutoLoginAccount("");
 				PreferenceUtil.setAutoLoginPwd("");
 				PreferenceUtil.setLogin(false);
-				PreferenceUtil.setFirstLogin(true);
+//				PreferenceUtil.setFirstLogin(true);
 				PreferenceUtil.setPhone("");
 				PreferenceUtil.setUserId("");
 				PreferenceUtil.setUserNickName("");

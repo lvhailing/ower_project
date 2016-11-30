@@ -1,8 +1,4 @@
-
 package com.jdhui.act;
-
-import java.util.Observable;
-import java.util.Observer;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -21,6 +17,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.jdhui.ApplicationConsts;
 import com.jdhui.R;
 import com.jdhui.bean.ResultUserLoginContentBean;
 import com.jdhui.net.UserLogin;
@@ -29,6 +26,9 @@ import com.jdhui.uitls.DESUtil;
 import com.jdhui.uitls.PreferenceUtil;
 import com.jdhui.view.CallServiceDialog;
 import com.jdhui.view.CallServiceDialog.OnCallServiceChanged;
+
+import java.util.Observable;
+import java.util.Observer;
 
 /**
  * 登陆界面
@@ -197,34 +197,31 @@ public class LoginActivity extends BaseActivity implements OnClickListener, Obse
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.id_login_txt_call:
-                CallServiceDialog dialog = new CallServiceDialog(this,
-                        new OnCallServiceChanged() {
+                CallServiceDialog dialog = new CallServiceDialog(this, new OnCallServiceChanged() {
 
-                            @Override
-                            public void onConfim() {
-                                Intent intent = new Intent(Intent.ACTION_DIAL);
-                                Uri data = Uri.parse("tel:" + getString(R.string.tellphone_num));
-                                intent.setData(data);
-                                startActivity(intent);
-                            }
+                    @Override
+                    public void onConfim() {
+                        Intent intent = new Intent(Intent.ACTION_DIAL);
+                        Uri data = Uri.parse("tel:" + getString(R.string.tellphone_num));
+                        intent.setData(data);
+                        startActivity(intent);
+                    }
 
-                            @Override
-                            public void onCancel() {
+                    @Override
+                    public void onCancel() {
 
-                            }
-                        }, "客服热线: \n " + getString(R.string.tellphone_num_format));
+                    }
+                }, "客服热线: \n " + getString(R.string.tellphone_num_format));
                 dialog.show();
                 break;
             case R.id.id_login_btn_login:
                 String user = edtUsername.getText().toString();
                 String pass = edtPassword.getText().toString();
                 if (TextUtils.isEmpty(user)) {
-                    Toast.makeText(LoginActivity.this, "请输入用户名",
-                            Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this, "请输入用户名", Toast.LENGTH_SHORT).show();
                 } else {
                     if (TextUtils.isEmpty(pass)) {
-                        Toast.makeText(LoginActivity.this, "请输入用户密码",
-                                Toast.LENGTH_SHORT).show();
+                        Toast.makeText(LoginActivity.this, "请输入用户密码", Toast.LENGTH_SHORT).show();
                     } else {
                         judgeUser(user, pass);
                     }
@@ -242,8 +239,7 @@ public class LoginActivity extends BaseActivity implements OnClickListener, Obse
     }
 
     private void judgeUser(String user, String pass) {
-        UserLogin.getInstance()
-                .userlogining(LoginActivity.this, user, pass, "");
+        UserLogin.getInstance().userlogining(LoginActivity.this, user, pass, "");
     }
 
     private BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
@@ -257,74 +253,59 @@ public class LoginActivity extends BaseActivity implements OnClickListener, Obse
     @Override
     public void update(Observable observable, Object data) {
         bean = (ResultUserLoginContentBean) data;
-        if (bean != null) {
-            if (Boolean.parseBoolean(bean.getFlag())) {
-                if (PreferenceUtil.isFirstLogin()) {
-                    PreferenceUtil.setFirstLogin(false);
-                    PreferenceUtil.setLogin(true);
-                    //判断是否答题  false:未答题 true:已答题
-                    if (PreferenceUtil.getIsAnswer()) {
-                        //是否做过合格投资者判定
-                        if (PreferenceUtil.getIsInvestor()) {
-                            Intent i = new Intent(LoginActivity.this,
-                                    GestureEditActivity.class);
-                            i.putExtra("back_from_change_gesture", "back_from_change_gesture");
-                            i.putExtra("comeflag", 1);
-                            if (tomain != null) {
-                                i.putExtra("tomain", tomain);
-                            }
-                            i.putExtra("title", R.string.title_gestureset);
-                            startActivity(i);
-                        } else {
-                            //判断账户资产是否大于300万
-                            if (PreferenceUtil.getTotalAmount()) {
-                                Intent i_commitment = new Intent(this, WebSurveyActivity.class);
-                                i_commitment.putExtra("type", WebSurveyActivity.WEBTYPE_INVESTOR_COMMITMENT);
-                                i_commitment.putExtra("title", "投资者承诺函");
-                                i_commitment.putExtra("btnInfo", "我同意该承诺");
-                                startActivity(i_commitment);
-                            } else {
-                                Intent i_judge = new Intent(this, WebInvestorJudgeActivity.class);
-                                i_judge.putExtra("type", WebInvestorJudgeActivity.WEBTYPE_INVESTOR_JUDGE);
-                                i_judge.putExtra("title", "投资者判定");
-                                i_judge.putExtra("btnInfo", "400-80-88888");
-                                startActivity(i_judge);
-                            }
-
-                        }
-                    } else {
-                        Intent i_survey = new Intent(LoginActivity.this, WebSurveyActivity.class);
-                        i_survey.putExtra("type", WebSurveyActivity.WEBTYPE_SURVEY);
-                        i_survey.putExtra("title", "问卷调查");
-                        i_survey.putExtra("btnInfo", "开始答题");
-                        startActivity(i_survey);
-                    }
-                }
-//				tomain = getIntent().getStringExtra("tomain");
-
-                if (tomain != null) {
-                    /*if(tomain.equals(GestureVerifyActivity.TOMAIN)){
-						Intent i_main = new Intent(LoginActivity.this,
-								MainActivity.class);
-						startActivity(i_main);
-//						PreferenceUtil.setLogin(true);
-//						Intent i = new Intent(LoginActivity.this,
-//								GestureEditActivity.class);
-//						i.putExtra("comeflag", 1);
-//						i.putExtra("title", R.string.title_gestureset);
-//						startActivity(i);
-//						setResult(RESULT_OK);
-					}else{
-						setResult(RESULT_OK);
-					}*/
-                } else {
-                    setResult(RESULT_OK);
-                }
-                finish();
-            } else {
-//				Toast.makeText(LoginActivity.this, bean.getMessage(),
-//						Toast.LENGTH_SHORT).show();
-            }
+        if (bean == null || Boolean.parseBoolean(bean.getFlag())) {
+            Toast.makeText(this, "登录信息异常", Toast.LENGTH_SHORT).show();
+            return;
         }
+
+        //设置已登录标记
+        PreferenceUtil.setLogin(true);
+
+        //非第一次登录 比如退出登录来的
+        if (!PreferenceUtil.isFirstLogin()) {
+            Intent intent = new Intent(LoginActivity.this, GestureVerifyActivity.class);
+            intent.putExtra("from", ApplicationConsts.ACTIVITY_SPLASH);
+            intent.putExtra("title", "手势密码登录");
+            intent.putExtra("message", "请画出手势密码解锁");
+            startActivity(intent);
+            finish();
+            return;
+        }
+
+        //第一次登录
+        PreferenceUtil.setFirstLogin(false);    //设置非第一次登录标记
+        if (PreferenceUtil.getIsAnswer()) { //判断是否答题  true:已答题
+            if (PreferenceUtil.getIsInvestor()) {   //是否做过合格投资者判定
+                Intent i = new Intent(LoginActivity.this, GestureEditActivity.class);
+                i.putExtra("back_from_change_gesture", "back_from_change_gesture");
+                i.putExtra("comeflag", 1);
+                if (tomain != null) {
+                    i.putExtra("tomain", tomain);
+                }
+                i.putExtra("title", R.string.title_gestureset);
+                startActivity(i);
+            } else {    //是否做过合格投资者判定 否
+                if (PreferenceUtil.getTotalAmount()) {  //判断账户资产是否大于300万
+                    Intent i_commitment = new Intent(this, WebSurveyActivity.class);
+                    i_commitment.putExtra("type", WebSurveyActivity.WEBTYPE_INVESTOR_COMMITMENT);
+                    i_commitment.putExtra("title", "投资者承诺函");
+                    i_commitment.putExtra("btnInfo", "我同意该承诺");
+                    startActivity(i_commitment);
+                } else {    //判断账户资产是否大于300万 否
+                    Intent i_judge = new Intent(this, WebInvestorJudgeActivity.class);
+                    i_judge.putExtra("type", WebInvestorJudgeActivity.WEBTYPE_INVESTOR_JUDGE);
+                    i_judge.putExtra("title", "投资者判定");
+                    i_judge.putExtra("btnInfo", "400-80-88888");
+                    startActivity(i_judge);
+                }
+            }
+        } else {//判断是否答题  false:未答题
+            Intent i_survey = new Intent(LoginActivity.this, WebSurveyActivity.class);
+            i_survey.putExtra("type", WebSurveyActivity.WEBTYPE_SURVEY);
+            i_survey.putExtra("title", "问卷调查");
+            i_survey.putExtra("btnInfo", "开始答题");
+            startActivity(i_survey);
+        }
+        finish();
     }
 }
