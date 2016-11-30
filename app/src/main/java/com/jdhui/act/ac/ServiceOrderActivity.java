@@ -37,7 +37,7 @@ public class ServiceOrderActivity extends BaseActivity implements View.OnClickLi
     private View v_hidden; //隐藏的类型或状态布局背景
     private LinearLayout ll_hidden; //隐藏的类型布局
     private RelativeLayout rl_type; //类型按钮
-    private TextView tv_1, tv_2, tv_3;  //类型的下面的text tv_1：绿通就医  tv_2：基因检测  tv_3：高尔夫球场地
+    private TextView tv_0,tv_1, tv_2, tv_3,tv_4;  //类型的下面的text  tv_0：全部   tv_1：绿通就医  tv_2：基因检测  tv_3：高尔夫球场地   tv_4：公务机包机
 
     private int currentPage = 1;    //当前页
     private String type;    //当前服务类型
@@ -88,16 +88,21 @@ public class ServiceOrderActivity extends BaseActivity implements View.OnClickLi
         v_hidden = findViewById(R.id.v_hidden);
         ll_hidden = (LinearLayout) findViewById(R.id.ll_hidden);
         rl_type = (RelativeLayout) findViewById(R.id.rl_type);
+        tv_0 = (TextView) findViewById(R.id.tv_0);
         tv_1 = (TextView) findViewById(R.id.tv_1);
         tv_2 = (TextView) findViewById(R.id.tv_2);
         tv_3 = (TextView) findViewById(R.id.tv_3);
+        tv_4 = (TextView) findViewById(R.id.tv_4);
 
         mBtnBack.setOnClickListener(this);
         v_hidden.setOnClickListener(this);
         rl_type.setOnClickListener(this);
+
+        tv_0.setOnClickListener(this);
         tv_1.setOnClickListener(this);
         tv_2.setOnClickListener(this);
         tv_3.setOnClickListener(this);
+        tv_4.setOnClickListener(this);
     }
 
     private void requestData() {
@@ -188,6 +193,12 @@ public class ServiceOrderActivity extends BaseActivity implements View.OnClickLi
                     openShopping();
                 }
                 break;
+            case R.id.tv_0:  //全部
+                type = "";
+                mTvType.setText("全部");
+                closeShopping();
+                requestData();
+                break;
             case R.id.tv_1:  //绿通就医
                 type = "hospitalBooking";
                 mTvType.setText("绿通就医");
@@ -203,6 +214,12 @@ public class ServiceOrderActivity extends BaseActivity implements View.OnClickLi
             case R.id.tv_3:  //高尔夫球场
                 type = "golfBooking";
                 mTvType.setText("高尔夫球场地");
+                closeShopping();
+                requestData();
+                break;
+            case R.id.tv_4:  //公务机包机
+                type = "";
+                mTvType.setText("公务机包机");
                 closeShopping();
                 requestData();
                 break;
