@@ -60,8 +60,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:paddingBottom="20dp"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:paddingBottom="20dp">
 
                 <LinearLayout
                     style="@style/product_linearlayout">
@@ -77,7 +77,23 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/ll_order_status"
                     style="@style/product_linearlayout">
+
+                    <TextView
+                        style="@style/product_text_detail_lt"
+                        android:text="预约状态"/>
+
+                    <TextView
+                        android:id="@+id/tv_order_status"
+                        style="@style/product_text_detail_rt"
+                        android:text="aaaa"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_order_name"
+                    style="@style/product_linearlayout"
+                    android:visibility="gone">
 
                     <TextView
                         style="@style/product_text_detail_lt"
@@ -91,7 +107,8 @@
 
                 <LinearLayout
                     android:id="@+id/ll_sex"
-                    style="@style/product_linearlayout">
+                    style="@style/product_linearlayout"
+                    android:visibility="gone">
 
                     <TextView
                         style="@style/product_text_detail_lt"
@@ -105,7 +122,8 @@
 
                 <LinearLayout
                     android:id="@+id/ll_age"
-                    style="@style/product_linearlayout">
+                    style="@style/product_linearlayout"
+                    android:visibility="gone">
 
                     <TextView
                         style="@style/product_text_detail_lt"
@@ -119,7 +137,8 @@
 
                 <LinearLayout
                     android:id="@+id/ll_genetic_test"
-                    style="@style/product_linearlayout">
+                    style="@style/product_linearlayout"
+                    android:visibility="gone">
 
                     <TextView
                         style="@style/product_text_detail_lt"
@@ -133,7 +152,8 @@
 
                 <LinearLayout
                     android:id="@+id/ll_address"
-                    style="@style/product_linearlayout">
+                    style="@style/product_linearlayout"
+                    android:visibility="gone">
 
                     <TextView
                         style="@style/product_text_detail_lt"
@@ -147,7 +167,8 @@
 
                 <LinearLayout
                     android:id="@+id/ll_security_num"
-                    style="@style/product_linearlayout">
+                    style="@style/product_linearlayout"
+                    android:visibility="gone">
 
                     <TextView
                         style="@style/product_text_detail_lt"
@@ -161,7 +182,8 @@
 
                 <LinearLayout
                     android:id="@+id/ll_id_num"
-                    style="@style/product_linearlayout">
+                    style="@style/product_linearlayout"
+                    android:visibility="gone">
 
                     <TextView
                         style="@style/product_text_detail_lt"
@@ -174,8 +196,39 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/ll_together1"
+                    style="@style/product_linearlayout"
+                    android:visibility="gone">
+
+                    <TextView
+                        style="@style/product_text_detail_lt"
+                        android:text="同行人1"/>
+
+                    <TextView
+                        android:id="@+id/tv_together1"
+                        style="@style/product_text_detail_rt"
+                        android:text=""/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_together2"
+                    style="@style/product_linearlayout"
+                    android:visibility="gone">
+
+                    <TextView
+                        style="@style/product_text_detail_lt"
+                        android:text="同行人2"/>
+
+                    <TextView
+                        android:id="@+id/tv_together2"
+                        style="@style/product_text_detail_rt"
+                        android:text=""/>
+                </LinearLayout>
+
+                <LinearLayout
                     android:id="@+id/ll_phone"
-                    style="@style/product_linearlayout">
+                    style="@style/product_linearlayout"
+                    android:visibility="gone">
 
                     <TextView
                         style="@style/product_text_detail_lt"
@@ -188,8 +241,39 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/ll_venue_name"
+                    style="@style/product_linearlayout"
+                    android:visibility="gone">
+
+                    <TextView
+                        style="@style/product_text_detail_lt"
+                        android:text="场馆名称"/>
+
+                    <TextView
+                        android:id="@+id/tv_venue_name"
+                        style="@style/product_text_detail_rt"
+                        android:text=""/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_order_time"
+                    style="@style/product_linearlayout"
+                    android:visibility="gone">
+
+                    <TextView
+                        style="@style/product_text_detail_lt"
+                        android:text="预约时间"/>
+
+                    <TextView
+                        android:id="@+id/tv_order_time"
+                        style="@style/product_text_detail_rt"
+                        android:text=""/>
+                </LinearLayout>
+
+                <LinearLayout
                     android:id="@+id/ll_spare_time1"
-                    style="@style/product_linearlayout">
+                    style="@style/product_linearlayout"
+                    android:visibility="gone">
 
                     <TextView
                         style="@style/product_text_detail_lt"
@@ -203,7 +287,8 @@
 
                 <LinearLayout
                     android:id="@+id/ll_spare_time2"
-                    style="@style/product_linearlayout">
+                    style="@style/product_linearlayout"
+                    android:visibility="gone">
 
                     <TextView
                         style="@style/product_text_detail_lt"
@@ -217,7 +302,8 @@
 
                 <LinearLayout
                     android:id="@+id/ll_order_hospital"
-                    style="@style/product_linearlayout">
+                    style="@style/product_linearlayout"
+                    android:visibility="gone">
 
                     <TextView
                         style="@style/product_text_detail_lt"
@@ -231,7 +317,8 @@
 
                 <LinearLayout
                     android:id="@+id/ll_order_department"
-                    style="@style/product_linearlayout">
+                    style="@style/product_linearlayout"
+                    android:visibility="gone">
 
                     <TextView
                         style="@style/product_text_detail_lt"
@@ -245,7 +332,8 @@
 
                 <LinearLayout
                     android:id="@+id/ll_order_doctor"
-                    style="@style/product_linearlayout">
+                    style="@style/product_linearlayout"
+                    android:visibility="gone">
 
                     <TextView
                         style="@style/product_text_detail_lt"
@@ -259,7 +347,8 @@
 
                 <LinearLayout
                     android:id="@+id/ll_desc_illness"
-                    style="@style/product_linearlayout">
+                    style="@style/product_linearlayout"
+                    android:visibility="gone">
 
                     <TextView
                         style="@style/product_text_detail_lt"
@@ -272,14 +361,16 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    style="@style/product_linearlayout">
+                    android:id="@+id/ll_sub_time"
+                    style="@style/product_linearlayout"
+                    android:visibility="gone">
 
                     <TextView
                         style="@style/product_text_detail_lt"
-                        android:text="预约时间"/>
+                        android:text="提交时间"/>
 
                     <TextView
-                        android:id="@+id/tv_order_time"
+                        android:id="@+id/tv_sub_time"
                         style="@style/product_text_detail_rt"
                         android:text=""/>
                 </LinearLayout>

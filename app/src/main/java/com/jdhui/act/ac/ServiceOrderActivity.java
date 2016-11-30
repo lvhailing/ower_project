@@ -36,7 +36,7 @@ public class ServiceOrderActivity extends BaseActivity implements View.OnClickLi
     private MouldList<Service3B> totalList = new MouldList<>();
     private View v_hidden; //隐藏的类型或状态布局背景
     private LinearLayout ll_hidden; //隐藏的类型布局
-    private RelativeLayout rl_type; //类型按钮
+    private RelativeLayout rl_type; //全部 按钮
     private TextView tv_0,tv_1, tv_2, tv_3,tv_4;  //类型的下面的text  tv_0：全部   tv_1：绿通就医  tv_2：基因检测  tv_3：高尔夫球场地   tv_4：公务机包机
 
     private int currentPage = 1;    //当前页
@@ -184,9 +184,9 @@ public class ServiceOrderActivity extends BaseActivity implements View.OnClickLi
             case R.id.v_hidden:  //隐藏布局 关闭动画
                 closeShopping();
                 break;
-            case R.id.rl_type:  //类型
+            case R.id.rl_type:  //全部
                 if (isOpened) {
-                    //类型是开启状态 则需关闭动画
+                    //全部是开启状态 则需关闭动画
                     closeShopping();
                 } else {
                     //否则开启动画

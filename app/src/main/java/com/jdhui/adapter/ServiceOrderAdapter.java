@@ -44,6 +44,7 @@ public class ServiceOrderAdapter extends BaseAdapter {
             convertView = inflater.inflate(R.layout.ac_service_order_item, null);
             holder.tv_name = (TextView) convertView.findViewById(R.id.tv_name);
             holder.tv_time = (TextView) convertView.findViewById(R.id.tv_time);
+            holder.tv_status = (TextView) convertView.findViewById(R.id.tv_status);
             convertView.setTag(holder);
         } else {
             holder = (Holder) convertView.getTag();
@@ -61,6 +62,7 @@ public class ServiceOrderAdapter extends BaseAdapter {
         }
         holder.tv_name.setText(name);
         holder.tv_time.setText(list.get(position).getBookingTime());
+//        holder.tv_status.setText(list.get(position));
 
         return convertView;
     }
@@ -68,5 +70,6 @@ public class ServiceOrderAdapter extends BaseAdapter {
     class Holder {
         TextView tv_name;
         TextView tv_time;
+        TextView tv_status;
     }
 }
