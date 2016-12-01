@@ -1,9 +1,9 @@
 package com.jdhui.uitls;
 
-import java.util.Date;
-
 import android.content.Context;
 import android.content.SharedPreferences;
+
+import java.util.Date;
 
 public class PreferenceUtil {
 
@@ -86,7 +86,8 @@ public class PreferenceUtil {
      * @param pwd
      */
     public static void setGesturePwd(String pwd) {
-        getSettingSharedPreferences().edit().putString("gesture", pwd).commit();
+//        getSettingSharedPreferences().edit().putString("gesture", pwd).commit();
+        getSettingSharedPreferences().edit().putString(getUserId(), pwd).commit();
     }
 
     /**
@@ -95,7 +96,8 @@ public class PreferenceUtil {
      * @return
      */
     public static String getGesturePwd() {
-        return getSettingSharedPreferences().getString("gesture", "");
+//        return getSettingSharedPreferences().getString("gesture", "");
+        return getSettingSharedPreferences().getString(getUserId(), "");
     }
 
     /**
