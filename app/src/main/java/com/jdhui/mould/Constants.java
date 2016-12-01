@@ -183,5 +183,15 @@ public class Constants {
      */
     public static final String TASK_TYPE_BOOKING_GENETICTESTING_ADD = String.valueOf(index++);
 
+    /***
+     * 保险预约
+     */
+    public static final String TASK_TYPE_INSURANCE_BOOKING = String.valueOf(index++);
+
+    /***
+     * 非保险预约
+     */
+    public static final String TASK_TYPE_PRODUCT_BOOKING = String.valueOf(index++);
+
 
 }

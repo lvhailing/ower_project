@@ -48,7 +48,7 @@ public class AssetFragment extends Fragment implements View.OnClickListener {
     private TextView tv_asset_my_num;
     private boolean isshow = true;
     private PieChart mChart;
-    private RelativeLayout rl_fragment_asset_fixed, rl_fragment_asset_float, rl_fragment_asset_insurance;
+    private RelativeLayout rl_fragment_asset_fixed, rl_fragment_asset_float, rl_fragment_asset_insurance; //固收、浮收、保险等对应的布局
     private Context context;
     private TextView tv_fragment_asset_passed;              //是否合格投资者
     private TextView tv_fragment_asset_steady;              //是否稳健型
@@ -397,35 +397,31 @@ public class AssetFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.iv_asset_chosse_my_num:
+            case R.id.iv_asset_chosse_my_num: //总资产后的眼睛图标
                 onclickAssetData();
                 break;
-            case R.id.rl_fragment_asset_fixed:                  //固定收益类
-
+            case R.id.rl_fragment_asset_fixed:  //固定收益类
                 Intent i_fixed = new Intent(mActivity, AssetFixedActivity.class);
                 mActivity.startActivityForResult(i_fixed, ASSET_REQUEST_CODE);
 
                 break;
-            case R.id.rl_fragment_asset_float:                  //浮动收益类
-
+            case R.id.rl_fragment_asset_float: //浮动收益类
                 Intent i_float = new Intent(mActivity, AssetFloatActivity.class);
                 mActivity.startActivityForResult(i_float, ASSET_REQUEST_CODE);
 
                 break;
-            case R.id.rl_fragment_asset_insurance:              //保险类
-
+            case R.id.rl_fragment_asset_insurance: //保险类
                 Intent i_insurance = new Intent(mActivity, AssetInsuranceActivity.class);
                 mActivity.startActivityForResult(i_insurance, ASSET_REQUEST_CODE);
 
                 break;
-            case R.id.iv_fragment_asset_message:                //消息列表
+            case R.id.iv_fragment_asset_message:  //消息列表
                 Intent i_messgae = new Intent(mActivity, MessageActivity.class);
                 mActivity.startActivityForResult(i_messgae, ASSET_REQUEST_CODE);
                 break;
 
         }
     }
-
 
     private void requestUserInfo() {
         String userId = null;

@@ -4,6 +4,7 @@ import com.jdhui.mould.types.IMouldType;
 
 /**
  * Created by hasee on 2016/8/17.
+ *  3B：  投资列表 (account/product/tenders)
  */
 public class ResultAccountProductTendersItemBean implements IMouldType{
     private String productName;     //产品名称

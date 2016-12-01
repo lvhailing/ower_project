@@ -358,6 +358,16 @@ public class ApplicationConsts {
      */
     public static final String URL_SERVICE_BOOKINGGENETICTESTING_ADD = EC_HOST + "service/bookingGeneticBooking/add";
 
+    /**
+     * 保险预约
+     */
+    public static final String URL_INSURANCE_BOOKING = EC_HOST + "insurance/booking";
+
+    /**
+     * 非保险预约
+     */
+    public static final String URL_PRODUCT_BOOKING = EC_HOST + "product/booking";
+
 
     // 手势密码点的状态
     public static final int POINT_STATE_NORMAL = 0; // 正常状态

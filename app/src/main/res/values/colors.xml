@@ -23,7 +23,8 @@
     <color name="red1">#FF3030</color>
     <color name="red2">#FF2311</color>
     <color name="red3">#CF0000</color>
-   
+    <color name="red4">#8a0002</color>
+
     <color name="title_bg">#ffdddddd</color>
     <color name="title_bgnew">#ff3392c9</color>
     <color name="transparent">#00000000</color>

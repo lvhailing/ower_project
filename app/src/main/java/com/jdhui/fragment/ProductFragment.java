@@ -41,9 +41,9 @@ import com.nostra13.universalimageloader.core.display.FadeInBitmapDisplayer;
 import java.util.ArrayList;
 
 /**
- * 底部导航---首页
+ * 底部导航---产品
  */
-public class ProductFragment extends Fragment implements View.OnClickListener ,CycleAdapter.ImageCycleViewListener {
+public class ProductFragment extends Fragment implements View.OnClickListener, CycleAdapter.ImageCycleViewListener {
     private View mView;
     private LinearLayout mViewPager;
     private LinearLayout mLinearLayout;
@@ -53,9 +53,9 @@ public class ProductFragment extends Fragment implements View.OnClickListener ,C
     private CycleAdapter cycleAdapter;
     private MyListView myListView;
     private ProductHotProductAdapter mHotProductAdapter;
-//    private BadgeViewOne mBadgeView;
+    //    private BadgeViewOne mBadgeView;
 //    private LinearLayout layout_badgeV;
-    private TextView mTvGuShou,mTvFloat,mTvInsurance;
+    private TextView mTvGuShou, mTvFloat, mTvInsurance;
     private ScrollView scrollView;
     private Context context;
     private ResultProductIndexBean productIndexBean;
@@ -67,21 +67,17 @@ public class ProductFragment extends Fragment implements View.OnClickListener ,C
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         if (mView == null) {
-            mView = inflater.inflate(R.layout.fragment_product, container,
-                    false);
+            mView = inflater.inflate(R.layout.fragment_product, container, false);
             try {
                 initView(mView);
                 initData();
             } catch (Exception e) {
                 e.printStackTrace();
             }
-
         } else {
-            if(mView.getParent()!=null){
+            if (mView.getParent() != null) {
                 ((ViewGroup) mView.getParent()).removeView(mView);
             }
-
-
         }
 
         return mView;
@@ -98,10 +94,10 @@ public class ProductFragment extends Fragment implements View.OnClickListener ,C
     @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
-        if(isVisibleToUser){
+        if (isVisibleToUser) {
             requestProductIndex();
             scrollView.smoothScrollTo(0, 0);
-        }else{
+        } else {
 
         }
 
@@ -117,7 +113,7 @@ public class ProductFragment extends Fragment implements View.OnClickListener ,C
         mLinearLayout = (LinearLayout) mView.findViewById(R.id.down_dots_ll);
         myListView = (MyListView) mView.findViewById(R.id.lv_home_hot_product);
 //        layout_badgeV= (LinearLayout) mView.findViewById(R.id.id_badgeView);
-        scrollView= (ScrollView) mView.findViewById(R.id.fragment_home_scrollview);
+        scrollView = (ScrollView) mView.findViewById(R.id.fragment_home_scrollview);
         mTvGuShou = (TextView) mView.findViewById(R.id.id_tab_home_tv_gushou);
         mTvFloat = (TextView) mView.findViewById(R.id.id_tab_home_tv_float);
         mTvInsurance = (TextView) mView.findViewById(R.id.id_tab_home_tv_insurance);
@@ -147,10 +143,11 @@ public class ProductFragment extends Fragment implements View.OnClickListener ,C
 
     /**
      * 动态设置ListView的高度
+     *
      * @param listView
      */
-    public static void setListViewHeightBasedOnChildren(Context context,ListView listView,int dividerHeight) {
-        if(listView == null)
+    public static void setListViewHeightBasedOnChildren(Context context, ListView listView, int dividerHeight) {
+        if (listView == null)
             return;
         ListAdapter listAdapter = listView.getAdapter();
         if (listAdapter == null) {
@@ -161,10 +158,10 @@ public class ProductFragment extends Fragment implements View.OnClickListener ,C
         for (int i = 0; i < listAdapter.getCount(); i++) {
             View listItem = listAdapter.getView(i, null, listView);
             listItem.measure(0, 0);
-            totalHeight += (listItem.getMeasuredHeight()+dividerHeight);
+            totalHeight += (listItem.getMeasuredHeight() + dividerHeight);
         }
         ViewGroup.LayoutParams params = listView.getLayoutParams();
-        params.height = totalHeight + (listView.getDividerHeight() * listAdapter.getCount())+5;
+        params.height = totalHeight + (listView.getDividerHeight() * listAdapter.getCount()) + 5;
 
         listView.setLayoutParams(params);
     }
@@ -173,17 +170,17 @@ public class ProductFragment extends Fragment implements View.OnClickListener ,C
      * 模拟请求轮播图网络数据
      */
     private void requestData() {
-        cycleAdapter = new CycleAdapter(context,productcycleBean,options);
+        cycleAdapter = new CycleAdapter(context, productcycleBean, options);
         cycleAdapter.setNetAndLinearLayoutMethod(mLinearLayout);
         cycleAdapter.setOnImageListener(new CycleAdapter.ImageCycleViewListener() {
             @Override
             public void onImageClick(int postion, View imageView) {
-                if(productcycleBean!=null&&productcycleBean.size()!=0){
-                    if(!TextUtils.isEmpty(productcycleBean.get(postion%productcycleBean.size()).getUrl())){
+                if (productcycleBean != null && productcycleBean.size() != 0) {
+                    if (!TextUtils.isEmpty(productcycleBean.get(postion % productcycleBean.size()).getUrl())) {
                         Intent i_web = new Intent(context, WebActivity.class);
                         i_web.putExtra("type", WebActivity.WEBTYPE_BANNER);
-                        i_web.putExtra("url",productcycleBean.get(postion%productcycleBean.size()).getUrl());
-                        i_web.putExtra("title",productcycleBean.get(postion%productcycleBean.size()).getDescription());
+                        i_web.putExtra("url", productcycleBean.get(postion % productcycleBean.size()).getUrl());
+                        i_web.putExtra("title", productcycleBean.get(postion % productcycleBean.size()).getDescription());
                         getActivity().startActivity(i_web);
 
                     }
@@ -196,75 +193,76 @@ public class ProductFragment extends Fragment implements View.OnClickListener ,C
         cycleAdapter.startRoll();
         mViewPager.addView(cycleAdapter);
     }
+
     /**
      * 模拟请求热销产品网络数据
      */
     private void initHotProductData() {
-        if(!TextUtils.isEmpty(productIndexBean.getBulletin().getTopic())){
+        if (!TextUtils.isEmpty(productIndexBean.getBulletin().getTopic())) {
             tv_fragment_product_notice.setText(productIndexBean.getBulletin().getTopic());
         }
 
-        mHotProductAdapter =new ProductHotProductAdapter(context,list);
+        mHotProductAdapter = new ProductHotProductAdapter(context, list);
         myListView.setAdapter(mHotProductAdapter);
         myListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> arg0, View arg1, int position,
                                     long arg3) {
-                if(list.get(position).getCategory().equals("optimum")){
+                if (list.get(position).getCategory().equals("optimum")) {
                     Intent i_fixedProductDetail = new Intent();
-                    i_fixedProductDetail.setClass(context,FixedProductDetailActivity.class);
-                    i_fixedProductDetail.putExtra("productId",list.get(position).getId());
-                    i_fixedProductDetail.putExtra("type","optimum");
+                    i_fixedProductDetail.setClass(context, FixedProductDetailActivity.class);
+                    i_fixedProductDetail.putExtra("productId", list.get(position).getId());
+                    i_fixedProductDetail.putExtra("type", "optimum");
                     context.startActivity(i_fixedProductDetail);
-                }else if(list.get(position).getCategory().equals("floating")){
+                } else if (list.get(position).getCategory().equals("floating")) {
                     Intent i_fixedProductDetail = new Intent();
-                    i_fixedProductDetail.setClass(context,FixedProductDetailActivity.class);
-                    i_fixedProductDetail.putExtra("productId",list.get(position).getId());
-                    i_fixedProductDetail.putExtra("type","floating");
+                    i_fixedProductDetail.setClass(context, FixedProductDetailActivity.class);
+                    i_fixedProductDetail.putExtra("productId", list.get(position).getId());
+                    i_fixedProductDetail.putExtra("type", "floating");
                     context.startActivity(i_fixedProductDetail);
-                }else if(list.get(position).getCategory().equals("insurance")){
+                } else if (list.get(position).getCategory().equals("insurance")) {
                     Intent i_insuranceProductDetail = new Intent();
-                    i_insuranceProductDetail.setClass(context,InsuranceProductDetailActivity.class);
-                    i_insuranceProductDetail.putExtra("productId",list.get(position).getId());
+                    i_insuranceProductDetail.setClass(context, InsuranceProductDetailActivity.class);
+                    i_insuranceProductDetail.putExtra("productId", list.get(position).getId());
                     context.startActivity(i_insuranceProductDetail);
                 }
             }
         });
-        setListViewHeightBasedOnChildren(getActivity(),myListView,0);
+        setListViewHeightBasedOnChildren(getActivity(), myListView, 0);
     }
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.id_tab_home_tv_gushou:
-                Intent i_gushou=new Intent(context,GushouActivity.class);
+                Intent i_gushou = new Intent(context, GushouActivity.class);
                 startActivity(i_gushou);
                 break;
             case R.id.id_tab_home_tv_float:
-                Intent i_float=new Intent(context,FloatActivity.class);
+                Intent i_float = new Intent(context, FloatActivity.class);
                 startActivity(i_float);
                 break;
             case R.id.id_tab_home_tv_insurance:
-                Intent i_insurance=new Intent(context,InsuranceActivity.class);
+                Intent i_insurance = new Intent(context, InsuranceActivity.class);
                 startActivity(i_insurance);
                 break;
 
             case R.id.ll_fragment_product_notice:
-                if(productIndexBean!=null){
-                    Intent i_web=new Intent(context,WebActivity.class);
+                if (productIndexBean != null) {
+                    Intent i_web = new Intent(context, WebActivity.class);
                     i_web.putExtra("type", WebActivity.WEBTYPE_NOTICE_DETAILS);
-                    i_web.putExtra("id",productIndexBean.getBulletin().getId());
-                    i_web.putExtra("title","详情");
+                    i_web.putExtra("id", productIndexBean.getBulletin().getId());
+                    i_web.putExtra("title", "详情");
                     startActivity(i_web);
                 }
 
                 break;
             case R.id.tv_fragment_product_notice:
-                if(productIndexBean!=null){
-                    Intent i_web=new Intent(context,WebActivity.class);
+                if (productIndexBean != null) {
+                    Intent i_web = new Intent(context, WebActivity.class);
                     i_web.putExtra("type", WebActivity.WEBTYPE_NOTICE_DETAILS);
-                    i_web.putExtra("id",productIndexBean.getBulletin().getId());
-                    i_web.putExtra("title","详情");
+                    i_web.putExtra("id", productIndexBean.getBulletin().getId());
+                    i_web.putExtra("title", "详情");
                     startActivity(i_web);
                 }
 
@@ -272,15 +270,15 @@ public class ProductFragment extends Fragment implements View.OnClickListener ,C
         }
     }
 
-    private void requestProductIndex(){
+    private void requestProductIndex() {
 
-        HtmlRequest.getProductIndex(context,new BaseRequester.OnRequestListener() {
+        HtmlRequest.getProductIndex(context, new BaseRequester.OnRequestListener() {
             @Override
             public void onRequestFinished(BaseParams params) {
-                if(params!=null){
+                if (params != null) {
                     productIndexBean = (ResultProductIndexBean) params.result;
-                    if(productIndexBean!=null){
-                        if(list!=null){
+                    if (productIndexBean != null) {
+                        if (list != null) {
                             list.clear();
                         }
                         list.addAll(productIndexBean.getList());
@@ -296,16 +294,16 @@ public class ProductFragment extends Fragment implements View.OnClickListener ,C
         });
     }
 
-    private void requestCycleIndex(){
+    private void requestCycleIndex() {
 
-        HtmlRequest.getCycleIndex(context,new BaseRequester.OnRequestListener() {
+        HtmlRequest.getCycleIndex(context, new BaseRequester.OnRequestListener() {
             @Override
             public void onRequestFinished(BaseParams params) {
-                if(params!=null){
+                if (params != null) {
 
 //                    list.addAll(productIndexBean.getList());
 //                    setView();
-                    if(params.result!=null){
+                    if (params.result != null) {
                         productcycleBean = (MouldList<ResultCycleIndexBean>) params.result;
 
                     }

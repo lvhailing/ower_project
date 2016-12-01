@@ -45,6 +45,30 @@ public class AssetInsuranceDetailActivity extends BaseActivity implements View.O
     private ResultAssetInsuranceProductDetailBean assetFixedBean;
     private RelativeLayout ll_asset_insurance;
 
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        baseSetContentView(R.layout.activity_asset_insurance_detail);
+        initView();
+        initData();
+    }
+
+    public void initData(){
+        requestAssetInsuranceDetail();
+    }
+
+    private void initView(){
+
+        ActivityStack stack = ActivityStack.getActivityManage();
+        stack.addActivity(this);
+
+        tenderId = getIntent().getStringExtra("tenderId");
+        productName = getIntent().getStringExtra("productName");
+        assetFixedBean = new ResultAssetInsuranceProductDetailBean();
+        assignViews();
+
+    }
+
     private void assignViews() {
 
         idImgBack = (ImageView) findViewById(R.id.id_img_back);
@@ -68,30 +92,6 @@ public class AssetInsuranceDetailActivity extends BaseActivity implements View.O
         idImgBack.setOnClickListener(this);
         tvAssetInsuranceCall.setOnClickListener(this);
         ll_asset_insurance.setOnClickListener(this);
-
-    }
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        baseSetContentView(R.layout.activity_asset_insurance_detail);
-        initView();
-        initData();
-    }
-
-    public void initData(){
-        requestAssetInsuranceDetail();
-    }
-
-    private void initView(){
-
-        ActivityStack stack = ActivityStack.getActivityManage();
-        stack.addActivity(this);
-
-        tenderId = getIntent().getStringExtra("tenderId");
-        productName = getIntent().getStringExtra("productName");
-        assetFixedBean = new ResultAssetInsuranceProductDetailBean();
-        assignViews();
 
     }
 
@@ -126,31 +126,6 @@ public class AssetInsuranceDetailActivity extends BaseActivity implements View.O
         tvAssetInsuranceShouyiren.setText(assetFixedBean.getBeneficiary());
         tvAssetInsuranceBeizhu.setText(assetFixedBean.getRemark());
 
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
     }
 
     @Override

@@ -1,16 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/bg_gray"
-
-    >
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/bg_gray">
 
     <RelativeLayout
         android:id="@+id/id_insurance_product_detail_txt_title"
         android:layout_width="match_parent"
         android:layout_height="51dp"
-        android:background="@color/orange">
+        android:background="@color/red4">
 
         <ImageView
             android:id="@+id/id_img_back"
@@ -19,7 +17,7 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"
             android:padding="5dp"
-            android:src="@drawable/back" />
+            android:src="@drawable/back"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -27,285 +25,283 @@
             android:layout_centerInParent="true"
             android:text="产品信息"
             android:textColor="@color/white"
-            android:textSize="18sp" />
+            android:textSize="18sp"/>
     </RelativeLayout>
 
-    <RelativeLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/id_insurance_product_detail_txt_title"
-        >
-        <ImageView
-            android:id="@+id/iv_insurance_product_title_pic"
-            android:layout_width="match_parent"
-            android:layout_height="150dip"
+        android:scrollbars="none"
+        android:paddingBottom="60dp">
 
-            android:visibility="visible"
-            android:scaleType="fitXY"
-
-            />
-        <LinearLayout
-            android:id="@+id/ll_insurance_product_detail_title"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/iv_insurance_product_title_pic"
-            android:orientation="vertical"
-            >
-            <RelativeLayout
-                android:id="@+id/rl_insurance_product_detail_name"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/iv_insurance_product_title_pic"
+                android:layout_width="match_parent"
+                android:layout_height="150dip"
+                android:scaleType="fitXY"/>
+
+            <LinearLayout
+                android:id="@+id/ll_insurance_product_detail_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15dip"
-                >
+                android:layout_below="@id/iv_insurance_product_title_pic"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:id="@+id/rl_insurance_product_detail_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dip">
+
+                    <TextView
+                        android:id="@+id/tv_insurance_product_detail_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:text=""
+                        android:textSize="16sp"/>
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="10dip"
+                        android:layout_marginRight="15dip"
+                        android:layout_toRightOf="@id/tv_insurance_product_detail_name"
+                        android:src="@drawable/tab_lines"/>
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="15dip"
+                        android:layout_marginRight="10dip"
+                        android:layout_toLeftOf="@id/tv_insurance_product_detail_name"
+                        android:src="@drawable/tab_lines"/>
+                </RelativeLayout>
 
                 <TextView
-                    android:id="@+id/tv_insurance_product_detail_name"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:text=""
-                    android:textSize="16sp"
-                    />
-
-                <ImageView
+                    android:id="@+id/tv_insurance_product_detail_type"
                     android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dip"
+                    android:gravity="center_horizontal"
+                    android:text=""
+                    android:textColor="@color/txt_orange_gray"
+                    android:textSize="10sp"/>
+
+                <TextView
+                    android:id="@+id/tv_insurance_product_detail_des"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dip"
+                    android:gravity="center_horizontal"
+                    android:text="----"
+                    android:textColor="@color/txt_gray_light_l"
+                    android:textSize="10sp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_insurance_product_detail_info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/ll_insurance_product_detail_title"
+                android:layout_marginTop="15dip"
+                android:background="@color/white"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dip"
+                    android:layout_marginLeft="10dip"
+                    android:layout_marginTop="15dip"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="保险公司："
+                        android:textSize="12sp"/>
+
+                    <TextView
+                        android:id="@+id/tv_insurance_product_detail_baoxiangongsi"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:textColor="@color/bg_black"
+                        android:textSize="12sp"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_insurance_product_detail_toubaofangshi"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dip"
+                    android:layout_marginLeft="10dip"
+                    android:layout_marginTop="15dip"
+                    android:orientation="horizontal"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="投保方式："
+                        android:textSize="12sp"/>
+
+                    <TextView
+                        android:id="@+id/tv_insurance_product_detail_toubaofangshi"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:lineSpacingExtra="2dip"
+                        android:text=""
+                        android:textColor="@color/bg_black"
+                        android:textSize="12sp"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dip"
+                    android:layout_marginLeft="10dip"
+                    android:layout_marginTop="15dip"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="投保范围："
+                        android:textSize="12sp"/>
+
+                    <TextView
+                        android:id="@+id/tv_insurance_product_detail_toubaofanwei"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:lineSpacingExtra="2dip"
+                        android:text=""
+                        android:textColor="@color/bg_black"
+                        android:textSize="12sp"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dip"
+                    android:layout_marginLeft="10dip"
+                    android:layout_marginTop="15dip"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="保险期间："
+                        android:textSize="12sp"/>
+
+                    <TextView
+                        android:id="@+id/tv_insurance_product_detail_baoxianqijian"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:lineSpacingExtra="2dip"
+                        android:text=""
+                        android:textColor="@color/bg_black"
+                        android:textSize="12sp"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dip"
+                    android:layout_marginLeft="10dip"
+                    android:layout_marginTop="15dip"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="交费方式："
+                        android:textSize="12sp"/>
+
+                    <TextView
+                        android:id="@+id/tv_insurance_product_detail_jiaofeifangshi"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:lineSpacingExtra="2dip"
+                        android:text=""
+                        android:textColor="@color/bg_black"
+                        android:textSize="12sp"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_insurance_product_detail_fengxiantixing"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dip"
+                    android:layout_marginLeft="10dip"
+                    android:layout_marginTop="15dip"
+                    android:orientation="horizontal"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="风险提醒："
+                        android:textSize="12sp"/>
+
+                    <TextView
+                        android:id="@+id/tv_insurance_product_detail_fengxiantixing"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:lineSpacingExtra="2dip"
+                        android:text=""
+                        android:textColor="@color/bg_black"
+                        android:textSize="12sp"/>
+                </LinearLayout>
+            </LinearLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_insurance_product_detail_des"
+                android:layout_width="match_parent"
+                android:layout_height="50dip"
+                android:layout_below="@id/ll_insurance_product_detail_info"
+                android:layout_marginTop="15dip"
+                android:background="@color/white">
+
+                <TextView
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="10dip"
-                    android:layout_marginRight="15dip"
-                    android:layout_toRightOf="@id/tv_insurance_product_detail_name"
-                    android:src="@drawable/tab_lines"
-
-                    />
+                    android:text="图文详情"/>
 
                 <ImageView
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
-                    android:layout_marginLeft="15dip"
                     android:layout_marginRight="10dip"
-                    android:layout_toLeftOf="@id/tv_insurance_product_detail_name"
-                    android:src="@drawable/tab_lines" />
+                    android:src="@drawable/arrow"/>
             </RelativeLayout>
-            <TextView
-                android:id="@+id/tv_insurance_product_detail_type"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:layout_marginTop="2dip"
-                android:text=""
-                android:textSize="10sp"
-                android:textColor="@color/txt_orange_gray"
-                />
-            <TextView
-                android:id="@+id/tv_insurance_product_detail_des"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:layout_marginTop="2dip"
-                android:text="----"
-                android:textSize="10sp"
-                android:textColor="@color/txt_gray_light_l"
-                />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/ll_insurance_product_detail_info"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_below="@id/ll_insurance_product_detail_title"
-            android:background="@color/white"
-            android:layout_marginTop="15dip"
-            >
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginLeft="10dip"
-                android:layout_marginTop="15dip"
-                android:layout_marginBottom="8dip"
-                >
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="保险公司："
-                    android:textSize="12sp"
-                    />
-                <TextView
-                    android:id="@+id/tv_insurance_product_detail_baoxiangongsi"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text=""
-                    android:textColor="@color/bg_black"
-                    android:textSize="12sp"
-                    />
-
-            </LinearLayout>
-            <LinearLayout
-                android:id="@+id/ll_insurance_product_detail_toubaofangshi"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginLeft="10dip"
-                android:layout_marginTop="15dip"
-                android:layout_marginBottom="8dip"
-                android:visibility="gone"
-                >
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="投保方式："
-                    android:textSize="12sp"
-                    />
-                <TextView
-                    android:id="@+id/tv_insurance_product_detail_toubaofangshi"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text=""
-                    android:textColor="@color/bg_black"
-                    android:lineSpacingExtra="2dip"
-                    android:textSize="12sp"
-                    />
-
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginLeft="10dip"
-                android:layout_marginTop="15dip"
-                android:layout_marginBottom="8dip"
-                >
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="投保范围："
-                    android:textSize="12sp"
-                    />
-                <TextView
-                    android:id="@+id/tv_insurance_product_detail_toubaofanwei"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text=""
-                    android:lineSpacingExtra="2dip"
-                    android:textColor="@color/bg_black"
-                    android:textSize="12sp"
-                    />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginLeft="10dip"
-                android:layout_marginTop="15dip"
-                android:layout_marginBottom="8dip"
-                >
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="保险期间："
-                    android:textSize="12sp"
-                    />
-                <TextView
-                    android:id="@+id/tv_insurance_product_detail_baoxianqijian"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text=""
-                    android:lineSpacingExtra="2dip"
-                    android:textColor="@color/bg_black"
-                    android:textSize="12sp"
-                    />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginLeft="10dip"
-                android:layout_marginTop="15dip"
-                android:layout_marginBottom="8dip"
-                >
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="交费方式："
-                    android:textSize="12sp"
-                    />
-                <TextView
-                    android:id="@+id/tv_insurance_product_detail_jiaofeifangshi"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text=""
-                    android:lineSpacingExtra="2dip"
-                    android:textColor="@color/bg_black"
-                    android:textSize="12sp"
-                    />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/ll_insurance_product_detail_fengxiantixing"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginLeft="10dip"
-                android:layout_marginTop="15dip"
-                android:layout_marginBottom="8dip"
-                android:visibility="gone"
-                >
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="风险提醒："
-                    android:textSize="12sp"
-                    />
-                <TextView
-                    android:id="@+id/tv_insurance_product_detail_fengxiantixing"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text=""
-                    android:lineSpacingExtra="2dip"
-                    android:textColor="@color/bg_black"
-                    android:textSize="12sp"
-                    />
-
-            </LinearLayout>
-
-        </LinearLayout>
-
-        <RelativeLayout
-            android:id="@+id/rl_insurance_product_detail_des"
-            android:layout_width="match_parent"
-            android:layout_height="50dip"
-            android:layout_below="@id/ll_insurance_product_detail_info"
-            android:layout_marginTop="15dip"
-            android:background="@color/white"
-            >
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="图文详情"
-                android:layout_marginLeft="10dip"
-                android:layout_centerVertical="true"
-                />
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/arrow"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:layout_marginRight="10dip"
-                />
 
         </RelativeLayout>
+    </ScrollView>
 
-    </RelativeLayout>
-
-
+    <Button
+        android:id="@+id/btn_order"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="11dp"
+        android:layout_marginRight="11dp"
+        android:layout_marginTop="11dp"
+        android:background="@drawable/shape_center_orange"
+        android:gravity="center"
+        android:text="立即预约"
+        android:textColor="@color/white"/>
 </RelativeLayout>

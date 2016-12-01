@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * 产品--保险列表
  * ViewPager适配器
  * 
  */

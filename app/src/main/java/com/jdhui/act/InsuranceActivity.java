@@ -33,20 +33,17 @@ import com.jdhui.view.NewsTitleTextView;
 import java.util.ArrayList;
 
 /**
- * 保险列表
+ * 产品--保险列表
  */
-public class InsuranceActivity extends BaseActivity implements View.OnClickListener,
-        ViewPager.OnPageChangeListener {
-
-    //healthInsurance:健康险;accidentInsurance:意外险;lifeInsurance:人寿险;propertyInsurance:财产险;travelInsurance:旅游险
+public class InsuranceActivity extends BaseActivity implements View.OnClickListener, ViewPager.OnPageChangeListener {
+    //healthInsurance:健康险; accidentInsurance:意外险; lifeInsurance:人寿险; propertyInsurance:财产险; travelInsurance:旅游险
 
     private ViewPager mViewPager;
     private ViewGroup mViewGroup;
     private PullToRefreshListView listView;
     private BaseAdapter adapter;
     private NewsViewPagerAdapter mAdapter;
-    private String[] mTabItems = new String[]{"全   部", "健康险","意外险", "人寿险", "财产险",
-            "旅游险", ""};
+    private String[] mTabItems = new String[]{"全   部", "健康险", "意外险", "人寿险", "财产险", "旅游险", ""};
     private int mPreSelectItem;
     View view1;
     View view2;
@@ -108,13 +105,11 @@ public class InsuranceActivity extends BaseActivity implements View.OnClickListe
         newview.add(view6);
 
         for (int i = 0; i < mTabItems.length; i++) {
-
             String label = mTabItems[i];
 
             NewsTitleTextView tv = new NewsTitleTextView(this);
             int itemWidth = (int) tv.getPaint().measureText(label);
-            tv.setLayoutParams(new LinearLayout.LayoutParams((itemWidth * 2),
-                    -1));
+            tv.setLayoutParams(new LinearLayout.LayoutParams((itemWidth * 2), -1));
             tv.setTextSize(16);
             tv.setText(label);
             tv.setGravity(Gravity.CENTER);
@@ -141,29 +136,22 @@ public class InsuranceActivity extends BaseActivity implements View.OnClickListe
 
         switch (mPreSelectItem) {
             case 0:
-
-                listView = (PullToRefreshListView) view1
-                        .findViewById(R.id.listview_insurance);
+                listView = (PullToRefreshListView) view1.findViewById(R.id.listview_insurance);
                 break;
             case 1:
-                listView = (PullToRefreshListView) view2
-                        .findViewById(R.id.listview_insurance);
+                listView = (PullToRefreshListView) view2.findViewById(R.id.listview_insurance);
                 break;
             case 2:
-                listView = (PullToRefreshListView) view3
-                        .findViewById(R.id.listview_insurance);
+                listView = (PullToRefreshListView) view3.findViewById(R.id.listview_insurance);
                 break;
             case 3:
-                listView = (PullToRefreshListView) view4
-                        .findViewById(R.id.listview_insurance);
+                listView = (PullToRefreshListView) view4.findViewById(R.id.listview_insurance);
                 break;
             case 4:
-                listView = (PullToRefreshListView) view5
-                        .findViewById(R.id.listview_insurance);
+                listView = (PullToRefreshListView) view5.findViewById(R.id.listview_insurance);
                 break;
             case 5:
-                listView = (PullToRefreshListView) view6
-                        .findViewById(R.id.listview_insurance);
+                listView = (PullToRefreshListView) view6.findViewById(R.id.listview_insurance);
                 break;
 
             default:
@@ -178,35 +166,28 @@ public class InsuranceActivity extends BaseActivity implements View.OnClickListe
                     if (insurancePage >= 2) {
                         insurancePage--;
                         requestInsuranceProductList(insuranceType);
-
                     } else {
                         insurancePage = 1;
                         requestInsuranceProductList(insuranceType);
-
                     }
-
                 } else {
                     insurancePage++;
                     requestInsuranceProductList(insuranceType);
-
                 }
-
             }
         });
-        insuranceAdapter = new InsuranceAdapter(this,list);
+        insuranceAdapter = new InsuranceAdapter(this, list);
         listView.setAdapter(insuranceAdapter);
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> arg0, View arg1, int position,
-                                    long arg3) {
-                Intent i_insuranceProductDetail = new Intent();
-                i_insuranceProductDetail.setClass(InsuranceActivity.this,InsuranceProductDetailActivity.class);
-                i_insuranceProductDetail.putExtra("productId",list.get(position-1).getProductId());
-                InsuranceActivity.this.startActivity(i_insuranceProductDetail);
 
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() { //item 点击监听
+            @Override
+            public void onItemClick(AdapterView<?> arg0, View arg1, int position, long arg3) {
+                Intent i_insuranceProductDetail = new Intent();
+                i_insuranceProductDetail.setClass(InsuranceActivity.this, InsuranceProductDetailActivity.class);
+                i_insuranceProductDetail.putExtra("productId", list.get(position - 1).getProductId());
+                InsuranceActivity.this.startActivity(i_insuranceProductDetail);
             }
         });
-
     }
 
     @Override
@@ -218,8 +199,7 @@ public class InsuranceActivity extends BaseActivity implements View.OnClickListe
         }
         // 点击tabbar
         for (int i = 0; i < mViewGroup.getChildCount(); i++) {
-            NewsTitleTextView child = (NewsTitleTextView) mViewGroup
-                    .getChildAt(i);
+            NewsTitleTextView child = (NewsTitleTextView) mViewGroup.getChildAt(i);
             if (child == v) {
                 mViewPager.setCurrentItem(i);
                 break;
@@ -253,13 +233,11 @@ public class InsuranceActivity extends BaseActivity implements View.OnClickListe
         int scrollViewWidth = 0;
 
         mViewGroup.measure(mViewGroup.getMeasuredWidth(), -1);
-        FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(
-                mViewGroup.getMeasuredWidth(), -1);
+        FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(mViewGroup.getMeasuredWidth(), -1);
         params.gravity = Gravity.CENTER_VERTICAL;
         mViewGroup.setLayoutParams(params);
         for (int i = 0; i < mViewGroup.getChildCount(); i++) {
-            NewsTitleTextView itemView = (NewsTitleTextView) mViewGroup
-                    .getChildAt(i);
+            NewsTitleTextView itemView = (NewsTitleTextView) mViewGroup.getChildAt(i);
             int width = itemView.getMeasuredWidth();
             if (i < position) {
                 visiableWidth += width;
@@ -282,8 +260,7 @@ public class InsuranceActivity extends BaseActivity implements View.OnClickListe
         int nextTitleWidth = 0;
         if (position > 0) {
             // 当前点击按钮相邻右边按钮的宽度
-            nextTitleWidth = position == mViewGroup.getChildCount() - 1 ? 0
-                    : mViewGroup.getChildAt(position - 1).getMeasuredWidth();
+            nextTitleWidth = position == mViewGroup.getChildCount() - 1 ? 0 : mViewGroup.getChildAt(position - 1).getMeasuredWidth();
         }
         int screenWidth = getWindowManager().getDefaultDisplay().getWidth();
         final int move = visiableWidth - (screenWidth - titleWidth) / 2;
@@ -293,58 +270,56 @@ public class InsuranceActivity extends BaseActivity implements View.OnClickListe
                 //
                 // @Override
                 // public void run() {
-                ((HorizontalScrollView) mViewGroup.getParent())
-                        .setScrollX(move);
+                ((HorizontalScrollView) mViewGroup.getParent()).setScrollX(move);
                 // }
                 // });
 
             }
         } else {// 向屏幕左边移动
             if ((scrollViewWidth - visiableWidth) >= (screenWidth / 2)) {
-                ((HorizontalScrollView) mViewGroup.getParent())
-                        .setScrollX(move);
+                ((HorizontalScrollView) mViewGroup.getParent()).setScrollX(move);
             }
         }
         mPreSelectItem = position;
         switch (mPreSelectItem) {
             case 0:
                 insurancePage = 1;
-                insuranceType = "";         //全部
+                insuranceType = ""; //全部
                 list.clear();
                 initData();
                 // requestData(category, 1);
                 break;
             case 1:
                 insurancePage = 1;
-                insuranceType = "healthInsurance";      //健康
+                insuranceType = "healthInsurance"; //健康
                 list.clear();
                 initData();
                 // requestData(category, 1);
                 break;
             case 2:
                 insurancePage = 1;
-                insuranceType = "accidentInsurance";        //意外
+                insuranceType = "accidentInsurance"; //意外
                 list.clear();
                 initData();
                 // requestData(category, 1);
                 break;
             case 3:
                 insurancePage = 1;
-                insuranceType = "lifeInsurance";        //人寿
+                insuranceType = "lifeInsurance"; //人寿
                 list.clear();
                 initData();
                 // requestData(category, 1);
                 break;
             case 4:
                 insurancePage = 1;
-                insuranceType = "propertyInsurance";    //财产
+                insuranceType = "propertyInsurance"; //财产
                 list.clear();
                 initData();
                 // requestData(category, 1);
                 break;
             case 5:
                 insurancePage = 1;
-                insuranceType = "travelInsurance";      //旅游
+                insuranceType = "travelInsurance"; //旅游
                 list.clear();
                 initData();
                 // requestData(category, 1);
@@ -366,14 +341,11 @@ public class InsuranceActivity extends BaseActivity implements View.OnClickListe
                     if (params.result != null) {
                         insuranceBean = (ResultInsuranceProductBean) params.result;
 
-                        if(insuranceBean.getList()!=null){
+                        if (insuranceBean.getList() != null) {
                             if (insuranceBean.getList().size() == 0 && insurancePage != 1) {
-                                Toast.makeText(InsuranceActivity.this, "已经到最后一页",
-                                        Toast.LENGTH_SHORT).show();
+                                Toast.makeText(InsuranceActivity.this, "已经到最后一页", Toast.LENGTH_SHORT).show();
                                 insurancePage = cachePage - 1;
-                                listView.getRefreshableView()
-                                        .smoothScrollToPositionFromTop(0, 80,
-                                                100);
+                                listView.getRefreshableView().smoothScrollToPositionFromTop(0, 80, 100);
                                 listView.onRefreshComplete();
                             } else {
                                 list.clear();
@@ -385,16 +357,12 @@ public class InsuranceActivity extends BaseActivity implements View.OnClickListe
                                         listView.onRefreshComplete();
                                     }
                                 }, 1000);
-                                listView.getRefreshableView()
-                                        .smoothScrollToPositionFromTop(0, 80,
-                                                100);
+                                listView.getRefreshableView().smoothScrollToPositionFromTop(0, 80, 100);
                             }
                         }
-
                     } else {
                         listView.onRefreshComplete();
-                        Toast.makeText(InsuranceActivity.this, "加载失败，请确认网络通畅",
-                                Toast.LENGTH_LONG).show();
+                        Toast.makeText(InsuranceActivity.this, "加载失败，请确认网络通畅", Toast.LENGTH_LONG).show();
                     }
                     InsuranceActivity.this.stopLoading();
                     listView.postDelayed(new Runnable() {

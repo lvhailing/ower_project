@@ -1,10 +1,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/bg_gray"
-    android:orientation="vertical"
-
-    >
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/bg_gray">
 
     <RelativeLayout
         android:id="@+id/id_account_txt_title"
@@ -19,7 +16,7 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"
             android:padding="5dp"
-            android:src="@drawable/back" />
+            android:src="@drawable/back"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -27,7 +24,7 @@
             android:layout_centerInParent="true"
             android:text="保险"
             android:textColor="@color/white"
-            android:textSize="18sp" />
+            android:textSize="18sp"/>
     </RelativeLayout>
 
     <LinearLayout
@@ -40,7 +37,7 @@
         <View
             android:layout_width="fill_parent"
             android:layout_height="1dp"
-            android:background="#D3D3D3" />
+            android:background="#D3D3D3"/>
 
         <HorizontalScrollView
             android:id="@+id/h_scroll_view"
@@ -52,26 +49,23 @@
             <LinearLayout
                 android:id="@+id/viewgroup"
                 android:layout_width="wrap_content"
-
                 android:layout_height="fill_parent"
                 android:gravity="left|center_vertical"
-                android:orientation="horizontal"></LinearLayout>
+                android:orientation="horizontal">
+            </LinearLayout>
         </HorizontalScrollView>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="0.2dp"
             android:layout_marginLeft="2dp"
-            android:background="@color/gray_d" />
+            android:background="@color/gray_d"/>
 
         <android.support.v4.view.ViewPager
             android:id="@+id/viewpager"
             android:layout_width="fill_parent"
             android:layout_height="0dip"
             android:layout_weight="1.0"
-            android:background="#D4D0C8" />
-
+            android:background="#D4D0C8"/>
     </LinearLayout>
-
-
 </RelativeLayout>

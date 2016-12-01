@@ -26,6 +26,8 @@ import com.jdhui.bean.UserPageBean;
 import com.jdhui.bean.UserProductTendersBean;
 import com.jdhui.bean.VerifyPassWordBean;
 import com.jdhui.bean.mybean.BookingHospitalList0B;
+import com.jdhui.bean.mybean.BookingInsurance0B;
+import com.jdhui.bean.mybean.BookingProduct0B;
 import com.jdhui.bean.mybean.GeneticTestingDetail0B;
 import com.jdhui.bean.mybean.GeneticTestingList0B;
 import com.jdhui.bean.mybean.Product0B;
@@ -441,6 +443,26 @@ public class HtmlLoadUtil {
      */
     public static String subGeneticTesting(String geneticTestingId, String userSex, String userAge, String userAddress, String bookingClient, String clientPhone) {
         SubGeneticTesting0B b = new SubGeneticTesting0B(geneticTestingId, userSex, userAge, userAddress, bookingClient, clientPhone);
+        return getResult(b);
+    }
+
+    /**
+     * 保险预约
+     *
+     * @return
+     */
+    public static String subBookingInsurance(String productId, String userInfoId, String bookingRemark, String bookingAmount) {
+        BookingInsurance0B b = new BookingInsurance0B(productId, userInfoId, bookingRemark, bookingAmount);
+        return getResult(b);
+    }
+
+    /**
+     * 非保险预约
+     *
+     * @return
+     */
+    public static String subBookingProduct(String productId, String userInfoId, String bookingRemark, String bookingAmount, String type) {
+        BookingProduct0B b = new BookingProduct0B(productId, userInfoId, bookingRemark, bookingAmount, type);
         return getResult(b);
     }
 

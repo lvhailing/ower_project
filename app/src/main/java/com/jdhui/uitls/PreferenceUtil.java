@@ -76,8 +76,7 @@ public class PreferenceUtil {
      * @param isfirst
      */
     public static void setFirstLogin(boolean isfirst) {
-        getUserSharedPreferences().edit().putBoolean("ISFIRSTLOGIN", isfirst)
-                .commit();
+        getUserSharedPreferences().edit().putBoolean("ISFIRSTLOGIN", isfirst).commit();
     }
 
     /**

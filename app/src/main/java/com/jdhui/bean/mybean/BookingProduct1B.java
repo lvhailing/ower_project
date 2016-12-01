@@ -1,16 +1,12 @@
-package com.jdhui.bean;
-
+package com.jdhui.bean.mybean;
 
 import com.jdhui.mould.types.IMouldType;
 
-/**
- *  1B：  投资列表 (account/product/tenders)
- */
-public class ResultAccountProductTendersContentBean implements IMouldType {
+public class BookingProduct1B implements IMouldType {
 	private String check;
 	private String code;
-	private ResultAccountProductTendersBean data;
 	private String msg;
+	private BookingProduct2B data;
 
 	public String getCheck() {
 		return check;
@@ -28,14 +24,6 @@ public class ResultAccountProductTendersContentBean implements IMouldType {
 		this.code = code;
 	}
 
-	public ResultAccountProductTendersBean getData() {
-		return data;
-	}
-
-	public void setData(ResultAccountProductTendersBean data) {
-		this.data = data;
-	}
-
 	public String getMsg() {
 		return msg;
 	}
@@ -43,4 +31,13 @@ public class ResultAccountProductTendersContentBean implements IMouldType {
 	public void setMsg(String msg) {
 		this.msg = msg;
 	}
+
+	public BookingProduct2B getData() {
+		return data;
+	}
+
+	public void setData(BookingProduct2B data) {
+		this.data = data;
+	}
 }
+	

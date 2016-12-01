@@ -28,7 +28,7 @@ import com.jdhui.uitls.StringUtil;
  * 资产页固定收益列表
  * Created by hasee on 2016/8/10.
  */
-public class AssetFixedActivity extends BaseActivity implements View.OnClickListener{
+public class AssetFixedActivity extends BaseActivity implements View.OnClickListener {
 
     private ImageView id_img_back;
     private PullToRefreshListView listview_asset_fixed;
@@ -47,7 +47,7 @@ public class AssetFixedActivity extends BaseActivity implements View.OnClickList
 
     }
 
-    private void initView(){
+    private void initView() {
 
         ActivityStack stack = ActivityStack.getActivityManage();
         stack.addActivity(this);
@@ -56,7 +56,7 @@ public class AssetFixedActivity extends BaseActivity implements View.OnClickList
         productBean = new ResultAccountProductTendersBean();
 
         id_img_back = (ImageView) findViewById(R.id.id_img_back);
-        listview_asset_fixed = (PullToRefreshListView)findViewById(R.id.listview_asset_fixed);
+        listview_asset_fixed = (PullToRefreshListView) findViewById(R.id.listview_asset_fixed);
         tv_asset_fixed_number = (TextView) findViewById(R.id.tv_asset_fixed_number);
         id_img_back.setOnClickListener(this);
 //        text();
@@ -72,66 +72,36 @@ public class AssetFixedActivity extends BaseActivity implements View.OnClickList
                     } else {
                         assetFixedPage = 1;
                         requestUserTendersInfo();
-
                     }
-
                 } else {
                     assetFixedPage++;
                     requestUserTendersInfo();
-
                 }
-
             }
         });
 
-        assetFixedAdapter = new AssetFixedAdapter(this,fixedListBean);
+        assetFixedAdapter = new AssetFixedAdapter(this, fixedListBean);
         listview_asset_fixed.setAdapter(assetFixedAdapter);
 
         listview_asset_fixed.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
-                Intent i_fixed = new Intent(AssetFixedActivity.this,AssetFixedDetailActivity.class);
-                i_fixed.putExtra("tenderId",fixedListBean.get(i-1).getTenderId());
-                i_fixed.putExtra("productName",fixedListBean.get(i-1).getProductName());
+                Intent i_fixed = new Intent(AssetFixedActivity.this, AssetFixedDetailActivity.class);
+                i_fixed.putExtra("tenderId", fixedListBean.get(i - 1).getTenderId());
+                i_fixed.putExtra("productName", fixedListBean.get(i - 1).getProductName());
                 AssetFixedActivity.this.startActivity(i_fixed);
-
             }
         });
-
-
-    }
-    public void initData(){
-        tv_asset_fixed_number.setText(StringUtil.formatNum(productBean.getTenderTotalAmount())+"元");
     }
 
-    @Override
-    protected void onStop() {
-        super.onStop();
+    public void initData() {
+        tv_asset_fixed_number.setText(StringUtil.formatNum(productBean.getTenderTotalAmount()) + "元");
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-    }
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.id_img_back:
                 finish();
                 break;
@@ -150,7 +120,7 @@ public class AssetFixedActivity extends BaseActivity implements View.OnClickList
 //
 //    }
 
-    private void requestUserTendersInfo(){
+    private void requestUserTendersInfo() {
         String userId = null;
         try {
             userId = DESUtil.decrypt(PreferenceUtil.getUserId());
@@ -158,19 +128,16 @@ public class AssetFixedActivity extends BaseActivity implements View.OnClickList
             e.printStackTrace();
         }
         cacheassetFixedPage = assetFixedPage;
-        HtmlRequest.accountProductTenders(this, assetFixedPage+"",userId,"optimum", new BaseRequester.OnRequestListener() {
+        HtmlRequest.accountProductTenders(this, assetFixedPage + "", userId, "optimum", new BaseRequester.OnRequestListener() {
             @Override
             public void onRequestFinished(BaseParams params) {
-                if(params.result!=null){
+                if (params.result != null) {
                     productBean = (ResultAccountProductTendersBean) params.result;
-                    if(productBean.getList()!=null){
-                        if (productBean.getList().size() == 0 && assetFixedPage!= 1) {
-                            Toast.makeText(AssetFixedActivity.this, "已经到最后一页",
-                                    Toast.LENGTH_SHORT).show();
+                    if (productBean.getList() != null) {
+                        if (productBean.getList().size() == 0 && assetFixedPage != 1) {
+                            Toast.makeText(AssetFixedActivity.this, "已经到最后一页", Toast.LENGTH_SHORT).show();
                             assetFixedPage = cacheassetFixedPage - 1;
-                            listview_asset_fixed.getRefreshableView()
-                                    .smoothScrollToPositionFromTop(0, 80,
-                                            100);
+                            listview_asset_fixed.getRefreshableView().smoothScrollToPositionFromTop(0, 80, 100);
                             listview_asset_fixed.onRefreshComplete();
                         } else {
                             fixedListBean.clear();
@@ -182,26 +149,16 @@ public class AssetFixedActivity extends BaseActivity implements View.OnClickList
                                     listview_asset_fixed.onRefreshComplete();
                                 }
                             }, 1000);
-                            listview_asset_fixed.getRefreshableView()
-                                    .smoothScrollToPositionFromTop(0, 80,
-                                            100);
+                            listview_asset_fixed.getRefreshableView().smoothScrollToPositionFromTop(0, 80, 100);
                         }
                         initData();
                     }
-
-                }else{
+                } else {
                     listview_asset_fixed.onRefreshComplete();
-                    Toast.makeText(AssetFixedActivity.this, "加载失败，请确认网络通畅",
-                            Toast.LENGTH_LONG).show();
+                    Toast.makeText(AssetFixedActivity.this, "加载失败，请确认网络通畅", Toast.LENGTH_LONG).show();
                 }
-
-
             }
         });
-
-
-
     }
-
 
 }

@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -23,28 +24,24 @@ import com.nostra13.universalimageloader.core.ImageLoader;
  * Created by hasee on 2016/8/11.
  */
 public class InsuranceProductDetailActivity extends BaseActivity implements View.OnClickListener{
-
-
-
     private ImageView id_img_back;
-    private ImageView iv_insurance_product_title_pic;
-
+    private ImageView iv_insurance_product_title_pic; //顶部展示的图片
     private TextView tv_insurance_product_detail_name;
-
-    private RelativeLayout rl_insurance_product_detail_des;
-    private TextView tv_insurance_product_detail_type;              //保险类型
-    private TextView tv_insurance_product_detail_des;               //保险简介
-    private TextView tv_insurance_product_detail_baoxiangongsi;               //保险公司
-    private TextView tv_insurance_product_detail_toubaofangshi;               //投保方式
-    private TextView tv_insurance_product_detail_toubaofanwei;               //投保范围
-    private TextView tv_insurance_product_detail_baoxianqijian;               //保险期间
-    private TextView tv_insurance_product_detail_jiaofeifangshi;               //交费方式
-    private TextView tv_insurance_product_detail_fengxiantixing;               //风险提醒
+    private RelativeLayout rl_insurance_product_detail_des; //图文详情
+    private TextView tv_insurance_product_detail_type; //保险类型
+    private TextView tv_insurance_product_detail_des; //保险简介
+    private TextView tv_insurance_product_detail_baoxiangongsi; //保险公司
+    private TextView tv_insurance_product_detail_toubaofangshi; //投保方式
+    private TextView tv_insurance_product_detail_toubaofanwei;  //投保范围
+    private TextView tv_insurance_product_detail_baoxianqijian; //保险期间
+    private TextView tv_insurance_product_detail_jiaofeifangshi; //交费方式
+    private TextView tv_insurance_product_detail_fengxiantixing; //风险提醒
 
     private LinearLayout ll_insurance_product_detail_toubaofangshi;
     private LinearLayout ll_insurance_product_detail_fengxiantixing;
     private String productId = null;
     private ResultInsuranceProductDetailBean insuranceDetailBean;
+    private Button btn_order; //立即预约
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,40 +73,18 @@ public class InsuranceProductDetailActivity extends BaseActivity implements View
         tv_insurance_product_detail_fengxiantixing = (TextView) findViewById(R.id.tv_insurance_product_detail_fengxiantixing);
         ll_insurance_product_detail_toubaofangshi = (LinearLayout) findViewById(R.id.ll_insurance_product_detail_toubaofangshi);
         ll_insurance_product_detail_fengxiantixing = (LinearLayout) findViewById(R.id.ll_insurance_product_detail_fengxiantixing);
+        btn_order = (Button) findViewById(R.id.btn_order);
+
+
 //        ll_insurance_product_detail_toubaofangshi.setVisibility(View.GONE);
 //        ll_insurance_product_detail_fengxiantixing.setVisibility(View.GONE);
 
         rl_insurance_product_detail_des.setOnClickListener(this);
         id_img_back.setOnClickListener(this);
+        btn_order.setOnClickListener(this);
 
 
         requestInsuranceDetail();
-    }
-
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
     }
 
     @Override
@@ -117,7 +92,6 @@ public class InsuranceProductDetailActivity extends BaseActivity implements View
         switch (view.getId()){
             case R.id.id_img_back:
                 finish();
-
                 break;
             case R.id.rl_insurance_product_detail_des:      //图文详情
                 Intent i_web = new Intent();
@@ -126,6 +100,14 @@ public class InsuranceProductDetailActivity extends BaseActivity implements View
                 i_web.putExtra("type",WebActivity.WEBTYPE_INSURANCE_DETAIL_DES);
                 i_web.putExtra("title","图文详情");
                 startActivity(i_web);
+                break;
+            case R.id.btn_order://立即预约
+                /*Intent i_web = new Intent(this,);
+                i_web.setClass(this,WebActivity.class);
+                i_web.putExtra("id",productId);
+                i_web.putExtra("type",WebActivity.WEBTYPE_INSURANCE_DETAIL_DES);
+                i_web.putExtra("title","图文详情");
+                startActivity(i_web);*/
                 break;
 
         }

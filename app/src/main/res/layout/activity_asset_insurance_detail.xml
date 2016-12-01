@@ -357,18 +357,4 @@
         </LinearLayout>
 
     </LinearLayout>
-
-    <Button
-        android:id="@+id/btn_order"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_alignParentBottom="true"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="10dip"
-        android:background="@drawable/shape_center_orange"
-        android:gravity="center"
-        android:text="立即预约"
-        android:textColor="@color/white"/>
-
 </RelativeLayout>

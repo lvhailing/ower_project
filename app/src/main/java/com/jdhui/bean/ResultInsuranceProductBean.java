@@ -6,8 +6,8 @@ import com.jdhui.mould.types.MouldList;
 
 public class ResultInsuranceProductBean implements IMouldType {
 
-	private String count;			//产品总数
-	private String type;			//产品类型
+	private String count;	//产品总数
+	private String type;	//产品类型
 	private MouldList<ResultInsuranceProductItemBean> list;
 
 	public String getCount() {

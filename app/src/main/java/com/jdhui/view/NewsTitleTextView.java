@@ -75,7 +75,7 @@ public class NewsTitleTextView extends TextView {
 	}
 
 	/**
-	 * 设置数显颜色
+	 * 设置竖线颜色
 	 * @param color 颜色资源
 	 */
 	public void setVerticalLineColor(int color) {
