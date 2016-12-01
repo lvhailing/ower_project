@@ -5,8 +5,11 @@ import android.animation.AnimatorListenerAdapter;
 import android.animation.ObjectAnimator;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -48,6 +51,7 @@ public class BookingHospitalListActivity extends BaseActivity implements View.On
     private LinearLayout ll_hidden; //隐藏的省市布局
     private RelativeLayout rl_area; //全部地区按钮
     private TextView tv_area;
+    private EditText et_search; //搜索
 
     private boolean isOpened = false;   //动画是否开启
     private List<Province> provinceList;    //所有省
@@ -144,10 +148,26 @@ public class BookingHospitalListActivity extends BaseActivity implements View.On
         ll_hidden = (LinearLayout) findViewById(R.id.ll_hidden);
         rl_area = (RelativeLayout) findViewById(R.id.rl_area);
         tv_area = (TextView) findViewById(R.id.tv_area);
+        et_search = (EditText)findViewById(R.id.et_search);
 
         mBtnBack.setOnClickListener(this);
         v_hidden.setOnClickListener(this);
         rl_area.setOnClickListener(this);
+
+        et_search.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                //當文本變化時，觸發事件
+                String input=s.toString();
+                //調接口
+            }
+            @Override
+            public void afterTextChanged(Editable s) {
+            }
+        });
     }
 
     private void requestData() {

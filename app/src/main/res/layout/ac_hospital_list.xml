@@ -30,10 +30,39 @@
     </RelativeLayout>
 
 
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="46dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:background="@drawable/shape_center_white">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:src="@drawable/skyblue_logo_youdao"/>
+
+        <EditText
+            android:id="@+id/et_search"
+            android:background="@null"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:hint="搜索医院"/>
+    </LinearLayout>
+
+
     <RelativeLayout
         android:id="@+id/rl_area"
         android:layout_width="match_parent"
         android:layout_height="46dp"
+        android:background="@color/white"
         android:gravity="center_horizontal">
 
         <TextView
