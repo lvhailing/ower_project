@@ -6,8 +6,8 @@ import com.jdhui.mould.types.MouldList;
 
 public class ResultProductIndexBean implements IMouldType {
 
-	private ResultProductIndexBulletinBean bulletin;
-	private MouldList<ResultProductIndexHotItemBean> list;
+	private ResultProductIndexBulletinBean bulletin;  //最新公告
+	private MouldList<ResultProductIndexHotItemBean> list;  //热销产品
 
 	public ResultProductIndexBulletinBean getBulletin() {
 		return bulletin;

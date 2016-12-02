@@ -2,6 +2,8 @@ package com.jdhui.bean;
 
 /**
  * Created by hasee on 2016/8/19.
+ * website/hotsell/list
+ * 最新公告bulletin  后台返回数据
  */
 public class ResultProductIndexBulletinBean {
 

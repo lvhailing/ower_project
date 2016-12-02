@@ -1,7 +1,7 @@
 package com.jdhui.bean.mybean;
 
 /**
- * 新增--（产品列表）非保险预约     准备入参
+ * 新增--（产品列表）非保险预约（含固收和浮收两种）     准备入参
  */
 public class BookingProduct0B {
     private String productId;//产品ID

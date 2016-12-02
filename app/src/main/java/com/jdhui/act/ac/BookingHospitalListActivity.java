@@ -160,9 +160,9 @@ public class BookingHospitalListActivity extends BaseActivity implements View.On
             }
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                //當文本變化時，觸發事件
+                //当文本变化时触发事件
                 String input=s.toString();
-                //調接口
+                //调接口
             }
             @Override
             public void afterTextChanged(Editable s) {

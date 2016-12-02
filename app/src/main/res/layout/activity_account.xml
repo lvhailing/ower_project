@@ -12,7 +12,7 @@
         android:id="@+id/id_account_txt_title"
         android:layout_width="match_parent"
         android:layout_height="51dp"
-        android:background="@color/orange">
+        android:background="@color/red4">
 
         <ImageView
             android:id="@+id/id_img_back"
@@ -191,9 +191,8 @@
         android:layout_alignParentBottom="true"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:background="@drawable/shape_button_orange"
+        android:background="@drawable/shape_button_red"
         android:text="退出登录"
         android:textColor="@color/white" />
-
 
 </RelativeLayout>

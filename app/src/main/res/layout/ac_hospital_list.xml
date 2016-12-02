@@ -43,14 +43,16 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:src="@drawable/skyblue_logo_youdao"/>
+            android:padding="10dp"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/icon_search"/>
 
         <EditText
             android:id="@+id/et_search"
             android:background="@null"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:maxLines="1"
             android:gravity="center_vertical"
             android:textColor="@color/black"
             android:textSize="18sp"

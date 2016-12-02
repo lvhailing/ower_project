@@ -6,7 +6,6 @@ import com.jdhui.mould.types.IMouldType;
  * Created by hasee on 2016/8/19.
  */
 public class ResultProductIndexHotItemBean implements IMouldType{
-
     /**保险产品
      * id	String	Y	产品id
      name	String	Y	产品名称
@@ -16,16 +15,16 @@ public class ResultProductIndexHotItemBean implements IMouldType{
      *
      */
 
+    private String id; //产品id
+    private String name; //产品名称
     private String tenderCondition; //投资门槛      非保险
-    private String timeLimit;       //产品期限      非保险
-    private String annualRate;      //预计收益
+    private String timeLimit; //产品期限      非保险
 
-    private String id;              //产品id
-    private String name;            //产品名称
-    private String companyName;     //保险公司
-    private String trusteeFee;      //托管费
-    private String protectionType;  //保险类型
-    private String category;                //类别（optimum:固定; floating:浮动收益; insurance:保险）
+    private String annualRate; //预计收益
+    private String category; //类别（optimum:固定; floating:浮动收益; insurance:保险）
+    private String companyName; //保险公司
+    private String trusteeFee; //托管费
+    private String protectionType; //保险类型
 
     public String getId() {
         return id;

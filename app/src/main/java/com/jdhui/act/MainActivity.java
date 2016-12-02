@@ -19,7 +19,6 @@ import android.widget.Toast;
 
 import com.jdhui.JdehuiApplication;
 import com.jdhui.R;
-import com.jdhui.act.ac.SubBookingHospitalActivity;
 import com.jdhui.bean.ResultCheckVersionContentBean;
 import com.jdhui.fragment.AssetFragment;
 import com.jdhui.fragment.MoreFragment;
@@ -61,10 +60,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     private TextView mTvMore;
 
     private List<Fragment> mFragments;
-    private AssetFragment tab_asset;
-    private ProductFragment tab_product;
-    private ServiceFragment tab_news;
-    private MoreFragment tab_more;
+    private AssetFragment tab_asset; //资产
+    private ProductFragment tab_product; //产品
+    private ServiceFragment tab_service; //服务
+    private MoreFragment tab_more; //更多
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -104,12 +103,12 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         mFragments = new ArrayList<Fragment>();
         tab_asset = new AssetFragment();
         tab_product = new ProductFragment();
-        tab_news = new ServiceFragment();
+        tab_service = new ServiceFragment();
         tab_more = new MoreFragment();
 
         mFragments.add(tab_asset);
         mFragments.add(tab_product);
-        mFragments.add(tab_news);
+        mFragments.add(tab_service);
         mFragments.add(tab_more);
 
         mAdapter = new FragmentPagerAdapter(getSupportFragmentManager()) {
@@ -128,7 +127,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
             @Override
             public void onPageScrolled(int i, float v, int i1) {
-
             }
 
             @Override
@@ -252,14 +250,13 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                                         updateIntent.putExtra("titleId", R.string.app_chinesename);
                                         updateIntent.putExtra("downloadUrl",
                                                 // "http://114.113.238.90:40080/upload/app/vjinke.apk");
-//																ApplicationConsts.EC_HOST + b.getUrl()
+                                                //	ApplicationConsts.EC_HOST + b.getUrl()
                                                 b.getUrl());
                                         MainActivity.this.startService(updateIntent);
                                     }
 
                                     @Override
                                     public void onCancel() {
-
                                     }
                                 }, "发现新版本,是否更新");
                                 dialog.show();
@@ -284,12 +281,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                         MessageDialog dialog = new MessageDialog(MainActivity.this, new MessageDialog.OnCheckVersion() {
                             @Override
                             public void onConfim() {
-
                             }
 
                             @Override
                             public void onCancel() {
-
                             }
                         }, "由于版本更新问题，请您手动卸载之前旧版本，祝您生活愉快");
                         dialog.show();

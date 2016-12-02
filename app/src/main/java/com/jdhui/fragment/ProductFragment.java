@@ -55,7 +55,7 @@ public class ProductFragment extends Fragment implements View.OnClickListener, C
     private ProductHotProductAdapter mHotProductAdapter;
     //    private BadgeViewOne mBadgeView;
 //    private LinearLayout layout_badgeV;
-    private TextView mTvGuShou, mTvFloat, mTvInsurance;
+    private TextView mTvGuShou, mTvFloat, mTvInsurance; //固收、浮收、保险
     private ScrollView scrollView;
     private Context context;
     private ResultProductIndexBean productIndexBean;
@@ -128,7 +128,6 @@ public class ProductFragment extends Fragment implements View.OnClickListener, C
     }
 
     private void initData() {
-
         options = new DisplayImageOptions.Builder()
                 .showImageForEmptyUri(R.drawable.banner_one)
                 .showImageOnFail(R.drawable.banner_one)
@@ -271,7 +270,6 @@ public class ProductFragment extends Fragment implements View.OnClickListener, C
     }
 
     private void requestProductIndex() {
-
         HtmlRequest.getProductIndex(context, new BaseRequester.OnRequestListener() {
             @Override
             public void onRequestFinished(BaseParams params) {
