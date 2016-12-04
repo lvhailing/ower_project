@@ -9,7 +9,7 @@
         android:id="@+id/id_insurance_product_detail_txt_title"
         android:layout_width="match_parent"
         android:layout_height="51dp"
-        android:background="@color/orange">
+        android:background="@color/red4">
 
         <ImageView
             android:id="@+id/id_img_back"

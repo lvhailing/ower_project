@@ -19,7 +19,7 @@ public class NewsTitleTextView extends TextView {
 	private boolean isVerticalLine = false;
 	private boolean isHorizontaline = false;
 	private int verticalLineColor = Color.LTGRAY;
-	private int horizontalineColor = getResources().getColor(R.color.orange);
+	private int horizontalineColor = getResources().getColor(R.color.red4);
 	private float screen_density;
 	private Context context;
 	

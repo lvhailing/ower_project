@@ -76,7 +76,7 @@
                     android:paddingRight="5dip"
                     android:paddingTop="2dip"
                     android:text="合格投资者"
-                    android:textColor="@color/orange"/>
+                    android:textColor="@color/red4"/>
 
                 <TextView
                     android:id="@+id/tv_fragment_asset_steady"

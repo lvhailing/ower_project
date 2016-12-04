@@ -2,12 +2,12 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@color/orange" >
+    android:background="@color/red4" >
     <RelativeLayout
         android:id="@+id/id_account_txt_title"
         android:layout_width="match_parent"
         android:layout_height="51dp"
-        android:background="@color/orange">
+        android:background="@color/red4">
 
         <ImageView
             android:id="@+id/text_cancel"

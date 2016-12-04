@@ -979,9 +979,7 @@ public class HtmlRequest extends BaseRequester {
      * @param listener 监听
      * @return 返回数据
      */
-    public static String getAssetProductDetail(final Context context, String userId, String tenderId, String type,
-                                               OnRequestListener listener) {
-
+    public static String getAssetProductDetail(final Context context, String userId, String tenderId, String type, OnRequestListener listener) {
         final String data = HtmlLoadUtil.getAssetFixedProductDetail(userId, tenderId, type);
         final String url = ApplicationConsts.URL_ASSET_PRODUCT_DETAIL;
         String tid = registerId(Constants.TASK_TYPE_ASSET_PRODUCT_DETAIL, url);
@@ -1145,6 +1143,7 @@ public class HtmlRequest extends BaseRequester {
                 }
                 return null;
             }
+
             @Override
             public void onPostExecute(IMouldType result, BaseParams params) {
                 params.result = result;

@@ -1,14 +1,5 @@
 package com.jdhui.view;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
-
-import com.jdhui.R;
-
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -16,6 +7,15 @@ import android.graphics.Paint;
 import android.os.Handler;
 import android.util.AttributeSet;
 import android.view.View;
+
+import com.jdhui.R;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 
 public class LineView extends View {
 
@@ -145,7 +145,7 @@ public class LineView extends View {
 //						YPoint - data.get(i - 1) * YScale, 5, paint);
 //			}
 //		}
-		paint.setColor(context.getResources().getColor(R.color.orange));
+		paint.setColor(context.getResources().getColor(R.color.red4));
 		if(lhmap.size()>1){
 			Iterator iter = lhmap.entrySet().iterator();
 			int key_pre = 0;

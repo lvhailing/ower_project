@@ -57,7 +57,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="——"
-                        android:textColor="@color/orange"
+                        android:textColor="@color/red4"
                         android:textSize="14sp" />
                 </LinearLayout>
                 <LinearLayout style="@style/hot_product_linear_Style">
@@ -66,7 +66,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="——"
-                        android:textColor="@color/orange"
+                        android:textColor="@color/red4"
                         android:textSize="14sp" />
                 </LinearLayout>
                 <LinearLayout style="@style/hot_product_linear_Style">
@@ -76,7 +76,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:text="——"
-                        android:textColor="@color/orange"
+                        android:textColor="@color/red4"
                         android:textSize="14sp" />
                 </LinearLayout>
             </LinearLayout>

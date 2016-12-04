@@ -116,7 +116,7 @@ public class InsuranceActivity extends BaseActivity implements View.OnClickListe
             tv.setBackgroundResource(R.color.white);
             tv.setOnClickListener(this);
             if (i == 0) {
-                tv.setTextColor(getResources().getColor(R.color.orange));
+                tv.setTextColor(getResources().getColor(R.color.red4));
                 tv.setIsHorizontaline(true);
             } else {
                 tv.setTextColor(getResources().getColor(R.color.gray_d));
@@ -251,7 +251,7 @@ public class InsuranceActivity extends BaseActivity implements View.OnClickListe
                 itemView.setTextColor(getResources().getColor(R.color.gray_d));
                 itemView.setIsHorizontaline(false);
             } else {
-                itemView.setTextColor(getResources().getColor(R.color.orange));
+                itemView.setTextColor(getResources().getColor(R.color.red4));
                 itemView.setIsHorizontaline(true);
             }
         }

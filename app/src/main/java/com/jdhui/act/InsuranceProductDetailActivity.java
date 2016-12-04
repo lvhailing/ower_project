@@ -13,10 +13,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.jdhui.R;
-import com.jdhui.act.ac.SubGeneticTestingActivity;
 import com.jdhui.bean.ResultInsuranceProductDetailBean;
 import com.jdhui.bean.mybean.BookingInsurance2B;
-import com.jdhui.bean.mybean.SubGeneticTesting2B;
 import com.jdhui.dialog.BookingDialog;
 import com.jdhui.mould.BaseParams;
 import com.jdhui.mould.BaseRequester;
@@ -179,8 +177,7 @@ public class InsuranceProductDetailActivity extends BaseActivity implements View
 
     //产品预约对话框
     private void showDialog() {
-        BookingDialog dialog = new BookingDialog(this, insuranceName);
-        dialog.subBookingDialog(new BookingDialog.MyCallback() {
+        BookingDialog dialog = new BookingDialog(this, insuranceName,new BookingDialog.MyCallback() {
             @Override
             public void onMyclick(Dialog ad, String money, String remarks) {
                 requestData(money, remarks);
@@ -188,6 +185,7 @@ public class InsuranceProductDetailActivity extends BaseActivity implements View
                 ad = null;
             }
         });
+        dialog.subBookingDialog();
     }
 
     private void requestData(String money, String remarks) {

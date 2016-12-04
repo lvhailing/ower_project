@@ -21,7 +21,7 @@ import com.jdhui.uitls.StringUtil;
  * 资产页固定收益详情
  * Created by hasee on 2016/8/10.
  */
-public class AssetFixedDetailActivity extends BaseActivity implements View.OnClickListener{
+public class AssetFixedDetailActivity extends BaseActivity implements View.OnClickListener {
 
     private TextView tv_asset_fixed_call;           //年度报告
     private TextView tv_asset_fixed_title;          //产品标题
@@ -47,11 +47,12 @@ public class AssetFixedDetailActivity extends BaseActivity implements View.OnCli
         initView();
         initData();
     }
-    private void initData(){
+
+    private void initData() {
         requestAssetFixedDetail();
     }
 
-    private void initView(){
+    private void initView() {
 
         ActivityStack stack = ActivityStack.getActivityManage();
         stack.addActivity(this);
@@ -79,7 +80,7 @@ public class AssetFixedDetailActivity extends BaseActivity implements View.OnCli
         ll_asset_fixed.setOnClickListener(this);
     }
 
-    public void setView(){
+    public void setView() {
 
 
         tv_asset_fixed_title.setText(productName);
@@ -92,9 +93,9 @@ public class AssetFixedDetailActivity extends BaseActivity implements View.OnCli
         tv_asset_fixed_fuxinjiange.setText(assetFixedBean.getRepayType());
         tv_asset_fixed_beizhu.setText(assetFixedBean.getRemark());
 
-        if(assetFixedBean.getIsAnnualReport().equals("yes")){           // 是否有年度报告		yes:有;no:无
+        if (assetFixedBean.getIsAnnualReport().equals("yes")) {           // 是否有年度报告		yes:有;no:无
             tv_asset_fixed_call.setVisibility(View.VISIBLE);
-        }else{
+        } else {
             tv_asset_fixed_call.setClickable(false);
             tv_asset_fixed_call.setVisibility(View.GONE);
         }
@@ -125,28 +126,29 @@ public class AssetFixedDetailActivity extends BaseActivity implements View.OnCli
     protected void onDestroy() {
         super.onDestroy();
     }
+
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.id_img_back:
                 finish();
                 break;
             case R.id.tv_asset_fixed_call:              //年度报告
 //                finish();
                 Intent i_web = new Intent();
-                i_web.setClass(this,WebActivity.class);
-                i_web.putExtra("id",assetFixedBean.getProductId());
-                i_web.putExtra("type",WebActivity.WEBTYPE_PRODUCT_CALL);
-                i_web.putExtra("title","年度报告");
+                i_web.setClass(this, WebActivity.class);
+                i_web.putExtra("id", assetFixedBean.getProductId());
+                i_web.putExtra("type", WebActivity.WEBTYPE_PRODUCT_CALL);
+                i_web.putExtra("title", "年度报告");
                 startActivity(i_web);
 
                 break;
             case R.id.ll_asset_fixed:
-                if(assetFixedBean!=null){
+                if (assetFixedBean != null) {
                     Intent i_fixedProductDetail = new Intent();
-                    i_fixedProductDetail.setClass(AssetFixedDetailActivity.this,FixedProductDetailActivity.class);
-                    i_fixedProductDetail.putExtra("productId",assetFixedBean.getProductId());
-                    i_fixedProductDetail.putExtra("type","optimum");
+                    i_fixedProductDetail.setClass(AssetFixedDetailActivity.this, FixedProductDetailActivity.class);
+                    i_fixedProductDetail.putExtra("productId", assetFixedBean.getProductId());
+                    i_fixedProductDetail.putExtra("type", "optimum");
                     this.startActivity(i_fixedProductDetail);
                 }
 
@@ -154,7 +156,7 @@ public class AssetFixedDetailActivity extends BaseActivity implements View.OnCli
         }
     }
 
-    private void requestAssetFixedDetail(){
+    private void requestAssetFixedDetail() {
         String userId = null;
         try {
             userId = DESUtil.decrypt(PreferenceUtil.getUserId());
@@ -162,21 +164,17 @@ public class AssetFixedDetailActivity extends BaseActivity implements View.OnCli
             e.printStackTrace();
         }
 
-
-        HtmlRequest.getAssetProductDetail(this, userId,tenderId,"optimum" ,new BaseRequester.OnRequestListener() {
+        HtmlRequest.getAssetProductDetail(this, userId, tenderId, "optimum", new BaseRequester.OnRequestListener() {
             @Override
             public void onRequestFinished(BaseParams params) {
-                if(params!=null){
-                    assetFixedBean = (ResultAssetFixedProductDetailBean)params.result;
-                    if(assetFixedBean!=null){
+                if (params != null) {
+                    assetFixedBean = (ResultAssetFixedProductDetailBean) params.result;
+                    if (assetFixedBean != null) {
                         setView();
                     }
-
                 }
-
             }
         });
-
     }
 
 }

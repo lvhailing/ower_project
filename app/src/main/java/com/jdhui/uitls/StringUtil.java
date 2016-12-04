@@ -1,15 +1,5 @@
 package com.jdhui.uitls;
 
-import java.io.UnsupportedEncodingException;
-import java.security.MessageDigest;
-import java.text.DecimalFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
@@ -23,6 +13,16 @@ import android.util.Base64;
 import android.widget.Button;
 
 import com.jdhui.R;
+
+import java.io.UnsupportedEncodingException;
+import java.security.MessageDigest;
+import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class StringUtil {
 	public static String MD5Encode(byte[] bytes) {
