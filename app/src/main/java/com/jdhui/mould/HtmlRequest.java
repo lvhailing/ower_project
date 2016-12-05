@@ -35,6 +35,7 @@ import com.jdhui.bean.mybean.BookingInsurance1B;
 import com.jdhui.bean.mybean.BookingProduct1B;
 import com.jdhui.bean.mybean.GeneticTestingDetail1B;
 import com.jdhui.bean.mybean.GeneticTestingList1B;
+import com.jdhui.bean.mybean.GolfList1B;
 import com.jdhui.bean.mybean.Product1B;
 import com.jdhui.bean.mybean.ProductDetail1B;
 import com.jdhui.bean.mybean.Service1B;
@@ -602,8 +603,7 @@ public class HtmlRequest extends BaseRequester {
      * @param listener 监听
      * @return 返回数据
      */
-    public static String accountIndex(final Context context, String userId,
-                                      OnRequestListener listener) {
+    public static String accountIndex(final Context context, String userId, OnRequestListener listener) {
 //		String token = "";
 //		try {
 //			token = DESUtil.decrypt(PreferenceUtil.getToken());
@@ -733,59 +733,51 @@ public class HtmlRequest extends BaseRequester {
      * @param listener 监听
      * @return 返回数据
      */
-    public static String getProductList(final Context context, String category, int page,
-                                        OnRequestListener listener) {
-
+    public static String getProductList(final Context context, String category, int page, OnRequestListener listener) {
         final String data = HtmlLoadUtil.getProductList(category, page);
         final String url = ApplicationConsts.URL_PRODUCT_LIST;
         String tid = registerId(Constants.TASK_TYPE_PRODUCT_LIST, url);
         if (tid == null) {
             return null;
         }
-        getTaskManager().addTask(
-                new MouldAsyncTask(tid, buildParams(
-                        Constants.TASK_TYPE_PRODUCT_LIST, context, listener,
-                        url, 0)) {
-
-                    @Override
-                    public IMouldType doTask(BaseParams params) {
-                        SimpleHttpClient client = new SimpleHttpClient(context,
-                                SimpleHttpClient.RESULT_STRING);
-                        HttpEntity entity = null;
-                        try {
-                            entity = new StringEntity(data);
-                        } catch (UnsupportedEncodingException e1) {
-                            e1.printStackTrace();
-                        }
-                        client.post(url, entity);
-                        String result = (String) client.getResult();
-                        try {
-                            if (isCancelled()) {
-                                return null;
-                            }
-                            if (result != null) {
-                                String data = DESUtil.decrypt(result);
-                                Gson json = new Gson();
-                                ResultFixedProductListContentBean b = json.fromJson(
-                                        data, ResultFixedProductListContentBean.class);
-                                resultEncrypt(context, b.getCode());
-                                return b.getData();
-                            }
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        } finally {
-                            unRegisterId(getTaskId());
-                        }
+        getTaskManager().addTask(new MouldAsyncTask(tid, buildParams(Constants.TASK_TYPE_PRODUCT_LIST, context, listener, url, 0)) {
+            @Override
+            public IMouldType doTask(BaseParams params) {
+                SimpleHttpClient client = new SimpleHttpClient(context, SimpleHttpClient.RESULT_STRING);
+                HttpEntity entity = null;
+                try {
+                    entity = new StringEntity(data);
+                } catch (UnsupportedEncodingException e1) {
+                    e1.printStackTrace();
+                }
+                client.post(url, entity);
+                String result = (String) client.getResult();
+                try {
+                    if (isCancelled()) {
                         return null;
                     }
-
-                    @Override
-                    public void onPostExecute(IMouldType result,
-                                              BaseParams params) {
-                        params.result = result;
-                        params.sendResult();
+                    if (result != null) {
+                        String data = DESUtil.decrypt(result);
+                        Gson json = new Gson();
+                        ResultFixedProductListContentBean b = json.fromJson(data, ResultFixedProductListContentBean.class);
+                        resultEncrypt(context, b.getCode());
+                        return b.getData();
                     }
-                });
+                } catch (Exception e) {
+                    e.printStackTrace();
+                } finally {
+                    unRegisterId(getTaskId());
+                }
+                return null;
+            }
+
+            @Override
+            public void onPostExecute(IMouldType result,
+                                      BaseParams params) {
+                params.result = result;
+                params.sendResult();
+            }
+        });
         return tid;
     }
 
@@ -796,9 +788,7 @@ public class HtmlRequest extends BaseRequester {
      * @param listener 监听
      * @return 返回数据
      */
-    public static String getInsuranceList(final Context context, String type, String page,
-                                          OnRequestListener listener) {
-
+    public static String getInsuranceList(final Context context, String type, String page, OnRequestListener listener) {
         final String data = HtmlLoadUtil.getInsuranceList(type, page);
         final String url = ApplicationConsts.URL_INSURANCE_PRODUCT_LIST;
         String tid = registerId(Constants.TASK_TYPE_INSURANCE_PRODUCT_LIST, url);
@@ -854,59 +844,51 @@ public class HtmlRequest extends BaseRequester {
      * @param listener 监听
      * @return 返回数据
      */
-    public static String getProductDetail(final Context context, String productId,
-                                          OnRequestListener listener) {
-
+    public static String getProductDetail(final Context context, String productId, OnRequestListener listener) {
         final String data = HtmlLoadUtil.getFixedProductDetail(productId);
         final String url = ApplicationConsts.URL_PRODUCT_DETAIL;
         String tid = registerId(Constants.TASK_TYPE_PRODUCT_DETAIL, url);
         if (tid == null) {
             return null;
         }
-        getTaskManager().addTask(
-                new MouldAsyncTask(tid, buildParams(
-                        Constants.TASK_TYPE_PRODUCT_DETAIL, context, listener,
-                        url, 0)) {
-
-                    @Override
-                    public IMouldType doTask(BaseParams params) {
-                        SimpleHttpClient client = new SimpleHttpClient(context,
-                                SimpleHttpClient.RESULT_STRING);
-                        HttpEntity entity = null;
-                        try {
-                            entity = new StringEntity(data);
-                        } catch (UnsupportedEncodingException e1) {
-                            e1.printStackTrace();
-                        }
-                        client.post(url, entity);
-                        String result = (String) client.getResult();
-                        try {
-                            if (isCancelled()) {
-                                return null;
-                            }
-                            if (result != null) {
-                                String data = DESUtil.decrypt(result);
-                                Gson json = new Gson();
-                                ResultFixedProductDetailContentBean b = json.fromJson(
-                                        data, ResultFixedProductDetailContentBean.class);
-                                resultEncrypt(context, b.getCode());
-                                return b.getData();
-                            }
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        } finally {
-                            unRegisterId(getTaskId());
-                        }
+        getTaskManager().addTask(new MouldAsyncTask(tid, buildParams(Constants.TASK_TYPE_PRODUCT_DETAIL, context, listener, url, 0)) {
+            @Override
+            public IMouldType doTask(BaseParams params) {
+                SimpleHttpClient client = new SimpleHttpClient(context, SimpleHttpClient.RESULT_STRING);
+                HttpEntity entity = null;
+                try {
+                    entity = new StringEntity(data);
+                } catch (UnsupportedEncodingException e1) {
+                    e1.printStackTrace();
+                }
+                client.post(url, entity);
+                String result = (String) client.getResult();
+                try {
+                    if (isCancelled()) {
                         return null;
                     }
-
-                    @Override
-                    public void onPostExecute(IMouldType result,
-                                              BaseParams params) {
-                        params.result = result;
-                        params.sendResult();
+                    if (result != null) {
+                        String data = DESUtil.decrypt(result);
+                        Gson json = new Gson();
+                        ResultFixedProductDetailContentBean b = json.fromJson(data, ResultFixedProductDetailContentBean.class);
+                        resultEncrypt(context, b.getCode());
+                        return b.getData();
                     }
-                });
+                } catch (Exception e) {
+                    e.printStackTrace();
+                } finally {
+                    unRegisterId(getTaskId());
+                }
+                return null;
+            }
+
+            @Override
+            public void onPostExecute(IMouldType result,
+                                      BaseParams params) {
+                params.result = result;
+                params.sendResult();
+            }
+        });
         return tid;
     }
 
@@ -2167,6 +2149,62 @@ public class HtmlRequest extends BaseRequester {
     }
 
     /**
+     * 服务--展示预约高尔夫球场列表
+     *
+     * @param context  上下文
+     * @param listener 监听
+     * @return 返回数据
+     */
+    public static String getGolfList(final Context context, String page, OnRequestListener listener) {
+        final String data = HtmlLoadUtil.getGolfList(page);
+        final String url = ApplicationConsts.URL_SERVICE_GOLF_LIST;
+        String tid = registerId(Constants.TASK_TYPE_GOLF_LIST, url);
+        if (tid == null) {
+            return null;
+        }
+        getTaskManager().addTask(new MouldAsyncTask(tid, buildParams(Constants.TASK_TYPE_GOLF_LIST, context, listener, url, 0)) {
+            @Override
+            public IMouldType doTask(BaseParams params) {
+                SimpleHttpClient client = new SimpleHttpClient(context, SimpleHttpClient.RESULT_STRING);
+
+                HttpEntity entity = null;
+                try {
+                    entity = new StringEntity(data);
+                } catch (UnsupportedEncodingException e1) {
+                    e1.printStackTrace();
+                }
+
+                client.post(url, entity);
+                String result = (String) client.getResult();
+                try {
+                    if (isCancelled()) {
+                        return null;
+                    }
+                    if (result != null) {
+                        String data = DESUtil.decrypt(result);
+                        Gson json = new Gson();
+                        GolfList1B b = json.fromJson(data, GolfList1B.class);
+                        resultEncrypt(context, b.getCode());
+                        return b.getData();
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                } finally {
+                    unRegisterId(getTaskId());
+                }
+                return null;
+            }
+
+            @Override
+            public void onPostExecute(IMouldType result, BaseParams params) {
+                params.result = result;
+                params.sendResult();
+            }
+        });
+        return tid;
+    }
+
+    /**
      * 服务--展示预约基因检测详情
      *
      * @param context  上下文
@@ -2344,54 +2382,52 @@ public class HtmlRequest extends BaseRequester {
      * @param listener 监听
      * @return 返回数据
      */
-    public static String subBookingProduct(final Context context, String productId, String userInfoId, String bookingRemark,
-                                           String bookingAmount, String type, OnRequestListener listener) {
+    public static String subBookingProduct(final Context context, String productId, String userInfoId, String bookingRemark, String bookingAmount, String type, OnRequestListener listener) {
         final String data = HtmlLoadUtil.subBookingProduct(productId, userInfoId, bookingRemark, bookingAmount, type);
         final String url = ApplicationConsts.URL_PRODUCT_BOOKING;
         String tid = registerId(Constants.TASK_TYPE_PRODUCT_BOOKING, url);
         if (tid == null) {
             return null;
         }
-        getTaskManager().addTask(
-                new MouldAsyncTask(tid, buildParams(Constants.TASK_TYPE_PRODUCT_BOOKING, context, listener, url, 0)) {
-                    @Override
-                    public IMouldType doTask(BaseParams params) {
-                        SimpleHttpClient client = new SimpleHttpClient(context, SimpleHttpClient.RESULT_STRING);
+        getTaskManager().addTask(new MouldAsyncTask(tid, buildParams(Constants.TASK_TYPE_PRODUCT_BOOKING, context, listener, url, 0)) {
+            @Override
+            public IMouldType doTask(BaseParams params) {
+                SimpleHttpClient client = new SimpleHttpClient(context, SimpleHttpClient.RESULT_STRING);
 
-                        HttpEntity entity = null;
-                        try {
-                            entity = new StringEntity(data);
-                        } catch (UnsupportedEncodingException e1) {
-                            e1.printStackTrace();
-                        }
+                HttpEntity entity = null;
+                try {
+                    entity = new StringEntity(data);
+                } catch (UnsupportedEncodingException e1) {
+                    e1.printStackTrace();
+                }
 
-                        client.post(url, entity);
-                        String result = (String) client.getResult();
-                        try {
-                            if (isCancelled()) {
-                                return null;
-                            }
-                            if (result != null) {
-                                String data = DESUtil.decrypt(result);
-                                Gson json = new Gson();
-                                BookingProduct1B b = json.fromJson(data, BookingProduct1B.class);
-                                resultEncrypt(context, b.getCode());
-                                return b.getData();
-                            }
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        } finally {
-                            unRegisterId(getTaskId());
-                        }
+                client.post(url, entity);
+                String result = (String) client.getResult();
+                try {
+                    if (isCancelled()) {
                         return null;
                     }
-
-                    @Override
-                    public void onPostExecute(IMouldType result, BaseParams params) {
-                        params.result = result;
-                        params.sendResult();
+                    if (result != null) {
+                        String data = DESUtil.decrypt(result);
+                        Gson json = new Gson();
+                        BookingProduct1B b = json.fromJson(data, BookingProduct1B.class);
+                        resultEncrypt(context, b.getCode());
+                        return b.getData();
                     }
-                });
+                } catch (Exception e) {
+                    e.printStackTrace();
+                } finally {
+                    unRegisterId(getTaskId());
+                }
+                return null;
+            }
+
+            @Override
+            public void onPostExecute(IMouldType result, BaseParams params) {
+                params.result = result;
+                params.sendResult();
+            }
+        });
         return tid;
     }
 

@@ -14,6 +14,7 @@ import com.jdhui.act.AssetFloatActivity;
 import com.jdhui.act.AssetInsuranceActivity;
 import com.jdhui.act.MessageActivity;
 import com.jdhui.act.ac.GeneticTestingListActivity;
+import com.jdhui.act.ac.GolfListActivity;
 import com.jdhui.act.ac.SubBookingHospitalActivity;
 import com.jdhui.bean.ResultAccountIndexBean;
 import com.jdhui.mould.BaseParams;
@@ -101,6 +102,8 @@ public class ServiceFragment extends Fragment implements View.OnClickListener {
                 startActivity(intent2);
                 break;
             case R.id.rl_golf:  //高尔夫球场地
+                Intent intent3 = new Intent(getActivity(), GolfListActivity.class);
+                startActivity(intent3);
 
                 break;
             case R.id.rl_plane: //公务机包机

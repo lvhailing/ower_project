@@ -2,7 +2,7 @@ package com.jdhui.bean.mybean;
 
 import com.jdhui.mould.types.IMouldType;
 
-public class GeneticTestingList1B implements IMouldType {
+public class GolfList1B implements IMouldType {
 	private String check;
 	private String code;
 	private String msg;

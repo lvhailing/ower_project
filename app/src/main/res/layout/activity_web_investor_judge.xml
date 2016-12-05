@@ -55,7 +55,7 @@
         android:id="@+id/btn_web_bottom"
         android:layout_width="match_parent"
         android:layout_height="51dp"
-        android:background="@drawable/shape_button_orange"
+        android:background="@drawable/shape_button_red"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginBottom="10dp"

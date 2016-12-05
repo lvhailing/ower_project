@@ -67,7 +67,7 @@ public class ChangePasswordActivity extends BaseActivity implements
                     btnOk.setClickable(false);
                 } else {
                     if (!TextUtils.isEmpty(edt_old.getText().toString()) && !TextUtils.isEmpty(edt_new.getText().toString())) {
-                        btnOk.setBackgroundResource(R.drawable.shape_button_orange);
+                        btnOk.setBackgroundResource(R.drawable.shape_button_red);
                         btnOk.setClickable(true);
                     }
                 }
@@ -93,7 +93,7 @@ public class ChangePasswordActivity extends BaseActivity implements
                     btnOk.setClickable(false);
                 } else {
                     if (!TextUtils.isEmpty(edt_again.getText().toString()) && !TextUtils.isEmpty(edt_new.getText().toString())) {
-                        btnOk.setBackgroundResource(R.drawable.shape_button_orange);
+                        btnOk.setBackgroundResource(R.drawable.shape_button_red);
                         btnOk.setClickable(true);
                     }
                 }
@@ -119,7 +119,7 @@ public class ChangePasswordActivity extends BaseActivity implements
                     btnOk.setClickable(false);
                 } else {
                     if (!TextUtils.isEmpty(edt_again.getText().toString()) && !TextUtils.isEmpty(edt_old.getText().toString())) {
-                        btnOk.setBackgroundResource(R.drawable.shape_button_orange);
+                        btnOk.setBackgroundResource(R.drawable.shape_button_red);
                         btnOk.setClickable(true);
                     }
                 }

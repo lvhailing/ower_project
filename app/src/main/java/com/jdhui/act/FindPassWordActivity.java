@@ -98,7 +98,7 @@ public class FindPassWordActivity extends BaseActivity implements View.OnClickLi
 
                                 if(!TextUtils.isEmpty(charSequence)){
                                     btnOk.setClickable(true);
-                                    btnOk.setBackgroundResource(R.drawable.shape_button_orange);
+                                    btnOk.setBackgroundResource(R.drawable.shape_button_red);
                                 }else{
                                     btnOk.setClickable(false);
                                     btnOk.setBackgroundResource(R.drawable.shape_button_gray_d);
@@ -140,7 +140,7 @@ public class FindPassWordActivity extends BaseActivity implements View.OnClickLi
                             if(!TextUtils.isEmpty(edtNewAgain.getText())){
                                 if(!TextUtils.isEmpty(edtPhone.getText())){
                                     btnOk.setClickable(true);
-                                    btnOk.setBackgroundResource(R.drawable.shape_button_orange);
+                                    btnOk.setBackgroundResource(R.drawable.shape_button_red);
                                 }else{
                                     btnOk.setClickable(false);
                                     btnOk.setBackgroundResource(R.drawable.shape_button_gray_d);
@@ -182,7 +182,7 @@ public class FindPassWordActivity extends BaseActivity implements View.OnClickLi
                             if(!TextUtils.isEmpty(edtNewAgain.getText())){
                                 if(!TextUtils.isEmpty(edtPhone.getText())){
                                     btnOk.setClickable(true);
-                                    btnOk.setBackgroundResource(R.drawable.shape_button_orange);
+                                    btnOk.setBackgroundResource(R.drawable.shape_button_red);
                                 }else{
                                     btnOk.setClickable(false);
                                     btnOk.setBackgroundResource(R.drawable.shape_button_gray_d);
@@ -224,7 +224,7 @@ public class FindPassWordActivity extends BaseActivity implements View.OnClickLi
                             if(!TextUtils.isEmpty(edtNewAgain.getText())){
                                 if(!TextUtils.isEmpty(edtPhone.getText())){
                                     btnOk.setClickable(true);
-                                    btnOk.setBackgroundResource(R.drawable.shape_button_orange);
+                                    btnOk.setBackgroundResource(R.drawable.shape_button_red);
                                 }else{
                                     btnOk.setClickable(false);
                                     btnOk.setBackgroundResource(R.drawable.shape_button_gray_d);
@@ -266,7 +266,7 @@ public class FindPassWordActivity extends BaseActivity implements View.OnClickLi
                             if(!TextUtils.isEmpty(charSequence)){
                                 if(!TextUtils.isEmpty(edtPhone.getText())){
                                     btnOk.setClickable(true);
-                                    btnOk.setBackgroundResource(R.drawable.shape_button_orange);
+                                    btnOk.setBackgroundResource(R.drawable.shape_button_red);
                                 }else{
                                     btnOk.setClickable(false);
                                     btnOk.setBackgroundResource(R.drawable.shape_button_gray_d);
@@ -481,7 +481,7 @@ public class FindPassWordActivity extends BaseActivity implements View.OnClickLi
                     R.string.findpd_getphoneauth));
             btnGetSMS.setClickable(true);
             btnGetSMS.setTextColor(getResources().getColor(R.color.txt_white));
-            btnGetSMS.setBackgroundResource(R.drawable.shape_button_orange);
+            btnGetSMS.setBackgroundResource(R.drawable.shape_button_red);
         } else {
             if (time <= 59) {
                 btnGetSMS.setClickable(false);

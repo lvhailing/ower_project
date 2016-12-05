@@ -6,6 +6,7 @@
     <color name="light_gray_r">#F7F7F7</color>
     <color name="low_gray">#fff9f9f9</color>
     <color name="bg_black">#a0000000</color>
+    <color name="bg_black_trans">#66000000</color>
     <color name="bg_blue">#ffe6f2f8</color>
     <color name="bg_white_gray">#F4F4F4</color>
     <color name="bg_white_gray_d">#E5E5E5</color>
@@ -24,6 +25,7 @@
     <color name="red2">#FF2311</color>
     <color name="red3">#CF0000</color>
     <color name="red4">#8a0002</color>
+    <color name="btn_orange">#F89816</color>
 
     <color name="title_bg">#ffdddddd</color>
     <color name="title_bgnew">#ff3392c9</color>
@@ -40,6 +42,7 @@
     <color name="gray_dark">#696969</color>
     <color name="blue_two">#11BBEE</color>
     <color name="gray_light">#F2F2F2</color>
+
     <!-- 字体颜色 -->
     <color name="txt_blue">#ff3392c9</color>
     <color name="txt_red">#FFff4c4c</color>
@@ -51,6 +54,7 @@
     <color name="txt_orange_light">#F91</color>
     <color name="txt_gray_light_l">#999</color>
     <color name="txt_orange_gray">#bb8854</color>
+    <color name="txt_orange_new">#f69913</color>
     <color name="txt_gray_dark">#343434</color>
     <color name="txt_gray_light">#959595</color>
     <color name="edit_gray_light">#CCCCCC</color>
@@ -66,5 +70,6 @@
     <color name="asset_float_incomea">#e6795b</color>
     <color name="asset_insurance">#6dc47a</color>
     <color name="asset_null">#ffbbbbbb</color>
+    <color name="asset_money">#ffbbbbbb</color>
 
 </resources>

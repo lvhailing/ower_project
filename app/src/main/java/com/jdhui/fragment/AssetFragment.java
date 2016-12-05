@@ -50,15 +50,16 @@ public class AssetFragment extends Fragment implements View.OnClickListener {
     private PieChart mChart;
     private RelativeLayout rl_fragment_asset_fixed, rl_fragment_asset_float, rl_fragment_asset_insurance; //固收、浮收、保险等对应的布局
     private Context context;
-    private TextView tv_fragment_asset_passed;              //是否合格投资者
-    private TextView tv_fragment_asset_steady;              //是否稳健型
-    private ImageView iv_fragment_asset_message;                    //消息
+    private TextView tv_fragment_asset_passed; //是否合格投资者
+    private TextView tv_fragment_asset_steady;  //是否稳健型
+    private ImageView iv_fragment_asset_message; //消息
 
-    private TextView tv_fragment_asset_fixed_product_totalnum;          //固收类购买金额
-    private TextView tv_fragment_asset_floating_product_totalnum;       //浮动类购买金额
-    private TextView tv_fragment_asset_insurance_product_totalnum;      //保险类购买金额
+    private TextView tv_fragment_asset_fixed_product_totalnum; //固收类购买金额
+    private TextView tv_fragment_asset_floating_product_totalnum; //浮动类购买金额
+    private TextView tv_fragment_asset_insurance_product_totalnum; //保险类购买金额
     private ResultAccountIndexBean accountBean;
     private Activity mActivity;
+    private TextView tv_asset_money; //总资产金额
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -83,6 +84,7 @@ public class AssetFragment extends Fragment implements View.OnClickListener {
         tv_fragment_asset_fixed_product_totalnum = (TextView) view.findViewById(R.id.tv_fragment_asset_fixed_product_totalnum);
         tv_fragment_asset_floating_product_totalnum = (TextView) view.findViewById(R.id.tv_fragment_asset_floating_product_totalnum);
         tv_fragment_asset_insurance_product_totalnum = (TextView) view.findViewById(R.id.tv_fragment_asset_insurance_product_totalnum);
+        tv_asset_money = (TextView) view.findViewById(R.id.tv_asset_money);
         iv_fragment_asset_message = (ImageView) view.findViewById(R.id.iv_fragment_asset_message);
 
 
@@ -111,7 +113,6 @@ public class AssetFragment extends Fragment implements View.OnClickListener {
         mChart.setHoleColor(Color.WHITE);
         mChart.setTransparentCircleColor(Color.WHITE);
         mChart.setTransparentCircleAlpha(110);
-
 
 
         if (!flag) {
@@ -144,19 +145,16 @@ public class AssetFragment extends Fragment implements View.OnClickListener {
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
         if (isVisibleToUser) {
-//            initData();
+            //  initData();
             if (context != null) {
                 requestUserInfo();
-//                Toast.makeText(context,"onresume",Toast.LENGTH_SHORT).show();
+                //Toast.makeText(context,"onresume",Toast.LENGTH_SHORT).show();
             }
         } else {
             if (context != null) {
-
-//                Toast.makeText(context,"onPase",Toast.LENGTH_SHORT).show();
+                //  Toast.makeText(context,"onPase",Toast.LENGTH_SHORT).show();
             }
         }
-
-
     }
 
     private void setData(boolean flag) {
@@ -175,7 +173,6 @@ public class AssetFragment extends Fragment implements View.OnClickListener {
             if (Integer.parseInt(accountBean.getInsuranceAmountRate()) != 0) {
                 entries.add(new PieEntry(Integer.parseInt(accountBean.getInsuranceAmountRate()), ""));
             }
-
         }
 
         PieDataSet dataSet = new PieDataSet(entries, "");
@@ -188,7 +185,6 @@ public class AssetFragment extends Fragment implements View.OnClickListener {
         if (!flag) {
             ints = new int[]{R.color.asset_null};
         } else {
-
             if (Integer.parseInt(accountBean.getOptimumAmountRate()) == 0) {
                 if (Integer.parseInt(accountBean.getFloatingAmountRate()) == 0) {
                     ints = new int[]{R.color.asset_insurance};
@@ -228,14 +224,12 @@ public class AssetFragment extends Fragment implements View.OnClickListener {
 //         dataSet.setXValuePosition(PieDataSet.ValuePosition.OUTSIDE_SLICE);
 
 
-
-
         PieData data = new PieData(dataSet);
         data.setValueFormatter(new PercentFormatter());
         if (!flag) {
             data.setValueTextSize(0f);                     //百分比字体大小
             dataSet.setYValuePosition(PieDataSet.ValuePosition.INSIDE_SLICE);
-        }else{
+        } else {
             data.setValueTextSize(16f);                     //百分比字体大小
             dataSet.setYValuePosition(PieDataSet.ValuePosition.OUTSIDE_SLICE);
         }
@@ -260,20 +254,25 @@ public class AssetFragment extends Fragment implements View.OnClickListener {
 
     public void initData() {
         requestUserInfo();
-
     }
 
     public void setView() {
         isshow = PreferenceUtil.getIsShowAsset();
         if (isshow) {
             if (accountBean != null) {
-                if (TextUtils.isEmpty(accountBean.getTotalAmount())) {
+                if (TextUtils.isEmpty(accountBean.getIncomeAmount())) { //已获得收益
                     tv_asset_my_num.setText("0.00");
                 } else {
-                    tv_asset_my_num.setText(StringUtil.formatNum(accountBean.getTotalAmount()));
+                    tv_asset_my_num.setText(StringUtil.formatNum(accountBean.getIncomeAmount()));
+                }
+                if (TextUtils.isEmpty(accountBean.getTotalAmount())) { //当前总投资金额
+                    tv_asset_money.setText("0.00");
+                } else {
+                    tv_asset_money.setText(StringUtil.formatNum(accountBean.getTotalAmount()));
                 }
             } else {
                 tv_asset_my_num.setText("0.00");
+                tv_asset_money.setText("0.00");
             }
             iv_asset_chosse_my_num.setImageResource(R.mipmap.img_asset_open);
         } else {
@@ -288,7 +287,7 @@ public class AssetFragment extends Fragment implements View.OnClickListener {
                 } else {
                     initAsset(true);
                 }
-            }else {
+            } else {
                 initAsset(false);
             }
         } else {
@@ -298,12 +297,11 @@ public class AssetFragment extends Fragment implements View.OnClickListener {
 
 //        initAsset(true);
         if (accountBean != null) {
-            tv_fragment_asset_fixed_product_totalnum.setText(!TextUtils.isEmpty(accountBean.getOptimumAmount())?StringUtil.formatNum(accountBean.getOptimumAmount()):"0.00");
-            tv_fragment_asset_floating_product_totalnum.setText(!TextUtils.isEmpty(accountBean.getFloatingAmount())?StringUtil.formatNum(accountBean.getFloatingAmount()):"0.00");
-            tv_fragment_asset_insurance_product_totalnum.setText(!TextUtils.isEmpty(accountBean.getInsuranceAmount())?StringUtil.formatNum(accountBean.getInsuranceAmount()):"0.00");
+            tv_fragment_asset_fixed_product_totalnum.setText(!TextUtils.isEmpty(accountBean.getOptimumAmount()) ? StringUtil.formatNum(accountBean.getOptimumAmount()) : "0.00");
+            tv_fragment_asset_floating_product_totalnum.setText(!TextUtils.isEmpty(accountBean.getFloatingAmount()) ? StringUtil.formatNum(accountBean.getFloatingAmount()) : "0.00");
+            tv_fragment_asset_insurance_product_totalnum.setText(!TextUtils.isEmpty(accountBean.getInsuranceAmount()) ? StringUtil.formatNum(accountBean.getInsuranceAmount()) : "0.00");
 
             if (!TextUtils.isEmpty(accountBean.getUnreadMessageNum())) {
-
                 if (accountBean.getUnreadMessageNum().equals("0")) {
                     iv_fragment_asset_message.setImageResource(R.mipmap.img_message_0);
                 } else if (accountBean.getUnreadMessageNum().equals("1")) {
@@ -336,13 +334,13 @@ public class AssetFragment extends Fragment implements View.OnClickListener {
 
 
             // acceptable:合格投资者;unacceptable:不合格投资者
-            if(!TextUtils.isEmpty(accountBean.getQualifiedInvestor())){
+            if (!TextUtils.isEmpty(accountBean.getQualifiedInvestor())) {
                 if (accountBean.getQualifiedInvestor().equals("acceptable")) {
                     tv_fragment_asset_passed.setVisibility(View.VISIBLE);
                 } else {
                     tv_fragment_asset_passed.setVisibility(View.GONE);
                 }
-            }else{
+            } else {
                 tv_fragment_asset_passed.setVisibility(View.GONE);
             }
 
@@ -423,6 +421,9 @@ public class AssetFragment extends Fragment implements View.OnClickListener {
         }
     }
 
+    /**
+     * 获取资产首页数据
+     */
     private void requestUserInfo() {
         String userId = null;
         try {

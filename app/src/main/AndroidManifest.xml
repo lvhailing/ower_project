@@ -205,6 +205,13 @@
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Holo.Light"/>
 
+        <activity
+            android:name=".act.ac.GolfListActivity"
+            android:screenOrientation="portrait"/>
+
+        <activity
+            android:name=".act.ac.GolfListDetailActivity"
+            android:screenOrientation="portrait"/>
 
         <!-- 通道保持服务 -->
         <service

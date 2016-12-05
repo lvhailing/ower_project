@@ -30,6 +30,7 @@ import com.jdhui.bean.mybean.BookingInsurance0B;
 import com.jdhui.bean.mybean.BookingProduct0B;
 import com.jdhui.bean.mybean.GeneticTestingDetail0B;
 import com.jdhui.bean.mybean.GeneticTestingList0B;
+import com.jdhui.bean.mybean.GolfList0B;
 import com.jdhui.bean.mybean.Product0B;
 import com.jdhui.bean.mybean.ProductDetail0B;
 import com.jdhui.bean.mybean.Service0B;
@@ -423,6 +424,16 @@ public class HtmlLoadUtil {
      */
     public static String getGeneticTestingList(String page) {
         GeneticTestingList0B b = new GeneticTestingList0B(page);
+        return getResult(b);
+    }
+
+    /**
+     * 服务--展示预约高尔夫球场列表
+     *
+     * @return
+     */
+    public static String getGolfList(String page) {
+        GolfList0B b = new GolfList0B(page);
         return getResult(b);
     }
 

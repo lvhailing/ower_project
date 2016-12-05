@@ -56,7 +56,7 @@ public class FeedBackActivity extends BaseActivity implements OnClickListener{
 		String str2=str1+ getString(R.string.tellphone_num_format);
 		String str3=str2+"";
 		txtCall.setText(StringUtil.setTextStyle(this, str1, str2, str3,
-				R.color.gray_dark, R.color.red4, R.color.gray_dark,
+				R.color.gray_dark, R.color.orange, R.color.gray_dark,
 				13, 13, 13, 0, 0, 0));
 		txtCall.setOnClickListener(this);
 		mImgBack.setOnClickListener(this);
@@ -79,7 +79,7 @@ public class FeedBackActivity extends BaseActivity implements OnClickListener{
 					btn_setting_advice.setBackgroundResource(R.drawable.shape_button_gray_gray);
 					btn_setting_advice.setClickable(false);
 				} else {
-					btn_setting_advice.setBackgroundResource(R.drawable.shape_button_orange);
+					btn_setting_advice.setBackgroundResource(R.drawable.shape_button_red);
 					btn_setting_advice.setClickable(true);
 				}
 

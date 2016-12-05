@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/bg_gray"
@@ -18,7 +19,7 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"
             android:padding="5dp"
-            android:src="@drawable/back" />
+            android:src="@drawable/back"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -26,7 +27,7 @@
             android:layout_centerInParent="true"
             android:text="产品信息"
             android:textColor="@color/white"
-            android:textSize="18sp" />
+            android:textSize="18sp"/>
     </RelativeLayout>
 
     <ScrollView
@@ -43,16 +44,14 @@
             <RelativeLayout
                 android:id="@+id/rl_fixed_product_detail_name"
                 android:layout_width="match_parent"
-                android:layout_height="50dip"
-
-                >
+                android:layout_height="50dip">
 
                 <TextView
                     android:id="@+id/tv_fixed_product_detail_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
-                    android:text="" />
+                    android:text=""/>
 
                 <ImageView
                     android:layout_width="match_parent"
@@ -61,9 +60,7 @@
                     android:layout_marginLeft="10dip"
                     android:layout_marginRight="15dip"
                     android:layout_toRightOf="@id/tv_fixed_product_detail_name"
-                    android:src="@drawable/tab_lines"
-
-                    />
+                    android:src="@drawable/tab_lines"/>
 
                 <ImageView
                     android:layout_width="match_parent"
@@ -73,7 +70,7 @@
                     android:layout_marginLeft="15dip"
                     android:layout_marginRight="10dip"
                     android:layout_toLeftOf="@id/tv_fixed_product_detail_name"
-                    android:src="@drawable/tab_lines" />
+                    android:src="@drawable/tab_lines"/>
             </RelativeLayout>
 
             <LinearLayout
@@ -95,16 +92,14 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="产品规模："
-
-                        />
+                        android:text="产品规模："/>
 
                     <TextView
                         android:id="@+id/tv_fixed_product_detail_chanpinguimo"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text=""
-                        android:textColor="@color/bg_black" />
+                        android:textColor="@color/bg_black"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -118,16 +113,14 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="投资门槛："
-
-                        />
+                        android:text="投资门槛："/>
 
                     <TextView
                         android:id="@+id/tv_fixed_product_detail_touzimenkan"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text=""
-                        android:textColor="@color/bg_black" />
+                        android:textColor="@color/bg_black"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -141,16 +134,14 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="产品期限："
-
-                        />
+                        android:text="产品期限："/>
 
                     <TextView
                         android:id="@+id/tv_fixed_product_detail_chanpinqixian"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text=""
-                        android:textColor="@color/bg_black" />
+                        android:textColor="@color/bg_black"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -161,22 +152,19 @@
                     android:layout_marginLeft="10dip"
                     android:layout_marginTop="8dip"
                     android:orientation="horizontal"
-                    android:visibility="gone"
-                    >
+                    android:visibility="gone">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="产品净值："
-
-                        />
+                        android:text="产品净值："/>
 
                     <TextView
                         android:id="@+id/tv_fixed_product_detail_chanpinjingzhi"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text=""
-                        android:textColor="@color/bg_black" />
+                        android:textColor="@color/bg_black"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -187,22 +175,19 @@
                     android:layout_marginLeft="10dip"
                     android:layout_marginTop="8dip"
                     android:orientation="horizontal"
-                    android:visibility="gone"
-                    >
+                    android:visibility="gone">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="业绩比较基准："
-
-                        />
+                        android:text="业绩比较基准："/>
 
                     <TextView
                         android:id="@+id/tv_fixed_product_detail_yujishouyi"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text=""
-                        android:textColor="@color/bg_black" />
+                        android:textColor="@color/bg_black"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -225,7 +210,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text=""
-                        android:textColor="@color/bg_black" />
+                        android:textColor="@color/bg_black"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -239,16 +224,14 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="成立日期："
-
-                        />
+                        android:text="成立日期："/>
 
                     <TextView
                         android:id="@+id/tv_fixed_product_detail_chengliriqi"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text=""
-                        android:textColor="@color/bg_black" />
+                        android:textColor="@color/bg_black"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -262,16 +245,14 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="管&#160;&#160;理&#160;&#160;费："
-
-                        />
+                        android:text="管&#160;&#160;理&#160;&#160;费："/>
 
                     <TextView
                         android:id="@+id/tv_fixed_product_detail_guanlifei"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text=""
-                        android:textColor="@color/bg_black" />
+                        android:textColor="@color/bg_black"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -285,16 +266,14 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="托&#160;&#160;管&#160;&#160;费："
-
-                        />
+                        android:text="托&#160;&#160;管&#160;&#160;费："/>
 
                     <TextView
                         android:id="@+id/tv_fixed_product_detail_tuoguanfei"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text=""
-                        android:textColor="@color/bg_black" />
+                        android:textColor="@color/bg_black"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -308,14 +287,14 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="管&#160;&#160;理&#160;&#160;人：" />
+                        android:text="管&#160;&#160;理&#160;&#160;人："/>
 
                     <TextView
                         android:id="@+id/tv_fixed_product_detail_guanliren"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text=""
-                        android:textColor="@color/bg_black" />
+                        android:textColor="@color/bg_black"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -329,16 +308,14 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="托&#160;&#160;管&#160;&#160;人："
-
-                        />
+                        android:text="托&#160;&#160;管&#160;&#160;人："/>
 
                     <TextView
                         android:id="@+id/tv_fixed_product_detail_tuoguanren"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text=""
-                        android:textColor="@color/bg_black" />
+                        android:textColor="@color/bg_black"/>
                 </LinearLayout>
 
             </LinearLayout>
@@ -365,7 +342,7 @@
                         android:layout_gravity="center_horizontal"
                         android:layout_marginBottom="10dip"
                         android:layout_marginTop="10dip"
-                        android:text="认购金额(万元)" />
+                        android:text="认购金额(万元)"/>
 
                     <ImageView
                         android:layout_width="match_parent"
@@ -401,7 +378,7 @@
                         android:layout_gravity="center_horizontal"
                         android:layout_marginBottom="10dip"
                         android:layout_marginTop="10dip"
-                        android:text="预计收益(年)" />
+                        android:text="预计收益(年)"/>
 
                     <ImageView
                         android:layout_width="match_parent"
@@ -427,7 +404,8 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/ll_fixed_product_detail_profit"
                 android:layout_marginTop="12dip"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:paddingBottom="75dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -444,7 +422,7 @@
                         android:paddingBottom="10dip"
                         android:paddingTop="10dip"
                         android:text="投资范围"
-                        android:textColor="@color/txt_orange_gray" />
+                        android:textColor="@color/txt_orange_gray"/>
 
                     <TextView
                         android:id="@+id/tv_fixed_product_detail_fengkongcuoshi"
@@ -455,9 +433,7 @@
                         android:paddingBottom="10dip"
                         android:paddingTop="10dip"
                         android:text="风控措施"
-                        android:textColor="@color/bg_black"
-
-                        />
+                        android:textColor="@color/bg_black"/>
 
                     <TextView
                         android:id="@+id/tv_fixed_product_detail_touziliangdian"
@@ -468,9 +444,7 @@
                         android:paddingBottom="10dip"
                         android:paddingTop="10dip"
                         android:text="投资亮点"
-                        android:textColor="@color/bg_black"
-
-                        />
+                        android:textColor="@color/bg_black"/>
 
                 </LinearLayout>
 
@@ -480,10 +454,23 @@
                     android:layout_height="wrap_content"
                     android:background="@color/white"
                     android:padding="10dip"
-                    android:text="" />
+                    android:text=""/>
 
             </LinearLayout>
         </RelativeLayout>
     </ScrollView>
 
+    <Button
+        android:id="@+id/btn_order"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="11dp"
+        android:layout_marginRight="11dp"
+        android:layout_marginTop="11dp"
+        android:background="@drawable/shape_center_orange"
+        android:gravity="center"
+        android:text="立即预约"
+        android:textColor="@color/white"
+        android:visibility="gone"/>
 </RelativeLayout>

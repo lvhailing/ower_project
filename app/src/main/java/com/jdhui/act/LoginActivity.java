@@ -101,7 +101,7 @@ public class LoginActivity extends BaseActivity implements OnClickListener, Obse
                 if (!TextUtils.isEmpty(charSequence)) {
                     if (!TextUtils.isEmpty(edtPassword.getText().toString())) {
                         btnLogin.setClickable(true);
-                        btnLogin.setBackgroundResource(R.drawable.shape_button_orange);
+                        btnLogin.setBackgroundResource(R.drawable.shape_button_red);
                     } else {
                         btnLogin.setClickable(false);
                         btnLogin.setBackgroundResource(R.drawable.shape_button_gray_d);
@@ -129,7 +129,7 @@ public class LoginActivity extends BaseActivity implements OnClickListener, Obse
                 if (!TextUtils.isEmpty(charSequence)) {
                     if (!TextUtils.isEmpty(edtUsername.getText().toString())) {
                         btnLogin.setClickable(true);
-                        btnLogin.setBackgroundResource(R.drawable.shape_button_orange);
+                        btnLogin.setBackgroundResource(R.drawable.shape_button_red);
                     } else {
                         btnLogin.setClickable(false);
                         btnLogin.setBackgroundResource(R.drawable.shape_button_gray_d);

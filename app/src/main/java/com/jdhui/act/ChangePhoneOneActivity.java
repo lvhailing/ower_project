@@ -75,7 +75,7 @@ public class ChangePhoneOneActivity extends BaseActivity implements View.OnClick
                     mBtnNext.setClickable(false);
                 }else {
                     mBtnDelete.setVisibility(View.VISIBLE);
-                    mBtnNext.setBackgroundResource(R.drawable.shape_button_orange);
+                    mBtnNext.setBackgroundResource(R.drawable.shape_button_red);
                     mBtnNext.setClickable(true);
                 }
 

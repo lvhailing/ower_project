@@ -86,7 +86,7 @@ public class ChangePhoneTwoActivity extends BaseActivity implements View.OnClick
                     mBtnNext.setClickable(false);
                 } else {
                     mBtnDelete.setVisibility(View.VISIBLE);
-                    mBtnNext.setBackgroundResource(R.drawable.shape_button_orange);
+                    mBtnNext.setBackgroundResource(R.drawable.shape_button_red);
                     mBtnNext.setClickable(true);
                 }
 
@@ -177,7 +177,7 @@ public class ChangePhoneTwoActivity extends BaseActivity implements View.OnClick
                     R.string.findpd_getphoneauth));
             btnGetSMS.setClickable(true);
             btnGetSMS.setTextColor(getResources().getColor(R.color.txt_white));
-            btnGetSMS.setBackgroundResource(R.drawable.shape_button_orange);
+            btnGetSMS.setBackgroundResource(R.drawable.shape_button_red);
         } else {
             if (time <= 59) {
                 btnGetSMS.setClickable(false);

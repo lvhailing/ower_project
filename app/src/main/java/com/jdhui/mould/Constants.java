@@ -173,6 +173,10 @@ public class Constants {
      */
     public static final String TASK_TYPE_BOOKING_GENETICTESTING_LIST = String.valueOf(index++);
     /***
+     * 服务--展示预约高尔夫球场列表
+     */
+    public static final String TASK_TYPE_GOLF_LIST = String.valueOf(index++);
+    /***
      * 服务--展示预约基因检测详情
      */
     public static final String TASK_TYPE_BOOKING_GENETICTESTING_DETAIL = String.valueOf(index++);

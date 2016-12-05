@@ -346,6 +346,11 @@ public class ApplicationConsts {
     /**
      * 展示预约基因检测列表
      */
+    public static final String URL_SERVICE_GOLF_LIST = EC_HOST + "service/golf/list";
+
+    /**
+     * 展示预约高尔夫球场列表
+     */
     public static final String URL_SERVICE_BOOKINGGENETICTESTING_LIST = EC_HOST + "service/bookingGeneticTesting/list";
 
     /**

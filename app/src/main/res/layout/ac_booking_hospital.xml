@@ -314,7 +314,7 @@
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:layout_alignParentBottom="true"
-        android:background="@drawable/shape_button_orange"
+        android:background="@drawable/shape_button_red"
         android:text="提交预约"
         android:textColor="@color/white"/>
 

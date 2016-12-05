@@ -38,8 +38,8 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="总资产(元)"
-                    android:textColor="@color/txt_gray_light_l"/>
+                    android:text="已获得收益(元)"
+                    android:textColor="@color/txt_gray_d"/>
 
                 <ImageView
                     android:id="@+id/iv_asset_chosse_my_num"
@@ -54,8 +54,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="0.00"
-                android:textColor="@color/txt_orange_gray"
-                android:textSize="18sp"/>
+                android:textColor="@color/txt_orange_new"
+                android:textSize="18sp"
+                android:textStyle="bold"/>
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -70,13 +71,13 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dip"
-                    android:background="@drawable/shape_center_orange_white_light"
+                    android:background="@drawable/shape_center_orange_white_light1"
                     android:paddingBottom="2dip"
                     android:paddingLeft="5dip"
                     android:paddingRight="5dip"
                     android:paddingTop="2dip"
                     android:text="合格投资者"
-                    android:textColor="@color/red4"/>
+                    android:textColor="@color/orange"/>
 
                 <TextView
                     android:id="@+id/tv_fragment_asset_steady"
@@ -99,14 +100,16 @@
         android:layout_width="match_parent"
         android:layout_height="0dip"
         android:layout_marginTop="10dp"
-        android:layout_weight="2"
+        android:layout_weight="2.2"
         android:background="@color/white">
 
         <LinearLayout
             android:id="@+id/ll_asset_title"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="48dp"
+            android:layout_marginTop="20dp"
             android:layout_alignParentBottom="true"
+            android:gravity="center_vertical"
             android:orientation="horizontal">
 
             <LinearLayout
@@ -164,21 +167,42 @@
             </LinearLayout>
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/tv_asset_title"
-            android:layout_width="wrap_content"
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_alignTop="@+id/ll_asset_title"
+            android:background="@color/bg_gray"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="10dip"
-            android:text="资产分布"
-            android:textSize="15sp"
-            android:visibility="gone"/>
+            android:layout_marginTop="20dp"
+            android:gravity="center_horizontal">
+
+            <TextView
+                android:id="@+id/tv_asset_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="您当前的总投资金额为："
+                android:textColor="@color/txt_gray_d"
+                android:textSize="15sp"/>
+
+            <TextView
+                android:id="@+id/tv_asset_money"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/tv_asset_title"
+                android:text=""
+                android:textColor="@color/txt_orange_new"
+                android:textSize="15sp"/>
+        </RelativeLayout>
 
         <com.github.mikephil.charting.charts.PieChart
             android:id="@+id/chart1"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_above="@id/ll_asset_title"/>
+            android:layout_above="@id/ll_asset_title"
+            android:layout_marginTop="20dp"/>
     </RelativeLayout>
 
     <LinearLayout
