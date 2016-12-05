@@ -1,7 +1,9 @@
 package com.jdhui.bean;
 
 
+import com.jdhui.bean.mybean.InterestListBean;
 import com.jdhui.mould.types.IMouldType;
+import com.jdhui.mould.types.MouldList;
 
 public class ResultAssetFixedProductDetailBean implements IMouldType {
 
@@ -18,6 +20,15 @@ public class ResultAssetFixedProductDetailBean implements IMouldType {
 	private String repayType;	//付息间隔
 	private String remark;			//备注
 	private String isAnnualReport;			//是否有年度报告		yes:有;no:无
+	private MouldList<InterestListBean> interestList;	//还款计划列表
+
+	public MouldList<InterestListBean> getInterestList() {
+		return interestList;
+	}
+
+	public void setInterestList(MouldList<InterestListBean> interestList) {
+		this.interestList = interestList;
+	}
 
 	public String getIsAnnualReport() {
 		return isAnnualReport;

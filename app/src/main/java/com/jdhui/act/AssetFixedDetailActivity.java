@@ -8,14 +8,18 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.jdhui.R;
+import com.jdhui.adapter.AssetFixedDetailAdapter;
 import com.jdhui.bean.ResultAssetFixedProductDetailBean;
+import com.jdhui.bean.mybean.InterestListBean;
 import com.jdhui.mould.BaseParams;
 import com.jdhui.mould.BaseRequester;
 import com.jdhui.mould.HtmlRequest;
+import com.jdhui.mould.types.MouldList;
 import com.jdhui.uitls.ActivityStack;
 import com.jdhui.uitls.DESUtil;
 import com.jdhui.uitls.PreferenceUtil;
 import com.jdhui.uitls.StringUtil;
+import com.jdhui.view.MyListView;
 
 /**
  * 资产页固定收益详情
@@ -39,12 +43,15 @@ public class AssetFixedDetailActivity extends BaseActivity implements View.OnCli
     private String productName;
     private ResultAssetFixedProductDetailBean assetFixedBean;
     private RelativeLayout ll_asset_fixed;
+    private MyListView myListView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         baseSetContentView(R.layout.activity_asset_fixed_detail);
+
         initView();
+//        setView();
         initData();
     }
 
@@ -74,6 +81,7 @@ public class AssetFixedDetailActivity extends BaseActivity implements View.OnCli
         tv_asset_fixed_fuxinjiange = (TextView) findViewById(R.id.tv_asset_fixed_fuxinjiange);
         tv_asset_fixed_beizhu = (TextView) findViewById(R.id.tv_asset_fixed_beizhu);
         ll_asset_fixed = (RelativeLayout) findViewById(R.id.ll_asset_fixed);
+        myListView = (MyListView) findViewById(R.id.lv);
 
         id_img_back.setOnClickListener(this);
         tv_asset_fixed_call.setOnClickListener(this);
@@ -81,8 +89,6 @@ public class AssetFixedDetailActivity extends BaseActivity implements View.OnCli
     }
 
     public void setView() {
-
-
         tv_asset_fixed_title.setText(productName);
         tv_asset_fixed_name.setText(assetFixedBean.getProductName());
         tv_asset_fixed_goumaijine.setText(StringUtil.formatNum(assetFixedBean.getTenderAmount()));
@@ -99,32 +105,23 @@ public class AssetFixedDetailActivity extends BaseActivity implements View.OnCli
             tv_asset_fixed_call.setClickable(false);
             tv_asset_fixed_call.setVisibility(View.GONE);
         }
-    }
 
+        MouldList<InterestListBean> interestList = assetFixedBean.getInterestList();
+        if (interestList == null || interestList.size() == 0) {
+            interestList.add(new InterestListBean("=", "=", "="));
+            return;
+        }
 
-    @Override
-    protected void onStop() {
-        super.onStop();
-    }
+//        MouldList<InterestListBean> interestList = new MouldList<>();
+//        interestList.add(new InterestListBean("2016/11/11 19:00","1000","1000"));
+//        interestList.add(new InterestListBean("2016/11/11","1000","1000"));
+//        interestList.add(new InterestListBean("2016/11/11","1000","1000"));
+//        interestList.add(new InterestListBean("2016/11/11","1000","1000"));
+//        interestList.add(new InterestListBean("2016/11/11","1000","1000"));
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
+        //设置还款方案
+        AssetFixedDetailAdapter adapter = new AssetFixedDetailAdapter(this, interestList);
+        myListView.setAdapter(adapter);
     }
 
     @Override
