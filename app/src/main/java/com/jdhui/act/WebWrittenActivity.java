@@ -39,6 +39,7 @@ public class WebWrittenActivity extends Activity implements View.OnClickListener
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_web_written);
+
 		type = getIntent().getStringExtra("type");
 		url=getIntent().getStringExtra("url");
 		initView();
