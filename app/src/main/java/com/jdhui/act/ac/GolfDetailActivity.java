@@ -12,6 +12,7 @@ import com.jdhui.bean.mybean.GolfDetail3B;
 import com.jdhui.mould.BaseParams;
 import com.jdhui.mould.BaseRequester;
 import com.jdhui.mould.HtmlRequest;
+import com.nostra13.universalimageloader.core.ImageLoader;
 
 /**
  * 服务--高尔夫球场地详情
@@ -59,25 +60,26 @@ public class GolfDetailActivity extends BaseActivity implements View.OnClickList
     }
 
     private void setView() {
+        //加载图片
+        ImageLoader.getInstance().displayImage(detail.getGolfPhoto(), iv_detail_photo);
+
+        String type;
+        String price;
+        if (detail.getGolfRights().equals("not")) {
+            type = "优惠价";
+            price = detail.getPreferenialPrice().toString();
+        } else if (detail.getGolfRights().equals("A1")) {
+            type = "嘉宾价";
+            price = detail.getGuestPrice().toString();
+        } else {
+            type = "会员价";
+            price = detail.getVipPrice().toString();
+        }
+        tv_type_price.setText(type);
+        tv_field_price.setText(price);
+        tv_original_price.setText("￥" + detail.getOriginalPrice().toString());
 
         tv_field_name.setText(detail.getGolfName());
-        if (detail.getGolfRights().equals("not")) {
-            tv_type_price.setText("优惠价");
-
-            tv_field_price.setText("￥" + detail.getPreferenialPrice().toString());
-            tv_original_price.setText("￥" + detail.getOriginalPrice().toString());
-        } else if (detail.getGolfRights().equals("A1")) {
-            tv_type_price.setText("嘉宾价");
-
-            tv_field_price.setText("￥" + detail.getGuestPrice().toString());
-            tv_original_price.setText("￥" + detail.getOriginalPrice().toString());
-        } else {
-            tv_type_price.setText("会员价");
-
-            tv_field_price.setText("￥" + detail.getVipPrice().toString());
-            tv_original_price.setText("￥" + detail.getOriginalPrice().toString());
-        }
-
         tv_address.setText(detail.getGolfAddress());
         tv_detail.setText(detail.getGolfBrief());
     }

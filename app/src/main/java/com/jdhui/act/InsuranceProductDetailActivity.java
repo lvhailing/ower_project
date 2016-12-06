@@ -170,8 +170,6 @@ public class InsuranceProductDetailActivity extends BaseActivity implements View
             ll_insurance_product_detail_fengxiantixing.setVisibility(View.VISIBLE);
             tv_insurance_product_detail_fengxiantixing.setText(insuranceDetailBean.getRiskTips());
         }
-
-
         ImageLoader.getInstance().displayImage(insuranceDetailBean.getAdvertisePictue(), iv_insurance_product_title_pic);
     }
 
