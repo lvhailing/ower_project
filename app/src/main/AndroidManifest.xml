@@ -210,7 +210,7 @@
             android:screenOrientation="portrait"/>
 
         <activity
-            android:name=".act.ac.GolfListDetailActivity"
+            android:name=".act.ac.GolfDetailActivity"
             android:screenOrientation="portrait"/>
 
         <!-- 通道保持服务 -->

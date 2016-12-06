@@ -68,8 +68,9 @@ public class GolfListActivity extends BaseActivity implements View.OnClickListen
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> arg0, View arg1, int position, long arg3) {
-//                Intent intent3 = new Intent(getActivity(), GolfListActivity.class);
-//                startActivity(intent3);
+                Intent intent = new Intent(GolfListActivity.this, GolfDetailActivity.class);
+                intent.putExtra("id", totalList.get(position - 1).getId());
+                startActivity(intent);
             }
         });
 

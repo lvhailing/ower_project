@@ -30,6 +30,7 @@ import com.jdhui.bean.mybean.BookingInsurance0B;
 import com.jdhui.bean.mybean.BookingProduct0B;
 import com.jdhui.bean.mybean.GeneticTestingDetail0B;
 import com.jdhui.bean.mybean.GeneticTestingList0B;
+import com.jdhui.bean.mybean.GolfDetail0B;
 import com.jdhui.bean.mybean.GolfList0B;
 import com.jdhui.bean.mybean.Product0B;
 import com.jdhui.bean.mybean.ProductDetail0B;
@@ -477,4 +478,13 @@ public class HtmlLoadUtil {
         return getResult(b);
     }
 
+    /**
+     * 服务--高尔夫球场详情
+     *
+     * @return
+     */
+    public static String getGolfDetail(String id) {
+        GolfDetail0B b = new GolfDetail0B(id);
+        return getResult(b);
+    }
 }

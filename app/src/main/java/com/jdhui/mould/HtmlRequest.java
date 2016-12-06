@@ -35,6 +35,7 @@ import com.jdhui.bean.mybean.BookingInsurance1B;
 import com.jdhui.bean.mybean.BookingProduct1B;
 import com.jdhui.bean.mybean.GeneticTestingDetail1B;
 import com.jdhui.bean.mybean.GeneticTestingList1B;
+import com.jdhui.bean.mybean.GolfDetail1B;
 import com.jdhui.bean.mybean.GolfList1B;
 import com.jdhui.bean.mybean.Product1B;
 import com.jdhui.bean.mybean.ProductDetail1B;
@@ -2403,6 +2404,62 @@ public class HtmlRequest extends BaseRequester {
                         String data = DESUtil.decrypt(result);
                         Gson json = new Gson();
                         BookingProduct1B b = json.fromJson(data, BookingProduct1B.class);
+                        resultEncrypt(context, b.getCode());
+                        return b.getData();
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                } finally {
+                    unRegisterId(getTaskId());
+                }
+                return null;
+            }
+
+            @Override
+            public void onPostExecute(IMouldType result, BaseParams params) {
+                params.result = result;
+                params.sendResult();
+            }
+        });
+        return tid;
+    }
+
+    /**
+     * 服务--高尔夫球场详情
+     *
+     * @param context  上下文
+     * @param listener 监听
+     * @return 返回数据
+     */
+    public static String getGolfDetail(final Context context, String id, OnRequestListener listener) {
+        final String data = HtmlLoadUtil.getGolfDetail(id);
+        final String url = ApplicationConsts.URL_SERVICE_GOLF_VIEW;
+        String tid = registerId(Constants.TASK_TYPE_SERVICE_GOLF_VIEW, url);
+        if (tid == null) {
+            return null;
+        }
+        getTaskManager().addTask(new MouldAsyncTask(tid, buildParams(Constants.TASK_TYPE_SERVICE_GOLF_VIEW, context, listener, url, 0)) {
+            @Override
+            public IMouldType doTask(BaseParams params) {
+                SimpleHttpClient client = new SimpleHttpClient(context, SimpleHttpClient.RESULT_STRING);
+
+                HttpEntity entity = null;
+                try {
+                    entity = new StringEntity(data);
+                } catch (UnsupportedEncodingException e1) {
+                    e1.printStackTrace();
+                }
+
+                client.post(url, entity);
+                String result = (String) client.getResult();
+                try {
+                    if (isCancelled()) {
+                        return null;
+                    }
+                    if (result != null) {
+                        String data = DESUtil.decrypt(result);
+                        Gson json = new Gson();
+                        GolfDetail1B b = json.fromJson(data, GolfDetail1B.class);
                         resultEncrypt(context, b.getCode());
                         return b.getData();
                     }

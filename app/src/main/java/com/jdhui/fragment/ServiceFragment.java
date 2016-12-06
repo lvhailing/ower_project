@@ -104,10 +104,10 @@ public class ServiceFragment extends Fragment implements View.OnClickListener {
             case R.id.rl_golf:  //高尔夫球场地
                 Intent intent3 = new Intent(getActivity(), GolfListActivity.class);
                 startActivity(intent3);
-
                 break;
             case R.id.rl_plane: //公务机包机
-
+                Intent intent4 = new Intent(getActivity(), GolfListActivity.class);
+                startActivity(intent4);
                 break;
 
         }

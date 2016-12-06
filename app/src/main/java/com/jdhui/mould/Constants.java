@@ -180,12 +180,11 @@ public class Constants {
      * 服务--展示预约基因检测详情
      */
     public static final String TASK_TYPE_BOOKING_GENETICTESTING_DETAIL = String.valueOf(index++);
-
-
     /***
      * 服务--提交基因检测预约
      */
     public static final String TASK_TYPE_BOOKING_GENETICTESTING_ADD = String.valueOf(index++);
+
 
     /***
      * 保险预约
@@ -196,6 +195,11 @@ public class Constants {
      * 非保险预约
      */
     public static final String TASK_TYPE_PRODUCT_BOOKING = String.valueOf(index++);
+
+    /***
+     * 服务--高尔夫球场详情
+     */
+    public static final String TASK_TYPE_SERVICE_GOLF_VIEW = String.valueOf(index++);
 
 
 }
