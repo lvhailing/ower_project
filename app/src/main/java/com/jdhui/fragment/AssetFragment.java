@@ -102,9 +102,9 @@ public class AssetFragment extends Fragment implements View.OnClickListener {
         mChart = (PieChart) view.findViewById(R.id.chart1);
     }
 
-    private void initAsset(boolean flag) {           //flag 是否有数据  true有数据   false没数据
+    private void initAsset(boolean flag) { //flag 是否有数据  true有数据   false没数据
         mChart.setMinOffset(0f);
-        mChart.setUsePercentValues(true);          //是否用百分比显示
+        mChart.setUsePercentValues(true); //是否用百分比显示
         mChart.setDescription("");
         mChart.setExtraOffsets(5, 15, 5, 5);
 
@@ -122,13 +122,13 @@ public class AssetFragment extends Fragment implements View.OnClickListener {
             mChart.setCenterTextColor(Color.WHITE);
             mChart.setDrawHoleEnabled(false);
             mChart.setCenterTextSize(18.0f);
-            mChart.setRotationAngle(0);         //角度
+            mChart.setRotationAngle(0);  //角度
         } else {
             mChart.setHoleRadius(45f);
             mChart.setTransparentCircleRadius(45f);
             mChart.setCenterText("资产分布");
             mChart.setCenterTextSize(14.0f);
-            mChart.setRotationAngle(90);         //角度
+            mChart.setRotationAngle(90);  //角度
             mChart.setDrawHoleEnabled(true);
         }
 
@@ -136,7 +136,7 @@ public class AssetFragment extends Fragment implements View.OnClickListener {
         mChart.setDrawCenterText(true);
 
 
-        mChart.setRotationEnabled(false);           // 可转动
+        mChart.setRotationEnabled(false); // 可转动
         mChart.setHighlightPerTapEnabled(false);
         setData(flag);
     }

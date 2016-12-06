@@ -88,7 +88,6 @@ public class AssetInsuranceActivity extends BaseActivity implements View.OnClick
                 i_fixed.putExtra("tenderId", fixedListBean.get(i - 1).getTenderId());
                 i_fixed.putExtra("productName", fixedListBean.get(i - 1).getProductName());
                 AssetInsuranceActivity.this.startActivity(i_fixed);
-
             }
         });
 
@@ -127,6 +126,7 @@ public class AssetInsuranceActivity extends BaseActivity implements View.OnClick
         } catch (Exception e) {
             e.printStackTrace();
         }
+
         cacheassetFixedPage = assetFixedPage;
         HtmlRequest.accountProductTenders(this, assetFixedPage + "", userId, "insurance", new BaseRequester.OnRequestListener() {
             @Override

@@ -8,21 +8,27 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.jdhui.R;
+import com.jdhui.adapter.AssetFixedDetailAdapter;
+import com.jdhui.adapter.AssetInsuranceDetailAdapter;
 import com.jdhui.bean.ResultAssetInsuranceProductDetailBean;
+import com.jdhui.bean.mybean.BonusListBean;
+import com.jdhui.bean.mybean.InterestListBean;
 import com.jdhui.mould.BaseParams;
 import com.jdhui.mould.BaseRequester;
 import com.jdhui.mould.HtmlRequest;
+import com.jdhui.mould.types.MouldList;
 import com.jdhui.uitls.ActivityStack;
 import com.jdhui.uitls.DESUtil;
 import com.jdhui.uitls.PreferenceUtil;
 import com.jdhui.uitls.StringUtil;
+import com.jdhui.view.MyListView;
 
 
 /**
  * 资产页保险收益详情
  * Created by hasee on 2016/8/10.
  */
-public class AssetInsuranceDetailActivity extends BaseActivity implements View.OnClickListener{
+public class AssetInsuranceDetailActivity extends BaseActivity implements View.OnClickListener {
     private ImageView idImgBack;
     private TextView tvAssetInsuranceNumber;
     private TextView tvAssetInsuranceCall;
@@ -43,7 +49,8 @@ public class AssetInsuranceDetailActivity extends BaseActivity implements View.O
     private String tenderId;
     private String productName;
     private ResultAssetInsuranceProductDetailBean assetFixedBean;
-    private RelativeLayout ll_asset_insurance;
+    private RelativeLayout ll_asset_insurance; //保险产品产品名称
+    private MyListView myListView; //加载分红列表
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,12 +60,11 @@ public class AssetInsuranceDetailActivity extends BaseActivity implements View.O
         initData();
     }
 
-    public void initData(){
+    public void initData() {
         requestAssetInsuranceDetail();
     }
 
-    private void initView(){
-
+    private void initView() {
         ActivityStack stack = ActivityStack.getActivityManage();
         stack.addActivity(this);
 
@@ -70,7 +76,6 @@ public class AssetInsuranceDetailActivity extends BaseActivity implements View.O
     }
 
     private void assignViews() {
-
         idImgBack = (ImageView) findViewById(R.id.id_img_back);
         tvAssetInsuranceNumber = (TextView) findViewById(R.id.tv_asset_insurance_number);
         tvAssetInsuranceCall = (TextView) findViewById(R.id.tv_asset_insurance_call);
@@ -88,6 +93,7 @@ public class AssetInsuranceDetailActivity extends BaseActivity implements View.O
         tvAssetInsuranceShouyiren = (TextView) findViewById(R.id.tv_asset_insurance_shouyiren);
         tvAssetInsuranceBeizhu = (TextView) findViewById(R.id.tv_asset_insurance_beizhu);
         ll_asset_insurance = (RelativeLayout) findViewById(R.id.ll_asset_insurance);
+        myListView = (MyListView) findViewById(R.id.lv);
 
         idImgBack.setOnClickListener(this);
         tvAssetInsuranceCall.setOnClickListener(this);
@@ -95,21 +101,21 @@ public class AssetInsuranceDetailActivity extends BaseActivity implements View.O
 
     }
 
-    public void setView(){
+    public void setView() {
         tvAssetInsuranceNumber.setText(productName);
         tvAssetInsuranceName.setText(assetFixedBean.getProductName());
 
         //保险类型（healthInsurance:健康险;accidentInsurance:意外险;lifeInsurance:人寿险;propertyInsurance:财产险;travelInsurance:旅游险）
 
-        if("accidentInsurance".equals(assetFixedBean.getType())){
+        if ("accidentInsurance".equals(assetFixedBean.getType())) {
             tvAssetInsuranceChanpinleixing.setText("意外险");
-        }else if("lifeInsurance".equals(assetFixedBean.getType())){
+        } else if ("lifeInsurance".equals(assetFixedBean.getType())) {
             tvAssetInsuranceChanpinleixing.setText("人寿险");
-        }else if("propertyInsurance".equals(assetFixedBean.getType())){
+        } else if ("propertyInsurance".equals(assetFixedBean.getType())) {
             tvAssetInsuranceChanpinleixing.setText("财产险");
-        }else if("travelInsurance".equals(assetFixedBean.getType())){
+        } else if ("travelInsurance".equals(assetFixedBean.getType())) {
             tvAssetInsuranceChanpinleixing.setText("旅游险");
-        }else if("healthInsurance".equals(assetFixedBean.getType())){
+        } else if ("healthInsurance".equals(assetFixedBean.getType())) {
             tvAssetInsuranceChanpinleixing.setText("健康险");
         }
 //        tvAssetInsuranceChanpinleixing.setText(assetFixedBean.getType());
@@ -118,19 +124,29 @@ public class AssetInsuranceDetailActivity extends BaseActivity implements View.O
         tvAssetInsuranceBaoxianqijian.setText(assetFixedBean.getTimeLimit());
         tvAssetInsuranceJiaofeiqijian.setText(assetFixedBean.getPayLimit());
         tvAssetInsuranceBaoe.setText(assetFixedBean.getCoverageAmount());
-        tvAssetInsuranceBaofei.setText(StringUtil.formatNum(assetFixedBean.getPremiumAmount())+"元");
+        tvAssetInsuranceBaofei.setText(StringUtil.formatNum(assetFixedBean.getPremiumAmount()) + "元");
         tvAssetInsuranceShengxiaoriqi.setText(assetFixedBean.getEffectiveDate());
         tvAssetInsuranceJiaofeiriqi.setText(assetFixedBean.getRenewalDate());
-        tvAssetInsuranceToubaoren.setText(assetFixedBean.getPolicyholder()+"--"+assetFixedBean.getPolicyholderIdNo());
-        tvAssetInsuranceBeibaoren.setText(assetFixedBean.getInsured()+"--"+assetFixedBean.getInsuredIdNo());
+        tvAssetInsuranceToubaoren.setText(assetFixedBean.getPolicyholder() + "--" + assetFixedBean.getPolicyholderIdNo());
+        tvAssetInsuranceBeibaoren.setText(assetFixedBean.getInsured() + "--" + assetFixedBean.getInsuredIdNo());
         tvAssetInsuranceShouyiren.setText(assetFixedBean.getBeneficiary());
         tvAssetInsuranceBeizhu.setText(assetFixedBean.getRemark());
+
+
+        MouldList<BonusListBean> bonusList = assetFixedBean.getBonusList();
+        if (bonusList == null || bonusList.size() == 0) {
+            bonusList.add(new BonusListBean("--", "--"));
+        }
+
+        //设置分红列表
+        AssetInsuranceDetailAdapter adapter = new AssetInsuranceDetailAdapter(this, bonusList);
+        myListView.setAdapter(adapter);
 
     }
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.id_img_back:
                 finish();
                 break;
@@ -144,10 +160,10 @@ public class AssetInsuranceDetailActivity extends BaseActivity implements View.O
 
                 break;
             case R.id.ll_asset_insurance:
-                if(assetFixedBean!=null){
+                if (assetFixedBean != null) {
                     Intent i_insuranceProductDetail = new Intent();
-                    i_insuranceProductDetail.setClass(AssetInsuranceDetailActivity.this,InsuranceProductDetailActivity.class);
-                    i_insuranceProductDetail.putExtra("productId",assetFixedBean.getProductId());
+                    i_insuranceProductDetail.setClass(AssetInsuranceDetailActivity.this, InsuranceProductDetailActivity.class);
+                    i_insuranceProductDetail.putExtra("productId", assetFixedBean.getProductId());
                     this.startActivity(i_insuranceProductDetail);
                 }
 
@@ -156,7 +172,7 @@ public class AssetInsuranceDetailActivity extends BaseActivity implements View.O
         }
     }
 
-    private void requestAssetInsuranceDetail(){
+    private void requestAssetInsuranceDetail() {
         String userId = null;
         try {
             userId = DESUtil.decrypt(PreferenceUtil.getUserId());
@@ -164,19 +180,15 @@ public class AssetInsuranceDetailActivity extends BaseActivity implements View.O
             e.printStackTrace();
         }
 
-
-        HtmlRequest.getInsuranceAssetProductDetail(this, userId,tenderId ,new BaseRequester.OnRequestListener() {
+        HtmlRequest.getInsuranceAssetProductDetail(this, userId, tenderId, new BaseRequester.OnRequestListener() {
             @Override
             public void onRequestFinished(BaseParams params) {
-                if(params!=null){
-                    assetFixedBean = (ResultAssetInsuranceProductDetailBean)params.result;
-                    if(assetFixedBean!=null){
+                if (params != null) {
+                    assetFixedBean = (ResultAssetInsuranceProductDetailBean) params.result;
+                    if (assetFixedBean != null) {
                         setView();
                     }
-
-
                 }
-
             }
         });
 

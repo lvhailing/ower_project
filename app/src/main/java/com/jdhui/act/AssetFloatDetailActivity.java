@@ -8,22 +8,24 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.jdhui.R;
+import com.jdhui.adapter.AssetFixedDetailAdapter;
 import com.jdhui.bean.ResultAssetFixedProductDetailBean;
+import com.jdhui.bean.mybean.InterestListBean;
 import com.jdhui.mould.BaseParams;
 import com.jdhui.mould.BaseRequester;
 import com.jdhui.mould.HtmlRequest;
+import com.jdhui.mould.types.MouldList;
 import com.jdhui.uitls.ActivityStack;
 import com.jdhui.uitls.DESUtil;
 import com.jdhui.uitls.PreferenceUtil;
 import com.jdhui.uitls.StringUtil;
+import com.jdhui.view.MyListView;
 
 /**
  * 资产页浮动收益详情
  * Created by hasee on 2016/8/10.
  */
-public class AssetFloatDetailActivity extends BaseActivity implements View.OnClickListener{
-
-
+public class AssetFloatDetailActivity extends BaseActivity implements View.OnClickListener {
     private ImageView idImgBack;
     private TextView tvAssetFloatTitle;     //产品标题
     private TextView tvAssetFloatCall;      //年度报告
@@ -35,12 +37,34 @@ public class AssetFloatDetailActivity extends BaseActivity implements View.OnCli
     private TextView tvAssetFloatChengliriqi;   //成立日期
     private TextView tvAssetFloatFuxinjiange;   //付息间隔
     private TextView tvAssetFloatBeizhu;        //备注
-    private RelativeLayout ll_asset_float;        //备注
+    private RelativeLayout ll_asset_float;  //浮收产品名称
 
     private String tenderId;
     private String productName;
     private ResultAssetFixedProductDetailBean assetFixedBean;
+    private MyListView myListView; //加载还款方案的列表
 
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        baseSetContentView(R.layout.activity_asset_float_detail);
+        initView();
+        initData();
+    }
+
+    private void initView() {
+        ActivityStack stack = ActivityStack.getActivityManage();
+        stack.addActivity(this);
+
+        tenderId = getIntent().getStringExtra("tenderId");
+        productName = getIntent().getStringExtra("productName");
+        assignViews();
+    }
+
+    private void initData() {
+        requestAssetFixedDetail();
+    }
 
     private void assignViews() {
         idImgBack = (ImageView) findViewById(R.id.id_img_back);
@@ -55,34 +79,14 @@ public class AssetFloatDetailActivity extends BaseActivity implements View.OnCli
         tvAssetFloatFuxinjiange = (TextView) findViewById(R.id.tv_asset_float_fuxinjiange);
         tvAssetFloatBeizhu = (TextView) findViewById(R.id.tv_asset_float_beizhu);
         ll_asset_float = (RelativeLayout) findViewById(R.id.ll_asset_float);
+        myListView = (MyListView) findViewById(R.id.lv);
 
         idImgBack.setOnClickListener(this);
         tvAssetFloatCall.setOnClickListener(this);
         ll_asset_float.setOnClickListener(this);
     }
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        baseSetContentView(R.layout.activity_asset_float_detail);
-        initView();
-        initData();
-    }
-    private void initData(){
-        requestAssetFixedDetail();
-    }
-
-    private void initView(){
-
-        ActivityStack stack = ActivityStack.getActivityManage();
-        stack.addActivity(this);
-        tenderId = getIntent().getStringExtra("tenderId");
-        productName = getIntent().getStringExtra("productName");
-        assignViews();
-
-    }
-
-    public void setView(){
+    public void setView() {
         tvAssetFloatTitle.setText(productName);
         tvAssetFloatName.setText(assetFixedBean.getProductName());
         tvAssetFloatGoumaijine.setText(StringUtil.formatNum(assetFixedBean.getTenderAmount()));
@@ -93,69 +97,54 @@ public class AssetFloatDetailActivity extends BaseActivity implements View.OnCli
         tvAssetFloatFuxinjiange.setText(assetFixedBean.getRepayType());
         tvAssetFloatBeizhu.setText(assetFixedBean.getRemark());
 
-        if(assetFixedBean.getIsAnnualReport().equals("yes")){
+        if (assetFixedBean.getIsAnnualReport().equals("yes")) { // 是否有年度报告	 yes:有;  no:无
             tvAssetFloatCall.setVisibility(View.VISIBLE);
             tvAssetFloatCall.setClickable(true);
-        }else{
+        } else {
             tvAssetFloatCall.setVisibility(View.GONE);
             tvAssetFloatCall.setClickable(false);
         }
 
-    }
+        MouldList<InterestListBean> interestList = assetFixedBean.getInterestList();
+        if (interestList == null || interestList.size() == 0) {
+            interestList.add(new InterestListBean("--", "--", "--"));
+        }
 
+        //设置还款方案
+        AssetFixedDetailAdapter adapter = new AssetFixedDetailAdapter(this, interestList);
+        myListView.setAdapter(adapter);
 
-    @Override
-    protected void onStop() {
-        super.onStop();
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
     }
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.id_img_back:
                 finish();
                 break;
-            case R.id.tv_asset_float_call:
+            case R.id.tv_asset_float_call: //年度报告 按钮
                 Intent i_web = new Intent();
-                i_web.setClass(this,WebActivity.class);
-                i_web.putExtra("id",assetFixedBean.getProductId());
-                i_web.putExtra("type",WebActivity.WEBTYPE_PRODUCT_CALL);
-                i_web.putExtra("title","年度报告");
+                i_web.setClass(this, WebActivity.class);
+                i_web.putExtra("id", assetFixedBean.getProductId());
+                i_web.putExtra("type", WebActivity.WEBTYPE_PRODUCT_CALL);
+                i_web.putExtra("title", "年度报告");
                 startActivity(i_web);
                 break;
-            case R.id.ll_asset_float:
-                if(assetFixedBean!=null){
+            case R.id.ll_asset_float: //浮收产品名称
+                if (assetFixedBean != null) {
                     Intent i_fixedProductDetail = new Intent();
-                    i_fixedProductDetail.setClass(AssetFloatDetailActivity.this,FixedProductDetailActivity.class);
-                    i_fixedProductDetail.putExtra("productId",assetFixedBean.getProductId());
-                    i_fixedProductDetail.putExtra("type","floating");
+                    i_fixedProductDetail.setClass(AssetFloatDetailActivity.this, FixedProductDetailActivity.class);
+                    i_fixedProductDetail.putExtra("productId", assetFixedBean.getProductId());
+                    i_fixedProductDetail.putExtra("type", "floating");
                     this.startActivity(i_fixedProductDetail);
+                    break;
                 }
 
                 break;
         }
     }
-    private void requestAssetFixedDetail(){
+
+    private void requestAssetFixedDetail() {
         String userId = null;
         try {
             userId = DESUtil.decrypt(PreferenceUtil.getUserId());
@@ -163,22 +152,17 @@ public class AssetFloatDetailActivity extends BaseActivity implements View.OnCli
             e.printStackTrace();
         }
 
-
-        HtmlRequest.getAssetProductDetail(this, userId,tenderId,"floating" ,new BaseRequester.OnRequestListener() {
+        HtmlRequest.getAssetProductDetail(this, userId, tenderId, "floating", new BaseRequester.OnRequestListener() {
             @Override
             public void onRequestFinished(BaseParams params) {
-                if(params!=null){
-                    assetFixedBean = (ResultAssetFixedProductDetailBean)params.result;
-                    if(assetFixedBean!=null){
+                if (params != null) {
+                    assetFixedBean = (ResultAssetFixedProductDetailBean) params.result;
+                    if (assetFixedBean != null) {
                         setView();
                     }
-
-
                 }
-
             }
         });
-
     }
 
 

@@ -373,6 +373,11 @@ public class ApplicationConsts {
      */
     public static final String URL_PRODUCT_BOOKING = EC_HOST + "product/booking";
 
+    /**
+     * 高尔夫球场详情
+     */
+    public static final String URL_SERVICE_GOLF_VIEW = EC_HOST + "service/golf/view";
+
 
     // 手势密码点的状态
     public static final int POINT_STATE_NORMAL = 0; // 正常状态

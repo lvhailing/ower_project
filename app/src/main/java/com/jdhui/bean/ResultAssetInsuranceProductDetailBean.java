@@ -1,10 +1,15 @@
 package com.jdhui.bean;
 
 
+import com.jdhui.bean.mybean.BonusListBean;
+import com.jdhui.bean.mybean.InterestListBean;
 import com.jdhui.mould.types.IMouldType;
+import com.jdhui.mould.types.MouldList;
 
+/**
+ * 保险产品详情   接收后台返回数据
+ */
 public class ResultAssetInsuranceProductDetailBean implements IMouldType {
-
 	private String tenderId;			//产品订单编号
 	private String type;			//保险类型（healthInsurance:健康险;accidentInsurance:意外险;lifeInsurance:人寿险;propertyInsurance:财产险;travelInsurance:旅游险）
 	private String productName;				//产品名称
@@ -22,6 +27,7 @@ public class ResultAssetInsuranceProductDetailBean implements IMouldType {
 	private String beneficiary;			//受益人
 	private String remark;			//备注
 	private String productId;			//产品id
+	private MouldList<BonusListBean> bonusList;    //分红列表
 
 	public String getProductId() {
 		return productId;
@@ -157,5 +163,13 @@ public class ResultAssetInsuranceProductDetailBean implements IMouldType {
 
 	public void setRemark(String remark) {
 		this.remark = remark;
+	}
+
+	public MouldList<BonusListBean> getBonusList() {
+		return bonusList;
+	}
+
+	public void setBonusList(MouldList<BonusListBean> bonusList) {
+		this.bonusList = bonusList;
 	}
 }

@@ -3,6 +3,9 @@ package com.jdhui.bean;
 
 import com.jdhui.mould.types.IMouldType;
 
+/**
+ * 保险产品公共参数
+ */
 public class ResultAssetInsuranceProductDetailContentBean implements IMouldType {
 	private String check;
 	private String code;

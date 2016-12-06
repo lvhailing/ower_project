@@ -23,21 +23,7 @@
             android:background="@color/bg_gray" />
 
         <TextView
-            android:id="@+id/tv_interest"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="--"
-            android:textColor="@color/txt_black" />
-
-        <View
-            android:layout_width="1dp"
-            android:layout_height="match_parent"
-            android:background="@color/bg_gray" />
-
-        <TextView
-            android:id="@+id/tv_total"
+            android:id="@+id/tv_dividend_amount"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"

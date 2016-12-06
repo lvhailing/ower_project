@@ -107,8 +107,8 @@
             android:id="@+id/ll_asset_title"
             android:layout_width="match_parent"
             android:layout_height="48dp"
-            android:layout_marginTop="20dp"
             android:layout_alignParentBottom="true"
+            android:layout_marginTop="15dp"
             android:gravity="center_vertical"
             android:orientation="horizontal">
 
@@ -176,7 +176,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="8dp"
             android:gravity="center_horizontal">
 
             <TextView
@@ -201,8 +201,7 @@
             android:id="@+id/chart1"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_above="@id/ll_asset_title"
-            android:layout_marginTop="20dp"/>
+            android:layout_above="@id/ll_asset_title"/>
     </RelativeLayout>
 
     <LinearLayout
@@ -252,8 +251,7 @@
                         android:layout_height="wrap_content"
                         android:text=""
                         android:textColor="@color/asset_fixed_income"
-                        android:textSize="12sp"
-                        />
+                        android:textSize="12sp"/>
                 </LinearLayout>
 
             </LinearLayout>
@@ -309,8 +307,7 @@
                         android:layout_height="wrap_content"
                         android:text=""
                         android:textColor="@color/asset_float_incomea"
-                        android:textSize="12sp"
-                        />
+                        android:textSize="12sp"/>
                 </LinearLayout>
 
             </LinearLayout>
@@ -367,8 +364,7 @@
                         android:layout_height="wrap_content"
                         android:text=""
                         android:textColor="@color/asset_insurance"
-                        android:textSize="12sp"
-                        />
+                        android:textSize="12sp"/>
                 </LinearLayout>
 
             </LinearLayout>

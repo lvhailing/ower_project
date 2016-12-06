@@ -1,12 +1,13 @@
 package com.jdhui.bean;
 
 /**
+ * 保险投资详情  准备入参
  * Created by hasee on 2016/8/17.
  */
 public class AssetInsuranceProductIdBean {
 
-    private String userId;
-    private String tenderId;
+    private String userId; //用户ID
+    private String tenderId; //订单编号
 
     public AssetInsuranceProductIdBean(String userId, String tenderId) {
         this.userId = userId;

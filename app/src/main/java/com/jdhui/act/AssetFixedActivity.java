@@ -86,7 +86,6 @@ public class AssetFixedActivity extends BaseActivity implements View.OnClickList
         listview_asset_fixed.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-
                 Intent i_fixed = new Intent(AssetFixedActivity.this, AssetFixedDetailActivity.class);
                 i_fixed.putExtra("tenderId", fixedListBean.get(i - 1).getTenderId());
                 i_fixed.putExtra("productName", fixedListBean.get(i - 1).getProductName());

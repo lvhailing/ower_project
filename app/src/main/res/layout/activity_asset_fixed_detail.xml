@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/bg_gray"
-    android:orientation="vertical"
-    android:paddingBottom="10dp">
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/bg_gray"
+                android:orientation="vertical"
+                android:paddingBottom="10dp">
 
     <RelativeLayout
         android:id="@+id/id_asset_fixed_txt_title"
@@ -19,7 +19,7 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"
             android:padding="5dp"
-            android:src="@drawable/back" />
+            android:src="@drawable/back"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -27,7 +27,7 @@
             android:layout_centerInParent="true"
             android:text="投资详情"
             android:textColor="@color/white"
-            android:textSize="18sp" />
+            android:textSize="18sp"/>
     </RelativeLayout>
 
     <RelativeLayout
@@ -45,14 +45,14 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="15dp"
             android:text=""
-            android:textColor="@color/txt_orange_gray" />
+            android:textColor="@color/txt_orange_gray"/>
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_marginRight="10dip"
-            android:src="@mipmap/img_arrow_right" />
+            android:src="@mipmap/img_arrow_right"/>
     </RelativeLayout>
 
     <TextView
@@ -67,27 +67,24 @@
         android:text="年度报告"
         android:textColor="@color/white"
         android:textSize="15sp"
-        android:visibility="visible" />
+        android:visibility="gone"/>
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@id/tv_asset_fixed_call"
-        android:layout_below="@id/ll_asset_fixed">
+        android:layout_below="@id/ll_asset_fixed"
+        android:scrollbars="none">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
+            android:layout_marginTop="15dp"
             android:background="@color/white"
             android:focusable="true"
             android:focusableInTouchMode="true"
             android:orientation="vertical">
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="15dp"
-                android:background="@color/bg_gray" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -101,14 +98,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="产品名称："
-                    android:textColor="@color/txt_black" />
+                    android:textColor="@color/txt_black"/>
 
                 <TextView
                     android:id="@+id/tv_asset_fixed_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text=""
-                    android:textColor="@color/txt_gray_d" />
+                    android:textColor="@color/txt_gray_d"/>
             </LinearLayout>
 
             <LinearLayout
@@ -123,16 +120,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="购买金额："
-                    android:textColor="@color/txt_black" />
+                    android:textColor="@color/txt_black"/>
 
                 <TextView
                     android:id="@+id/tv_asset_fixed_goumaijine"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text=""
-                    android:textColor="@color/txt_gray_d" />
-
-
+                    android:textColor="@color/txt_gray_d"/>
             </LinearLayout>
 
             <LinearLayout
@@ -147,16 +142,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="业绩比较基准："
-                    android:textColor="@color/txt_black" />
+                    android:textColor="@color/txt_black"/>
 
                 <TextView
                     android:id="@+id/tv_asset_fixed_yujishouyi"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text=""
-                    android:textColor="@color/txt_gray_d" />
-
-
+                    android:textColor="@color/txt_gray_d"/>
             </LinearLayout>
 
             <LinearLayout
@@ -171,16 +164,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="产品期限："
-                    android:textColor="@color/txt_black" />
+                    android:textColor="@color/txt_black"/>
 
                 <TextView
                     android:id="@+id/tv_asset_fixed_chanpinqixian"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text=""
-                    android:textColor="@color/txt_gray_d" />
-
-
+                    android:textColor="@color/txt_gray_d"/>
             </LinearLayout>
 
             <LinearLayout
@@ -195,15 +186,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="购买日期："
-                    android:textColor="@color/txt_black" />
+                    android:textColor="@color/txt_black"/>
 
                 <TextView
                     android:id="@+id/tv_asset_fixed_goumairiqi"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text=""
-                    android:textColor="@color/txt_gray_d" />
-
+                    android:textColor="@color/txt_gray_d"/>
             </LinearLayout>
 
             <LinearLayout
@@ -218,15 +208,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="成立日期："
-                    android:textColor="@color/txt_black" />
+                    android:textColor="@color/txt_black"/>
 
                 <TextView
                     android:id="@+id/tv_asset_fixed_chengliriqi"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text=""
-                    android:textColor="@color/txt_gray_d" />
-
+                    android:textColor="@color/txt_gray_d"/>
             </LinearLayout>
 
             <LinearLayout
@@ -241,15 +230,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="付息间隔："
-                    android:textColor="@color/txt_black" />
+                    android:textColor="@color/txt_black"/>
 
                 <TextView
                     android:id="@+id/tv_asset_fixed_fuxinjiange"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text=""
-                    android:textColor="@color/txt_gray_d" />
-
+                    android:textColor="@color/txt_gray_d"/>
             </LinearLayout>
 
             <LinearLayout
@@ -264,20 +252,20 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="备&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;注："
-                    android:textColor="@color/txt_black" />
+                    android:textColor="@color/txt_black"/>
 
                 <TextView
                     android:id="@+id/tv_asset_fixed_beizhu"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text=""
-                    android:textColor="@color/txt_gray_d" />
+                    android:textColor="@color/txt_gray_d"/>
             </LinearLayout>
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="15dp"
-                android:background="@color/bg_gray" />
+                android:background="@color/bg_gray"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -290,12 +278,12 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text="还款日期"
-                    android:textColor="@color/txt_black" />
+                    android:textColor="@color/txt_black"/>
 
                 <View
                     android:layout_width="1dp"
                     android:layout_height="match_parent"
-                    android:background="@color/bg_gray" />
+                    android:background="@color/bg_gray"/>
 
                 <TextView
                     android:layout_width="0dp"
@@ -303,45 +291,47 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text="利息  (元)"
-                    android:textColor="@color/txt_black" />
+                    android:textColor="@color/txt_black"/>
 
                 <View
                     android:layout_width="1dp"
                     android:layout_height="match_parent"
-                    android:background="@color/bg_gray" />
+                    android:background="@color/bg_gray"/>
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="本息合計  (元)"
-                    android:textColor="@color/txt_black" />
+                    android:text="本息合计  (元)"
+                    android:textColor="@color/txt_black"/>
             </LinearLayout>
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="@color/bg_gray" />
+                android:background="@color/bg_gray"/>
 
             <com.jdhui.view.MyListView
                 android:id="@+id/lv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:listSelector="#00000000"
-                android:divider="@null" />
+                android:divider="@null"
+                android:listSelector="#00000000"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="12dp"
                 android:text="说明：每期实际还款日期、金额以最终到账为准，本产品最终解释权归北京君德财富投资管理有限公司所有"
-                android:textColor="@color/txt_gray_d" />
+                android:textColor="@color/txt_gray_d"/>
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
-                android:background="@color/bg_gray" />
+                android:background="@color/bg_gray"/>
         </LinearLayout>
+
     </ScrollView>
+
 </RelativeLayout>

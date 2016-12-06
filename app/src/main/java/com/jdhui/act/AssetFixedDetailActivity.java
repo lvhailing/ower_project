@@ -42,8 +42,8 @@ public class AssetFixedDetailActivity extends BaseActivity implements View.OnCli
     private String tenderId;
     private String productName;
     private ResultAssetFixedProductDetailBean assetFixedBean;
-    private RelativeLayout ll_asset_fixed;
-    private MyListView myListView;
+    private RelativeLayout ll_asset_fixed; //固收产品名称
+    private MyListView myListView; //加载还款方案的列表
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +51,6 @@ public class AssetFixedDetailActivity extends BaseActivity implements View.OnCli
         baseSetContentView(R.layout.activity_asset_fixed_detail);
 
         initView();
-//        setView();
         initData();
     }
 
@@ -60,7 +59,6 @@ public class AssetFixedDetailActivity extends BaseActivity implements View.OnCli
     }
 
     private void initView() {
-
         ActivityStack stack = ActivityStack.getActivityManage();
         stack.addActivity(this);
 
@@ -99,7 +97,7 @@ public class AssetFixedDetailActivity extends BaseActivity implements View.OnCli
         tv_asset_fixed_fuxinjiange.setText(assetFixedBean.getRepayType());
         tv_asset_fixed_beizhu.setText(assetFixedBean.getRemark());
 
-        if (assetFixedBean.getIsAnnualReport().equals("yes")) {           // 是否有年度报告		yes:有;no:无
+        if (assetFixedBean.getIsAnnualReport().equals("yes")) { // 是否有年度报告	 yes:有;  no:无
             tv_asset_fixed_call.setVisibility(View.VISIBLE);
         } else {
             tv_asset_fixed_call.setClickable(false);
@@ -108,8 +106,7 @@ public class AssetFixedDetailActivity extends BaseActivity implements View.OnCli
 
         MouldList<InterestListBean> interestList = assetFixedBean.getInterestList();
         if (interestList == null || interestList.size() == 0) {
-            interestList.add(new InterestListBean("=", "=", "="));
-            return;
+            interestList.add(new InterestListBean("--", "--", "--"));
         }
 
 //        MouldList<InterestListBean> interestList = new MouldList<>();
@@ -130,8 +127,7 @@ public class AssetFixedDetailActivity extends BaseActivity implements View.OnCli
             case R.id.id_img_back:
                 finish();
                 break;
-            case R.id.tv_asset_fixed_call:              //年度报告
-//                finish();
+            case R.id.tv_asset_fixed_call://年度报告
                 Intent i_web = new Intent();
                 i_web.setClass(this, WebActivity.class);
                 i_web.putExtra("id", assetFixedBean.getProductId());
@@ -147,6 +143,7 @@ public class AssetFixedDetailActivity extends BaseActivity implements View.OnCli
                     i_fixedProductDetail.putExtra("productId", assetFixedBean.getProductId());
                     i_fixedProductDetail.putExtra("type", "optimum");
                     this.startActivity(i_fixedProductDetail);
+                    break;
                 }
 
                 break;
