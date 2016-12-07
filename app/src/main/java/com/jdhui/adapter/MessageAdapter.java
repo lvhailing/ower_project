@@ -17,8 +17,7 @@ public class MessageAdapter extends BaseAdapter {
     private Context context;
     private LayoutInflater inflater;
 
-    public MessageAdapter(Context context,
-                          MouldList<ResultMessageListBean> list) {
+    public MessageAdapter(Context context, MouldList<ResultMessageListBean> list) {
         this.context = context;
         this.list = list;
         inflater = LayoutInflater.from(context);

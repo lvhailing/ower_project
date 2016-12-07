@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_gray"
+    android:orientation="vertical"
+    android:paddingBottom="10dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="51dp"
+        android:background="@color/red4">
+
+        <ImageView
+            android:id="@+id/iv_back"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:padding="5dp"
+            android:src="@drawable/back"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="预约详情"
+            android:textColor="@color/white"
+            android:textSize="18sp"/>
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:id="@+id/rl_pro_name"
+                android:layout_width="match_parent"
+                android:layout_height="50dip"
+                android:background="@color/white"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:id="@+id/tv_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:text="请保持电话畅通我们会尽快与您进行联系！"
+                    android:textColor="@color/txt_black"
+                    android:textSize="16sp"/>
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="10dp"
+                android:background="@color/white"
+                android:orientation="vertical"
+                android:paddingBottom="20dp">
+
+                <LinearLayout
+                    style="@style/product_linearlayout">
+
+                    <TextView
+                        style="@style/product_text_detail_lt"
+                        android:text="预约服务"/>
+
+                    <TextView
+                        android:id="@+id/tv_order_service"
+                        style="@style/product_text_detail_rt"
+                        android:text="aaaa"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_order_status"
+                    style="@style/product_linearlayout">
+
+                    <TextView
+                        style="@style/product_text_detail_lt"
+                        android:text="预约状态"/>
+
+                    <TextView
+                        android:id="@+id/tv_order_status"
+                        style="@style/product_text_detail_rt"
+                        android:text="aaaa"/>
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/ll_phone"
+                    style="@style/product_linearlayout">
+
+                    <TextView
+                        style="@style/product_text_detail_lt"
+                        android:text="联系电话"/>
+
+                    <TextView
+                        android:id="@+id/tv_phone"
+                        style="@style/product_text_detail_rt"
+                        android:text=""/>
+                </LinearLayout>
+
+                <com.jdhui.view.MyListView
+                    android:id="@+id/lv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:divider="@null"
+                    android:listSelector="#00000000"/>
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

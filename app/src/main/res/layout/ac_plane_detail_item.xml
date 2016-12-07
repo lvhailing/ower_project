@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:id="@+id/ll_numbers"
+        style="@style/product_linearlayout">
+
+        <TextView
+            style="@style/product_text_detail_lt"
+            android:text="人数"/>
+
+        <TextView
+            android:id="@+id/tv_numbers"
+            style="@style/product_text_detail_rt"
+            android:text=""/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_strat_city"
+        style="@style/product_linearlayout"
+        android:layout_below="@id/ll_numbers">
+
+        <TextView
+            style="@style/product_text_detail_lt"
+            android:text="出发城市"/>
+
+        <TextView
+            android:id="@+id/tv_strat_city"
+            style="@style/product_text_detail_rt"
+            android:text=""/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_end_city"
+        style="@style/product_linearlayout"
+        android:layout_below="@id/ll_strat_city">
+
+        <TextView
+            style="@style/product_text_detail_lt"
+            android:text="目的城市"/>
+
+        <TextView
+            android:id="@+id/tv_end_city"
+            style="@style/product_text_detail_rt"
+            android:text=""/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_time"
+        style="@style/product_linearlayout"
+        android:layout_below="@id/ll_end_city">
+
+        <TextView
+            style="@style/product_text_detail_lt"
+            android:text="时间"/>
+
+        <TextView
+            android:id="@+id/tv_time"
+            style="@style/product_text_detail_rt"
+            android:text=""/>
+    </LinearLayout>
+</RelativeLayout>

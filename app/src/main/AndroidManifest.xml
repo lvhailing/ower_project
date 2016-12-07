@@ -213,6 +213,14 @@
             android:name=".act.ac.GolfDetailActivity"
             android:screenOrientation="portrait"/>
 
+        <activity
+            android:name=".act.ac.ServicePlaneDetailActivity"
+            android:screenOrientation="portrait"/>
+
+
+
+
+
         <!-- 通道保持服务 -->
         <service
             android:name="com.alibaba.sdk.android.push.ChannelService"

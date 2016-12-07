@@ -5,7 +5,7 @@ package com.jdhui.bean.mybean;
  */
 public class ServiceDetail0B {
     private String id;  //服务Id
-    private String serviceItems; //服务类型，绿通就医：hospitalBooking、基因检测：geneticBooking、高尔夫球场：golfBooking
+    private String serviceItems; //服务类型，绿通就医：hospitalBooking、基因检测：geneticBooking、高尔夫球场：golfBooking  公务机包机：airplaneBooking
 
     public ServiceDetail0B(String serviceItems, String id) {
         this.serviceItems = serviceItems;

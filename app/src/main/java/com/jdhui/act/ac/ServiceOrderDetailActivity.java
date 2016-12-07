@@ -39,7 +39,7 @@ public class ServiceOrderDetailActivity extends BaseActivity implements View.OnC
     private TextView mTvDescIllness; //主诉病情
     private TextView mTvOrderTime; //预约时间
     private TextView mTvSubTime; //提交时间
-    private TextView mTvVenueName;
+    private TextView mTvVenueName; //场馆名称
 
     private String id; //服务id
     private String serviceItems; //服务类型
@@ -67,6 +67,8 @@ public class ServiceOrderDetailActivity extends BaseActivity implements View.OnC
     private LinearLayout mLlSubTime; //提交时间
     private LinearLayout mLlTogether1; //同行人1
     private LinearLayout mLlTogether2; //同行人2
+    private TextView mTvTogether1;
+    private TextView mTvTogether2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -98,6 +100,8 @@ public class ServiceOrderDetailActivity extends BaseActivity implements View.OnC
         mTvOrderTime = (TextView) findViewById(R.id.tv_order_time);
         mTvSubTime = (TextView) findViewById(R.id.tv_sub_time);
         mTvVenueName = (TextView) findViewById(R.id.tv_venue_name);
+        mTvTogether1 = (TextView) findViewById(R.id.tv_together1);
+        mTvTogether2 = (TextView) findViewById(R.id.tv_together2);
 
         mLlOrderName = (LinearLayout) findViewById(R.id.ll_order_name);
         mLlSecurityNum = (LinearLayout) findViewById(R.id.ll_security_num);
@@ -165,7 +169,7 @@ public class ServiceOrderDetailActivity extends BaseActivity implements View.OnC
             mLlDescIllness.setVisibility(View.VISIBLE);
             mLlSubTime.setVisibility(View.VISIBLE);
 
-            mTvOrderStatus.setText("新增待写");  //预约状态
+            mTvOrderStatus.setText(detail2B.getHospitalBooking().getBookingStatus());  //预约状态
             mTvOrderName.setText(detail2B.getHospitalBooking().getBookingClient());  //预约人
             mTvSocialSecurityNum.setText(detail2B.getHospitalBooking().getSecurityNum()); //社保号码
             mTvIdNum.setText(detail2B.getHospitalBooking().getClientIdNo()); //身份证号
@@ -177,7 +181,7 @@ public class ServiceOrderDetailActivity extends BaseActivity implements View.OnC
             mTvOrderDepartment.setText(detail2B.getHospitalBooking().getDepartments()); //预约科室
             mTvOrderDoctor.setText(detail2B.getHospitalBooking().getDoctor()); //预约医生
             mTvDescIllness.setText(detail2B.getHospitalBooking().getIllnessCondition()); //主诉病情
-            mTvSubTime.setText("新增待写"); //提交时间
+            mTvSubTime.setText(detail2B.getHospitalBooking().getCreateTime()); //提交时间
 
         } else if (detail2B.getGeneticBooking() != null) {
             //是基因检测
@@ -191,18 +195,27 @@ public class ServiceOrderDetailActivity extends BaseActivity implements View.OnC
             mLlAddress.setVisibility(View.VISIBLE);
             mLlSubTime.setVisibility(View.VISIBLE);
 
-            mTvOrderStatus.setText("新增待写");  //预约状态
+            mTvOrderStatus.setText(detail2B.getGeneticBooking().getBookingStatus());  //预约状态
             mTvOrderName.setText(detail2B.getGeneticBooking().getBookingClient());  //预约人
             mTvSex.setText(detail2B.getGeneticBooking().getUserSex());  //预约人性别
             mTvAge.setText(detail2B.getGeneticBooking().getUserAge());  //预约人年龄
             mTvGeneticTestName.setText(detail2B.getGeneticBooking().getName());  //基因 检测套餐
             mTvPhone.setText(detail2B.getGeneticBooking().getClientPhone()); //联系电话
             mTvGeneticTestAddress.setText(detail2B.getGeneticBooking().getUserAddress());  //基因 通讯地址
-            mTvSubTime.setText("新增待写"); //提交时间
+            mTvSubTime.setText(detail2B.getGeneticBooking().getBookingTime()); //提交时间
 
         } else if (detail2B.getGolfBooking() != null) {
             //是高尔夫
             mTvOrderService.setText("高尔夫球场地");
+
+            String golfright = detail2B.getGolfBooking().getGolfRight();
+            if (golfright.equals("A2") || golfright.equals("VIP")) { //如果是会员显示同行人，其他权限则隐藏同行人
+                mLlTogether1.setVisibility(View.VISIBLE);
+                mLlTogether2.setVisibility(View.VISIBLE);
+
+                mTvTogether1.setText(detail2B.getGolfBooking().getPeersOne());  //同行人1
+                mTvTogether2.setText(detail2B.getGolfBooking().getPeersTwo());  //同行人2
+            }
 
             mLlOrderName.setVisibility(View.VISIBLE);
             mLlIdNum.setVisibility(View.VISIBLE);
@@ -211,8 +224,13 @@ public class ServiceOrderDetailActivity extends BaseActivity implements View.OnC
             mLlOrderTime.setVisibility(View.VISIBLE);
             mLlSubTime.setVisibility(View.VISIBLE);
 
-            mTvOrderName.setText(detail2B.getGolfBooking().getUserInfoName());  //预约人
+            mTvOrderName.setText(detail2B.getGolfBooking().getName());  //预约人
+            mTvOrderStatus.setText(detail2B.getGolfBooking().getBookingStatus());  //预约状态
+            mTvIdNum.setText(detail2B.getGolfBooking().getIdNo());  //身份证
+            mTvPhone.setText(detail2B.getGolfBooking().getClientPhone());  //联系电话
+            mTvVenueName.setText(detail2B.getGolfBooking().getGolfName());  //场馆名称
             mTvOrderTime.setText(detail2B.getGolfBooking().getBookingTime()); //预约时间
+            mTvSubTime.setText(detail2B.getGolfBooking().getCreateTime()); //提交时间
 
         }
     }

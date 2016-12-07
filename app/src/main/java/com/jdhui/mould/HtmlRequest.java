@@ -65,8 +65,7 @@ public class HtmlRequest extends BaseRequester {
         cookieManager.setAcceptCookie(true);
         // cookieManager.removeSessionCookie();// 移除
         try {
-            cookieManager.setCookie(url,
-                    DESUtil.decrypt(PreferenceUtil.getCookie()));
+            cookieManager.setCookie(url, DESUtil.decrypt(PreferenceUtil.getCookie()));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -172,49 +171,42 @@ public class HtmlRequest extends BaseRequester {
      * @param listener
      * @return
      */
-    public static String loginoff(final Context context,
-                                  OnRequestListener listener) {
+    public static String loginoff(final Context context, OnRequestListener listener) {
         final String url = ApplicationConsts.URL_LOGINOFF;
         String tid = registerId(Constants.TASK_TYPE_LOGINOFF, url);
         if (tid == null) {
             return null;
         }
-        getTaskManager().addTask(
-                new MouldAsyncTask(tid,
-                        buildParams(Constants.TASK_TYPE_LOGINOFF, context,
-                                listener, url, 0)) {
+        getTaskManager().addTask(new MouldAsyncTask(tid, buildParams(Constants.TASK_TYPE_LOGINOFF, context, listener, url, 0)) {
 
-                    @Override
-                    public IMouldType doTask(BaseParams params) {
-                        SimpleHttpClient client = new SimpleHttpClient(context,
-                                SimpleHttpClient.RESULT_STRING);
-                        client.get(url);
-                        String result = (String) client.getResult();
-                        try {
-                            if (isCancelled()) {
-                                return null;
-                            }
-                            if (result != null) {
-                                Gson json = new Gson();
-                                ResultLoginOffBean b = json.fromJson(result,
-                                        ResultLoginOffBean.class);
-                                return b.getData();
-                            }
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        } finally {
-                            unRegisterId(getTaskId());
-                        }
+            @Override
+            public IMouldType doTask(BaseParams params) {
+                SimpleHttpClient client = new SimpleHttpClient(context, SimpleHttpClient.RESULT_STRING);
+                client.get(url);
+                String result = (String) client.getResult();
+                try {
+                    if (isCancelled()) {
                         return null;
                     }
-
-                    @Override
-                    public void onPostExecute(IMouldType result,
-                                              BaseParams params) {
-                        params.result = result;
-                        params.sendResult();
+                    if (result != null) {
+                        Gson json = new Gson();
+                        ResultLoginOffBean b = json.fromJson(result, ResultLoginOffBean.class);
+                        return b.getData();
                     }
-                });
+                } catch (Exception e) {
+                    e.printStackTrace();
+                } finally {
+                    unRegisterId(getTaskId());
+                }
+                return null;
+            }
+
+            @Override
+            public void onPostExecute(IMouldType result, BaseParams params) {
+                params.result = result;
+                params.sendResult();
+            }
+        });
         return tid;
     }
 
