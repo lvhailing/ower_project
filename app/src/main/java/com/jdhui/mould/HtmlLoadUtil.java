@@ -37,6 +37,7 @@ import com.jdhui.bean.mybean.ProductDetail0B;
 import com.jdhui.bean.mybean.Service0B;
 import com.jdhui.bean.mybean.ServiceDetail0B;
 import com.jdhui.bean.mybean.SubGeneticTesting0B;
+import com.jdhui.bean.mybean.SubmitBookingGolf0B;
 import com.jdhui.bean.mybean.SubmitBookingHospital0B;
 import com.jdhui.uitls.DESUtil;
 import com.jdhui.uitls.MD5;
@@ -429,16 +430,6 @@ public class HtmlLoadUtil {
     }
 
     /**
-     * 服务--展示预约高尔夫球场列表
-     *
-     * @return
-     */
-    public static String getGolfList(String page) {
-        GolfList0B b = new GolfList0B(page);
-        return getResult(b);
-    }
-
-    /**
      * 服务--展示预约基因检测详情
      *
      * @return
@@ -479,12 +470,32 @@ public class HtmlLoadUtil {
     }
 
     /**
+     * 服务--展示预约高尔夫球场列表
+     *
+     * @return
+     */
+    public static String getGolfList(String page) {
+        GolfList0B b = new GolfList0B(page);
+        return getResult(b);
+    }
+
+    /**
      * 服务--高尔夫球场详情
      *
      * @return
      */
     public static String getGolfDetail(String id) {
         GolfDetail0B b = new GolfDetail0B(id);
+        return getResult(b);
+    }
+
+    /**
+     * 服务--提交高尔夫球场预约
+     *
+     * @return
+     */
+    public static String submitGolf(String userName, String userIdNo, String bookingTime, String clientPhone, String golfId, String peersOne, String peersTwo) {
+        SubmitBookingGolf0B b = new SubmitBookingGolf0B(userName, userIdNo, bookingTime, clientPhone, golfId, peersOne, peersTwo);
         return getResult(b);
     }
 }

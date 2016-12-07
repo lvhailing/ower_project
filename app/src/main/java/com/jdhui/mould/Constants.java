@@ -201,5 +201,10 @@ public class Constants {
      */
     public static final String TASK_TYPE_SERVICE_GOLF_VIEW = String.valueOf(index++);
 
+    /***
+     * 服务--提交高尔夫球场预约
+     */
+    public static final String TASK_TYPE_SERVICE_BOOKING_GOLF = String.valueOf(index++);
+
 
 }

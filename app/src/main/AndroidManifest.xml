@@ -217,6 +217,10 @@
             android:name=".act.ac.ServicePlaneDetailActivity"
             android:screenOrientation="portrait"/>
 
+        <activity
+            android:name=".act.ac.WebAirPlanBookingActivity"
+            android:screenOrientation="portrait"/>
+
 
 
 

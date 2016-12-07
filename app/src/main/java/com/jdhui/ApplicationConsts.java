@@ -378,6 +378,11 @@ public class ApplicationConsts {
      */
     public static final String URL_SERVICE_GOLF_VIEW = EC_HOST + "service/golf/view";
 
+    /**
+     * 提交高尔夫预约
+     */
+    public static final String BOOKING_GOLF = EC_HOST + "service/bookingGolf/add";
+
 
     // 手势密码点的状态
     public static final int POINT_STATE_NORMAL = 0; // 正常状态
@@ -413,5 +418,9 @@ public class ApplicationConsts {
     public static final String ACTIVITY_ACCOUNT = "activity_account";
     public static final String ACTIVITY_CHANGE_GESTURE = "activity_change_gesture";
 
+    /**
+     * 预约公务机包机
+     */
+    public static final String URL_AIR_PLANE_BOOKING = EC_HOST + "airplaneBooking/edit/android/";
 
 }

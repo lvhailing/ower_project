@@ -97,12 +97,12 @@
                 style="@style/tv_style"
                 android:text="身份证"/>
 
-            <TextView
-                android:id="@+id/tv_id_num"
+            <EditText
+                android:id="@+id/et_id_num"
                 style="@style/et_style"
-                android:maxLength="18"
-                android:maxLines="1"
-                android:text=""/>
+                android:hint="请输入身份证号"
+                android:maxLength="10"
+                android:maxLines="1"/>
         </LinearLayout>
 
         <View

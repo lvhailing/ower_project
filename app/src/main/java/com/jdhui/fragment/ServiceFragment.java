@@ -9,19 +9,10 @@ import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 
 import com.jdhui.R;
-import com.jdhui.act.AssetFixedActivity;
-import com.jdhui.act.AssetFloatActivity;
-import com.jdhui.act.AssetInsuranceActivity;
-import com.jdhui.act.MessageActivity;
+import com.jdhui.act.ac.WebAirPlanBookingActivity;
 import com.jdhui.act.ac.GeneticTestingListActivity;
 import com.jdhui.act.ac.GolfListActivity;
 import com.jdhui.act.ac.SubBookingHospitalActivity;
-import com.jdhui.bean.ResultAccountIndexBean;
-import com.jdhui.mould.BaseParams;
-import com.jdhui.mould.BaseRequester;
-import com.jdhui.mould.HtmlRequest;
-import com.jdhui.uitls.DESUtil;
-import com.jdhui.uitls.PreferenceUtil;
 
 /**
  * 底部导航---服务
@@ -105,8 +96,8 @@ public class ServiceFragment extends Fragment implements View.OnClickListener {
                 Intent intent3 = new Intent(getActivity(), GolfListActivity.class);
                 startActivity(intent3);
                 break;
-            case R.id.rl_plane: //公务机包机
-                Intent intent4 = new Intent(getActivity(), GolfListActivity.class);
+            case R.id.rl_plane: //公务机包机预约
+                Intent intent4 = new Intent(getActivity(), WebAirPlanBookingActivity.class);
                 startActivity(intent4);
                 break;
 
