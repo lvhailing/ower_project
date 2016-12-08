@@ -12,6 +12,7 @@ import com.jdhui.R;
 import com.jdhui.bean.mybean.GeneticTestingList3B;
 import com.jdhui.bean.mybean.GolfList3B;
 import com.jdhui.mould.types.MouldList;
+import com.nostra13.universalimageloader.core.ImageLoader;
 
 public class GolfListAdapter extends BaseAdapter {
 
@@ -50,7 +51,9 @@ public class GolfListAdapter extends BaseAdapter {
         } else {
             holder = (GolfListAdapter.Holder) convertView.getTag();
         }
-//        holder.iv_photo.setImageResource(list.get(position).getListPhoto());
+
+        //加载图片
+        ImageLoader.getInstance().displayImage(list.get(position).getListPhoto(), holder.iv_photo);
         holder.tv_golf_name.setText(list.get(position).getGolfName());
 
         return convertView;

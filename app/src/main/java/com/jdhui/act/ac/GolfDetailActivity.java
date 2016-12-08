@@ -44,7 +44,6 @@ public class GolfDetailActivity extends BaseActivity implements View.OnClickList
 
     private void initData() {
         requestListData();
-
     }
 
     private void initView() {

@@ -79,7 +79,7 @@ public class WebAirPlanBookingActivity extends Activity implements View.OnClickL
 
     public class MyJavaScriptinterface {
         @JavascriptInterface
-        public void result() {
+        public void written() {
             setResult(RESULT_OK);
             WebAirPlanBookingActivity.this.finish();
         }

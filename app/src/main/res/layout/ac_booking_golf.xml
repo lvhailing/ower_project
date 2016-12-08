@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/bg_white_gray_d"
+    android:background="@color/bg_gray"
     android:orientation="vertical">
 
     <RelativeLayout
@@ -37,18 +37,7 @@
         android:scrollbars="none">-->
 
     <!--</ScrollView>-->
-    <TextView
-        android:id="@+id/tv_tip"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/ll_wrap"
-        android:layout_marginLeft="12dp"
-        android:layout_marginRight="12dp"
-        android:layout_marginTop="12dp"
-        android:lineSpacingExtra="5dp"
-        android:text="温馨提示：单次场地预约成功后如果未及时参与会减少一次您的服务优惠哦。"
-        android:textColor="@color/gray_dark"
-        android:textSize="12sp"/>
+
 
     <Button
         android:id="@+id/btn_submit"
@@ -63,14 +52,12 @@
         android:id="@+id/ll_wrap"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@id/rl_service_type"
         android:background="@color/white"
         android:focusable="true"
         android:focusableInTouchMode="true"
         android:orientation="vertical"
-        android:paddingLeft="12dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true">
+        android:paddingLeft="12dp">
 
         <LinearLayout
             style="@style/ll_style">
@@ -79,12 +66,10 @@
                 style="@style/tv_style"
                 android:text="预约人"/>
 
-            <EditText
-                android:id="@+id/et_name"
+            <TextView
+                android:id="@+id/tv_name"
                 style="@style/et_style"
-                android:hint="请输入预约人"
-                android:maxLength="10"
-                android:maxLines="1"/>
+                android:text=""/>
         </LinearLayout>
 
         <View
@@ -97,12 +82,12 @@
                 style="@style/tv_style"
                 android:text="身份证"/>
 
-            <EditText
-                android:id="@+id/et_id_num"
+            <TextView
+                android:id="@+id/tv_id_num"
                 style="@style/et_style"
-                android:hint="请输入身份证号"
-                android:maxLength="10"
-                android:maxLines="1"/>
+                android:maxLength="18"
+                android:maxLines="1"
+                android:text=""/>
         </LinearLayout>
 
         <View
@@ -175,24 +160,19 @@
         <View
             style="@style/v_line_style"/>
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:orientation="horizontal">
+        <LinearLayout
+            style="@style/ll_style">
 
             <TextView
                 style="@style/tv_style"
-                android:layout_centerVertical="true"
                 android:text="场馆名称"/>
 
             <TextView
                 android:id="@+id/tv_venue_name"
-                style="@style/tv_style"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
+                style="@style/et_style"
                 android:text=""/>
 
-        </RelativeLayout>
+        </LinearLayout>
 
         <View
             style="@style/v_line_style"/>
@@ -231,5 +211,18 @@
         </RelativeLayout>
 
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_tip"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ll_wrap"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
+        android:layout_marginTop="12dp"
+        android:lineSpacingExtra="5dp"
+        android:text="温馨提示：单次场地预约成功后如果未及时参与会减少一次您的服务优惠哦。"
+        android:textColor="@color/gray_dark"
+        android:textSize="12sp"/>
 
 </RelativeLayout>

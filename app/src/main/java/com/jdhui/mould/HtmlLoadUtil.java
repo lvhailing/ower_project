@@ -494,8 +494,8 @@ public class HtmlLoadUtil {
      *
      * @return
      */
-    public static String submitGolf(String userName, String userIdNo, String bookingTime, String clientPhone, String golfId, String peersOne, String peersTwo) {
-        SubmitBookingGolf0B b = new SubmitBookingGolf0B(userName, userIdNo, bookingTime, clientPhone, golfId, peersOne, peersTwo);
+    public static String submitGolf(String bookingTime, String clientPhone, String golfId, String peersOne, String peersTwo) {
+        SubmitBookingGolf0B b = new SubmitBookingGolf0B(bookingTime, clientPhone, golfId, peersOne, peersTwo);
         return getResult(b);
     }
 }

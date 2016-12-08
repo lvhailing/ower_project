@@ -206,5 +206,10 @@ public class Constants {
      */
     public static final String TASK_TYPE_SERVICE_BOOKING_GOLF = String.valueOf(index++);
 
+    /***
+     * 服务--获取高尔夫提交预约时的客户姓名和身份证
+     */
+    public static final String TASK_TYPE_SERVICE_GET_INFO = String.valueOf(index++);
+
 
 }

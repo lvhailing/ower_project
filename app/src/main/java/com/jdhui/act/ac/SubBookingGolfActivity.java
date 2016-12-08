@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import com.jdhui.R;
 import com.jdhui.act.BaseActivity;
+import com.jdhui.bean.mybean.GetGolfInfo2B;
 import com.jdhui.bean.mybean.SubmitBookingHospital2B;
 import com.jdhui.dialog.DatePickDialog;
 import com.jdhui.mould.BaseParams;
@@ -30,8 +31,8 @@ import java.util.Locale;
  * 服务--高尔夫球场地预约
  */
 public class SubBookingGolfActivity extends BaseActivity implements View.OnClickListener {
-    private EditText et_name; //预约人
-    private EditText et_id_num; //身份证号
+    private TextView tv_name; //预约人
+    private TextView tv_id_num; //身份证号
     private EditText et_together1;
     private EditText et_together2;
     private EditText et_phone; //联系电话
@@ -47,8 +48,10 @@ public class SubBookingGolfActivity extends BaseActivity implements View.OnClick
     private View v_line2;
     private Button btn_submit;
     private String id; //高尔夫球场Id
-    private String name; //高尔夫球场名称
+    private String golfName; //高尔夫球场名称
     private String golfRights; //高尔夫球场名称
+    private String userName;//预约人
+    private String userIdNo;//身份证号
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,12 +63,14 @@ public class SubBookingGolfActivity extends BaseActivity implements View.OnClick
     }
 
     private void initData() {
+        requestData();
         id = getIntent().getStringExtra("id");
         golfRights = getIntent().getStringExtra("golfRights");
-        name = getIntent().getStringExtra("name");
+        golfName = getIntent().getStringExtra("name");
 
-        tv_venue_name.setText(name);//设置高尔夫球场名称
-        if(golfRights.equals("A2")||golfRights.equals("VIP")){
+        tv_venue_name = (TextView) findViewById(R.id.tv_venue_name);
+        tv_venue_name.setText(golfName);//设置高尔夫球场名称
+        if (golfRights.equals("A2") || golfRights.equals("VIP")) {
             //高尔夫权限  not：优惠价  A1：嘉宾价  A2：会员价  VIP：会员价
             ll_together1.setVisibility(View.VISIBLE);
             ll_together2.setVisibility(View.VISIBLE);
@@ -74,10 +79,27 @@ public class SubBookingGolfActivity extends BaseActivity implements View.OnClick
         }
     }
 
+    private void requestData() {
+        HtmlRequest.getInfo(this, new BaseRequester.OnRequestListener() {
+            @Override
+            public void onRequestFinished(BaseParams params) {
+                if (params != null) {
+                    GetGolfInfo2B info2B = (GetGolfInfo2B) params.result;
+                    if (info2B != null) {
+                        userName = info2B.getUserName();
+                        userIdNo = info2B.getUserIdNo();
+                        tv_name.setText(userName);
+                        tv_id_num.setText(userIdNo);
+                    }
+                }
+            }
+        });
+    }
+
     private void initView() {
         tv_tip = (TextView) findViewById(R.id.tv_tip);
-        et_name = (EditText) findViewById(R.id.et_name);
-        et_id_num = (EditText) findViewById(R.id.et_id_num);
+        tv_name = (TextView) findViewById(R.id.tv_name);
+        tv_id_num = (TextView) findViewById(R.id.tv_id_num);
         et_together1 = (EditText) findViewById(R.id.et_together1);
         et_together2 = (EditText) findViewById(R.id.et_together2);
         et_phone = (EditText) findViewById(R.id.et_phone);
@@ -113,7 +135,7 @@ public class SubBookingGolfActivity extends BaseActivity implements View.OnClick
     }
 
     private void submit() {
-        String userName = et_name.getText().toString();
+       /* String userName = et_name.getText().toString();
         if (TextUtils.isEmpty(userName)) {
             Toast.makeText(this,"请输入预约人姓名",Toast.LENGTH_SHORT).show();
             return;
@@ -123,30 +145,30 @@ public class SubBookingGolfActivity extends BaseActivity implements View.OnClick
         if (TextUtils.isEmpty(userIdNo)) {
             Toast.makeText(this,"请输入预约人身份证号",Toast.LENGTH_SHORT).show();
             return;
-        }
+        }*/
 
         String peersOne = et_together1.getText().toString();
         String peersTwo = et_together2.getText().toString();
 
         String clientPhone = et_phone.getText().toString();
         if (TextUtils.isEmpty(clientPhone)) {
-            Toast.makeText(this,"请输入预约人电话",Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "请输入预约人电话", Toast.LENGTH_SHORT).show();
             return;
         }
 
         String bookingTime = tv_booking_time.getText().toString();
-        if (TextUtils.isEmpty(bookingTime)||bookingTime.equals("请选择预约时间")) {
-            Toast.makeText(this,"请选择预约时间",Toast.LENGTH_SHORT).show();
+        if (TextUtils.isEmpty(bookingTime) || bookingTime.equals("请选择预约时间")) {
+            Toast.makeText(this, "请选择预约时间", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        HtmlRequest.submitGolfDetail(this, userName, userIdNo, bookingTime, clientPhone, id, peersOne, peersTwo, new BaseRequester.OnRequestListener() {
+        HtmlRequest.submitGolfDetail(this, bookingTime, clientPhone, id, peersOne, peersTwo, new BaseRequester.OnRequestListener() {
             @Override
             public void onRequestFinished(BaseParams params) {
                 if (params != null) {
                     SubmitBookingHospital2B bookingHospital2B = (SubmitBookingHospital2B) params.result;
                     if (bookingHospital2B != null) {
-                        if (Boolean.parseBoolean(bookingHospital2B.getFlag())) {
+                        if (!Boolean.parseBoolean(bookingHospital2B.getFlag())) {
                             Toast.makeText(SubBookingGolfActivity.this, "预约成功", Toast.LENGTH_LONG).show();
                             finish();
                         } else {

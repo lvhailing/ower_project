@@ -35,6 +35,7 @@ import com.jdhui.bean.mybean.BookingInsurance1B;
 import com.jdhui.bean.mybean.BookingProduct1B;
 import com.jdhui.bean.mybean.GeneticTestingDetail1B;
 import com.jdhui.bean.mybean.GeneticTestingList1B;
+import com.jdhui.bean.mybean.GetGolfInfo1B;
 import com.jdhui.bean.mybean.GolfDetail1B;
 import com.jdhui.bean.mybean.GolfList1B;
 import com.jdhui.bean.mybean.Product1B;
@@ -2473,14 +2474,70 @@ public class HtmlRequest extends BaseRequester {
     }
 
     /**
+     * 服务--获取高尔夫提交预约时的客户姓名和身份证
+     *
+     * @param context  上下文
+     * @param listener 监听
+     * @return 返回数据
+     */
+    public static String getInfo(final Context context, OnRequestListener listener) {
+//        final String data = HtmlLoadUtil.submitGolf(userName, userIdNo, bookingTime, clientPhone, golfId, peersOne, peersTwo);
+        final String url = ApplicationConsts.URL_GET_INFO;
+        String tid = registerId(Constants.TASK_TYPE_SERVICE_GET_INFO, url);
+        if (tid == null) {
+            return null;
+        }
+        getTaskManager().addTask(new MouldAsyncTask(tid, buildParams(Constants.TASK_TYPE_SERVICE_GET_INFO, context, listener, url, 0)) {
+            @Override
+            public IMouldType doTask(BaseParams params) {
+                SimpleHttpClient client = new SimpleHttpClient(context, SimpleHttpClient.RESULT_STRING);
+
+               /* HttpEntity entity = null;
+                try {
+                    entity = new StringEntity(data);
+                } catch (UnsupportedEncodingException e1) {
+                    e1.printStackTrace();
+                }
+*/
+                client.post(url);
+                String result = (String) client.getResult();
+                try {
+                    if (isCancelled()) {
+                        return null;
+                    }
+                    if (result != null) {
+                        String data = DESUtil.decrypt(result);
+                        Gson json = new Gson();
+                        GetGolfInfo1B b = json.fromJson(data, GetGolfInfo1B.class);
+                        resultEncrypt(context, b.getCode());
+                        return b.getData();
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                } finally {
+                    unRegisterId(getTaskId());
+                }
+                return null;
+            }
+
+            @Override
+            public void onPostExecute(IMouldType result, BaseParams params) {
+                params.result = result;
+                params.sendResult();
+            }
+        });
+        return tid;
+    }
+
+    /**
      * 服务--提交高尔夫球场预约
      *
      * @param context  上下文
      * @param listener 监听
      * @return 返回数据
      */
-    public static String submitGolfDetail(final Context context, String userName, String userIdNo, String bookingTime, String clientPhone, String golfId, String peersOne, String peersTwo, OnRequestListener listener) {
-        final String data = HtmlLoadUtil.submitGolf(userName, userIdNo, bookingTime, clientPhone, golfId, peersOne, peersTwo);
+    public static String submitGolfDetail(final Context context, String bookingTime, String clientPhone, String golfId, String peersOne, String peersTwo, OnRequestListener listener) {
+        final String data = HtmlLoadUtil.submitGolf(bookingTime, clientPhone, golfId, peersOne, peersTwo);
         final String url = ApplicationConsts.BOOKING_GOLF;
         String tid = registerId(Constants.TASK_TYPE_SERVICE_BOOKING_GOLF, url);
         if (tid == null) {
