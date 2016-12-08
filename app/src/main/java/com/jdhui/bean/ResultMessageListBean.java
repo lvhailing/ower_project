@@ -4,51 +4,49 @@ package com.jdhui.bean;
 import com.jdhui.mould.types.IMouldType;
 
 public class ResultMessageListBean implements IMouldType {
+    private String status; //消息状态(read:已读;unread:未读)
+    private String title;//消息标题
+    private String content;//消息内容
+    private String sendTime;//发送时间
+    private String messageId;//消息编号
 
+    public String getStatus() {
+        return status;
+    }
 
-	private String status;			//消息状态(read:已读;unread:未读)
-	private String title;			//消息标题
-	private String content;			//消息内容
-	private String sendTime;			//发送时间
-	private String messageId;			//消息编号
+    public void setStatus(String status) {
+        this.status = status;
+    }
 
-	public String getStatus() {
-		return status;
-	}
+    public String getTitle() {
+        return title;
+    }
 
-	public void setStatus(String status) {
-		this.status = status;
-	}
+    public void setTitle(String title) {
+        this.title = title;
+    }
 
-	public String getTitle() {
-		return title;
-	}
+    public String getContent() {
+        return content;
+    }
 
-	public void setTitle(String title) {
-		this.title = title;
-	}
+    public void setContent(String content) {
+        this.content = content;
+    }
 
-	public String getContent() {
-		return content;
-	}
+    public String getSendTime() {
+        return sendTime;
+    }
 
-	public void setContent(String content) {
-		this.content = content;
-	}
+    public void setSendTime(String sendTime) {
+        this.sendTime = sendTime;
+    }
 
-	public String getSendTime() {
-		return sendTime;
-	}
+    public String getMessageId() {
+        return messageId;
+    }
 
-	public void setSendTime(String sendTime) {
-		this.sendTime = sendTime;
-	}
-
-	public String getMessageId() {
-		return messageId;
-	}
-
-	public void setMessageId(String messageId) {
-		this.messageId = messageId;
-	}
+    public void setMessageId(String messageId) {
+        this.messageId = messageId;
+    }
 }

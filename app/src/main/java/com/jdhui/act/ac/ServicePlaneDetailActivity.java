@@ -4,18 +4,16 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.jdhui.R;
 import com.jdhui.act.BaseActivity;
-import com.jdhui.adapter.AssetFixedDetailAdapter;
 import com.jdhui.adapter.PlaneDetailAdapter;
-import com.jdhui.bean.mybean.InterestListBean;
 import com.jdhui.bean.mybean.PlaneMarchListBean;
 import com.jdhui.bean.mybean.ServiceDetail2B;
+import com.jdhui.bean.mybean.SubGeneticTesting2B;
 import com.jdhui.mould.BaseParams;
 import com.jdhui.mould.BaseRequester;
 import com.jdhui.mould.HtmlRequest;
@@ -58,6 +56,7 @@ public class ServicePlaneDetailActivity extends BaseActivity implements View.OnC
         btn_cancel = (Button) findViewById(R.id.btn_cancel);
 
         mBtnBack.setOnClickListener(this);
+        btn_cancel.setOnClickListener(this);
     }
 
     private void initData() {
@@ -113,7 +112,31 @@ public class ServicePlaneDetailActivity extends BaseActivity implements View.OnC
             case R.id.iv_back:
                 finish();
                 break;
+            case R.id.btn_cancel:
+                cancel();
+                break;
         }
+    }
+
+    private void cancel() {
+        HtmlRequest.cancelBooking(this, id, "airplaneBooking", "", "", "", "", new BaseRequester.OnRequestListener() {
+            @Override
+            public void onRequestFinished(BaseParams params) {
+                if (params != null) {
+                    SubGeneticTesting2B geneticTesting2B = (SubGeneticTesting2B) params.result;
+                    if (geneticTesting2B != null) {
+                        if (Boolean.parseBoolean(geneticTesting2B.getFlag())) {
+                            Toast.makeText(ServicePlaneDetailActivity.this, "取消成功", Toast.LENGTH_LONG).show();
+                            finish();
+                        } else {
+                            Toast.makeText(ServicePlaneDetailActivity.this, "取消预约失败，请您检查提交信息", Toast.LENGTH_LONG).show();
+                        }
+                    } else {
+                        Toast.makeText(ServicePlaneDetailActivity.this, "加载失败，请确认网络通畅", Toast.LENGTH_LONG).show();
+                    }
+                }
+            }
+        });
     }
 
 }

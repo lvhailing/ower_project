@@ -7,11 +7,12 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.jdhui.R;
 import com.jdhui.act.BaseActivity;
 import com.jdhui.bean.mybean.ServiceDetail2B;
-import com.jdhui.bean.mybean.ServiceDetail3B;
+import com.jdhui.bean.mybean.SubGeneticTesting2B;
 import com.jdhui.mould.BaseParams;
 import com.jdhui.mould.BaseRequester;
 import com.jdhui.mould.HtmlRequest;
@@ -131,6 +132,7 @@ public class ServiceOrderDetailActivity extends BaseActivity implements View.OnC
         btn_cancel = (Button) findViewById(R.id.btn_cancel);
 
         mBtnBack.setOnClickListener(this);
+        btn_cancel.setOnClickListener(this);
     }
 
     private void initData() {
@@ -263,7 +265,52 @@ public class ServiceOrderDetailActivity extends BaseActivity implements View.OnC
             case R.id.iv_back:
                 finish();
                 break;
+            case R.id.btn_cancel:
+                cancel();
+                break;
         }
+    }
+
+    private void cancel() {
+        String serviceItems = "";   //医院名称
+        String name = "";   //医院名称
+        String departments = "";   //科室
+        String bookingTime = "";   //预约时间
+        String golfName = "";   //高尔夫球场名称
+
+        if (detail2B.getHospitalBooking() != null) {
+            //是绿通就医
+            serviceItems = "hospitalBooking";
+            name = detail2B.getHospitalBooking().getName();
+            departments = detail2B.getHospitalBooking().getDepartments();
+            bookingTime = detail2B.getHospitalBooking().getBookingTime();
+        } else if (detail2B.getGeneticBooking() != null) {
+            //是基因检测
+            serviceItems = "geneticBooking";
+        } else if (detail2B.getGolfBooking() != null) {
+            //是高尔夫
+            serviceItems = "golfBooking";
+            golfName = detail2B.getGolfBooking().getGolfName();
+            bookingTime = detail2B.getGolfBooking().getBookingTime();
+        }
+        HtmlRequest.cancelBooking(this, id, serviceItems, name, departments, bookingTime, golfName, new BaseRequester.OnRequestListener() {
+            @Override
+            public void onRequestFinished(BaseParams params) {
+                if (params != null) {
+                    SubGeneticTesting2B geneticTesting2B = (SubGeneticTesting2B) params.result;
+                    if (geneticTesting2B != null) {
+                        if (Boolean.parseBoolean(geneticTesting2B.getFlag())) {
+                            Toast.makeText(ServiceOrderDetailActivity.this, "取消成功", Toast.LENGTH_LONG).show();
+                            finish();
+                        } else {
+                            Toast.makeText(ServiceOrderDetailActivity.this, "取消预约失败，请您检查提交信息", Toast.LENGTH_LONG).show();
+                        }
+                    } else {
+                        Toast.makeText(ServiceOrderDetailActivity.this, "加载失败，请确认网络通畅", Toast.LENGTH_LONG).show();
+                    }
+                }
+            }
+        });
     }
 
 }

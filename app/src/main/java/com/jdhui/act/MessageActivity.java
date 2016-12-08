@@ -23,7 +23,7 @@ import com.jdhui.uitls.PreferenceUtil;
 /**
  * 消息
  */
-public class MessageActivity extends BaseActivity implements View.OnClickListener{
+public class MessageActivity extends BaseActivity implements View.OnClickListener {
 
     public final static int MESSAGE_RESUEST_CODE = 4003;        //已读消息请求码
     private View view;
@@ -42,11 +42,12 @@ public class MessageActivity extends BaseActivity implements View.OnClickListene
         baseSetContentView(R.layout.activity_message);
         initView();
     }
+
     private void initView() {
         messgeList = new MouldList<ResultMessageListBean>();
         list = new MouldList<ResultMessageListBean>();
 
-        mBtnBack= (ImageView) findViewById(R.id.id_img_back);
+        mBtnBack = (ImageView) findViewById(R.id.id_img_back);
         listView = (PullToRefreshListView) findViewById(R.id.listview);
         mBtnBack.setOnClickListener(this);
     }
@@ -55,13 +56,12 @@ public class MessageActivity extends BaseActivity implements View.OnClickListene
     public void onResume() {
         super.onResume();
         requestHotProductData();
-
     }
+
     /**
      * 模拟请求固守产品网络数据
      */
     private void requestHotProductData() {
-
         requestMessageList();
         listView.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ListView>() {
             public void onRefresh(PullToRefreshBase<ListView> refreshView) {
@@ -81,35 +81,32 @@ public class MessageActivity extends BaseActivity implements View.OnClickListene
 
             }
         });
-        mAdapter =new MessageAdapter(this,list);
+        mAdapter = new MessageAdapter(this, list);
         listView.setAdapter(mAdapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> arg0, View arg1, int position,
-                                    long arg3) {
+            public void onItemClick(AdapterView<?> arg0, View arg1, int position, long arg3) {
                 Intent i_web = new Intent();
-                i_web.setClass(MessageActivity.this,WebActivity.class);
-                i_web.putExtra("id",messgeList.get(position-1).getMessageId());
-                i_web.putExtra("type",WebActivity.WEBTYPE_MESSAGE_DETAILS);
-                index = position-1;
-                i_web.putExtra("title","消息详情");
-                startActivityForResult(i_web,MESSAGE_RESUEST_CODE);
-
+                i_web.setClass(MessageActivity.this, WebActivity.class);
+                i_web.putExtra("id", messgeList.get(position - 1).getMessageId());
+                i_web.putExtra("type", WebActivity.WEBTYPE_MESSAGE_DETAILS);
+                index = position - 1;
+                i_web.putExtra("title", "消息详情");
+                startActivityForResult(i_web, MESSAGE_RESUEST_CODE);
             }
         });
     }
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.id_img_back:
                 finish();
                 break;
         }
     }
 
-    public void requestMessageList(){
-
+    public void requestMessageList() {
         String userid = null;
         try {
             userid = DESUtil.decrypt(PreferenceUtil.getUserId());
@@ -117,43 +114,32 @@ public class MessageActivity extends BaseActivity implements View.OnClickListene
             e.printStackTrace();
         }
         cacheassetMessagePage = messagePage;
-        HtmlRequest.getMessageList(this, userid,messagePage+"",new BaseRequester.OnRequestListener() {
+        HtmlRequest.getMessageList(this, userid, messagePage + "", new BaseRequester.OnRequestListener() {
             @Override
             public void onRequestFinished(BaseParams params) {
-                    if(params.result!=null){
-                        messgeList = (MouldList<ResultMessageListBean>) params.result;
-
-                        if (messgeList.size() == 0 && messagePage!=1) {
-                            Toast.makeText(MessageActivity.this, "已经到最后一页",
-                                    Toast.LENGTH_SHORT).show();
-                            messagePage = cacheassetMessagePage - 1;
-                            listView.getRefreshableView()
-                                    .smoothScrollToPositionFromTop(0, 80,
-                                            100);
-                            listView.onRefreshComplete();
-                        } else {
-                            list.clear();
-                            list.addAll(messgeList);
-                            mAdapter.notifyDataSetChanged();
-                            listView.postDelayed(new Runnable() {
-                                @Override
-                                public void run() {
-                                    listView.onRefreshComplete();
-                                }
-                            }, 1000);
-                            listView.getRefreshableView()
-                                    .smoothScrollToPositionFromTop(0, 80,
-                                            100);
-                        }
-                    }else{
+                if (params.result != null) {
+                    messgeList = (MouldList<ResultMessageListBean>) params.result;
+                    if (messgeList.size() == 0 && messagePage != 1) {
+                        Toast.makeText(MessageActivity.this, "已经到最后一页", Toast.LENGTH_SHORT).show();
+                        messagePage = cacheassetMessagePage - 1;
+                        listView.getRefreshableView().smoothScrollToPositionFromTop(0, 80, 100);
                         listView.onRefreshComplete();
-                        Toast.makeText(MessageActivity.this, "加载失败，请确认网络通畅",
-                                Toast.LENGTH_LONG).show();
+                    } else {
+                        list.clear();
+                        list.addAll(messgeList);
+                        mAdapter.notifyDataSetChanged();
+                        listView.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                listView.onRefreshComplete();
+                            }
+                        }, 1000);
+                        listView.getRefreshableView().smoothScrollToPositionFromTop(0, 80, 100);
                     }
-
-
-
-
+                } else {
+                    listView.onRefreshComplete();
+                    Toast.makeText(MessageActivity.this, "加载失败，请确认网络通畅", Toast.LENGTH_LONG).show();
+                }
             }
         });
 
@@ -162,10 +148,9 @@ public class MessageActivity extends BaseActivity implements View.OnClickListene
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode==MESSAGE_RESUEST_CODE){
+        if (requestCode == MESSAGE_RESUEST_CODE) {
             messgeList.get(index).setStatus("read");
             mAdapter.notifyDataSetChanged();
         }
-
     }
 }

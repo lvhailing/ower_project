@@ -1193,7 +1193,6 @@ public class HtmlRequest extends BaseRequester {
      * @return 返回数据
      */
     public static String getMessageList(final Context context, String userId, String page, OnRequestListener listener) {
-
         final String data = HtmlLoadUtil.getMessageList(userId, page);
         final String url = ApplicationConsts.URL_MESSAGE_LIST_INDEX;
         String tid = registerId(Constants.TASK_TYPE_MESSAGE_LIST_INDEX, url);
@@ -1223,8 +1222,7 @@ public class HtmlRequest extends BaseRequester {
                                 String data = DESUtil.decrypt(result);
                                 Gson json = new Gson();
 //								Toast.makeText(context,data.toString(),Toast.LENGTH_SHORT).show();
-                                ResultMessageListContentBean b = json.fromJson(
-                                        data, ResultMessageListContentBean.class);
+                                ResultMessageListContentBean b = json.fromJson(data, ResultMessageListContentBean.class);
                                 resultEncrypt(context, b.getCode());
                                 return b.getData();
                             }
@@ -1235,10 +1233,8 @@ public class HtmlRequest extends BaseRequester {
                         }
                         return null;
                     }
-
                     @Override
-                    public void onPostExecute(IMouldType result,
-                                              BaseParams params) {
+                    public void onPostExecute(IMouldType result, BaseParams params) {
                         params.result = result;
                         params.sendResult();
                     }
@@ -2629,6 +2625,64 @@ public class HtmlRequest extends BaseRequester {
                 params.sendResult();
             }
         });
+        return tid;
+    }
+
+    /**
+     * 更多--取消预约（服务详情页待确认状态时显示取消按钮）
+     *
+     * @param context  上下文
+     * @param listener 监听
+     * @return 返回数据
+     */
+    public static String cancelBooking(final Context context, String id, String serviceItems, String name, String departments,
+                                           String bookingTime, String golfName, OnRequestListener listener) {
+        final String data = HtmlLoadUtil.cancelBooking(id, serviceItems, name, departments, bookingTime, golfName);
+        final String url = ApplicationConsts.URL_SERVICE_BOOKINGGENETICTESTING_ADD;
+        String tid = registerId(Constants.TASK_TYPE_BOOKING_GENETICTESTING_ADD, url);
+        if (tid == null) {
+            return null;
+        }
+        getTaskManager().addTask(
+                new MouldAsyncTask(tid, buildParams(Constants.TASK_TYPE_BOOKING_GENETICTESTING_ADD, context, listener, url, 0)) {
+                    @Override
+                    public IMouldType doTask(BaseParams params) {
+                        SimpleHttpClient client = new SimpleHttpClient(context, SimpleHttpClient.RESULT_STRING);
+
+                        HttpEntity entity = null;
+                        try {
+                            entity = new StringEntity(data);
+                        } catch (UnsupportedEncodingException e1) {
+                            e1.printStackTrace();
+                        }
+
+                        client.post(url, entity);
+                        String result = (String) client.getResult();
+                        try {
+                            if (isCancelled()) {
+                                return null;
+                            }
+                            if (result != null) {
+                                String data = DESUtil.decrypt(result);
+                                Gson json = new Gson();
+                                SubGeneticTesting1B b = json.fromJson(data, SubGeneticTesting1B.class);
+                                resultEncrypt(context, b.getCode());
+                                return b.getData();
+                            }
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        } finally {
+                            unRegisterId(getTaskId());
+                        }
+                        return null;
+                    }
+
+                    @Override
+                    public void onPostExecute(IMouldType result, BaseParams params) {
+                        params.result = result;
+                        params.sendResult();
+                    }
+                });
         return tid;
     }
 

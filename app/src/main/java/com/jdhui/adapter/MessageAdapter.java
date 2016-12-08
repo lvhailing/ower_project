@@ -12,7 +12,6 @@ import com.jdhui.bean.ResultMessageListBean;
 import com.jdhui.mould.types.MouldList;
 
 public class MessageAdapter extends BaseAdapter {
-
     private MouldList<ResultMessageListBean> list;
     private Context context;
     private LayoutInflater inflater;
@@ -84,6 +83,5 @@ public class MessageAdapter extends BaseAdapter {
         TextView tv_notice_item_time;
         TextView tv_notice_item_content;
         TextView tv_flag;
-
     }
 }
