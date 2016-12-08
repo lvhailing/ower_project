@@ -2,8 +2,10 @@ package com.jdhui.act.ac;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,6 +35,9 @@ public class ServicePlaneDetailActivity extends BaseActivity implements View.OnC
     private String id;//服务Id
     private String serviceItems;//服务类型
     private ServiceDetail2B detail2B;
+    private String status;
+    private RelativeLayout rl_tips;
+    private Button btn_cancel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +54,8 @@ public class ServicePlaneDetailActivity extends BaseActivity implements View.OnC
         mTvOrderStatus = (TextView) findViewById(R.id.tv_order_status);
         mTvPhone = (TextView) findViewById(R.id.tv_phone);
         myListView = (MyListView) findViewById(R.id.lv);
+        rl_tips = (RelativeLayout) findViewById(R.id.rl_tips);
+        btn_cancel = (Button) findViewById(R.id.btn_cancel);
 
         mBtnBack.setOnClickListener(this);
     }
@@ -80,12 +87,17 @@ public class ServicePlaneDetailActivity extends BaseActivity implements View.OnC
         if (detail2B.getAirplaneBooking() != null) {
             //公务机包机
             mTvOrderService.setText("公务机包机");
-            mTvOrderStatus.setText(detail2B.getAirplaneBooking().getBookingStatus());  //预约状态
+            status = detail2B.getAirplaneBooking().getBookingStatus();
+            mTvOrderStatus.setText(status);  //预约状态
+            if (status.equals("unconfirm")) {
+                rl_tips.setVisibility(View.VISIBLE);
+                btn_cancel.setVisibility(View.VISIBLE);
+            }
             mTvPhone.setText(detail2B.getAirplaneBooking().getClientPhone()); //联系电话
 
             MouldList<PlaneMarchListBean> marchList = detail2B.getAirplaneBooking().getAirplaneMarch();
             if (marchList == null || marchList.size() == 0) {
-                Toast.makeText(this, "您当前暂无行程",Toast.LENGTH_LONG).show();
+                Toast.makeText(this, "您当前暂无行程", Toast.LENGTH_LONG).show();
             }
 
             //设置行程列表

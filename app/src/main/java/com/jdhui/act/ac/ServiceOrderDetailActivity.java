@@ -2,8 +2,10 @@ package com.jdhui.act.ac;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.jdhui.R;
@@ -69,6 +71,8 @@ public class ServiceOrderDetailActivity extends BaseActivity implements View.OnC
     private LinearLayout mLlTogether2; //同行人2
     private TextView mTvTogether1;
     private TextView mTvTogether2;
+    private RelativeLayout rl_tips; //顶部提示语
+    private Button btn_cancel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -123,6 +127,8 @@ public class ServiceOrderDetailActivity extends BaseActivity implements View.OnC
         mLlTogether1 = (LinearLayout) findViewById(R.id.ll_together1);
         mLlTogether2 = (LinearLayout) findViewById(R.id.ll_together2);
         mLlOrderTime = (LinearLayout) findViewById(R.id.ll_order_time);
+        rl_tips = (RelativeLayout) findViewById(R.id.rl_tips);
+        btn_cancel = (Button) findViewById(R.id.btn_cancel);
 
         mBtnBack.setOnClickListener(this);
     }
@@ -169,7 +175,12 @@ public class ServiceOrderDetailActivity extends BaseActivity implements View.OnC
             mLlDescIllness.setVisibility(View.VISIBLE);
             mLlSubTime.setVisibility(View.VISIBLE);
 
-            mTvOrderStatus.setText(detail2B.getHospitalBooking().getBookingStatus());  //预约状态
+            String status = detail2B.getHospitalBooking().getBookingStatus();
+            mTvOrderStatus.setText(status);  //预约状态
+            if (status.equals("unconfirm")) {
+                rl_tips.setVisibility(View.VISIBLE);
+                btn_cancel.setVisibility(View.VISIBLE);
+            }
             mTvOrderName.setText(detail2B.getHospitalBooking().getBookingClient());  //预约人
             mTvSocialSecurityNum.setText(detail2B.getHospitalBooking().getSecurityNum()); //社保号码
             mTvIdNum.setText(detail2B.getHospitalBooking().getClientIdNo()); //身份证号
@@ -195,7 +206,12 @@ public class ServiceOrderDetailActivity extends BaseActivity implements View.OnC
             mLlAddress.setVisibility(View.VISIBLE);
             mLlSubTime.setVisibility(View.VISIBLE);
 
-            mTvOrderStatus.setText(detail2B.getGeneticBooking().getBookingStatus());  //预约状态
+            String status = detail2B.getGeneticBooking().getBookingStatus();
+            mTvOrderStatus.setText(status);  //预约状态
+            if (status.equals("unconfirm")) {
+                rl_tips.setVisibility(View.VISIBLE);
+                btn_cancel.setVisibility(View.VISIBLE);
+            }
             mTvOrderName.setText(detail2B.getGeneticBooking().getBookingClient());  //预约人
             mTvSex.setText(detail2B.getGeneticBooking().getUserSex());  //预约人性别
             mTvAge.setText(detail2B.getGeneticBooking().getUserAge());  //预约人年龄
@@ -224,8 +240,13 @@ public class ServiceOrderDetailActivity extends BaseActivity implements View.OnC
             mLlOrderTime.setVisibility(View.VISIBLE);
             mLlSubTime.setVisibility(View.VISIBLE);
 
+            String status = detail2B.getGolfBooking().getBookingStatus();
+            mTvOrderStatus.setText(status);  //预约状态
+            if (status.equals("unconfirm")) {
+                rl_tips.setVisibility(View.VISIBLE);
+                btn_cancel.setVisibility(View.VISIBLE);
+            }
             mTvOrderName.setText(detail2B.getGolfBooking().getName());  //预约人
-            mTvOrderStatus.setText(detail2B.getGolfBooking().getBookingStatus());  //预约状态
             mTvIdNum.setText(detail2B.getGolfBooking().getIdNo());  //身份证
             mTvPhone.setText(detail2B.getGolfBooking().getClientPhone());  //联系电话
             mTvVenueName.setText(detail2B.getGolfBooking().getGolfName());  //场馆名称
