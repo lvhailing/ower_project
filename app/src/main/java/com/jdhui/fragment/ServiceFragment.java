@@ -18,8 +18,7 @@ import com.jdhui.bean.mybean.ServicePicture2B;
 import com.jdhui.mould.BaseParams;
 import com.jdhui.mould.BaseRequester;
 import com.jdhui.mould.HtmlRequest;
-import com.jdhui.uitls.DESUtil;
-import com.jdhui.uitls.PreferenceUtil;
+import com.jdhui.mould.types.MouldList;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
 /**
@@ -34,7 +33,7 @@ public class ServiceFragment extends Fragment implements View.OnClickListener {
     private ImageView iv_genetic;
     private ImageView iv_golf;
     private ImageView iv_plane;
-    private ServicePicture2B servicePicture2B;
+    private MouldList<ServicePicture2B> data;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -85,8 +84,8 @@ public class ServiceFragment extends Fragment implements View.OnClickListener {
             @Override
             public void onRequestFinished(BaseParams params) {
                 if (params != null) {
-                    servicePicture2B = (ServicePicture2B) params.result;
-                    if (servicePicture2B != null) {
+                    data = (MouldList<ServicePicture2B>) params.result;
+                    if (data != null) {
                         setView();
                     }
                 }
@@ -96,14 +95,16 @@ public class ServiceFragment extends Fragment implements View.OnClickListener {
     }
 
     private void setView() {
-        if (servicePicture2B.getType().equals("hospitalBooking")) {
-            ImageLoader.getInstance().displayImage(servicePicture2B.getPicture(), iv_hospital);
-        } else if (servicePicture2B.getType().equals("geneticBooking")) {
-            ImageLoader.getInstance().displayImage(servicePicture2B.getPicture(), iv_genetic);
-        } else if (servicePicture2B.getType().equals("golfBooking")) {
-            ImageLoader.getInstance().displayImage(servicePicture2B.getPicture(), iv_golf);
-        } else if (servicePicture2B.getType().equals("airplaneBooking")) {
-            ImageLoader.getInstance().displayImage(servicePicture2B.getPicture(), iv_plane);
+        for (ServicePicture2B item : data) {
+            if (item.getType().equals("hospitalBooking")) {
+                ImageLoader.getInstance().displayImage(item.getPicture(), iv_hospital);
+            } else if (item.getType().equals("geneticBooking")) {
+                ImageLoader.getInstance().displayImage(item.getPicture(), iv_genetic);
+            } else if (item.getType().equals("golfBooking")) {
+                ImageLoader.getInstance().displayImage(item.getPicture(), iv_golf);
+            } else if (item.getType().equals("airplaneBooking")) {
+                ImageLoader.getInstance().displayImage(item.getPicture(), iv_plane);
+            }
         }
     }
 
