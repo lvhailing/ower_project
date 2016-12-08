@@ -344,12 +344,12 @@ public class ApplicationConsts {
     public static final String URL_SERVICE_BOOKINGHOSPITAL_LIST = EC_HOST + "service/bookingHospital/list";
 
     /**
-     * 展示预约基因检测列表
+     * 展示预约高尔夫球场地列表
      */
     public static final String URL_SERVICE_GOLF_LIST = EC_HOST + "service/golf/list";
 
     /**
-     * 展示预约高尔夫球场列表
+     * 展示预约基因检测列表
      */
     public static final String URL_SERVICE_BOOKINGGENETICTESTING_LIST = EC_HOST + "service/bookingGeneticTesting/list";
 
@@ -387,6 +387,16 @@ public class ApplicationConsts {
      * 获取高尔夫提交预约时的客户姓名和身份证
      */
     public static final String URL_GET_INFO = EC_HOST + "service/golf/userMsg";
+
+    /**
+     * 显示服务首页图片
+     */
+    public static final String URL_TURN_SERVICE_PICTURE = EC_HOST + "turn/servicePicture";
+
+
+
+
+
 
 
     // 手势密码点的状态

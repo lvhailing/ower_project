@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 import com.jdhui.R;
@@ -13,6 +14,13 @@ import com.jdhui.act.ac.WebAirPlanBookingActivity;
 import com.jdhui.act.ac.GeneticTestingListActivity;
 import com.jdhui.act.ac.GolfListActivity;
 import com.jdhui.act.ac.SubBookingHospitalActivity;
+import com.jdhui.bean.mybean.ServicePicture2B;
+import com.jdhui.mould.BaseParams;
+import com.jdhui.mould.BaseRequester;
+import com.jdhui.mould.HtmlRequest;
+import com.jdhui.uitls.DESUtil;
+import com.jdhui.uitls.PreferenceUtil;
+import com.nostra13.universalimageloader.core.ImageLoader;
 
 /**
  * 底部导航---服务
@@ -22,10 +30,15 @@ public class ServiceFragment extends Fragment implements View.OnClickListener {
     private RelativeLayout rl_genetic; //基因检测
     private RelativeLayout rl_golf; //高尔夫球场地
     private RelativeLayout rl_plane; //公务机包机
+    private ImageView iv_hospital;
+    private ImageView iv_genetic;
+    private ImageView iv_golf;
+    private ImageView iv_plane;
+    private ServicePicture2B servicePicture2B;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.ac_service, null);
+        View view = inflater.inflate(R.layout.fragment_service, null);
         initView(view);
         initData();
         return view;
@@ -46,6 +59,11 @@ public class ServiceFragment extends Fragment implements View.OnClickListener {
         rl_golf = (RelativeLayout) view.findViewById(R.id.rl_golf);
         rl_plane = (RelativeLayout) view.findViewById(R.id.rl_plane);
 
+        iv_hospital = (ImageView) view.findViewById(R.id.iv_hospital);
+        iv_genetic = (ImageView) view.findViewById(R.id.iv_genetic);
+        iv_golf = (ImageView) view.findViewById(R.id.iv_golf);
+        iv_plane = (ImageView) view.findViewById(R.id.iv_plane);
+
         rl_hospital.setOnClickListener(this);
         rl_genetic.setOnClickListener(this);
         rl_golf.setOnClickListener(this);
@@ -57,22 +75,36 @@ public class ServiceFragment extends Fragment implements View.OnClickListener {
     }
 
     private void requestData() {
-        /*String userId = null;
+       /* String userId = null;
         try {
             userId = DESUtil.decrypt(PreferenceUtil.getUserId());
         } catch (Exception e) {
             e.printStackTrace();
-        }
-        HtmlRequest.accountIndex(context, userId, new BaseRequester.OnRequestListener() {
+        }*/
+        HtmlRequest.getServicePicture(getActivity(), "123", new BaseRequester.OnRequestListener() {
             @Override
             public void onRequestFinished(BaseParams params) {
                 if (params != null) {
-                    accountBean = (ResultAccountIndexBean) params.result;
-                    setView();
+                    servicePicture2B = (ServicePicture2B) params.result;
+                    if (servicePicture2B != null) {
+                        setView();
+                    }
                 }
 
             }
-        });*/
+        });
+    }
+
+    private void setView() {
+        if (servicePicture2B.getType().equals("hospitalBooking")) {
+            ImageLoader.getInstance().displayImage(servicePicture2B.getPicture(), iv_hospital);
+        } else if (servicePicture2B.getType().equals("geneticBooking")) {
+            ImageLoader.getInstance().displayImage(servicePicture2B.getPicture(), iv_genetic);
+        } else if (servicePicture2B.getType().equals("golfBooking")) {
+            ImageLoader.getInstance().displayImage(servicePicture2B.getPicture(), iv_golf);
+        } else if (servicePicture2B.getType().equals("airplaneBooking")) {
+            ImageLoader.getInstance().displayImage(servicePicture2B.getPicture(), iv_plane);
+        }
     }
 
     @Override

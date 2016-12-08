@@ -36,6 +36,7 @@ import com.jdhui.bean.mybean.Product0B;
 import com.jdhui.bean.mybean.ProductDetail0B;
 import com.jdhui.bean.mybean.Service0B;
 import com.jdhui.bean.mybean.ServiceDetail0B;
+import com.jdhui.bean.mybean.ServicePicture0B;
 import com.jdhui.bean.mybean.SubGeneticTesting0B;
 import com.jdhui.bean.mybean.SubmitBookingGolf0B;
 import com.jdhui.bean.mybean.SubmitBookingHospital0B;
@@ -498,4 +499,16 @@ public class HtmlLoadUtil {
         SubmitBookingGolf0B b = new SubmitBookingGolf0B(bookingTime, clientPhone, golfId, peersOne, peersTwo);
         return getResult(b);
     }
+
+    /**
+     * 服务--显示服务首页图片
+     *
+     * @return
+     */
+    public static String getServicePicture( String id) {
+        ServicePicture0B b = new ServicePicture0B( id);
+        return getResult(b);
+    }
+
+
 }

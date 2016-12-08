@@ -36,7 +36,7 @@ public class NewsActivity extends BaseActivity implements View.OnClickListener{
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        baseSetContentView(R.layout.ac_service);
+        baseSetContentView(R.layout.ac_service_news);
         initView();
         initData();
     }

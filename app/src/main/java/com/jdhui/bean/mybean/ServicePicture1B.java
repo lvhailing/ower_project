@@ -1,12 +1,14 @@
 package com.jdhui.bean.mybean;
 
+import com.jdhui.bean.ResultCycleIndexBean;
 import com.jdhui.mould.types.IMouldType;
+import com.jdhui.mould.types.MouldList;
 
-public class GeneticTestingList1B implements IMouldType {
+public class ServicePicture1B implements IMouldType {
 	private String check;
 	private String code;
 	private String msg;
-	private GeneticTestingList2B data;
+	private MouldList<ServicePicture2B> data;
 
 	public String getCheck() {
 		return check;
@@ -32,11 +34,11 @@ public class GeneticTestingList1B implements IMouldType {
 		this.msg = msg;
 	}
 
-	public GeneticTestingList2B getData() {
+	public MouldList<ServicePicture2B> getData() {
 		return data;
 	}
 
-	public void setData(GeneticTestingList2B data) {
+	public void setData(MouldList<ServicePicture2B> data) {
 		this.data = data;
 	}
 }

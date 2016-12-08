@@ -61,9 +61,6 @@ public class WebAirPlanBookingActivity extends Activity implements View.OnClickL
         mWebview.setWebViewClient(new WebViewClient() {
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
-                if (url.substring(url.length() - 3, url.length()).equals("aaa")) {
-                    finish();
-                }
                 return true;
             }
         });

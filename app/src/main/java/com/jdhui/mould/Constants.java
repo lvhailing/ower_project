@@ -211,5 +211,10 @@ public class Constants {
      */
     public static final String TASK_TYPE_SERVICE_GET_INFO = String.valueOf(index++);
 
+    /***
+     * 服务--显示服务首页图片
+     */
+    public static final String TASK_TYPE_SERVICE_PICTURE = String.valueOf(index++);
+
 
 }
