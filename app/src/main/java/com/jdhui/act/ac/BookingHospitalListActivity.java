@@ -60,6 +60,7 @@ public class BookingHospitalListActivity extends BaseActivity implements View.On
     private ProvinceAdapter provinceAdapter;    //省份的ad
 
     private CityAdapter cityAdapter;    //市的ad
+    private String hospitalName = "";  //输入的医院名称
     private String selectProvince = "";  //当前选中的省份
     private String selectCity = "";  //当前选中的市
 
@@ -148,7 +149,7 @@ public class BookingHospitalListActivity extends BaseActivity implements View.On
         ll_hidden = (LinearLayout) findViewById(R.id.ll_hidden);
         rl_area = (RelativeLayout) findViewById(R.id.rl_area);
         tv_area = (TextView) findViewById(R.id.tv_area);
-        et_search = (EditText)findViewById(R.id.et_search);
+        et_search = (EditText) findViewById(R.id.et_search);
 
         mBtnBack.setOnClickListener(this);
         v_hidden.setOnClickListener(this);
@@ -158,12 +159,14 @@ public class BookingHospitalListActivity extends BaseActivity implements View.On
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
             }
+
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 //当文本变化时触发事件
-                String input=s.toString();
-                //调接口
+                hospitalName = s.toString().replace(" ", "");
+                requestData();
             }
+
             @Override
             public void afterTextChanged(Editable s) {
             }
@@ -173,7 +176,7 @@ public class BookingHospitalListActivity extends BaseActivity implements View.On
     private void requestData() {
 //        Toast.makeText(this, selectCity + ":" + selectProvince, Toast.LENGTH_SHORT).show();
         try {
-            HtmlRequest.getBookingHospitalList(BookingHospitalListActivity.this, selectProvince, selectCity, "", "", new BaseRequester.OnRequestListener() {
+            HtmlRequest.getBookingHospitalList(BookingHospitalListActivity.this, selectProvince, selectCity, hospitalName, currentPage + "", new BaseRequester.OnRequestListener() {
                 @Override
                 public void onRequestFinished(BaseParams params) {
                     BookingHospitalListActivity.this.stopLoading();
