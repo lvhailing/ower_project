@@ -229,6 +229,7 @@
     <style name="ll_style">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">48dp</item>
+        <item name="android:layout_marginLeft">12dp</item>
         <item name="android:gravity">center_vertical</item>
         <item name="android:layout_marginRight">28dp</item>
         <item name="android:orientation">horizontal</item>

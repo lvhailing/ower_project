@@ -15,6 +15,7 @@ public class ProductOrderAdapter extends BaseAdapter {
 
     private MouldList<Product3B> list;
     private LayoutInflater inflater;
+    private String status;
 
     public ProductOrderAdapter(Context context, MouldList<Product3B> list) {
         this.list = list;
@@ -50,7 +51,15 @@ public class ProductOrderAdapter extends BaseAdapter {
             holder = (Holder) convertView.getTag();
         }
         holder.tv_pro_name.setText(list.get(position).getProductName());
-        holder.tv_pro_status.setText(list.get(position).getStatus());
+        status = list.get(position).getStatus();
+        if (status.equals("submit")) {
+            holder.tv_pro_status.setText("待确认");
+        } else if (status.equals("confirm")) {
+            holder.tv_pro_status.setText("已确认");
+        } else if (status.equals("cancel")) {
+            holder.tv_pro_status.setText("无效预约");
+        }
+
         holder.tv_order_time.setText(list.get(position).getBookingTime());
 
         return convertView;
@@ -60,6 +69,5 @@ public class ProductOrderAdapter extends BaseAdapter {
         TextView tv_pro_name;
         TextView tv_pro_status;
         TextView tv_order_time;
-
     }
 }

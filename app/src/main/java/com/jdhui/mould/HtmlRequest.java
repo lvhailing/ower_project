@@ -471,59 +471,51 @@ public class HtmlRequest extends BaseRequester {
      * @param listener 监听
      * @return 返回数据
      */
-    public static String getMyInfo(final Context context, String userInfoId,
-                                   OnRequestListener listener) {
-
+    public static String getMyInfo(final Context context, String userInfoId, OnRequestListener listener) {
         final String data = HtmlLoadUtil.getMyInfo(userInfoId);
         final String url = ApplicationConsts.URL_MY_INFO;
         String tid = registerId(Constants.TASK_TYPE_MY_INFO, url);
         if (tid == null) {
             return null;
         }
-        getTaskManager().addTask(
-                new MouldAsyncTask(tid, buildParams(
-                        Constants.TASK_TYPE_MY_INFO, context, listener,
-                        url, 0)) {
-
-                    @Override
-                    public IMouldType doTask(BaseParams params) {
-                        SimpleHttpClient client = new SimpleHttpClient(context,
-                                SimpleHttpClient.RESULT_STRING);
-                        HttpEntity entity = null;
-                        try {
-                            entity = new StringEntity(data);
-                        } catch (UnsupportedEncodingException e1) {
-                            e1.printStackTrace();
-                        }
-                        client.post(url, entity);
-                        String result = (String) client.getResult();
-                        try {
-                            if (isCancelled()) {
-                                return null;
-                            }
-                            if (result != null) {
-                                String data = DESUtil.decrypt(result);
-                                Gson json = new Gson();
-                                ResultMyInfoBean b = json.fromJson(
-                                        data, ResultMyInfoBean.class);
-                                resultEncrypt(context, b.getCode());
-                                return b.getData();
-                            }
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        } finally {
-                            unRegisterId(getTaskId());
-                        }
+        getTaskManager().addTask(new MouldAsyncTask(tid, buildParams(Constants.TASK_TYPE_MY_INFO, context, listener, url, 0)) {
+            @Override
+            public IMouldType doTask(BaseParams params) {
+                SimpleHttpClient client = new SimpleHttpClient(context, SimpleHttpClient.RESULT_STRING);
+                HttpEntity entity = null;
+                try {
+                    entity = new StringEntity(data);
+                } catch (UnsupportedEncodingException e1) {
+                    e1.printStackTrace();
+                }
+                client.post(url, entity);
+                String result = (String) client.getResult();
+                try {
+                    if (isCancelled()) {
                         return null;
                     }
-
-                    @Override
-                    public void onPostExecute(IMouldType result,
-                                              BaseParams params) {
-                        params.result = result;
-                        params.sendResult();
+                    if (result != null) {
+                        String data = DESUtil.decrypt(result);
+                        Gson json = new Gson();
+                        ResultMyInfoBean b = json.fromJson(data, ResultMyInfoBean.class);
+                        resultEncrypt(context, b.getCode());
+                        return b.getData();
                     }
-                });
+                } catch (Exception e) {
+                    e.printStackTrace();
+                } finally {
+                    unRegisterId(getTaskId());
+                }
+                return null;
+            }
+
+            @Override
+            public void onPostExecute(IMouldType result,
+                                      BaseParams params) {
+                params.result = result;
+                params.sendResult();
+            }
+        });
         return tid;
     }
 
@@ -1233,6 +1225,7 @@ public class HtmlRequest extends BaseRequester {
                         }
                         return null;
                     }
+
                     @Override
                     public void onPostExecute(IMouldType result, BaseParams params) {
                         params.result = result;
@@ -2636,7 +2629,7 @@ public class HtmlRequest extends BaseRequester {
      * @return 返回数据
      */
     public static String cancelBooking(final Context context, String id, String serviceItems, String name, String departments,
-                                           String bookingTime, String golfName, OnRequestListener listener) {
+                                       String bookingTime, String golfName, OnRequestListener listener) {
         final String data = HtmlLoadUtil.cancelBooking(id, serviceItems, name, departments, bookingTime, golfName);
         final String url = ApplicationConsts.URL_SERVICE_BOOKINGGENETICTESTING_ADD;
         String tid = registerId(Constants.TASK_TYPE_BOOKING_GENETICTESTING_ADD, url);

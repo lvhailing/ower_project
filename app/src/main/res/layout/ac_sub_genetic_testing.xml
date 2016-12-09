@@ -39,8 +39,6 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="12dp"
-            android:layout_marginRight="12dp"
             android:focusable="true"
             android:focusableInTouchMode="true"
             android:orientation="vertical"
@@ -67,13 +65,14 @@
             <RelativeLayout
                 android:id="@+id/rl_sex"
                 android:layout_width="match_parent"
-                android:layout_height="48dp">
+                android:layout_height="48dp"
+                android:layout_marginRight="24dp">
 
                 <TextView
                     style="@style/tv_style"
                     android:layout_centerVertical="true"
-                    android:text="性别"/>
-
+                    android:text="性别"
+                    android:layout_marginLeft="12dp"/>
 
                 <ImageView
                     android:id="@+id/iv_arrow3"
@@ -123,12 +122,14 @@
                 <TextView
                     style="@style/tv_style"
                     android:layout_centerVertical="true"
+                    android:layout_marginLeft="12dp"
                     android:text="检测套餐"/>
 
                 <TextView
                     android:id="@+id/tv_test_set"
                     style="@style/tv_style"
                     android:layout_alignParentRight="true"
+                    android:layout_marginRight="32dp"
                     android:layout_centerVertical="true"
                     android:text=""/>
 

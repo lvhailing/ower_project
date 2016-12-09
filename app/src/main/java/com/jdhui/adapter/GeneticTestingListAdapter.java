@@ -11,6 +11,9 @@ import com.jdhui.R;
 import com.jdhui.bean.mybean.GeneticTestingList3B;
 import com.jdhui.mould.types.MouldList;
 
+/**
+ * 基因检测列表 Adapter
+ */
 public class GeneticTestingListAdapter extends BaseAdapter {
 
     private MouldList<GeneticTestingList3B> list;
@@ -54,6 +57,5 @@ public class GeneticTestingListAdapter extends BaseAdapter {
 
     class Holder {
         TextView tv_genetic_name;
-
     }
 }

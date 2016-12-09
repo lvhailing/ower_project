@@ -7,7 +7,8 @@ public class ResultMyInfoContentBean implements IMouldType {
 	private String	pictureServerURL;	//图片地址
 	private String	userName;	//用户姓名
 	private String  address;	//地址
-	private String	idNo;		//身份证号
+	private String	idNo;		//身份证号或者护照或者机构代码
+	private String	idType;		//idCard:身份证  passport：护照  agencyCode：机构代码
 
 	public String getPictureServerURL() {
 		return pictureServerURL;
@@ -39,6 +40,14 @@ public class ResultMyInfoContentBean implements IMouldType {
 
 	public void setIdNo(String idNo) {
 		this.idNo = idNo;
+	}
+
+	public String getIdType() {
+		return idType;
+	}
+
+	public void setIdType(String idType) {
+		this.idType = idType;
 	}
 }
 

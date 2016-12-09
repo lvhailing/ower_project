@@ -147,28 +147,28 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         resetImgs();
         switch (currentItem) {
             case 0:
-                mTvAsset.setTextColor(Color.parseColor("#BB8755"));
+                mTvAsset.setTextColor(Color.parseColor("#8a0002"));
                 mIvAsset.setImageResource(R.mipmap.img_asset_icon_pressed);
                 mIvProduct.setImageResource(R.mipmap.img_product_icon_normal);
                 mIvService.setImageResource(R.mipmap.img_news_icon_normal);
                 mIvMore.setImageResource(R.mipmap.img_more_icon_normal);
                 break;
             case 1:
-                mTvProduct.setTextColor(Color.parseColor("#BB8755"));
+                mTvProduct.setTextColor(Color.parseColor("#8a0002"));
                 mIvAsset.setImageResource(R.mipmap.img_asset_icon_normal);
                 mIvProduct.setImageResource(R.mipmap.img_product_icon_pressed);
                 mIvService.setImageResource(R.mipmap.img_news_icon_normal);
                 mIvMore.setImageResource(R.mipmap.img_more_icon_normal);
                 break;
             case 2:
-                mTvService.setTextColor(Color.parseColor("#BB8755"));
+                mTvService.setTextColor(Color.parseColor("#8a0002"));
                 mIvAsset.setImageResource(R.mipmap.img_asset_icon_normal);
                 mIvProduct.setImageResource(R.mipmap.img_product_icon_normal);
                 mIvService.setImageResource(R.mipmap.img_news_icon_pressed);
                 mIvMore.setImageResource(R.mipmap.img_more_icon_normal);
                 break;
             case 3:
-                mTvMore.setTextColor(Color.parseColor("#BB8755"));
+                mTvMore.setTextColor(Color.parseColor("#8a0002"));
                 mIvAsset.setImageResource(R.mipmap.img_asset_icon_normal);
                 mIvProduct.setImageResource(R.mipmap.img_product_icon_normal);
                 mIvService.setImageResource(R.mipmap.img_news_icon_normal);

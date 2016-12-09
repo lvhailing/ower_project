@@ -87,10 +87,21 @@ public class ServicePlaneDetailActivity extends BaseActivity implements View.OnC
             //公务机包机
             mTvOrderService.setText("公务机包机");
             status = detail2B.getAirplaneBooking().getBookingStatus();
-            mTvOrderStatus.setText(status);  //预约状态
-            if (status.equals("unconfirm")) {
+            if (status.equals("submit")) {
+                mTvOrderStatus.setText("待确认");  //预约状态
+
                 rl_tips.setVisibility(View.VISIBLE);
                 btn_cancel.setVisibility(View.VISIBLE);
+            } else if (status.equals("confirm")) {
+                mTvOrderStatus.setText("已确认");
+            } else if (status.equals("finish")) {
+                mTvOrderStatus.setText("已完成");
+            } else if (status.equals("unfinish")) {
+                mTvOrderStatus.setText("未完成");
+            } else if (status.equals("refuse")) {
+                mTvOrderStatus.setText("已驳回");
+            } else if (status.equals("cancel")) {
+                mTvOrderStatus.setText("取消");
             }
             mTvPhone.setText(detail2B.getAirplaneBooking().getClientPhone()); //联系电话
 

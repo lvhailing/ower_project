@@ -20,19 +20,19 @@ public class ProOrderDetailActivity extends BaseActivity implements View.OnClick
 
     private RelativeLayout mRlProName;
     private TextView mTvTitle;
-    private TextView mTvtype;
-    private TextView mTvOrderName;
-    private TextView mTvPhone;
-    private TextView mTvIdNum;
-    private TextView mTvOrderStatus;
-
-    private TextView mTvOrderTime;
+    private TextView mTvProName;//产品名称
+    private TextView mTvtype;//产品类型
+    private TextView mTvOrderName;//预约人
+    private TextView mTvPhone;//手机号码
+    private TextView mTvIdNum;//证件号码
+    private TextView mTvOrderStatus;//预约状态
+    private TextView mTvOrderTime;//预约时间
     private ImageView mIvBack;
     private String id;
     private String category;
     private String status;
     private ProductDetail2B proDetail2B;
-    private TextView mTvProName;
+
     private String proName;
 
     @Override
@@ -107,7 +107,13 @@ public class ProOrderDetailActivity extends BaseActivity implements View.OnClick
         mTvOrderName.setText(proDetail2B.getUserInfoName());
         mTvPhone.setText(proDetail2B.getMobile());
         mTvIdNum.setText(proDetail2B.getIdNo());
-        mTvOrderStatus.setText(proDetail2B.getStatus());
+        if (status.equals("submit")) {
+            mTvOrderStatus.setText("待确认");
+        } else if (status.equals("confirm")) {
+            mTvOrderStatus.setText("已确认");
+        } else if (status.equals("cancel")) {
+            mTvOrderStatus.setText("无效预约");
+        }
         mTvOrderTime.setText(proDetail2B.getBookingTime());
     }
 

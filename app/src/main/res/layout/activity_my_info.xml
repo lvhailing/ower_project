@@ -117,9 +117,10 @@
         android:padding="15dp">
 
         <TextView
+            android:id="@+id/tv_id_no"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="身份证"
+            android:text=""
             android:textColor="@color/txt_gray_dark"
             android:textSize="16sp"/>
 

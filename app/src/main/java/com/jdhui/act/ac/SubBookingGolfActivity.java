@@ -20,6 +20,7 @@ import com.jdhui.dialog.DatePickDialog;
 import com.jdhui.mould.BaseParams;
 import com.jdhui.mould.BaseRequester;
 import com.jdhui.mould.HtmlRequest;
+import com.jdhui.uitls.StringUtil;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -52,6 +53,7 @@ public class SubBookingGolfActivity extends BaseActivity implements View.OnClick
     private String golfRights; //高尔夫球场名称
     private String userName;//预约人
     private String userIdNo;//身份证号
+    private TextView tv_id_name;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,6 +78,11 @@ public class SubBookingGolfActivity extends BaseActivity implements View.OnClick
             ll_together2.setVisibility(View.VISIBLE);
             v_line1.setVisibility(View.VISIBLE);
             v_line2.setVisibility(View.VISIBLE);
+        } else {
+            ll_together1.setVisibility(View.GONE);
+            ll_together2.setVisibility(View.GONE);
+            v_line1.setVisibility(View.GONE);
+            v_line2.setVisibility(View.GONE);
         }
     }
 
@@ -88,8 +95,18 @@ public class SubBookingGolfActivity extends BaseActivity implements View.OnClick
                     if (info2B != null) {
                         userName = info2B.getUserName();
                         userIdNo = info2B.getUserIdNo();
+                        String idType = info2B.getIdType();
                         tv_name.setText(userName);
-                        tv_id_num.setText(userIdNo);
+                        if (idType.equals("idCard")) { //身份证
+                            tv_id_name.setText("身份证");
+                            tv_id_num.setText(StringUtil.replaceSubStringID(userIdNo));
+                        } else if (idType.equals("passport")) { //护照
+                            tv_id_name.setText("护照");
+                            tv_id_num.setText(userIdNo);
+                        } else if (idType.equals("agencyCode")) { //机构代码
+                            tv_id_name.setText("机构代码");
+                            tv_id_num.setText(userIdNo);
+                        }
                     }
                 }
             }
@@ -99,6 +116,7 @@ public class SubBookingGolfActivity extends BaseActivity implements View.OnClick
     private void initView() {
         tv_tip = (TextView) findViewById(R.id.tv_tip);
         tv_name = (TextView) findViewById(R.id.tv_name);
+        tv_id_name = (TextView) findViewById(R.id.tv_id_name);
         tv_id_num = (TextView) findViewById(R.id.tv_id_num);
         et_together1 = (EditText) findViewById(R.id.et_together1);
         et_together2 = (EditText) findViewById(R.id.et_together2);
@@ -135,18 +153,6 @@ public class SubBookingGolfActivity extends BaseActivity implements View.OnClick
     }
 
     private void submit() {
-       /* String userName = et_name.getText().toString();
-        if (TextUtils.isEmpty(userName)) {
-            Toast.makeText(this,"请输入预约人姓名",Toast.LENGTH_SHORT).show();
-            return;
-        }
-
-        String userIdNo = et_id_num.getText().toString();
-        if (TextUtils.isEmpty(userIdNo)) {
-            Toast.makeText(this,"请输入预约人身份证号",Toast.LENGTH_SHORT).show();
-            return;
-        }*/
-
         String peersOne = et_together1.getText().toString();
         String peersTwo = et_together2.getText().toString();
 
@@ -188,10 +194,10 @@ public class SubBookingGolfActivity extends BaseActivity implements View.OnClick
 
             public void processTime(Dialog ad, String selectedTime) {
                 //如2016年11月30日
-//                String formatTime = selectedTime.replace("年", "-").replace("月", "-").replace("日", "");
-                if (tv_booking_time != null && isTimeValue(selectedTime)) {
+                String formatTime = selectedTime.replace("年", "-").replace("月", "-").replace("日", "");
+                if (tv_booking_time != null && isTimeValue(formatTime)) {
                     //选择的是正确的时间
-                    tv_booking_time.setText(selectedTime);
+                    tv_booking_time.setText(formatTime);
                 }
                 ad.dismiss();
                 ad = null;

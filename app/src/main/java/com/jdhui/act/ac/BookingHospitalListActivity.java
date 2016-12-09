@@ -94,7 +94,7 @@ public class BookingHospitalListActivity extends BaseActivity implements View.On
             @Override
             public void onItemClick(AdapterView<?> arg0, View arg1, int position, long arg3) {
                 Intent intent = new Intent();
-                intent.putExtra("id", totalList.get(position).getId());
+                intent.putExtra("id", totalList.get(position-1).getId());
                 setResult(100, intent);
                 finish();
             }

@@ -66,7 +66,7 @@ public class ServiceOrderAdapter extends BaseAdapter {
         String status = list.get(position).getBookingStatus();
         if (status.equals("confirm")) {
             holder.tv_status.setText("已确认");
-        } else if (status.equals("unconfirm")) {
+        } else if (status.equals("submit")) {
             holder.tv_status.setText("待确认");
         } else if (status.equals("finish")) {
             holder.tv_status.setText("已完成");
@@ -82,7 +82,7 @@ public class ServiceOrderAdapter extends BaseAdapter {
 
 
         //不同状态时，给字体设置不同的颜色
-        if (status.equals("unconfirm") || status.equals("refuse")) { //待确认或已驳回
+        if (status.equals("submit") || status.equals("refuse")) { //待确认或已驳回
             holder.tv_status.setTextColor(context.getResources().getColor(R.color.red4));
         } else if (status.equals("confirm")) {//已确认
             holder.tv_status.setTextColor(context.getResources().getColor(R.color.txt_orange_new));

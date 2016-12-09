@@ -27,7 +27,7 @@ import com.jdhui.uitls.ViewUtils;
 import static com.jdhui.R.id.btn_order;
 
 /**
- * 浮动产品详情，固定产品详情
+ * 产品--固收和浮收的产品详情（产品信息）
  * Created by hasee on 2016/8/11.
  */
 public class FixedProductDetailActivity extends BaseActivity implements View.OnClickListener {
@@ -55,7 +55,7 @@ public class FixedProductDetailActivity extends BaseActivity implements View.OnC
     // 区间显示预期收益
     private LinearLayout ll_fixed_product_detail_profit;
 
-    private TextView tv_fixed_product_detail_name;          //产品名称
+    private TextView tv_fixed_product_detail_name; //产品名称
     private TextView tv_fixed_product_detail_chanpinguimo;  //产品规模
     private TextView tv_fixed_product_detail_touzimenkan;  //投资门槛
     private TextView tv_fixed_product_detail_chanpinqixian;  //产品期限
@@ -63,6 +63,7 @@ public class FixedProductDetailActivity extends BaseActivity implements View.OnC
     private TextView tv_fixed_product_detail_yujishouyi;  //预期收益
     private TextView tv_fixed_product_detail_fuxijiange;  //付息间隔
     private TextView tv_fixed_product_detail_chengliriqi;  //成立日期
+    private TextView tv_risk_type;//风险类型
     private TextView tv_fixed_product_detail_guanlifei;  //管理费
     private TextView tv_fixed_product_detail_tuoguanfei;  //托管费
     private TextView tv_fixed_product_detail_guanliren;  //管理人
@@ -114,6 +115,7 @@ public class FixedProductDetailActivity extends BaseActivity implements View.OnC
         tv_fixed_product_detail_tuoguanfei = (TextView) findViewById(R.id.tv_fixed_product_detail_tuoguanfei);
         tv_fixed_product_detail_guanliren = (TextView) findViewById(R.id.tv_fixed_product_detail_guanliren);
         tv_fixed_product_detail_tuoguanren = (TextView) findViewById(R.id.tv_fixed_product_detail_tuoguanren);
+        tv_risk_type = (TextView) findViewById(R.id.tv_risk_type);
         btn_order = (Button) findViewById(R.id.btn_order);
 
 

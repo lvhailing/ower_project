@@ -68,7 +68,7 @@
             <TextView
                 android:id="@+id/tv_pro_name"
                 style="@style/product_text_detail_rt"
-                android:text="aaaa"/>
+                android:text=""/>
         </LinearLayout>
 
         <LinearLayout
@@ -81,7 +81,7 @@
             <TextView
                 android:id="@+id/tv_type"
                 style="@style/product_text_detail_rt"
-                android:text="aaaa"/>
+                android:text=""/>
         </LinearLayout>
 
         <LinearLayout

@@ -79,8 +79,9 @@ public class MyInfoActivity extends BaseActivity implements View.OnClickListener
 
     private ResultMyInfoContentBean bean;
     private String userInfoId = null;
-    private TextView mTvName, mTvID;
+    private TextView mTvName, mTvID;//身份证\护照\机构代码
     private EditText mEditAdress;
+    private TextView tv_id_no;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -99,6 +100,7 @@ public class MyInfoActivity extends BaseActivity implements View.OnClickListener
         mLayoutPhoto = (RelativeLayout) findViewById(R.id.id_my_info_layout_photo);
         mImgPhoto = (ImageView) findViewById(R.id.id_my_info_img_user);
         mTvName = (TextView) findViewById(R.id.id_my_info_tv_name);
+        tv_id_no = (TextView) findViewById(R.id.tv_id_no);
         mTvID = (TextView) findViewById(R.id.id_my_info_tv_idcard);
         mEditAdress = (EditText) findViewById(R.id.id_my_info_edit_adress);
         mBtnSave = (Button) findViewById(R.id.id_my_info_btn_save);
@@ -131,7 +133,16 @@ public class MyInfoActivity extends BaseActivity implements View.OnClickListener
         if (bean != null) {
             String url = bean.getPictureServerURL();
             mTvName.setText(bean.getUserName());
-            mTvID.setText(StringUtil.replaceSubStringID(bean.getIdNo()));
+            if (bean.getIdType().equals("idCard")) { //idCard:身份证
+                tv_id_no.setText("身份证");
+                mTvID.setText(StringUtil.replaceSubStringID(bean.getIdNo()));
+            } else if (bean.getIdType().equals("passport")) {  // passport：护照
+                tv_id_no.setText("护照");
+                mTvID.setText(bean.getIdNo());
+            } else if (bean.getIdType().equals("agencyCode")) { // agencyCode：机构代码
+                tv_id_no.setText("机构代码");
+                mTvID.setText(bean.getIdNo());
+            }
             mEditAdress.setText(bean.getAddress());
             if (!TextUtils.isEmpty(url)) {
                 new ImageViewService().execute(url);

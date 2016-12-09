@@ -66,7 +66,7 @@ public class GeneticTestingListActivity extends BaseActivity implements View.OnC
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> arg0, View arg1, int position, long arg3) {
-                String id = totalList.get(position).getId();
+                String id = totalList.get(position-1).getId();
                 //带着点击的那一项的id去访问接口
                 requestDetailData(id);
             }

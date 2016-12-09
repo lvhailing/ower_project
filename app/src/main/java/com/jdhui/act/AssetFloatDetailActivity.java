@@ -22,7 +22,7 @@ import com.jdhui.uitls.StringUtil;
 import com.jdhui.view.MyListView;
 
 /**
- * 资产页浮动收益详情
+ * 资产--浮动收益详情
  * Created by hasee on 2016/8/10.
  */
 public class AssetFloatDetailActivity extends BaseActivity implements View.OnClickListener {

@@ -103,6 +103,7 @@
             />
         <activity
             android:name=".act.MainActivity"
+            android:launchMode="singleTask"
             android:screenOrientation="portrait"/>
         <activity
             android:name=".act.AccountActivity"
@@ -220,9 +221,6 @@
         <activity
             android:name=".act.ac.WebAirPlanBookingActivity"
             android:screenOrientation="portrait"/>
-
-
-
 
 
         <!-- 通道保持服务 -->

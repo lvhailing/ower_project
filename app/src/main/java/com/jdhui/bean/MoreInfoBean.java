@@ -1,5 +1,8 @@
 package com.jdhui.bean;
 
+/**
+ * 更多--我的信息  准备入参
+ */
 public class MoreInfoBean {
 	private String userInfoId;
 

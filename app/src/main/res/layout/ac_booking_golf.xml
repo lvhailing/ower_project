@@ -79,8 +79,9 @@
             style="@style/ll_style">
 
             <TextView
+                android:id="@+id/tv_id_name"
                 style="@style/tv_style"
-                android:text="身份证"/>
+                android:text=""/>
 
             <TextView
                 android:id="@+id/tv_id_num"

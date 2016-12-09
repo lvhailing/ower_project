@@ -78,16 +78,9 @@
                 android:background="@color/white"
                 android:padding="10dp">
 
-                <ImageView
-                    android:id="@+id/iv_product"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/interest"/>
-
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="50dp"
                     android:text="产品预约"
                     android:textColor="@color/txt_gray_dark"
                     android:textSize="16sp"/>
@@ -114,16 +107,9 @@
                 android:background="@color/white"
                 android:padding="10dp">
 
-                <ImageView
-                    android:id="@+id/iv_service_order"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/interest"/>
-
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="50dp"
                     android:text="服务预约"
                     android:textColor="@color/txt_gray_dark"
                     android:textSize="16sp"/>
@@ -150,16 +136,9 @@
                 android:background="@color/white"
                 android:padding="10dp">
 
-                <ImageView
-                    android:id="@+id/iv_product_order"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/interest"/>
-
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="50dp"
                     android:text="君德公告"
                     android:textColor="@color/txt_gray_dark"
                     android:textSize="16sp"/>
@@ -186,16 +165,9 @@
                 android:background="@color/white"
                 android:padding="10dp">
 
-                <ImageView
-                    android:id="@+id/iv_news"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/interest"/>
-
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="50dp"
                     android:text="君德快讯"
                     android:textColor="@color/txt_gray_dark"
                     android:textSize="16sp"/>
@@ -222,16 +194,9 @@
                 android:background="@color/white"
                 android:padding="10dp">
 
-                <ImageView
-                    android:id="@+id/iv_contact_us"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/interest"/>
-
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="50dp"
                     android:text="联系我们"
                     android:textColor="@color/txt_gray_dark"
                     android:textSize="16sp"/>
@@ -269,16 +234,9 @@
                 android:background="@color/white"
                 android:padding="10dp">
 
-                <ImageView
-                    android:id="@+id/iv_about"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/interest"/>
-
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="50dp"
                     android:text="关于我们"
                     android:textColor="@color/txt_gray_dark"
                     android:textSize="16sp"/>
@@ -300,16 +258,9 @@
                 android:background="@color/white"
                 android:padding="10dp">
 
-                <ImageView
-                    android:id="@+id/iv_service"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/interest"/>
-
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="50dp"
                     android:text="服务条款"
                     android:textColor="@color/txt_gray_dark"
                     android:textSize="16sp"/>
@@ -336,16 +287,9 @@
                 android:background="@color/white"
                 android:padding="10dp">
 
-                <ImageView
-                    android:id="@+id/iv_agreement"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/interest"/>
-
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="50dp"
                     android:text="隐私协议"
                     android:textColor="@color/txt_gray_dark"
                     android:textSize="16sp"/>
@@ -372,16 +316,9 @@
                 android:background="@color/white"
                 android:padding="10dp">
 
-                <ImageView
-                    android:id="@+id/iv_check_version"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/interest"/>
-
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="50dp"
                     android:text="检查更新"
                     android:textColor="@color/txt_gray_dark"
                     android:textSize="16sp"/>
@@ -408,16 +345,9 @@
                 android:background="@color/white"
                 android:padding="10dp">
 
-                <ImageView
-                    android:id="@+id/iv_feed_back"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/interest"/>
-
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="50dp"
                     android:text="意见反馈"
                     android:textColor="@color/txt_gray_dark"
                     android:textSize="16sp"/>
@@ -444,16 +374,10 @@
                 android:background="@color/white"
                 android:padding="10dp">
 
-                <ImageView
-                    android:id="@+id/iv_version_num"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/interest"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="50dp"
                     android:text="版本号"
                     android:textColor="@color/txt_gray_dark"
                     android:textSize="16sp"/>

@@ -178,10 +178,21 @@ public class ServiceOrderDetailActivity extends BaseActivity implements View.OnC
             mLlSubTime.setVisibility(View.VISIBLE);
 
             String status = detail2B.getHospitalBooking().getBookingStatus();
-            mTvOrderStatus.setText(status);  //预约状态
-            if (status.equals("unconfirm")) {
+            if (status.equals("submit")) {
+                mTvOrderStatus.setText("待确认");  //预约状态
+
                 rl_tips.setVisibility(View.VISIBLE);
                 btn_cancel.setVisibility(View.VISIBLE);
+            } else if (status.equals("confirm")) {
+                mTvOrderStatus.setText("已确认");  //预约状态
+            } else if (status.equals("finish")) {
+                mTvOrderStatus.setText("已完成");
+            } else if (status.equals("unfinish")) {
+                mTvOrderStatus.setText("未完成");
+            } else if (status.equals("refuse")) {
+                mTvOrderStatus.setText("已驳回");
+            } else if (status.equals("cancel")) {
+                mTvOrderStatus.setText("取消");
             }
             mTvOrderName.setText(detail2B.getHospitalBooking().getBookingClient());  //预约人
             mTvSocialSecurityNum.setText(detail2B.getHospitalBooking().getSecurityNum()); //社保号码
@@ -209,10 +220,21 @@ public class ServiceOrderDetailActivity extends BaseActivity implements View.OnC
             mLlSubTime.setVisibility(View.VISIBLE);
 
             String status = detail2B.getGeneticBooking().getBookingStatus();
-            mTvOrderStatus.setText(status);  //预约状态
-            if (status.equals("unconfirm")) {
+            if (status.equals("submit")) {
+                mTvOrderStatus.setText("待确认");  //预约状态
+
                 rl_tips.setVisibility(View.VISIBLE);
                 btn_cancel.setVisibility(View.VISIBLE);
+            } else if (status.equals("confirm")) {
+                mTvOrderStatus.setText("已确认");
+            } else if (status.equals("finish")) {
+                mTvOrderStatus.setText("已完成");
+            } else if (status.equals("unfinish")) {
+                mTvOrderStatus.setText("未完成");
+            } else if (status.equals("refuse")) {
+                mTvOrderStatus.setText("已驳回");
+            } else if (status.equals("cancel")) {
+                mTvOrderStatus.setText("取消");
             }
             mTvOrderName.setText(detail2B.getGeneticBooking().getBookingClient());  //预约人
             mTvSex.setText(detail2B.getGeneticBooking().getUserSex());  //预约人性别
@@ -243,10 +265,21 @@ public class ServiceOrderDetailActivity extends BaseActivity implements View.OnC
             mLlSubTime.setVisibility(View.VISIBLE);
 
             String status = detail2B.getGolfBooking().getBookingStatus();
-            mTvOrderStatus.setText(status);  //预约状态
-            if (status.equals("unconfirm")) {
+            if (status.equals("submit")) {
+                mTvOrderStatus.setText("待确认");  //预约状态
+
                 rl_tips.setVisibility(View.VISIBLE);
                 btn_cancel.setVisibility(View.VISIBLE);
+            } else if (status.equals("confirm")) {
+                mTvOrderStatus.setText("已确认");
+            } else if (status.equals("finish")) {
+                mTvOrderStatus.setText("已完成");
+            } else if (status.equals("unfinish")) {
+                mTvOrderStatus.setText("未完成");
+            } else if (status.equals("refuse")) {
+                mTvOrderStatus.setText("已驳回");
+            } else if (status.equals("cancel")) {
+                mTvOrderStatus.setText("取消");
             }
             mTvOrderName.setText(detail2B.getGolfBooking().getName());  //预约人
             mTvIdNum.setText(detail2B.getGolfBooking().getIdNo());  //身份证
