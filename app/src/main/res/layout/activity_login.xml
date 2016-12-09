@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:background="@color/bg_gray"
-    android:paddingBottom="10dp">
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:background="@color/bg_gray"
+                android:paddingBottom="10dp">
 
     <ImageView
         android:id="@+id/id_login_img_logo"
@@ -11,27 +11,37 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="100dp"
-        android:src="@mipmap/login_logo" />
+        android:layout_marginTop="70dp"
+        android:src="@mipmap/login_logo"/>
+
+    <TextView
+        android:layout_below="@id/id_login_img_logo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:text="用心创造财富，乐享幸福生活"
+        android:textColor="@color/txt_gray_light"/>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         >
+
         <EditText
             android:id="@+id/id_login_edit_username"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:singleLine="true"
-            android:maxLines="1"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:layout_marginTop="50dp"
             android:background="@drawable/shape_center_white"
             android:hint="用户名"
+            android:maxLines="1"
             android:padding="10dp"
-            android:textColorHint="#DBDBDB" />
+            android:singleLine="true"
+            android:textColorHint="#DBDBDB"/>
 
         <EditText
             android:id="@+id/id_login_edit_password"
@@ -45,7 +55,7 @@
             android:hint="密码"
             android:inputType="textPassword"
             android:padding="10dp"
-            android:textColorHint="#DBDBDB" />
+            android:textColorHint="#DBDBDB"/>
 
         <TextView
             android:id="@+id/id_login_txt_call"
@@ -58,7 +68,7 @@
             android:drawablePadding="5dp"
             android:gravity="center"
             android:text="@string/tellphone_num_format_name"
-            android:textColor="#BB8755" />
+            android:textColor="#BB8755"/>
 
     </RelativeLayout>
 
@@ -73,7 +83,7 @@
         android:layout_marginRight="10dp"
         android:background="@drawable/shape_button_gray_d"
         android:text="登录"
-        android:textColor="@color/white" />
+        android:textColor="@color/white"/>
 
     <Button
         android:id="@+id/id_login_btn_findpw"
@@ -84,6 +94,6 @@
         android:layout_marginRight="10dp"
         android:background="@drawable/shape_center_orange_white_light"
         android:text="忘记密码?"
-        android:textColor="#666666" />
+        android:textColor="#666666"/>
 
 </RelativeLayout>
