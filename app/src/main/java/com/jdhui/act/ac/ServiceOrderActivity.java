@@ -180,6 +180,8 @@ public class ServiceOrderActivity extends BaseActivity implements View.OnClickLi
         isOpened = false;
     }
 
+
+
     @Override
     public void onClick(View v) {
         switch (v.getId()) {

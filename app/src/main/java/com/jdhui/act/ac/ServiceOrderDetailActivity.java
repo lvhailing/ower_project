@@ -196,7 +196,7 @@ public class ServiceOrderDetailActivity extends BaseActivity implements View.OnC
                 rl_tips.setVisibility(View.VISIBLE);
                 mTvTitle.setText(detail2B.getHospitalBooking().getBookingRemark());
             } else if (status.equals("cancel")) {
-                mTvOrderStatus.setText("取消");
+                mTvOrderStatus.setText("已取消");
             }
             mTvOrderName.setText(detail2B.getHospitalBooking().getBookingClient());  //预约人
             mTvSocialSecurityNum.setText(detail2B.getHospitalBooking().getSecurityNum()); //社保号码
@@ -241,7 +241,7 @@ public class ServiceOrderDetailActivity extends BaseActivity implements View.OnC
                 rl_tips.setVisibility(View.VISIBLE);
                 mTvTitle.setText(detail2B.getGeneticBooking().getBookingRemark());
             } else if (status.equals("cancel")) {
-                mTvOrderStatus.setText("取消");
+                mTvOrderStatus.setText("已取消");
             }
             mTvOrderName.setText(detail2B.getGeneticBooking().getBookingClient());  //预约人
             mTvSex.setText(detail2B.getGeneticBooking().getUserSex());  //预约人性别
@@ -289,7 +289,7 @@ public class ServiceOrderDetailActivity extends BaseActivity implements View.OnC
                 rl_tips.setVisibility(View.VISIBLE);
                 mTvTitle.setText(detail2B.getGolfBooking().getBookingRemark());
             } else if (status.equals("cancel")) {
-                mTvOrderStatus.setText("取消");
+                mTvOrderStatus.setText("已取消");
             }
             mTvOrderName.setText(detail2B.getGolfBooking().getName());  //预约人
             mTvIdNum.setText(detail2B.getGolfBooking().getIdNo());  //身份证
@@ -315,7 +315,7 @@ public class ServiceOrderDetailActivity extends BaseActivity implements View.OnC
     }
 
     private void cancel() {
-        String serviceItems = "";   //医院名称
+        String serviceItems = "";   //服务类型
         String name = "";   //医院名称
         String departments = "";   //科室
         String bookingTime = "";   //预约时间
@@ -344,6 +344,8 @@ public class ServiceOrderDetailActivity extends BaseActivity implements View.OnC
                     if (geneticTesting2B != null) {
                         if (Boolean.parseBoolean(geneticTesting2B.getFlag())) {
                             Toast.makeText(ServiceOrderDetailActivity.this, "取消成功", Toast.LENGTH_LONG).show();
+                            btn_cancel.setEnabled(false);
+                            btn_cancel.setBackgroundDrawable(getResources().getDrawable(R.drawable.shape_button_gray_gray));
                             finish();
                         } else {
                             Toast.makeText(ServiceOrderDetailActivity.this, "取消预约失败，请您检查提交信息", Toast.LENGTH_LONG).show();

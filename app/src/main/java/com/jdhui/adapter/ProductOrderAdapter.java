@@ -12,12 +12,13 @@ import com.jdhui.bean.mybean.Product3B;
 import com.jdhui.mould.types.MouldList;
 
 public class ProductOrderAdapter extends BaseAdapter {
-
+    private Context context;
     private MouldList<Product3B> list;
     private LayoutInflater inflater;
     private String status;
 
     public ProductOrderAdapter(Context context, MouldList<Product3B> list) {
+        this.context = context;
         this.list = list;
         inflater = LayoutInflater.from(context);
     }
@@ -54,10 +55,14 @@ public class ProductOrderAdapter extends BaseAdapter {
         status = list.get(position).getStatus();
         if (status.equals("submit")) {
             holder.tv_pro_status.setText("待确认");
+            holder.tv_pro_status.setTextColor(context.getResources().getColor(R.color.txt_gray));
         } else if (status.equals("confirm")) {
             holder.tv_pro_status.setText("已确认");
+            holder.tv_pro_status.setTextColor(context.getResources().getColor(R.color.txt_orange_new));
+
         } else if (status.equals("cancel")) {
             holder.tv_pro_status.setText("无效预约");
+            holder.tv_pro_status.setTextColor(context.getResources().getColor(R.color.red4));
         }
 
         holder.tv_order_time.setText(list.get(position).getBookingTime());

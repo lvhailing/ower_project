@@ -106,7 +106,7 @@ public class ServicePlaneDetailActivity extends BaseActivity implements View.OnC
                 rl_tips.setVisibility(View.VISIBLE);
                 tv_title.setText(detail2B.getAirplaneBooking().getBookingRemark());
             } else if (status.equals("cancel")) {
-                mTvOrderStatus.setText("取消");
+                mTvOrderStatus.setText("已取消");
             }
             mTvPhone.setText(detail2B.getAirplaneBooking().getClientPhone()); //联系电话
 
