@@ -297,7 +297,6 @@ public class ServiceOrderDetailActivity extends BaseActivity implements View.OnC
             mTvVenueName.setText(detail2B.getGolfBooking().getGolfName());  //场馆名称
             mTvOrderTime.setText(detail2B.getGolfBooking().getBookingTime()); //预约时间
             mTvSubTime.setText(detail2B.getGolfBooking().getCreateTime()); //提交时间
-
         }
     }
 
@@ -315,6 +314,10 @@ public class ServiceOrderDetailActivity extends BaseActivity implements View.OnC
     }
 
     private void cancel() {
+        //让按钮不可点
+        btn_cancel.setEnabled(false);
+        btn_cancel.setBackgroundDrawable(getResources().getDrawable(R.drawable.shape_button_gray_gray));
+
         String serviceItems = "";   //服务类型
         String name = "";   //医院名称
         String departments = "";   //科室
@@ -339,23 +342,27 @@ public class ServiceOrderDetailActivity extends BaseActivity implements View.OnC
         HtmlRequest.cancelBooking(this, id, serviceItems, name, departments, bookingTime, golfName, new BaseRequester.OnRequestListener() {
             @Override
             public void onRequestFinished(BaseParams params) {
-                if (params != null) {
-                    SubGeneticTesting2B geneticTesting2B = (SubGeneticTesting2B) params.result;
-                    if (geneticTesting2B != null) {
-                        if (Boolean.parseBoolean(geneticTesting2B.getFlag())) {
-                            Toast.makeText(ServiceOrderDetailActivity.this, "取消成功", Toast.LENGTH_LONG).show();
-                            btn_cancel.setEnabled(false);
-                            btn_cancel.setBackgroundDrawable(getResources().getDrawable(R.drawable.shape_button_gray_gray));
-                            finish();
-                        } else {
-                            Toast.makeText(ServiceOrderDetailActivity.this, "取消预约失败，请您检查提交信息", Toast.LENGTH_LONG).show();
-                        }
-                    } else {
-                        Toast.makeText(ServiceOrderDetailActivity.this, "加载失败，请确认网络通畅", Toast.LENGTH_LONG).show();
-                    }
+                if (params == null) {
+                    cancelFailure();
+                    return;
+
                 }
+                SubGeneticTesting2B geneticTesting2B = (SubGeneticTesting2B) params.result;
+                if (geneticTesting2B == null || !Boolean.parseBoolean(geneticTesting2B.getFlag())) {
+                    cancelFailure();
+                    return;
+                }
+                Toast.makeText(ServiceOrderDetailActivity.this, "取消成功", Toast.LENGTH_LONG).show();
+                finish();
             }
         });
+    }
+
+    private void cancelFailure() {
+        Toast.makeText(ServiceOrderDetailActivity.this, "取消预约失败，请您检查提交信息", Toast.LENGTH_LONG).show();
+        //让按钮再次可点
+        btn_cancel.setEnabled(true);
+        btn_cancel.setBackgroundDrawable(getResources().getDrawable(R.drawable.shape_button_red));
     }
 
 }
