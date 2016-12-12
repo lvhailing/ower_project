@@ -25,7 +25,7 @@ import com.jdhui.uitls.PreferenceUtil;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
 /**
- * 保险产品详情
+ * 资产--保险产品详情（产品信息）
  * Created by hasee on 2016/8/11.
  */
 public class InsuranceProductDetailActivity extends BaseActivity implements View.OnClickListener {

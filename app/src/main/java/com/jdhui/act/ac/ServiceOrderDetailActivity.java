@@ -72,7 +72,8 @@ public class ServiceOrderDetailActivity extends BaseActivity implements View.OnC
     private LinearLayout mLlTogether2; //同行人2
     private TextView mTvTogether1;
     private TextView mTvTogether2;
-    private RelativeLayout rl_tips; //顶部提示语
+    private RelativeLayout rl_tips; //顶部提示语布局
+    private TextView mTvTitle;//顶部提示语
     private Button btn_cancel;
 
     @Override
@@ -107,6 +108,7 @@ public class ServiceOrderDetailActivity extends BaseActivity implements View.OnC
         mTvVenueName = (TextView) findViewById(R.id.tv_venue_name);
         mTvTogether1 = (TextView) findViewById(R.id.tv_together1);
         mTvTogether2 = (TextView) findViewById(R.id.tv_together2);
+        mTvTitle = (TextView) findViewById(R.id.tv_title);
 
         mLlOrderName = (LinearLayout) findViewById(R.id.ll_order_name);
         mLlSecurityNum = (LinearLayout) findViewById(R.id.ll_security_num);
@@ -179,18 +181,20 @@ public class ServiceOrderDetailActivity extends BaseActivity implements View.OnC
 
             String status = detail2B.getHospitalBooking().getBookingStatus();
             if (status.equals("submit")) {
-                mTvOrderStatus.setText("待确认");  //预约状态
+                mTvOrderStatus.setText("待确认");
 
                 rl_tips.setVisibility(View.VISIBLE);
                 btn_cancel.setVisibility(View.VISIBLE);
             } else if (status.equals("confirm")) {
-                mTvOrderStatus.setText("已确认");  //预约状态
+                mTvOrderStatus.setText("已确认");
             } else if (status.equals("finish")) {
                 mTvOrderStatus.setText("已完成");
             } else if (status.equals("unfinish")) {
                 mTvOrderStatus.setText("未完成");
             } else if (status.equals("refuse")) {
                 mTvOrderStatus.setText("已驳回");
+                rl_tips.setVisibility(View.VISIBLE);
+                mTvTitle.setText(detail2B.getHospitalBooking().getBookingRemark());
             } else if (status.equals("cancel")) {
                 mTvOrderStatus.setText("取消");
             }
@@ -233,6 +237,9 @@ public class ServiceOrderDetailActivity extends BaseActivity implements View.OnC
                 mTvOrderStatus.setText("未完成");
             } else if (status.equals("refuse")) {
                 mTvOrderStatus.setText("已驳回");
+
+                rl_tips.setVisibility(View.VISIBLE);
+                mTvTitle.setText(detail2B.getGeneticBooking().getBookingRemark());
             } else if (status.equals("cancel")) {
                 mTvOrderStatus.setText("取消");
             }
@@ -278,6 +285,9 @@ public class ServiceOrderDetailActivity extends BaseActivity implements View.OnC
                 mTvOrderStatus.setText("未完成");
             } else if (status.equals("refuse")) {
                 mTvOrderStatus.setText("已驳回");
+
+                rl_tips.setVisibility(View.VISIBLE);
+                mTvTitle.setText(detail2B.getGolfBooking().getBookingRemark());
             } else if (status.equals("cancel")) {
                 mTvOrderStatus.setText("取消");
             }

@@ -1,5 +1,6 @@
 package com.jdhui.act.ac;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -8,13 +9,15 @@ import android.widget.TextView;
 
 import com.jdhui.R;
 import com.jdhui.act.BaseActivity;
+import com.jdhui.act.FixedProductDetailActivity;
+import com.jdhui.act.InsuranceProductDetailActivity;
 import com.jdhui.bean.mybean.ProductDetail2B;
 import com.jdhui.mould.BaseParams;
 import com.jdhui.mould.BaseRequester;
 import com.jdhui.mould.HtmlRequest;
 
 /**
- * 产品预约--预约详情
+ * 更多--产品预约的 预约详情
  */
 public class ProOrderDetailActivity extends BaseActivity implements View.OnClickListener {
 
@@ -81,7 +84,16 @@ public class ProOrderDetailActivity extends BaseActivity implements View.OnClick
                 finish();
                 break;
             case R.id.rl_pro_name:
-
+                if (category.equals("insurance")) { //保险类型
+                    Intent intent = new Intent(this, InsuranceProductDetailActivity.class);
+                    intent.putExtra("productId", proDetail2B.getProductId());
+                    startActivity(intent);
+                } else { //非保险（固收和浮收）
+                    Intent intent = new Intent(this, FixedProductDetailActivity.class);
+                    intent.putExtra("productId", proDetail2B.getProductId());
+                    intent.putExtra("type", category);
+                    startActivity(intent);
+                }
                 break;
         }
     }
@@ -103,7 +115,13 @@ public class ProOrderDetailActivity extends BaseActivity implements View.OnClick
     private void setView() {
         mTvTitle.setText(proName);
         mTvProName.setText(proDetail2B.getProductName());
-        mTvtype.setText(category);
+        if (category.equals("insurance")) {
+            mTvtype.setText("保险类");
+        } else if (category.equals("optimun")) {
+            mTvtype.setText("固定收益类");
+        } else {
+            mTvtype.setText("浮动收益类");
+        }
         mTvOrderName.setText(proDetail2B.getUserInfoName());
         mTvPhone.setText(proDetail2B.getMobile());
         mTvIdNum.setText(proDetail2B.getIdNo());

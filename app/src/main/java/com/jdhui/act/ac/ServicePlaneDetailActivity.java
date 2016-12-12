@@ -34,7 +34,8 @@ public class ServicePlaneDetailActivity extends BaseActivity implements View.OnC
     private String serviceItems;//服务类型
     private ServiceDetail2B detail2B;
     private String status;
-    private RelativeLayout rl_tips;
+    private RelativeLayout rl_tips;//顶部提示语布局
+    private TextView tv_title;//顶部提示语
     private Button btn_cancel;
 
     @Override
@@ -51,6 +52,7 @@ public class ServicePlaneDetailActivity extends BaseActivity implements View.OnC
         mTvOrderService = (TextView) findViewById(R.id.tv_order_service);
         mTvOrderStatus = (TextView) findViewById(R.id.tv_order_status);
         mTvPhone = (TextView) findViewById(R.id.tv_phone);
+        tv_title = (TextView) findViewById(R.id.tv_title);
         myListView = (MyListView) findViewById(R.id.lv);
         rl_tips = (RelativeLayout) findViewById(R.id.rl_tips);
         btn_cancel = (Button) findViewById(R.id.btn_cancel);
@@ -100,6 +102,9 @@ public class ServicePlaneDetailActivity extends BaseActivity implements View.OnC
                 mTvOrderStatus.setText("未完成");
             } else if (status.equals("refuse")) {
                 mTvOrderStatus.setText("已驳回");
+
+                rl_tips.setVisibility(View.VISIBLE);
+                tv_title.setText(detail2B.getAirplaneBooking().getBookingRemark());
             } else if (status.equals("cancel")) {
                 mTvOrderStatus.setText("取消");
             }

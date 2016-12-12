@@ -24,6 +24,7 @@ public class ServiceDetail3B implements IMouldType {
     private String userAge; //客户年龄
     private String userSex; //客户性别
     private String bookingStatus; //预约状态 (四种类型服务共用)
+    private String bookingRemark; //驳回原因  (四种类型服务共用)
     private String golfName; //场馆名称
     private String peersOne; //同行人1
     private String peersTwo; //同行人2
@@ -216,6 +217,14 @@ public class ServiceDetail3B implements IMouldType {
 
     public void setAirplaneMarch(MouldList<PlaneMarchListBean> airplaneMarch) {
         this.airplaneMarch = airplaneMarch;
+    }
+
+    public String getBookingRemark() {
+        return bookingRemark;
+    }
+
+    public void setBookingRemark(String bookingRemark) {
+        this.bookingRemark = bookingRemark;
     }
 }
 
