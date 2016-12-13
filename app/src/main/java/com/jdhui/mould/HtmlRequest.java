@@ -1348,7 +1348,7 @@ public class HtmlRequest extends BaseRequester {
     }
 
     /**
-     * 更多--服务预约
+     * 更多--服务预约列表
      *
      * @param context  上下文
      * @param listener 监听
@@ -1956,11 +1956,11 @@ public class HtmlRequest extends BaseRequester {
      * @param listener 监听
      * @return 返回数据
      */
-    public static String submitBookingHospital(final Context context, String userId, String hospitalId, String departments, String doctor,
-                                               String bookingTime, String bakTimeOne, String bakTimeTwo, String illnessCondition, String bookingClient,
-                                               String securityNum, String clientPhone, String clientIdNo, OnRequestListener listener) {
-        final String data = HtmlLoadUtil.submitBookingHospital(userId, hospitalId, departments, doctor, bookingTime, bakTimeOne, bakTimeTwo, illnessCondition,
-                bookingClient, securityNum, clientPhone, clientIdNo);
+    public static String submitBookingHospital(final Context context, String userId, String hospitalId, String departments, String doctor, String bookingTime, String bakTimeOne,
+                                               String bakTimeTwo, String illnessCondition, String bookingClient, String securityNum, String clientPhone, String clientIdNo,
+                                               OnRequestListener listener) {
+        final String data = HtmlLoadUtil.submitBookingHospital(userId, hospitalId, departments, doctor, bookingTime, bakTimeOne, bakTimeTwo, illnessCondition, bookingClient,
+                securityNum, clientPhone, clientIdNo);
         final String url = ApplicationConsts.URL_SERVICE_BOOKINGHOSPITAL;
         String tid = registerId(Constants.TASK_TYPE_BOOKING_HOSPITAL, url);
         if (tid == null) {
@@ -2631,13 +2631,13 @@ public class HtmlRequest extends BaseRequester {
     public static String cancelBooking(final Context context, String id, String serviceItems, String name, String departments,
                                        String bookingTime, String golfName, OnRequestListener listener) {
         final String data = HtmlLoadUtil.cancelBooking(id, serviceItems, name, departments, bookingTime, golfName);
-        final String url = ApplicationConsts.URL_SERVICE_BOOKINGGENETICTESTING_ADD;
-        String tid = registerId(Constants.TASK_TYPE_BOOKING_GENETICTESTING_ADD, url);
+        final String url = ApplicationConsts.URL_SERVICE_BOOKING_CANCEL;
+        String tid = registerId(Constants.TASK_TYPE_SERVICE_BOOKING_CANCEL, url);
         if (tid == null) {
             return null;
         }
         getTaskManager().addTask(
-                new MouldAsyncTask(tid, buildParams(Constants.TASK_TYPE_BOOKING_GENETICTESTING_ADD, context, listener, url, 0)) {
+                new MouldAsyncTask(tid, buildParams(Constants.TASK_TYPE_SERVICE_BOOKING_CANCEL, context, listener, url, 0)) {
                     @Override
                     public IMouldType doTask(BaseParams params) {
                         SimpleHttpClient client = new SimpleHttpClient(context, SimpleHttpClient.RESULT_STRING);
@@ -2658,7 +2658,7 @@ public class HtmlRequest extends BaseRequester {
                             if (result != null) {
                                 String data = DESUtil.decrypt(result);
                                 Gson json = new Gson();
-                                SubGeneticTesting1B b = json.fromJson(data, SubGeneticTesting1B.class);
+                                BookingInsurance1B b = json.fromJson(data, BookingInsurance1B.class);
                                 resultEncrypt(context, b.getCode());
                                 return b.getData();
                             }

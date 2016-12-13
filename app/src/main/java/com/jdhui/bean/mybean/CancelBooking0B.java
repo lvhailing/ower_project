@@ -1,7 +1,7 @@
 package com.jdhui.bean.mybean;
 
 /**
- * 服务--提交基因检测预约  准备入参
+ * 更多--取消服务预约  准备入参
  */
 public class CancelBooking0B {
     private String id; //服务Id

@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import com.jdhui.R;
 import com.jdhui.act.BaseActivity;
+import com.jdhui.bean.mybean.BookingInsurance2B;
 import com.jdhui.bean.mybean.ServiceDetail2B;
 import com.jdhui.bean.mybean.SubGeneticTesting2B;
 import com.jdhui.mould.BaseParams;
@@ -347,8 +348,8 @@ public class ServiceOrderDetailActivity extends BaseActivity implements View.OnC
                     return;
 
                 }
-                SubGeneticTesting2B geneticTesting2B = (SubGeneticTesting2B) params.result;
-                if (geneticTesting2B == null || !Boolean.parseBoolean(geneticTesting2B.getFlag())) {
+                BookingInsurance2B bookingInsurance2B = (BookingInsurance2B) params.result;
+                if (bookingInsurance2B == null || Boolean.parseBoolean(bookingInsurance2B.getMessage())) {
                     cancelFailure();
                     return;
                 }

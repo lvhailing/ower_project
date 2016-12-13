@@ -135,10 +135,14 @@ public class ServicePlaneDetailActivity extends BaseActivity implements View.OnC
     }
 
     private void cancel() {
+        //让按钮不可点
+        btn_cancel.setEnabled(false);
+        btn_cancel.setBackgroundDrawable(getResources().getDrawable(R.drawable.shape_button_gray_gray));
+
         HtmlRequest.cancelBooking(this, id, "airplaneBooking", "", "", "", "", new BaseRequester.OnRequestListener() {
             @Override
             public void onRequestFinished(BaseParams params) {
-                if (params != null) {
+               /* if (params != null) {
                     SubGeneticTesting2B geneticTesting2B = (SubGeneticTesting2B) params.result;
                     if (geneticTesting2B != null) {
                         if (Boolean.parseBoolean(geneticTesting2B.getFlag())) {
@@ -150,7 +154,27 @@ public class ServicePlaneDetailActivity extends BaseActivity implements View.OnC
                     } else {
                         Toast.makeText(ServicePlaneDetailActivity.this, "加载失败，请确认网络通畅", Toast.LENGTH_LONG).show();
                     }
+                }*/
+
+                if (params == null) {
+                    cancelFailure();
+                    return;
                 }
+
+                SubGeneticTesting2B geneticTesting2B = (SubGeneticTesting2B) params.result;
+                if (geneticTesting2B == null || !Boolean.parseBoolean(geneticTesting2B.getFlag())) {
+                    cancelFailure();
+                    return;
+                }
+                Toast.makeText(ServicePlaneDetailActivity.this, "取消成功", Toast.LENGTH_LONG).show();
+                finish();
+            }
+
+            private void cancelFailure() {
+                Toast.makeText(ServicePlaneDetailActivity.this, "取消预约失败，请您检查提交信息", Toast.LENGTH_LONG).show();
+                //让按钮再次可点
+                btn_cancel.setEnabled(true);
+                btn_cancel.setBackgroundDrawable(getResources().getDrawable(R.drawable.shape_button_red));
             }
         });
     }

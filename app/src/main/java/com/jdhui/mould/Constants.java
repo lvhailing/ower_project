@@ -119,7 +119,7 @@ public class Constants {
     public static final String TASK_TYPE_PRODUCT_ORDER_DETAIL = String.valueOf(index++);
 
     /***
-     * 更多--服务预约
+     * 更多--服务预约列表
      */
     public static final String TASK_TYPE_SERVICE_ORDER = String.valueOf(index++);
 
@@ -215,6 +215,11 @@ public class Constants {
      * 服务--显示服务首页图片
      */
     public static final String TASK_TYPE_SERVICE_PICTURE = String.valueOf(index++);
+
+    /***
+     * 更多--取消服务预约
+     */
+    public static final String TASK_TYPE_SERVICE_BOOKING_CANCEL = String.valueOf(index++);
 
 
 }

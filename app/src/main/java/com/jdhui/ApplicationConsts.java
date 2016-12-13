@@ -26,9 +26,11 @@ public class ApplicationConsts {
     //测试环境
 //	public static final String URL_DEBUG ="http://192.168.1.86:82/";
 
+// 张殿阳
+	public static final String URL_DEBUG ="http://192.168.1.138:9999/junde-hui-app/";
 
     //张亚磊
-	public static final String URL_DEBUG ="http://192.168.1.193:9996/junde-hui-app/";
+//	public static final String URL_DEBUG ="http://192.168.1.193:9996/junde-hui-app/";
 
     // 邢玉洁
 //    public static final String URL_DEBUG = "http://192.168.1.125:9999/junde-hui-app/";
@@ -229,7 +231,7 @@ public class ApplicationConsts {
     public static final String URL_PRODUCT_ORDER_DETAIL = EC_HOST + "/product/booking/details";
 
     /**
-     * 更多--服务预约
+     * 更多--服务预约列表
      */
     public static final String URL_SERVICE_ORDER = EC_HOST + "/service/bookingList/list";
 
@@ -237,11 +239,6 @@ public class ApplicationConsts {
      * 服务预约详情
      */
     public static final String URL_SERVICE_DETAIL = EC_HOST + "/service/bookingList/view";
-
-    /**
-     * 服务预约详情
-     */
-    public static final String URL_SERVICE_ORDER_DETAIL = EC_HOST + "/service/bookingList/view";
 
     /**
      * 更多--君德公告
@@ -392,6 +389,11 @@ public class ApplicationConsts {
      * 显示服务首页图片
      */
     public static final String URL_TURN_SERVICE_PICTURE = EC_HOST + "turn/servicePicture";
+
+    /**
+     * 更多--取消服务预约
+     */
+    public static final String URL_SERVICE_BOOKING_CANCEL = EC_HOST + "service/booking/cancel";
 
 
 

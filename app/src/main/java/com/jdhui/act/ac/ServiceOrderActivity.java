@@ -111,6 +111,12 @@ public class ServiceOrderActivity extends BaseActivity implements View.OnClickLi
         tv_4.setOnClickListener(this);
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        requestData();
+    }
+
     private void requestData() {
         try {
             HtmlRequest.getServiceOrderList(ServiceOrderActivity.this, type, currentPage + "", new BaseRequester.OnRequestListener() {
@@ -179,7 +185,6 @@ public class ServiceOrderActivity extends BaseActivity implements View.OnClickLi
         });
         isOpened = false;
     }
-
 
 
     @Override

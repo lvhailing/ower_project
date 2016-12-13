@@ -31,7 +31,6 @@ import java.util.Locale;
  * 服务--提交预约医院
  */
 public class SubBookingHospitalActivity extends BaseActivity implements View.OnClickListener {
-
     private ImageView mBtnBack;
     private TextView mTvOrderService; //预约服务
     private Button btn_submit;
@@ -45,6 +44,15 @@ public class SubBookingHospitalActivity extends BaseActivity implements View.OnC
     private TextView tv_hospital;
     private String id; //医院id
     private EditText et_departments;   //科室
+    private EditText et_doctor; //预约医生
+    private EditText et_illness; //主诉病情
+    private EditText et_name;//预约人
+    private EditText et_security_num;//社保号
+    private EditText et_phone;
+    private EditText et_idno;
+    private String formatTime1;//用户选择的预约时间
+    private String formatTime2;//用户选择的备选时间1
+    private String formatTime3;//用户选择的备选时间2
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +74,12 @@ public class SubBookingHospitalActivity extends BaseActivity implements View.OnC
         tv_time3 = (TextView) findViewById(R.id.tv_time3);
         tv_hospital = (TextView) findViewById(R.id.tv_hospital);
         et_departments = (EditText) findViewById(R.id.et_departments);
+        et_doctor = (EditText) findViewById(R.id.et_doctor);
+        et_illness = (EditText) findViewById(R.id.et_illness);
+        et_name = (EditText) findViewById(R.id.et_name);
+        et_security_num = (EditText) findViewById(R.id.et_security_num);
+        et_phone = (EditText) findViewById(R.id.et_phone);
+        et_idno = (EditText) findViewById(R.id.et_idno);
 
         mBtnBack.setOnClickListener(this);
         btn_submit.setOnClickListener(this);
@@ -118,7 +132,14 @@ public class SubBookingHospitalActivity extends BaseActivity implements View.OnC
             e.printStackTrace();
         }
         String departments = et_departments.getText().toString();
-        HtmlRequest.submitBookingHospital(this, userId, id, departments, "", "", "", "", "", "", "", "", "", new BaseRequester.OnRequestListener() {
+        String doctor = et_doctor.getText().toString();
+        String illness = et_illness.getText().toString();
+        String name = et_name.getText().toString();
+        String securityNum = et_security_num.getText().toString();
+        String phone = et_phone.getText().toString();
+        String idNo = et_idno.getText().toString();
+
+        HtmlRequest.submitBookingHospital(this, userId, id, departments, doctor, formatTime1, formatTime2, formatTime3, illness, name, securityNum, phone, idNo, new BaseRequester.OnRequestListener() {
             @Override
             public void onRequestFinished(BaseParams params) {
                 if (params != null) {
@@ -144,18 +165,20 @@ public class SubBookingHospitalActivity extends BaseActivity implements View.OnC
 
             public void processTime(Dialog ad, String selectedTime) {
                 //如2016年11月30日
-                String formatTime = selectedTime.replace("年", "-").replace("月", "-").replace("日", "");
-                if (tv_time1 != null && isTimeValue(formatTime)) {
+                if (tv_time1 != null && isTimeValue(selectedTime)) {
                     //选择的是正确的时间
                     if (type == 1) {
                         //点击的是预约时间
-                        tv_time1.setText(formatTime);
+                        formatTime1 = selectedTime.replace("年", "-").replace("月", "-").replace("日", "");
+                        tv_time1.setText(formatTime1);
                     } else if (type == 2) {
                         //点击的是上面的备选时间
-                        tv_time2.setText(formatTime);
+                        formatTime2 = selectedTime.replace("年", "-").replace("月", "-").replace("日", "");
+                        tv_time2.setText(formatTime2);
                     } else if (type == 3) {
                         //点击的是下面的备选时间
-                        tv_time3.setText(formatTime);
+                        formatTime3 = selectedTime.replace("年", "-").replace("月", "-").replace("日", "");
+                        tv_time3.setText(formatTime3);
                     }
                 }
                 ad.dismiss();
