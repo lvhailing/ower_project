@@ -22,13 +22,12 @@ import com.jdhui.R;
 import com.jdhui.bean.ResultCheckVersionContentBean;
 import com.jdhui.fragment.AssetFragment;
 import com.jdhui.fragment.MoreFragment;
-import com.jdhui.fragment.ServiceFragment;
 import com.jdhui.fragment.ProductFragment;
+import com.jdhui.fragment.ServiceFragment;
 import com.jdhui.mould.BaseParams;
 import com.jdhui.mould.BaseRequester.OnRequestListener;
 import com.jdhui.mould.HtmlRequest;
 import com.jdhui.service.AppUpgradeService;
-import com.jdhui.uitls.ActivityStack;
 import com.jdhui.uitls.SystemInfo;
 import com.jdhui.view.CheckVersionDialog;
 import com.jdhui.view.MessageDialog;
@@ -73,14 +72,18 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         initEvent();
         setSelect(0);
         requestData();
+    }
 
-
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        if (intent != null) {
+            int tab = intent.getIntExtra("tab", 0);
+            setSelect(tab);
+        }
     }
 
     private void initView() {
-        ActivityStack stack = ActivityStack.getActivityManage();
-        stack.addActivity(this);
-
         mViewPager = (ViewPager) findViewById(R.id.id_main_viewpager);
         mLlTabAsset = (LinearLayout) findViewById(R.id.ll_tab_asset);
         mLlTabProduct = (LinearLayout) findViewById(R.id.ll_tab_product);
@@ -137,7 +140,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
             @Override
             public void onPageScrollStateChanged(int i) {
-
             }
         });
 

@@ -1,6 +1,7 @@
 package com.jdhui.act.ac;
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -14,6 +15,7 @@ import android.widget.Toast;
 
 import com.jdhui.R;
 import com.jdhui.act.BaseActivity;
+import com.jdhui.act.MainActivity;
 import com.jdhui.bean.mybean.GetGolfInfo2B;
 import com.jdhui.bean.mybean.SubmitBookingHospital2B;
 import com.jdhui.dialog.DatePickDialog;
@@ -176,6 +178,9 @@ public class SubBookingGolfActivity extends BaseActivity implements View.OnClick
                     if (bookingHospital2B != null) {
                         if (!Boolean.parseBoolean(bookingHospital2B.getFlag())) {
                             Toast.makeText(SubBookingGolfActivity.this, "预约成功", Toast.LENGTH_LONG).show();
+                            Intent intent = new Intent(SubBookingGolfActivity.this, MainActivity.class);
+                            intent.putExtra("tab", 2);
+                            startActivity(intent);
                             finish();
                         } else {
                             Toast.makeText(SubBookingGolfActivity.this, "预约失败，请您检查提交信息", Toast.LENGTH_LONG).show();

@@ -167,17 +167,18 @@ public class SubBookingHospitalActivity extends BaseActivity implements View.OnC
                 //如2016年11月30日
                 if (tv_time1 != null && isTimeValue(selectedTime)) {
                     //选择的是正确的时间
+                    String time = selectedTime.replace("年", "-").replace("月", "-").replace("日", "");
                     if (type == 1) {
                         //点击的是预约时间
-                        formatTime1 = selectedTime.replace("年", "-").replace("月", "-").replace("日", "");
+                        formatTime1 = time;
                         tv_time1.setText(formatTime1);
                     } else if (type == 2) {
                         //点击的是上面的备选时间
-                        formatTime2 = selectedTime.replace("年", "-").replace("月", "-").replace("日", "");
+                        formatTime2 = time;
                         tv_time2.setText(formatTime2);
                     } else if (type == 3) {
                         //点击的是下面的备选时间
-                        formatTime3 = selectedTime.replace("年", "-").replace("月", "-").replace("日", "");
+                        formatTime3 = time;
                         tv_time3.setText(formatTime3);
                     }
                 }

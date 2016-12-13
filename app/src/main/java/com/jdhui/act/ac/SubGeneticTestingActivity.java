@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import com.jdhui.R;
 import com.jdhui.act.BaseActivity;
+import com.jdhui.act.MainActivity;
 import com.jdhui.bean.mybean.SubGeneticTesting2B;
 import com.jdhui.dialog.SexDialog;
 import com.jdhui.mould.BaseParams;
@@ -23,7 +24,6 @@ import com.jdhui.mould.HtmlRequest;
  * 服务--提交基因检测预约
  */
 public class SubGeneticTestingActivity extends BaseActivity implements View.OnClickListener {
-
     private ImageView mBtnBack;
     private EditText et_name; //预约人
     private RelativeLayout rl_sex; //选择预约人性别
@@ -109,7 +109,9 @@ public class SubGeneticTestingActivity extends BaseActivity implements View.OnCl
                     if (geneticTesting2B != null) {
                         if (Boolean.parseBoolean(geneticTesting2B.getFlag())) {
                             Toast.makeText(SubGeneticTestingActivity.this, "预约成功", Toast.LENGTH_LONG).show();
-                            finish();
+                            Intent intent = new Intent(SubGeneticTestingActivity.this, MainActivity.class);
+                            intent.putExtra("tab", 2);
+                            startActivity(intent);
                         } else {
                             Toast.makeText(SubGeneticTestingActivity.this, "预约失败，请您检查提交信息", Toast.LENGTH_LONG).show();
                         }
