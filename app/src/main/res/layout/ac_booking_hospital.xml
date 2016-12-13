@@ -126,7 +126,8 @@
             <RelativeLayout
                 android:id="@+id/rl_time1"
                 android:layout_width="match_parent"
-                android:layout_height="48dp">
+                android:layout_height="48dp"
+                android:layout_marginRight="12dp">
 
                 <TextView
                     style="@style/tv_style"
@@ -160,7 +161,8 @@
             <RelativeLayout
                 android:id="@+id/rl_time2"
                 android:layout_width="match_parent"
-                android:layout_height="48dp">
+                android:layout_height="48dp"
+                android:layout_marginRight="12dp">
 
                 <TextView
                     style="@style/tv_style"
@@ -193,7 +195,8 @@
             <RelativeLayout
                 android:id="@+id/rl_time3"
                 android:layout_width="match_parent"
-                android:layout_height="48dp">
+                android:layout_height="48dp"
+                android:layout_marginRight="12dp">
 
                 <TextView
                     style="@style/tv_style"
@@ -226,7 +229,8 @@
             <RelativeLayout
                 android:id="@+id/rl_hospital"
                 android:layout_width="match_parent"
-                android:layout_height="48dp">
+                android:layout_height="48dp"
+                android:layout_marginRight="12dp">
 
                 <TextView
                     style="@style/tv_style"
