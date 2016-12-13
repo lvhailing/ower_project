@@ -11,6 +11,8 @@ import android.view.WindowManager;
 import android.widget.DatePicker;
 import android.widget.DatePicker.OnDateChangedListener;
 import android.widget.LinearLayout;
+import android.widget.TimePicker;
+import android.widget.TimePicker.OnTimeChangedListener;
 import android.widget.TextView;
 
 import com.jdhui.R;
@@ -19,8 +21,10 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
 
-public class DatePickDialog implements OnDateChangedListener {
+public class DatePickDialog implements OnDateChangedListener, OnTimeChangedListener {
+    private final Calendar calendar;
     private DatePicker datePicker;
+    private TimePicker timePicker;
     private TextView cancel;
     private TextView sure;
     private Dialog dialog;
@@ -33,17 +37,22 @@ public class DatePickDialog implements OnDateChangedListener {
 
     public DatePickDialog(Activity activity) {
         this.activity = activity;
+        calendar = Calendar.getInstance(Locale.CHINA);
     }
 
     public Dialog setDateDialog(final MyCallback callback) {
         LinearLayout dateTimeLayout = (LinearLayout) activity.getLayoutInflater().inflate(R.layout.date_picker_dialog, null);
         datePicker = (DatePicker) dateTimeLayout.findViewById(R.id.date_picker);
+        timePicker = (TimePicker) dateTimeLayout.findViewById(R.id.time_picker);
         cancel = (TextView) dateTimeLayout.findViewById(R.id.tv_cancel);
         sure = (TextView) dateTimeLayout.findViewById(R.id.tv_sure);
 
         //初始化日期
-        Calendar calendar = Calendar.getInstance(Locale.CHINA);
         datePicker.init(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH), this);
+        timePicker.setIs24HourView(true);
+        timePicker.setCurrentHour(calendar.get(Calendar.HOUR_OF_DAY));
+        timePicker.setCurrentMinute(calendar.get(Calendar.MINUTE));
+        timePicker.setOnTimeChangedListener(this);
 
         dialog = new Dialog(activity, R.style.date_picker_style);
         dialog.setContentView(dateTimeLayout);
@@ -77,16 +86,28 @@ public class DatePickDialog implements OnDateChangedListener {
         });
         dialog.show();
 
-        onDateChanged(datePicker, 0, 0, 0);
+        changeTime();
 
         return dialog;
     }
 
     @Override
-    public void onDateChanged(DatePicker datePicker, int i, int i1, int i2) {
-        Calendar calendar = Calendar.getInstance(Locale.CHINA);
-        calendar.set(datePicker.getYear(), datePicker.getMonth(), datePicker.getDayOfMonth());
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy年MM月dd日");
+    public void onDateChanged(DatePicker datePicker, int year, int monthOfYear, int dayOfMonth) {
+        calendar.set(Calendar.YEAR, year);
+        calendar.set(Calendar.MONTH, monthOfYear);
+        calendar.set(Calendar.DATE, dayOfMonth);
+        changeTime();
+    }
+
+    @Override
+    public void onTimeChanged(TimePicker view, int hourOfDay, int minute) {
+        calendar.set(Calendar.HOUR_OF_DAY, hourOfDay);
+        calendar.set(Calendar.MINUTE, minute);
+        changeTime();
+    }
+
+    private void changeTime() {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy年MM月dd日 HH:mm");
         dateTime = sdf.format(calendar.getTime());
     }
 

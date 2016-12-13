@@ -48,4 +48,14 @@
         android:calendarViewShown="false"
         android:paddingTop="0dp"/>
 
+    <TimePicker
+        android:id="@+id/time_picker"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="0dp"
+        android:layout_marginEnd="0dp"
+        android:layout_marginStart="0dp"
+        android:calendarViewShown="false"
+        android:paddingTop="0dp"/>
+
 </LinearLayout>
