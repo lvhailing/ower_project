@@ -45,7 +45,10 @@
             android:paddingBottom="80dp">
 
             <LinearLayout
-                style="@style/ll_style">
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp">
 
                 <TextView
                     style="@style/tv_style"
@@ -65,19 +68,19 @@
             <RelativeLayout
                 android:id="@+id/rl_sex"
                 android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:layout_marginRight="24dp">
+                android:layout_height="48dp">
 
                 <TextView
                     style="@style/tv_style"
                     android:layout_centerVertical="true"
-                    android:text="性别"
-                    android:layout_marginLeft="12dp"/>
+                    android:layout_marginLeft="12dp"
+                    android:text="性别"/>
 
                 <ImageView
                     android:id="@+id/iv_arrow3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginRight="12dp"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
                     android:src="@drawable/arrow"/>
@@ -97,7 +100,10 @@
             </RelativeLayout>
 
             <LinearLayout
-                style="@style/ll_style">
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp">
 
                 <TextView
                     style="@style/tv_style"
@@ -117,6 +123,7 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
+                android:layout_marginRight="12dp"
                 android:orientation="horizontal">
 
                 <TextView
@@ -129,7 +136,6 @@
                     android:id="@+id/tv_test_set"
                     style="@style/tv_style"
                     android:layout_alignParentRight="true"
-                    android:layout_marginRight="32dp"
                     android:layout_centerVertical="true"
                     android:text=""/>
 
@@ -139,7 +145,10 @@
                 style="@style/v_line_style"/>
 
             <LinearLayout
-                style="@style/ll_style">
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp">
 
                 <TextView
                     style="@style/tv_style"
@@ -160,7 +169,10 @@
 
 
             <LinearLayout
-                style="@style/ll_style">
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp">
 
                 <TextView
                     style="@style/tv_style"

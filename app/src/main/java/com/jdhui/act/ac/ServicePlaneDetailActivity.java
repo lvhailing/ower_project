@@ -11,6 +11,7 @@ import android.widget.Toast;
 import com.jdhui.R;
 import com.jdhui.act.BaseActivity;
 import com.jdhui.adapter.PlaneDetailAdapter;
+import com.jdhui.bean.mybean.BookingInsurance2B;
 import com.jdhui.bean.mybean.PlaneMarchListBean;
 import com.jdhui.bean.mybean.ServiceDetail2B;
 import com.jdhui.bean.mybean.SubGeneticTesting2B;
@@ -90,7 +91,7 @@ public class ServicePlaneDetailActivity extends BaseActivity implements View.OnC
             mTvOrderService.setText("公务机包机");
             status = detail2B.getAirplaneBooking().getBookingStatus();
             if (status.equals("submit")) {
-                mTvOrderStatus.setText("待确认");  //预约状态
+                mTvOrderStatus.setText("待确认");
 
                 rl_tips.setVisibility(View.VISIBLE);
                 btn_cancel.setVisibility(View.VISIBLE);
@@ -129,12 +130,12 @@ public class ServicePlaneDetailActivity extends BaseActivity implements View.OnC
                 finish();
                 break;
             case R.id.btn_cancel:
-                cancel();
+                abolish();
                 break;
         }
     }
 
-    private void cancel() {
+    private void abolish() {
         //让按钮不可点
         btn_cancel.setEnabled(false);
         btn_cancel.setBackgroundDrawable(getResources().getDrawable(R.drawable.shape_button_gray_gray));
@@ -142,27 +143,13 @@ public class ServicePlaneDetailActivity extends BaseActivity implements View.OnC
         HtmlRequest.cancelBooking(this, id, "airplaneBooking", "", "", "", "", new BaseRequester.OnRequestListener() {
             @Override
             public void onRequestFinished(BaseParams params) {
-               /* if (params != null) {
-                    SubGeneticTesting2B geneticTesting2B = (SubGeneticTesting2B) params.result;
-                    if (geneticTesting2B != null) {
-                        if (Boolean.parseBoolean(geneticTesting2B.getFlag())) {
-                            Toast.makeText(ServicePlaneDetailActivity.this, "取消成功", Toast.LENGTH_LONG).show();
-                            finish();
-                        } else {
-                            Toast.makeText(ServicePlaneDetailActivity.this, "取消预约失败，请您检查提交信息", Toast.LENGTH_LONG).show();
-                        }
-                    } else {
-                        Toast.makeText(ServicePlaneDetailActivity.this, "加载失败，请确认网络通畅", Toast.LENGTH_LONG).show();
-                    }
-                }*/
-
                 if (params == null) {
                     cancelFailure();
                     return;
                 }
 
-                SubGeneticTesting2B geneticTesting2B = (SubGeneticTesting2B) params.result;
-                if (geneticTesting2B == null || !Boolean.parseBoolean(geneticTesting2B.getFlag())) {
+                BookingInsurance2B bookingInsurance2B = (BookingInsurance2B) params.result;
+                if (bookingInsurance2B == null || Boolean.parseBoolean(bookingInsurance2B.getMessage())) {
                     cancelFailure();
                     return;
                 }
