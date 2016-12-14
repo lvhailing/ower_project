@@ -50,6 +50,8 @@ public class ProductOrderActivity extends BaseActivity implements View.OnClickLi
     private boolean isOpened = false;   //动画是否开启
     private TextView mTvType; //全部类型
     private TextView mTvStatus; //全部状态
+    private ImageView iv_select_left;//类型后面的 小三角 图标
+    private ImageView iv_select_right;//状态后面的 小三角 图标
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,6 +95,8 @@ public class ProductOrderActivity extends BaseActivity implements View.OnClickLi
 
     private void initView() {
         mBtnBack = (ImageView) findViewById(R.id.iv_back);
+        iv_select_left = (ImageView) findViewById(R.id.iv_select_left);
+        iv_select_right = (ImageView) findViewById(R.id.iv_select_right);
         mTvType = (TextView) findViewById(R.id.tv_type);
         mTvStatus = (TextView) findViewById(R.id.tv_status);
         listView = (PullToRefreshListView) findViewById(R.id.listview);
@@ -216,15 +220,18 @@ public class ProductOrderActivity extends BaseActivity implements View.OnClickLi
                 break;
             case R.id.rl_category:  //类型
                 if (isOpened && currentFlag == 2) {
-                    //状态展开着，只刷新UI即可
+                    //类型展开着，只刷新UI即可
                     currentFlag = 1;
                     freshUI();
+                    iv_select_right.setBackgroundResource(R.drawable.triangle_up_fill);
                 } else if (isOpened) {
                     //类型是开启状态 则需关闭动画
                     currentFlag = 1;
+                    iv_select_left.setBackgroundResource(R.drawable.triangle_down_fill);
                     closeShopping();
                 } else {
                     //否则开启动画
+                    iv_select_left.setBackgroundResource(R.drawable.triangle_up_fill);
                     currentFlag = 1;
                     openShopping();
                 }
@@ -234,13 +241,16 @@ public class ProductOrderActivity extends BaseActivity implements View.OnClickLi
                     //状态展开着，只刷新UI即可
                     currentFlag = 2;
                     freshUI();
+                    iv_select_right.setBackgroundResource(R.drawable.triangle_up_fill);
                 } else if (isOpened) {
-                    //类型是开启状态 则需关闭动画
+                    //状态是开启状态 则需关闭动画
                     currentFlag = 2;
+                    iv_select_right.setBackgroundResource(R.drawable.triangle_down_fill);
                     closeShopping();
                 } else {
                     //否则开启动画
                     currentFlag = 2;
+                    iv_select_right.setBackgroundResource(R.drawable.triangle_up_fill);
                     openShopping();
                 }
                 break;
@@ -248,9 +258,11 @@ public class ProductOrderActivity extends BaseActivity implements View.OnClickLi
                 if (currentFlag == 1) {
                     category = "";
                     mTvType.setText("全部类型");
+                    iv_select_left.setBackgroundResource(R.drawable.triangle_down_fill);
                 } else {
                     status = "";
                     mTvStatus.setText("全部状态");
+                    iv_select_right.setBackgroundResource(R.drawable.triangle_down_fill);
                 }
                 closeShopping();
                 requestData();
@@ -259,9 +271,11 @@ public class ProductOrderActivity extends BaseActivity implements View.OnClickLi
                 if (currentFlag == 1) {
                     category = "optimum";
                     mTvType.setText("固定收益");
+                    iv_select_left.setBackgroundResource(R.drawable.triangle_down_fill);
                 } else {
                     status = "confirm";
                     mTvStatus.setText("已确认");
+                    iv_select_right.setBackgroundResource(R.drawable.triangle_down_fill);
                 }
                 closeShopping();
                 requestData();
@@ -270,9 +284,11 @@ public class ProductOrderActivity extends BaseActivity implements View.OnClickLi
                 if (currentFlag == 1) {
                     category = "floating";
                     mTvType.setText("浮动收益");
+                    iv_select_left.setBackgroundResource(R.drawable.triangle_down_fill);
                 } else {
                     status = "submit";
                     mTvStatus.setText("待确认");
+                    iv_select_right.setBackgroundResource(R.drawable.triangle_down_fill);
                 }
                 closeShopping();
                 requestData();
@@ -281,9 +297,11 @@ public class ProductOrderActivity extends BaseActivity implements View.OnClickLi
                 if (currentFlag == 1) {
                     category = "insurance";
                     mTvType.setText("保险");
+                    iv_select_left.setBackgroundResource(R.drawable.triangle_down_fill);
                 } else {
                     status = "cancel";
                     mTvStatus.setText("无效预约");
+                    iv_select_right.setBackgroundResource(R.drawable.triangle_down_fill);
                 }
                 closeShopping();
                 requestData();

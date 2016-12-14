@@ -230,6 +230,7 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">48dp</item>
         <item name="android:gravity">center_vertical</item>
+        <item name="android:layout_marginLeft">12dp</item>
         <item name="android:layout_marginRight">12dp</item>
         <item name="android:orientation">horizontal</item>
     </style>
@@ -259,7 +260,7 @@
     <style name="v_line_style">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">1dp</item>
-        <item name="android:background">@color/bg_gray_gray</item>
+        <item name="android:background">@color/bg_gray</item>
     </style>
 
     <!--预约医院的日期对话框样式-->

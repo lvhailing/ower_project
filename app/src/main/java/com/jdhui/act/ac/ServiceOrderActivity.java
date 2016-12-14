@@ -43,6 +43,7 @@ public class ServiceOrderActivity extends BaseActivity implements View.OnClickLi
     private String type;    //当前服务类型
     private boolean isOpened = false;   //动画是否开启
     private TextView mTvType;//服务类型  全部
+    private ImageView iv_select; // "全部"后面的 小三角
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,6 +90,7 @@ public class ServiceOrderActivity extends BaseActivity implements View.OnClickLi
 
     private void initView() {
         mBtnBack = (ImageView) findViewById(R.id.iv_back);
+        iv_select = (ImageView) findViewById(R.id.iv_select);
         mTvType = (TextView) findViewById(R.id.tv_type);
         listView = (PullToRefreshListView) findViewById(R.id.listview);
         v_hidden = findViewById(R.id.v_hidden);
@@ -199,39 +201,46 @@ public class ServiceOrderActivity extends BaseActivity implements View.OnClickLi
             case R.id.rl_type:  //全部
                 if (isOpened) {
                     //全部是开启状态 则需关闭动画
+                    iv_select.setBackgroundResource(R.drawable.triangle_down_fill);
                     closeShopping();
                 } else {
                     //否则开启动画
+                    iv_select.setBackgroundResource(R.drawable.triangle_up_fill);
                     openShopping();
                 }
                 break;
             case R.id.tv_0:  //全部
                 type = "";
                 mTvType.setText("全部");
+                iv_select.setBackgroundResource(R.drawable.triangle_down_fill);
                 closeShopping();
                 requestData();
                 break;
             case R.id.tv_1:  //绿通就医
                 type = "hospitalBooking";
                 mTvType.setText("绿通就医");
+                iv_select.setBackgroundResource(R.drawable.triangle_down_fill);
                 closeShopping();
                 requestData();
                 break;
             case R.id.tv_2:  //基因检测
                 type = "geneticBooking";
                 mTvType.setText("基因检测");
+                iv_select.setBackgroundResource(R.drawable.triangle_down_fill);
                 closeShopping();
                 requestData();
                 break;
             case R.id.tv_3:  //高尔夫球场
                 type = "golfBooking";
                 mTvType.setText("高尔夫球场地");
+                iv_select.setBackgroundResource(R.drawable.triangle_down_fill);
                 closeShopping();
                 requestData();
                 break;
             case R.id.tv_4:  //公务机包机
                 type = "airplaneBooking";
                 mTvType.setText("公务机包机");
+                iv_select.setBackgroundResource(R.drawable.triangle_down_fill);
                 closeShopping();
                 requestData();
                 break;

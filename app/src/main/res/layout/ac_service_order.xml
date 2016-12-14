@@ -44,12 +44,13 @@
             android:textSize="18sp"/>
 
         <ImageView
-            android:layout_width="10dp"
-            android:layout_height="10dp"
+            android:id="@+id/iv_select"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="5dp"
             android:layout_toRightOf="@+id/tv_type"
-            android:background="@drawable/arrow"/>
+            android:background="@drawable/triangle_down_fill"/>
     </RelativeLayout>
 
     <View

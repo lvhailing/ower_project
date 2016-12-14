@@ -25,6 +25,8 @@ public class ResultFixedProductDetailBean implements IMouldType {
     private String investCoverage;//投资范围
     private String controlMeasures;//风控措施
     private String productAdvantage;    //投资亮点
+    private String riskType;    //风险类型( conservative:保守型;  steady:稳健型; growth:成长型;  aggressive:进取型;)
+
 
     public String getProductId() {
         return productId;
@@ -168,5 +170,13 @@ public class ResultFixedProductDetailBean implements IMouldType {
 
     public void setProductAdvantage(String productAdvantage) {
         this.productAdvantage = productAdvantage;
+    }
+
+    public String getRiskType() {
+        return riskType;
+    }
+
+    public void setRiskType(String riskType) {
+        this.riskType = riskType;
     }
 }

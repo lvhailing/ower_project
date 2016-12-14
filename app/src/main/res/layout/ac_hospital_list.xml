@@ -29,36 +29,42 @@
             android:textSize="18sp"/>
     </RelativeLayout>
 
-
-    <LinearLayout
-        android:orientation="horizontal"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="46dp"
-        android:layout_marginLeft="12dp"
-        android:layout_marginRight="12dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="5dp"
-        android:background="@drawable/shape_center_white">
+        android:layout_height="42dp"
+        android:background="@color/white">
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:layout_gravity="center_vertical"
-            android:src="@drawable/icon_search"/>
-
-        <EditText
-            android:id="@+id/et_search"
-            android:background="@null"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:maxLines="1"
-            android:gravity="center_vertical"
-            android:textColor="@color/black"
-            android:textSize="18sp"
-            android:hint="搜索医院"/>
-    </LinearLayout>
+            android:layout_height="23dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"
+            android:background="@drawable/shape_serch_gray"
+            android:orientation="horizontal">
 
+            <ImageView
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_gravity="center_vertical"
+                android:padding="10dp"
+                android:src="@drawable/icon_search1"/>
+
+            <EditText
+                android:id="@+id/et_search"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@null"
+                android:gravity="center_vertical"
+                android:hint="搜索医院"
+                android:maxLines="1"
+                android:textColor="@color/black"
+                android:textSize="14sp"/>
+        </LinearLayout>
+    </RelativeLayout>
+
+    <View
+        style="@style/v_line_style"/>
 
     <RelativeLayout
         android:id="@+id/rl_area"
@@ -73,21 +79,23 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:text="全部地区"
+            android:textColor="@color/txt_orange1"
             android:textSize="18sp"/>
 
         <ImageView
-            android:layout_width="10dp"
-            android:layout_height="10dp"
+            android:id="@+id/iv_select"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="5dp"
             android:layout_toRightOf="@+id/tv_area"
-            android:background="@drawable/arrow"/>
+            android:background="@drawable/triangle_down_fill"/>
     </RelativeLayout>
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="#ccc"/>
+        android:layout_height="5dp"
+        android:background="#f5f5f5"/>
 
     <RelativeLayout
         android:layout_width="match_parent"

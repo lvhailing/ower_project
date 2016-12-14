@@ -31,7 +31,6 @@ import static com.jdhui.R.id.btn_order;
  * Created by hasee on 2016/8/11.
  */
 public class FixedProductDetailActivity extends BaseActivity implements View.OnClickListener {
-
     private String productType = null; //optimum:固收，floating:浮动收益
     private String productId = null;
 
@@ -63,7 +62,7 @@ public class FixedProductDetailActivity extends BaseActivity implements View.OnC
     private TextView tv_fixed_product_detail_yujishouyi;  //预期收益
     private TextView tv_fixed_product_detail_fuxijiange;  //付息间隔
     private TextView tv_fixed_product_detail_chengliriqi;  //成立日期
-    private TextView tv_risk_type;//风险类型
+    private TextView tv_risk_type;//风险类型 ( conservative:保守型;  steady:稳健型; growth:成长型;  aggressive:进取型;)
     private TextView tv_fixed_product_detail_guanlifei;  //管理费
     private TextView tv_fixed_product_detail_tuoguanfei;  //托管费
     private TextView tv_fixed_product_detail_guanliren;  //管理人
@@ -132,24 +131,20 @@ public class FixedProductDetailActivity extends BaseActivity implements View.OnC
             if (annualRateType.equals("direct")) { // 预期收益直接显示
                 ll_fixed_product_detail_yuqishouyi.setVisibility(View.VISIBLE);
                 ll_fixed_product_detail_profit.setVisibility(View.GONE);
-
                 tv_fixed_product_detail_yujishouyi.setText(fixedDetailBean.getAnnualRateDirect());
             } else if (annualRateType.equals("region")) { // 预期收益区间显示
                 ll_fixed_product_detail_yuqishouyi.setVisibility(View.GONE);
-
                 ll_fixed_product_detail_profit.setVisibility(View.VISIBLE);
 
                 for (int i = 0; i < fixedDetailBean.getAnnualRateRegion().size(); i++) {
                     addView(fixedDetailBean.getAnnualRateRegion().get(i).getAmount(), fixedDetailBean.getAnnualRateRegion().get(i).getRate());
                 }
-
             } else {
                 ll_fixed_product_detail_yuqishouyi.setVisibility(View.VISIBLE);
                 ll_fixed_product_detail_profit.setVisibility(View.GONE);
             }
         } else {
             ll_fixed_product_detail_yuqishouyi.setVisibility(View.VISIBLE);
-
             ll_fixed_product_detail_profit.setVisibility(View.GONE);
         }
 
@@ -166,6 +161,18 @@ public class FixedProductDetailActivity extends BaseActivity implements View.OnC
             tv_fixed_product_detail_chengliriqi.setText(fixedDetailBean.getEstablishmentDate());
             btn_order.setVisibility(View.GONE);
         }
+
+        String riskType = fixedDetailBean.getRiskType();
+        if (riskType.equals("conservative")) {
+            tv_risk_type.setText("保守型");
+        } else if (riskType.equals("steady")) {
+            tv_risk_type.setText("稳健型");
+        } else if (riskType.equals("growth")) {
+            tv_risk_type.setText("成长型");
+        } else if (riskType.equals("aggressive")) {
+            tv_risk_type.setText("进取型");
+        }
+
         productName = fixedDetailBean.getProductName();
         tv_fixed_product_detail_name.setText(productName);
         tv_fixed_product_detail_chanpinguimo.setText(fixedDetailBean.getAmount());
@@ -173,7 +180,19 @@ public class FixedProductDetailActivity extends BaseActivity implements View.OnC
         tv_fixed_product_detail_touzimenkan.setText(fixedDetailBean.getTenderCondition());
         tv_fixed_product_detail_chanpinqixian.setText(fixedDetailBean.getTimeLimit());
 
-        tv_fixed_product_detail_fuxijiange.setText(fixedDetailBean.getRepayType());
+        String repayType = fixedDetailBean.getRepayType();
+        if (repayType.equals("monthPayment")) {
+            tv_fixed_product_detail_fuxijiange.setText("按月付息，到期还本");
+        } else if (repayType.equals("quarterPayment")) {
+            tv_fixed_product_detail_fuxijiange.setText("按季付息，到期还本");
+        }else if (repayType.equals("halfYearPayment")) {
+            tv_fixed_product_detail_fuxijiange.setText("按半年付息，到期还本");
+        }else if (repayType.equals("yearPayment")) {
+            tv_fixed_product_detail_fuxijiange.setText("按年付息，到期还本");
+        }else if (repayType.equals("oneTimePayment")) {
+            tv_fixed_product_detail_fuxijiange.setText("一次性还本息");
+        }
+
         tv_fixed_product_detail_guanlifei.setText(fixedDetailBean.getAdministrativeFee());
         tv_fixed_product_detail_tuoguanfei.setText(fixedDetailBean.getTrusteeFee());
         tv_fixed_product_detail_guanliren.setText(fixedDetailBean.getAdministrator());

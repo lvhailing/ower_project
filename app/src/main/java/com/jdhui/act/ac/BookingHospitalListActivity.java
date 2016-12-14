@@ -63,6 +63,7 @@ public class BookingHospitalListActivity extends BaseActivity implements View.On
     private String hospitalName = "";  //输入的医院名称
     private String selectProvince = "";  //当前选中的省份
     private String selectCity = "";  //当前选中的市
+    private ImageView iv_select; //小三角图标
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -142,6 +143,7 @@ public class BookingHospitalListActivity extends BaseActivity implements View.On
 
     private void initView() {
         mBtnBack = (ImageView) findViewById(R.id.iv_back);
+        iv_select = (ImageView) findViewById(R.id.iv_select);
         listView = (PullToRefreshListView) findViewById(R.id.listview);
         lv_left = (ListView) findViewById(R.id.lv_left);
         lv_right = (ListView) findViewById(R.id.lv_right);
@@ -256,9 +258,11 @@ public class BookingHospitalListActivity extends BaseActivity implements View.On
                 getProvinceDatas();
                 if (isOpened) {
                     //类型是开启状态 则需关闭动画
+                    iv_select.setBackgroundResource(R.drawable.triangle_down_fill);
                     closeShopping();
                 } else {
                     //否则开启动画
+                    iv_select.setBackgroundResource(R.drawable.triangle_up_fill);
                     openShopping();
                 }
                 break;
