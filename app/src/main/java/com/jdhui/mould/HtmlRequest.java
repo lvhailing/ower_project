@@ -1464,7 +1464,6 @@ public class HtmlRequest extends BaseRequester {
      * @return 返回数据
      */
     public static String getNoticeList(final Context context, int page, OnRequestListener listener) {
-
         final String data = HtmlLoadUtil.getNoticeList(page + "");
         final String url = ApplicationConsts.URL_NOTICE;
         String tid = registerId(Constants.TASK_TYPE_NOTICE, url);

@@ -100,7 +100,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         mTvService = (TextView) findViewById(R.id.tv_service);
         mTvMore = (TextView) findViewById(R.id.tv_more);
 
-        mIvAsset.setImageResource(R.mipmap.img_asset_icon_pressed);
+        mIvAsset.setImageResource(R.mipmap.icon_tab_asset_pressed);
 
 
         mFragments = new ArrayList<Fragment>();
@@ -150,7 +150,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         switch (currentItem) {
             case 0:
                 mTvAsset.setTextColor(Color.parseColor("#8a0002"));
-                mIvAsset.setImageResource(R.mipmap.img_asset_icon_pressed);
+                mIvAsset.setImageResource(R.mipmap.icon_tab_asset_pressed);
                 mIvProduct.setImageResource(R.mipmap.img_product_icon_normal);
                 mIvService.setImageResource(R.mipmap.img_news_icon_normal);
                 mIvMore.setImageResource(R.mipmap.img_more_icon_normal);
@@ -158,7 +158,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             case 1:
                 mTvProduct.setTextColor(Color.parseColor("#8a0002"));
                 mIvAsset.setImageResource(R.mipmap.img_asset_icon_normal);
-                mIvProduct.setImageResource(R.mipmap.img_product_icon_pressed);
+                mIvProduct.setImageResource(R.mipmap.icon_tab_product_pressed);
                 mIvService.setImageResource(R.mipmap.img_news_icon_normal);
                 mIvMore.setImageResource(R.mipmap.img_more_icon_normal);
                 break;
@@ -166,7 +166,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 mTvService.setTextColor(Color.parseColor("#8a0002"));
                 mIvAsset.setImageResource(R.mipmap.img_asset_icon_normal);
                 mIvProduct.setImageResource(R.mipmap.img_product_icon_normal);
-                mIvService.setImageResource(R.mipmap.img_news_icon_pressed);
+                mIvService.setImageResource(R.mipmap.icon_tab_service_pressed);
                 mIvMore.setImageResource(R.mipmap.img_more_icon_normal);
                 break;
             case 3:
@@ -174,7 +174,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 mIvAsset.setImageResource(R.mipmap.img_asset_icon_normal);
                 mIvProduct.setImageResource(R.mipmap.img_product_icon_normal);
                 mIvService.setImageResource(R.mipmap.img_news_icon_normal);
-                mIvMore.setImageResource(R.mipmap.img_more_icon_pressed);
+                mIvMore.setImageResource(R.mipmap.icon_tab_more_pressde);
                 break;
 
         }

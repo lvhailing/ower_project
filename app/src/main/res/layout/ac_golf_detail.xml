@@ -107,7 +107,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_toRightOf="@+id/tv_type_price"
                         android:text="￥860.0"
-                        android:textColor="@color/txt_black"
+                        android:textColor="@color/edit_gray_light"
                         android:textSize="12sp"
                         android:textStyle="bold"/>
                 </RelativeLayout>
@@ -141,6 +141,7 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:paddingTop="15dp"
                 android:background="@color/white">
 
                 <LinearLayout

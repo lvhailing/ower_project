@@ -47,7 +47,7 @@ public class MessageAdapter extends BaseAdapter {
         Holder holder = null;
         if (convertView == null) {
             holder = new Holder();
-            convertView = inflater.inflate(R.layout.activity_notice_item, null);
+            convertView = inflater.inflate(R.layout.activity_message_item, null);
             holder.tv_notice_item_title = (TextView) convertView.findViewById(R.id.id_notice_item_tv_title);
             holder.tv_notice_item_time = (TextView) convertView.findViewById(R.id.id_notice_item_tv_time);
             holder.tv_notice_item_content = (TextView) convertView.findViewById(R.id.id_notice_item_tv_content);
@@ -59,18 +59,15 @@ public class MessageAdapter extends BaseAdapter {
         holder.tv_notice_item_title.setText(list.get(position).getTitle());
         holder.tv_notice_item_time.setText(list.get(position).getSendTime());
         holder.tv_notice_item_content.setText(list.get(position).getContent());
-        if (list.get(position).getStatus().equals("read")) {
-            //已读
+        if (list.get(position).getStatus().equals("read")) { //已读
             holder.tv_notice_item_title.setTextColor(context.getResources().getColor(R.color.gray));
-            holder.tv_flag.setTextColor(context.getResources().getColor(R.color.white));
-            holder.tv_flag.setBackgroundColor(context.getResources().getColor(R.color.red4));
-        } else if (list.get(position).getStatus().equals("unread")) {
-            //未读
+            holder.tv_flag.setTextColor(context.getResources().getColor(R.color.gray));
+            holder.tv_flag.setBackgroundResource(R.drawable.shape_bg_read_gray);
+        } else if (list.get(position).getStatus().equals("unread")) { //未读
             holder.tv_notice_item_title.setTextColor(context.getResources().getColor(R.color.black));
-            holder.tv_flag.setTextColor(context.getResources().getColor(R.color.bg_gray_gray));
-            holder.tv_flag.setBackgroundColor(context.getResources().getColor(R.color.bg_gray));
-        } else {
-            //未知状态 默认
+            holder.tv_flag.setTextColor(context.getResources().getColor(R.color.white));
+            holder.tv_flag.setBackgroundResource(R.drawable.shape_bg_unread_red);
+        } else { //未知状态 默认
             holder.tv_notice_item_title.setTextColor(context.getResources().getColor(R.color.gray));
             holder.tv_flag.setVisibility(View.INVISIBLE);
         }

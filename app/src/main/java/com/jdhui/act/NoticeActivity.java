@@ -86,8 +86,8 @@ public class NoticeActivity extends BaseActivity implements View.OnClickListener
 
     @Override
     public void onResume() {
-        initData();
         super.onResume();
+        initData();
     }
 
     private void requestData(int page) {

@@ -12,10 +12,10 @@ public class GolfDetail3B implements IMouldType {
     private String golfName; //高尔夫球场名称
     private String golfPhoto; //场地图片
     private String golfRights; //高尔夫权限  not：优惠价  A1：嘉宾价  A2：会员价  VIP：会员价
-    private Number originalPrice; //原价
-    private Number preferenialPrice; //优惠价
-    private Number guestPrice; //嘉宾价
-    private Number vipPrice; //会员价
+    private String originalPrice; //原价
+    private String preferenialPrice; //优惠价
+    private String guestPrice; //嘉宾价
+    private String vipPrice; //会员价
     private String golfAddress; //地址
     private String golfBrief; //详情
 
@@ -51,38 +51,6 @@ public class GolfDetail3B implements IMouldType {
         this.golfRights = golfRights;
     }
 
-    public Number getOriginalPrice() {
-        return originalPrice;
-    }
-
-    public void setOriginalPrice(Number originalPrice) {
-        this.originalPrice = originalPrice;
-    }
-
-    public Number getPreferenialPrice() {
-        return preferenialPrice;
-    }
-
-    public void setPreferenialPrice(Number preferenialPrice) {
-        this.preferenialPrice = preferenialPrice;
-    }
-
-    public Number getGuestPrice() {
-        return guestPrice;
-    }
-
-    public void setGuestPrice(Number guestPrice) {
-        this.guestPrice = guestPrice;
-    }
-
-    public Number getVipPrice() {
-        return vipPrice;
-    }
-
-    public void setVipPrice(Number vipPrice) {
-        this.vipPrice = vipPrice;
-    }
-
     public String getGolfAddress() {
         return golfAddress;
     }
@@ -97,6 +65,38 @@ public class GolfDetail3B implements IMouldType {
 
     public void setGolfBrief(String golfBrief) {
         this.golfBrief = golfBrief;
+    }
+
+    public String getOriginalPrice() {
+        return originalPrice;
+    }
+
+    public void setOriginalPrice(String originalPrice) {
+        this.originalPrice = originalPrice;
+    }
+
+    public String getPreferenialPrice() {
+        return preferenialPrice;
+    }
+
+    public void setPreferenialPrice(String preferenialPrice) {
+        this.preferenialPrice = preferenialPrice;
+    }
+
+    public String getGuestPrice() {
+        return guestPrice;
+    }
+
+    public void setGuestPrice(String guestPrice) {
+        this.guestPrice = guestPrice;
+    }
+
+    public String getVipPrice() {
+        return vipPrice;
+    }
+
+    public void setVipPrice(String vipPrice) {
+        this.vipPrice = vipPrice;
     }
 }
 

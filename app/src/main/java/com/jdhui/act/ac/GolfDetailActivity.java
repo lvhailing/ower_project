@@ -1,6 +1,7 @@
 package com.jdhui.act.ac;
 
 import android.content.Intent;
+import android.graphics.Paint;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -43,7 +44,7 @@ public class GolfDetailActivity extends BaseActivity implements View.OnClickList
     }
 
     private void initData() {
-        requestListData();
+        requestDetailData();
     }
 
     private void initView() {
@@ -72,17 +73,19 @@ public class GolfDetailActivity extends BaseActivity implements View.OnClickList
         //高尔夫权限  not：优惠价  A1：嘉宾价  A2：会员价  VIP：会员价
         if (detail.getGolfRights().equals("not")) {
             type = "优惠价";
-            price = detail.getPreferenialPrice().toString();
+            price = detail.getPreferenialPrice();
         } else if (detail.getGolfRights().equals("A1")) {
             type = "嘉宾价";
-            price = detail.getGuestPrice().toString();
+            price = detail.getGuestPrice();
         } else {
             type = "会员价";
-            price = detail.getVipPrice().toString();
+            price = detail.getVipPrice();
         }
         tv_type_price.setText(type);
-        tv_field_price.setText(price);
-        tv_original_price.setText("￥" + detail.getOriginalPrice().toString());
+        tv_field_price.setText("￥" + price);
+        tv_original_price.setText("￥" + detail.getOriginalPrice());
+        tv_original_price.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG | Paint.ANTI_ALIAS_FLAG);// 设置中划线并加清晰
+
 
         tv_field_name.setText(detail.getGolfName());
         tv_address.setText(detail.getGolfAddress());
@@ -99,13 +102,13 @@ public class GolfDetailActivity extends BaseActivity implements View.OnClickList
                 Intent intent = new Intent(GolfDetailActivity.this, SubBookingGolfActivity.class);
                 intent.putExtra("id", id);
                 intent.putExtra("name", detail.getGolfName());
-                intent.putExtra("golfRights", detail.getGolfRights());//高尔夫权限  not：优惠价  A1：嘉宾价  A2：会员价  VIP：会员价
+                intent.putExtra("golfRights", detail.getGolfRights());//高尔夫权限  not：优惠价  A1：嘉宾价  A2和VIP（都显示）：会员价
                 startActivity(intent);
                 break;
         }
     }
 
-    private void requestListData() {  //请求高尔夫球场详情的数据
+    private void requestDetailData() {  //请求高尔夫球场详情的数据
         HtmlRequest.getGolfDetail(this, id, new BaseRequester.OnRequestListener() {
             @Override
             public void onRequestFinished(BaseParams params) {

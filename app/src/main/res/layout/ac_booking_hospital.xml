@@ -147,7 +147,7 @@
                     android:id="@+id/tv_time1"
                     style="@style/tv_style"
                     android:layout_centerVertical="true"
-                    android:layout_marginRight="17dp"
+                    android:layout_marginRight="5dp"
                     android:layout_toLeftOf="@id/iv_arrow1"
                     android:hint="请选择预约时间"
                     android:text=""/>
@@ -183,7 +183,7 @@
                     android:id="@+id/tv_time2"
                     style="@style/tv_style"
                     android:layout_centerVertical="true"
-                    android:layout_marginRight="17dp"
+                    android:layout_marginRight="5dp"
                     android:layout_toLeftOf="@id/iv_arrow2"
                     android:hint="请选择备选时间"
                     android:text=""/>
@@ -218,7 +218,7 @@
                     android:id="@+id/tv_time3"
                     style="@style/tv_style"
                     android:layout_centerVertical="true"
-                    android:layout_marginRight="17dp"
+                    android:layout_marginRight="5dp"
                     android:layout_toLeftOf="@id/iv_arrow3"
                     android:hint="请选择备选时间"
                     android:text=""/>
@@ -253,7 +253,7 @@
                     android:id="@+id/tv_hospital"
                     style="@style/tv_style"
                     android:layout_centerVertical="true"
-                    android:layout_marginRight="17dp"
+                    android:layout_marginRight="5dp"
                     android:layout_toLeftOf="@id/iv_arrow4"
                     android:hint="请选择预约医院"
                     android:text=""/>

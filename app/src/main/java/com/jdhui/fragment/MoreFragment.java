@@ -151,7 +151,6 @@ public class MoreFragment extends Fragment implements View.OnClickListener {
             case R.id.id_tab_more_layout_contact_us:
                 CallServiceDialog dialog = new CallServiceDialog(getActivity(),
                         new CallServiceDialog.OnCallServiceChanged() {
-
                             @Override
                             public void onConfim() {
                                 Intent intent = new Intent(Intent.ACTION_DIAL);

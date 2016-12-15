@@ -74,8 +74,8 @@ public class SubBookingGolfActivity extends BaseActivity implements View.OnClick
 
         tv_venue_name = (TextView) findViewById(R.id.tv_venue_name);
         tv_venue_name.setText(golfName);//设置高尔夫球场名称
-        if (golfRights.equals("A2") || golfRights.equals("VIP")) {
-            //高尔夫权限  not：优惠价  A1：嘉宾价  A2：会员价  VIP：会员价
+        if (golfRights.equals("VIP")) {
+            //只有VIP权限时才显示同行人
             ll_together1.setVisibility(View.VISIBLE);
             ll_together2.setVisibility(View.VISIBLE);
             v_line1.setVisibility(View.VISIBLE);

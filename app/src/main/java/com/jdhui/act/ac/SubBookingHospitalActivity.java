@@ -43,6 +43,7 @@ public class SubBookingHospitalActivity extends BaseActivity implements View.OnC
     private RelativeLayout rl_hospital; //预约医院
     private TextView tv_hospital;
     private String id; //医院id
+    private String hospitalName;//医院名称
     private EditText et_departments;   //科室
     private EditText et_doctor; //预约医生
     private EditText et_illness; //主诉病情
@@ -119,7 +120,8 @@ public class SubBookingHospitalActivity extends BaseActivity implements View.OnC
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == 100 && data != null) {
             id = data.getStringExtra("id");
-            tv_hospital.setText(id);
+            hospitalName = data.getStringExtra("name");
+            tv_hospital.setText(hospitalName);
         }
     }
 

@@ -17,7 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="6dp">
-<!--
+
             <TextView
                 android:id="@+id/tv_flag"
                 android:layout_width="33dp"
@@ -27,7 +27,7 @@
                 android:gravity="center"
                 android:text="未读"
                 android:textColor="@color/white"
-                android:textSize="12sp" />-->
+                android:textSize="12sp" />
 
             <TextView
                 android:id="@+id/id_notice_item_tv_title"
