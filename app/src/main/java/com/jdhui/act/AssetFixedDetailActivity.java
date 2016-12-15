@@ -94,7 +94,20 @@ public class AssetFixedDetailActivity extends BaseActivity implements View.OnCli
         tv_asset_fixed_chanpinqixian.setText(assetFixedBean.getTimeLimit());
         tv_asset_fixed_goumairiqi.setText(assetFixedBean.getPurchaseDate());
         tv_asset_fixed_chengliriqi.setText(assetFixedBean.getEstablishmentDate());
-        tv_asset_fixed_fuxinjiange.setText(assetFixedBean.getRepayType());
+
+        String repayType = assetFixedBean.getRepayType();
+        if (repayType.equals("monthPayment")) {
+            tv_asset_fixed_fuxinjiange.setText("按月付息，到期还本");
+        } else if (repayType.equals("quarterPayment")) {
+            tv_asset_fixed_fuxinjiange.setText("按季付息，到期还本");
+        } else if (repayType.equals("halfYearPayment")) {
+            tv_asset_fixed_fuxinjiange.setText("按半年付息，到期还本");
+        } else if (repayType.equals("yearPayment")) {
+            tv_asset_fixed_fuxinjiange.setText("按年付息，到期还本");
+        } else if (repayType.equals("oneTimePayment")) {
+            tv_asset_fixed_fuxinjiange.setText("一次性还本息");
+        }
+        
         tv_asset_fixed_beizhu.setText(assetFixedBean.getRemark());
 
         if (assetFixedBean.getIsAnnualReport().equals("yes")) { // 是否有年度报告	 yes:有;  no:无
