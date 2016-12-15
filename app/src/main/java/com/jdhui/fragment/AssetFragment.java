@@ -158,7 +158,6 @@ public class AssetFragment extends Fragment implements View.OnClickListener {
     }
 
     private void setData(boolean flag) {
-
         ArrayList<PieEntry> entries = new ArrayList<PieEntry>();
 
         if (!flag) {
@@ -327,7 +326,6 @@ public class AssetFragment extends Fragment implements View.OnClickListener {
                 } else {
                     iv_fragment_asset_message.setImageResource(R.mipmap.img_message_0);
                 }
-
             } else {
                 iv_fragment_asset_message.setImageResource(R.mipmap.img_message_0);
             }

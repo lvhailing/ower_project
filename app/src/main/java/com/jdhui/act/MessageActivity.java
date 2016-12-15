@@ -24,8 +24,7 @@ import com.jdhui.uitls.PreferenceUtil;
  * 消息
  */
 public class MessageActivity extends BaseActivity implements View.OnClickListener {
-
-    public final static int MESSAGE_RESUEST_CODE = 4003;        //已读消息请求码
+    public final static int MESSAGE_RESUEST_CODE = 4003;  //已读消息请求码
     private View view;
     private PullToRefreshListView listView;
     private MessageAdapter mAdapter;

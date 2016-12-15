@@ -1191,47 +1191,44 @@ public class HtmlRequest extends BaseRequester {
         if (tid == null) {
             return null;
         }
-        getTaskManager().addTask(
-                new MouldAsyncTask(tid, buildParams(Constants.TASK_TYPE_MESSAGE_LIST_INDEX, context, listener, url, 0)) {
-
-                    @Override
-                    public IMouldType doTask(BaseParams params) {
-                        SimpleHttpClient client = new SimpleHttpClient(context, SimpleHttpClient.RESULT_STRING);
-                        HttpEntity entity = null;
-                        try {
-                            entity = new StringEntity(data);
-                        } catch (UnsupportedEncodingException e1) {
-                            e1.printStackTrace();
-                        }
-                        client.post(url, entity);
-                        String result = (String) client.getResult();
+        getTaskManager().addTask(new MouldAsyncTask(tid, buildParams(Constants.TASK_TYPE_MESSAGE_LIST_INDEX, context, listener, url, 0)) {
+            @Override
+            public IMouldType doTask(BaseParams params) {
+                SimpleHttpClient client = new SimpleHttpClient(context, SimpleHttpClient.RESULT_STRING);
+                HttpEntity entity = null;
+                try {
+                    entity = new StringEntity(data);
+                } catch (UnsupportedEncodingException e1) {
+                    e1.printStackTrace();
+                }
+                client.post(url, entity);
+                String result = (String) client.getResult();
 //						Toast.makeText(context,"result=="+result,Toast.LENGTH_SHORT).show();
-                        try {
-                            if (isCancelled()) {
-                                return null;
-                            }
-                            if (result != null) {
-                                String data = DESUtil.decrypt(result);
-                                Gson json = new Gson();
-//								Toast.makeText(context,data.toString(),Toast.LENGTH_SHORT).show();
-                                ResultMessageListContentBean b = json.fromJson(data, ResultMessageListContentBean.class);
-                                resultEncrypt(context, b.getCode());
-                                return b.getData();
-                            }
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        } finally {
-                            unRegisterId(getTaskId());
-                        }
+                try {
+                    if (isCancelled()) {
                         return null;
                     }
-
-                    @Override
-                    public void onPostExecute(IMouldType result, BaseParams params) {
-                        params.result = result;
-                        params.sendResult();
+                    if (result != null) {
+                        String data = DESUtil.decrypt(result);
+                        Gson json = new Gson();
+                        ResultMessageListContentBean b = json.fromJson(data, ResultMessageListContentBean.class);
+                        resultEncrypt(context, b.getCode());
+                        return b.getData();
                     }
-                });
+                } catch (Exception e) {
+                    e.printStackTrace();
+                } finally {
+                    unRegisterId(getTaskId());
+                }
+                return null;
+            }
+
+            @Override
+            public void onPostExecute(IMouldType result, BaseParams params) {
+                params.result = result;
+                params.sendResult();
+            }
+        });
         return tid;
     }
 

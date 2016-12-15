@@ -84,10 +84,10 @@ public class ProductOrderActivity extends BaseActivity implements View.OnClickLi
             @Override
             public void onItemClick(AdapterView<?> arg0, View arg1, int position, long arg3) {
                 Intent intent = new Intent(ProductOrderActivity.this, ProOrderDetailActivity.class);
-                intent.putExtra("id",totalList.get(position-1).getId());
-                intent.putExtra("productName",totalList.get(position-1).getProductName());
-                intent.putExtra("category",totalList.get(position-1).getCategory());
-                intent.putExtra("status",totalList.get(position-1).getStatus());
+                intent.putExtra("id", totalList.get(position - 1).getId());
+                intent.putExtra("productName", totalList.get(position - 1).getProductName());
+                intent.putExtra("category", totalList.get(position - 1).getCategory());
+                intent.putExtra("status", totalList.get(position - 1).getStatus());
                 startActivity(intent);
             }
         });
@@ -133,16 +133,14 @@ public class ProductOrderActivity extends BaseActivity implements View.OnClickLi
                         return;
                     }
 
+                    listView.getRefreshableView().smoothScrollToPositionFromTop(0, 80, 100);
+                    listView.onRefreshComplete();
+
                     Product2B data = (Product2B) params.result;
                     MouldList<Product3B> everyList = data.getList();
                     if (everyList == null || everyList.size() == 0) {
                         Toast.makeText(ProductOrderActivity.this, "没有数据了", Toast.LENGTH_SHORT).show();
-                        return;
                     }
-
-                    listView.getRefreshableView().smoothScrollToPositionFromTop(0, 80, 100);
-                    listView.onRefreshComplete();
-
                     if (currentPage == 1) {
                         //刚进来时 加载第一页数据，或下拉刷新 重新加载数据 。这两种情况之前的数据都清掉
                         totalList.clear();
@@ -158,6 +156,7 @@ public class ProductOrderActivity extends BaseActivity implements View.OnClickLi
                         //以后直接刷新
                         mAdapter.notifyDataSetChanged();
                     }
+
                 }
             });
         } catch (Exception e) {

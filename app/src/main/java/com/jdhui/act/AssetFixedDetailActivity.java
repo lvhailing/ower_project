@@ -107,7 +107,7 @@ public class AssetFixedDetailActivity extends BaseActivity implements View.OnCli
         } else if (repayType.equals("oneTimePayment")) {
             tv_asset_fixed_fuxinjiange.setText("一次性还本息");
         }
-        
+
         tv_asset_fixed_beizhu.setText(assetFixedBean.getRemark());
 
         if (assetFixedBean.getIsAnnualReport().equals("yes")) { // 是否有年度报告	 yes:有;  no:无
