@@ -10,6 +10,7 @@ import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
 import android.widget.AdapterView;
 import android.widget.EditText;
@@ -72,6 +73,8 @@ public class BookingHospitalListActivity extends BaseActivity implements View.On
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         baseSetContentView(R.layout.ac_hospital_list);
+
+//        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);// 禁止自动弹出输入法
 
         initView();
         initData();
@@ -178,11 +181,11 @@ public class BookingHospitalListActivity extends BaseActivity implements View.On
             }
         });
 
-        //点击键盘上的完成按钮  (搜索是 IME_ACTION_SEARCH)
+        //点击软键盘上的搜索按钮
         et_search.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                if (actionId == EditorInfo.IME_ACTION_DONE) {   //IME_ACTION_SEARCH
+                if (actionId == EditorInfo.IME_ACTION_SEARCH ) {
                     hospitalName = et_search.getText().toString();
                     if (!TextUtils.isEmpty(hospitalName)) {
                         requestData();
@@ -196,7 +199,6 @@ public class BookingHospitalListActivity extends BaseActivity implements View.On
     }
 
     private void requestData() {
-//        Toast.makeText(this, selectCity + ":" + selectProvince, Toast.LENGTH_SHORT).show();
         try {
             HtmlRequest.getBookingHospitalList(BookingHospitalListActivity.this, selectProvince, selectCity, hospitalName, currentPage + "", new BaseRequester.OnRequestListener() {
                 @Override
@@ -247,6 +249,7 @@ public class BookingHospitalListActivity extends BaseActivity implements View.On
         oa.start();
         v_hidden.setVisibility(View.VISIBLE);
         ll_hidden.setVisibility(View.VISIBLE);
+        iv_select.setBackgroundResource(R.drawable.triangle_up_fill);
         isOpened = true;
     }
 
@@ -260,6 +263,7 @@ public class BookingHospitalListActivity extends BaseActivity implements View.On
             public void onAnimationEnd(Animator animation) {
                 v_hidden.setVisibility(View.GONE);
                 ll_hidden.setVisibility(View.GONE);
+                iv_select.setBackgroundResource(R.drawable.triangle_down_fill);
             }
         });
         isOpened = false;
@@ -278,11 +282,9 @@ public class BookingHospitalListActivity extends BaseActivity implements View.On
                 getProvinceDatas();
                 if (isOpened) {
                     //类型是开启状态 则需关闭动画
-                    iv_select.setBackgroundResource(R.drawable.triangle_down_fill);
                     closeShopping();
                 } else {
                     //否则开启动画
-                    iv_select.setBackgroundResource(R.drawable.triangle_up_fill);
                     openShopping();
                 }
                 break;

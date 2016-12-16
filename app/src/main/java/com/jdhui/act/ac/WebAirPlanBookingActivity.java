@@ -12,6 +12,7 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.jdhui.ApplicationConsts;
 import com.jdhui.R;
@@ -79,6 +80,7 @@ public class WebAirPlanBookingActivity extends Activity implements View.OnClickL
         public void written() {
             setResult(RESULT_OK);
             WebAirPlanBookingActivity.this.finish();
+            Toast.makeText(WebAirPlanBookingActivity.this,"预约成功",Toast.LENGTH_SHORT).show();
         }
     }
 
