@@ -49,6 +49,7 @@ public class BookingHospitalListActivity extends BaseActivity implements View.On
     private ImageView mBtnBack;
     private MouldList<BookingHospitalList3B> totalList = new MouldList<>();
     private int currentPage = 1;    //当前页
+    private int currentType;  //当前点的是上拉、下拉刷新  还是全部  1、上拉、下拉刷新  2、全部
     private ListView lv_left;   //左侧省份lv
     private ListView lv_right;   //右侧市lv
     private View v_hidden; //隐藏的省市布局背景
@@ -62,7 +63,6 @@ public class BookingHospitalListActivity extends BaseActivity implements View.On
     private List<City> cityList;    //所有市
     private DownloadUtils downloadUtils;
     private ProvinceAdapter provinceAdapter;    //省份的ad
-
     private CityAdapter cityAdapter;    //市的ad
     private String hospitalName = "";  //输入的医院名称
     private String selectProvince = "";  //当前选中的省份
@@ -73,8 +73,6 @@ public class BookingHospitalListActivity extends BaseActivity implements View.On
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         baseSetContentView(R.layout.ac_hospital_list);
-
-//        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);// 禁止自动弹出输入法
 
         initView();
         initData();
@@ -93,6 +91,7 @@ public class BookingHospitalListActivity extends BaseActivity implements View.On
                     //上划加载下一页
                     currentPage++;
                 }
+                currentType = 1;
                 requestData();
             }
         });
@@ -124,7 +123,11 @@ public class BookingHospitalListActivity extends BaseActivity implements View.On
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
                 selectCity = cityList.get(position).getName();
-                tv_area.setText(selectCity);
+                if (selectCity.equals("全部")) {
+                    tv_area.setText(selectProvince);
+                } else {
+                    tv_area.setText(selectCity);
+                }
                 //关闭动画
                 closeShopping();
                 //访问接口
@@ -185,7 +188,7 @@ public class BookingHospitalListActivity extends BaseActivity implements View.On
         et_search.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                if (actionId == EditorInfo.IME_ACTION_SEARCH ) {
+                if (actionId == EditorInfo.IME_ACTION_SEARCH) {
                     hospitalName = et_search.getText().toString();
                     if (!TextUtils.isEmpty(hospitalName)) {
                         requestData();
@@ -210,15 +213,20 @@ public class BookingHospitalListActivity extends BaseActivity implements View.On
                         return;
                     }
 
+                    listView.getRefreshableView().smoothScrollToPositionFromTop(0, 80, 100);
+                    listView.onRefreshComplete();
+
                     BookingHospitalList2B data = (BookingHospitalList2B) params.result;
                     MouldList<BookingHospitalList3B> everyList = data.getList();
                     if (everyList == null || everyList.size() == 0) {
                         Toast.makeText(BookingHospitalListActivity.this, "没有数据了", Toast.LENGTH_SHORT).show();
+                        if (mAdapter != null) {
+                            totalList.clear();
+                            mAdapter.notifyDataSetChanged();    //刷新界面
+                        }
                         return;
                     }
 
-                    listView.getRefreshableView().smoothScrollToPositionFromTop(0, 80, 100);
-                    listView.onRefreshComplete();
 
                     if (currentPage == 1) {
                         //刚进来时 加载第一页数据，或下拉刷新 重新加载数据 。这两种情况之前的数据都清掉
