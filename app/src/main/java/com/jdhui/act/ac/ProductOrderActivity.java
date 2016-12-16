@@ -43,6 +43,7 @@ public class ProductOrderActivity extends BaseActivity implements View.OnClickLi
     private TextView tv_1, tv_2, tv_3, tv_4;  //状态或类型的下面的text
 
     private int currentPage = 1;    //当前页
+    private int currentType;  //当前点的是上拉、下拉刷新  还是组合选择  1、上拉、下拉刷新  2、组合选择
     private int currentFlag;  //当前选择哪个按钮  1、类型按钮  2、状态按钮
     private String userInfoId; //用户id
     private String category;    //当前产品类型
@@ -76,6 +77,7 @@ public class ProductOrderActivity extends BaseActivity implements View.OnClickLi
                     //上划加载下一页
                     currentPage++;
                 }
+                currentType = 1;
                 requestData();
             }
         });
@@ -140,6 +142,11 @@ public class ProductOrderActivity extends BaseActivity implements View.OnClickLi
                     MouldList<Product3B> everyList = data.getList();
                     if (everyList == null || everyList.size() == 0) {
                         Toast.makeText(ProductOrderActivity.this, "没有数据了", Toast.LENGTH_SHORT).show();
+                        if (mAdapter != null && currentType == 2) {
+                            totalList.clear();
+                            mAdapter.notifyDataSetChanged();    //刷新界面
+                        }
+                        return;
                     }
                     if (currentPage == 1) {
                         //刚进来时 加载第一页数据，或下拉刷新 重新加载数据 。这两种情况之前的数据都清掉
@@ -263,6 +270,7 @@ public class ProductOrderActivity extends BaseActivity implements View.OnClickLi
                     mTvStatus.setText("全部状态");
                     iv_select_right.setBackgroundResource(R.drawable.triangle_down_fill);
                 }
+                currentType = 2;
                 closeShopping();
                 requestData();
                 break;
@@ -276,6 +284,7 @@ public class ProductOrderActivity extends BaseActivity implements View.OnClickLi
                     mTvStatus.setText("已确认");
                     iv_select_right.setBackgroundResource(R.drawable.triangle_down_fill);
                 }
+                currentType = 2;
                 closeShopping();
                 requestData();
                 break;
@@ -289,6 +298,7 @@ public class ProductOrderActivity extends BaseActivity implements View.OnClickLi
                     mTvStatus.setText("待确认");
                     iv_select_right.setBackgroundResource(R.drawable.triangle_down_fill);
                 }
+                currentType = 2;
                 closeShopping();
                 requestData();
                 break;
@@ -302,6 +312,7 @@ public class ProductOrderActivity extends BaseActivity implements View.OnClickLi
                     mTvStatus.setText("无效预约");
                     iv_select_right.setBackgroundResource(R.drawable.triangle_down_fill);
                 }
+                currentType = 2;
                 closeShopping();
                 requestData();
                 break;

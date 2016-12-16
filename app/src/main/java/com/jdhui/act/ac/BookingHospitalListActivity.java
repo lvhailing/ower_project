@@ -6,8 +6,11 @@ import android.animation.ObjectAnimator;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -95,8 +98,8 @@ public class BookingHospitalListActivity extends BaseActivity implements View.On
             @Override
             public void onItemClick(AdapterView<?> arg0, View arg1, int position, long arg3) {
                 Intent intent = new Intent();
-                intent.putExtra("id", totalList.get(position-1).getId());
-                intent.putExtra("name", totalList.get(position-1).getName());
+                intent.putExtra("id", totalList.get(position - 1).getId());
+                intent.putExtra("name", totalList.get(position - 1).getName());
                 setResult(100, intent);
                 finish();
             }
@@ -174,6 +177,22 @@ public class BookingHospitalListActivity extends BaseActivity implements View.On
             public void afterTextChanged(Editable s) {
             }
         });
+
+        //点击键盘上的完成按钮  (搜索是 IME_ACTION_SEARCH)
+        et_search.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_DONE) {   //IME_ACTION_SEARCH
+                    hospitalName = et_search.getText().toString();
+                    if (!TextUtils.isEmpty(hospitalName)) {
+                        requestData();
+                    }
+                    return true;
+                }
+                return false;
+            }
+        });
+
     }
 
     private void requestData() {
