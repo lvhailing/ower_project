@@ -54,11 +54,9 @@ public class ProvinceAdapter extends BaseAdapter {
         }
 
         if (selectPos == position) {
-            //点中了哪项 哪项要背景变白
-            holder.rl.setBackgroundColor(Color.parseColor("#ffffff"));
-        } else {
-            //否则 普通灰背景
             holder.rl.setBackgroundColor(Color.parseColor("#F5F5F5"));
+        } else {
+            holder.rl.setBackgroundColor(Color.parseColor("#ffffff"));
         }
 
         holder.tv_name.setText(list.get(position).getName());

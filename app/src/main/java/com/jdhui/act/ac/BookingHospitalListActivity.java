@@ -8,9 +8,9 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
-import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
 import android.widget.AdapterView;
 import android.widget.EditText;
@@ -49,7 +49,6 @@ public class BookingHospitalListActivity extends BaseActivity implements View.On
     private ImageView mBtnBack;
     private MouldList<BookingHospitalList3B> totalList = new MouldList<>();
     private int currentPage = 1;    //当前页
-    private int currentType;  //当前点的是上拉、下拉刷新  还是全部  1、上拉、下拉刷新  2、全部
     private ListView lv_left;   //左侧省份lv
     private ListView lv_right;   //右侧市lv
     private View v_hidden; //隐藏的省市布局背景
@@ -91,7 +90,6 @@ public class BookingHospitalListActivity extends BaseActivity implements View.On
                     //上划加载下一页
                     currentPage++;
                 }
-                currentType = 1;
                 requestData();
             }
         });
@@ -130,6 +128,8 @@ public class BookingHospitalListActivity extends BaseActivity implements View.On
                 }
                 //关闭动画
                 closeShopping();
+                //用户点击了某个市 需要把当前页码置成1
+                currentPage = 1;
                 //访问接口
                 requestData();
             }
@@ -174,6 +174,8 @@ public class BookingHospitalListActivity extends BaseActivity implements View.On
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
+                //用户输入的文本变化了 需要把当前页码置成1
+                currentPage = 1;
                 //当文本变化时触发事件
                 hospitalName = s.toString().replace(" ", "");
                 requestData();
@@ -189,7 +191,7 @@ public class BookingHospitalListActivity extends BaseActivity implements View.On
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 if (actionId == EditorInfo.IME_ACTION_SEARCH) {
-                    hospitalName = et_search.getText().toString();
+                    hospitalName = et_search.getText().toString().replace(" ", "");
                     if (!TextUtils.isEmpty(hospitalName)) {
                         requestData();
                     }
@@ -202,6 +204,7 @@ public class BookingHospitalListActivity extends BaseActivity implements View.On
     }
 
     private void requestData() {
+        Log.i("aaa", selectProvince + ":" + selectCity + ":" + hospitalName);
         try {
             HtmlRequest.getBookingHospitalList(BookingHospitalListActivity.this, selectProvince, selectCity, hospitalName, currentPage + "", new BaseRequester.OnRequestListener() {
                 @Override
@@ -220,11 +223,6 @@ public class BookingHospitalListActivity extends BaseActivity implements View.On
                     MouldList<BookingHospitalList3B> everyList = data.getList();
                     if (everyList == null || everyList.size() == 0) {
                         Toast.makeText(BookingHospitalListActivity.this, "没有数据了", Toast.LENGTH_SHORT).show();
-                        if (mAdapter != null) {
-                            totalList.clear();
-                            mAdapter.notifyDataSetChanged();    //刷新界面
-                        }
-                        return;
                     }
 
 

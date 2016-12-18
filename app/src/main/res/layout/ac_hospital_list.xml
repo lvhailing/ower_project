@@ -1,5 +1,4 @@
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/bg_gray"
@@ -18,7 +17,7 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"
             android:padding="5dp"
-            android:src="@drawable/back"/>
+            android:src="@drawable/back" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -26,7 +25,7 @@
             android:layout_centerInParent="true"
             android:text="选择医院"
             android:textColor="@color/white"
-            android:textSize="18sp"/>
+            android:textSize="18sp" />
     </RelativeLayout>
 
     <RelativeLayout
@@ -48,7 +47,7 @@
                 android:layout_height="32dp"
                 android:layout_gravity="center_vertical"
                 android:padding="10dp"
-                android:src="@drawable/icon_search1"/>
+                android:src="@drawable/icon_search1" />
 
             <EditText
                 android:id="@+id/et_search"
@@ -60,12 +59,11 @@
                 android:imeOptions="actionSearch"
                 android:singleLine="true"
                 android:textColor="@color/black"
-                android:textSize="14sp"/>
+                android:textSize="14sp" />
         </LinearLayout>
     </RelativeLayout>
 
-    <View
-        style="@style/v_line_style"/>
+    <View style="@style/v_line_style" />
 
     <RelativeLayout
         android:id="@+id/rl_area"
@@ -81,7 +79,7 @@
             android:layout_centerVertical="true"
             android:text="全部地区"
             android:textColor="@color/txt_orange1"
-            android:textSize="18sp"/>
+            android:textSize="18sp" />
 
         <ImageView
             android:id="@+id/iv_select"
@@ -90,22 +88,20 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="5dp"
             android:layout_toRightOf="@+id/tv_area"
-            android:background="@drawable/triangle_down_fill"/>
+            android:background="@drawable/triangle_down_fill" />
     </RelativeLayout>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="5dp"
-        android:background="#f5f5f5"/>
+        android:background="#f5f5f5" />
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/white"
-        android:paddingLeft="12dp">
+        android:background="@color/white">
 
-        <com.handmark.pulltorefresh.library.PullToRefreshListView
-            xmlns:ptr="http://schemas.android.com/apk/res-auto"
+        <com.handmark.pulltorefresh.library.PullToRefreshListView xmlns:ptr="http://schemas.android.com/apk/res-auto"
             android:id="@+id/listview"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -113,14 +109,14 @@
             android:dividerHeight="0dp"
             android:scrollbars="none"
             ptr:ptrAnimationStyle="flip"
-            ptr:ptrMode="both"/>
+            ptr:ptrMode="both" />
 
         <View
             android:id="@+id/v_hidden"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="#66000000"
-            android:visibility="gone"/>
+            android:visibility="gone" />
 
         <LinearLayout
             android:id="@+id/ll_hidden"
@@ -135,14 +131,14 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:divider="@null"/>
+                android:divider="@null" />
 
             <ListView
                 android:id="@+id/lv_right"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:divider="@null"/>
+                android:divider="@null" />
         </LinearLayout>
     </RelativeLayout>
 
