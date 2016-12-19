@@ -255,6 +255,7 @@
                     android:layout_centerVertical="true"
                     android:layout_marginRight="5dp"
                     android:layout_toLeftOf="@id/iv_arrow4"
+                    android:gravity="right"
                     android:hint="请选择预约医院"
                     android:text=""/>
 
