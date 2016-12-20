@@ -231,8 +231,7 @@ public class PreferenceUtil {
      * @param isLogin
      */
     public static void setLogin(boolean isLogin) {
-        getUserSharedPreferences().edit().putBoolean("isLogin", isLogin)
-                .commit();
+        getUserSharedPreferences().edit().putBoolean("isLogin", isLogin).commit();
     }
 
     /**

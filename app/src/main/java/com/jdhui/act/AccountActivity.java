@@ -85,7 +85,7 @@ public class AccountActivity extends BaseActivity implements View.OnClickListene
                 i_myInfo.putExtra("userInfoId", userInfoId);
                 startActivity(i_myInfo);
                 break;
-            case R.id.accountset_recive:
+            case R.id.accountset_recive://帐户中心页面  手势密码的开关按钮
                 if (PreferenceUtil.isGestureChose()) {
                     Intent i = new Intent(this, GestureVerifyActivity.class);
                     i.putExtra("from", ApplicationConsts.ACTIVITY_ACCOUNT);
@@ -93,8 +93,7 @@ public class AccountActivity extends BaseActivity implements View.OnClickListene
                     i.putExtra("message", "请画出手势密码解锁");
                     startActivityForResult(i, 1000);
                 } else {
-                    Intent i = new Intent(this,
-                            GestureEditActivity.class);
+                    Intent i = new Intent(this, GestureEditActivity.class);
                     i.putExtra("comeflag", 4);
                     if (tomain != null) {
                         i.putExtra("tomain", tomain);
@@ -122,7 +121,7 @@ public class AccountActivity extends BaseActivity implements View.OnClickListene
                 Intent i_changePW = new Intent(this, ChangePasswordActivity.class);
                 startActivity(i_changePW);
                 break;
-            case R.id.id_account_btn_exit:                  //退出登录
+            case R.id.id_account_btn_exit: //退出登录
                 UserLoadout out = new UserLoadout(AccountActivity.this);
                 out.requestData();
                 break;

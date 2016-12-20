@@ -61,7 +61,7 @@ public class SplashActivity extends FragmentActivity {
 //					Utils.getMetaValue(SplashActivity.this, "api_key"));
 //		}
         /*Resources resource = this.getResources();
-		String pkgName = this.getPackageName();
+        String pkgName = this.getPackageName();
 		// Push: 设置自定义的通知样式，具体API介绍见用户手册，如果想使用系统默认的可以不加这段代码
 		// 请在通知推送界面中，高级设置->通知栏样式->自定义样式，选中并且填写值：1，
 		// 与下方代码中 PushManager.setNotificationBuilder(this, 1,
@@ -94,17 +94,14 @@ public class SplashActivity extends FragmentActivity {
             fgList = new ArrayList<Fragment>();
             for (int i = 0; i < 3; i++) {
                 imgView = new ImageView(this);
-                LinearLayout.LayoutParams params_linear = new LinearLayout.LayoutParams(
-                        10, 10);
+                LinearLayout.LayoutParams params_linear = new LinearLayout.LayoutParams(10, 10);
                 params_linear.setMargins(7, 10, 7, 10);
                 imgView.setLayoutParams(params_linear);
                 indicator_imgs[i] = imgView;
                 if (i == 0) { // 初始化第一个为选中状态
-                    indicator_imgs[i]
-                            .setBackgroundResource(R.drawable.indicator_focused);
+                    indicator_imgs[i].setBackgroundResource(R.drawable.indicator_focused);
                 } else {
-                    indicator_imgs[i]
-                            .setBackgroundResource(R.drawable.indicator);
+                    indicator_imgs[i].setBackgroundResource(R.drawable.indicator);
                 }
                 ((ViewGroup) v).addView(indicator_imgs[i]);
             }
@@ -112,8 +109,7 @@ public class SplashActivity extends FragmentActivity {
             fgList.add(fg1);
             fgList.add(fg2);
             fgList.add(fg3);
-            SplashAdapter mAdapter = new SplashAdapter(
-                    getSupportFragmentManager(), fgList);
+            SplashAdapter mAdapter = new SplashAdapter(getSupportFragmentManager(), fgList);
             mAdapter.setData(fgList);
             mViewPager.setAdapter(mAdapter);
             // 绑定动作监听器：如翻页的动画
@@ -203,7 +199,7 @@ public class SplashActivity extends FragmentActivity {
                                 GestureVerifyActivity.class);
                         i.putExtra("from", ApplicationConsts.ACTIVITY_SPLASH);
                         i.putExtra("title", "手势密码登录");
-                        i.putExtra("message","请画出手势密码解锁");
+                        i.putExtra("message", "请画出手势密码解锁");
                         startActivity(i);
                     } else {
                         Intent iMain = new Intent(SplashActivity.this,
@@ -215,8 +211,8 @@ public class SplashActivity extends FragmentActivity {
                 case NOLOGIN:
                     Intent iLogin = new Intent(SplashActivity.this,
                             LoginActivity.class);
-				/*Intent iLogin= new Intent(SplashActivity.this,
-						MainActivity.class);*/
+                /*Intent iLogin= new Intent(SplashActivity.this,
+                        MainActivity.class);*/
                     iLogin.putExtra("tomain", "6");
                     startActivity(iLogin);
                     finish();
@@ -230,15 +226,15 @@ public class SplashActivity extends FragmentActivity {
                         //是否做过合格投资者判定  false:未做合格投资者判定 true:做过合格投资者判定
                         if (PreferenceUtil.getIsInvestor()) {
                             if (PreferenceUtil.isGestureChose()) {
-                                    Toast.makeText(SplashActivity.this, "您还没有设置手势密码，请先设置手势密码",
-                                            Toast.LENGTH_LONG).show();
-                                    Intent i_nopwd = new Intent();
-                                    i_nopwd.putExtra("comeflag", 0);
-                                    //控制登录后没有设置手势密码，点击设置手势密码的返回，跳到主页
-                                    i_nopwd.putExtra("back_from_splah","back_from_splah");
-                                    i_nopwd.putExtra("title", R.string.title_gestureset);
-                                    i_nopwd.setClass(SplashActivity.this, GestureEditActivity.class);
-                                    startActivity(i_nopwd);
+                                Toast.makeText(SplashActivity.this, "您还没有设置手势密码，请先设置手势密码",
+                                        Toast.LENGTH_LONG).show();
+                                Intent i_nopwd = new Intent();
+                                i_nopwd.putExtra("comeflag", 0);
+                                //控制登录后没有设置手势密码，点击设置手势密码的返回，跳到主页
+                                i_nopwd.putExtra("back_from_splah", "back_from_splah");
+                                i_nopwd.putExtra("title", R.string.title_gestureset);
+                                i_nopwd.setClass(SplashActivity.this, GestureEditActivity.class);
+                                startActivity(i_nopwd);
                             } else {
                                 Intent i_Main = new Intent(SplashActivity.this,
                                         MainActivity.class);
@@ -262,10 +258,10 @@ public class SplashActivity extends FragmentActivity {
 
                         }
                     } else {
-                        Intent i_survey=new Intent(SplashActivity.this,WebSurveyActivity.class);
-                        i_survey.putExtra("type",WebSurveyActivity.WEBTYPE_SURVEY);
-                        i_survey.putExtra("title","问卷调查");
-                        i_survey.putExtra("btnInfo","开始答题");
+                        Intent i_survey = new Intent(SplashActivity.this, WebSurveyActivity.class);
+                        i_survey.putExtra("type", WebSurveyActivity.WEBTYPE_SURVEY);
+                        i_survey.putExtra("title", "问卷调查");
+                        i_survey.putExtra("btnInfo", "开始答题");
                         startActivity(i_survey);
                     }
                     finish();

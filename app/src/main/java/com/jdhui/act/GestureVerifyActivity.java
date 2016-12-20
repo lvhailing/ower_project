@@ -33,8 +33,7 @@ import java.util.Observer;
 /**
  * 手势绘制/校验界面
  */
-public class GestureVerifyActivity extends BaseActivity implements
-        android.view.View.OnClickListener, Observer {
+public class GestureVerifyActivity extends BaseActivity implements android.view.View.OnClickListener, Observer {
     private TextView txtTitle;
     private TextView txtMessage;
     private ImageView imgBack;

@@ -381,7 +381,7 @@ public class AssetFragment extends Fragment implements View.OnClickListener {
         } else {
             iv_asset_chosse_my_num.setImageResource(R.mipmap.img_asset_open);
             if (accountBean != null) {
-                tv_asset_my_num.setText(StringUtil.formatNum(accountBean.getTotalAmount()));
+                tv_asset_my_num.setText(StringUtil.formatNum(accountBean.getIncomeAmount()));
             } else {
                 tv_asset_my_num.setText("0.00");
             }

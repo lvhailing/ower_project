@@ -34,15 +34,11 @@ import java.util.Observer;
  * 登陆界面
  */
 public class LoginActivity extends BaseActivity implements OnClickListener, Observer {
-
     private EditText edtUsername, edtPassword;
     private Button btnLogin, btn_find;
     private TextView txtCall;
-
     private Resources mResource;
-
     private int requestCode = 5;
-
     private ResultUserLoginContentBean bean;
     private String tomain = null;
 
@@ -145,14 +141,9 @@ public class LoginActivity extends BaseActivity implements OnClickListener, Obse
 
             }
         });
-
-
     }
 
-
     private void initData() {
-
-
     }
 
     //获取焦点改变背景
@@ -196,9 +187,8 @@ public class LoginActivity extends BaseActivity implements OnClickListener, Obse
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.id_login_txt_call:
+            case R.id.id_login_txt_call: //客服热线
                 CallServiceDialog dialog = new CallServiceDialog(this, new OnCallServiceChanged() {
-
                     @Override
                     public void onConfim() {
                         Intent intent = new Intent(Intent.ACTION_DIAL);
@@ -206,10 +196,8 @@ public class LoginActivity extends BaseActivity implements OnClickListener, Obse
                         intent.setData(data);
                         startActivity(intent);
                     }
-
                     @Override
                     public void onCancel() {
-
                     }
                 }, "客服热线: \n " + getString(R.string.tellphone_num_format));
                 dialog.show();
@@ -225,7 +213,6 @@ public class LoginActivity extends BaseActivity implements OnClickListener, Obse
                     } else {
                         judgeUser(user, pass);
                     }
-
                 }
 
                 break;
@@ -243,7 +230,6 @@ public class LoginActivity extends BaseActivity implements OnClickListener, Obse
     }
 
     private BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
-
         @Override
         public void onReceive(Context context, Intent intent) {
             finish();
@@ -254,7 +240,7 @@ public class LoginActivity extends BaseActivity implements OnClickListener, Obse
     public void update(Observable observable, Object data) {
         bean = (ResultUserLoginContentBean) data;
         if (bean == null || !Boolean.parseBoolean(bean.getFlag())) {
-            Toast.makeText(this, "登录信息异常", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "用户名或密码输入错误", Toast.LENGTH_SHORT).show();
             return;
         }
 
