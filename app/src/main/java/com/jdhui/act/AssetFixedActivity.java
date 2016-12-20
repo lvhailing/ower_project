@@ -29,7 +29,6 @@ import com.jdhui.uitls.StringUtil;
  * Created by hasee on 2016/8/10.
  */
 public class AssetFixedActivity extends BaseActivity implements View.OnClickListener {
-
     private ImageView id_img_back;
     private PullToRefreshListView listview_asset_fixed;
     private TextView tv_asset_fixed_number;

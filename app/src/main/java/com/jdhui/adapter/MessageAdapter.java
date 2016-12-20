@@ -63,10 +63,12 @@ public class MessageAdapter extends BaseAdapter {
             holder.tv_notice_item_title.setTextColor(context.getResources().getColor(R.color.gray));
             holder.tv_flag.setTextColor(context.getResources().getColor(R.color.gray));
             holder.tv_flag.setBackgroundResource(R.drawable.shape_bg_read_gray);
+            holder.tv_flag.setText("已读");
         } else if (list.get(position).getStatus().equals("unread")) { //未读
             holder.tv_notice_item_title.setTextColor(context.getResources().getColor(R.color.black));
             holder.tv_flag.setTextColor(context.getResources().getColor(R.color.white));
             holder.tv_flag.setBackgroundResource(R.drawable.shape_bg_unread_red);
+            holder.tv_flag.setText("未读");
         } else { //未知状态 默认
             holder.tv_notice_item_title.setTextColor(context.getResources().getColor(R.color.gray));
             holder.tv_flag.setVisibility(View.INVISIBLE);

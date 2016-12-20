@@ -44,6 +44,7 @@ public class AssetFixedDetailActivity extends BaseActivity implements View.OnCli
     private ResultAssetFixedProductDetailBean assetFixedBean;
     private RelativeLayout ll_asset_fixed; //固收产品名称
     private MyListView myListView; //加载还款方案的列表
+    private TextView tv_asset_fixed_unitnet;//产品净值
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,6 +79,7 @@ public class AssetFixedDetailActivity extends BaseActivity implements View.OnCli
         tv_asset_fixed_chengliriqi = (TextView) findViewById(R.id.tv_asset_fixed_chengliriqi);
         tv_asset_fixed_fuxinjiange = (TextView) findViewById(R.id.tv_asset_fixed_fuxinjiange);
         tv_asset_fixed_beizhu = (TextView) findViewById(R.id.tv_asset_fixed_beizhu);
+        tv_asset_fixed_unitnet = (TextView) findViewById(R.id.tv_asset_fixed_unitnet);
         ll_asset_fixed = (RelativeLayout) findViewById(R.id.ll_asset_fixed);
         myListView = (MyListView) findViewById(R.id.lv);
 

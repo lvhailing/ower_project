@@ -12,7 +12,6 @@ import com.jdhui.bean.ResultFixedProductListItemBean;
 import com.jdhui.mould.types.MouldList;
 
 public class FloatAdapter extends BaseAdapter {
-
 	private MouldList<ResultFixedProductListItemBean> list;
 	private Context context;
 	private LayoutInflater inflater;
@@ -67,7 +66,7 @@ public class FloatAdapter extends BaseAdapter {
 		holder.tv_hot_product_content_Second_one.setText(list.get(position).getTimeLimit());
 		holder.tv_hot_product_content_Second_two.setText("产品期限");
 		holder.tv_hot_product_content_Third_one.setText(list.get(position).getAnnualRateDirect());
-		holder.tv_hot_product_content_Third_two.setText("预计收益");
+		holder.tv_hot_product_content_Third_two.setText("业绩比较基准");
 
 		return convertView;
 	}
