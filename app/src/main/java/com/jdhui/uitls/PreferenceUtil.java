@@ -24,8 +24,7 @@ public class PreferenceUtil {
      */
     public static SharedPreferences getUserSharedPreferences() {
         if (user == null) {
-            user = mContext.getSharedPreferences("user_pre",
-                    Context.MODE_PRIVATE);
+            user = mContext.getSharedPreferences("user_pre", Context.MODE_PRIVATE);
         }
         return user;
     }
