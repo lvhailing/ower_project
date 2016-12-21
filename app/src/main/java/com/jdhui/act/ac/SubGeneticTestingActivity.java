@@ -35,6 +35,7 @@ public class SubGeneticTestingActivity extends BaseActivity implements View.OnCl
     private TextView et_address;
     private Button btn_submit;
     private String geneticId;//基因检测 id
+    private String sex = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,6 +90,7 @@ public class SubGeneticTestingActivity extends BaseActivity implements View.OnCl
             public void onSelected(Dialog ad, String selectedSex) {
                 if (tv_select_sex != null) {
                     tv_select_sex.setText(selectedSex);
+                    sex = selectedSex;
                 }
                 ad.dismiss();
                 ad = null;
@@ -106,9 +108,13 @@ public class SubGeneticTestingActivity extends BaseActivity implements View.OnCl
             Toast.makeText(SubGeneticTestingActivity.this, "请输入预约人", Toast.LENGTH_SHORT).show();
             return;
         }
+        if (TextUtils.isEmpty(sex)) {
+            Toast.makeText(SubGeneticTestingActivity.this, "请选择预约人性别", Toast.LENGTH_SHORT).show();
+            return;
+        }
 
         if (TextUtils.isEmpty(userAge)) {
-            Toast.makeText(SubGeneticTestingActivity.this, "请输入年龄", Toast.LENGTH_SHORT).show();
+            Toast.makeText(SubGeneticTestingActivity.this, "请输入预约人年龄", Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -116,7 +122,12 @@ public class SubGeneticTestingActivity extends BaseActivity implements View.OnCl
             Toast.makeText(SubGeneticTestingActivity.this, "请输入正确的手机号", Toast.LENGTH_SHORT).show();
             return;
         }
-        HtmlRequest.subGeneticTesting(this, geneticId, "女", userAge, address, bookingClient, phone, new BaseRequester.OnRequestListener() {
+        if (TextUtils.isEmpty(address)) {
+            Toast.makeText(SubGeneticTestingActivity.this, "请输入通讯地址", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        HtmlRequest.subGeneticTesting(this, geneticId, sex, userAge, address, bookingClient, phone, new BaseRequester.OnRequestListener() {
             @Override
             public void onRequestFinished(BaseParams params) {
                 if (params != null) {
