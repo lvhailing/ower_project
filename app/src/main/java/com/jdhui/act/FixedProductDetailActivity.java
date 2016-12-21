@@ -13,18 +13,14 @@ import android.widget.Toast;
 
 import com.jdhui.R;
 import com.jdhui.bean.ResultFixedProductDetailBean;
-import com.jdhui.bean.mybean.BookingInsurance2B;
 import com.jdhui.bean.mybean.BookingProduct2B;
 import com.jdhui.dialog.BookingDialog;
 import com.jdhui.mould.BaseParams;
 import com.jdhui.mould.BaseRequester;
 import com.jdhui.mould.HtmlRequest;
-import com.jdhui.uitls.ActivityStack;
 import com.jdhui.uitls.DESUtil;
 import com.jdhui.uitls.PreferenceUtil;
 import com.jdhui.uitls.ViewUtils;
-
-import static com.jdhui.R.id.btn_order;
 
 /**
  * 产品--固收和浮收的产品详情（产品信息）
@@ -83,8 +79,6 @@ public class FixedProductDetailActivity extends BaseActivity implements View.OnC
     }
 
     public void initView() {
-        ActivityStack stack = ActivityStack.getActivityManage();
-        stack.addActivity(this);
         productId = getIntent().getStringExtra("productId");
         productType = getIntent().getStringExtra("type");
         fixedDetailBean = new ResultFixedProductDetailBean();

@@ -19,7 +19,6 @@ import com.jdhui.bean.ResultCodeContentBean;
 import com.jdhui.mould.BaseParams;
 import com.jdhui.mould.BaseRequester;
 import com.jdhui.mould.HtmlRequest;
-import com.jdhui.uitls.ActivityStack;
 import com.jdhui.uitls.DESUtil;
 import com.jdhui.uitls.PreferenceUtil;
 import com.jdhui.uitls.StringUtil;
@@ -44,10 +43,6 @@ public class FeedBackActivity extends BaseActivity implements OnClickListener{
 	}
 
 	private void initView() {
-
-		ActivityStack stack = ActivityStack.getActivityManage();
-		stack.addActivity(this);
-
 		mImgBack= (ImageView) findViewById(R.id.id_img_back);
 		et_advice_input = (EditText) findViewById(R.id.et_advice_input);
 		btn_setting_advice = (Button) findViewById(R.id.btn_setting_advice);

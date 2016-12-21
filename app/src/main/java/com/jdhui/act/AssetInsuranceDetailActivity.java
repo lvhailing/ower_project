@@ -8,16 +8,13 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.jdhui.R;
-import com.jdhui.adapter.AssetFixedDetailAdapter;
 import com.jdhui.adapter.AssetInsuranceDetailAdapter;
 import com.jdhui.bean.ResultAssetInsuranceProductDetailBean;
 import com.jdhui.bean.mybean.BonusListBean;
-import com.jdhui.bean.mybean.InterestListBean;
 import com.jdhui.mould.BaseParams;
 import com.jdhui.mould.BaseRequester;
 import com.jdhui.mould.HtmlRequest;
 import com.jdhui.mould.types.MouldList;
-import com.jdhui.uitls.ActivityStack;
 import com.jdhui.uitls.DESUtil;
 import com.jdhui.uitls.PreferenceUtil;
 import com.jdhui.uitls.StringUtil;
@@ -65,9 +62,6 @@ public class AssetInsuranceDetailActivity extends BaseActivity implements View.O
     }
 
     private void initView() {
-        ActivityStack stack = ActivityStack.getActivityManage();
-        stack.addActivity(this);
-
         tenderId = getIntent().getStringExtra("tenderId");
         productName = getIntent().getStringExtra("productName");
         assetFixedBean = new ResultAssetInsuranceProductDetailBean();

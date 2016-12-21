@@ -18,7 +18,6 @@ import com.jdhui.mould.BaseParams;
 import com.jdhui.mould.BaseRequester;
 import com.jdhui.mould.HtmlRequest;
 import com.jdhui.mould.types.MouldList;
-import com.jdhui.uitls.ActivityStack;
 
 /**
  * 浮动收益列表
@@ -81,10 +80,6 @@ public class FloatActivity extends BaseActivity implements View.OnClickListener{
     }
 
     private void initView() {
-
-        ActivityStack stack = ActivityStack.getActivityManage();
-        stack.addActivity(this);
-
         list = new MouldList<ResultFixedProductListItemBean>();
 
         mBtnBack= (ImageView) findViewById(R.id.id_img_back);

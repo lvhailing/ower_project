@@ -17,7 +17,6 @@ import com.jdhui.mould.BaseParams;
 import com.jdhui.mould.BaseRequester;
 import com.jdhui.mould.HtmlRequest;
 import com.jdhui.net.UserLoadout;
-import com.jdhui.uitls.ActivityStack;
 import com.jdhui.uitls.DESUtil;
 import com.jdhui.uitls.PreferenceUtil;
 import com.jdhui.uitls.StringUtil;
@@ -37,10 +36,6 @@ public class ChangePasswordActivity extends BaseActivity implements
     }
 
     private void initView() {
-
-        ActivityStack stack = ActivityStack.getActivityManage();
-        stack.addActivity(this);
-
         mBtnBack = (ImageView) findViewById(R.id.id_img_back);
         edt_again = (EditText) findViewById(R.id.changepwd_new2);
         edt_old = (EditText) findViewById(R.id.changepwd_old);

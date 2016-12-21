@@ -12,7 +12,6 @@ import android.widget.Toast;
 
 import com.jdhui.ApplicationConsts;
 import com.jdhui.R;
-import com.jdhui.uitls.ActivityStack;
 import com.jdhui.uitls.DESUtil;
 import com.jdhui.uitls.PreferenceUtil;
 import com.jdhui.uitls.StringUtil;
@@ -37,10 +36,6 @@ public class ChangeGestureActivity extends BaseActivity implements
 		initData();
 	}
 	private void initView() {
-
-		ActivityStack stack = ActivityStack.getActivityManage();
-		stack.addActivity(this);
-
 		t_phone = (TextView) findViewById(R.id.changegesture_phonenum);
 		btnOk = (Button) findViewById(R.id.changegesture_next);
 		edtPWD = (EditText) findViewById(R.id.changegesture_pwd);

@@ -13,7 +13,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.jdhui.R;
-import com.jdhui.uitls.ActivityStack;
 import com.jdhui.uitls.DESUtil;
 import com.jdhui.uitls.PreferenceUtil;
 import com.jdhui.uitls.StringUtil;
@@ -35,9 +34,6 @@ public class ChangePhoneOneActivity extends BaseActivity implements View.OnClick
         initView();
     }
     private void initView() {
-        ActivityStack stack = ActivityStack.getActivityManage();
-        stack.addActivity(this);
-
         mImgBack= (ImageView) findViewById(R.id.id_img_back);
         mEditInput= (EditText) findViewById(R.id.id_inut_pw);
         mTvInfo= (TextView) findViewById(R.id.id_change_phone_one_info);

@@ -20,7 +20,6 @@ import com.jdhui.bean.ResultSentSMSContentBean;
 import com.jdhui.mould.BaseParams;
 import com.jdhui.mould.BaseRequester;
 import com.jdhui.mould.HtmlRequest;
-import com.jdhui.uitls.ActivityStack;
 import com.jdhui.uitls.StringUtil;
 
 /**
@@ -45,10 +44,6 @@ public class FindPassWordActivity extends BaseActivity implements View.OnClickLi
         initData();
     }
     private void initView() {
-
-        ActivityStack stack = ActivityStack.getActivityManage();
-        stack.addActivity(this);
-
         mImgBack= (ImageView) findViewById(R.id.id_img_back);
         btnGetSMS = (Button) findViewById(R.id.findpd_getSMS);
         btnOk = (Button) findViewById(R.id.findpd_ok);

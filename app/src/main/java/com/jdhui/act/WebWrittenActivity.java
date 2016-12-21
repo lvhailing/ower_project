@@ -121,6 +121,8 @@ public class WebWrittenActivity extends Activity implements View.OnClickListener
 	@Override
 	protected void onDestroy() {
 		super.onDestroy();
+		ActivityStack stack = ActivityStack.getActivityManage();
+		stack.removeActivity(this);
 	}
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
@@ -141,4 +143,5 @@ public class WebWrittenActivity extends Activity implements View.OnClickListener
 				break;
 		}
 	}
+
 }

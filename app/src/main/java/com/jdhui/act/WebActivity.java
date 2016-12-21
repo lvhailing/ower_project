@@ -80,13 +80,11 @@ public class WebActivity extends Activity implements View.OnClickListener {
 
 
         if (type.equals(WEBTYPE_INSURANCE_DETAIL_DES)) { // 图文详情
-            url = ApplicationConsts.URL_INSURANCE_PRODUCT_DETAIL_DES
-                    + getIntent().getExtras().getString("id");
+            url = ApplicationConsts.URL_INSURANCE_PRODUCT_DETAIL_DES + getIntent().getExtras().getString("id");
             tv_web_title.setText(getIntent().getExtras().getString("title"));
 
         } else if (type.equals(WEBTYPE_PRODUCT_CALL)) { // 年度报告
-            url = ApplicationConsts.URL_INSURANCE_PRODUCT_DETAIL_REPORT
-                    + getIntent().getExtras().getString("id");
+            url = ApplicationConsts.URL_INSURANCE_PRODUCT_DETAIL_REPORT + getIntent().getExtras().getString("id");
             tv_web_title.setText(getIntent().getExtras().getString("title"));
 
         } else if (type.equals(WEBTYPE_NOTICE_DETAILS)) {// 公告详情
@@ -126,7 +124,7 @@ public class WebActivity extends Activity implements View.OnClickListener {
         @JavascriptInterface
         public void result() {
             /*if (type.equals(WEBTYPE_WITHDRAW)) {
-				setResult(RESULT_OK);
+                setResult(RESULT_OK);
 			} */
             WebActivity.this.finish();
         }
@@ -159,5 +157,12 @@ public class WebActivity extends Activity implements View.OnClickListener {
                 finish();
                 break;
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        ActivityStack stack = ActivityStack.getActivityManage();
+        stack.removeActivity(this);
     }
 }

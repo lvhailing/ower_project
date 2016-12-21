@@ -19,7 +19,6 @@ import com.jdhui.mould.BaseParams;
 import com.jdhui.mould.BaseRequester;
 import com.jdhui.mould.HtmlRequest;
 import com.jdhui.mould.types.MouldList;
-import com.jdhui.uitls.ActivityStack;
 import com.jdhui.uitls.DESUtil;
 import com.jdhui.uitls.PreferenceUtil;
 import com.jdhui.uitls.StringUtil;
@@ -49,8 +48,6 @@ public class AssetInsuranceActivity extends BaseActivity implements View.OnClick
     }
 
     private void initView() {
-        ActivityStack stack = ActivityStack.getActivityManage();
-        stack.addActivity(this);
         fixedListBean = new MouldList<ResultAccountProductTendersItemBean>();
 
         id_img_back = (ImageView) findViewById(R.id.id_img_back);

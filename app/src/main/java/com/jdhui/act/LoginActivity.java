@@ -1,6 +1,5 @@
 package com.jdhui.act;
 
-import android.app.ActivityManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -11,7 +10,6 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
-import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -19,7 +17,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.jdhui.ApplicationConsts;
 import com.jdhui.R;
 import com.jdhui.bean.ResultUserLoginContentBean;
 import com.jdhui.net.UserLogin;
@@ -54,7 +51,8 @@ public class LoginActivity extends BaseActivity implements OnClickListener, Obse
     private void initView() {
         ActivityStack stack = ActivityStack.getActivityManage();
         stack.removeAllActivity();
-        stack.addActivity(this);
+        addMe();
+
         PreferenceUtil.setCookie("");
         baseSetContentView(R.layout.activity_login);
         tomain = getIntent().getStringExtra("tomain");
@@ -198,6 +196,7 @@ public class LoginActivity extends BaseActivity implements OnClickListener, Obse
                         intent.setData(data);
                         startActivity(intent);
                     }
+
                     @Override
                     public void onCancel() {
                     }
@@ -251,11 +250,13 @@ public class LoginActivity extends BaseActivity implements OnClickListener, Obse
 
         //非第一次登录 比如退出登录来的
         if (!PreferenceUtil.isFirstLogin()) {
-            Intent intent = new Intent(LoginActivity.this, GestureVerifyActivity.class);
-            intent.putExtra("from", ApplicationConsts.ACTIVITY_SPLASH);
-            intent.putExtra("title", "手势密码登录");
-            intent.putExtra("message", "请画出手势密码解锁");
+            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
             startActivity(intent);
+//            Intent intent = new Intent(LoginActivity.this, GestureVerifyActivity.class);
+//            intent.putExtra("from", ApplicationConsts.ACTIVITY_SPLASH);
+//            intent.putExtra("title", "手势密码登录");
+//            intent.putExtra("message", "请画出手势密码解锁");
+//            startActivity(intent);
             finish();
             return;
         }
@@ -295,6 +296,12 @@ public class LoginActivity extends BaseActivity implements OnClickListener, Obse
             startActivity(i_survey);
         }
         finish();
+    }
+
+    //为了防止父类把自己入栈
+    @Override
+    public void addMe() {
+
     }
 
    /* private long preTime;   //上一次的时间

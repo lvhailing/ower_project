@@ -16,7 +16,6 @@ import com.jdhui.bean.ResultVerifyPassWordContent;
 import com.jdhui.mould.BaseParams;
 import com.jdhui.mould.BaseRequester;
 import com.jdhui.mould.HtmlRequest;
-import com.jdhui.uitls.ActivityStack;
 import com.jdhui.uitls.DESUtil;
 import com.jdhui.uitls.PreferenceUtil;
 
@@ -37,10 +36,6 @@ public class VerifyPassWordActivity extends BaseActivity implements View.OnClick
 
     }
     private void initView() {
-        ActivityStack stack= ActivityStack.getActivityManage();
-        stack.addActivity(this);
-       String name= this.getClass().getName();
-
         mImgBack= (ImageView) findViewById(R.id.id_img_back);
         mEditInput= (EditText) findViewById(R.id.id_inut_pw);
         mBtnDelete= (ImageView) findViewById(R.id.id_btn_delete);

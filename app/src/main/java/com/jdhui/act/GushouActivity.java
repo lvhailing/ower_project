@@ -18,7 +18,6 @@ import com.jdhui.mould.BaseParams;
 import com.jdhui.mould.BaseRequester;
 import com.jdhui.mould.HtmlRequest;
 import com.jdhui.mould.types.MouldList;
-import com.jdhui.uitls.ActivityStack;
 
 /**
  * 产品--固定收益列表
@@ -42,9 +41,6 @@ public class GushouActivity extends BaseActivity implements View.OnClickListener
     }
 
     private void initView() {
-        ActivityStack stack = ActivityStack.getActivityManage();
-        stack.addActivity(this);
-
         fixedBean = new ResultFixedProductListBean();
         list = new MouldList<ResultFixedProductListItemBean>();
 

@@ -1,7 +1,6 @@
 package com.jdhui.act.ac;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
@@ -16,6 +15,7 @@ import android.widget.Toast;
 
 import com.jdhui.ApplicationConsts;
 import com.jdhui.R;
+import com.jdhui.act.BaseActivity;
 import com.jdhui.mould.HtmlRequest;
 import com.jdhui.uitls.DESUtil;
 import com.jdhui.uitls.PreferenceUtil;
@@ -23,7 +23,7 @@ import com.jdhui.uitls.PreferenceUtil;
 /**
  * 预约公务机包机页面
  */
-public class WebAirPlanBookingActivity extends Activity implements View.OnClickListener {
+public class WebAirPlanBookingActivity extends BaseActivity implements View.OnClickListener {
     private WebView mWebview;
     private String url = null;
     public String title;
@@ -80,7 +80,7 @@ public class WebAirPlanBookingActivity extends Activity implements View.OnClickL
         public void written() {
             setResult(RESULT_OK);
             WebAirPlanBookingActivity.this.finish();
-            Toast.makeText(WebAirPlanBookingActivity.this,"预约成功",Toast.LENGTH_SHORT).show();
+            Toast.makeText(WebAirPlanBookingActivity.this, "预约成功", Toast.LENGTH_SHORT).show();
         }
     }
 

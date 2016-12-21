@@ -27,7 +27,6 @@ import com.jdhui.mould.BaseParams;
 import com.jdhui.mould.BaseRequester;
 import com.jdhui.mould.HtmlRequest;
 import com.jdhui.mould.types.MouldList;
-import com.jdhui.uitls.ActivityStack;
 import com.jdhui.view.NewsTitleTextView;
 
 import java.util.ArrayList;
@@ -71,9 +70,6 @@ public class InsuranceActivity extends BaseActivity implements View.OnClickListe
     }
 
     private void initView() {
-        ActivityStack stack = ActivityStack.getActivityManage();
-        stack.addActivity(this);
-
         insuranceBean = new ResultInsuranceProductBean();
         list = new MouldList<ResultInsuranceProductItemBean>();
 

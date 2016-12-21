@@ -19,7 +19,6 @@ import com.jdhui.dialog.BookingDialog;
 import com.jdhui.mould.BaseParams;
 import com.jdhui.mould.BaseRequester;
 import com.jdhui.mould.HtmlRequest;
-import com.jdhui.uitls.ActivityStack;
 import com.jdhui.uitls.DESUtil;
 import com.jdhui.uitls.PreferenceUtil;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -58,10 +57,6 @@ public class InsuranceProductDetailActivity extends BaseActivity implements View
     }
 
     public void initView() {
-
-        ActivityStack stack = ActivityStack.getActivityManage();
-        stack.addActivity(this);
-
         productId = getIntent().getStringExtra("productId");
         id_img_back = (ImageView) findViewById(R.id.id_img_back);
         iv_insurance_product_title_pic = (ImageView) findViewById(R.id.iv_insurance_product_title_pic);

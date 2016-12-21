@@ -9,7 +9,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.jdhui.R;
-import com.jdhui.uitls.ActivityStack;
 
 public class VersionNumberActivity extends BaseActivity implements OnClickListener{
 	private EditText et_advice_input;
@@ -30,10 +29,6 @@ public class VersionNumberActivity extends BaseActivity implements OnClickListen
 	}
 
 	private void initView() {
-
-		ActivityStack stack = ActivityStack.getActivityManage();
-		stack.addActivity(this);
-
 		mImgBack= (ImageView) findViewById(R.id.id_img_back);
 		txt_version_number= (TextView) findViewById( R.id.id_txt_version_number);
 		txt_version_number.setText("版本号"+getIntent().getExtras().getString("numeber"));

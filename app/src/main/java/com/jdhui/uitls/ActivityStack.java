@@ -1,8 +1,8 @@
 package com.jdhui.uitls;
 
-import java.util.Stack;
-
 import android.app.Activity;
+
+import java.util.Stack;
 
 /**
  * activity stack manage
@@ -115,7 +115,6 @@ public class ActivityStack {
 	/**
 	 * 移除stack 中除filter之外的activity
 	 * 
-	 * @param cls
 	 * @param filter
 	 */
 	public void removeAllActivityExceptOne( String filter) {
@@ -154,7 +153,6 @@ public class ActivityStack {
 	/**
 	 * 移除指定的Activity
 	 * 
-	 * @param cls
 	 * @param filter
 	 */
 	public void removeFilterActivity(String filter) {

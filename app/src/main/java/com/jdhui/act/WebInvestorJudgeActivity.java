@@ -58,6 +58,7 @@ public class WebInvestorJudgeActivity extends Activity implements View.OnClickLi
 	private void initView() {
 		stack = ActivityStack.getActivityManage();
 		stack.addActivity(this);
+
 		try {
 			userId= DESUtil.decrypt(PreferenceUtil.getUserId());
 		} catch (Exception e) {
@@ -132,6 +133,7 @@ public class WebInvestorJudgeActivity extends Activity implements View.OnClickLi
 	@Override
 	protected void onDestroy() {
 		super.onDestroy();
+		stack.removeActivity(this);
 	}
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {

@@ -14,7 +14,6 @@ import android.widget.RelativeLayout;
 import com.jdhui.ApplicationConsts;
 import com.jdhui.R;
 import com.jdhui.net.UserLoadout;
-import com.jdhui.uitls.ActivityStack;
 import com.jdhui.uitls.PreferenceUtil;
 
 /**
@@ -41,8 +40,7 @@ public class AccountActivity extends BaseActivity implements View.OnClickListene
     }
 
     private void initView() {
-        ActivityStack stack = ActivityStack.getActivityManage();
-        stack.addActivity(this);
+
         userInfoId = getIntent().getStringExtra("userInfoId");
         mImgBack = (ImageView) findViewById(R.id.id_img_back);
         mLayoutMyInfo = (RelativeLayout) findViewById(R.id.id_account_layout_modify_info);

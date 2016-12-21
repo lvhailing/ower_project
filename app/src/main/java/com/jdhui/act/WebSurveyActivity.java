@@ -143,6 +143,7 @@ public class WebSurveyActivity extends Activity implements View.OnClickListener 
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        stack.removeActivity(this);
     }
 
     @Override

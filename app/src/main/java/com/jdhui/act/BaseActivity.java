@@ -1,7 +1,5 @@
 package com.jdhui.act;
 
-import java.util.ArrayList;
-
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,10 +11,13 @@ import android.view.View.OnClickListener;
 import android.view.Window;
 import android.widget.LinearLayout;
 
-import com.jdhui.R;
 import com.jdhui.JdehuiApplication;
 import com.jdhui.JdehuiApplication.NetListener;
+import com.jdhui.R;
+import com.jdhui.uitls.ActivityStack;
 import com.jdhui.wheel.widget.CustomProgressDialog;
+
+import java.util.ArrayList;
 
 public class BaseActivity extends AbsBaseActivity implements NetListener {
 
@@ -32,6 +33,8 @@ public class BaseActivity extends AbsBaseActivity implements NetListener {
 		setContentView(R.layout.base);
 		JdehuiApplication apl = (JdehuiApplication) getApplicationContext();
 		apl.registReceiver();
+
+		addMe();
 	}
 
 	public void baseSetContentView(int layoutResId) {
@@ -78,6 +81,18 @@ public class BaseActivity extends AbsBaseActivity implements NetListener {
 		super.onDestroy();
 		JdehuiApplication apl = (JdehuiApplication) getApplicationContext();
 		apl.unRegisterNetListener();
+
+		removeMe();
+	}
+
+	protected void addMe() {
+		ActivityStack stack = ActivityStack.getActivityManage();
+		stack.addActivity(this);
+	}
+
+	protected void removeMe() {
+		ActivityStack stack = ActivityStack.getActivityManage();
+		stack.removeActivity(this);
 	}
 
 	@Override
