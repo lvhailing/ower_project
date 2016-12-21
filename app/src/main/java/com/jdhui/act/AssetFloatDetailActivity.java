@@ -35,7 +35,7 @@ public class AssetFloatDetailActivity extends BaseActivity implements View.OnCli
     private TextView tvAssetFloatChanpinqixian; //产品期限
     private TextView tvAssetFloatGoumairiqi;    //购买日期
     private TextView tvAssetFloatChengliriqi;   //成立日期
-    private TextView tvAssetFloatFuxinjiange;   //付息间隔
+    private TextView tvAssetFloatFuxijiange;   //付息间隔
     private TextView tvAssetFloatBeizhu;        //备注
     private RelativeLayout ll_asset_float;  //浮收产品名称
 
@@ -43,6 +43,7 @@ public class AssetFloatDetailActivity extends BaseActivity implements View.OnCli
     private String productName;
     private ResultAssetFixedProductDetailBean assetFixedBean;
     private MyListView myListView; //加载还款方案的列表
+    private TextView tv_asset_float_unitnet; //产品净值
 
 
     @Override
@@ -76,8 +77,9 @@ public class AssetFloatDetailActivity extends BaseActivity implements View.OnCli
         tvAssetFloatChanpinqixian = (TextView) findViewById(R.id.tv_asset_float_chanpinqixian);
         tvAssetFloatGoumairiqi = (TextView) findViewById(R.id.tv_asset_float_goumairiqi);
         tvAssetFloatChengliriqi = (TextView) findViewById(R.id.tv_asset_float_chengliriqi);
-        tvAssetFloatFuxinjiange = (TextView) findViewById(R.id.tv_asset_float_fuxinjiange);
+        tvAssetFloatFuxijiange = (TextView) findViewById(R.id.tv_asset_float_fuxijiange);
         tvAssetFloatBeizhu = (TextView) findViewById(R.id.tv_asset_float_beizhu);
+        tv_asset_float_unitnet = (TextView) findViewById(R.id.tv_asset_float_unitnet);
         ll_asset_float = (RelativeLayout) findViewById(R.id.ll_asset_float);
         myListView = (MyListView) findViewById(R.id.lv);
 
@@ -94,8 +96,34 @@ public class AssetFloatDetailActivity extends BaseActivity implements View.OnCli
         tvAssetFloatChanpinqixian.setText(assetFixedBean.getTimeLimit());
         tvAssetFloatGoumairiqi.setText(assetFixedBean.getPurchaseDate());
         tvAssetFloatChengliriqi.setText(assetFixedBean.getEstablishmentDate());
-        tvAssetFloatFuxinjiange.setText(assetFixedBean.getRepayType());
-        tvAssetFloatBeizhu.setText(assetFixedBean.getRemark());
+
+        String remark = assetFixedBean.getRemark();
+        if (remark.equals("无")) {
+            tvAssetFloatBeizhu.setText("暂无备注");
+        } else {
+            tvAssetFloatBeizhu.setText(remark);
+        }
+
+        String repayType = assetFixedBean.getRepayType();
+        if (repayType.equals("monthPayment")) {
+            tvAssetFloatFuxijiange.setText("按月付息，到期还本");
+        } else if (repayType.equals("quarterPayment")) {
+            tvAssetFloatFuxijiange.setText("按季付息，到期还本");
+        } else if (repayType.equals("halfYearPayment")) {
+            tvAssetFloatFuxijiange.setText("按半年付息，到期还本");
+        } else if (repayType.equals("yearPayment")) {
+            tvAssetFloatFuxijiange.setText("按年付息，到期还本");
+        } else if (repayType.equals("oneTimePayment")) {
+            tvAssetFloatFuxijiange.setText("一次性还本息");
+        }
+
+        //产品净值的判断 （后台返回“无”时不显示）
+        String unitNet = assetFixedBean.getUnitNet();
+        if (unitNet.equals("无")) {
+            tv_asset_float_unitnet.setVisibility(View.GONE);
+        } else {
+            tv_asset_float_unitnet.setText(unitNet);
+        }
 
         if (assetFixedBean.getIsAnnualReport().equals("yes")) { // 是否有年度报告	 yes:有;  no:无
             tvAssetFloatCall.setVisibility(View.VISIBLE);

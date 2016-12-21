@@ -110,7 +110,20 @@ public class AssetFixedDetailActivity extends BaseActivity implements View.OnCli
             tv_asset_fixed_fuxinjiange.setText("一次性还本息");
         }
 
-        tv_asset_fixed_beizhu.setText(assetFixedBean.getRemark());
+        //产品净值的判断 （后台返回“无”时不显示）
+        String unitNet = assetFixedBean.getUnitNet();
+        if (unitNet.equals("无")) {
+            tv_asset_fixed_unitnet.setVisibility(View.GONE);
+        } else {
+            tv_asset_fixed_unitnet.setText(unitNet);
+        }
+
+        String remark = assetFixedBean.getRemark();
+        if (remark.equals("无")) {
+            tv_asset_fixed_beizhu.setText("暂无备注");
+        } else {
+            tv_asset_fixed_beizhu.setText(remark);
+        }
 
         if (assetFixedBean.getIsAnnualReport().equals("yes")) { // 是否有年度报告	 yes:有;  no:无
             tv_asset_fixed_call.setVisibility(View.VISIBLE);

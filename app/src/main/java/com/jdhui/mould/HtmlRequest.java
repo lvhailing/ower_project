@@ -979,8 +979,7 @@ public class HtmlRequest extends BaseRequester {
                             if (result != null) {
                                 String data = DESUtil.decrypt(result);
                                 Gson json = new Gson();
-                                ResultAssetFixedProductDetailContentBean b = json.fromJson(
-                                        data, ResultAssetFixedProductDetailContentBean.class);
+                                ResultAssetFixedProductDetailContentBean b = json.fromJson(data, ResultAssetFixedProductDetailContentBean.class);
                                 resultEncrypt(context, b.getCode());
                                 return b.getData();
                             }
