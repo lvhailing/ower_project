@@ -113,7 +113,8 @@
                     android:id="@+id/et_age"
                     style="@style/et_style"
                     android:hint="请输入约人年龄"
-                    android:maxLength="10"
+                    android:maxLength="3"
+                    android:inputType="number"
                     android:maxLines="1"/>
             </LinearLayout>
 

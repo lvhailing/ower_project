@@ -3,6 +3,7 @@ package com.jdhui.act.ac;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -101,6 +102,20 @@ public class SubGeneticTestingActivity extends BaseActivity implements View.OnCl
         String address = et_address.getText().toString();
         String phone = et_phone.getText().toString();
 
+        if (TextUtils.isEmpty(bookingClient)) {
+            Toast.makeText(SubGeneticTestingActivity.this, "请输入预约人", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if (TextUtils.isEmpty(userAge)) {
+            Toast.makeText(SubGeneticTestingActivity.this, "请输入年龄", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if (!isMobileNO(phone)) {
+            Toast.makeText(SubGeneticTestingActivity.this, "请输入正确的手机号", Toast.LENGTH_SHORT).show();
+            return;
+        }
         HtmlRequest.subGeneticTesting(this, geneticId, "女", userAge, address, bookingClient, phone, new BaseRequester.OnRequestListener() {
             @Override
             public void onRequestFinished(BaseParams params) {
@@ -123,5 +138,22 @@ public class SubGeneticTestingActivity extends BaseActivity implements View.OnCl
         });
     }
 
+    /**
+     * 验证手机格式
+     */
+    public static boolean isMobileNO(String mobiles) {
+    /*
+    移动：134、135、136、137、138、139、150、151、157(TD)、158、159、187、188
+    联通：130、131、132、152、155、156、185、186
+    电信：133、153、180、189、（1349卫通）
+    总结起来就是第一位必定为1，第二位必定为3或5或8，其他位置的可以为0-9
+    */
+        String telRegex = "[1][358]\\d{9}";//"[1]"代表第1位为数字1，"[358]"代表第二位可以为3、5、8中的一个，"\\d{9}"代表后面是可以是0～9的数字，有9位。
+        if (TextUtils.isEmpty(mobiles)) {
+            return false;
+        } else {
+            return mobiles.matches(telRegex);
+        }
+    }
 
 }
