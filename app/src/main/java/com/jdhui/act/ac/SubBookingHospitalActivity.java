@@ -142,10 +142,10 @@ public class SubBookingHospitalActivity extends BaseActivity implements View.OnC
         String phone = et_phone.getText().toString();
         String idNo = et_idno.getText().toString();
 
-      /*  if (!isMobileNO(phone)) {
-            Toast.makeText(SubGeneticTestingActivity.this, "请输入正确的手机号", Toast.LENGTH_SHORT).show();
+        if (!isMobileNO(phone)) {
+            Toast.makeText(SubBookingHospitalActivity.this, "请输入正确的手机号", Toast.LENGTH_SHORT).show();
             return;
-        }*/
+        }
 
         HtmlRequest.submitBookingHospital(this, userId, id, departments, doctor, formatTime1, formatTime2, formatTime3, illness, name, securityNum, phone, idNo, new BaseRequester.OnRequestListener() {
             @Override
