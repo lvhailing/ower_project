@@ -181,11 +181,8 @@ public class ProductFragment extends Fragment implements View.OnClickListener, C
                         i_web.putExtra("url", productcycleBean.get(postion % productcycleBean.size()).getUrl());
                         i_web.putExtra("title", productcycleBean.get(postion % productcycleBean.size()).getDescription());
                         getActivity().startActivity(i_web);
-
                     }
-
                 }
-
             }
         });
         cycleAdapter.setCycle(true);
@@ -205,8 +202,7 @@ public class ProductFragment extends Fragment implements View.OnClickListener, C
         myListView.setAdapter(mHotProductAdapter);
         myListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> arg0, View arg1, int position,
-                                    long arg3) {
+            public void onItemClick(AdapterView<?> arg0, View arg1, int position, long arg3) {
                 if (list.get(position).getCategory().equals("optimum")) {
                     Intent i_fixedProductDetail = new Intent();
                     i_fixedProductDetail.setClass(context, FixedProductDetailActivity.class);
@@ -282,10 +278,6 @@ public class ProductFragment extends Fragment implements View.OnClickListener, C
                         list.addAll(productIndexBean.getList());
                         initHotProductData();
                     }
-
-//                    setView();
-
-
                 }
 
             }
@@ -293,28 +285,20 @@ public class ProductFragment extends Fragment implements View.OnClickListener, C
     }
 
     private void requestCycleIndex() {
-
         HtmlRequest.getCycleIndex(context, new BaseRequester.OnRequestListener() {
             @Override
             public void onRequestFinished(BaseParams params) {
                 if (params != null) {
-
-//                    list.addAll(productIndexBean.getList());
-//                    setView();
                     if (params.result != null) {
                         productcycleBean = (MouldList<ResultCycleIndexBean>) params.result;
-
                     }
-//                    requestData();
                 }
                 requestData();
             }
         });
     }
 
-
     @Override
     public void onImageClick(int postion, View imageView) {
-
     }
 }

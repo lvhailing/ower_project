@@ -1,6 +1,7 @@
 package com.jdhui.adapter;
 
 import android.content.Context;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,7 @@ import com.jdhui.R;
 import com.jdhui.bean.mybean.BonusListBean;
 import com.jdhui.bean.mybean.InterestListBean;
 import com.jdhui.mould.types.MouldList;
+import com.jdhui.uitls.StringUtil;
 
 public class AssetInsuranceDetailAdapter extends BaseAdapter {
     private MouldList<BonusListBean> list;
@@ -55,7 +57,13 @@ public class AssetInsuranceDetailAdapter extends BaseAdapter {
         if (date != null && date.length() >= 10) {
             holder.tv_date.setText(date.substring(0, 10).replace("/", "-"));
         }
-        holder.tv_dividend_amount.setText(list.get(position).getBonusAmount());
+
+        String bonusAmount = list.get(position).getBonusAmount();
+        if (!TextUtils.isEmpty(bonusAmount) && !bonusAmount.equals("--")) {
+            bonusAmount = StringUtil.formatNum(bonusAmount);
+        }
+        holder.tv_dividend_amount.setText(bonusAmount);
+
 
         return convertView;
     }

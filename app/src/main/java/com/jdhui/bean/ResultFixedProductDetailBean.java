@@ -26,7 +26,7 @@ public class ResultFixedProductDetailBean implements IMouldType {
     private String controlMeasures;//风控措施
     private String productAdvantage;    //投资亮点
     private String riskType;    //风险类型( conservative:保守型;  steady:稳健型; growth:成长型;  aggressive:进取型;)
-
+    private String establishedFlag; //true:成立； false:未成立；（只有成立时才显示立即预约按钮）
 
     public String getProductId() {
         return productId;
@@ -178,5 +178,13 @@ public class ResultFixedProductDetailBean implements IMouldType {
 
     public void setRiskType(String riskType) {
         this.riskType = riskType;
+    }
+
+    public String getEstablishedFlag() {
+        return establishedFlag;
+    }
+
+    public void setEstablishedFlag(String establishedFlag) {
+        this.establishedFlag = establishedFlag;
     }
 }

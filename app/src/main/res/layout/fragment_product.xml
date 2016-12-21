@@ -129,8 +129,6 @@
                 android:dividerHeight="10dp"
                 android:listSelector="@color/bg_gray"
                 android:scrollbars="none"/>
-
-
         </LinearLayout>
     </ScrollView>
 

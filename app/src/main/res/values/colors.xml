@@ -52,6 +52,7 @@
     <color name="txt_gray_d">#ff666666</color>
     <color name="txt_white">#fff9f9f9</color>
     <color name="txt_orange_light">#F91</color>
+    <color name="txt_black_light">#666666</color>
     <color name="txt_gray_light_l">#999999</color>
     <color name="txt_orange_gray">#bb8854</color>
     <color name="txt_orange_new">#f69913</color>

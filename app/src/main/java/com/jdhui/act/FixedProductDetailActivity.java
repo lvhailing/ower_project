@@ -128,11 +128,11 @@ public class FixedProductDetailActivity extends BaseActivity implements View.OnC
     public void setView() {
         annualRateType = fixedDetailBean.getAnnualRateType();
         if (!TextUtils.isEmpty(annualRateType)) {
-            if (annualRateType.equals("direct")) { // 预期收益直接显示
+            if (annualRateType.equals("direct")) { // 业绩比较基准直接显示
                 ll_fixed_product_detail_yuqishouyi.setVisibility(View.VISIBLE);
                 ll_fixed_product_detail_profit.setVisibility(View.GONE);
                 tv_fixed_product_detail_yujishouyi.setText(fixedDetailBean.getAnnualRateDirect());
-            } else if (annualRateType.equals("region")) { // 预期收益区间显示
+            } else if (annualRateType.equals("region")) { // 业绩比较基准区间显示
                 ll_fixed_product_detail_yuqishouyi.setVisibility(View.GONE);
                 ll_fixed_product_detail_profit.setVisibility(View.VISIBLE);
 
@@ -154,12 +154,17 @@ public class FixedProductDetailActivity extends BaseActivity implements View.OnC
         } else {
             ll_fixed_product_detail_chanpinjingzhi.setVisibility(View.GONE);
         }
-        if (TextUtils.isEmpty(fixedDetailBean.getEstablishmentDate())) {  //判断立即预约按钮是否可见
-            tv_fixed_product_detail_chengliriqi.setText("无");
-            btn_order.setVisibility(View.VISIBLE);
-        } else {
-            tv_fixed_product_detail_chengliriqi.setText(fixedDetailBean.getEstablishmentDate());
+        String flag = fixedDetailBean.getEstablishedFlag();
+        if (Boolean.parseBoolean(flag)) {  //判断立即预约按钮是否可见 false:未成立；true:成立（只有未成立时显示立即预约按钮）
             btn_order.setVisibility(View.GONE);
+        } else {
+            btn_order.setVisibility(View.VISIBLE);
+        }
+
+        if (!TextUtils.isEmpty(fixedDetailBean.getEstablishmentDate())) { //成立日期
+            tv_fixed_product_detail_chengliriqi.setText(fixedDetailBean.getEstablishmentDate());
+        } else {
+            tv_fixed_product_detail_chengliriqi.setText("无");
         }
 
         String riskType = fixedDetailBean.getRiskType();
@@ -185,11 +190,11 @@ public class FixedProductDetailActivity extends BaseActivity implements View.OnC
             tv_fixed_product_detail_fuxijiange.setText("按月付息，到期还本");
         } else if (repayType.equals("quarterPayment")) {
             tv_fixed_product_detail_fuxijiange.setText("按季付息，到期还本");
-        }else if (repayType.equals("halfYearPayment")) {
+        } else if (repayType.equals("halfYearPayment")) {
             tv_fixed_product_detail_fuxijiange.setText("按半年付息，到期还本");
-        }else if (repayType.equals("yearPayment")) {
+        } else if (repayType.equals("yearPayment")) {
             tv_fixed_product_detail_fuxijiange.setText("按年付息，到期还本");
-        }else if (repayType.equals("oneTimePayment")) {
+        } else if (repayType.equals("oneTimePayment")) {
             tv_fixed_product_detail_fuxijiange.setText("一次性还本息");
         }
 
@@ -198,9 +203,9 @@ public class FixedProductDetailActivity extends BaseActivity implements View.OnC
         tv_fixed_product_detail_guanliren.setText(fixedDetailBean.getAdministrator());
         tv_fixed_product_detail_tuoguanren.setText(fixedDetailBean.getTrustee());
 
-        tv_fixed_product_detail_touzifanwei.setTextColor(getResources().getColor(R.color.txt_orange_gray));
-        tv_fixed_product_detail_fengkongcuoshi.setTextColor(getResources().getColor(R.color.bg_black));
-        tv_fixed_product_detail_touziliangdian.setTextColor(getResources().getColor(R.color.bg_black));
+        tv_fixed_product_detail_touzifanwei.setTextColor(getResources().getColor(R.color.txt_black_light));
+        tv_fixed_product_detail_fengkongcuoshi.setTextColor(getResources().getColor(R.color.txt_gray_light_l));
+        tv_fixed_product_detail_touziliangdian.setTextColor(getResources().getColor(R.color.txt_gray_light_l));
 
         tv_fixed_product_detail_touzifanwei.setBackgroundResource(R.color.white);
         tv_fixed_product_detail_fengkongcuoshi.setBackgroundResource(R.color.bg_gray);
@@ -249,9 +254,9 @@ public class FixedProductDetailActivity extends BaseActivity implements View.OnC
                 finish();
                 break;
             case R.id.tv_fixed_product_detail_touzifanwei: //投资范围
-                tv_fixed_product_detail_touzifanwei.setTextColor(getResources().getColor(R.color.txt_orange_gray));
-                tv_fixed_product_detail_fengkongcuoshi.setTextColor(getResources().getColor(R.color.bg_black));
-                tv_fixed_product_detail_touziliangdian.setTextColor(getResources().getColor(R.color.bg_black));
+                tv_fixed_product_detail_touzifanwei.setTextColor(getResources().getColor(R.color.txt_black_light));
+                tv_fixed_product_detail_fengkongcuoshi.setTextColor(getResources().getColor(R.color.txt_gray_light_l));
+                tv_fixed_product_detail_touziliangdian.setTextColor(getResources().getColor(R.color.txt_gray_light_l));
 
                 tv_fixed_product_detail_touzifanwei.setBackgroundResource(R.color.white);
                 tv_fixed_product_detail_fengkongcuoshi.setBackgroundResource(R.color.bg_gray);
@@ -263,9 +268,9 @@ public class FixedProductDetailActivity extends BaseActivity implements View.OnC
                 }
                 break;
             case R.id.tv_fixed_product_detail_fengkongcuoshi:  //风控措施
-                tv_fixed_product_detail_touzifanwei.setTextColor(getResources().getColor(R.color.bg_black));
-                tv_fixed_product_detail_fengkongcuoshi.setTextColor(getResources().getColor(R.color.txt_orange_gray));
-                tv_fixed_product_detail_touziliangdian.setTextColor(getResources().getColor(R.color.bg_black));
+                tv_fixed_product_detail_touzifanwei.setTextColor(getResources().getColor(R.color.txt_gray_light_l));
+                tv_fixed_product_detail_fengkongcuoshi.setTextColor(getResources().getColor(R.color.txt_black_light));
+                tv_fixed_product_detail_touziliangdian.setTextColor(getResources().getColor(R.color.txt_gray_light_l));
 
                 tv_fixed_product_detail_touzifanwei.setBackgroundResource(R.color.bg_gray);
                 tv_fixed_product_detail_fengkongcuoshi.setBackgroundResource(R.color.white);
@@ -277,9 +282,9 @@ public class FixedProductDetailActivity extends BaseActivity implements View.OnC
                 }
                 break;
             case R.id.tv_fixed_product_detail_touziliangdian: //投资亮点
-                tv_fixed_product_detail_touzifanwei.setTextColor(getResources().getColor(R.color.bg_black));
-                tv_fixed_product_detail_fengkongcuoshi.setTextColor(getResources().getColor(R.color.bg_black));
-                tv_fixed_product_detail_touziliangdian.setTextColor(getResources().getColor(R.color.txt_orange_gray));
+                tv_fixed_product_detail_touzifanwei.setTextColor(getResources().getColor(R.color.txt_gray_light_l));
+                tv_fixed_product_detail_fengkongcuoshi.setTextColor(getResources().getColor(R.color.txt_gray_light_l));
+                tv_fixed_product_detail_touziliangdian.setTextColor(getResources().getColor(R.color.txt_black_light));
 
                 tv_fixed_product_detail_touzifanwei.setBackgroundResource(R.color.bg_gray);
                 tv_fixed_product_detail_fengkongcuoshi.setBackgroundResource(R.color.bg_gray);
