@@ -110,6 +110,9 @@ public class BookingHospitalListActivity extends BaseActivity implements View.On
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
                 selectProvince = provinceList.get(position).getName();
                 tv_area.setText(selectProvince);
+//                if (selectProvince.contains("全部地区")) {
+//                    selectProvince = "";
+//                }
                 //改变点击的背景色
                 provinceAdapter.changeBg(position);
                 //刷新市数据
@@ -123,6 +126,7 @@ public class BookingHospitalListActivity extends BaseActivity implements View.On
                 selectCity = cityList.get(position).getName();
                 if (selectCity.equals("全部")) {
                     tv_area.setText(selectProvince);
+//                    selectCity = "";
                 } else {
                     tv_area.setText(selectCity);
                 }
@@ -205,8 +209,12 @@ public class BookingHospitalListActivity extends BaseActivity implements View.On
 
     private void requestData() {
         Log.i("aaa", selectProvince + ":" + selectCity + ":" + hospitalName);
+
+        String province = selectProvince.contains("全部") ? "" : selectProvince;
+        String city = selectCity.contains("全部") ? "" : selectCity;
+
         try {
-            HtmlRequest.getBookingHospitalList(BookingHospitalListActivity.this, selectProvince, selectCity, hospitalName, currentPage + "", new BaseRequester.OnRequestListener() {
+            HtmlRequest.getBookingHospitalList(BookingHospitalListActivity.this, province, city, hospitalName, currentPage + "", new BaseRequester.OnRequestListener() {
                 @Override
                 public void onRequestFinished(BaseParams params) {
                     BookingHospitalListActivity.this.stopLoading();
