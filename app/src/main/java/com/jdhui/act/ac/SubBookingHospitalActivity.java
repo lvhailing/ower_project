@@ -20,7 +20,9 @@ import com.jdhui.mould.BaseRequester;
 import com.jdhui.mould.HtmlRequest;
 import com.jdhui.uitls.DESUtil;
 import com.jdhui.dialog.DatePickDialog;
+import com.jdhui.uitls.IdCardCheckUtils;
 import com.jdhui.uitls.PreferenceUtil;
+import com.jdhui.uitls.StringUtil;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -43,7 +45,7 @@ public class SubBookingHospitalActivity extends BaseActivity implements View.OnC
     private TextView tv_time3;
     private RelativeLayout rl_hospital; //预约医院
     private TextView tv_hospital;
-    private String id; //医院id
+    private String hospitalId; //医院id
     private String hospitalName;//医院名称
     private EditText et_departments;   //科室
     private EditText et_doctor; //预约医生
@@ -120,7 +122,7 @@ public class SubBookingHospitalActivity extends BaseActivity implements View.OnC
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == 100 && data != null) {
-            id = data.getStringExtra("id");
+            hospitalId = data.getStringExtra("id");
             hospitalName = data.getStringExtra("name");
             tv_hospital.setText(hospitalName);
         }
@@ -142,12 +144,48 @@ public class SubBookingHospitalActivity extends BaseActivity implements View.OnC
         String phone = et_phone.getText().toString();
         String idNo = et_idno.getText().toString();
 
-        if (!isMobileNO(phone)) {
+        if (TextUtils.isEmpty(name)) {
+            Toast.makeText(SubBookingHospitalActivity.this, "请输入预约人", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if (TextUtils.isEmpty(securityNum)) {
+            Toast.makeText(SubBookingHospitalActivity.this, "请输入预约人社保号码", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if (idNo == null || TextUtils.isEmpty(idNo)) {
+            Toast.makeText(SubBookingHospitalActivity.this, "请输入预约人身份证号", Toast.LENGTH_SHORT).show();
+            return;
+        } else if (!IdCardCheckUtils.isIdCard(idNo)) {
+            Toast.makeText(SubBookingHospitalActivity.this, "请输入正确的身份证号", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if (TextUtils.isEmpty(phone)) {
+            Toast.makeText(this, "请输入预约人电话", Toast.LENGTH_SHORT).show();
+            return;
+        } else if (!StringUtil.isMobileNO(phone)) {
             Toast.makeText(SubBookingHospitalActivity.this, "请输入正确的手机号", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        HtmlRequest.submitBookingHospital(this, userId, id, departments, doctor, formatTime1, formatTime2, formatTime3, illness, name, securityNum, phone, idNo, new BaseRequester.OnRequestListener() {
+        if (TextUtils.isEmpty(formatTime1)) {
+            Toast.makeText(SubBookingHospitalActivity.this, "请选择预约时间", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if (TextUtils.isEmpty(hospitalId)) {
+            Toast.makeText(SubBookingHospitalActivity.this, "请选择预约医院", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if (TextUtils.isEmpty(departments)) {
+            Toast.makeText(SubBookingHospitalActivity.this, "请输入预约科室", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        HtmlRequest.submitBookingHospital(this, userId, hospitalId, departments, doctor, formatTime1, formatTime2, formatTime3, illness, name, securityNum, phone, idNo, new BaseRequester.OnRequestListener() {
             @Override
             public void onRequestFinished(BaseParams params) {
                 if (params != null) {
@@ -218,24 +256,6 @@ public class SubBookingHospitalActivity extends BaseActivity implements View.OnC
         }
 
         return true;
-    }
-
-    /**
-     * 验证手机格式
-     */
-    public static boolean isMobileNO(String mobiles) {
-    /*
-    移动：134、135、136、137、138、139、150、151、157(TD)、158、159、187、188
-    联通：130、131、132、152、155、156、185、186
-    电信：133、153、180、189、（1349卫通）
-    总结起来就是第一位必定为1，第二位必定为3或5或8，其他位置的可以为0-9
-    */
-        String telRegex = "[1][358]\\d{9}";//"[1]"代表第1位为数字1，"[358]"代表第二位可以为3、5、8中的一个，"\\d{9}"代表后面是可以是0～9的数字，有9位。
-        if (TextUtils.isEmpty(mobiles)) {
-            return false;
-        } else {
-            return mobiles.matches(telRegex);
-        }
     }
 
 }

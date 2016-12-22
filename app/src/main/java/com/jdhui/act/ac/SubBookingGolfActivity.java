@@ -162,6 +162,9 @@ public class SubBookingGolfActivity extends BaseActivity implements View.OnClick
         if (TextUtils.isEmpty(clientPhone)) {
             Toast.makeText(this, "请输入预约人电话", Toast.LENGTH_SHORT).show();
             return;
+        } else if (!StringUtil.isMobileNO(clientPhone)) {
+            Toast.makeText(this, "请输入正确的手机号", Toast.LENGTH_SHORT).show();
+            return;
         }
 
         String bookingTime = tv_booking_time.getText().toString();
