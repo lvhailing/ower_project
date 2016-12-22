@@ -1,7 +1,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
-              android:background="@color/bg_gray"
+              android:background="@color/white"
               android:orientation="vertical">
 
     <RelativeLayout
@@ -62,7 +62,7 @@
         <View
             android:layout_width="1dp"
             android:layout_height="match_parent"
-            android:background="#ccc"/>
+            android:background="@color/bg_gray"/>
 
         <RelativeLayout
             android:id="@+id/rl_status"
@@ -93,8 +93,8 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="#ccc"/>
+        android:layout_height="10dp"
+        android:background="@color/bg_gray"/>
 
     <RelativeLayout
         android:layout_width="match_parent"

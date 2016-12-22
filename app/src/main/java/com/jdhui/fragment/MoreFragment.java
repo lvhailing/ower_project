@@ -171,13 +171,13 @@ public class MoreFragment extends Fragment implements View.OnClickListener {
                 i_about_us.putExtra("title", "关于我们");
                 startActivity(i_about_us);
                 break;
-            case R.id.id_tab_more_layout_service_clauses:
+            case R.id.id_tab_more_layout_service_clauses: //服务条款
                 Intent i_service_clauses = new Intent(context, WebActivity.class);
                 i_service_clauses.putExtra("type", WebActivity.WEBTYPE_SERVERS);
                 i_service_clauses.putExtra("title", "服务条款");
                 startActivity(i_service_clauses);
                 break;
-            case R.id.id_tab_more_layout_agreement:
+            case R.id.id_tab_more_layout_agreement: //隐私协议
                 Intent i_agreement = new Intent(context, WebActivity.class);
                 i_agreement.putExtra("type", WebActivity.WEBTYPE_AGREEMENTS);
                 i_agreement.putExtra("title", "隐私协议");

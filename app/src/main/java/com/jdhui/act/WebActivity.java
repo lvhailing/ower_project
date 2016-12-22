@@ -103,7 +103,7 @@ public class WebActivity extends Activity implements View.OnClickListener {
             url = ApplicationConsts.URL_SERVERS;
             tv_web_title.setText(getIntent().getExtras().getString("title"));
         } else if (type.equals(WEBTYPE_AGREEMENTS)) {// 隐私协议
-            url = ApplicationConsts.URL_SERVERS;
+            url = ApplicationConsts.URL_AGREEMENTS;
             tv_web_title.setText(getIntent().getExtras().getString("title"));
         } else if (type.equals(WEBTYPE_BANNER)) {// 轮播图
 //			url = ApplicationConsts.URL_SERVERS;

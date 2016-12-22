@@ -55,8 +55,9 @@
                     android:layout_marginLeft="20dp"
                     android:layout_marginTop="25dp"
                     android:text="绿通就医"
-                    android:textColor="@color/txt_black"
-                    android:textSize="16sp"/>
+                    android:textColor="@color/white"
+                    android:textSize="18sp"
+                    android:textStyle="bold"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -89,8 +90,9 @@
                     android:layout_marginLeft="20dp"
                     android:layout_marginTop="25dp"
                     android:text="基因检测"
-                    android:textColor="@color/txt_black"
-                    android:textSize="16sp"/>
+                    android:textColor="@color/white"
+                    android:textSize="18sp"
+                    android:textStyle="bold"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -120,21 +122,27 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="25dp"
-                    android:text="高尔夫球场地"
-                    android:textColor="@color/txt_black"
-                    android:textSize="16sp"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:layout_marginRight="20dp"
                     android:layout_marginTop="80dp"
                     android:text="高尔夫球场地预约"
                     android:textColor="@color/txt_black"
                     android:textSize="14sp"/>
+
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginLeft="21dp"
+                    android:layout_marginStart="21dp"
+                    android:layout_marginTop="25dp"
+                    android:text="高尔夫球场地"
+                    android:textColor="@color/white"
+                    android:textSize="18sp"
+                    android:textStyle="bold"/>
             </RelativeLayout>
 
 
@@ -158,8 +166,9 @@
                     android:layout_marginLeft="20dp"
                     android:layout_marginTop="25dp"
                     android:text="公务机包机"
-                    android:textColor="@color/txt_black"
-                    android:textSize="16sp"/>
+                    android:textColor="@color/white"
+                    android:textSize="18sp"
+                    android:textStyle="bold"/>
 
                 <TextView
                     android:layout_width="wrap_content"

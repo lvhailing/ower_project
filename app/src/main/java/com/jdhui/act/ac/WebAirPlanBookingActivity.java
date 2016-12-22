@@ -1,6 +1,7 @@
 package com.jdhui.act.ac;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
@@ -17,19 +18,21 @@ import com.jdhui.ApplicationConsts;
 import com.jdhui.R;
 import com.jdhui.act.BaseActivity;
 import com.jdhui.mould.HtmlRequest;
+import com.jdhui.uitls.ActivityStack;
 import com.jdhui.uitls.DESUtil;
 import com.jdhui.uitls.PreferenceUtil;
 
 /**
  * 预约公务机包机页面
  */
-public class WebAirPlanBookingActivity extends BaseActivity implements View.OnClickListener {
+public class WebAirPlanBookingActivity extends Activity implements View.OnClickListener {
     private WebView mWebview;
     private String url = null;
     public String title;
     private TextView tv_web_title;
     private ImageView id_img_back;
     private String userId;
+    private ActivityStack stack;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -42,6 +45,9 @@ public class WebAirPlanBookingActivity extends BaseActivity implements View.OnCl
 
     @SuppressLint({"JavascriptInterface", "SetJavaScriptEnabled"})
     private void initView() {
+        stack = ActivityStack.getActivityManage();
+        stack.addActivity(this);
+
         try {
             userId = DESUtil.decrypt(PreferenceUtil.getUserId());
         } catch (Exception e) {

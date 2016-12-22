@@ -82,13 +82,13 @@ public class ServiceOrderAdapter extends BaseAdapter {
 
 
         //不同状态时，给字体设置不同的颜色
-        if (status.equals("submit") || status.equals("refuse")) { //待确认或已驳回
+       /* if (status.equals("submit") || status.equals("refuse")) { //待确认或已驳回
             holder.tv_status.setTextColor(context.getResources().getColor(R.color.red4));
         } else if (status.equals("confirm")) {//已确认
             holder.tv_status.setTextColor(context.getResources().getColor(R.color.txt_orange_new));
         } else { //取消、未完成、已完成 状态的字体颜色
             holder.tv_status.setTextColor(context.getResources().getColor(R.color.txt_gray));
-        }
+        }*/
 
         return convertView;
     }

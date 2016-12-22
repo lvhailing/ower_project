@@ -1351,7 +1351,6 @@ public class HtmlRequest extends BaseRequester {
      * @return 返回数据
      */
     public static String getServiceOrderList(final Context context, String serviceItems, String page, OnRequestListener listener) {
-
         final String data = HtmlLoadUtil.getServicetOrderList(serviceItems, page);
         final String url = ApplicationConsts.URL_SERVICE_ORDER;
         String tid = registerId(Constants.TASK_TYPE_SERVICE_ORDER, url);

@@ -130,16 +130,20 @@ public class ServiceOrderActivity extends BaseActivity implements View.OnClickLi
                         Toast.makeText(ServiceOrderActivity.this, "加载失败，请确认网络通畅", Toast.LENGTH_LONG).show();
                         return;
                     }
+                    listView.getRefreshableView().smoothScrollToPositionFromTop(0, 80, 100);
+                    listView.onRefreshComplete();
 
                     Service2B data = (Service2B) params.result;
                     MouldList<Service3B> everyList = data.getList();
                     if (everyList == null || everyList.size() == 0) {
                         Toast.makeText(ServiceOrderActivity.this, "没有数据了", Toast.LENGTH_SHORT).show();
+                        if (mAdapter != null) {
+                            totalList.clear();
+                            mAdapter.notifyDataSetChanged();    //刷新界面
+                        }
                         return;
                     }
 
-                    listView.getRefreshableView().smoothScrollToPositionFromTop(0, 80, 100);
-                    listView.onRefreshComplete();
 
                     if (currentPage == 1) {
                         //刚进来时 加载第一页数据，或下拉刷新 重新加载数据 。这两种情况之前的数据都清掉

@@ -204,7 +204,7 @@ public class BookingHospitalListActivity extends BaseActivity implements View.On
     }
 
     private void requestData() {
-        Log.i("aaa", selectProvince + ":" + selectCity + ":" + hospitalName);
+//        Log.i("aaa", selectProvince + ":" + selectCity + ":" + hospitalName);
         try {
             HtmlRequest.getBookingHospitalList(BookingHospitalListActivity.this, selectProvince, selectCity, hospitalName, currentPage + "", new BaseRequester.OnRequestListener() {
                 @Override

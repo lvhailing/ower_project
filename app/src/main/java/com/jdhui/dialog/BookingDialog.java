@@ -2,6 +2,8 @@ package com.jdhui.dialog;
 
 import android.app.Activity;
 import android.app.Dialog;
+import android.text.InputFilter;
+import android.text.InputType;
 import android.text.TextUtils;
 import android.view.Display;
 import android.view.Gravity;
@@ -16,6 +18,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.jdhui.R;
+import com.jdhui.uitls.CashierInputFilter;
 
 /**
  * 产品  产品预约弹框
@@ -34,27 +37,31 @@ public class BookingDialog {
         void onMyclick(Dialog ad, String money, String remarks);
     }
 
-    public BookingDialog(Activity activity,String name,MyCallback callback) {
+    public BookingDialog(Activity activity, String name, MyCallback callback) {
         this.activity = activity;
         this.name = name;
-        this.callback=callback;
+        this.callback = callback;
     }
 
     public Dialog subBookingDialog() {
         LinearLayout productBookingLayout = (LinearLayout) activity.getLayoutInflater().inflate(R.layout.dialog_product_booking, null);
         TextView tv_insurance_name = (TextView) productBookingLayout.findViewById(R.id.tv_insurance_name);
-         et_money = (EditText) productBookingLayout.findViewById(R.id.et_money);
-         et_remarks = (EditText) productBookingLayout.findViewById(R.id.et_remarks);
+        et_money = (EditText) productBookingLayout.findViewById(R.id.et_money);
+        et_remarks = (EditText) productBookingLayout.findViewById(R.id.et_remarks);
         Button btn_submit = (Button) productBookingLayout.findViewById(R.id.btn_submit);
         tv_insurance_name.setText(name);
+
+        et_money.setInputType(InputType.TYPE_NUMBER_FLAG_DECIMAL);
+        InputFilter[] filters = {new CashierInputFilter(10), new InputFilter.LengthFilter(10)};
+        et_money.setFilters(filters);
 
         btn_submit.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
                 money = et_money.getText().toString();
-                if(TextUtils.isEmpty(money)){
-                        Toast.makeText(activity,"您输入的金额为空",Toast.LENGTH_SHORT).show();
-                        return;
+                if (TextUtils.isEmpty(money)) {
+                    Toast.makeText(activity, "您输入的金额为空", Toast.LENGTH_SHORT).show();
+                    return;
                 }
                 remarks = et_remarks.getText().toString();
                 callback.onMyclick(dialog, money, remarks);
