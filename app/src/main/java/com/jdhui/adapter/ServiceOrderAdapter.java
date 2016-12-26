@@ -75,7 +75,7 @@ public class ServiceOrderAdapter extends BaseAdapter {
         } else if (status.equals("refuse")) {
             holder.tv_status.setText("已驳回");
         } else if (status.equals("cancel")) {
-            holder.tv_status.setText("取消");
+            holder.tv_status.setText("已取消");
         }
         holder.tv_name.setText(name);
         holder.tv_time.setText(list.get(position).getCreateTime());

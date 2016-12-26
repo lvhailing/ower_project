@@ -177,6 +177,24 @@ public class PreferenceUtil {
     }
 
     /**
+     * 获取用户信息ID
+     *
+     * @return
+     */
+    public static String getUserInfoId() {
+        return getUserSharedPreferences().getString("userInfoId", "");
+    }
+
+    /**
+     * 设置用户信息ID
+     *
+     * @param userInfoId
+     */
+    public static void setUserInfoId(String userInfoId) {
+        getUserSharedPreferences().edit().putString("userInfoId", userInfoId).commit();
+    }
+
+    /**
      * 设置用户昵称
      *
      * @param nickName

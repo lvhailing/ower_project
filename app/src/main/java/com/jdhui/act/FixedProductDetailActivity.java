@@ -300,8 +300,7 @@ public class FixedProductDetailActivity extends BaseActivity implements View.OnC
         BookingDialog dialog = new BookingDialog(this, productName, new BookingDialog.MyCallback() {
             @Override
             public void onMyclick(Dialog ad, String money, String remarks) {
-                requestData(money, remarks);
-                ad.dismiss();
+                requestData(money, remarks,ad);
                 ad = null;
             }
         });
@@ -331,7 +330,7 @@ public class FixedProductDetailActivity extends BaseActivity implements View.OnC
      * @param money
      * @param remarks
      */
-    private void requestData(String money, String remarks) {
+    private void requestData(String money, String remarks,final Dialog ad) {
         try {
             String userInfoId = DESUtil.decrypt(PreferenceUtil.getUserId());
             HtmlRequest.subBookingProduct(this, productId, userInfoId, remarks, money, productType, new BaseRequester.OnRequestListener() {
@@ -341,8 +340,8 @@ public class FixedProductDetailActivity extends BaseActivity implements View.OnC
                         BookingProduct2B product2B = (BookingProduct2B) params.result;
                         if (product2B != null) {
                             if (!Boolean.parseBoolean(product2B.getMessage())) {
-                                Toast.makeText(FixedProductDetailActivity.this, "预约成功", Toast.LENGTH_LONG).show();
-                                finish();
+                                Toast.makeText(FixedProductDetailActivity.this, "预约成功", Toast.LENGTH_SHORT).show();
+                                ad.dismiss();
                             } else {
                                 Toast.makeText(FixedProductDetailActivity.this, "预约失败，请您检查提交信息", Toast.LENGTH_LONG).show();
                             }

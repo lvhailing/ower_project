@@ -27,13 +27,21 @@ public class ServiceDetail3B implements IMouldType {
     private String bookingRemark; //驳回原因  (四种类型服务共用)
     private String golfName; //场馆名称
     private String peersOne; //同行人1
-    private String peersTwo; //同行人2
+    private String PeersTwo; //同行人2
     private String golfRight; //权限
     private String idNo; //高尔夫球场的身份证
     private String createTime; //绿通就医、高尔夫球场的提交时间
     private MouldList<PlaneMarchListBean> airplaneMarch;   //行程列表
 
+    private String idType;      // idType  String     idCard: 身份证号  passport：护照  agencyCode：机构代码
 
+    public String getIdType() {
+        return idType;
+    }
+
+    public void setIdType(String idType) {
+        this.idType = idType;
+    }
 
     public String getServiceItems() {
         return serviceItems;
@@ -180,11 +188,11 @@ public class ServiceDetail3B implements IMouldType {
     }
 
     public String getPeersTwo() {
-        return peersTwo;
+        return PeersTwo;
     }
 
     public void setPeersTwo(String peersTwo) {
-        this.peersTwo = peersTwo;
+        PeersTwo = peersTwo;
     }
 
     public String getGolfRight() {

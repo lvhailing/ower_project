@@ -223,6 +223,7 @@ public class ChangePhoneTwoActivity extends BaseActivity implements View.OnClick
                             e.printStackTrace();
                         }
                         Intent intent = new Intent(ChangePhoneTwoActivity.this, AccountActivity.class);
+                        intent.putExtra("userInfoId",PreferenceUtil.getUserInfoId());
                         startActivity(intent);
 
                         //栈里只留MainActivity

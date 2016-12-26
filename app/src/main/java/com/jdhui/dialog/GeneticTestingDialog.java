@@ -44,8 +44,8 @@ public class GeneticTestingDialog {
         tv_name.setText(detail2B.getGeneticTesting().getName());
         tv_items.setText(detail2B.getGeneticTesting().getItems());
         tv_unvip_price.setText("非会员价：" + detail2B.getGeneticTesting().getUnvipPrice() + "元");
-        tv_vip_price.setText("会员价：" + detail2B.getGeneticTesting().getVipPrice() + "元");
-        tv_balance_price.setText("结算价：" + detail2B.getGeneticTesting().getBalancePrice() + "元");
+        tv_vip_price.setText("会  员  价：" + detail2B.getGeneticTesting().getVipPrice() + "元");
+        tv_balance_price.setText("结  算  价：" + detail2B.getGeneticTesting().getBalancePrice() + "元");
 
         tv_submit.setOnClickListener(new OnClickListener() {
             @Override
@@ -54,7 +54,8 @@ public class GeneticTestingDialog {
             }
         });
 
-        dialog = new Dialog(activity, R.style.date_picker_style);
+//        dialog = new Dialog(activity, R.style.date_picker_style);
+        dialog = new Dialog(activity, R.style.Dialog);
         dialog.setContentView(geneticTestingLayout);
         dialog.setCanceledOnTouchOutside(true);
 
@@ -64,6 +65,7 @@ public class GeneticTestingDialog {
         Display display = windowManager.getDefaultDisplay();
         WindowManager.LayoutParams lp = window.getAttributes();
         lp.width = display.getWidth();
+
         window.setAttributes(lp);
         //设置弹出动画及弹出位置
         window.setWindowAnimations(R.style.date_picker_anim);

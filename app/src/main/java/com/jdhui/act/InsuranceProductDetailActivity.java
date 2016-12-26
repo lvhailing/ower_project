@@ -173,15 +173,14 @@ public class InsuranceProductDetailActivity extends BaseActivity implements View
         BookingDialog dialog = new BookingDialog(this, insuranceName,new BookingDialog.MyCallback() {
             @Override
             public void onMyclick(Dialog ad, String money, String remarks) {
-                requestData(money, remarks);
-                ad.dismiss();
+                requestData(money, remarks, ad);
                 ad = null;
             }
         });
         dialog.subBookingDialog();
     }
 
-    private void requestData(String money, String remarks) {
+    private void requestData(String money, String remarks,final Dialog ad) {
         try {
             String userInfoId = DESUtil.decrypt(PreferenceUtil.getUserId());
             HtmlRequest.subBookingInsurance(this, productId, userInfoId, remarks, money, new BaseRequester.OnRequestListener() {
@@ -192,7 +191,7 @@ public class InsuranceProductDetailActivity extends BaseActivity implements View
                         if (insurance2B != null) {
                             if (!Boolean.parseBoolean(insurance2B.getMessage())) {
                                 Toast.makeText(InsuranceProductDetailActivity.this, "预约成功", Toast.LENGTH_LONG).show();
-                                finish();
+                                ad.dismiss();
                             } else {
                                 Toast.makeText(InsuranceProductDetailActivity.this, "预约失败，请您检查提交信息", Toast.LENGTH_LONG).show();
                             }

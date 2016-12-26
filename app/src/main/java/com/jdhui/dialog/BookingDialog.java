@@ -52,7 +52,7 @@ public class BookingDialog {
         tv_insurance_name.setText(name);
 
         et_money.setInputType(InputType.TYPE_NUMBER_FLAG_DECIMAL);
-        InputFilter[] filters = {new CashierInputFilter(10), new InputFilter.LengthFilter(10)};
+        InputFilter[] filters = {new CashierInputFilter(12), new InputFilter.LengthFilter(12)};
         et_money.setFilters(filters);
 
         btn_submit.setOnClickListener(new OnClickListener() {
@@ -68,7 +68,7 @@ public class BookingDialog {
             }
         });
 
-        dialog = new Dialog(activity, R.style.date_picker_style);
+        dialog = new Dialog(activity, R.style.Dialog);
         dialog.setContentView(productBookingLayout);
         dialog.setCanceledOnTouchOutside(true);
 
@@ -78,6 +78,8 @@ public class BookingDialog {
         Display display = windowManager.getDefaultDisplay();
         WindowManager.LayoutParams lp = window.getAttributes();
         lp.width = display.getWidth();
+        lp.dimAmount = 0.6f; // 去背景遮盖
+        lp.alpha = 1.0f;
         window.setAttributes(lp);
         //设置弹出动画及弹出位置
         window.setWindowAnimations(R.style.date_picker_anim);

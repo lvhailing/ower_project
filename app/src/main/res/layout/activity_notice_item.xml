@@ -31,11 +31,12 @@
 
             <TextView
                 android:id="@+id/id_notice_item_tv_title"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="5dp"
-                android:layout_marginRight="80dp"
+                android:layout_marginRight="5dp"
+                android:layout_toLeftOf="@id/id_notice_item_tv_time"
                 android:layout_toRightOf="@id/tv_flag"
                 android:text="新产品成立"
                 android:textSize="16sp" />

@@ -85,7 +85,7 @@ public class GolfListActivity extends BaseActivity implements View.OnClickListen
 
     private void requestListData() {  //请求高尔夫球场列表的数据
         try {
-            HtmlRequest.getGolfList(GolfListActivity.this, "1", new BaseRequester.OnRequestListener() {
+            HtmlRequest.getGolfList(GolfListActivity.this, currentPage+"", new BaseRequester.OnRequestListener() {
                 @Override
                 public void onRequestFinished(BaseParams params) {
                     GolfListActivity.this.stopLoading();

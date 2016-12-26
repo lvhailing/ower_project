@@ -101,6 +101,8 @@ public class ServicePlaneDetailActivity extends BaseActivity implements View.OnC
                 mTvOrderStatus.setText("已完成");
             } else if (status.equals("unfinish")) {
                 mTvOrderStatus.setText("未完成");
+                rl_tips.setVisibility(View.VISIBLE);
+                tv_title.setText(detail2B.getAirplaneBooking().getBookingRemark());
             } else if (status.equals("refuse")) {
                 mTvOrderStatus.setText("已驳回");
 

@@ -93,7 +93,6 @@
                     android:id="@+id/et_idno"
                     style="@style/et_style"
                     android:hint="请输入预约人身份证号"
-                    android:inputType="number"
                     android:maxLength="18"
                     android:maxLines="1"/>
 
@@ -231,13 +230,17 @@
             <RelativeLayout
                 android:id="@+id/rl_hospital"
                 android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:layout_marginRight="12dp">
+                android:layout_height="wrap_content"
+                android:layout_marginRight="12dp"
+                >
 
                 <TextView
+                    android:id="@+id/tv_booking_hospital_name"
                     style="@style/tv_style"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="12dp"
+                    android:layout_marginTop="18dip"
+                    android:layout_marginBottom="18dip"
                     android:text="预约医院"/>
 
 
@@ -247,6 +250,8 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
+                    android:layout_marginTop="18dip"
+                    android:layout_marginBottom="18dip"
                     android:src="@drawable/arrow"/>
 
                 <TextView
@@ -255,6 +260,10 @@
                     android:layout_centerVertical="true"
                     android:layout_marginRight="5dp"
                     android:layout_toLeftOf="@id/iv_arrow4"
+                    android:layout_toRightOf="@id/tv_booking_hospital_name"
+                    android:paddingLeft="5dip"
+                    android:layout_marginTop="18dip"
+                    android:layout_marginBottom="18dip"
                     android:gravity="right"
                     android:hint="请选择预约医院"
                     android:text=""/>

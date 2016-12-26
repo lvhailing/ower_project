@@ -186,8 +186,9 @@
 
         <activity
             android:name=".act.ac.SubBookingHospitalActivity"
-            android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.Holo.Light"/>
+            android:screenOrientation="portrait"/>
+           <!-- android:theme="@android:style/Theme.Holo.Light"-->
+
 
         <activity
             android:name=".act.ac.BookingHospitalListActivity"

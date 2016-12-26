@@ -11,7 +11,14 @@
         android:layout_height="32dp"
         android:layout_centerVertical="true"
         android:layout_marginLeft="12dp"/>
-
+    <ImageView
+        android:id="@+id/iv_golf_list_arrow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="12dp"
+        android:src="@drawable/arrow"/>
     <TextView
         android:id="@+id/tv_golf_name"
         android:layout_width="wrap_content"
@@ -19,17 +26,12 @@
         android:layout_centerVertical="true"
         android:layout_marginLeft="8dp"
         android:layout_toRightOf="@+id/iv_photo"
+        android:layout_toLeftOf="@id/iv_golf_list_arrow"
         android:text="aaa"
         android:textColor="#333"
         android:textSize="16sp"/>
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_centerVertical="true"
-        android:layout_marginRight="12dp"
-        android:src="@drawable/arrow"/>
+
 
     <View
         style="@style/v_line_style"

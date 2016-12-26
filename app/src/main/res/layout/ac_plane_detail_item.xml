@@ -9,7 +9,7 @@
 
         <TextView
             style="@style/product_text_detail_lt"
-            android:text="人数"/>
+            android:text="人        数:"/>
 
         <TextView
             android:id="@+id/tv_numbers"
@@ -24,7 +24,7 @@
 
         <TextView
             style="@style/product_text_detail_lt"
-            android:text="出发城市"/>
+            android:text="出发城市:"/>
 
         <TextView
             android:id="@+id/tv_strat_city"
@@ -39,7 +39,7 @@
 
         <TextView
             style="@style/product_text_detail_lt"
-            android:text="目的城市"/>
+            android:text="目的城市:"/>
 
         <TextView
             android:id="@+id/tv_end_city"
@@ -54,7 +54,7 @@
 
         <TextView
             style="@style/product_text_detail_lt"
-            android:text="时间"/>
+            android:text="时        间:"/>
 
         <TextView
             android:id="@+id/tv_time"

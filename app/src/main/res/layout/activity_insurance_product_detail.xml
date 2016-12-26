@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@color/bg_gray">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_gray">
 
     <RelativeLayout
         android:id="@+id/id_insurance_product_detail_txt_title"
@@ -17,7 +17,7 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"
             android:padding="5dp"
-            android:src="@drawable/back"/>
+            android:src="@drawable/back" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -25,15 +25,15 @@
             android:layout_centerInParent="true"
             android:text="产品信息"
             android:textColor="@color/white"
-            android:textSize="18sp"/>
+            android:textSize="18sp" />
     </RelativeLayout>
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/id_insurance_product_detail_txt_title"
-        android:scrollbars="none"
-        android:paddingBottom="60dp">
+        android:paddingBottom="60dp"
+        android:scrollbars="none">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -43,7 +43,7 @@
                 android:id="@+id/iv_insurance_product_title_pic"
                 android:layout_width="match_parent"
                 android:layout_height="150dip"
-                android:scaleType="fitXY"/>
+                android:scaleType="fitXY" />
 
             <LinearLayout
                 android:id="@+id/ll_insurance_product_detail_title"
@@ -64,7 +64,7 @@
                         android:layout_height="wrap_content"
                         android:layout_centerInParent="true"
                         android:text=""
-                        android:textSize="16sp"/>
+                        android:textSize="16sp" />
 
                     <ImageView
                         android:layout_width="match_parent"
@@ -73,7 +73,7 @@
                         android:layout_marginLeft="10dip"
                         android:layout_marginRight="15dip"
                         android:layout_toRightOf="@id/tv_insurance_product_detail_name"
-                        android:src="@drawable/tab_lines"/>
+                        android:src="@drawable/tab_lines" />
 
                     <ImageView
                         android:layout_width="match_parent"
@@ -83,7 +83,7 @@
                         android:layout_marginLeft="15dip"
                         android:layout_marginRight="10dip"
                         android:layout_toLeftOf="@id/tv_insurance_product_detail_name"
-                        android:src="@drawable/tab_lines"/>
+                        android:src="@drawable/tab_lines" />
                 </RelativeLayout>
 
                 <TextView
@@ -94,7 +94,7 @@
                     android:gravity="center_horizontal"
                     android:text=""
                     android:textColor="@color/txt_orange_gray"
-                    android:textSize="10sp"/>
+                    android:textSize="10sp" />
 
                 <TextView
                     android:id="@+id/tv_insurance_product_detail_des"
@@ -104,7 +104,7 @@
                     android:gravity="center_horizontal"
                     android:text="----"
                     android:textColor="@color/txt_gray_light_l"
-                    android:textSize="10sp"/>
+                    android:textSize="10sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -128,7 +128,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="保险公司："
-                        android:textSize="12sp"/>
+                        android:textSize="12sp" />
 
                     <TextView
                         android:id="@+id/tv_insurance_product_detail_baoxiangongsi"
@@ -136,7 +136,7 @@
                         android:layout_height="wrap_content"
                         android:text=""
                         android:textColor="@color/bg_black"
-                        android:textSize="12sp"/>
+                        android:textSize="12sp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -153,7 +153,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="投保方式："
-                        android:textSize="12sp"/>
+                        android:textSize="12sp" />
 
                     <TextView
                         android:id="@+id/tv_insurance_product_detail_toubaofangshi"
@@ -162,7 +162,7 @@
                         android:lineSpacingExtra="2dip"
                         android:text=""
                         android:textColor="@color/bg_black"
-                        android:textSize="12sp"/>
+                        android:textSize="12sp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -177,7 +177,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="投保范围："
-                        android:textSize="12sp"/>
+                        android:textSize="12sp" />
 
                     <TextView
                         android:id="@+id/tv_insurance_product_detail_toubaofanwei"
@@ -186,7 +186,7 @@
                         android:lineSpacingExtra="2dip"
                         android:text=""
                         android:textColor="@color/bg_black"
-                        android:textSize="12sp"/>
+                        android:textSize="12sp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -201,7 +201,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="保险期间："
-                        android:textSize="12sp"/>
+                        android:textSize="12sp" />
 
                     <TextView
                         android:id="@+id/tv_insurance_product_detail_baoxianqijian"
@@ -210,7 +210,7 @@
                         android:lineSpacingExtra="2dip"
                         android:text=""
                         android:textColor="@color/bg_black"
-                        android:textSize="12sp"/>
+                        android:textSize="12sp" />
 
                 </LinearLayout>
 
@@ -226,7 +226,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="交费方式："
-                        android:textSize="12sp"/>
+                        android:textSize="12sp" />
 
                     <TextView
                         android:id="@+id/tv_insurance_product_detail_jiaofeifangshi"
@@ -235,7 +235,7 @@
                         android:lineSpacingExtra="2dip"
                         android:text=""
                         android:textColor="@color/bg_black"
-                        android:textSize="12sp"/>
+                        android:textSize="12sp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -252,7 +252,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="风险提醒："
-                        android:textSize="12sp"/>
+                        android:textSize="12sp" />
 
                     <TextView
                         android:id="@+id/tv_insurance_product_detail_fengxiantixing"
@@ -261,7 +261,7 @@
                         android:lineSpacingExtra="2dip"
                         android:text=""
                         android:textColor="@color/bg_black"
-                        android:textSize="12sp"/>
+                        android:textSize="12sp" />
                 </LinearLayout>
             </LinearLayout>
 
@@ -278,7 +278,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="10dip"
-                    android:text="图文详情"/>
+                    android:text="图文详情" />
 
                 <ImageView
                     android:layout_width="wrap_content"
@@ -286,7 +286,7 @@
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
                     android:layout_marginRight="10dip"
-                    android:src="@drawable/arrow"/>
+                    android:src="@drawable/arrow" />
             </RelativeLayout>
 
         </RelativeLayout>
@@ -303,5 +303,5 @@
         android:background="@drawable/shape_center_orange"
         android:gravity="center"
         android:text="立即预约"
-        android:textColor="@color/white"/>
+        android:textColor="@color/white" />
 </RelativeLayout>

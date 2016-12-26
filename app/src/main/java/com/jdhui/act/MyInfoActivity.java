@@ -80,7 +80,7 @@ public class MyInfoActivity extends BaseActivity implements View.OnClickListener
     private ResultMyInfoContentBean bean;
     private String userInfoId = null;
     private TextView mTvName, mTvID;//身份证\护照\机构代码
-    private EditText mEditAdress;
+    private TextView mTvAdress;
     private TextView tv_id_no;
 
     @Override
@@ -102,7 +102,7 @@ public class MyInfoActivity extends BaseActivity implements View.OnClickListener
         mTvName = (TextView) findViewById(R.id.id_my_info_tv_name);
         tv_id_no = (TextView) findViewById(R.id.tv_id_no);
         mTvID = (TextView) findViewById(R.id.id_my_info_tv_idcard);
-        mEditAdress = (EditText) findViewById(R.id.id_my_info_edit_adress);
+        mTvAdress = (TextView) findViewById(R.id.id_my_info_tv_adress);
         mBtnSave = (Button) findViewById(R.id.id_my_info_btn_save);
         mImgBack.setOnClickListener(this);
         mLayoutPhoto.setOnClickListener(this);
@@ -143,7 +143,7 @@ public class MyInfoActivity extends BaseActivity implements View.OnClickListener
                 tv_id_no.setText("机构代码");
                 mTvID.setText(bean.getIdNo());
             }
-            mEditAdress.setText(bean.getAddress());
+            mTvAdress.setText(bean.getAddress());
             if (!TextUtils.isEmpty(url)) {
                 new ImageViewService().execute(url);
                 // Toast.makeText(activity,"成功", 0).show();
@@ -166,7 +166,7 @@ public class MyInfoActivity extends BaseActivity implements View.OnClickListener
                 selectPhoto();
                 break;
             case R.id.id_my_info_btn_save:
-                String address = mEditAdress.getText().toString();
+                String address = mTvAdress.getText().toString();
                 if (TextUtils.isEmpty(address)) {
                     Toast.makeText(MyInfoActivity.this, "请输入地址", Toast.LENGTH_LONG).show();
                 } else {

@@ -199,7 +199,7 @@
     <!--产品预约详情整条item ll布局 style-->
     <style name="product_linearlayout">
         <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">48dp</item>
+        <item name="android:layout_height">40dp</item>
         <item name="android:gravity">center_vertical</item>
         <item name="android:layout_marginLeft">12dp</item>
         <item name="android:orientation">horizontal</item>
@@ -210,7 +210,7 @@
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_weight">0.6</item>
-        <item name="android:textColor">@color/txt_gray</item>
+        <item name="android:textColor">@color/txt_black</item>
         <item name="android:textSize">16sp</item>
         <item name="android:gravity">right</item>
     </style>
@@ -220,18 +220,30 @@
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_weight">2</item>
-        <item name="android:layout_marginLeft">30dp</item>
+        <item name="android:layout_marginLeft">5dp</item>
         <item name="android:textColor">@color/txt_black</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <!--产品预约详情右侧预约服务 text style-->
+    <style name="product_text_detail_rt_service">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">2</item>
+        <item name="android:layout_marginLeft">5dp</item>
+        <item name="android:textColor">@color/orange_d</item>
         <item name="android:textSize">16sp</item>
     </style>
 
     <!--服务 预约医院整条item Linealayout  style-->
     <style name="ll_style">
         <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">48dp</item>
+        <item name="android:layout_height">wrap_content</item>
         <item name="android:gravity">center_vertical</item>
         <item name="android:layout_marginLeft">12dp</item>
         <item name="android:layout_marginRight">12dp</item>
+        <item name="android:layout_marginTop">8dp</item>
+        <item name="android:layout_marginBottom">8dp</item>
         <item name="android:orientation">horizontal</item>
     </style>
 
@@ -268,6 +280,9 @@
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowIsFloating">true</item>
         <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:windowIsTranslucent">false</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:background">@null</item>
     </style>
 
     <!--预约医院的日期对话框的进出动画-->

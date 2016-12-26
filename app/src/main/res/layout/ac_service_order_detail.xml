@@ -45,7 +45,7 @@
             <RelativeLayout
                 android:id="@+id/rl_tips"
                 android:layout_width="match_parent"
-                android:layout_height="50dip"
+                android:layout_height="wrap_content"
                 android:background="@color/white"
                 android:gravity="center_vertical"
                 android:visibility="gone">
@@ -55,8 +55,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="15dp"
+                    android:layout_marginTop="15dip"
+                    android:layout_marginBottom="15dip"
                     android:text="请保持电话畅通我们会尽快与您进行联系！"
-                    android:textColor="@color/txt_black"
+                    android:textColor="@color/txt_orange"
                     android:textSize="16sp"/>
             </RelativeLayout>
 
@@ -73,12 +75,14 @@
 
                     <TextView
                         style="@style/product_text_detail_lt"
-                        android:text="预约服务"/>
+                        android:text="预约服务:"/>
 
                     <TextView
                         android:id="@+id/tv_order_service"
-                        style="@style/product_text_detail_rt"
-                        android:text=""/>
+                        style="@style/product_text_detail_rt_service"
+                        android:text=""
+
+                        />
                 </LinearLayout>
 
                 <LinearLayout
@@ -87,7 +91,7 @@
 
                     <TextView
                         style="@style/product_text_detail_lt"
-                        android:text="预约状态"/>
+                        android:text="预约状态:"/>
 
                     <TextView
                         android:id="@+id/tv_order_status"
@@ -102,7 +106,7 @@
 
                     <TextView
                         style="@style/product_text_detail_lt"
-                        android:text="预约人"/>
+                        android:text="预  约  人:"/>
 
                     <TextView
                         android:id="@+id/tv_order_name"
@@ -117,7 +121,7 @@
 
                     <TextView
                         style="@style/product_text_detail_lt"
-                        android:text="性别"/>
+                        android:text="性        别:"/>
 
                     <TextView
                         android:id="@+id/tv_sex"
@@ -132,7 +136,7 @@
 
                     <TextView
                         style="@style/product_text_detail_lt"
-                        android:text="年龄"/>
+                        android:text="年        龄:"/>
 
                     <TextView
                         android:id="@+id/tv_age"
@@ -147,7 +151,7 @@
 
                     <TextView
                         style="@style/product_text_detail_lt"
-                        android:text="检测套餐"/>
+                        android:text="检测套餐:"/>
 
                     <TextView
                         android:id="@+id/tv_genetic_test_name"
@@ -162,7 +166,7 @@
 
                     <TextView
                         style="@style/product_text_detail_lt"
-                        android:text="通讯地址"/>
+                        android:text="通讯地址:"/>
 
                     <TextView
                         android:id="@+id/tv_genetic_test_address"
@@ -177,7 +181,7 @@
 
                     <TextView
                         style="@style/product_text_detail_lt"
-                        android:text="社保号码"/>
+                        android:text="社保号码:"/>
 
                     <TextView
                         android:id="@+id/tv_social_security_num"
@@ -191,8 +195,9 @@
                     android:visibility="gone">
 
                     <TextView
+                        android:id="@+id/tv_id_num_name"
                         style="@style/product_text_detail_lt"
-                        android:text="身份证号"/>
+                        android:text="身份证号:"/>
 
                     <TextView
                         android:id="@+id/tv_id_num"
@@ -207,7 +212,7 @@
 
                     <TextView
                         style="@style/product_text_detail_lt"
-                        android:text="同行人1"/>
+                        android:text="同行人 1:"/>
 
                     <TextView
                         android:id="@+id/tv_together1"
@@ -222,7 +227,7 @@
 
                     <TextView
                         style="@style/product_text_detail_lt"
-                        android:text="同行人2"/>
+                        android:text="同行人 2:"/>
 
                     <TextView
                         android:id="@+id/tv_together2"
@@ -237,7 +242,7 @@
 
                     <TextView
                         style="@style/product_text_detail_lt"
-                        android:text="联系电话"/>
+                        android:text="联系电话:"/>
 
                     <TextView
                         android:id="@+id/tv_phone"
@@ -252,7 +257,7 @@
 
                     <TextView
                         style="@style/product_text_detail_lt"
-                        android:text="场馆名称"/>
+                        android:text="场馆名称:"/>
 
                     <TextView
                         android:id="@+id/tv_venue_name"
@@ -267,7 +272,7 @@
 
                     <TextView
                         style="@style/product_text_detail_lt"
-                        android:text="预约时间"/>
+                        android:text="预约时间:"/>
 
                     <TextView
                         android:id="@+id/tv_order_time"
@@ -282,7 +287,7 @@
 
                     <TextView
                         style="@style/product_text_detail_lt"
-                        android:text="备选时间"/>
+                        android:text="备选时间:"/>
 
                     <TextView
                         android:id="@+id/tv_spare_time1"
@@ -297,7 +302,7 @@
 
                     <TextView
                         style="@style/product_text_detail_lt"
-                        android:text="备选时间"/>
+                        android:text="备选时间:"/>
 
                     <TextView
                         android:id="@+id/tv_spare_time2"
@@ -312,7 +317,7 @@
 
                     <TextView
                         style="@style/product_text_detail_lt"
-                        android:text="预约医院"/>
+                        android:text="预约医院:"/>
 
                     <TextView
                         android:id="@+id/tv_order_hospital"
@@ -327,7 +332,7 @@
 
                     <TextView
                         style="@style/product_text_detail_lt"
-                        android:text="预约科室"/>
+                        android:text="预约科室:"/>
 
                     <TextView
                         android:id="@+id/tv_order_department"
@@ -342,7 +347,7 @@
 
                     <TextView
                         style="@style/product_text_detail_lt"
-                        android:text="预约医生"/>
+                        android:text="预约医生:"/>
 
                     <TextView
                         android:id="@+id/tv_order_doctor"
@@ -357,7 +362,7 @@
 
                     <TextView
                         style="@style/product_text_detail_lt"
-                        android:text="主诉病情"/>
+                        android:text="主诉病情:"/>
 
                     <TextView
                         android:id="@+id/tv_desc_illness"
@@ -372,7 +377,7 @@
 
                     <TextView
                         style="@style/product_text_detail_lt"
-                        android:text="提交时间"/>
+                        android:text="提交时间:"/>
 
                     <TextView
                         android:id="@+id/tv_sub_time"

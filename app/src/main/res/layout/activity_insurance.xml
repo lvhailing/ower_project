@@ -44,7 +44,8 @@
             android:layout_width="fill_parent"
             android:layout_height="35dp"
             android:background="@color/white"
-            android:scrollbars="none">
+            android:scrollbars="none"
+            android:fillViewport="false">
 
             <LinearLayout
                 android:id="@+id/viewgroup"

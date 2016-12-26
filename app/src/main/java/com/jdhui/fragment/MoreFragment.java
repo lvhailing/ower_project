@@ -130,6 +130,7 @@ public class MoreFragment extends Fragment implements View.OnClickListener {
             case R.id.id_tab_more_layout_account:
                 Intent i_account = new Intent(context, AccountActivity.class);
                 i_account.putExtra("userInfoId", bean.getUserInfoId());
+                PreferenceUtil.setUserInfoId(bean.getUserInfoId());
                 startActivity(i_account);
                 break;
             case R.id.rl_product_order:  //产品预约

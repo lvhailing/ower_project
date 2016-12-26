@@ -219,13 +219,13 @@ public class SubBookingGolfActivity extends BaseActivity implements View.OnClick
             Date selectDate = simpleDateFormat.parse(selectedTime);
 
             //获取今天的0时 时间戳
-            Calendar cal = Calendar.getInstance();
-            cal.set(Calendar.HOUR, 0);
-            cal.set(Calendar.SECOND, 0);
-            cal.set(Calendar.MINUTE, 0);
-            cal.set(Calendar.MILLISECOND, 0);
-
-            if (cal.getTimeInMillis() > selectDate.getTime()) {
+//            Calendar cal = Calendar.getInstance();
+//            cal.set(Calendar.HOUR, 0);
+//            cal.set(Calendar.SECOND, 0);
+//            cal.set(Calendar.MINUTE, 0);
+//            cal.set(Calendar.MILLISECOND, 0);
+            long currentTime = System.currentTimeMillis();
+            if (currentTime > selectDate.getTime()) {
                 //选择的时间必须是从今天开始包含今天
                 Toast.makeText(SubBookingGolfActivity.this, "时间只能是今天或今天以后", Toast.LENGTH_SHORT).show();
                 return false;

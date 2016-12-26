@@ -82,8 +82,8 @@ public class GolfDetailActivity extends BaseActivity implements View.OnClickList
             price = detail.getVipPrice();
         }
         tv_type_price.setText(type);
-        tv_field_price.setText("￥" + price);
-        tv_original_price.setText("￥" + detail.getOriginalPrice());
+        tv_field_price.setText( price+"￥" );
+        tv_original_price.setText( detail.getOriginalPrice()+"￥" );
         tv_original_price.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG | Paint.ANTI_ALIAS_FLAG);// 设置中划线并加清晰
 
 

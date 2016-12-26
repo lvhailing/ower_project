@@ -142,7 +142,7 @@
         android:scaleType="fitXY"
         android:src="@drawable/tab_lines"/>
 
-    <LinearLayout
+ <!--   <LinearLayout
 
         android:id="@+id/id_my_info_layout_address"
         android:layout_width="match_parent"
@@ -173,8 +173,32 @@
             android:maxLines="1"
             android:textColor="@color/txt_gray_light"
             android:textSize="14sp"/>
-    </LinearLayout>
+    </LinearLayout>-->
 
+    <RelativeLayout
+        android:id="@+id/id_my_info_layout_address"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/id_my_info_layout_idcard_img"
+        android:background="@color/white"
+        android:padding="15dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="地址"
+            android:textColor="@color/txt_gray_dark"
+            android:textSize="16sp"/>
+
+        <TextView
+            android:id="@+id/id_my_info_tv_adress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerInParent="true"
+            android:layout_marginRight="10dp"
+            android:textColor="@color/txt_gray_light"/>
+    </RelativeLayout>
     <Button
         android:id="@+id/id_my_info_btn_save"
         android:layout_width="match_parent"
@@ -184,7 +208,8 @@
         android:layout_marginRight="10dp"
         android:background="@drawable/shape_button_red"
         android:text="保存"
-        android:textColor="@color/white"/>
+        android:textColor="@color/white"
+        android:visibility="gone"/>
 
 
 </RelativeLayout>

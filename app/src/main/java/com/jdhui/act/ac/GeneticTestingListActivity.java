@@ -119,13 +119,15 @@ public class GeneticTestingListActivity extends BaseActivity implements View.OnC
 
     private void requestListData() {  //请求基因列表的数据
         try {
-            HtmlRequest.getGeneticTestingList(GeneticTestingListActivity.this, "1", new BaseRequester.OnRequestListener() {
+            HtmlRequest.getGeneticTestingList(GeneticTestingListActivity.this, currentPage+"", new BaseRequester.OnRequestListener() {
                 @Override
                 public void onRequestFinished(BaseParams params) {
                     GeneticTestingListActivity.this.stopLoading();
                     if (params.result == null) {
                         listView.onRefreshComplete();
                         Toast.makeText(GeneticTestingListActivity.this, "加载失败，请确认网络通畅", Toast.LENGTH_LONG).show();
+                        listView.getRefreshableView().smoothScrollToPositionFromTop(0, 80, 100);
+                        listView.onRefreshComplete();
                         return;
                     }
 
@@ -133,6 +135,8 @@ public class GeneticTestingListActivity extends BaseActivity implements View.OnC
                     MouldList<GeneticTestingList3B> everyList = data.getList();
                     if (everyList == null || everyList.size() == 0) {
                         Toast.makeText(GeneticTestingListActivity.this, "没有数据了", Toast.LENGTH_SHORT).show();
+                        listView.getRefreshableView().smoothScrollToPositionFromTop(0, 80, 100);
+                        listView.onRefreshComplete();
                         return;
                     }
 

@@ -217,6 +217,7 @@ public class ProductOrderActivity extends BaseActivity implements View.OnClickLi
 
     @Override
     public void onClick(View v) {
+        currentPage=1;
         switch (v.getId()) {
             case R.id.iv_back:
                 finish();

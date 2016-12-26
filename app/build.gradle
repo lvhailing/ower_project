@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 22
-    buildToolsVersion '22.0.1'
+    buildToolsVersion '23.0.2'
 
     defaultConfig {
         applicationId "com.jdhui"
@@ -47,7 +47,7 @@ android {
 }
 
 dependencies {
-    compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
     compile files('libs/universal-image-loader-1.9.1-with-sources.jar')
     compile files('libs/gson-2.3.jar')

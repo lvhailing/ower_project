@@ -235,18 +235,19 @@ public class SubBookingHospitalActivity extends BaseActivity implements View.OnC
     }
 
     private boolean isTimeValue(String selectedTime) {
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy年MM月dd日", Locale.CHINA);
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy年MM月dd日 HH:mm", Locale.CHINA);
         try {
             Date selectDate = simpleDateFormat.parse(selectedTime);
 
-            //获取今天的0时 时间戳
+            /*//获取今天的0时 时间戳
             Calendar cal = Calendar.getInstance();
             cal.set(Calendar.HOUR, 0);
             cal.set(Calendar.SECOND, 0);
             cal.set(Calendar.MINUTE, 0);
-            cal.set(Calendar.MILLISECOND, 0);
+            cal.set(Calendar.MILLISECOND, 0);*/
+            long currentTime = System.currentTimeMillis();
 
-            if (cal.getTimeInMillis() > selectDate.getTime()) {
+            if (currentTime > selectDate.getTime()) {
                 //选择的时间必须是从今天开始包含今天
                 Toast.makeText(SubBookingHospitalActivity.this, "时间只能是今天或今天以后", Toast.LENGTH_SHORT).show();
                 return false;

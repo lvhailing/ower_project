@@ -203,6 +203,7 @@ public class ServiceOrderActivity extends BaseActivity implements View.OnClickLi
                 closeShopping();
                 break;
             case R.id.rl_type:  //全部
+//                currentPage = 1;
                 if (isOpened) {
                     //全部是开启状态 则需关闭动画
                     iv_select.setBackgroundResource(R.drawable.triangle_down_fill);
@@ -214,6 +215,7 @@ public class ServiceOrderActivity extends BaseActivity implements View.OnClickLi
                 }
                 break;
             case R.id.tv_0:  //全部
+                currentPage = 1;
                 type = "";
                 mTvType.setText("全部");
                 iv_select.setBackgroundResource(R.drawable.triangle_down_fill);
@@ -221,6 +223,7 @@ public class ServiceOrderActivity extends BaseActivity implements View.OnClickLi
                 requestData();
                 break;
             case R.id.tv_1:  //绿通就医
+                currentPage = 1;
                 type = "hospitalBooking";
                 mTvType.setText("绿通就医");
                 iv_select.setBackgroundResource(R.drawable.triangle_down_fill);
@@ -228,6 +231,7 @@ public class ServiceOrderActivity extends BaseActivity implements View.OnClickLi
                 requestData();
                 break;
             case R.id.tv_2:  //基因检测
+                currentPage = 1;
                 type = "geneticBooking";
                 mTvType.setText("基因检测");
                 iv_select.setBackgroundResource(R.drawable.triangle_down_fill);
@@ -235,6 +239,7 @@ public class ServiceOrderActivity extends BaseActivity implements View.OnClickLi
                 requestData();
                 break;
             case R.id.tv_3:  //高尔夫球场
+                currentPage = 1;
                 type = "golfBooking";
                 mTvType.setText("高尔夫球场地");
                 iv_select.setBackgroundResource(R.drawable.triangle_down_fill);
@@ -242,6 +247,7 @@ public class ServiceOrderActivity extends BaseActivity implements View.OnClickLi
                 requestData();
                 break;
             case R.id.tv_4:  //公务机包机
+                currentPage = 1;
                 type = "airplaneBooking";
                 mTvType.setText("公务机包机");
                 iv_select.setBackgroundResource(R.drawable.triangle_down_fill);

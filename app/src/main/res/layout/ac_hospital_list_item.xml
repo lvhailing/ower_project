@@ -10,7 +10,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
-        android:layout_marginLeft="12dp"
+        android:layout_marginLeft="15dp"
         android:text="北京协和医院"
         android:textColor="#333"
         android:textSize="16sp"/>
@@ -22,7 +22,9 @@
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
         android:layout_marginRight="12dp"
-        android:src="@drawable/arrow"/>
+        android:src="@drawable/arrow"
+        android:visibility="invisible"
+        />
 
     <TextView
         android:id="@+id/tv_hospital_level"
@@ -33,6 +35,9 @@
         android:layout_toLeftOf="@id/iv_arrow1"
         android:text="三级甲等"
         android:textColor="@color/txt_gray_dark"
+        android:layout_toRightOf="@id/tv_hospita_name"
+        android:gravity="right"
+        android:paddingLeft="5dip"
         android:textSize="14sp"/>
 
     <View

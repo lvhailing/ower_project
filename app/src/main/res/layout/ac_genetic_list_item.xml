@@ -5,23 +5,34 @@
     android:layout_height="50dp"
     android:minHeight="50dp">
 
-    <TextView
-        android:id="@+id/tv_genetic_name"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="12dp"
         android:layout_centerVertical="true"
-        android:text=""
-        android:textColor="#333"
-        android:textSize="16sp"/>
+        >
+        <ImageView
+            android:id="@+id/iv_genetic_list_arrow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="12dp"
+            android:src="@drawable/arrow"/>
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_centerVertical="true"
-        android:layout_marginRight="12dp"
-        android:src="@drawable/arrow"/>
+        <TextView
+            android:id="@+id/tv_genetic_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="12dp"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@id/iv_genetic_list_arrow"
+            android:text=""
+            android:textColor="#333"
+            android:layout_marginRight="5dip"
+            android:textSize="16sp"/>
+
+    </RelativeLayout>
+
 
     <View
         style="@style/v_line_style"

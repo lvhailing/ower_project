@@ -212,6 +212,7 @@
         android:layout_marginLeft="12dp"
         android:layout_marginRight="12dp"
         android:layout_marginTop="12dp"
+        android:layout_marginBottom="52dip"
         android:lineSpacingExtra="5dp"
         android:text="温馨提示：单次场地预约成功后如果未及时参与会减少一次您的服务优惠哦。"
         android:textColor="@color/gray_dark"

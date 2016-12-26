@@ -47,7 +47,7 @@
             <RelativeLayout
                 android:id="@+id/rl_tips"
                 android:layout_width="match_parent"
-                android:layout_height="50dip"
+                android:layout_height="wrap_content"
                 android:background="@color/white"
                 android:gravity="center_vertical"
                 android:visibility="gone">
@@ -57,8 +57,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="15dp"
+                    android:layout_marginTop="15dip"
+                    android:layout_marginBottom="15dip"
                     android:text="请保持电话畅通我们会尽快与您进行联系！"
-                    android:textColor="@color/txt_black"
+                    android:textColor="@color/txt_orange"
                     android:textSize="16sp"/>
             </RelativeLayout>
 
@@ -75,11 +77,11 @@
 
                     <TextView
                         style="@style/product_text_detail_lt"
-                        android:text="预约服务"/>
+                        android:text="预约服务:"/>
 
                     <TextView
                         android:id="@+id/tv_order_service"
-                        style="@style/product_text_detail_rt"
+                        style="@style/product_text_detail_rt_service"
                         android:text=""/>
                 </LinearLayout>
 
@@ -89,7 +91,7 @@
 
                     <TextView
                         style="@style/product_text_detail_lt"
-                        android:text="预约状态"/>
+                        android:text="预约状态:"/>
 
                     <TextView
                         android:id="@+id/tv_order_status"
@@ -104,7 +106,7 @@
 
                     <TextView
                         style="@style/product_text_detail_lt"
-                        android:text="联系电话"/>
+                        android:text="联系电话:"/>
 
                     <TextView
                         android:id="@+id/tv_phone"
@@ -117,7 +119,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:divider="@null"
-                    android:listSelector="#00000000"/>
+                    android:dividerHeight="1dip"
+                    android:listSelector="@color/gray"/>
             </LinearLayout>
 
             <View
