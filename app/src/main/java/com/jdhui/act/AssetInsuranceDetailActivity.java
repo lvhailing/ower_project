@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.jdhui.R;
@@ -48,6 +49,7 @@ public class AssetInsuranceDetailActivity extends BaseActivity implements View.O
     private ResultAssetInsuranceProductDetailBean assetFixedBean;
     private RelativeLayout ll_asset_insurance; //保险产品产品名称
     private MyListView myListView; //加载分红列表
+    private ScrollView sv_asset_insurance_detail;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,6 +90,7 @@ public class AssetInsuranceDetailActivity extends BaseActivity implements View.O
         tvAssetInsuranceBeizhu = (TextView) findViewById(R.id.tv_asset_insurance_beizhu);
         ll_asset_insurance = (RelativeLayout) findViewById(R.id.ll_asset_insurance);
         myListView = (MyListView) findViewById(R.id.lv);
+        sv_asset_insurance_detail = (ScrollView) findViewById(R.id.sv_asset_insurance_detail);
 
         idImgBack.setOnClickListener(this);
         tvAssetInsuranceCall.setOnClickListener(this);
@@ -135,7 +138,7 @@ public class AssetInsuranceDetailActivity extends BaseActivity implements View.O
         //设置分红列表
         AssetInsuranceDetailAdapter adapter = new AssetInsuranceDetailAdapter(this, bonusList);
         myListView.setAdapter(adapter);
-
+        sv_asset_insurance_detail.smoothScrollTo(0,0);
     }
 
     @Override

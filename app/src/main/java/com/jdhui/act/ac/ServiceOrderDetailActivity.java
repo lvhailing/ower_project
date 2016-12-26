@@ -196,8 +196,8 @@ public class ServiceOrderDetailActivity extends BaseActivity implements View.OnC
                 mTvOrderStatus.setText("已完成");
             } else if (status.equals("unfinish")) {
                 mTvOrderStatus.setText("未完成");
-                rl_tips.setVisibility(View.VISIBLE);
-                mTvTitle.setText(detail2B.getHospitalBooking().getBookingRemark());
+//                rl_tips.setVisibility(View.VISIBLE);
+//                mTvTitle.setText(detail2B.getHospitalBooking().getBookingRemark());
             } else if (status.equals("refuse")) {
                 mTvOrderStatus.setText("已驳回");
                 rl_tips.setVisibility(View.VISIBLE);
@@ -243,6 +243,8 @@ public class ServiceOrderDetailActivity extends BaseActivity implements View.OnC
                 mTvOrderStatus.setText("已完成");
             } else if (status.equals("unfinish")) {
                 mTvOrderStatus.setText("未完成");
+//                rl_tips.setVisibility(View.VISIBLE);
+//                mTvTitle.setText(detail2B.getGeneticBooking().getBookingRemark());
             } else if (status.equals("refuse")) {
                 mTvOrderStatus.setText("已驳回");
 
@@ -291,6 +293,8 @@ public class ServiceOrderDetailActivity extends BaseActivity implements View.OnC
                 mTvOrderStatus.setText("已完成");
             } else if (status.equals("unfinish")) {
                 mTvOrderStatus.setText("未完成");
+//                rl_tips.setVisibility(View.VISIBLE);
+//                mTvTitle.setText(detail2B.getGolfBooking().getBookingRemark());
             } else if (status.equals("refuse")) {
                 mTvOrderStatus.setText("已驳回");
 
@@ -304,11 +308,11 @@ public class ServiceOrderDetailActivity extends BaseActivity implements View.OnC
             //idType  String     idCard: 身份证号  passport：护照  agencyCode：机构代码
             if(!TextUtils.isEmpty(detail2B.getGolfBooking().getIdType())){
                 if(detail2B.getGolfBooking().getIdType().equals("idCard")){
-                    tv_id_num_name.setText("身份证号");
+                    tv_id_num_name.setText("身份证号:");
                 }else if(detail2B.getGolfBooking().getIdType().equals("passport")){
-                    tv_id_num_name.setText("护        照");
+                    tv_id_num_name.setText("护        照:");
                 }else if(detail2B.getGolfBooking().getIdType().equals("agencyCode")){
-                    tv_id_num_name.setText("机构代码");
+                    tv_id_num_name.setText("机构代码:");
                 }
             }
 

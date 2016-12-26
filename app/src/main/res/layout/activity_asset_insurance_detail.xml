@@ -72,6 +72,7 @@
         android:visibility="gone"/>
 
     <ScrollView
+        android:id="@+id/sv_asset_insurance_detail"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fillViewport="true"

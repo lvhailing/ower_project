@@ -128,7 +128,7 @@ public class AssetFragment extends Fragment implements View.OnClickListener {
             mChart.setTransparentCircleRadius(45f);
             mChart.setCenterText("资产分布");
             mChart.setCenterTextSize(14.0f);
-            mChart.setRotationAngle(0);  //角度
+            mChart.setRotationAngle(90);  //角度
             mChart.setDrawHoleEnabled(true);
         }
 
@@ -167,6 +167,7 @@ public class AssetFragment extends Fragment implements View.OnClickListener {
                 int optimumrate = Integer.parseInt(accountBean.getOptimumAmountRate());
                 int floatrate = Integer.parseInt(accountBean.getFloatingAmountRate());
                 int insurancerate = Integer.parseInt(accountBean.getInsuranceAmountRate());
+
                 int flag_rate = optimumrate;
                 if(flag_rate<floatrate){
                     flag_rate = floatrate;
@@ -232,7 +233,26 @@ public class AssetFragment extends Fragment implements View.OnClickListener {
                     if (Integer.parseInt(accountBean.getInsuranceAmountRate()) == 0) {
                         ints = new int[]{R.color.asset_fixed_income, R.color.asset_float_incomea};
                     } else {
-                        ints = new int[]{R.color.asset_fixed_income, R.color.asset_float_incomea, R.color.asset_insurance};
+                        int optimumrate = Integer.parseInt(accountBean.getOptimumAmountRate());
+                        int floatrate = Integer.parseInt(accountBean.getFloatingAmountRate());
+                        int insurancerate = Integer.parseInt(accountBean.getInsuranceAmountRate());
+                        int flag_rate = optimumrate;
+                        if(flag_rate<floatrate){
+                            flag_rate = floatrate;
+                            if(flag_rate<insurancerate){
+                                ints = new int[]{R.color.asset_fixed_income,  R.color.asset_insurance,R.color.asset_float_incomea};
+                            }else{
+                                ints = new int[]{R.color.asset_fixed_income, R.color.asset_float_incomea, R.color.asset_insurance};
+                            }
+                        }else{
+                            if(flag_rate<insurancerate){
+                                ints = new int[]{R.color.asset_float_incomea,R.color.asset_insurance,R.color.asset_fixed_income};
+                            }else{
+                                ints = new int[]{R.color.asset_float_incomea,R.color.asset_fixed_income,R.color.asset_insurance};
+                            }
+                        }
+
+//                        ints = new int[]{R.color.asset_fixed_income, R.color.asset_float_incomea, R.color.asset_insurance};
                     }
                 }
             }

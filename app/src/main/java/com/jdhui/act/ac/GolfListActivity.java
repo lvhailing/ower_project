@@ -99,6 +99,8 @@ public class GolfListActivity extends BaseActivity implements View.OnClickListen
                     MouldList<GolfList3B> everyList = data.getList();
                     if (everyList == null || everyList.size() == 0) {
                         Toast.makeText(GolfListActivity.this, "没有数据了", Toast.LENGTH_SHORT).show();
+                        listView.getRefreshableView().smoothScrollToPositionFromTop(0, 80, 100);
+                        listView.onRefreshComplete();
                         return;
                     }
 

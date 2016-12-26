@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.jdhui.R;
@@ -43,6 +44,7 @@ public class AssetFloatDetailActivity extends BaseActivity implements View.OnCli
     private ResultAssetFixedProductDetailBean assetFixedBean;
     private MyListView myListView; //加载还款方案的列表
     private TextView tv_asset_float_unitnet; //产品净值
+    private ScrollView sv_asset_float_detail;
 
 
     @Override
@@ -78,6 +80,7 @@ public class AssetFloatDetailActivity extends BaseActivity implements View.OnCli
         tv_asset_float_unitnet = (TextView) findViewById(R.id.tv_asset_float_unitnet);
         ll_asset_float = (RelativeLayout) findViewById(R.id.ll_asset_float);
         myListView = (MyListView) findViewById(R.id.lv);
+        sv_asset_float_detail = (ScrollView) findViewById(R.id.sv_asset_float_detail);
 
         idImgBack.setOnClickListener(this);
         tvAssetFloatCall.setOnClickListener(this);
@@ -137,7 +140,7 @@ public class AssetFloatDetailActivity extends BaseActivity implements View.OnCli
         //设置还款方案
         AssetFixedDetailAdapter adapter = new AssetFixedDetailAdapter(this, interestList);
         myListView.setAdapter(adapter);
-
+        sv_asset_float_detail.smoothScrollTo(0,0);
     }
 
     @Override

@@ -138,7 +138,7 @@ public class ServiceOrderActivity extends BaseActivity implements View.OnClickLi
                     if (everyList == null || everyList.size() == 0) {
                         Toast.makeText(ServiceOrderActivity.this, "没有数据了", Toast.LENGTH_SHORT).show();
                         if (mAdapter != null) {
-                            totalList.clear();
+//                            totalList.clear();
                             mAdapter.notifyDataSetChanged();    //刷新界面
                         }
                         return;

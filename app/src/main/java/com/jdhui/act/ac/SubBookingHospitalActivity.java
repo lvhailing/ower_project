@@ -57,6 +57,7 @@ public class SubBookingHospitalActivity extends BaseActivity implements View.OnC
     private String formatTime1;//用户选择的预约时间
     private String formatTime2;//用户选择的备选时间1
     private String formatTime3;//用户选择的备选时间2
+    private long currentTime = System.currentTimeMillis();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -245,7 +246,7 @@ public class SubBookingHospitalActivity extends BaseActivity implements View.OnC
             cal.set(Calendar.SECOND, 0);
             cal.set(Calendar.MINUTE, 0);
             cal.set(Calendar.MILLISECOND, 0);*/
-            long currentTime = System.currentTimeMillis();
+
 
             if (currentTime > selectDate.getTime()) {
                 //选择的时间必须是从今天开始包含今天

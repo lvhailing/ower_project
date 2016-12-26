@@ -118,9 +118,9 @@
                     android:id="@+id/lv"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:divider="@null"
+                    android:divider="@color/bg_gray"
                     android:dividerHeight="1dip"
-                    android:listSelector="@color/gray"/>
+                    android:listSelector="@color/bg_gray"/>
             </LinearLayout>
 
             <View

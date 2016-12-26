@@ -107,7 +107,7 @@ public class DatePickDialog implements OnDateChangedListener, OnTimeChangedListe
     }
 
     private void changeTime() {
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy年MM月dd日 HH:mm");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy年MM月dd日 HH:mm:ss");
         dateTime = sdf.format(calendar.getTime());
     }
 

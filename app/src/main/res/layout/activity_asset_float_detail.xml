@@ -70,6 +70,7 @@
         android:visibility="gone"/>
 
     <ScrollView
+        android:id="@+id/sv_asset_float_detail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@id/tv_asset_float_call"
