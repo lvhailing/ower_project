@@ -17,6 +17,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.jdhui.ApplicationConsts;
 import com.jdhui.R;
 import com.jdhui.bean.ResultUserLoginContentBean;
 import com.jdhui.net.UserLogin;
@@ -265,14 +266,32 @@ public class LoginActivity extends BaseActivity implements OnClickListener, Obse
         PreferenceUtil.setFirstLogin(false);    //设置非第一次登录标记
         if (PreferenceUtil.getIsAnswer()) { //判断是否答题  true:已答题
             if (PreferenceUtil.getIsInvestor()) {   //是否做过合格投资者判定
-                Intent i = new Intent(LoginActivity.this, GestureEditActivity.class);
-                i.putExtra("back_from_change_gesture", "back_from_change_gesture");
-                i.putExtra("comeflag", 1);
-                if (tomain != null) {
-                    i.putExtra("tomain", tomain);
+                if (PreferenceUtil.isGestureChose()) {  //是否开启了手势密码 是
+                    if (TextUtils.isEmpty(PreferenceUtil.getGesturePwd())) {    //是否设置过手势密码
+                        //手势密码为空证明没设置过 去设置界面
+                        Intent i = new Intent(LoginActivity.this, GestureEditActivity.class);
+                        i.putExtra("back_from_change_gesture", "back_from_change_gesture");
+                        i.putExtra("comeflag", 1);
+                        if (tomain != null) {
+                            i.putExtra("tomain", tomain);
+                        }
+                        i.putExtra("title", R.string.title_gestureset);
+                        startActivity(i);
+                    } else {
+                        //否则 设置过，去验证界面
+                        Intent intent = new Intent(LoginActivity.this, GestureVerifyActivity.class);
+                        intent.putExtra("from", ApplicationConsts.ACTIVITY_SPLASH);
+                        intent.putExtra("title", "手势密码登录");
+                        intent.putExtra("message", "请画出手势密码解锁");
+                        startActivity(intent);
+                    }
+                } else {
+                    //手势密码是关闭的 则直接去主界面 不用验证
+                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                    startActivity(intent);
                 }
-                i.putExtra("title", R.string.title_gestureset);
-                startActivity(i);
+
+
             } else {    //是否做过合格投资者判定 否
                 if (PreferenceUtil.getTotalAmount()) {  //判断账户资产是否大于300万
                     Intent i_commitment = new Intent(this, WebSurveyActivity.class);
