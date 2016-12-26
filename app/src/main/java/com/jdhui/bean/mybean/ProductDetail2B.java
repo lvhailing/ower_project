@@ -17,6 +17,7 @@ public class ProductDetail2B implements IMouldType {
 	private String bookingTime; //预约时间
 	private String bookingAmount; //预约金额
 	private String bookingRemark; //备注
+	private String idType; //证件号码类型
 
 	public String getProductId() {
 		return productId;
@@ -88,6 +89,14 @@ public class ProductDetail2B implements IMouldType {
 
 	public void setBookingRemark(String bookingRemark) {
 		this.bookingRemark = bookingRemark;
+	}
+
+	public String getIdType() {
+		return idType;
+	}
+
+	public void setIdType(String idType) {
+		this.idType = idType;
 	}
 }
 	

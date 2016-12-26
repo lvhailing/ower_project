@@ -128,7 +128,7 @@ public class AssetFragment extends Fragment implements View.OnClickListener {
             mChart.setTransparentCircleRadius(45f);
             mChart.setCenterText("资产分布");
             mChart.setCenterTextSize(14.0f);
-            mChart.setRotationAngle(90);  //角度
+            mChart.setRotationAngle(0);  //角度
             mChart.setDrawHoleEnabled(true);
         }
 
@@ -163,15 +163,45 @@ public class AssetFragment extends Fragment implements View.OnClickListener {
         if (!flag) {
             entries.add(new PieEntry(100));
         } else {
-            if (Integer.parseInt(accountBean.getOptimumAmountRate()) != 0) {
-                entries.add(new PieEntry(Integer.parseInt(accountBean.getOptimumAmountRate()), ""));
+            if(Integer.parseInt(accountBean.getOptimumAmountRate()) != 0&&Integer.parseInt(accountBean.getFloatingAmountRate()) != 0&&Integer.parseInt(accountBean.getInsuranceAmountRate()) != 0){
+                int optimumrate = Integer.parseInt(accountBean.getOptimumAmountRate());
+                int floatrate = Integer.parseInt(accountBean.getFloatingAmountRate());
+                int insurancerate = Integer.parseInt(accountBean.getInsuranceAmountRate());
+                int flag_rate = optimumrate;
+                if(flag_rate<floatrate){
+                    flag_rate = floatrate;
+                    entries.add(new PieEntry(optimumrate, ""));
+                    if(flag_rate<insurancerate){
+                        entries.add(new PieEntry(insurancerate, ""));
+                        entries.add(new PieEntry(floatrate, ""));
+                    }else{
+                        entries.add(new PieEntry(floatrate, ""));
+                        entries.add(new PieEntry(insurancerate, ""));
+                    }
+                }else{
+                    entries.add(new PieEntry(floatrate, ""));
+                    if(flag_rate<insurancerate){
+                        entries.add(new PieEntry(insurancerate, ""));
+                        entries.add(new PieEntry(optimumrate, ""));
+                    }else{
+                        entries.add(new PieEntry(optimumrate, ""));
+                        entries.add(new PieEntry(insurancerate, ""));
+                    }
+                }
+
+
+            }else{
+                if (Integer.parseInt(accountBean.getOptimumAmountRate()) != 0) {
+                    entries.add(new PieEntry(Integer.parseInt(accountBean.getOptimumAmountRate()), ""));
+                }
+                if (Integer.parseInt(accountBean.getFloatingAmountRate()) != 0) {
+                    entries.add(new PieEntry(Integer.parseInt(accountBean.getFloatingAmountRate()), ""));
+                }
+                if (Integer.parseInt(accountBean.getInsuranceAmountRate()) != 0) {
+                    entries.add(new PieEntry(Integer.parseInt(accountBean.getInsuranceAmountRate()), ""));
+                }
             }
-            if (Integer.parseInt(accountBean.getFloatingAmountRate()) != 0) {
-                entries.add(new PieEntry(Integer.parseInt(accountBean.getFloatingAmountRate()), ""));
-            }
-            if (Integer.parseInt(accountBean.getInsuranceAmountRate()) != 0) {
-                entries.add(new PieEntry(Integer.parseInt(accountBean.getInsuranceAmountRate()), ""));
-            }
+
         }
 
         PieDataSet dataSet = new PieDataSet(entries, "");

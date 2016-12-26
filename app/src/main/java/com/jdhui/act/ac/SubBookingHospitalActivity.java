@@ -157,7 +157,7 @@ public class SubBookingHospitalActivity extends BaseActivity implements View.OnC
         if (idNo == null || TextUtils.isEmpty(idNo)) {
             Toast.makeText(SubBookingHospitalActivity.this, "请输入预约人身份证号", Toast.LENGTH_SHORT).show();
             return;
-        } else if (!IdCardCheckUtils.isIdCard(idNo)) {
+        } else if (!IdCardCheckUtils.isIdCard(idNo.toUpperCase())) {
             Toast.makeText(SubBookingHospitalActivity.this, "请输入正确的身份证号", Toast.LENGTH_SHORT).show();
             return;
         }
@@ -235,7 +235,7 @@ public class SubBookingHospitalActivity extends BaseActivity implements View.OnC
     }
 
     private boolean isTimeValue(String selectedTime) {
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy年MM月dd日 HH:mm", Locale.CHINA);
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy年MM月dd日 HH:mm:ss", Locale.CHINA);
         try {
             Date selectDate = simpleDateFormat.parse(selectedTime);
 

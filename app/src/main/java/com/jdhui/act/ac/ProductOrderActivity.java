@@ -121,6 +121,12 @@ public class ProductOrderActivity extends BaseActivity implements View.OnClickLi
         tv_4.setOnClickListener(this);
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        requestData();
+    }
+
     private void requestData() {
         try {
             userInfoId = DESUtil.decrypt(PreferenceUtil.getUserId());
@@ -217,13 +223,15 @@ public class ProductOrderActivity extends BaseActivity implements View.OnClickLi
 
     @Override
     public void onClick(View v) {
-        currentPage=1;
+        currentPage = 1;
         switch (v.getId()) {
             case R.id.iv_back:
                 finish();
                 break;
             case R.id.v_hidden:  //隐藏布局 关闭动画
                 closeShopping();
+                iv_select_left.setBackgroundResource(R.drawable.triangle_down_fill);
+                iv_select_right.setBackgroundResource(R.drawable.triangle_down_fill);
                 break;
             case R.id.rl_category:  //类型
                 if (isOpened && currentFlag == 2) {
@@ -242,6 +250,9 @@ public class ProductOrderActivity extends BaseActivity implements View.OnClickLi
                     currentFlag = 1;
                     openShopping();
                 }
+                //点左边时 无论左边结果如何，都让右边的箭头收回
+                iv_select_right.setBackgroundResource(R.drawable.triangle_down_fill);
+
                 break;
             case R.id.rl_status:  //状态
                 if (isOpened && currentFlag == 1) {
@@ -260,6 +271,9 @@ public class ProductOrderActivity extends BaseActivity implements View.OnClickLi
                     iv_select_right.setBackgroundResource(R.drawable.triangle_up_fill);
                     openShopping();
                 }
+                //点右边时 无论右边结果如何，都让左边的箭头收回
+                iv_select_left.setBackgroundResource(R.drawable.triangle_down_fill);
+
                 break;
             case R.id.tv_1:  //全部类型、或全部状态
                 if (currentFlag == 1) {

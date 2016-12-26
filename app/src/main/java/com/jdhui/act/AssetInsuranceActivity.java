@@ -78,7 +78,7 @@ public class AssetInsuranceActivity extends BaseActivity implements View.OnClick
         assetFixedAdapter = new AssetFixedAdapter(this, fixedListBean);
         listview_asset_insurance.setAdapter(assetFixedAdapter);
 
-        listview_asset_insurance.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        listview_asset_insurance.setOnItemClickListener(new AdapterView.OnItemClickListener() { //item 点击监听
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Intent i_fixed = new Intent(AssetInsuranceActivity.this, AssetInsuranceDetailActivity.class);

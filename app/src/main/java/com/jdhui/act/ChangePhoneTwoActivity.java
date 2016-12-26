@@ -228,7 +228,7 @@ public class ChangePhoneTwoActivity extends BaseActivity implements View.OnClick
 
                         //栈里只留MainActivity
                         ActivityStack stack = ActivityStack.getActivityManage();
-                        stack.removeAllActivityExceptOne("com.jundehui.act.MainActivity");
+                        stack.removeAllActivityExceptOne("com.jdhui.act.MainActivity");
                     } else {
                         Toast.makeText(ChangePhoneTwoActivity.this, b.getMsg(), Toast.LENGTH_LONG).show();
                     }

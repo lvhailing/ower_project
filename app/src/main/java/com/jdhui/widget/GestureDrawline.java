@@ -126,7 +126,7 @@ public class GestureDrawline extends View {
 			// 当期不允许绘制
 			return true;
 		}
-		paint.setColor(Color.rgb(245, 142, 33));// 设置默认连线颜色
+		paint.setColor(Color.rgb(255, 255, 255));// 设置默认连线颜色
 		switch (event.getAction()) {
 		case MotionEvent.ACTION_DOWN:
 			mov_x = (int) event.getX();

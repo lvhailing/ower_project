@@ -56,6 +56,7 @@ public class SubBookingGolfActivity extends BaseActivity implements View.OnClick
     private String userName;//预约人
     private String userIdNo;//身份证号
     private TextView tv_id_name;
+    private long currentTime = System.currentTimeMillis();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -203,7 +204,7 @@ public class SubBookingGolfActivity extends BaseActivity implements View.OnClick
             public void processTime(Dialog ad, String selectedTime) {
                 //如2016年11月30日
                 String formatTime = selectedTime.replace("年", "-").replace("月", "-").replace("日", "");
-                if (tv_booking_time != null && isTimeValue(formatTime)) {
+                if (tv_booking_time != null && isTimeValue(selectedTime)) {
                     //选择的是正确的时间
                     tv_booking_time.setText(formatTime);
                 }
@@ -214,7 +215,7 @@ public class SubBookingGolfActivity extends BaseActivity implements View.OnClick
     }
 
     private boolean isTimeValue(String selectedTime) {
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy年MM月dd日", Locale.CHINA);
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy年MM月dd日 HH:mm:ss", Locale.CHINA);
         try {
             Date selectDate = simpleDateFormat.parse(selectedTime);
 
@@ -224,8 +225,9 @@ public class SubBookingGolfActivity extends BaseActivity implements View.OnClick
 //            cal.set(Calendar.SECOND, 0);
 //            cal.set(Calendar.MINUTE, 0);
 //            cal.set(Calendar.MILLISECOND, 0);
-            long currentTime = System.currentTimeMillis();
-            if (currentTime > selectDate.getTime()) {
+
+            long selectTime = selectDate.getTime();
+            if (currentTime > selectTime) {
                 //选择的时间必须是从今天开始包含今天
                 Toast.makeText(SubBookingGolfActivity.this, "时间只能是今天或今天以后", Toast.LENGTH_SHORT).show();
                 return false;

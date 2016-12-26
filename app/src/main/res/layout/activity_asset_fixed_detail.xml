@@ -74,13 +74,13 @@
         android:layout_height="wrap_content"
         android:layout_above="@id/tv_asset_fixed_call"
         android:layout_below="@id/ll_asset_fixed"
+        android:layout_marginTop="15dp"
         android:scrollbars="none">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
-            android:layout_marginTop="15dp"
             android:background="@color/white"
             android:orientation="vertical">
 
@@ -173,6 +173,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/ll_asset_fixed_unitnet"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dip"

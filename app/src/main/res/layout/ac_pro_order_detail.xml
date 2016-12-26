@@ -103,7 +103,7 @@
 
             <TextView
                 style="@style/product_text_detail_lt"
-                android:text="预约金额"/>
+                android:text="预约金额:"/>
 
             <TextView
                 android:id="@+id/tv_order_amount"
@@ -141,7 +141,7 @@
 
             <TextView
                 style="@style/product_text_detail_lt"
-                android:text="备注"/>
+                android:text="备注:"/>
 
             <TextView
                 android:id="@+id/tv_remark"

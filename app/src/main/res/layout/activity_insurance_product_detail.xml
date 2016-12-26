@@ -53,38 +53,29 @@
                 android:orientation="vertical">
 
                 <RelativeLayout
-                    android:id="@+id/rl_insurance_product_detail_name"
+                    android:id="@+id/rl_fixed_product_detail_name"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="15dip">
+                    android:layout_height="50dip">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:src="@drawable/tab_lines"/>
 
                     <TextView
                         android:id="@+id/tv_insurance_product_detail_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerInParent="true"
-                        android:text=""
-                        android:textSize="16sp" />
-
-                    <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:layout_marginLeft="10dip"
-                        android:layout_marginRight="15dip"
-                        android:layout_toRightOf="@id/tv_insurance_product_detail_name"
-                        android:src="@drawable/tab_lines" />
-
-                    <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentLeft="true"
-                        android:layout_centerVertical="true"
-                        android:layout_marginLeft="15dip"
-                        android:layout_marginRight="10dip"
-                        android:layout_toLeftOf="@id/tv_insurance_product_detail_name"
-                        android:src="@drawable/tab_lines" />
+                        android:background="@color/bg_gray"
+                        android:paddingLeft="15dp"
+                        android:paddingRight="15dp"
+                        android:text=""/>
                 </RelativeLayout>
+
 
                 <TextView
                     android:id="@+id/tv_insurance_product_detail_type"

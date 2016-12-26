@@ -128,9 +128,13 @@ public class ProOrderDetailActivity extends BaseActivity implements View.OnClick
             mTvtype.setText("浮动收益类");
         }
         mTvOrderName.setText(proDetail2B.getUserInfoName());
-        mTvOrderAmount.setText(StringUtil.addComma(proDetail2B.getBookingAmount())+"元");
+        mTvOrderAmount.setText(proDetail2B.getBookingAmount());
         mTvPhone.setText(StringUtil.replaceSubString(proDetail2B.getMobile()));
-        mTvIdNum.setText(StringUtil.replaceSubStringID(proDetail2B.getIdNo()));
+        if(proDetail2B.getIdType().equals("idCard")){
+            mTvIdNum.setText(StringUtil.replaceSubStringID(proDetail2B.getIdNo()));
+        }else{
+            mTvIdNum.setText(proDetail2B.getIdNo());
+        }
         mTvRemark.setText(proDetail2B.getBookingRemark());
         if (status.equals("submit")) {
             mTvOrderStatus.setText("待确认");

@@ -26,6 +26,7 @@
                 android:id="@+id/tv_pro_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginRight="80dp"
                 android:text=""
                 android:textColor="#333"
                 android:textSize="16sp"/>

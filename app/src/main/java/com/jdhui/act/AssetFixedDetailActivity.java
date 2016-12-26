@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -43,6 +44,7 @@ public class AssetFixedDetailActivity extends BaseActivity implements View.OnCli
     private ResultAssetFixedProductDetailBean assetFixedBean;
     private RelativeLayout ll_asset_fixed; //固收产品名称
     private MyListView myListView; //加载还款方案的列表
+    private LinearLayout ll_asset_fixed_unitnet; //产品净值 布局（默认不可见）
     private TextView tv_asset_fixed_unitnet;//产品净值
 
     @Override
@@ -76,6 +78,7 @@ public class AssetFixedDetailActivity extends BaseActivity implements View.OnCli
         tv_asset_fixed_fuxinjiange = (TextView) findViewById(R.id.tv_asset_fixed_fuxinjiange);
         tv_asset_fixed_beizhu = (TextView) findViewById(R.id.tv_asset_fixed_beizhu);
         tv_asset_fixed_unitnet = (TextView) findViewById(R.id.tv_asset_fixed_unitnet);
+        ll_asset_fixed_unitnet = (LinearLayout) findViewById(R.id.ll_asset_fixed_unitnet);
         ll_asset_fixed = (RelativeLayout) findViewById(R.id.ll_asset_fixed);
         myListView = (MyListView) findViewById(R.id.lv);
 
@@ -109,8 +112,9 @@ public class AssetFixedDetailActivity extends BaseActivity implements View.OnCli
         //产品净值的判断 （后台返回“无”时不显示）
         String unitNet = assetFixedBean.getUnitNet();
         if (unitNet.equals("无")) {
-            tv_asset_fixed_unitnet.setVisibility(View.GONE);
+            ll_asset_fixed_unitnet.setVisibility(View.GONE);
         } else {
+//            ll_asset_fixed_unitnet.setVisibility(View.VISIBLE);
             tv_asset_fixed_unitnet.setText(unitNet);
         }
 

@@ -187,7 +187,7 @@
         <activity
             android:name=".act.ac.SubBookingHospitalActivity"
             android:screenOrientation="portrait"/>
-           <!-- android:theme="@android:style/Theme.Holo.Light"-->
+        <!-- android:theme="@android:style/Theme.Holo.Light"-->
 
 
         <activity
@@ -204,8 +204,8 @@
 
         <activity
             android:name=".act.ac.SubBookingGolfActivity"
-            android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.Holo.Light"/>
+            android:screenOrientation="portrait"/>
+        <!--android:theme="@android:style/Theme.Holo.Light"-->
 
         <activity
             android:name=".act.ac.GolfListActivity"

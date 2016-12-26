@@ -1,6 +1,7 @@
 package com.jdhui.adapter;
 
 import android.content.Context;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 import com.jdhui.R;
 import com.jdhui.bean.mybean.InterestListBean;
 import com.jdhui.mould.types.MouldList;
+import com.jdhui.uitls.StringUtil;
 
 public class AssetFixedDetailAdapter extends BaseAdapter {
     private MouldList<InterestListBean> list;
@@ -55,8 +57,18 @@ public class AssetFixedDetailAdapter extends BaseAdapter {
         if (date != null && date.length() >= 10) {
             holder.tv_date.setText(date.substring(0, 10).replace("/", "-"));
         }
-        holder.tv_interest.setText(list.get(position).getInterestAmount());
-        holder.tv_total.setText(list.get(position).getAmount());
+
+        String interestAmount = list.get(position).getInterestAmount();
+        String amount = list.get(position).getAmount();
+        if (!TextUtils.isEmpty(interestAmount) && !interestAmount.equals("--")) {
+            interestAmount = StringUtil.formatNum(interestAmount); //利息金额
+        }
+        holder.tv_interest.setText(interestAmount); //利息金额
+
+        if (!TextUtils.isEmpty(interestAmount) && !interestAmount.equals("--")) {
+            amount = StringUtil.formatNum(amount); //本息金额
+        }
+        holder.tv_total.setText(amount); //本息金额
 
         return convertView;
     }
