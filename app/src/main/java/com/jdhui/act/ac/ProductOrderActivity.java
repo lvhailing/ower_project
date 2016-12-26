@@ -251,7 +251,7 @@ public class ProductOrderActivity extends BaseActivity implements View.OnClickLi
                     openShopping();
                 }
                 //点左边时 无论左边结果如何，都让右边的箭头收回
-                iv_select_left.setBackgroundResource(R.drawable.triangle_up_fill);
+                iv_select_right.setBackgroundResource(R.drawable.triangle_down_fill);
 
                 break;
             case R.id.rl_status:  //状态
