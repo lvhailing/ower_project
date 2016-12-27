@@ -242,7 +242,7 @@ public class LoginActivity extends BaseActivity implements OnClickListener, Obse
     public void update(Observable observable, Object data) {
         bean = (ResultUserLoginContentBean) data;
         if (bean == null || !Boolean.parseBoolean(bean.getFlag())) {
-            Toast.makeText(this, "用户名或密码输入错误", Toast.LENGTH_SHORT).show();
+//            Toast.makeText(this, "用户名或密码输入错误", Toast.LENGTH_SHORT).show();
             return;
         }
 

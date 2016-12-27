@@ -57,6 +57,7 @@ import org.apache.http.conn.params.ConnRouteParams;
 import org.apache.http.conn.scheme.PlainSocketFactory;
 import org.apache.http.conn.scheme.Scheme;
 import org.apache.http.conn.scheme.SchemeRegistry;
+import org.apache.http.conn.ssl.AllowAllHostnameVerifier;
 import org.apache.http.conn.ssl.SSLSocketFactory;
 import org.apache.http.cookie.Cookie;
 import org.apache.http.entity.HttpEntityWrapper;
@@ -140,6 +141,9 @@ public class AsyncHttpClient {
 		HttpConnectionParams.setTcpNoDelay(httpParams, true);
 		HttpConnectionParams.setSocketBufferSize(httpParams,
 				DEFAULT_SOCKET_BUFFER_SIZE);
+
+		//	验证https协议
+		SSLSocketFactory.getSocketFactory().setHostnameVerifier(new AllowAllHostnameVerifier());
 
 		HttpProtocolParams.setVersion(httpParams, HttpVersion.HTTP_1_1);
 		// HttpProtocolParams.setUserAgent(httpParams,
