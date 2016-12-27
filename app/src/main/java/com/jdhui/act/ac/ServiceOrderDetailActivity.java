@@ -196,8 +196,8 @@ public class ServiceOrderDetailActivity extends BaseActivity implements View.OnC
                 mTvOrderStatus.setText("已完成");
             } else if (status.equals("unfinish")) {
                 mTvOrderStatus.setText("未完成");
-//                rl_tips.setVisibility(View.VISIBLE);
-//                mTvTitle.setText(detail2B.getHospitalBooking().getBookingRemark());
+                rl_tips.setVisibility(View.VISIBLE);
+                mTvTitle.setText(detail2B.getHospitalBooking().getBookingRemark());
             } else if (status.equals("refuse")) {
                 mTvOrderStatus.setText("已驳回");
                 rl_tips.setVisibility(View.VISIBLE);
@@ -243,8 +243,8 @@ public class ServiceOrderDetailActivity extends BaseActivity implements View.OnC
                 mTvOrderStatus.setText("已完成");
             } else if (status.equals("unfinish")) {
                 mTvOrderStatus.setText("未完成");
-//                rl_tips.setVisibility(View.VISIBLE);
-//                mTvTitle.setText(detail2B.getGeneticBooking().getBookingRemark());
+                rl_tips.setVisibility(View.VISIBLE);
+                mTvTitle.setText(detail2B.getGeneticBooking().getBookingRemark());
             } else if (status.equals("refuse")) {
                 mTvOrderStatus.setText("已驳回");
 
@@ -293,8 +293,8 @@ public class ServiceOrderDetailActivity extends BaseActivity implements View.OnC
                 mTvOrderStatus.setText("已完成");
             } else if (status.equals("unfinish")) {
                 mTvOrderStatus.setText("未完成");
-//                rl_tips.setVisibility(View.VISIBLE);
-//                mTvTitle.setText(detail2B.getGolfBooking().getBookingRemark());
+                rl_tips.setVisibility(View.VISIBLE);
+                mTvTitle.setText(detail2B.getGolfBooking().getBookingRemark());
             } else if (status.equals("refuse")) {
                 mTvOrderStatus.setText("已驳回");
 

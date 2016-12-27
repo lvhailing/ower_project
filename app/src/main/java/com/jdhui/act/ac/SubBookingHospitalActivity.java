@@ -218,15 +218,24 @@ public class SubBookingHospitalActivity extends BaseActivity implements View.OnC
                     if (type == 1) {
                         //点击的是预约时间
                         formatTime1 = time;
-                        tv_time1.setText(formatTime1);
+                        if(formatTime1.length()>16){
+                            tv_time1.setText(formatTime1.substring(0,16));
+                        }
+
                     } else if (type == 2) {
                         //点击的是上面的备选时间
                         formatTime2 = time;
-                        tv_time2.setText(formatTime2);
+                        if(formatTime2.length()>16){
+                            tv_time2.setText(formatTime2.substring(0,16));
+                        }
+
                     } else if (type == 3) {
                         //点击的是下面的备选时间
                         formatTime3 = time;
-                        tv_time3.setText(formatTime3);
+                        if(formatTime3.length()>16){
+                            tv_time3.setText(formatTime3.substring(0,16));
+                        }
+
                     }
                 }
                 ad.dismiss();

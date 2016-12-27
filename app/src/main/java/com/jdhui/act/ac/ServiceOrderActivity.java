@@ -221,6 +221,7 @@ public class ServiceOrderActivity extends BaseActivity implements View.OnClickLi
                 mTvType.setText("全部");
                 iv_select.setBackgroundResource(R.drawable.triangle_down_fill);
                 closeShopping();
+                totalList.clear();
                 requestData();
                 break;
             case R.id.tv_1:  //绿通就医
@@ -229,6 +230,7 @@ public class ServiceOrderActivity extends BaseActivity implements View.OnClickLi
                 mTvType.setText("绿通就医");
                 iv_select.setBackgroundResource(R.drawable.triangle_down_fill);
                 closeShopping();
+                totalList.clear();
                 requestData();
                 break;
             case R.id.tv_2:  //基因检测
@@ -237,6 +239,7 @@ public class ServiceOrderActivity extends BaseActivity implements View.OnClickLi
                 mTvType.setText("基因检测");
                 iv_select.setBackgroundResource(R.drawable.triangle_down_fill);
                 closeShopping();
+                totalList.clear();
                 requestData();
                 break;
             case R.id.tv_3:  //高尔夫球场
@@ -245,6 +248,7 @@ public class ServiceOrderActivity extends BaseActivity implements View.OnClickLi
                 mTvType.setText("高尔夫球场地");
                 iv_select.setBackgroundResource(R.drawable.triangle_down_fill);
                 closeShopping();
+                totalList.clear();
                 requestData();
                 break;
             case R.id.tv_4:  //公务机包机
@@ -253,6 +257,7 @@ public class ServiceOrderActivity extends BaseActivity implements View.OnClickLi
                 mTvType.setText("公务机包机");
                 iv_select.setBackgroundResource(R.drawable.triangle_down_fill);
                 closeShopping();
+                totalList.clear();
                 requestData();
                 break;
         }

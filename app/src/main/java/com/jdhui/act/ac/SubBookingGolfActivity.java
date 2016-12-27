@@ -206,7 +206,19 @@ public class SubBookingGolfActivity extends BaseActivity implements View.OnClick
                 String formatTime = selectedTime.replace("年", "-").replace("月", "-").replace("日", "");
                 if (tv_booking_time != null && isTimeValue(selectedTime)) {
                     //选择的是正确的时间
-                    tv_booking_time.setText(formatTime);
+//                    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy年MM月dd日 HH:mm:ss", Locale.CHINA);
+//                    try {
+//                        Date selectDate = simpleDateFormat.parse(formatTime);
+//
+//                        tv_booking_time.setText(selectDate.toString());
+//                    } catch (ParseException e) {
+//                        e.printStackTrace();
+//                    }
+                    if(formatTime.length()>16){
+                        tv_booking_time.setText(formatTime.substring(0,16));
+                    }
+
+
                 }
                 ad.dismiss();
                 ad = null;
