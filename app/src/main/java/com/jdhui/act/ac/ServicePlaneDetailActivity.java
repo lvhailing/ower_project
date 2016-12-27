@@ -5,6 +5,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -38,6 +39,7 @@ public class ServicePlaneDetailActivity extends BaseActivity implements View.OnC
     private RelativeLayout rl_tips;//顶部提示语布局
     private TextView tv_title;//顶部提示语
     private Button btn_cancel;
+    private ScrollView sv_service_plan_detail;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +59,7 @@ public class ServicePlaneDetailActivity extends BaseActivity implements View.OnC
         myListView = (MyListView) findViewById(R.id.lv);
         rl_tips = (RelativeLayout) findViewById(R.id.rl_tips);
         btn_cancel = (Button) findViewById(R.id.btn_cancel);
+        sv_service_plan_detail = (ScrollView) findViewById(R.id.sv_service_plan_detail);
 
         mBtnBack.setOnClickListener(this);
         btn_cancel.setOnClickListener(this);
@@ -122,6 +125,9 @@ public class ServicePlaneDetailActivity extends BaseActivity implements View.OnC
             PlaneDetailAdapter adapter = new PlaneDetailAdapter(this, marchList);
             myListView.setAdapter(adapter);
         }
+
+        sv_service_plan_detail.smoothScrollTo(0,0);
+
     }
 
 

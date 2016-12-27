@@ -152,6 +152,8 @@ public class ProductOrderActivity extends BaseActivity implements View.OnClickLi
                             totalList.clear();
                             mAdapter.notifyDataSetChanged();    //刷新界面
                         }
+                        listView.getRefreshableView().smoothScrollToPositionFromTop(0, 80, 100);
+                        listView.onRefreshComplete();
                         return;
                     }
                     if (currentPage == 1) {

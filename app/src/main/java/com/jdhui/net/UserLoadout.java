@@ -36,6 +36,8 @@ public class UserLoadout {
                 PreferenceUtil.setUserNickName("");
                 PreferenceUtil.setCookie("");
                 PreferenceUtil.setIsShowAsset(true);
+                PreferenceUtil.setGestureChose(true);
+
                 // i.putExtra("result", "exit");
                 // setResult(9, i);
                 Toast.makeText(context, "退出成功", Toast.LENGTH_LONG).show();

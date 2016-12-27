@@ -87,7 +87,7 @@ public class MessageActivity extends BaseActivity implements View.OnClickListene
             public void onItemClick(AdapterView<?> arg0, View arg1, int position, long arg3) {
                 Intent i_web = new Intent();
                 i_web.setClass(MessageActivity.this, WebActivity.class);
-                i_web.putExtra("id", messgeList.get(position - 1).getMessageId());
+                i_web.putExtra("id", list.get(position - 1).getMessageId());
                 i_web.putExtra("type", WebActivity.WEBTYPE_MESSAGE_DETAILS);
                 index = position - 1;
                 i_web.putExtra("title", "消息详情");
@@ -148,7 +148,7 @@ public class MessageActivity extends BaseActivity implements View.OnClickListene
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == MESSAGE_RESUEST_CODE) {
-            messgeList.get(index).setStatus("read");
+            list.get(index).setStatus("read");
             mAdapter.notifyDataSetChanged();
         }
     }
