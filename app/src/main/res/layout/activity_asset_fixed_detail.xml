@@ -55,28 +55,14 @@
             android:src="@mipmap/img_arrow_right"/>
     </RelativeLayout>
 
-    <TextView
-        android:id="@+id/tv_asset_fixed_call"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_alignParentBottom="true"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:background="@drawable/shape_center_orange"
-        android:gravity="center"
-        android:text="年度报告"
-        android:textColor="@color/white"
-        android:textSize="15sp"
-        android:visibility="gone"/>
-
     <ScrollView
         android:id="@+id/sv_asset_fixed_detail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@id/tv_asset_fixed_call"
         android:layout_below="@id/ll_asset_fixed"
         android:layout_marginTop="15dp"
         android:scrollbars="none">
+
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -356,4 +342,17 @@
 
     </ScrollView>
 
+    <TextView
+        android:id="@+id/tv_asset_fixed_call"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/shape_center_orange"
+        android:gravity="center"
+        android:text="年度报告"
+        android:textColor="@color/white"
+        android:textSize="15sp"
+        android:visibility="gone"/>
 </RelativeLayout>

@@ -113,6 +113,11 @@
                         style="@style/product_text_detail_rt"
                         android:text=""/>
                 </LinearLayout>
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="1dip"
+                    android:src="@color/bg_gray"
+                    />
 
                 <com.jdhui.view.MyListView
                     android:id="@+id/lv"

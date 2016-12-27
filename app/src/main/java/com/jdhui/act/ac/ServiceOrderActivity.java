@@ -201,6 +201,7 @@ public class ServiceOrderActivity extends BaseActivity implements View.OnClickLi
                 break;
             case R.id.v_hidden:  //隐藏布局 关闭动画
                 closeShopping();
+                iv_select.setBackgroundResource(R.drawable.triangle_down_fill);
                 break;
             case R.id.rl_type:  //全部
 //                currentPage = 1;
