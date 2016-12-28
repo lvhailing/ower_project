@@ -230,7 +230,7 @@ public class BookingHospitalListActivity extends BaseActivity implements View.On
                     BookingHospitalList2B data = (BookingHospitalList2B) params.result;
                     MouldList<BookingHospitalList3B> everyList = data.getList();
                     if (everyList == null || everyList.size() == 0) {
-                        Toast.makeText(BookingHospitalListActivity.this, "没有数据了", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(BookingHospitalListActivity.this, "暂无数据", Toast.LENGTH_SHORT).show();
                     }
 
 

@@ -147,7 +147,7 @@ public class ProductOrderActivity extends BaseActivity implements View.OnClickLi
                     Product2B data = (Product2B) params.result;
                     MouldList<Product3B> everyList = data.getList();
                     if (everyList == null || everyList.size() == 0) {
-                        Toast.makeText(ProductOrderActivity.this, "没有数据了", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(ProductOrderActivity.this, "暂无数据", Toast.LENGTH_SHORT).show();
                         if (mAdapter != null && currentType == 2) {
                             totalList.clear();
                             mAdapter.notifyDataSetChanged();    //刷新界面

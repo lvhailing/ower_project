@@ -1,6 +1,7 @@
 package com.jdhui.fragment;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -19,7 +20,10 @@ import com.jdhui.mould.BaseParams;
 import com.jdhui.mould.BaseRequester;
 import com.jdhui.mould.HtmlRequest;
 import com.jdhui.mould.types.MouldList;
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.assist.ImageScaleType;
+import com.nostra13.universalimageloader.core.display.FadeInBitmapDisplayer;
 
 /**
  * 底部导航---服务
@@ -34,6 +38,8 @@ public class ServiceFragment extends Fragment implements View.OnClickListener {
     private ImageView iv_golf;
     private ImageView iv_plane;
     private MouldList<ServicePicture2B> data;
+    private DisplayImageOptions options;
+    private ImageLoader imageLoader = ImageLoader.getInstance();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -62,6 +68,14 @@ public class ServiceFragment extends Fragment implements View.OnClickListener {
         iv_genetic = (ImageView) view.findViewById(R.id.iv_genetic);
         iv_golf = (ImageView) view.findViewById(R.id.iv_golf);
         iv_plane = (ImageView) view.findViewById(R.id.iv_plane);
+
+        options = new DisplayImageOptions.Builder()
+                .showImageForEmptyUri(R.drawable.banner_three)
+                .showImageOnFail(R.drawable.banner_three)
+                .resetViewBeforeLoading(true).cacheOnDisc(true)
+                .imageScaleType(ImageScaleType.EXACTLY)
+                .bitmapConfig(Bitmap.Config.RGB_565).considerExifParams(true)
+                .displayer(new FadeInBitmapDisplayer(300)).build();
 
         rl_hospital.setOnClickListener(this);
         rl_genetic.setOnClickListener(this);
@@ -97,13 +111,18 @@ public class ServiceFragment extends Fragment implements View.OnClickListener {
     private void setView() {
         for (ServicePicture2B item : data) {
             if (item.getType().equals("hospitalBooking")) {
-                ImageLoader.getInstance().displayImage(item.getPicture(), iv_hospital);
+//                ImageLoader.getInstance().displayImage(item.getPicture(), iv_hospital);
+                imageLoader.displayImage(item.getPicture(), iv_hospital, options,null);
+
             } else if (item.getType().equals("geneticBooking")) {
-                ImageLoader.getInstance().displayImage(item.getPicture(), iv_genetic);
+//                ImageLoader.getInstance().displayImage(item.getPicture(), iv_genetic);
+                imageLoader.displayImage(item.getPicture(), iv_genetic, options,null);
             } else if (item.getType().equals("golfBooking")) {
-                ImageLoader.getInstance().displayImage(item.getPicture(), iv_golf);
+//                ImageLoader.getInstance().displayImage(item.getPicture(), iv_golf);
+                imageLoader.displayImage(item.getPicture(), iv_golf, options,null);
             } else if (item.getType().equals("airplaneBooking")) {
-                ImageLoader.getInstance().displayImage(item.getPicture(), iv_plane);
+//                ImageLoader.getInstance().displayImage(item.getPicture(), iv_plane);
+                imageLoader.displayImage(item.getPicture(), iv_plane, options,null);
             }
         }
     }

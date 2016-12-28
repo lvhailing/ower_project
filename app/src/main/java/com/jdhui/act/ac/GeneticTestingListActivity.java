@@ -134,7 +134,7 @@ public class GeneticTestingListActivity extends BaseActivity implements View.OnC
                     GeneticTestingList2B data = (GeneticTestingList2B) params.result;
                     MouldList<GeneticTestingList3B> everyList = data.getList();
                     if (everyList == null || everyList.size() == 0) {
-                        Toast.makeText(GeneticTestingListActivity.this, "没有数据了", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(GeneticTestingListActivity.this, "暂无数据", Toast.LENGTH_SHORT).show();
                         listView.getRefreshableView().smoothScrollToPositionFromTop(0, 80, 100);
                         listView.onRefreshComplete();
                         return;

@@ -2,7 +2,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="@color/bg_gray"
     android:orientation="vertical">
 
     <RelativeLayout
@@ -42,12 +42,16 @@
             <RelativeLayout
                 android:id="@+id/rl_hospital"
                 android:layout_width="match_parent"
-                android:layout_height="120dp">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:minHeight="120dip">
 
                 <ImageView
                     android:id="@+id/iv_hospital"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"/>
+                    android:layout_height="match_parent"
+                    android:scaleType="fitXY"
+                    />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -56,18 +60,20 @@
                     android:layout_marginTop="25dp"
                     android:text="绿通就医"
                     android:textColor="@color/white"
-                    android:textSize="18sp"
+                    android:textSize="24sp"
                     android:textStyle="bold"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
                     android:layout_alignParentRight="true"
                     android:layout_marginRight="20dp"
-                    android:layout_marginTop="80dp"
+                    android:paddingBottom="15dp"
                     android:text="掌上预约国内专家号"
                     android:textColor="@color/txt_black"
-                    android:textSize="14sp"/>
+                    android:textSize="20sp"
+                    android:textStyle="bold"/>
             </RelativeLayout>
 
             <View
@@ -77,12 +83,15 @@
             <RelativeLayout
                 android:id="@+id/rl_genetic"
                 android:layout_width="match_parent"
-                android:layout_height="120dp">
+                android:layout_height="wrap_content"
+                android:minHeight="120dip">
 
                 <ImageView
                     android:id="@+id/iv_genetic"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"/>
+                    android:layout_height="match_parent"
+                    android:scaleType="fitXY"
+                    />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -91,18 +100,20 @@
                     android:layout_marginTop="25dp"
                     android:text="基因检测"
                     android:textColor="@color/white"
-                    android:textSize="18sp"
+                    android:textSize="24sp"
                     android:textStyle="bold"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
+                    android:layout_alignParentBottom="true"
                     android:layout_marginRight="20dp"
-                    android:layout_marginTop="80dp"
+                   android:paddingBottom="15dp"
                     android:text="预约顶级医疗服务"
                     android:textColor="@color/txt_black"
-                    android:textSize="14sp"/>
+                    android:textSize="20sp"
+                    android:textStyle="bold"/>
             </RelativeLayout>
 
             <View
@@ -112,22 +123,27 @@
             <RelativeLayout
                 android:id="@+id/rl_golf"
                 android:layout_width="match_parent"
-                android:layout_height="120dp">
+                android:layout_height="wrap_content"
+                android:minHeight="120dip">
 
                 <ImageView
                     android:id="@+id/iv_golf"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"/>
+                    android:layout_height="match_parent"
+                    android:scaleType="fitXY"
+                    />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
+                    android:layout_alignParentBottom="true"
                     android:layout_marginRight="20dp"
-                    android:layout_marginTop="80dp"
+                    android:paddingBottom="15dp"
                     android:text="高尔夫球场地预约"
                     android:textColor="@color/txt_black"
-                    android:textSize="14sp"/>
+                    android:textSize="20sp"
+                    android:textStyle="bold"/>
 
                 <TextView
                     android:id="@+id/textView"
@@ -141,10 +157,9 @@
                     android:layout_marginTop="25dp"
                     android:text="高尔夫球场地"
                     android:textColor="@color/white"
-                    android:textSize="18sp"
+                    android:textSize="24sp"
                     android:textStyle="bold"/>
             </RelativeLayout>
-
 
             <View
                 style="@style/v_line_style"
@@ -153,12 +168,15 @@
             <RelativeLayout
                 android:id="@+id/rl_plane"
                 android:layout_width="match_parent"
-                android:layout_height="120dp">
+                android:layout_height="wrap_content"
+                android:minHeight="120dip">
 
                 <ImageView
                     android:id="@+id/iv_plane"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"/>
+                    android:layout_height="match_parent"
+                    android:scaleType="fitXY"
+                    />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -167,18 +185,20 @@
                     android:layout_marginTop="25dp"
                     android:text="公务机包机"
                     android:textColor="@color/white"
-                    android:textSize="18sp"
+                    android:textSize="24sp"
                     android:textStyle="bold"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
+                    android:layout_alignParentBottom="true"
                     android:layout_marginRight="20dp"
-                    android:layout_marginTop="80dp"
+                    android:paddingBottom="15dp"
                     android:text="公务机包机预约"
                     android:textColor="@color/txt_black"
-                    android:textSize="14sp"/>
+                    android:textSize="20sp"
+                    android:textStyle="bold"/>
             </RelativeLayout>
         </LinearLayout>
     </ScrollView>

@@ -10,6 +10,8 @@ import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
+import org.apache.http.conn.ssl.AllowAllHostnameVerifier;
+import org.apache.http.conn.ssl.SSLSocketFactory;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.params.BasicHttpParams;
 import org.apache.http.params.HttpConnectionParams;
@@ -79,6 +81,10 @@ public class DownloadUtils {
                 is = response.getEntity().getContent();
                 remoteSize = response.getEntity().getContentLength();
                 org.apache.http.Header contentEncoding = response.getFirstHeader("Content-Encoding");
+
+                //	验证https协议
+                SSLSocketFactory.getSocketFactory().setHostnameVerifier(new AllowAllHostnameVerifier());
+
                 if (contentEncoding != null && contentEncoding.getValue().equalsIgnoreCase("gzip")) {
                     is = new GZIPInputStream(is);
                 }

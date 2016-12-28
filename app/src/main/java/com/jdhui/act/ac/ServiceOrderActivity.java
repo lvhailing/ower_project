@@ -136,7 +136,7 @@ public class ServiceOrderActivity extends BaseActivity implements View.OnClickLi
                     Service2B data = (Service2B) params.result;
                     MouldList<Service3B> everyList = data.getList();
                     if (everyList == null || everyList.size() == 0) {
-                        Toast.makeText(ServiceOrderActivity.this, "没有数据了", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(ServiceOrderActivity.this, "暂无数据", Toast.LENGTH_SHORT).show();
                         if (mAdapter != null) {
 //                            totalList.clear();
                             mAdapter.notifyDataSetChanged();    //刷新界面
