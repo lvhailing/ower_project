@@ -69,6 +69,7 @@ public class ServiceFragment extends Fragment implements View.OnClickListener {
         iv_golf = (ImageView) view.findViewById(R.id.iv_golf);
         iv_plane = (ImageView) view.findViewById(R.id.iv_plane);
 
+        //缓存图片到本地
         options = new DisplayImageOptions.Builder()
                 .showImageForEmptyUri(R.drawable.banner_three)
                 .showImageOnFail(R.drawable.banner_three)

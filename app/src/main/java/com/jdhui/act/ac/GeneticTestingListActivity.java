@@ -3,6 +3,7 @@ package com.jdhui.act.ac;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
@@ -34,6 +35,7 @@ public class GeneticTestingListActivity extends BaseActivity implements View.OnC
     private MouldList<GeneticTestingList3B> totalList = new MouldList<>();
     private int currentPage = 1;    //当前页
     private GeneticTestingDetail2B detail2B;
+    private MouldList<GeneticTestingList3B> everyList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +60,7 @@ public class GeneticTestingListActivity extends BaseActivity implements View.OnC
                 } else {
                     //上划加载下一页
                     currentPage++;
+                    Log.i("当前页码是：", +currentPage + "---" + everyList.size() + "  总集合数量是：" + totalList.size());
                 }
                 requestListData();
             }
@@ -66,7 +69,7 @@ public class GeneticTestingListActivity extends BaseActivity implements View.OnC
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> arg0, View arg1, int position, long arg3) {
-                String id = totalList.get(position-1).getId();
+                String id = totalList.get(position - 1).getId();
                 //带着点击的那一项的id去访问接口
                 requestDetailData(id);
             }
@@ -119,10 +122,34 @@ public class GeneticTestingListActivity extends BaseActivity implements View.OnC
 
     private void requestListData() {  //请求基因列表的数据
         try {
-            HtmlRequest.getGeneticTestingList(GeneticTestingListActivity.this, currentPage+"", new BaseRequester.OnRequestListener() {
+            HtmlRequest.getGeneticTestingList(GeneticTestingListActivity.this, currentPage + "", new BaseRequester.OnRequestListener() {
                 @Override
                 public void onRequestFinished(BaseParams params) {
                     GeneticTestingListActivity.this.stopLoading();
+                    listView.getRefreshableView().smoothScrollToPositionFromTop(0, 80, 100);
+                    listView.onRefreshComplete();
+
+                    if (params.result == null) {
+                        Toast.makeText(GeneticTestingListActivity.this, "加载失败，请确认网络通畅", Toast.LENGTH_LONG).show();
+                        return;
+                    }
+
+                    GeneticTestingList2B data = (GeneticTestingList2B) params.result;
+                    everyList = data.getList();
+                    if ((everyList == null || everyList.size() == 0) && currentPage != 1) {
+                        Toast.makeText(GeneticTestingListActivity.this, "已经到最后一页", Toast.LENGTH_SHORT).show();
+                    }
+
+                    if (currentPage == 1) {
+                        //刚进来时 加载第一页数据，或下拉刷新 重新加载数据 。这两种情况之前的数据都清掉
+                        totalList.clear();
+                    }
+                    totalList.addAll(everyList);
+
+                    //刷新数据
+                    mAdapter.notifyDataSetChanged();
+
+                   /* GeneticTestingListActivity.this.stopLoading();
                     if (params.result == null) {
                         listView.onRefreshComplete();
                         Toast.makeText(GeneticTestingListActivity.this, "加载失败，请确认网络通畅", Toast.LENGTH_LONG).show();
@@ -150,7 +177,7 @@ public class GeneticTestingListActivity extends BaseActivity implements View.OnC
                     totalList.addAll(everyList);
 
                     //刷新数据
-                    mAdapter.notifyDataSetChanged();
+                    mAdapter.notifyDataSetChanged();*/
                 }
             });
         } catch (Exception e) {
