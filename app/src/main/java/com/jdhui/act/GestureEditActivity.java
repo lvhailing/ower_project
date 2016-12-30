@@ -263,8 +263,7 @@ public class GestureEditActivity extends BaseActivity implements OnClickListener
                     mIsFirstInput = true;
                     mTextReset.setClickable(true);
 //				mTextReset.setVisibility(View.GONE);
-                    mTextReset
-                            .setText(getString(R.string.set_gesture_pattern_jump));
+                    mTextReset.setText(getString(R.string.set_gesture_pattern_jump));
                     mTextTip.setText("请画出手势密码");
 
                 }
@@ -287,8 +286,7 @@ public class GestureEditActivity extends BaseActivity implements OnClickListener
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
             if (comeFlag == 1) {
-                Intent iMain = new Intent(GestureEditActivity.this,
-                        MainActivity.class);
+                Intent iMain = new Intent(GestureEditActivity.this, MainActivity.class);
                 startActivity(iMain);
                 PreferenceUtil.setGestureChose(false);
                 PreferenceUtil.setFirstLogin(true);
@@ -296,8 +294,7 @@ public class GestureEditActivity extends BaseActivity implements OnClickListener
                 finish();
                 return true;
             } else if (back_from_splah != null) { //控制登录后没有设置手势密码，点击设置手势密码的返回，跳到主页
-                Intent iMain = new Intent(GestureEditActivity.this,
-                        MainActivity.class);
+                Intent iMain = new Intent(GestureEditActivity.this, MainActivity.class);
                 startActivity(iMain);
                 PreferenceUtil.setGestureChose(false);
                 PreferenceUtil.setFirstLogin(true);

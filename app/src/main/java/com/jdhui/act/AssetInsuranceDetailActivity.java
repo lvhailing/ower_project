@@ -120,7 +120,7 @@ public class AssetInsuranceDetailActivity extends BaseActivity implements View.O
         tvAssetInsuranceToubaoriqi.setText(assetFixedBean.getInsuranceDate());
         tvAssetInsuranceBaoxianqijian.setText(assetFixedBean.getTimeLimit());
         tvAssetInsuranceJiaofeiqijian.setText(assetFixedBean.getPayLimit());
-        tvAssetInsuranceBaoe.setText(StringUtil.formatNum(assetFixedBean.getCoverageAmount()));
+        tvAssetInsuranceBaoe.setText(assetFixedBean.getCoverageAmount());
         tvAssetInsuranceBaofei.setText(StringUtil.formatNum(assetFixedBean.getPremiumAmount()) + "元");
         tvAssetInsuranceShengxiaoriqi.setText(assetFixedBean.getEffectiveDate());
         tvAssetInsuranceJiaofeiriqi.setText(assetFixedBean.getRenewalDate());

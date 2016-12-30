@@ -37,12 +37,15 @@ public class UserLoadout {
                 PreferenceUtil.setCookie("");
                 PreferenceUtil.setIsShowAsset(true);
 //                PreferenceUtil.setGestureChose(true);
-                if (PreferenceUtil.isGestureChose()) {
-                    PreferenceUtil.setGestureChose(true);
-                } else {
-                    PreferenceUtil.setGestureChose(false);
+                if (PreferenceUtil.isFirstLogin()){
+                    if (PreferenceUtil.isGestureChose()) {
+                        PreferenceUtil.setGestureChose(true);
+                    } else {
+                        PreferenceUtil.setGestureChose(false);
 
+                    }
                 }
+
 
                 // i.putExtra("result", "exit");
                 // setResult(9, i);
