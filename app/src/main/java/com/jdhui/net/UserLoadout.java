@@ -36,13 +36,7 @@ public class UserLoadout {
                 PreferenceUtil.setUserNickName("");
                 PreferenceUtil.setCookie("");
                 PreferenceUtil.setIsShowAsset(true);
-//                PreferenceUtil.setGestureChose(true);
-                if (PreferenceUtil.isGestureChose()) {
-                    PreferenceUtil.setGestureChose(true);
-                } else {
-                    PreferenceUtil.setGestureChose(false);
-
-                }
+                PreferenceUtil.setGestureChose(true);
 
                 // i.putExtra("result", "exit");
                 // setResult(9, i);

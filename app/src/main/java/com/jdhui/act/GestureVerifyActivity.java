@@ -109,110 +109,96 @@ public class GestureVerifyActivity extends BaseActivity implements android.view.
             mTextForget.setOnClickListener(this);
         }
         // 初始化一个显示各个点的viewGroup
-        mGestureContentView = new GestureContentView(this, true, s,
-                new GestureDrawline.GestureCallBack() {
+        mGestureContentView = new GestureContentView(this, true, s, new GestureDrawline.GestureCallBack() {
 
-                    @Override
-                    public void onGestureCodeInput(String inputCode) {
+            @Override
+            public void onGestureCodeInput(String inputCode) {
 
-                    }
+            }
 
-                    @Override
-                    public void checkedSuccess() {
-                        mGestureContentView.clearDrawlineState(0L);
-                        try {
-                            if (from.equals(ApplicationConsts.ACTIVITY_SPLASH)) {
-                                GestureVerifyActivity.this.finish();
+            @Override
+            public void checkedSuccess() {
+                mGestureContentView.clearDrawlineState(0L);
+                try {
+                    if (from.equals(ApplicationConsts.ACTIVITY_SPLASH)) {
+                        GestureVerifyActivity.this.finish();
 //								UserLogin.getInstance().userlogining(
 //										getApplicationContext(),
 //										DESUtil.decrypt(PreferenceUtil
 //												.getAutoLoginAccount()),
 //										DESUtil.decrypt(PreferenceUtil
 //												.getAutoLoginPwd()), "");
-                                Intent i = new Intent(GestureVerifyActivity.this, MainActivity.class);
-                                startActivity(i);
-                            } else if (from.equals(ApplicationConsts.ACTIVITY_ACCOUNT)) {
-                                Intent i = new Intent(GestureVerifyActivity.this, AccountActivity.class);
-                                setResult(2000, i);
-                                finish();
-                            } else if (from.equals(ApplicationConsts.ACTIVITY_GESEDIT)) {
-                                Toast.makeText(GestureVerifyActivity.this, "设置成功", Toast.LENGTH_SHORT).show();
-                                finish();
-                            } else if (from.equals(ApplicationConsts.ACTIVITY_GESVERIFY)) {
-                                UserLogin.getInstance().userlogining(getApplicationContext(), DESUtil.decrypt(PreferenceUtil.getAutoLoginAccount()), DESUtil.decrypt(PreferenceUtil.getAutoLoginPwd()), "");
-                                Intent i = new Intent(GestureVerifyActivity.this, MainActivity.class);
-                                Toast.makeText(GestureVerifyActivity.this, "设置成功", Toast.LENGTH_SHORT).show();
-                                startActivity(i);
-                                finish();
-                            } else if (from.equals(ApplicationConsts.ACTIVITY_CHANGE_GESTURE)) {
-                                GestureVerifyActivity.this.finish();
-                                Intent i = new Intent(GestureVerifyActivity.this, GestureEditActivity.class);
-                                //判断从账户设置手势密码，点击跳过，再次登录时不会关闭手势密码
-                                i.putExtra("skip", "skip_from_account");
-                                i.putExtra("title", R.string.title_gestureset);
-                                i.putExtra("comeflag", 4);
-                                startActivity(i);
-                            }
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
+                        Intent i = new Intent(GestureVerifyActivity.this, MainActivity.class);
+                        startActivity(i);
+                    } else if (from.equals(ApplicationConsts.ACTIVITY_ACCOUNT)) {
+                        Intent i = new Intent(GestureVerifyActivity.this, AccountActivity.class);
+                        setResult(2000, i);
+                        finish();
+                    } else if (from.equals(ApplicationConsts.ACTIVITY_GESEDIT)) {
+                        Toast.makeText(GestureVerifyActivity.this, "设置成功", Toast.LENGTH_SHORT).show();
+                        finish();
+                    } else if (from.equals(ApplicationConsts.ACTIVITY_GESVERIFY)) {
+                        UserLogin.getInstance().userlogining(getApplicationContext(), DESUtil.decrypt(PreferenceUtil.getAutoLoginAccount()), DESUtil.decrypt(PreferenceUtil.getAutoLoginPwd()), "");
+                        Intent i = new Intent(GestureVerifyActivity.this, MainActivity.class);
+                        Toast.makeText(GestureVerifyActivity.this, "设置成功", Toast.LENGTH_SHORT).show();
+                        startActivity(i);
+                        finish();
+                    } else if (from.equals(ApplicationConsts.ACTIVITY_CHANGE_GESTURE)) {
+                        GestureVerifyActivity.this.finish();
+                        Intent i = new Intent(GestureVerifyActivity.this, GestureEditActivity.class);
+                        //判断从账户设置手势密码，点击跳过，再次登录时不会关闭手势密码
+                        i.putExtra("skip", "skip_from_account");
+                        i.putExtra("title", R.string.title_gestureset);
+                        i.putExtra("comeflag", 4);
+                        startActivity(i);
                     }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
 
-                    @Override
-                    public void checkedFail() {
-                        if (current_num >= MAX_NUM) {
-                            AlertDialog.Builder builder = new Builder(
-                                    GestureVerifyActivity.this);
-                            builder.setMessage("您输入的手势密码错误次数已达到最大次数，请使用登录密码进行登录");
-                            builder.setTitle("密码错误");
-                            builder.setPositiveButton("确认",
-                                    new DialogInterface.OnClickListener() {
+            @Override
+            public void checkedFail() {
+                if (current_num >= MAX_NUM) {
+                    AlertDialog.Builder builder = new Builder(GestureVerifyActivity.this);
+                    builder.setMessage("您输入的手势密码错误次数已达到最大次数，请使用登录密码进行登录");
+                    builder.setTitle("密码错误");
+                    builder.setPositiveButton("确认", new DialogInterface.OnClickListener() {
 
-                                        @Override
-                                        public void onClick(
-                                                DialogInterface dialog,
-                                                int which) {
-                                            from = ApplicationConsts.ACTIVITY_GESVERIFY;
-                                            Intent intent = new Intent();
-                                            intent.setClass(
-                                                    GestureVerifyActivity.this,
-                                                    LoginActivity.class);
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            from = ApplicationConsts.ACTIVITY_GESVERIFY;
+                            Intent intent = new Intent();
+                            intent.setClass(GestureVerifyActivity.this, LoginActivity.class);
 //											startActivityForResult(ilogin, 99);
 
-                                            intent.putExtra("tomain", TOMAIN);
-                                            PreferenceUtil.setFirstLogin(true);
-                                            PreferenceUtil.setGesturePwd("");
-                                            PreferenceUtil.setLogin(false);
-                                            startActivity(intent);
-                                            finish();
+                            intent.putExtra("tomain", TOMAIN);
+                            PreferenceUtil.setFirstLogin(true);
+                            PreferenceUtil.setGesturePwd("");
+                            PreferenceUtil.setLogin(false);
+                            startActivity(intent);
+                            finish();
 
-                                        }
-                                    });
-                            builder.create().show();
-                        } else {
-                            mGestureContentView.clearDrawlineState(1300L);
-                            mTextTip.setVisibility(View.VISIBLE);
-                            String str1, str2, str3;
-                            str1 = "密码错误,您还可以尝试";
-                            str2 = str1 + (MAX_NUM - current_num);
-                            str3 = str2 + "次";
-
-                            mTextTip.setText(StringUtil.setTextStyle(
-                                    GestureVerifyActivity.this, str1, str2,
-                                    str3, R.color.txt_red, R.color.txt_red,
-                                    R.color.txt_red, 16, 16, 16, 0, 0, 0));
-                            // 左右移动动画
-                            Animation shakeAnimation = AnimationUtils
-                                    .loadAnimation(GestureVerifyActivity.this,
-                                            R.anim.shake);
-                            mTextTip.startAnimation(shakeAnimation);
-                            current_num++;
                         }
-                    }
-                });
-        android.widget.FrameLayout.LayoutParams params = new android.widget.FrameLayout.LayoutParams(
-                android.widget.FrameLayout.LayoutParams.WRAP_CONTENT,
-                android.widget.FrameLayout.LayoutParams.WRAP_CONTENT);
+                    });
+                    builder.create().show();
+                } else {
+                    mGestureContentView.clearDrawlineState(1300L);
+                    mTextTip.setVisibility(View.VISIBLE);
+                    String str1, str2, str3;
+                    str1 = "密码错误,您还可以尝试";
+                    str2 = str1 + (MAX_NUM - current_num);
+                    str3 = str2 + "次";
+
+                    mTextTip.setText(StringUtil.setTextStyle(GestureVerifyActivity.this, str1, str2, str3, R.color.txt_red, R.color.txt_red, R.color.txt_red, 16, 16, 16, 0, 0, 0));
+                    // 左右移动动画
+                    Animation shakeAnimation = AnimationUtils.loadAnimation(GestureVerifyActivity.this, R.anim.shake);
+                    mTextTip.startAnimation(shakeAnimation);
+                    current_num++;
+                }
+            }
+        });
+        android.widget.FrameLayout.LayoutParams params = new android.widget.FrameLayout.LayoutParams(android.widget.FrameLayout.LayoutParams.WRAP_CONTENT, android.widget.FrameLayout.LayoutParams.WRAP_CONTENT);
         params.gravity = Gravity.CENTER_HORIZONTAL;
         mGestureContentView.setLayoutParams(params);
         // 设置手势解锁显示到哪个布局里面
@@ -235,20 +221,24 @@ public class GestureVerifyActivity extends BaseActivity implements android.view.
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.text_forget_gesture:
-                CheckVersionDialog dialog = new CheckVersionDialog(GestureVerifyActivity.this,
-                        new CheckVersionDialog.OnCheckVersion() {
+                CheckVersionDialog dialog = new CheckVersionDialog(GestureVerifyActivity.this, new CheckVersionDialog.OnCheckVersion() {
 
-                            @Override
-                            public void onConfim() {
-                                UserLoadout out = new UserLoadout(GestureVerifyActivity.this);
-                                out.requestData();
-                            }
+                    @Override
+                    public void onConfim() {
+                        UserLoadout out = new UserLoadout(GestureVerifyActivity.this);
+                        out.requestData();
 
-                            @Override
-                            public void onCancel() {
+                        //确保登录后能进入到重新设置手势密码页面
+                        PreferenceUtil.setFirstLogin(true);
+                        PreferenceUtil.setGesturePwd("");
+                        PreferenceUtil.setLogin(false);
+                    }
 
-                            }
-                        }, "忘记手势密码，需要重新登录并设置手势密码");
+                    @Override
+                    public void onCancel() {
+
+                    }
+                }, "忘记手势密码，需要重新登录并设置手势密码");
                 dialog.show();
                 break;
             case R.id.id_img_back:

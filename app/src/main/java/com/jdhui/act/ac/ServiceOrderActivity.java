@@ -125,23 +125,18 @@ public class ServiceOrderActivity extends BaseActivity implements View.OnClickLi
                 @Override
                 public void onRequestFinished(BaseParams params) {
                     ServiceOrderActivity.this.stopLoading();
-                    if (params.result == null) {
-                        listView.onRefreshComplete();
-                        Toast.makeText(ServiceOrderActivity.this, "加载失败，请确认网络通畅", Toast.LENGTH_LONG).show();
-                        return;
-                    }
                     listView.getRefreshableView().smoothScrollToPositionFromTop(0, 80, 100);
                     listView.onRefreshComplete();
 
+                    if (params.result == null) {
+                        Toast.makeText(ServiceOrderActivity.this, "加载失败，请确认网络通畅", Toast.LENGTH_LONG).show();
+                        return;
+                    }
+
                     Service2B data = (Service2B) params.result;
                     MouldList<Service3B> everyList = data.getList();
-                    if (everyList == null || everyList.size() == 0) {
-                        Toast.makeText(ServiceOrderActivity.this, "暂无数据", Toast.LENGTH_SHORT).show();
-                        if (mAdapter != null) {
-//                            totalList.clear();
-                            mAdapter.notifyDataSetChanged();    //刷新界面
-                        }
-                        return;
+                    if ((everyList == null || everyList.size() == 0) && currentPage != 1) {
+                        Toast.makeText(ServiceOrderActivity.this, "已到最后一页", Toast.LENGTH_SHORT).show();
                     }
 
 
