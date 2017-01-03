@@ -323,29 +323,4 @@ public class LoginActivity extends BaseActivity implements OnClickListener, Obse
 
     }
 
-   /* private long preTime;   //上一次的时间
-
-    @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if (keyCode == KeyEvent.KEYCODE_BACK) {
-            long currentTime = System.currentTimeMillis();  //本次按下按钮的时间
-            if (currentTime - preTime < 2000) {
-                //方案一
-                ActivityManager am = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
-                am.restartPackage("com.jdhui");
-
-                //方案二
-//                android.os.Process.killProcess(android.os.Process.myPid());
-//                System.exit(0);
-            } else {
-                Toast.makeText(LoginActivity.this, "再按一次，退出程序", Toast.LENGTH_SHORT).show();
-                preTime = currentTime;
-            }
-            return true;
-        }
-
-        return super.onKeyDown(keyCode, event);
-
-    }
-*/
 }
