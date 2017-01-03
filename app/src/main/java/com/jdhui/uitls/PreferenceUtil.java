@@ -18,7 +18,7 @@ public class PreferenceUtil {
     }
 
     /**
-     * 获取用户信息
+     * 用户信息sp
      *
      * @return
      */
@@ -30,20 +30,20 @@ public class PreferenceUtil {
     }
 
     /**
-     * 获取设置信息
+     * 设置信息sp
      *
      * @return
      */
     public static SharedPreferences getSettingSharedPreferences() {
         if (setting == null) {
-            setting = mContext.getSharedPreferences("setting_pre",
-                    Context.MODE_PRIVATE);
+            setting = mContext.getSharedPreferences("setting_pre", Context.MODE_PRIVATE);
         }
         return setting;
     }
 
     /**
      * 是否首次进入应用
+     * 用来判断是否展示splash界面 （只一处使用）
      *
      * @return
      */
@@ -53,6 +53,7 @@ public class PreferenceUtil {
 
     /**
      * 设置是否首次进入应用
+     * 用来判断是否展示splash界面 （只一处使用）
      *
      * @param isfirst
      */
@@ -61,101 +62,21 @@ public class PreferenceUtil {
     }
 
     /**
-     * 是否首次登陆应用
+     * 是否已经登陆 splash界面判断（否 则去登陆页面，是 则进入下一个判断）
      *
      * @return
      */
-    public static boolean isFirstLogin() {
-        return getUserSharedPreferences().getBoolean(getUserId(), true);
+    public static boolean isLogin() {
+        return getUserSharedPreferences().getBoolean("isLogin", false);
     }
 
     /**
-     * 设置是否首次登陆
+     * 设置是否登陆 splash界面判断（否 则去登陆页面，是 则进入下一个判断）
      *
-     * @param isfirst
+     * @param isLogin
      */
-    public static void setFirstLogin(boolean isfirst) {
-        getUserSharedPreferences().edit().putBoolean(getUserId(), isfirst).commit();
-    }
-
-    /**
-     * 设置手势密码
-     *
-     * @param pwd
-     */
-    public static void setGesturePwd(String pwd) {
-//        getSettingSharedPreferences().edit().putString("gesture", pwd).commit();
-        getSettingSharedPreferences().edit().putString(getUserId(), pwd).commit();
-    }
-
-    /**
-     * 获取手势密码
-     *
-     * @return
-     */
-    public static String getGesturePwd() {
-//        return getSettingSharedPreferences().getString("gesture", "");
-        return getSettingSharedPreferences().getString(getUserId(), "");
-    }
-
-    /**
-     * 是否接收推送
-     *
-     * @return
-     */
-    public static boolean isPushEnable() {
-        return getSettingSharedPreferences().getBoolean("push_on", true);
-    }
-
-    /**
-     * 设置是否接收推送
-     *
-     * @param is
-     * @return
-     */
-    public static boolean setPushEnable(boolean is) {
-        return getSettingSharedPreferences().edit().putBoolean("push_on", is)
-                .commit();
-    }
-
-    /**
-     * 判断是否开启防骚扰模式
-     *
-     * @return
-     */
-    public static boolean isEnable() {
-        boolean r = false;
-        if (isPushEnable()) {
-            int h = new Date().getHours();
-            boolean antiTime = getIsAntiHarassment();
-            if (!antiTime || (antiTime && h < 22 && h > 8)) {// 防骚扰
-                r = true;
-            }
-        }
-        return r;
-    }
-
-    /**
-     * 是否打开防骚扰
-     *
-     * @return boolean
-     */
-    public static boolean getIsAntiHarassment() {
-        return getSettingSharedPreferences().getBoolean("isAntiHarassment",
-                true);
-    }
-
-    /**
-     * 从SharedPreference中获取存入的TGT 默认传空
-     *
-     * @return
-     */
-    public static String getClienttgt() {
-        return getUserSharedPreferences().getString(CLIENTTGT, "");
-    }
-
-    public static void setClienttgt(String s) {
-        getUserSharedPreferences().edit().putString(CLIENTTGT, s).commit();
+    public static void setLogin(boolean isLogin) {
+        getUserSharedPreferences().edit().putBoolean("isLogin", isLogin).commit();
     }
 
     /**
@@ -169,6 +90,8 @@ public class PreferenceUtil {
 
     /**
      * 设置用户ID
+     * 保存（1处）：登陆成功
+     * 清空（3处）：退出登陆时、登陆失败时、cookie验证失败
      *
      * @param userId
      */
@@ -177,78 +100,57 @@ public class PreferenceUtil {
     }
 
     /**
-     * 获取用户信息ID
+     * 是否首次登陆应用
      *
      * @return
      */
-    public static String getUserInfoId() {
-        return getUserSharedPreferences().getString("userInfoId", "");
+    public static boolean isFirstLogin() {
+        return getUserSharedPreferences().getBoolean(getUserId() + "a", true);
     }
 
     /**
-     * 设置用户信息ID
+     * 设置是否首次登陆
      *
-     * @param userInfoId
+     * @param isfirst
      */
-    public static void setUserInfoId(String userInfoId) {
-        getUserSharedPreferences().edit().putString("userInfoId", userInfoId).commit();
+    public static void setFirstLogin(boolean isfirst) {
+        getUserSharedPreferences().edit().putBoolean(getUserId() + "a", isfirst).commit();
     }
 
     /**
-     * 设置用户昵称
+     * 设置手势密码
      *
-     * @param nickName
+     * @param pwd
      */
-    public static void setUserNickName(String nickName) {
-        getUserSharedPreferences().edit().putString("userNickName", nickName).commit();
+    public static void setGesturePwd(String pwd) {
+        getSettingSharedPreferences().edit().putString(getUserId() + "b", pwd).commit();
     }
 
     /**
-     * 获取用户昵称
-     *
-     * @return
-     */
-    public static String getUserNickName() {
-        return getUserSharedPreferences().getString("userNickName", "");
-    }
-
-
-    /**
-     * 设置真实姓名
-     *
-     * @param realName 真实姓名
-     */
-    public static void setUserRealName(String realName) {
-        getUserSharedPreferences().edit().putString("userRealName", realName)
-                .commit();
-    }
-
-    /**
-     * 获取真实姓名
+     * 获取手势密码
      *
      * @return
      */
-    public static String getUserRealName() {
-        return getUserSharedPreferences().getString("userRealName", "");
+    public static String getGesturePwd() {
+        return getSettingSharedPreferences().getString(getUserId() + "b", "");
     }
 
+    /**
+     * 设置是否开启手势密码
+     *
+     * @param is
+     */
+    public static void setGestureChose(boolean is) {
+        getUserSharedPreferences().edit().putBoolean(getUserId() + "c", is).commit();
+    }
 
     /**
-     * 是否已经登陆
+     * 是否开启手势密码
      *
      * @return
      */
-    public static boolean isLogin() {
-        return getUserSharedPreferences().getBoolean("isLogin", false);
-    }
-
-    /**
-     * 设置是否登陆
-     *
-     * @param isLogin
-     */
-    public static void setLogin(boolean isLogin) {
-        getUserSharedPreferences().edit().putBoolean("isLogin", isLogin).commit();
+    public static boolean isGestureChose() {
+        return getUserSharedPreferences().getBoolean(getUserId() + "c", true);
     }
 
     /**
@@ -323,6 +225,120 @@ public class PreferenceUtil {
         return getUserSharedPreferences().getString("phone", "");
     }
 
+
+    /**
+     * 获取用户信息ID （用户编号）
+     *
+     * @return
+     */
+    public static String getUserInfoId() {
+        return getUserSharedPreferences().getString("userInfoId", "");
+    }
+
+    /**
+     * 设置用户信息ID （用户编号）
+     *
+     * @param userInfoId
+     */
+    public static void setUserInfoId(String userInfoId) {
+        getUserSharedPreferences().edit().putString("userInfoId", userInfoId).commit();
+    }
+
+    /**
+     * 设置用户昵称
+     *
+     * @param nickName
+     */
+    public static void setUserNickName(String nickName) {
+        getUserSharedPreferences().edit().putString("userNickName", nickName).commit();
+    }
+
+    /**
+     * 获取用户昵称
+     *
+     * @return
+     */
+    public static String getUserNickName() {
+        return getUserSharedPreferences().getString("userNickName", "");
+    }
+
+
+    /**
+     * 设置真实姓名
+     *
+     * @param realName 真实姓名
+     */
+    public static void setUserRealName(String realName) {
+        getUserSharedPreferences().edit().putString("userRealName", realName).commit();
+    }
+
+    /**
+     * 获取真实姓名
+     *
+     * @return
+     */
+    public static String getUserRealName() {
+        return getUserSharedPreferences().getString("userRealName", "");
+    }
+
+    /**
+     * 是否接收推送
+     *
+     * @return
+     */
+    public static boolean isPushEnable() {
+        return getSettingSharedPreferences().getBoolean("push_on", true);
+    }
+
+    /**
+     * 设置是否接收推送
+     *
+     * @param is
+     * @return
+     */
+    public static boolean setPushEnable(boolean is) {
+        return getSettingSharedPreferences().edit().putBoolean("push_on", is).commit();
+    }
+
+    /**
+     * 判断是否开启防骚扰模式
+     *
+     * @return
+     */
+    public static boolean isEnable() {
+        boolean r = false;
+        if (isPushEnable()) {
+            int h = new Date().getHours();
+            boolean antiTime = getIsAntiHarassment();
+            if (!antiTime || (antiTime && h < 22 && h > 8)) {// 防骚扰
+                r = true;
+            }
+        }
+        return r;
+    }
+
+    /**
+     * 是否打开防骚扰
+     *
+     * @return boolean
+     */
+    public static boolean getIsAntiHarassment() {
+        return getSettingSharedPreferences().getBoolean("isAntiHarassment", true);
+    }
+
+    /**
+     * 从SharedPreference中获取存入的TGT 默认传空
+     *
+     * @return
+     */
+    public static String getClienttgt() {
+        return getUserSharedPreferences().getString(CLIENTTGT, "");
+    }
+
+    public static void setClienttgt(String s) {
+        getUserSharedPreferences().edit().putString(CLIENTTGT, s).commit();
+    }
+
     /**
      * 是否接收消息
      *
@@ -339,24 +355,6 @@ public class PreferenceUtil {
      */
     public static void setReceviceMessage(boolean is) {
         getUserSharedPreferences().edit().putBoolean("getMsg", is).commit();
-    }
-
-    /**
-     * 设置是否开启手势密码
-     *
-     * @param is
-     */
-    public static void setGestureChose(boolean is) {
-        getUserSharedPreferences().edit().putBoolean("getGestureMsg", is).commit();
-    }
-
-    /**
-     * 是否开启手势密码
-     *
-     * @return
-     */
-    public static boolean isGestureChose() {
-        return getUserSharedPreferences().getBoolean("getGestureMsg", true);
     }
 
     /**

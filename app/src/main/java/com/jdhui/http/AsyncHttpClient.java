@@ -18,18 +18,13 @@
 
 package com.jdhui.http;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.lang.ref.WeakReference;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-import java.util.WeakHashMap;
-import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
-import java.util.concurrent.ThreadPoolExecutor;
-import java.util.zip.GZIPInputStream;
+import android.content.Context;
+import android.text.TextUtils;
+
+import com.jdhui.JdehuiApplication;
+import com.jdhui.uitls.APNManager;
+import com.jdhui.uitls.PreferenceUtil;
+import com.jdhui.uitls.SystemInfo;
 
 import org.apache.http.Header;
 import org.apache.http.HeaderElement;
@@ -72,13 +67,18 @@ import org.apache.http.protocol.BasicHttpContext;
 import org.apache.http.protocol.HttpContext;
 import org.apache.http.protocol.SyncBasicHttpContext;
 
-import android.content.Context;
-import android.text.TextUtils;
-
-import com.jdhui.JdehuiApplication;
-import com.jdhui.uitls.APNManager;
-import com.jdhui.uitls.PreferenceUtil;
-import com.jdhui.uitls.SystemInfo;
+import java.io.IOException;
+import java.io.InputStream;
+import java.lang.ref.WeakReference;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+import java.util.WeakHashMap;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.zip.GZIPInputStream;
 
 /**
  * The AsyncHttpClient can be used to make asynchronous GET, POST, PUT and
@@ -335,8 +335,6 @@ public class AsyncHttpClient {
 	 * Sets basic authentication for the request. Uses AuthScope.ANY. This is
 	 * the same as setBasicAuth('username','password',AuthScope.ANY)
 	 * 
-	 * @param username
-	 * @param password
 	 */
 	public void setBasicAuth(String user, String pass) {
 		AuthScope scope = AuthScope.ANY;
@@ -349,8 +347,6 @@ public class AsyncHttpClient {
 	 * setBasicAuth("username","password", new
 	 * AuthScope("host",port,AuthScope.ANY_REALM))
 	 * 
-	 * @param username
-	 * @param password
 	 * @param scope
 	 *            - an AuthScope object
 	 * 
