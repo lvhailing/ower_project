@@ -124,7 +124,6 @@ public class ServiceOrderActivity extends BaseActivity implements View.OnClickLi
             HtmlRequest.getServiceOrderList(ServiceOrderActivity.this, type, currentPage + "", new BaseRequester.OnRequestListener() {
                 @Override
                 public void onRequestFinished(BaseParams params) {
-                    ServiceOrderActivity.this.stopLoading();
                     listView.getRefreshableView().smoothScrollToPositionFromTop(0, 80, 100);
                     listView.onRefreshComplete();
 
@@ -136,7 +135,7 @@ public class ServiceOrderActivity extends BaseActivity implements View.OnClickLi
                     Service2B data = (Service2B) params.result;
                     MouldList<Service3B> everyList = data.getList();
                     if ((everyList == null || everyList.size() == 0) && currentPage != 1) {
-                        Toast.makeText(ServiceOrderActivity.this, "已到最后一页", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(ServiceOrderActivity.this, "已经到最后一页", Toast.LENGTH_SHORT).show();
                     }
 
 

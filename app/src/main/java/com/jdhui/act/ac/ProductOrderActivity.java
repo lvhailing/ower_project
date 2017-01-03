@@ -5,6 +5,7 @@ import android.animation.AnimatorListenerAdapter;
 import android.animation.ObjectAnimator;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
@@ -53,6 +54,7 @@ public class ProductOrderActivity extends BaseActivity implements View.OnClickLi
     private TextView mTvStatus; //全部状态
     private ImageView iv_select_left;//类型后面的 小三角 图标
     private ImageView iv_select_right;//状态后面的 小三角 图标
+    private MouldList<Product3B> everyList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,6 +78,7 @@ public class ProductOrderActivity extends BaseActivity implements View.OnClickLi
                 } else {
                     //上划加载下一页
                     currentPage++;
+//                    Log.i("AAAAA", "当前页是：" + currentPage++ + "---" + everyList.size() + "---" + "总集合数据有：" + totalList.size());
                 }
                 currentType = 1;
                 requestData();
@@ -133,21 +136,18 @@ public class ProductOrderActivity extends BaseActivity implements View.OnClickLi
             HtmlRequest.getProductOrderList(ProductOrderActivity.this, userInfoId, category, status, currentPage + "", new BaseRequester.OnRequestListener() {
                 @Override
                 public void onRequestFinished(BaseParams params) {
+                    listView.getRefreshableView().smoothScrollToPositionFromTop(0, 80, 100);
+                    listView.onRefreshComplete();
 
-                    ProductOrderActivity.this.stopLoading();
                     if (params.result == null) {
-                        listView.onRefreshComplete();
                         Toast.makeText(ProductOrderActivity.this, "加载失败，请确认网络通畅", Toast.LENGTH_LONG).show();
                         return;
                     }
 
-                    listView.getRefreshableView().smoothScrollToPositionFromTop(0, 80, 100);
-                    listView.onRefreshComplete();
-
                     Product2B data = (Product2B) params.result;
-                    MouldList<Product3B> everyList = data.getList();
-                    if (everyList == null || everyList.size() == 0) {
-                        Toast.makeText(ProductOrderActivity.this, "暂无数据", Toast.LENGTH_SHORT).show();
+                    everyList = data.getList();
+                    if (everyList == null || everyList.size() == 0 && currentPage != 1) {
+                        Toast.makeText(ProductOrderActivity.this, "已经到最后一页", Toast.LENGTH_SHORT).show();
                         if (mAdapter != null && currentType == 2) {
                             totalList.clear();
                             mAdapter.notifyDataSetChanged();    //刷新界面

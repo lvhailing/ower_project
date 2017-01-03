@@ -148,36 +148,6 @@ public class GeneticTestingListActivity extends BaseActivity implements View.OnC
 
                     //刷新数据
                     mAdapter.notifyDataSetChanged();
-
-                   /* GeneticTestingListActivity.this.stopLoading();
-                    if (params.result == null) {
-                        listView.onRefreshComplete();
-                        Toast.makeText(GeneticTestingListActivity.this, "加载失败，请确认网络通畅", Toast.LENGTH_LONG).show();
-                        listView.getRefreshableView().smoothScrollToPositionFromTop(0, 80, 100);
-                        listView.onRefreshComplete();
-                        return;
-                    }
-
-                    GeneticTestingList2B data = (GeneticTestingList2B) params.result;
-                    MouldList<GeneticTestingList3B> everyList = data.getList();
-                    if (everyList == null || everyList.size() == 0) {
-                        Toast.makeText(GeneticTestingListActivity.this, "暂无数据", Toast.LENGTH_SHORT).show();
-                        listView.getRefreshableView().smoothScrollToPositionFromTop(0, 80, 100);
-                        listView.onRefreshComplete();
-                        return;
-                    }
-
-                    listView.getRefreshableView().smoothScrollToPositionFromTop(0, 80, 100);
-                    listView.onRefreshComplete();
-
-                    if (currentPage == 1) {
-                        //刚进来时 加载第一页数据，或下拉刷新 重新加载数据 。这两种情况之前的数据都清掉
-                        totalList.clear();
-                    }
-                    totalList.addAll(everyList);
-
-                    //刷新数据
-                    mAdapter.notifyDataSetChanged();*/
                 }
             });
         } catch (Exception e) {
