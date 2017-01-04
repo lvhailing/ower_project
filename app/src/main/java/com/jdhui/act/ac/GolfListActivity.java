@@ -85,27 +85,23 @@ public class GolfListActivity extends BaseActivity implements View.OnClickListen
 
     private void requestListData() {  //请求高尔夫球场列表的数据
         try {
-            HtmlRequest.getGolfList(GolfListActivity.this, currentPage+"", new BaseRequester.OnRequestListener() {
+            HtmlRequest.getGolfList(GolfListActivity.this, currentPage + "", new BaseRequester.OnRequestListener() {
                 @Override
                 public void onRequestFinished(BaseParams params) {
-                    GolfListActivity.this.stopLoading();
+                    listView.getRefreshableView().smoothScrollToPositionFromTop(0, 80, 100);
+                    listView.onRefreshComplete();
+
                     if (params.result == null) {
-                        listView.onRefreshComplete();
                         Toast.makeText(GolfListActivity.this, "加载失败，请确认网络通畅", Toast.LENGTH_LONG).show();
                         return;
                     }
 
                     GolfList2B data = (GolfList2B) params.result;
                     MouldList<GolfList3B> everyList = data.getList();
-                    if (everyList == null || everyList.size() == 0) {
-                        Toast.makeText(GolfListActivity.this, "暂无数据", Toast.LENGTH_SHORT).show();
-                        listView.getRefreshableView().smoothScrollToPositionFromTop(0, 80, 100);
-                        listView.onRefreshComplete();
+                    if ((everyList == null || everyList.size() == 0) && currentPage != 1) {
+                        Toast.makeText(GolfListActivity.this, "已经到最后一页", Toast.LENGTH_SHORT).show();
                         return;
                     }
-
-                    listView.getRefreshableView().smoothScrollToPositionFromTop(0, 80, 100);
-                    listView.onRefreshComplete();
 
                     if (currentPage == 1) {
                         //刚进来时 加载第一页数据，或下拉刷新 重新加载数据 。这两种情况之前的数据都清掉

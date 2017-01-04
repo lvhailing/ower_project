@@ -21,9 +21,9 @@ import com.jdhui.uitls.StringUtil;
  * 更多--产品预约的 预约详情
  */
 public class ProOrderDetailActivity extends BaseActivity implements View.OnClickListener {
-
-    private RelativeLayout mRlProName;
+    private ImageView mIvBack;
     private TextView mTvTitle;
+    private RelativeLayout mRlProName; //产品名称  布局
     private TextView mTvProName;//产品名称
     private TextView mTvtype;//产品类型
     private TextView mTvOrderName;//预约人
@@ -33,7 +33,6 @@ public class ProOrderDetailActivity extends BaseActivity implements View.OnClick
     private TextView mTvRemark;//备注
     private TextView mTvOrderStatus;//预约状态
     private TextView mTvOrderTime;//预约时间
-    private ImageView mIvBack;
     private String id;
     private String category;
     private String status;
@@ -130,9 +129,9 @@ public class ProOrderDetailActivity extends BaseActivity implements View.OnClick
         mTvOrderName.setText(proDetail2B.getUserInfoName());
         mTvOrderAmount.setText(proDetail2B.getBookingAmount());
         mTvPhone.setText(StringUtil.replaceSubString(proDetail2B.getMobile()));
-        if(proDetail2B.getIdType().equals("idCard")){
+        if (proDetail2B.getIdType().equals("idCard")) {
             mTvIdNum.setText(StringUtil.replaceSubStringID(proDetail2B.getIdNo()));
-        }else{
+        } else {
             mTvIdNum.setText(proDetail2B.getIdNo());
         }
         mTvRemark.setText(proDetail2B.getBookingRemark());

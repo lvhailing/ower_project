@@ -10,7 +10,7 @@
         android:background="@color/red4">
 
         <ImageView
-            android:id="@+id/text_cancel"
+            android:id="@+id/iv_back"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:src="@drawable/back"

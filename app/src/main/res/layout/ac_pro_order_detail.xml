@@ -41,6 +41,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="15dp"
+            android:layout_marginRight="60dp"
             android:text="君享20号现金管理投资基金"
             android:textColor="@color/txt_orange_gray"
             android:layout_toLeftOf="@+id/id_arrow"
@@ -141,7 +142,7 @@
 
             <TextView
                 style="@style/product_text_detail_lt"
-                android:text="备注:"/>
+                android:text="备&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;注:"/>
 
             <TextView
                 android:id="@+id/tv_remark"

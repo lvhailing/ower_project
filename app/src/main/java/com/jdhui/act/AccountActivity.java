@@ -20,15 +20,15 @@ import com.jdhui.uitls.PreferenceUtil;
  * 账户中心
  */
 public class AccountActivity extends BaseActivity implements View.OnClickListener {
-    private ImageButton mImageButton;
-    private RelativeLayout mLayoutChangeGesture;
-    private String tomain = null;
+    private ImageButton mImageButton; //手势密码 开关按钮
+    private RelativeLayout mLayoutMyInfo; //查看或修改个人信息 布局
+    private RelativeLayout mLayoutModifyPhone; //修改手机号 布局
+    private RelativeLayout mLayoutChangeGesture; //修改手势密码 布局
+    private RelativeLayout mLayoutChangePW; //修改登录密码 布局
     private ImageView mImgChangeGesTabLines;
-    private RelativeLayout mLayoutMyInfo;
     private ImageView mImgBack;
-    private RelativeLayout mLayoutChangePW;
-    private RelativeLayout mLayoutModifyPhone;
-    private Button id_account_btn_exit;
+    private Button account_btn_exit;
+    private String tomain = null;
     private String userInfoId = null;
 
     @Override
@@ -40,23 +40,21 @@ public class AccountActivity extends BaseActivity implements View.OnClickListene
     }
 
     private void initView() {
-
         userInfoId = getIntent().getStringExtra("userInfoId");
+
         mImgBack = (ImageView) findViewById(R.id.id_img_back);
         mLayoutMyInfo = (RelativeLayout) findViewById(R.id.id_account_layout_modify_info);
         mImageButton = (ImageButton) findViewById(R.id.accountset_recive);
         mLayoutChangeGesture = (RelativeLayout) findViewById(R.id.id_account_layout_gesture_change);
         mImgChangeGesTabLines = (ImageView) findViewById(R.id.id_account_img_gesture_edit_lines);
         mLayoutModifyPhone = (RelativeLayout) findViewById(R.id.id_account_layout_modify_phone);
-        mLayoutChangePW = (RelativeLayout) findViewById(R.id.id_account_layout_change_password);
-        id_account_btn_exit = (Button) findViewById(R.id.id_account_btn_exit);
-        id_account_btn_exit.setOnClickListener(this);
+        mLayoutChangePW = (RelativeLayout) findViewById(R.id.account_layout_change_password);
+        account_btn_exit = (Button) findViewById(R.id.account_btn_exit);
 
         if (PreferenceUtil.isGestureChose()) {
             mImageButton.setImageResource(R.drawable.message2);
             mLayoutChangeGesture.setVisibility(View.VISIBLE);
             mImgChangeGesTabLines.setVisibility(View.VISIBLE);
-
         } else {
             mImageButton.setImageResource(R.drawable.message1);
             mLayoutChangeGesture.setVisibility(View.GONE);
@@ -69,6 +67,7 @@ public class AccountActivity extends BaseActivity implements View.OnClickListene
         mLayoutChangeGesture.setOnClickListener(this);
         mLayoutModifyPhone.setOnClickListener(this);
         mLayoutChangePW.setOnClickListener(this);
+        account_btn_exit.setOnClickListener(this);
 
     }
 
@@ -100,26 +99,24 @@ public class AccountActivity extends BaseActivity implements View.OnClickListene
                     startActivity(i);
 
                 }
-                PreferenceUtil.setFirstLogin(true);
+                PreferenceUtil.setFirstLogin(false);
                 break;
-            case R.id.id_account_layout_gesture_change:
-                Intent i = new Intent(this,
-                        GestureVerifyActivity.class);
+            case R.id.id_account_layout_gesture_change: //修改手势密码 布局
+                Intent i = new Intent(this, GestureVerifyActivity.class);
                 i.putExtra("from", ApplicationConsts.ACTIVITY_CHANGE_GESTURE);
                 i.putExtra("title", "修改手势密码");
                 i.putExtra("message", "请绘制旧的解锁图案");
                 startActivity(i);
                 break;
-            case R.id.id_account_layout_modify_phone:
-                Intent i_modify_phone = new Intent(this,
-                        VerifyPassWordActivity.class);
+            case R.id.id_account_layout_modify_phone: //修改手机号 布局
+                Intent i_modify_phone = new Intent(this, VerifyPassWordActivity.class);
                 startActivity(i_modify_phone);
                 break;
-            case R.id.id_account_layout_change_password:
+            case R.id.account_layout_change_password: //修改登录密码 布局
                 Intent i_changePW = new Intent(this, ChangePasswordActivity.class);
                 startActivity(i_changePW);
                 break;
-            case R.id.id_account_btn_exit: //退出登录
+            case R.id.account_btn_exit: //退出登录
                 UserLoadout out = new UserLoadout(AccountActivity.this);
                 out.requestData();
                 break;

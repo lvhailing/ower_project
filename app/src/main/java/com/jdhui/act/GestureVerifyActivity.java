@@ -54,6 +54,7 @@ public class GestureVerifyActivity extends BaseActivity implements android.view.
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         baseSetContentView(R.layout.activity_gesture_verify);
+
         from = getIntent().getExtras().getString("from");
         titleName = getIntent().getStringExtra("title");
         message = getIntent().getStringExtra("message");
@@ -68,15 +69,17 @@ public class GestureVerifyActivity extends BaseActivity implements android.view.
     }
 
     private void initView() {
+        imgBack = (ImageView) findViewById(R.id.id_img_back);
         txtTitle = (TextView) findViewById(R.id.id_txt_title_verify);
         txtMessage = (TextView) findViewById(R.id.text_title_message);
-        txtTitle.setText(titleName);
-        imgBack = (ImageView) findViewById(R.id.id_img_back);
-        imgBack.setOnClickListener(this);
         mTextTip = (TextView) findViewById(R.id.text_title_message);
-        mTextTip.setText(message);
         mGestureContainer = (FrameLayout) findViewById(R.id.gesture_container);
         mTextForget = (TextView) findViewById(R.id.text_forget_gesture);
+
+        txtTitle.setText(titleName);
+        mTextTip.setText(message);
+
+        imgBack.setOnClickListener(this);
 
 		/*if(netHint_2!=null){
             netHint_2.setVisibility(View.GONE);
