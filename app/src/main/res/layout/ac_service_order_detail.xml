@@ -54,9 +54,9 @@
                     android:id="@+id/tv_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="15dip"
                     android:layout_marginLeft="15dp"
                     android:layout_marginTop="15dip"
-                    android:layout_marginBottom="15dip"
                     android:text="请保持电话畅通我们会尽快与您进行联系！"
                     android:textColor="@color/txt_orange"
                     android:textSize="16sp"/>
@@ -80,9 +80,7 @@
                     <TextView
                         android:id="@+id/tv_order_service"
                         style="@style/product_text_detail_rt_service"
-                        android:text=""
-
-                        />
+                        android:text=""/>
                 </LinearLayout>
 
                 <LinearLayout

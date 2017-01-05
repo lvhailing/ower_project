@@ -35,7 +35,6 @@ public class GeneticTestingListActivity extends BaseActivity implements View.OnC
     private MouldList<GeneticTestingList3B> totalList = new MouldList<>();
     private int currentPage = 1;    //当前页
     private GeneticTestingDetail2B detail2B;
-    private MouldList<GeneticTestingList3B> everyList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,7 +59,6 @@ public class GeneticTestingListActivity extends BaseActivity implements View.OnC
                 } else {
                     //上划加载下一页
                     currentPage++;
-                    Log.i("当前页码是：", +currentPage + "---" + everyList.size() + "  总集合数量是：" + totalList.size());
                 }
                 requestListData();
             }
@@ -135,7 +133,7 @@ public class GeneticTestingListActivity extends BaseActivity implements View.OnC
                     }
 
                     GeneticTestingList2B data = (GeneticTestingList2B) params.result;
-                    everyList = data.getList();
+                    MouldList<GeneticTestingList3B> everyList = data.getList();
                     if ((everyList == null || everyList.size() == 0) && currentPage != 1) {
                         Toast.makeText(GeneticTestingListActivity.this, "已经到最后一页", Toast.LENGTH_SHORT).show();
                     }
