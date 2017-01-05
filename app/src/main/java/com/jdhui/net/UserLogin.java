@@ -109,8 +109,7 @@ public class UserLogin extends Observable {
                             PreferenceUtil.setPhone(DESUtil.encrypt(b.getData().getMobile()));
                             PreferenceUtil.setUserId(DESUtil.encrypt(b.getData().getUserId()));
                             PreferenceUtil.setUserNickName(b.getData().getNickName());
-//									PreferenceUtil.setToken(DESUtil.encrypt(b.getData()
-//											.getToken()));
+//									PreferenceUtil.setToken(DESUtil.encrypt(b.getData() .getToken()));
                             PreferenceUtil.setLogin(true);
 //                                    PreferenceUtil.setGestureChose(true);
 
@@ -126,7 +125,6 @@ public class UserLogin extends Observable {
                     }
 
                 } else {
-
                     PreferenceUtil.setAutoLoginAccount("");
                     PreferenceUtil.setAutoLoginPwd("");
                     PreferenceUtil.setLogin(false);
@@ -149,8 +147,7 @@ public class UserLogin extends Observable {
                 super.onFailure(error, content);
                 ResultUserLoginBean b = new ResultUserLoginBean();
                 b.setMsg("登陆失败");
-//						Toast.makeText(context, content, Toast.LENGTH_LONG)
-//								.show();
+//						Toast.makeText(context, content, Toast.LENGTH_LONG) .show();
                 Toast.makeText(context, "加载失败，请确认网络通畅", Toast.LENGTH_LONG).show();//加载失败，请确认网络通畅
                 PreferenceUtil.setAutoLoginAccount("");
                 PreferenceUtil.setAutoLoginPwd("");
