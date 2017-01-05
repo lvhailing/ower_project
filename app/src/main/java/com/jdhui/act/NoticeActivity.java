@@ -62,8 +62,7 @@ public class NoticeActivity extends BaseActivity implements View.OnClickListener
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> arg0, View arg1, int position,
-                                    long arg3) {
+            public void onItemClick(AdapterView<?> arg0, View arg1, int position, long arg3) {
 
                 Intent i_web = new Intent(NoticeActivity.this, WebActivity.class);
                 i_web.putExtra("type", WebActivity.WEBTYPE_NOTICE_DETAILS);
@@ -88,37 +87,36 @@ public class NoticeActivity extends BaseActivity implements View.OnClickListener
 
     private void requestData(int page) {
         cachePage_pro = pro_page;
-        HtmlRequest.getNoticeList(NoticeActivity.this, pro_page,
-                new BaseRequester.OnRequestListener() {
-                    @Override
-                    public void onRequestFinished(BaseParams params) {
-                        if (params.result != null) {
-                            ResultNoticeListContentBean data = (ResultNoticeListContentBean) params.result;
-                            if (data.getList().size() == 0 && pro_page != 1) {
-                                Toast.makeText(NoticeActivity.this, "已经到最后一页", Toast.LENGTH_SHORT).show();
-                                pro_page = cachePage_pro - 1;
-                                listView.getRefreshableView().smoothScrollToPositionFromTop(0, 80, 100);
+        HtmlRequest.getNoticeList(NoticeActivity.this, pro_page, new BaseRequester.OnRequestListener() {
+            @Override
+            public void onRequestFinished(BaseParams params) {
+                if (params.result != null) {
+                    ResultNoticeListContentBean data = (ResultNoticeListContentBean) params.result;
+                    if (data.getList().size() == 0 && pro_page != 1) {
+                        Toast.makeText(NoticeActivity.this, "已经到最后一页", Toast.LENGTH_SHORT).show();
+                        pro_page = cachePage_pro - 1;
+                        listView.getRefreshableView().smoothScrollToPositionFromTop(0, 80, 100);
+                        listView.onRefreshComplete();
+                    } else {
+                        list.clear();
+                        list.addAll(data.getList());
+                        mAdapter.notifyDataSetChanged();
+                        listView.getRefreshableView().smoothScrollToPositionFromTop(0, 80, 100);
+                        listView.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
                                 listView.onRefreshComplete();
-                            } else {
-                                list.clear();
-                                list.addAll(data.getList());
-                                mAdapter.notifyDataSetChanged();
-                                listView.getRefreshableView().smoothScrollToPositionFromTop(0, 80, 100);
-                                listView.postDelayed(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        listView.onRefreshComplete();
-                                    }
-                                }, 1000);
                             }
-                        } else {
-                            listView.onRefreshComplete();
-                            Toast.makeText(NoticeActivity.this, "加载失败，请确认网络通畅", Toast.LENGTH_LONG).show();
-                        }
-                        NoticeActivity.this.stopLoading();
-
+                        }, 1000);
                     }
-                });
+                } else {
+                    listView.onRefreshComplete();
+                    Toast.makeText(NoticeActivity.this, "加载失败，请确认网络通畅", Toast.LENGTH_LONG).show();
+                }
+                NoticeActivity.this.stopLoading();
+
+            }
+        });
     }
 
     @Override
