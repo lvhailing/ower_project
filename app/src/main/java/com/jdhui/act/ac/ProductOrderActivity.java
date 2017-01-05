@@ -124,6 +124,7 @@ public class ProductOrderActivity extends BaseActivity implements View.OnClickLi
     @Override
     protected void onResume() {
         super.onResume();
+        currentPage = 1;
         requestData();
     }
 
@@ -160,6 +161,8 @@ public class ProductOrderActivity extends BaseActivity implements View.OnClickLi
                     } else {
                         //以后直接刷新
                         mAdapter.notifyDataSetChanged();
+                        listView.getRefreshableView().smoothScrollToPositionFromTop(0, 80, 100);
+                        listView.onRefreshComplete();
                     }
 
                 }
