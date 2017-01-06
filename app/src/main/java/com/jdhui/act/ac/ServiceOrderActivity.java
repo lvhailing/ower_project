@@ -159,7 +159,7 @@ public class ServiceOrderActivity extends BaseActivity implements View.OnClickLi
                         mAdapter.notifyDataSetChanged();
                     }
 
-//                    listView.getRefreshableView().smoothScrollToPositionFromTop(0, 80, 100);
+                    listView.getRefreshableView().smoothScrollToPositionFromTop(0, 80, 100);
                     listView.onRefreshComplete();
                 }
             });
