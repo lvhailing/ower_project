@@ -15,11 +15,11 @@ import java.util.ArrayList;
 
 public class NoticeAdapter extends BaseAdapter {
 
-    private ArrayList<ResultNoticeContentBean> list;
+    private MouldList<ResultNoticeContentBean> list;
     private Context context;
     private LayoutInflater inflater;
 
-    public NoticeAdapter(Context context, ArrayList<ResultNoticeContentBean> list) {
+    public NoticeAdapter(Context context, MouldList<ResultNoticeContentBean> list) {
         this.context = context;
         this.list = list;
         inflater = LayoutInflater.from(context);
@@ -56,15 +56,6 @@ public class NoticeAdapter extends BaseAdapter {
         holder.tv_notice_item_title.setText(list.get(position).getTitle());
         holder.tv_notice_item_time.setText(list.get(position).getSendTime());
         holder.tv_notice_item_content.setText(list.get(position).getDescription());
-        /*if (list.get(position).isRead()){
-			holder.tv_notice_item_title.setTextColor(context.getResources().getColor(R.color.gray));
-			holder.tv_notice_item_time.setTextColor(context.getResources().getColor(R.color.gray));
-			holder.tv_notice_item_content.setTextColor(context.getResources().getColor(R.color.gray));
-		}else{
-			holder.tv_notice_item_title.setTextColor(context.getResources().getColor(R.color.black));
-			holder.tv_notice_item_time.setTextColor(context.getResources().getColor(R.color.black));
-			holder.tv_notice_item_content.setTextColor(context.getResources().getColor(R.color.black));
-		}*/
 
         return convertView;
     }
@@ -73,6 +64,5 @@ public class NoticeAdapter extends BaseAdapter {
         TextView tv_notice_item_title;
         TextView tv_notice_item_time;
         TextView tv_notice_item_content;
-
     }
 }

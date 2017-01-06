@@ -5,6 +5,7 @@ import android.animation.AnimatorListenerAdapter;
 import android.animation.ObjectAnimator;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
@@ -66,6 +67,7 @@ public class ServiceOrderActivity extends BaseActivity implements View.OnClickLi
                 } else {
                     //上划加载下一页
                     currentPage++;
+                    Log.i("BBB", "当前页是：" + currentPage + "---" + totalList.size());
                 }
                 requestData();
             }
@@ -125,8 +127,9 @@ public class ServiceOrderActivity extends BaseActivity implements View.OnClickLi
             HtmlRequest.getServiceOrderList(ServiceOrderActivity.this, type, currentPage + "", new BaseRequester.OnRequestListener() {
                 @Override
                 public void onRequestFinished(BaseParams params) {
-                    listView.getRefreshableView().smoothScrollToPositionFromTop(0, 80, 100);
-                    listView.onRefreshComplete();
+                    ServiceOrderActivity.this.stopLoading();
+//                    listView.getRefreshableView().smoothScrollToPositionFromTop(0, 80, 100);
+//                    listView.onRefreshComplete();
 
                     if (params.result == null) {
                         Toast.makeText(ServiceOrderActivity.this, "加载失败，请确认网络通畅", Toast.LENGTH_LONG).show();
@@ -154,9 +157,10 @@ public class ServiceOrderActivity extends BaseActivity implements View.OnClickLi
                     } else {
                         //以后直接刷新
                         mAdapter.notifyDataSetChanged();
-                        listView.getRefreshableView().smoothScrollToPositionFromTop(0, 80, 100);
-                        listView.onRefreshComplete();
                     }
+
+//                    listView.getRefreshableView().smoothScrollToPositionFromTop(0, 80, 100);
+                    listView.onRefreshComplete();
                 }
             });
         } catch (Exception e) {

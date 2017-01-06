@@ -46,6 +46,13 @@ public class GolfListActivity extends BaseActivity implements View.OnClickListen
         initData();
     }
 
+    private void initView() {
+        mBtnBack = (ImageView) findViewById(R.id.iv_back);
+        listView = (PullToRefreshListView) findViewById(R.id.listview);
+
+        mBtnBack.setOnClickListener(this);
+    }
+
     private void initData() {
         mAdapter = new GolfListAdapter(GolfListActivity.this, totalList);
         listView.setAdapter(mAdapter);
@@ -74,13 +81,6 @@ public class GolfListActivity extends BaseActivity implements View.OnClickListen
             }
         });
 
-    }
-
-    private void initView() {
-        mBtnBack = (ImageView) findViewById(R.id.iv_back);
-        listView = (PullToRefreshListView) findViewById(R.id.listview);
-
-        mBtnBack.setOnClickListener(this);
     }
 
     private void requestListData() {  //请求高尔夫球场列表的数据
