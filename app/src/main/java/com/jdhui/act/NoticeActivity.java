@@ -113,10 +113,9 @@ public class NoticeActivity extends BaseActivity implements View.OnClickListener
                     listView.setAdapter(mAdapter);
                 } else {
                     mAdapter.notifyDataSetChanged();
+                    listView.getRefreshableView().smoothScrollToPositionFromTop(0, 80, 100);
+                    listView.onRefreshComplete();
                 }
-
-                listView.getRefreshableView().smoothScrollToPositionFromTop(0, 80, 100);
-                listView.onRefreshComplete();
             }
         });
     }

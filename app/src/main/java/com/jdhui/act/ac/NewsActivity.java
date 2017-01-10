@@ -89,8 +89,8 @@ public class NewsActivity extends BaseActivity implements View.OnClickListener {
     @Override
     public void onResume() {
         super.onResume();
-        currentPage = 1;
-        requestData();
+//        currentPage = 1;
+//        requestData();
     }
 
     private void requestData() {
@@ -126,10 +126,9 @@ public class NewsActivity extends BaseActivity implements View.OnClickListener {
                     listView.setAdapter(mAdapter);
                 } else {
                     mAdapter.notifyDataSetChanged();
+                    listView.getRefreshableView().smoothScrollToPositionFromTop(0, 80, 100);
+                    listView.onRefreshComplete();
                 }
-
-                listView.getRefreshableView().smoothScrollToPositionFromTop(0, 80, 100);
-                listView.onRefreshComplete();
             }
         });
     }
