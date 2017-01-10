@@ -20,7 +20,7 @@ import com.jdhui.mould.HtmlRequest;
 import com.jdhui.mould.types.MouldList;
 
 /**
- * 君德公告
+ * 更多---君德公告
  */
 public class NoticeActivity extends BaseActivity implements View.OnClickListener {
     private PullToRefreshListView listView;
@@ -63,7 +63,7 @@ public class NoticeActivity extends BaseActivity implements View.OnClickListener
             }
         });
 
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() { //item 点击监听
             @Override
             public void onItemClick(AdapterView<?> arg0, View arg1, int position, long arg3) {
                 Intent i_web = new Intent(NoticeActivity.this, WebActivity.class);

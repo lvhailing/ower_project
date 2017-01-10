@@ -24,14 +24,12 @@ import com.jdhui.mould.types.MouldList;
 /**
  * 更多---君德快讯
  */
-public class NewsActivity extends BaseActivity implements View.OnClickListener{
-    private PullToRefreshListView listView;
-    private MouldList<ResultNewsContentBean> list;
-    private NewsAdapter adapter;
-    private int pro_page = 1;
-    private int cachePage_pro = pro_page;
-    private ResultNewsListContentBean data;
+public class NewsActivity extends BaseActivity implements View.OnClickListener {
     private ImageView mBtnBack;
+    private PullToRefreshListView listView;
+    private NewsAdapter mAdapter;
+    private MouldList<ResultNewsContentBean> totalList = new MouldList<>();
+    private int currentPage = 1;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -42,47 +40,37 @@ public class NewsActivity extends BaseActivity implements View.OnClickListener{
     }
 
     private void initView() {
-        mBtnBack= (ImageView) findViewById(R.id.iv_back);
+        mBtnBack = (ImageView) findViewById(R.id.iv_back);
         listView = (PullToRefreshListView) findViewById(R.id.listview);
 
         mBtnBack.setOnClickListener(this);
     }
 
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()){
-            case R.id.iv_back:
-                finish();
-                break;
-        }
-    }
-
     private void initData() {
-        list = new MouldList<ResultNewsContentBean>();
-        requestData(1);
+        mAdapter = new NewsAdapter(NewsActivity.this, totalList);
+        listView.setAdapter(mAdapter);
+
+        requestData();
+
         listView.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ListView>() {
             public void onRefresh(PullToRefreshBase<ListView> refreshView) {
                 if (refreshView.isHeaderShown()) {
-                    if (pro_page >= 2) {
-                        requestData(pro_page--);
-                    } else {
-                        requestData(1);
-                    }
+                    //下拉刷新
+                    currentPage = 1;
                 } else {
-                    requestData(pro_page++);
+                    //上划加载下一页
+                    currentPage++;
                 }
+                requestData();
             }
         });
-        adapter = new NewsAdapter(NewsActivity.this, list);
-        listView.setAdapter(adapter);
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() { //item 点击监听
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
                 Intent i_web = new Intent(NewsActivity.this, WebActivity.class);
                 i_web.putExtra("type", WebActivity.WEBTYPE_NEWS_DETAILS);
-                i_web.putExtra("id", list.get(position - 1).getNewsId());
+                i_web.putExtra("id", totalList.get(position - 1).getNewsId());
                 i_web.putExtra("title", "详情");
                 startActivity(i_web);
             }
@@ -90,53 +78,60 @@ public class NewsActivity extends BaseActivity implements View.OnClickListener{
     }
 
     @Override
-    public void onResume() {
-        super.onResume();
-        pro_page = 1;
-        requestData(1);
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.iv_back:
+                finish();
+                break;
+        }
     }
 
-    private void requestData(int page) {
-        cachePage_pro = pro_page;
-        data = new ResultNewsListContentBean();
-        HtmlRequest.getNewsList(NewsActivity.this, pro_page,
-                new BaseRequester.OnRequestListener() {
-                    @Override
-                    public void onRequestFinished(BaseParams params) {
+    @Override
+    public void onResume() {
+        super.onResume();
+        currentPage = 1;
+        requestData();
+    }
 
-                        if (params.result != null) {
-                            data = (ResultNewsListContentBean) params.result;
-                            if (data.getList() != null) {
-                                if (data.getList().size() == 0
-                                        && pro_page != 1) {
-                                    Toast.makeText(NewsActivity.this, "已经到最后一页", Toast.LENGTH_SHORT).show();
-                                    pro_page = cachePage_pro - 1;
-                                    listView.getRefreshableView()
-                                            .smoothScrollToPositionFromTop(0,
-                                                    80, 100);
-                                    listView.onRefreshComplete();
-                                } else {
-                                    list.clear();
-                                    list.addAll(data.getList());
-                                    adapter.notifyDataSetChanged();
-                                    listView.getRefreshableView()
-                                            .smoothScrollToPositionFromTop(0,
-                                                    80, 100);
-                                    listView.postDelayed(new Runnable() {
-                                        @Override
-                                        public void run() {
-                                            listView.onRefreshComplete();
-                                        }
-                                    }, 1000);
-                                }
+    private void requestData() {
+        HtmlRequest.getNewsList(NewsActivity.this, currentPage, new BaseRequester.OnRequestListener() {
+            @Override
+            public void onRequestFinished(BaseParams params) {
+                NewsActivity.this.stopLoading();
+                listView.getRefreshableView().smoothScrollToPositionFromTop(0, 80, 100);
+                listView.onRefreshComplete();
 
-                            }
-                        } else {
-                            listView.onRefreshComplete();
-                            Toast.makeText(NewsActivity.this, "加载失败，请确认网络通畅", Toast.LENGTH_LONG).show();
-                        }
-                    }
-                });
+                if (params.result == null) {
+                    Toast.makeText(NewsActivity.this, "加载失败，请确认网络通畅", Toast.LENGTH_LONG).show();
+                    return;
+                }
+
+                ResultNewsListContentBean data = (ResultNewsListContentBean) params.result;
+                MouldList<ResultNewsContentBean> everyList = data.getList();
+
+                if ((everyList == null || everyList.size() == 0) && currentPage != 1) {
+                    Toast.makeText(NewsActivity.this, "已经到最后一页", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                if (currentPage == 1) {
+                    //刚进来时 加载第一页数据，或下拉刷新 重新加载数据 。这两种情况之前的数据都清掉
+                    totalList.clear();
+                }
+                totalList.addAll(everyList);
+
+                //刷新数据
+                if (mAdapter == null) {
+                    mAdapter = new NewsAdapter(NewsActivity.this, totalList);
+                    listView.setAdapter(mAdapter);
+                } else {
+                    mAdapter.notifyDataSetChanged();
+                }
+
+                listView.getRefreshableView().smoothScrollToPositionFromTop(0, 80, 100);
+                listView.onRefreshComplete();
+            }
+        });
     }
 
 }
