@@ -55,6 +55,40 @@ public class ServiceOrderActivity extends BaseActivity implements View.OnClickLi
         initData();
     }
 
+    private void initView() {
+        mBtnBack = (ImageView) findViewById(R.id.iv_back);
+        iv_select = (ImageView) findViewById(R.id.iv_select);
+        mTvType = (TextView) findViewById(R.id.tv_type);
+        listView = (PullToRefreshListView) findViewById(R.id.listview);
+        v_hidden = findViewById(R.id.v_hidden);
+        ll_hidden = (LinearLayout) findViewById(R.id.ll_hidden);
+        rl_type = (RelativeLayout) findViewById(R.id.rl_type);
+        tv_0 = (TextView) findViewById(R.id.tv_0);
+        tv_1 = (TextView) findViewById(R.id.tv_1);
+        tv_2 = (TextView) findViewById(R.id.tv_2);
+        tv_3 = (TextView) findViewById(R.id.tv_3);
+        tv_4 = (TextView) findViewById(R.id.tv_4);
+
+        // 下拉刷新
+        listView.getLoadingLayoutProxy(true, false).setPullLabel("下拉刷新");
+        listView.getLoadingLayoutProxy(true, false).setRefreshingLabel("更新中...");
+        listView.getLoadingLayoutProxy(true, false).setReleaseLabel("松开更新");
+        // 上拉加载更多，分页加载
+        listView.getLoadingLayoutProxy(false, true).setPullLabel("上拉加载更多");
+        listView.getLoadingLayoutProxy(false, true).setRefreshingLabel("加载中...");
+        listView.getLoadingLayoutProxy(false, true).setReleaseLabel("松开加载");
+
+        mBtnBack.setOnClickListener(this);
+        v_hidden.setOnClickListener(this);
+        rl_type.setOnClickListener(this);
+
+        tv_0.setOnClickListener(this);
+        tv_1.setOnClickListener(this);
+        tv_2.setOnClickListener(this);
+        tv_3.setOnClickListener(this);
+        tv_4.setOnClickListener(this);
+    }
+
     private void initData() {
         type = "";  //首次默认"" ，代表全部类型
         requestData();
@@ -67,7 +101,7 @@ public class ServiceOrderActivity extends BaseActivity implements View.OnClickLi
                 } else {
                     //上划加载下一页
                     currentPage++;
-                    Log.i("BBB", "当前页是：" + currentPage + "---" + totalList.size());
+//                    Log.i("BBB", "当前页是：" + currentPage + "---" + totalList.size());
                 }
                 requestData();
             }
@@ -90,36 +124,11 @@ public class ServiceOrderActivity extends BaseActivity implements View.OnClickLi
         });
     }
 
-    private void initView() {
-        mBtnBack = (ImageView) findViewById(R.id.iv_back);
-        iv_select = (ImageView) findViewById(R.id.iv_select);
-        mTvType = (TextView) findViewById(R.id.tv_type);
-        listView = (PullToRefreshListView) findViewById(R.id.listview);
-        v_hidden = findViewById(R.id.v_hidden);
-        ll_hidden = (LinearLayout) findViewById(R.id.ll_hidden);
-        rl_type = (RelativeLayout) findViewById(R.id.rl_type);
-        tv_0 = (TextView) findViewById(R.id.tv_0);
-        tv_1 = (TextView) findViewById(R.id.tv_1);
-        tv_2 = (TextView) findViewById(R.id.tv_2);
-        tv_3 = (TextView) findViewById(R.id.tv_3);
-        tv_4 = (TextView) findViewById(R.id.tv_4);
-
-        mBtnBack.setOnClickListener(this);
-        v_hidden.setOnClickListener(this);
-        rl_type.setOnClickListener(this);
-
-        tv_0.setOnClickListener(this);
-        tv_1.setOnClickListener(this);
-        tv_2.setOnClickListener(this);
-        tv_3.setOnClickListener(this);
-        tv_4.setOnClickListener(this);
-    }
-
     @Override
     protected void onResume() {
         super.onResume();
-        currentPage = 1;
-        requestData();
+//        currentPage = 1;
+//        requestData();
     }
 
     private void requestData() {
@@ -128,8 +137,8 @@ public class ServiceOrderActivity extends BaseActivity implements View.OnClickLi
                 @Override
                 public void onRequestFinished(BaseParams params) {
                     ServiceOrderActivity.this.stopLoading();
-//                    listView.getRefreshableView().smoothScrollToPositionFromTop(0, 80, 100);
-//                    listView.onRefreshComplete();
+                    listView.getRefreshableView().smoothScrollToPositionFromTop(0, 80, 100);
+                    listView.onRefreshComplete();
 
                     if (params.result == null) {
                         Toast.makeText(ServiceOrderActivity.this, "加载失败，请确认网络通畅", Toast.LENGTH_LONG).show();
@@ -157,10 +166,9 @@ public class ServiceOrderActivity extends BaseActivity implements View.OnClickLi
                     } else {
                         //以后直接刷新
                         mAdapter.notifyDataSetChanged();
+                        listView.getRefreshableView().smoothScrollToPositionFromTop(0, 80, 100);
+                        listView.onRefreshComplete();
                     }
-
-                    listView.getRefreshableView().smoothScrollToPositionFromTop(0, 80, 100);
-                    listView.onRefreshComplete();
                 }
             });
         } catch (Exception e) {

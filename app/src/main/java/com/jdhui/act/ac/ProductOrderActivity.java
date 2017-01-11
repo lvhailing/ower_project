@@ -124,8 +124,8 @@ public class ProductOrderActivity extends BaseActivity implements View.OnClickLi
     @Override
     protected void onResume() {
         super.onResume();
-        currentPage = 1;
-        requestData();
+//        currentPage = 1;
+//        requestData();
     }
 
     private void requestData() {
@@ -135,8 +135,8 @@ public class ProductOrderActivity extends BaseActivity implements View.OnClickLi
                 @Override
                 public void onRequestFinished(BaseParams params) {
                     ProductOrderActivity.this.stopLoading();
-//                    listView.getRefreshableView().smoothScrollToPositionFromTop(0, 80, 100);
-//                    listView.onRefreshComplete();
+                    listView.getRefreshableView().smoothScrollToPositionFromTop(0, 80, 100);
+                    listView.onRefreshComplete();
 
                     if (params.result == null) {
                         Toast.makeText(ProductOrderActivity.this, "加载失败，请确认网络通畅", Toast.LENGTH_LONG).show();
@@ -162,10 +162,9 @@ public class ProductOrderActivity extends BaseActivity implements View.OnClickLi
                     } else {
                         //以后直接刷新
                         mAdapter.notifyDataSetChanged();
+                        listView.getRefreshableView().smoothScrollToPositionFromTop(0, 80, 100);
+                        listView.onRefreshComplete();
                     }
-
-                    listView.getRefreshableView().smoothScrollToPositionFromTop(0, 80, 100);
-                    listView.onRefreshComplete();
                 }
             });
         } catch (Exception e) {
