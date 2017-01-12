@@ -1106,9 +1106,10 @@ public class HtmlRequest extends BaseRequester {
     }
 
     /**
-     * 获取消息列表
-     *
-     * @param context  上下文
+     * 资产--获取消息列表
+     * @param context 上下文
+     * @param userId 用户ID
+     * @param page 页码
      * @param listener 监听
      * @return 返回数据
      */

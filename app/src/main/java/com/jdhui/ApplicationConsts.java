@@ -154,7 +154,7 @@ public class ApplicationConsts {
     public static final String URL_CYCLE_ADVERTISE_INDEX = EC_HOST + "turn/advertise";
 
     /**
-     * 消息列表
+     * 资产--消息列表
      */
     public static final String URL_MESSAGE_LIST_INDEX = EC_HOST + "user/message/list";
     /**

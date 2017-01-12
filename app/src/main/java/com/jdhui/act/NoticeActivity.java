@@ -65,7 +65,7 @@ public class NoticeActivity extends BaseActivity implements View.OnClickListener
                     //下拉刷新
                     currentPage = 1;
                 } else {
-                    //上划加载下一页
+                    //上拉加载下一页
                     currentPage++;
                 }
                 requestData();

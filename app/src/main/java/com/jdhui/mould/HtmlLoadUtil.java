@@ -269,9 +269,10 @@ public class HtmlLoadUtil {
     }
 
     /**
-     * 消息消息
-     *
-     * @return a
+     * 资产--消息列表（入参）
+     * @param userId 用户ID
+     * @param page 页码
+     * @return 返回数据
      */
     public static String getMessageList(String userId, String page) {
         UserPageBean b = new UserPageBean(userId, page);
