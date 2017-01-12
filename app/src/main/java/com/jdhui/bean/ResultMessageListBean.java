@@ -3,6 +3,9 @@ package com.jdhui.bean;
 
 import com.jdhui.mould.types.IMouldType;
 
+/**
+ * 资产--消息列表（1-2）用于接收后台返回的json数据
+ */
 public class ResultMessageListBean implements IMouldType {
     private String status; //消息状态(read:已读;unread:未读)
     private String title;//消息标题

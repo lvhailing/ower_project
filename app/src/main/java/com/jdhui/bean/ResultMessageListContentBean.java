@@ -4,6 +4,9 @@ package com.jdhui.bean;
 import com.jdhui.mould.types.IMouldType;
 import com.jdhui.mould.types.MouldList;
 
+/**
+ * 资产--消息列表（1-1）用于接收后台返回的json数据
+ */
 public class ResultMessageListContentBean implements IMouldType {
 	private String check;
 	private String code;

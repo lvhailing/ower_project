@@ -1162,11 +1162,15 @@ public class HtmlRequest extends BaseRequester {
 
     /**
      * 更多--产品预约
-     *
-     * @param context  上下文
-     * @param listener 监听
-     * @return 返回数据
+     * @param context
+     * @param userInfoId
+     * @param category
+     * @param status
+     * @param page
+     * @param listener
+     * @return
      */
+
     public static String getProductOrderList(final Context context, String userInfoId, String category, String status, String page, OnRequestListener listener) {
 
         final String data = HtmlLoadUtil.getProductOrderList(userInfoId, category, status, page);

@@ -21,7 +21,7 @@ import com.jdhui.uitls.DESUtil;
 import com.jdhui.uitls.PreferenceUtil;
 
 /**
- * 消息
+ * 资产--消息
  */
 public class MessageActivity extends BaseActivity implements View.OnClickListener {
     public final static int MESSAGE_RESUEST_CODE = 4003;  //已读消息请求码
@@ -77,12 +77,11 @@ public class MessageActivity extends BaseActivity implements View.OnClickListene
                     messagePage++;
                     requestMessageList();
                 }
-
             }
         });
         mAdapter = new MessageAdapter(this, list);
         listView.setAdapter(mAdapter);
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() { //item 点击监听
             @Override
             public void onItemClick(AdapterView<?> arg0, View arg1, int position, long arg3) {
                 Intent i_web = new Intent();

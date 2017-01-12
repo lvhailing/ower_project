@@ -43,6 +43,15 @@ public class NewsActivity extends BaseActivity implements View.OnClickListener {
         mBtnBack = (ImageView) findViewById(R.id.iv_back);
         listView = (PullToRefreshListView) findViewById(R.id.listview);
 
+        // 下拉刷新
+        listView.getLoadingLayoutProxy(true, false).setPullLabel("下拉刷新");
+        listView.getLoadingLayoutProxy(true, false).setRefreshingLabel("更新中...");
+        listView.getLoadingLayoutProxy(true, false).setReleaseLabel("松开更新");
+        // 上拉加载更多，分页加载
+        listView.getLoadingLayoutProxy(false, true).setPullLabel("上拉加载更多");
+        listView.getLoadingLayoutProxy(false, true).setRefreshingLabel("加载中...");
+        listView.getLoadingLayoutProxy(false, true).setReleaseLabel("松开加载");
+
         mBtnBack.setOnClickListener(this);
     }
 
@@ -97,12 +106,15 @@ public class NewsActivity extends BaseActivity implements View.OnClickListener {
         HtmlRequest.getNewsList(NewsActivity.this, currentPage, new BaseRequester.OnRequestListener() {
             @Override
             public void onRequestFinished(BaseParams params) {
-                NewsActivity.this.stopLoading();
-                listView.getRefreshableView().smoothScrollToPositionFromTop(0, 80, 100);
-                listView.onRefreshComplete();
-
                 if (params.result == null) {
                     Toast.makeText(NewsActivity.this, "加载失败，请确认网络通畅", Toast.LENGTH_LONG).show();
+
+                    listView.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            listView.onRefreshComplete();
+                        }
+                    }, 1000);
                     return;
                 }
 
@@ -111,7 +123,6 @@ public class NewsActivity extends BaseActivity implements View.OnClickListener {
 
                 if ((everyList == null || everyList.size() == 0) && currentPage != 1) {
                     Toast.makeText(NewsActivity.this, "已经到最后一页", Toast.LENGTH_SHORT).show();
-                    return;
                 }
 
                 if (currentPage == 1) {
@@ -127,8 +138,13 @@ public class NewsActivity extends BaseActivity implements View.OnClickListener {
                 } else {
                     mAdapter.notifyDataSetChanged();
                 }
-//                listView.getRefreshableView().smoothScrollToPositionFromTop(0, 80, 100);
-//                listView.onRefreshComplete();
+
+                listView.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        listView.onRefreshComplete();
+                    }
+                }, 1000);
             }
         });
     }

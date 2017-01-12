@@ -24,12 +24,7 @@ public class MessageAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        if (list != null) {
-            return list.size();
-        } else {
-            return 0;
-        }
-
+        return list == null ? 0 : list.size();
     }
 
     @Override

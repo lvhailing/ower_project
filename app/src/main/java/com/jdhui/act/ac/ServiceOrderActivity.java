@@ -136,12 +136,14 @@ public class ServiceOrderActivity extends BaseActivity implements View.OnClickLi
             HtmlRequest.getServiceOrderList(ServiceOrderActivity.this, type, currentPage + "", new BaseRequester.OnRequestListener() {
                 @Override
                 public void onRequestFinished(BaseParams params) {
-                    ServiceOrderActivity.this.stopLoading();
-                    listView.getRefreshableView().smoothScrollToPositionFromTop(0, 80, 100);
-                    listView.onRefreshComplete();
-
                     if (params.result == null) {
                         Toast.makeText(ServiceOrderActivity.this, "加载失败，请确认网络通畅", Toast.LENGTH_LONG).show();
+                        listView.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                listView.onRefreshComplete();
+                            }
+                        }, 1000);
                         return;
                     }
 
@@ -150,7 +152,6 @@ public class ServiceOrderActivity extends BaseActivity implements View.OnClickLi
                     if ((everyList == null || everyList.size() == 0) && currentPage != 1) {
                         Toast.makeText(ServiceOrderActivity.this, "已经到最后一页", Toast.LENGTH_SHORT).show();
                     }
-
 
                     if (currentPage == 1) {
                         //刚进来时 加载第一页数据，或下拉刷新 重新加载数据 。这两种情况之前的数据都清掉
@@ -166,9 +167,17 @@ public class ServiceOrderActivity extends BaseActivity implements View.OnClickLi
                     } else {
                         //以后直接刷新
                         mAdapter.notifyDataSetChanged();
-                        listView.getRefreshableView().smoothScrollToPositionFromTop(0, 80, 100);
-                        listView.onRefreshComplete();
                     }
+
+                    listView.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            if (currentPage == 1) {
+                                listView.getRefreshableView().smoothScrollToPositionFromTop(0, 80, 100);//当服务切换时，默认加载第一页数据，让其回到数据顶端
+                            }
+                            listView.onRefreshComplete();
+                        }
+                    }, 1000);
                 }
             });
         } catch (Exception e) {

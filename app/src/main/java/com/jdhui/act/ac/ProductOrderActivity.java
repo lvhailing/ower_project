@@ -43,7 +43,7 @@ public class ProductOrderActivity extends BaseActivity implements View.OnClickLi
     private TextView tv_1, tv_2, tv_3, tv_4;  //状态或类型的下面的text
 
     private int currentPage = 1;    //当前页
-//    private int currentType;  //当前点的是上拉、下拉刷新  还是组合选择  1、上拉、下拉刷新  2、组合选择
+    //    private int currentType;  //当前点的是上拉、下拉刷新  还是组合选择  1、上拉、下拉刷新  2、组合选择
     private int currentFlag;  //当前选择哪个按钮  1、类型按钮  2、状态按钮
     private String userInfoId; //用户id
     private String category;    //当前产品类型
@@ -111,6 +111,15 @@ public class ProductOrderActivity extends BaseActivity implements View.OnClickLi
         tv_3 = (TextView) findViewById(R.id.tv_3);
         tv_4 = (TextView) findViewById(R.id.tv_4);
 
+        // 下拉刷新
+        listView.getLoadingLayoutProxy(true, false).setPullLabel("下拉刷新");
+        listView.getLoadingLayoutProxy(true, false).setRefreshingLabel("更新中...");
+        listView.getLoadingLayoutProxy(true, false).setReleaseLabel("松开更新");
+        // 上拉加载更多，分页加载
+        listView.getLoadingLayoutProxy(false, true).setPullLabel("上拉加载更多");
+        listView.getLoadingLayoutProxy(false, true).setRefreshingLabel("加载中...");
+        listView.getLoadingLayoutProxy(false, true).setReleaseLabel("松开加载");
+
         mBtnBack.setOnClickListener(this);
         v_hidden.setOnClickListener(this);
         rl_category.setOnClickListener(this);
@@ -134,12 +143,15 @@ public class ProductOrderActivity extends BaseActivity implements View.OnClickLi
             HtmlRequest.getProductOrderList(ProductOrderActivity.this, userInfoId, category, status, currentPage + "", new BaseRequester.OnRequestListener() {
                 @Override
                 public void onRequestFinished(BaseParams params) {
-                    ProductOrderActivity.this.stopLoading();
-                    listView.getRefreshableView().smoothScrollToPositionFromTop(0, 80, 100);
-                    listView.onRefreshComplete();
-
                     if (params.result == null) {
                         Toast.makeText(ProductOrderActivity.this, "加载失败，请确认网络通畅", Toast.LENGTH_LONG).show();
+
+                        listView.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                listView.onRefreshComplete();
+                            }
+                        }, 1000);
                         return;
                     }
 
@@ -162,9 +174,17 @@ public class ProductOrderActivity extends BaseActivity implements View.OnClickLi
                     } else {
                         //以后直接刷新
                         mAdapter.notifyDataSetChanged();
-                        listView.getRefreshableView().smoothScrollToPositionFromTop(0, 80, 100);
-                        listView.onRefreshComplete();
                     }
+
+                    listView.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            if (currentPage == 1) {
+                                listView.getRefreshableView().smoothScrollToPositionFromTop(0, 80, 100);//当类型或状态切换时，默认加载第一页数据，让其回到数据顶端
+                            }
+                            listView.onRefreshComplete();
+                        }
+                    }, 1000);
                 }
             });
         } catch (Exception e) {
