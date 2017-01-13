@@ -609,11 +609,13 @@ public class HtmlRequest extends BaseRequester {
     }
 
     /**
-     * 投资列表
-     *
+     * 资产--固定收益投资列表
      * @param context  上下文
+     * @param page  页码
+     * @param userId  用户ID
+     * @param type 产品类别{非保险类别(固收:optimum;浮动收益:floating; }{保险:insurance) }
      * @param listener 监听
-     * @return 返回数据
+     * @return
      */
     public static String accountProductTenders(final Context context, String page, String userId, String type, OnRequestListener listener) {
         final String data = HtmlLoadUtil.accountProductTenders(type, page, userId);

@@ -130,7 +130,6 @@ public class NoticeActivity extends BaseActivity implements View.OnClickListener
                 listView.postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        listView.getRefreshableView().smoothScrollToPositionFromTop(0, 80, 100);
                         listView.onRefreshComplete();
                     }
                 }, 1000);

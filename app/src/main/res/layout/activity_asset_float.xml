@@ -7,13 +7,13 @@
                 android:paddingBottom="10dp">
 
     <RelativeLayout
-        android:id="@+id/id_asset_float_txt_title"
+        android:id="@+id/rl_asset_float_title"
         android:layout_width="match_parent"
         android:layout_height="51dp"
         android:background="@color/red4">
 
         <ImageView
-            android:id="@+id/id_img_back"
+            android:id="@+id/iv_back"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_centerVertical="true"
@@ -34,7 +34,7 @@
         android:id="@+id/ll_asset_fixed"
         android:layout_width="match_parent"
         android:layout_height="50dip"
-        android:layout_below="@id/id_asset_float_txt_title"
+        android:layout_below="@id/rl_asset_float_title"
         android:background="@color/white"
         android:gravity="center_vertical"
         android:orientation="horizontal">
@@ -57,7 +57,7 @@
 
     <com.handmark.pulltorefresh.library.PullToRefreshListView
         xmlns:ptr="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/listview_asset_float"
+        android:id="@+id/listview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/ll_asset_fixed"

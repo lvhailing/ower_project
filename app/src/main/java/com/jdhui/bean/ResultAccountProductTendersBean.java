@@ -4,6 +4,7 @@ package com.jdhui.bean;
 import com.jdhui.mould.types.IMouldType;
 import com.jdhui.mould.types.MouldList;
 /**
+ * 资产--固收投资列表
  *  2B：  投资列表 (account/product/tenders)
  */
 public class ResultAccountProductTendersBean implements IMouldType {
