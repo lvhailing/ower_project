@@ -93,40 +93,6 @@ public class MessageActivity extends BaseActivity implements View.OnClickListene
     @Override
     public void onResume() {
         super.onResume();
-//        requestHotProductData();
-    }
-
-    /**
-     * 模拟请求固守产品网络数据
-     */
-    private void requestHotProductData() {
-        requestMessageList();
-        listView.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ListView>() {
-            public void onRefresh(PullToRefreshBase<ListView> refreshView) {
-                if (refreshView.isHeaderShown()) {
-                    //下拉刷新
-                    currentPage = 1;
-                } else {
-                    //上拉加载下一页
-                    currentPage++;
-                }
-                requestMessageList();
-            }
-        });
-        mAdapter = new MessageAdapter(this, totalList);
-        listView.setAdapter(mAdapter);
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() { //item 点击监听
-            @Override
-            public void onItemClick(AdapterView<?> arg0, View arg1, int position, long arg3) {
-                Intent i_web = new Intent();
-                i_web.setClass(MessageActivity.this, WebActivity.class);
-                i_web.putExtra("id", totalList.get(position - 1).getMessageId());
-                i_web.putExtra("type", WebActivity.WEBTYPE_MESSAGE_DETAILS);
-                index = position - 1;
-                i_web.putExtra("title", "消息详情");
-                startActivityForResult(i_web, MESSAGE_RESUEST_CODE);
-            }
-        });
     }
 
     @Override
@@ -159,7 +125,7 @@ public class MessageActivity extends BaseActivity implements View.OnClickListene
                     return;
                 }
 
-                MouldList<ResultMessageListBean>  everyList = (MouldList<ResultMessageListBean> ) params.result;
+                MouldList<ResultMessageListBean> everyList = (MouldList<ResultMessageListBean>) params.result;
                 if (everyList.size() == 0 && currentPage != 1) {
                     Toast.makeText(MessageActivity.this, "已经到最后一页", Toast.LENGTH_SHORT).show();
                 }
