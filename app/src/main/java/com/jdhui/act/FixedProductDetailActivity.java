@@ -36,7 +36,7 @@ public class FixedProductDetailActivity extends BaseActivity implements View.OnC
     private TextView tv_fixed_product_detail_touzifanwei;
     private TextView tv_fixed_product_detail_fengkongcuoshi;
     private TextView tv_fixed_product_detail_touziliangdian;
-    private ImageView id_img_back;
+    private ImageView iv_back;
 
     private TextView tv_fixed_product_detail_more_info;
 
@@ -83,7 +83,7 @@ public class FixedProductDetailActivity extends BaseActivity implements View.OnC
         productType = getIntent().getStringExtra("type");
         fixedDetailBean = new ResultFixedProductDetailBean();
 
-        id_img_back = (ImageView) findViewById(R.id.id_img_back);
+        iv_back = (ImageView) findViewById(R.id.iv_back);
         ll_fixed_product_detail_rengoujine = (LinearLayout) findViewById(R.id.ll_fixed_product_detail_rengoujine);
         ll_fixed_product_detail_yujishouyi = (LinearLayout) findViewById(R.id.ll_fixed_product_detail_yujishouyi);
 
@@ -112,7 +112,7 @@ public class FixedProductDetailActivity extends BaseActivity implements View.OnC
         btn_order = (Button) findViewById(R.id.btn_order);
 
 
-        id_img_back.setOnClickListener(this);
+        iv_back.setOnClickListener(this);
         tv_fixed_product_detail_touzifanwei.setOnClickListener(this);
         tv_fixed_product_detail_fengkongcuoshi.setOnClickListener(this);
         tv_fixed_product_detail_touziliangdian.setOnClickListener(this);
@@ -244,7 +244,7 @@ public class FixedProductDetailActivity extends BaseActivity implements View.OnC
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.id_img_back:
+            case R.id.iv_back:
                 finish();
                 break;
             case R.id.tv_fixed_product_detail_touzifanwei: //投资范围

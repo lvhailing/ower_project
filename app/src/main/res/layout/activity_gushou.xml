@@ -2,17 +2,16 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/bg_gray"
-    android:orientation="vertical">
+    android:background="@color/bg_gray">
 
     <RelativeLayout
-        android:id="@+id/id_account_txt_title"
+        android:id="@+id/rl_goushou_title"
         android:layout_width="match_parent"
         android:layout_height="51dp"
         android:background="@color/red4">
 
         <ImageView
-            android:id="@+id/id_img_back"
+            android:id="@+id/iv_back"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_centerVertical="true"
@@ -34,7 +33,7 @@
         android:id="@+id/listview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/id_account_txt_title"
+        android:layout_below="@id/rl_goushou_title"
         android:scrollbars="none"
         ptr:ptrAnimationStyle="flip"
         ptr:ptrMode="both"/>

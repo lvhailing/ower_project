@@ -37,12 +37,13 @@ import java.util.ArrayList;
 public class InsuranceActivity extends BaseActivity implements View.OnClickListener, ViewPager.OnPageChangeListener {
     //healthInsurance:健康险; accidentInsurance:意外险; lifeInsurance:人寿险; propertyInsurance:财产险; travelInsurance:旅游险
 
+    private ImageView iv_back;
+    private String[] mTabItems = new String[]{"全   部", "健康险", "意外险", "人寿险", "财产险", "旅游险", ""};
     private ViewPager mViewPager;
+    private NewsViewPagerAdapter mAdapter;
     private ViewGroup mViewGroup;
     private PullToRefreshListView listView;
-    private BaseAdapter adapter;
-    private NewsViewPagerAdapter mAdapter;
-    private String[] mTabItems = new String[]{"全   部", "健康险", "意外险", "人寿险", "财产险", "旅游险", ""};
+    private InsuranceAdapter insuranceAdapter;
     private int mPreSelectItem;
     View view1;
     View view2;
@@ -50,14 +51,11 @@ public class InsuranceActivity extends BaseActivity implements View.OnClickListe
     View view4;
     View view5;
     View view6;
-
-    private ImageView mBtnBack;
-    private ResultInsuranceProductBean insuranceBean;
-    private MouldList<ResultInsuranceProductItemBean> list;
-    private int insurancePage = 1;          //当前页码
-    private int cachePage = insurancePage;
+    //    private ResultInsuranceProductBean insuranceBean;
+    private MouldList<ResultInsuranceProductItemBean> totalList = new MouldList<>();
+    private int currentPage = 1; //当前页码
+    //    private int cachePage = insurancePage;
     private String insuranceType = "";
-    private InsuranceAdapter insuranceAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,13 +68,11 @@ public class InsuranceActivity extends BaseActivity implements View.OnClickListe
     }
 
     private void initView() {
-        insuranceBean = new ResultInsuranceProductBean();
-        list = new MouldList<ResultInsuranceProductItemBean>();
-
-        mBtnBack = (ImageView) findViewById(R.id.id_img_back);
+        iv_back = (ImageView) findViewById(R.id.iv_back);
         mViewPager = (ViewPager) findViewById(R.id.viewpager);
         mViewGroup = (ViewGroup) findViewById(R.id.viewgroup);
-        mBtnBack.setOnClickListener(this);
+
+        iv_back.setOnClickListener(this);
     }
 
     private void addViewPagerView() {
@@ -155,33 +151,39 @@ public class InsuranceActivity extends BaseActivity implements View.OnClickListe
 
         }
 
+        //下拉刷新
+        listView.getLoadingLayoutProxy(true, false).setPullLabel("下拉刷新");
+        listView.getLoadingLayoutProxy(true, false).setRefreshingLabel("更新中...");
+        listView.getLoadingLayoutProxy(true, false).setReleaseLabel("松开更新");
+        // 上拉加载更多，分页加载
+        listView.getLoadingLayoutProxy(false, true).setPullLabel("上拉加载更多");
+        listView.getLoadingLayoutProxy(false, true).setRefreshingLabel("加载中...");
+        listView.getLoadingLayoutProxy(false, true).setReleaseLabel("松开加载");
+
+        insuranceAdapter = new InsuranceAdapter(this, totalList);
+        listView.setAdapter(insuranceAdapter);
+
         requestInsuranceProductList(insuranceType);
+
         listView.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ListView>() {
             public void onRefresh(PullToRefreshBase<ListView> refreshView) {
                 if (refreshView.isHeaderShown()) {
-                    if (insurancePage >= 2) {
-                        insurancePage--;
-                        requestInsuranceProductList(insuranceType);
-                    } else {
-                        insurancePage = 1;
-                        requestInsuranceProductList(insuranceType);
-                    }
+                    //下拉刷新
+                    currentPage = 1;
                 } else {
-                    insurancePage++;
-                    requestInsuranceProductList(insuranceType);
+                    //上拉加载下一页
+                    currentPage++;
                 }
+                requestInsuranceProductList(insuranceType);
             }
         });
-        insuranceAdapter = new InsuranceAdapter(this, list);
-        listView.setAdapter(insuranceAdapter);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() { //item 点击监听
             @Override
             public void onItemClick(AdapterView<?> arg0, View arg1, int position, long arg3) {
-                Intent i_insuranceProductDetail = new Intent();
-                i_insuranceProductDetail.setClass(InsuranceActivity.this, InsuranceProductDetailActivity.class);
-                i_insuranceProductDetail.putExtra("productId", list.get(position - 1).getProductId());
-                InsuranceActivity.this.startActivity(i_insuranceProductDetail);
+                Intent intent = new Intent(InsuranceActivity.this, InsuranceProductDetailActivity.class);
+                intent.putExtra("productId", totalList.get(position - 1).getProductId());
+                InsuranceActivity.this.startActivity(intent);
             }
         });
     }
@@ -189,7 +191,7 @@ public class InsuranceActivity extends BaseActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.id_img_back:
+            case R.id.iv_back:
                 finish();
                 break;
         }
@@ -269,7 +271,6 @@ public class InsuranceActivity extends BaseActivity implements View.OnClickListe
                 ((HorizontalScrollView) mViewGroup.getParent()).setScrollX(move);
                 // }
                 // });
-
             }
         } else {// 向屏幕左边移动
             if ((scrollViewWidth - visiableWidth) >= (screenWidth / 2)) {
@@ -279,48 +280,47 @@ public class InsuranceActivity extends BaseActivity implements View.OnClickListe
         mPreSelectItem = position;
         switch (mPreSelectItem) {
             case 0:
-                insurancePage = 1;
+                currentPage = 1;
                 insuranceType = ""; //全部
-                list.clear();
+                totalList.clear();
                 initData();
                 // requestData(category, 1);
                 break;
             case 1:
-                insurancePage = 1;
+                currentPage = 1;
                 insuranceType = "healthInsurance"; //健康
-                list.clear();
+                totalList.clear();
                 initData();
                 // requestData(category, 1);
                 break;
             case 2:
-                insurancePage = 1;
+                currentPage = 1;
                 insuranceType = "accidentInsurance"; //意外
-                list.clear();
+                totalList.clear();
                 initData();
                 // requestData(category, 1);
                 break;
             case 3:
-                insurancePage = 1;
+                currentPage = 1;
                 insuranceType = "lifeInsurance"; //人寿
-                list.clear();
+                totalList.clear();
                 initData();
                 // requestData(category, 1);
                 break;
             case 4:
-                insurancePage = 1;
+                currentPage = 1;
                 insuranceType = "propertyInsurance"; //财产
-                list.clear();
+                totalList.clear();
                 initData();
                 // requestData(category, 1);
                 break;
             case 5:
-                insurancePage = 1;
+                currentPage = 1;
                 insuranceType = "travelInsurance"; //旅游
-                list.clear();
+                totalList.clear();
                 initData();
                 // requestData(category, 1);
                 break;
-
 
             default:
                 break;
@@ -328,48 +328,47 @@ public class InsuranceActivity extends BaseActivity implements View.OnClickListe
     }
 
     private void requestInsuranceProductList(String insuranceType) {
-        cachePage = insurancePage;
-        HtmlRequest.getInsuranceList(this, insuranceType, insurancePage + "", new BaseRequester.OnRequestListener() {
+        HtmlRequest.getInsuranceList(this, insuranceType, currentPage + "", new BaseRequester.OnRequestListener() {
             @Override
             public void onRequestFinished(BaseParams params) {
-                if (params != null) {
+                if (params.result == null) {
+                    Toast.makeText(InsuranceActivity.this, "加载失败，请确认网络通畅", Toast.LENGTH_LONG).show();
 
-                    if (params.result != null) {
-                        insuranceBean = (ResultInsuranceProductBean) params.result;
-
-                        if (insuranceBean.getList() != null) {
-                            if (insuranceBean.getList().size() == 0 && insurancePage != 1) {
-                                Toast.makeText(InsuranceActivity.this, "已经到最后一页", Toast.LENGTH_SHORT).show();
-                                insurancePage = cachePage - 1;
-                                listView.getRefreshableView().smoothScrollToPositionFromTop(0, 80, 100);
-                                listView.onRefreshComplete();
-                            } else {
-                                list.clear();
-                                list.addAll(insuranceBean.getList());
-                                insuranceAdapter.notifyDataSetChanged();
-                                listView.postDelayed(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        listView.onRefreshComplete();
-                                    }
-                                }, 1000);
-                                listView.getRefreshableView().smoothScrollToPositionFromTop(0, 80, 100);
-                            }
-                        }
-                    } else {
-                        listView.onRefreshComplete();
-                        Toast.makeText(InsuranceActivity.this, "加载失败，请确认网络通畅", Toast.LENGTH_LONG).show();
-                    }
-                    InsuranceActivity.this.stopLoading();
                     listView.postDelayed(new Runnable() {
                         @Override
                         public void run() {
                             listView.onRefreshComplete();
                         }
                     }, 1000);
-
+                    return;
                 }
 
+                ResultInsuranceProductBean data = (ResultInsuranceProductBean) params.result;
+                MouldList<ResultInsuranceProductItemBean> everyList = data.getList();
+                if ((everyList == null || everyList.size() == 0) && currentPage != 1) {
+                    Toast.makeText(InsuranceActivity.this, "已经到最后一页", Toast.LENGTH_SHORT).show();
+                }
+
+                if (currentPage == 1) {
+                    //刚进来时 加载第一页数据，或下拉刷新 重新加载数据 。这两种情况之前的数据都清掉
+                    totalList.clear();
+                }
+                totalList.addAll(everyList);
+
+                //刷新数据
+                if (insuranceAdapter == null) {
+                    insuranceAdapter = new InsuranceAdapter(InsuranceActivity.this, totalList);
+                    listView.setAdapter(insuranceAdapter);
+                } else {
+                    insuranceAdapter.notifyDataSetChanged();
+                }
+
+                listView.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        listView.onRefreshComplete();
+                    }
+                }, 1000);
             }
         });
 

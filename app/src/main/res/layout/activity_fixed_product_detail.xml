@@ -7,13 +7,13 @@
     android:orientation="vertical">
 
     <RelativeLayout
-        android:id="@+id/id_fixed_product_detail_txt_title"
+        android:id="@+id/rl_fixed_product_detail_title"
         android:layout_width="match_parent"
         android:layout_height="51dp"
         android:background="@color/red4">
 
         <ImageView
-            android:id="@+id/id_img_back"
+            android:id="@+id/iv_back"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_centerVertical="true"
@@ -33,7 +33,7 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/id_fixed_product_detail_txt_title"
+        android:layout_below="@id/rl_fixed_product_detail_title"
         android:fillViewport="true"
         android:scrollbars="none">
 
@@ -69,6 +69,7 @@
                 android:id="@+id/ll_fixed_product_detail_massage"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:paddingRight="10dp"
                 android:layout_below="@id/rl_fixed_product_detail_name"
                 android:background="@color/white"
                 android:orientation="vertical">

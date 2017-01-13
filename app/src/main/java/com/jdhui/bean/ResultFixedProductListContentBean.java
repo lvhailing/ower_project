@@ -3,6 +3,10 @@ package com.jdhui.bean;
 
 import com.jdhui.mould.types.IMouldType;
 
+/**
+ * 产品--固收、浮收列表(1B)
+ * 用于接收后台返回的json数据；
+*/
 public class ResultFixedProductListContentBean implements IMouldType {
 	private String check;
 	private String code;

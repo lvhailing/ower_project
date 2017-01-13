@@ -81,7 +81,7 @@
                 android:paddingTop="10dip">
 
                 <TextView
-                    android:id="@+id/id_tab_home_tv_gushou"
+                    android:id="@+id/tv_tab_gushou"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -91,7 +91,7 @@
                     android:text="固定收益"/>
 
                 <TextView
-                    android:id="@+id/id_tab_home_tv_float"
+                    android:id="@+id/tv_tab_float"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -101,7 +101,7 @@
                     android:text="浮动收益"/>
 
                 <TextView
-                    android:id="@+id/id_tab_home_tv_insurance"
+                    android:id="@+id/tv_tab_insurance"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -125,7 +125,6 @@
                 android:layout_below="@id/ll_button"
                 android:cacheColorHint="@color/white"
                 android:divider="@color/bg_gray"
-
                 android:dividerHeight="10dp"
                 android:listSelector="@color/bg_gray"
                 android:scrollbars="none"/>

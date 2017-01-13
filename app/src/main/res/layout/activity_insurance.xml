@@ -4,13 +4,13 @@
                 android:background="@color/bg_gray">
 
     <RelativeLayout
-        android:id="@+id/id_account_txt_title"
+        android:id="@+id/rl_product_insurance_title"
         android:layout_width="match_parent"
         android:layout_height="51dp"
         android:background="@color/red4">
 
         <ImageView
-            android:id="@+id/id_img_back"
+            android:id="@+id/iv_back"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_centerVertical="true"
@@ -30,7 +30,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/id_account_txt_title"
+        android:layout_below="@id/rl_product_insurance_title"
         android:background="@android:color/darker_gray"
         android:orientation="vertical">
 

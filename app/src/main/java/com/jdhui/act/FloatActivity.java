@@ -20,18 +20,14 @@ import com.jdhui.mould.HtmlRequest;
 import com.jdhui.mould.types.MouldList;
 
 /**
- * 浮动收益列表
+ * 产品--浮动收益列表
  */
-public class FloatActivity extends BaseActivity implements View.OnClickListener{
-    private View view;
+public class FloatActivity extends BaseActivity implements View.OnClickListener {
+    private ImageView iv_back;
     private PullToRefreshListView listView;
     private FloatAdapter mAdapter;
-    private ImageView mBtnBack;
-    private ResultFixedProductListBean fixedProductBean;
-
-    private int fixedPage = 1;
-    private int cachePage = fixedPage;
-    private MouldList<ResultFixedProductListItemBean> list;
+    private MouldList<ResultFixedProductListItemBean> totalList = new MouldList<>();
+    private int currentPage = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,50 +37,51 @@ public class FloatActivity extends BaseActivity implements View.OnClickListener{
         initData();
 
     }
-    public void initData(){
+
+    private void initView() {
+        iv_back = (ImageView) findViewById(R.id.iv_back);
+        listView = (PullToRefreshListView) findViewById(R.id.listview);
+
+        // 下拉刷新
+        listView.getLoadingLayoutProxy(true, false).setPullLabel("下拉刷新");
+        listView.getLoadingLayoutProxy(true, false).setRefreshingLabel("更新中...");
+        listView.getLoadingLayoutProxy(true, false).setReleaseLabel("松开更新");
+        // 上拉加载更多，分页加载
+        listView.getLoadingLayoutProxy(false, true).setPullLabel("上拉加载更多");
+        listView.getLoadingLayoutProxy(false, true).setRefreshingLabel("加载中...");
+        listView.getLoadingLayoutProxy(false, true).setReleaseLabel("松开加载");
+
+        iv_back.setOnClickListener(this);
+    }
+
+    public void initData() {
+        mAdapter = new FloatAdapter(this, totalList);
+        listView.setAdapter(mAdapter);
+
+        requestFloatingProductList();
 
         listView.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ListView>() {
             public void onRefresh(PullToRefreshBase<ListView> refreshView) {
                 if (refreshView.isHeaderShown()) {
-                    if (fixedPage >= 2) {
-                        fixedPage--;
-                        requestFloatingProductList();
-                    } else {
-                        fixedPage = 1;
-                        requestFloatingProductList();
-                    }
-
+                    //下拉刷新
+                    currentPage = 1;
                 } else {
-                    fixedPage++;
-                    requestFloatingProductList();
+                    //上拉加载下一页
+                    currentPage++;
                 }
-
+                requestFloatingProductList();
             }
         });
-        requestFloatingProductList();
 
-        mAdapter =new FloatAdapter(this,list);
-        listView.setAdapter(mAdapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> arg0, View arg1, int position,
-                                    long arg3) {
-                Intent i_fixedProductDetail = new Intent();
-                i_fixedProductDetail.setClass(FloatActivity.this,FixedProductDetailActivity.class);
-                i_fixedProductDetail.putExtra("productId",list.get(position-1).getProductId());
-                i_fixedProductDetail.putExtra("type","floating");
-                FloatActivity.this.startActivity(i_fixedProductDetail);
+            public void onItemClick(AdapterView<?> arg0, View arg1, int position, long arg3) {
+                Intent intent = new Intent(FloatActivity.this, FixedProductDetailActivity.class);
+                intent.putExtra("productId", totalList.get(position - 1).getProductId());
+                intent.putExtra("type", "floating");
+                startActivity(intent);
             }
         });
-
-    }
-
-    private void initView() {
-        list = new MouldList<ResultFixedProductListItemBean>();
-
-        mBtnBack= (ImageView) findViewById(R.id.id_img_back);
-        listView = (PullToRefreshListView) findViewById(R.id.listview);
-        mBtnBack.setOnClickListener(this);
     }
 
     @Override
@@ -93,65 +90,59 @@ public class FloatActivity extends BaseActivity implements View.OnClickListener{
 
     }
 
-
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()){
-            case R.id.id_img_back:
-                finish();
-                break;
-        }
-    }
-
-    private void requestFloatingProductList(){
-        cachePage = fixedPage;
-        HtmlRequest.getProductList(this,"floating",fixedPage, new BaseRequester.OnRequestListener() {
+    private void requestFloatingProductList() {
+        HtmlRequest.getProductList(this, "floating", currentPage, new BaseRequester.OnRequestListener() {
             @Override
             public void onRequestFinished(BaseParams params) {
+                if (params.result == null) {
+                    Toast.makeText(FloatActivity.this, "加载失败，请确认网络通畅", Toast.LENGTH_LONG).show();
 
-                if (params.result != null) {
-                    fixedProductBean = (ResultFixedProductListBean) params.result;
-
-                    if(fixedProductBean.getList()!=null){
-                        if (fixedProductBean.getList().size() == 0 &&fixedPage != 1 ) {
-                            Toast.makeText(FloatActivity.this, "已经到最后一页",
-                                    Toast.LENGTH_SHORT).show();
-                            fixedPage = cachePage - 1;
-                            listView.getRefreshableView()
-                                    .smoothScrollToPositionFromTop(0, 80,
-                                            100);
+                    listView.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
                             listView.onRefreshComplete();
-                        } else {
-                            list.clear();
-                            list.addAll(fixedProductBean.getList());
-                            mAdapter.notifyDataSetChanged();
-                            listView.postDelayed(new Runnable() {
-                                @Override
-                                public void run() {
-                                    listView.onRefreshComplete();
-                                }
-                            }, 1000);
-                            listView.getRefreshableView()
-                                    .smoothScrollToPositionFromTop(0, 80,
-                                            100);
                         }
-                    }
-
-                } else {
-                    listView.onRefreshComplete();
-                    Toast.makeText(FloatActivity.this, "加载失败，请确认网络通畅",
-                            Toast.LENGTH_LONG).show();
+                    }, 1000);
+                    return;
                 }
-                FloatActivity.this.stopLoading();
+
+                ResultFixedProductListBean data = (ResultFixedProductListBean) params.result;
+                MouldList<ResultFixedProductListItemBean> everyList = data.getList();
+
+                if ((everyList == null || everyList.size() == 0) && currentPage != 1) {
+                    Toast.makeText(FloatActivity.this, "已经到最后一页", Toast.LENGTH_SHORT).show();
+                }
+
+                if (currentPage == 1) {
+                    //刚进来时 加载第一页数据，或下拉刷新 重新加载数据 。这两种情况之前的数据都清掉
+                    totalList.clear();
+                }
+                totalList.addAll(everyList);
+
+                //刷新数据
+                if (mAdapter == null) {
+                    mAdapter = new FloatAdapter(FloatActivity.this, totalList);
+                    listView.setAdapter(mAdapter);
+                } else {
+                    mAdapter.notifyDataSetChanged();
+                }
+
                 listView.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         listView.onRefreshComplete();
                     }
                 }, 1000);
-
             }
         });
+    }
 
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.iv_back:
+                finish();
+                break;
+        }
     }
 }

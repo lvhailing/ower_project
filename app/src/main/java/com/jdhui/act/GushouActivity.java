@@ -23,13 +23,11 @@ import com.jdhui.mould.types.MouldList;
  * 产品--固定收益列表
  */
 public class GushouActivity extends BaseActivity implements View.OnClickListener {
-    private ImageView mBtnBack;
+    private ImageView iv_back;
     private PullToRefreshListView listView;
     private GuShouAdapter mAdapter;
-    private ResultFixedProductListBean fixedBean;
-    private int fixedPage = 1;
-    private int cachePage = fixedPage;
-    private MouldList<ResultFixedProductListItemBean> list;
+    private MouldList<ResultFixedProductListItemBean> totalList = new MouldList<>();
+    private int currentPage = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,47 +39,47 @@ public class GushouActivity extends BaseActivity implements View.OnClickListener
     }
 
     private void initView() {
-        fixedBean = new ResultFixedProductListBean();
-        list = new MouldList<ResultFixedProductListItemBean>();
-
-        mBtnBack = (ImageView) findViewById(R.id.id_img_back);
+        iv_back = (ImageView) findViewById(R.id.iv_back);
         listView = (PullToRefreshListView) findViewById(R.id.listview);
 
-        mBtnBack.setOnClickListener(this);
+        // 下拉刷新
+        listView.getLoadingLayoutProxy(true, false).setPullLabel("下拉刷新");
+        listView.getLoadingLayoutProxy(true, false).setRefreshingLabel("更新中...");
+        listView.getLoadingLayoutProxy(true, false).setReleaseLabel("松开更新");
+        // 上拉加载更多，分页加载
+        listView.getLoadingLayoutProxy(false, true).setPullLabel("上拉加载更多");
+        listView.getLoadingLayoutProxy(false, true).setRefreshingLabel("加载中...");
+        listView.getLoadingLayoutProxy(false, true).setReleaseLabel("松开加载");
+
+        iv_back.setOnClickListener(this);
     }
 
     public void initData() {
+        mAdapter = new GuShouAdapter(this, totalList);
+        listView.setAdapter(mAdapter);
+
         requestFixedProductList();
+
         listView.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ListView>() {
             public void onRefresh(PullToRefreshBase<ListView> refreshView) {
                 if (refreshView.isHeaderShown()) {
-                    if (fixedPage >= 2) {
-                        fixedPage--;
-                        requestFixedProductList();
-
-                    } else {
-                        fixedPage = 1;
-                        requestFixedProductList();
-                    }
-
+                    //下拉刷新
+                    currentPage = 1;
                 } else {
-                    fixedPage++;
-                    requestFixedProductList();
+                    //上拉加载下一页
+                    currentPage++;
                 }
-
+                requestFixedProductList();
             }
         });
 
-        mAdapter = new GuShouAdapter(this, list);
-        listView.setAdapter(mAdapter);
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() { //item 点击监听
             @Override
             public void onItemClick(AdapterView<?> arg0, View arg1, int position, long arg3) {
-                Intent i_fixedProductDetail = new Intent();
-                i_fixedProductDetail.setClass(GushouActivity.this, FixedProductDetailActivity.class);
-                i_fixedProductDetail.putExtra("productId", list.get(position - 1).getProductId());
-                i_fixedProductDetail.putExtra("type", "optimum");
-                GushouActivity.this.startActivity(i_fixedProductDetail);
+                Intent intent = new Intent(GushouActivity.this,FixedProductDetailActivity.class);
+                intent.putExtra("productId", totalList.get(position - 1).getProductId());
+                intent.putExtra("type", "optimum");
+                startActivity(intent);
             }
         });
     }
@@ -94,55 +92,56 @@ public class GushouActivity extends BaseActivity implements View.OnClickListener
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.id_img_back:
+            case R.id.iv_back:
                 finish();
                 break;
         }
     }
 
     private void requestFixedProductList() {
-        cachePage = fixedPage;
-        HtmlRequest.getProductList(this, "optimum", fixedPage, new BaseRequester.OnRequestListener() {
+        HtmlRequest.getProductList(this, "optimum", currentPage, new BaseRequester.OnRequestListener() {
             @Override
             public void onRequestFinished(BaseParams params) {
-                if (params.result != null) {
-                    fixedBean = (ResultFixedProductListBean) params.result;
-                    if (fixedBean.getList() != null) {
-                        if (fixedBean.getList().size() == 0 && fixedPage != 1) {
-                            Toast.makeText(GushouActivity.this, "已经到最后一页", Toast.LENGTH_SHORT).show();
-                            fixedPage = cachePage - 1;
-                            listView.getRefreshableView().smoothScrollToPositionFromTop(0, 80, 100);
-                            listView.onRefreshComplete();
-                        } else {
-                            list.clear();
-                            list.addAll(fixedBean.getList());
-                            mAdapter.notifyDataSetChanged();
-                            listView.postDelayed(new Runnable() {
-                                @Override
-                                public void run() {
-                                    listView.onRefreshComplete();
-                                }
-                            }, 1000);
-                            listView.getRefreshableView().smoothScrollToPositionFromTop(0, 80, 100);
-                        }
-                    }
-                } else {
-                    listView.onRefreshComplete();
+                if (params.result == null) {
                     Toast.makeText(GushouActivity.this, "加载失败，请确认网络通畅", Toast.LENGTH_LONG).show();
+
+                    listView.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            listView.onRefreshComplete();
+                        }
+                    }, 1000);
+                    return;
                 }
-                GushouActivity.this.stopLoading();
+
+                ResultFixedProductListBean data = (ResultFixedProductListBean) params.result;
+                MouldList<ResultFixedProductListItemBean> everyList = data.getList();
+
+                if ((everyList == null || everyList.size() == 0) && currentPage != 1) {
+                    Toast.makeText(GushouActivity.this, "已经到最后一页", Toast.LENGTH_SHORT).show();
+                }
+
+                if (currentPage == 1) {
+                    //刚进来时 加载第一页数据，或下拉刷新 重新加载数据 。这两种情况之前的数据都清掉
+                    totalList.clear();
+                }
+                totalList.addAll(everyList);
+
+                //刷新数据
+                if (mAdapter == null) {
+                    mAdapter = new GuShouAdapter(GushouActivity.this, totalList);
+                    listView.setAdapter(mAdapter);
+                } else {
+                    mAdapter.notifyDataSetChanged();
+                }
+
                 listView.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         listView.onRefreshComplete();
                     }
                 }, 1000);
-
             }
         });
-
-
     }
-
-
 }
