@@ -63,8 +63,7 @@ public class BaseRequester {
      * @param size
      * @return
      */
-    public static String registerId(String taskType, String url, int from,
-                                    int size) {
+    public static String registerId(String taskType, String url, int from, int size) {
         if (url == null) {
             return null;
         }
@@ -88,8 +87,7 @@ public class BaseRequester {
         }
     }
 
-    public static BaseParams buildParams(String id, Context context,
-                                         OnRequestListener listener, String url, int index) {
+    public static BaseParams buildParams(String id, Context context, OnRequestListener listener, String url, int index) {
         BaseParams p = new BaseParams();
         p.id = id;
         p.context = context;

@@ -4,17 +4,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/bg_gray"
-    android:orientation="vertical"
     android:paddingBottom="10dp">
 
     <RelativeLayout
-        android:id="@+id/id_account_txt_title"
+        android:id="@+id/rl_account_title"
         android:layout_width="match_parent"
         android:layout_height="51dp"
         android:background="@color/red4">
 
         <ImageView
-            android:id="@+id/id_img_back"
+            android:id="@+id/iv_back"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_centerVertical="true"
@@ -35,7 +34,7 @@
         android:id="@+id/id_my_info_layout_photo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/id_account_txt_title"
+        android:layout_below="@+id/rl_account_title"
         android:layout_marginTop="10dp"
         android:background="@color/white"
         android:gravity="center_vertical"
@@ -142,38 +141,38 @@
         android:scaleType="fitXY"
         android:src="@drawable/tab_lines"/>
 
- <!--   <LinearLayout
+    <!--   <LinearLayout
 
-        android:id="@+id/id_my_info_layout_address"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/id_my_info_layout_idcard_img"
-        android:background="@color/white"
-        android:padding="15dp">
+           android:id="@+id/id_my_info_layout_address"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:layout_below="@+id/id_my_info_layout_idcard_img"
+           android:background="@color/white"
+           android:padding="15dp">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="地址"
-            android:textColor="@color/txt_gray_dark"
-            android:textSize="16sp"/>
+           <TextView
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:text="地址"
+               android:textColor="@color/txt_gray_dark"
+               android:textSize="16sp"/>
 
-        <EditText
-            android:id="@+id/id_my_info_edit_adress"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerInParent="true"
-            android:layout_marginLeft="10dip"
-            android:layout_marginRight="10dp"
-            android:background="@color/white"
-            android:gravity="right"
-            android:hint="请输入地址"
-            android:maxLength="50"
-            android:maxLines="1"
-            android:textColor="@color/txt_gray_light"
-            android:textSize="14sp"/>
-    </LinearLayout>-->
+           <EditText
+               android:id="@+id/id_my_info_edit_adress"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:layout_alignParentRight="true"
+               android:layout_centerInParent="true"
+               android:layout_marginLeft="10dip"
+               android:layout_marginRight="10dp"
+               android:background="@color/white"
+               android:gravity="right"
+               android:hint="请输入地址"
+               android:maxLength="50"
+               android:maxLines="1"
+               android:textColor="@color/txt_gray_light"
+               android:textSize="14sp"/>
+       </LinearLayout>-->
 
     <RelativeLayout
         android:id="@+id/id_my_info_layout_address"
@@ -199,6 +198,7 @@
             android:layout_marginRight="10dp"
             android:textColor="@color/txt_gray_light"/>
     </RelativeLayout>
+
     <Button
         android:id="@+id/id_my_info_btn_save"
         android:layout_width="match_parent"
@@ -210,6 +210,5 @@
         android:text="保存"
         android:textColor="@color/white"
         android:visibility="gone"/>
-
 
 </RelativeLayout>

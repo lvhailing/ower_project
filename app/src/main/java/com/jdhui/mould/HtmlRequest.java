@@ -80,13 +80,11 @@ public class HtmlRequest extends BaseRequester {
 
     /**
      * 处理结果
-     * 正常返回 true，异常返回false
      *
-     * @param result 处理数据
-     * @return fanhuizhi
+     * @param result 处理数据（正常返回 true，异常返回false）
+     * @return 返回值
      */
     public static Boolean resultEncrypt(Context c, String result) {
-
         if (result.equals("0000")) {
             return true;
         } else {
@@ -112,6 +110,11 @@ public class HtmlRequest extends BaseRequester {
 
     /**
      * 检查版本
+     *
+     * @param context
+     * @param type     APP 类型
+     * @param listener 监听
+     * @return
      */
     public static String checkVersion(final Context context, String type, OnRequestListener listener) {
         final String data = HtmlLoadUtil.checkVersion(type);
@@ -121,7 +124,6 @@ public class HtmlRequest extends BaseRequester {
             return null;
         }
         getTaskManager().addTask(new MouldAsyncTask(tid, buildParams(Constants.TASK_TYPE_CHECKVERSION, context, listener, url, 0)) {
-
             @Override
             public IMouldType doTask(BaseParams params) {
                 SimpleHttpClient client = new SimpleHttpClient(context, SimpleHttpClient.RESULT_STRING);
@@ -209,7 +211,7 @@ public class HtmlRequest extends BaseRequester {
      * 显示图片(photo)
      *
      * @param context
-     * @param userId
+     * @param userId   用户id
      * @param listener
      * @return
      */
@@ -431,11 +433,12 @@ public class HtmlRequest extends BaseRequester {
     }
 
     /**
-     * 获取我的信息
+     * 更多--我的信息
      *
      * @param context  上下文
-     * @param listener 监听
-     * @return 返回数据
+     * @param userInfoId  用户编号
+     * @param listener  监听
+     * @return
      */
     public static String getMyInfo(final Context context, String userInfoId, OnRequestListener listener) {
         final String data = HtmlLoadUtil.getMyInfo(userInfoId);
@@ -610,10 +613,11 @@ public class HtmlRequest extends BaseRequester {
 
     /**
      * 资产--固定收益投资列表
+     *
      * @param context  上下文
-     * @param page  页码
-     * @param userId  用户ID
-     * @param type 产品类别{非保险类别(固收:optimum;浮动收益:floating; }{保险:insurance) }
+     * @param page     页码
+     * @param userId   用户ID
+     * @param type     产品类别{非保险类别(固收:optimum;浮动收益:floating; }{保险:insurance) }
      * @param listener 监听
      * @return
      */
@@ -1109,9 +1113,10 @@ public class HtmlRequest extends BaseRequester {
 
     /**
      * 资产--获取消息列表
-     * @param context 上下文
-     * @param userId 用户ID
-     * @param page 页码
+     *
+     * @param context  上下文
+     * @param userId   用户ID
+     * @param page     页码
      * @param listener 监听
      * @return 返回数据
      */
@@ -1165,6 +1170,7 @@ public class HtmlRequest extends BaseRequester {
 
     /**
      * 更多--产品预约
+     *
      * @param context
      * @param userInfoId
      * @param category

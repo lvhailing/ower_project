@@ -89,7 +89,7 @@ public class ApplicationConsts {
      */
     public static final String URL_FINDPWDBYPHONE = EC_HOST + "account/password/find";
     /**
-     * 获取我的信息
+     * 更多--获取我的信息
      */
     public static final String URL_MY_INFO = EC_HOST + "user/person/info";
     /**

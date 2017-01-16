@@ -53,9 +53,9 @@ import java.net.URL;
  * 我的信息
  */
 public class MyInfoActivity extends BaseActivity implements View.OnClickListener {
-    private ImageView mImgBack;
-    private RelativeLayout mLayoutPhoto;
-    private ImageView mImgPhoto;
+    private ImageView iv_back;
+    private RelativeLayout mLayoutPhoto; // 头像 布局
+    private ImageView mImgPhoto; //用户头像
     private Button mBtnSave;
     private Bitmap newZoomImage;
 
@@ -78,7 +78,7 @@ public class MyInfoActivity extends BaseActivity implements View.OnClickListener
     private final static String IMG_PATH = Environment.getExternalStorageDirectory() + "/Jdehui/imgs/";
 
     private ResultMyInfoContentBean bean;
-    private String userInfoId = null;
+    private String userInfoId = null; //用户信息ID （用户编号）
     private TextView mTvName, mTvID;//身份证\护照\机构代码
     private TextView mTvAdress;
     private TextView tv_id_no;
@@ -96,7 +96,8 @@ public class MyInfoActivity extends BaseActivity implements View.OnClickListener
 
     private void initView() {
         userInfoId = getIntent().getStringExtra("userInfoId");
-        mImgBack = (ImageView) findViewById(R.id.id_img_back);
+
+        iv_back = (ImageView) findViewById(R.id.iv_back);
         mLayoutPhoto = (RelativeLayout) findViewById(R.id.id_my_info_layout_photo);
         mImgPhoto = (ImageView) findViewById(R.id.id_my_info_img_user);
         mTvName = (TextView) findViewById(R.id.id_my_info_tv_name);
@@ -104,7 +105,8 @@ public class MyInfoActivity extends BaseActivity implements View.OnClickListener
         mTvID = (TextView) findViewById(R.id.id_my_info_tv_idcard);
         mTvAdress = (TextView) findViewById(R.id.id_my_info_tv_adress);
         mBtnSave = (Button) findViewById(R.id.id_my_info_btn_save);
-        mImgBack.setOnClickListener(this);
+
+        iv_back.setOnClickListener(this);
         mLayoutPhoto.setOnClickListener(this);
         mBtnSave.setOnClickListener(this);
     }
@@ -114,18 +116,15 @@ public class MyInfoActivity extends BaseActivity implements View.OnClickListener
      */
     private void requestMyInfoData(String userInfoId) {
         HtmlRequest.getMyInfo(MyInfoActivity.this, userInfoId, new BaseRequester.OnRequestListener() {
-
             @Override
             public void onRequestFinished(BaseParams params) {
                 if (params.result != null) {
                     bean = (ResultMyInfoContentBean) params.result;
                     setData(bean);
                 } else {
-                    Toast.makeText(MyInfoActivity.this,
-                            "加载失败，请确认网络通畅", Toast.LENGTH_LONG).show();
+                    Toast.makeText(MyInfoActivity.this, "加载失败，请确认网络通畅", Toast.LENGTH_LONG).show();
                 }
             }
-
         });
     }
 
@@ -159,7 +158,7 @@ public class MyInfoActivity extends BaseActivity implements View.OnClickListener
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.id_img_back:
+            case R.id.iv_back:
                 finish();
                 break;
             case R.id.id_my_info_layout_photo:
@@ -178,24 +177,23 @@ public class MyInfoActivity extends BaseActivity implements View.OnClickListener
 
     private void requestData(String address) {
         try {
-            HtmlRequest.saveAddress(MyInfoActivity.this, DESUtil.decrypt(PreferenceUtil.getUserId()), address,
-                    new BaseRequester.OnRequestListener() {
+            HtmlRequest.saveAddress(MyInfoActivity.this, DESUtil.decrypt(PreferenceUtil.getUserId()), address, new BaseRequester.OnRequestListener() {
 
-                        @Override
-                        public void onRequestFinished(BaseParams params) {
-                            if (params.result != null) {
-                                ResultCodeContentBean bean = (ResultCodeContentBean) params.result;
-                                if (Boolean.parseBoolean(bean.getFlag())) {
-                                    Toast.makeText(MyInfoActivity.this, bean.getMsg(), Toast.LENGTH_SHORT).show();
-                                    finish();
-                                } else {
-                                    Toast.makeText(MyInfoActivity.this, bean.getMsg(), Toast.LENGTH_SHORT).show();
-                                }
-                            } else {
-                                Toast.makeText(MyInfoActivity.this, "加载失败，请确认网络通畅", Toast.LENGTH_LONG).show();
-                            }
+                @Override
+                public void onRequestFinished(BaseParams params) {
+                    if (params.result != null) {
+                        ResultCodeContentBean bean = (ResultCodeContentBean) params.result;
+                        if (Boolean.parseBoolean(bean.getFlag())) {
+                            Toast.makeText(MyInfoActivity.this, bean.getMsg(), Toast.LENGTH_SHORT).show();
+                            finish();
+                        } else {
+                            Toast.makeText(MyInfoActivity.this, bean.getMsg(), Toast.LENGTH_SHORT).show();
                         }
-                    });
+                    } else {
+                        Toast.makeText(MyInfoActivity.this, "加载失败，请确认网络通畅", Toast.LENGTH_LONG).show();
+                    }
+                }
+            });
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -325,8 +323,7 @@ public class MyInfoActivity extends BaseActivity implements View.OnClickListener
         float scaleHeight = ((float) newHeight) / height;
         // 缩放图片动作
         matrix.postScale(scaleWidth, scaleHeight);
-        Bitmap bitmap = Bitmap.createBitmap(bgimage, 0, 0, (int) width,
-                (int) height, matrix, true);
+        Bitmap bitmap = Bitmap.createBitmap(bgimage, 0, 0, (int) width, (int) height, matrix, true);
         return bitmap;
     }
 
@@ -348,8 +345,7 @@ public class MyInfoActivity extends BaseActivity implements View.OnClickListener
             String url = ApplicationConsts.URL_UPLOADPHOTO;
             client.post(url, params, new AsyncHttpResponseHandler() {
                 @Override
-                public void onSuccess(int statusCode, Header[] headers,
-                                      String content) {
+                public void onSuccess(int statusCode, Header[] headers, String content) {
                     super.onSuccess(statusCode, headers, content);
                     // requestPhotoData();
                     // mypersonal_img.setImageBitmap(bm);
@@ -412,12 +408,10 @@ public class MyInfoActivity extends BaseActivity implements View.OnClickListener
                         new ImageViewService().execute(url);
                         // Toast.makeText(activity,"成功", 0).show();
                     } else {
-                        mImgPhoto.setImageDrawable(getResources()
-                                .getDrawable(R.drawable.user_photo));
+                        mImgPhoto.setImageDrawable(getResources().getDrawable(R.drawable.user_photo));
                     }
                 } else {
-                    mImgPhoto.setImageDrawable(getResources().getDrawable(
-                            R.drawable.user_photo));
+                    mImgPhoto.setImageDrawable(getResources().getDrawable(R.drawable.user_photo));
                 }
             }
         });
@@ -444,8 +438,7 @@ public class MyInfoActivity extends BaseActivity implements View.OnClickListener
                 mImgPhoto.setImageBitmap(result);
                 saveBitmap(result);
             } else {
-                mImgPhoto.setImageDrawable(getResources().getDrawable(
-                        R.drawable.user_default));
+                mImgPhoto.setImageDrawable(getResources().getDrawable(R.drawable.user_default));
             }
         }
 
@@ -456,8 +449,7 @@ public class MyInfoActivity extends BaseActivity implements View.OnClickListener
         Bitmap bitmap = null;
         try {
             imgUrl = new URL(url);
-            HttpURLConnection conn = (HttpURLConnection) imgUrl
-                    .openConnection();
+            HttpURLConnection conn = (HttpURLConnection) imgUrl.openConnection();
             conn.setDoInput(true);
             conn.connect();
             InputStream is = conn.getInputStream();

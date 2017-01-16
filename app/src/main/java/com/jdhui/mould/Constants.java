@@ -14,8 +14,7 @@ public class Constants {
     /**
      * 找回密码
      */
-    public static final String TASK_TYPE_FINDPWDBYPHONE = String
-            .valueOf(index++);
+    public static final String TASK_TYPE_FINDPWDBYPHONE = String.valueOf(index++);
 
     /**
      * 登出
@@ -30,84 +29,69 @@ public class Constants {
     /***
      * 显示图片
      */
-    public static final String TASK_TYPE_MYPHOTOSTATE = String
-            .valueOf(index++);
+    public static final String TASK_TYPE_MYPHOTOSTATE = String.valueOf(index++);
 
     /***
      * 资产首页
      */
-    public static final String TASK_TYPE_ACCOUNT_INDEX = String
-            .valueOf(index++);
+    public static final String TASK_TYPE_ACCOUNT_INDEX = String.valueOf(index++);
     /***
      * 投资列表
      */
-    public static final String TASK_TYPE_ACCOUNT_PRODUCT_TENDERS = String
-            .valueOf(index++);
+    public static final String TASK_TYPE_ACCOUNT_PRODUCT_TENDERS = String.valueOf(index++);
 
     /***
      * 非保险产品列表
      */
-    public static final String TASK_TYPE_PRODUCT_LIST = String
-            .valueOf(index++);
+    public static final String TASK_TYPE_PRODUCT_LIST = String.valueOf(index++);
     /***
      * 保险产品列表
      */
-    public static final String TASK_TYPE_INSURANCE_PRODUCT_LIST = String
-            .valueOf(index++);
+    public static final String TASK_TYPE_INSURANCE_PRODUCT_LIST = String.valueOf(index++);
     /***
      * 非保险产品详情
      */
-    public static final String TASK_TYPE_PRODUCT_DETAIL = String
-            .valueOf(index++);
+    public static final String TASK_TYPE_PRODUCT_DETAIL = String.valueOf(index++);
     /***
      * 保险产品详情
      */
-    public static final String TASK_TYPE_INSURANCE_PRODUCT_DETAIL = String
-            .valueOf(index++);
+    public static final String TASK_TYPE_INSURANCE_PRODUCT_DETAIL = String.valueOf(index++);
 
     /***
      * 非保险投资产品详情
      */
-    public static final String TASK_TYPE_ASSET_PRODUCT_DETAIL = String
-            .valueOf(index++);
+    public static final String TASK_TYPE_ASSET_PRODUCT_DETAIL = String.valueOf(index++);
 
     /***
      * 保险投资产品详情
      */
-    public static final String TASK_TYPE_ASSET_INSURANCE_PRODUCT_DETAIL = String
-            .valueOf(index++);
+    public static final String TASK_TYPE_ASSET_INSURANCE_PRODUCT_DETAIL = String.valueOf(index++);
 
     /***
      * 产品首页
      */
-    public static final String TASK_TYPE_PRODUCT_INDEX = String
-            .valueOf(index++);
+    public static final String TASK_TYPE_PRODUCT_INDEX = String.valueOf(index++);
     /***
      * 轮播图
      */
-    public static final String TASK_TYPE_CYCLE_ADVICES_INDEX = String
-            .valueOf(index++);
+    public static final String TASK_TYPE_CYCLE_ADVICES_INDEX = String.valueOf(index++);
     /***
      * 消息列表
      */
-    public static final String TASK_TYPE_MESSAGE_LIST_INDEX = String
-            .valueOf(index++);
+    public static final String TASK_TYPE_MESSAGE_LIST_INDEX = String.valueOf(index++);
 
     /***
      * 更多信息
      */
-    public static final String TASK_TYPE_MORE_INFO = String
-            .valueOf(index++);
+    public static final String TASK_TYPE_MORE_INFO = String.valueOf(index++);
     /***
      * 我的信息
      */
-    public static final String TASK_TYPE_MY_INFO = String
-            .valueOf(index++);
+    public static final String TASK_TYPE_MY_INFO = String.valueOf(index++);
     /***
      * 上传头像
      */
-    public static final String TASK_TYPE_UPLOAD_PHOTO = String
-            .valueOf(index++);
+    public static final String TASK_TYPE_UPLOAD_PHOTO = String.valueOf(index++);
     /***
      * 更多--产品预约
      */
