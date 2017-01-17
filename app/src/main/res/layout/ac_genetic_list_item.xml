@@ -8,8 +8,8 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        >
+        android:layout_centerVertical="true">
+
         <ImageView
             android:id="@+id/iv_genetic_list_arrow"
             android:layout_width="wrap_content"
@@ -23,16 +23,15 @@
             android:id="@+id/tv_genetic_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="12dp"
             android:layout_centerVertical="true"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="5dip"
             android:layout_toLeftOf="@id/iv_genetic_list_arrow"
             android:text=""
             android:textColor="#333"
-            android:layout_marginRight="5dip"
             android:textSize="16sp"/>
 
     </RelativeLayout>
-
 
     <View
         style="@style/v_line_style"
