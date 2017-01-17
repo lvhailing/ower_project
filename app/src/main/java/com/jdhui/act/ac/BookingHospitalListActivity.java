@@ -77,6 +77,67 @@ public class BookingHospitalListActivity extends BaseActivity implements View.On
         initData();
     }
 
+    private void initView() {
+        mBtnBack = (ImageView) findViewById(R.id.iv_back);
+        iv_select = (ImageView) findViewById(R.id.iv_select);
+        listView = (PullToRefreshListView) findViewById(R.id.listview);
+        lv_left = (ListView) findViewById(R.id.lv_left);
+        lv_right = (ListView) findViewById(R.id.lv_right);
+        v_hidden = findViewById(R.id.v_hidden);
+        ll_hidden = (LinearLayout) findViewById(R.id.ll_hidden);
+        rl_area = (RelativeLayout) findViewById(R.id.rl_area);
+        tv_area = (TextView) findViewById(R.id.tv_area);
+        et_search = (EditText) findViewById(R.id.et_search);
+
+        // 下拉刷新
+        listView.getLoadingLayoutProxy(true, false).setPullLabel("下拉刷新");
+        listView.getLoadingLayoutProxy(true, false).setRefreshingLabel("更新中...");
+        listView.getLoadingLayoutProxy(true, false).setReleaseLabel("松开更新");
+        // 上拉加载更多，分页加载
+        listView.getLoadingLayoutProxy(false, true).setPullLabel("上拉加载更多");
+        listView.getLoadingLayoutProxy(false, true).setRefreshingLabel("加载中...");
+        listView.getLoadingLayoutProxy(false, true).setReleaseLabel("松开加载");
+
+        mBtnBack.setOnClickListener(this);
+        v_hidden.setOnClickListener(this);
+        rl_area.setOnClickListener(this);
+
+        et_search.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                //用户输入的文本变化了 需要把当前页码置成1
+                currentPage = 1;
+                //当文本变化时触发事件
+                hospitalName = s.toString().replace(" ", "");
+                requestData();
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+            }
+        });
+
+        //点击软键盘上的搜索按钮
+        et_search.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+                    hospitalName = et_search.getText().toString().replace(" ", "");
+                    if (!TextUtils.isEmpty(hospitalName)) {
+                        requestData();
+                    }
+                    return true;
+                }
+                return false;
+            }
+        });
+
+    }
+
     private void initData() {
         downloadUtils = new DownloadUtils();
         requestData();
@@ -155,60 +216,9 @@ public class BookingHospitalListActivity extends BaseActivity implements View.On
         }
     }
 
-    private void initView() {
-        mBtnBack = (ImageView) findViewById(R.id.iv_back);
-        iv_select = (ImageView) findViewById(R.id.iv_select);
-        listView = (PullToRefreshListView) findViewById(R.id.listview);
-        lv_left = (ListView) findViewById(R.id.lv_left);
-        lv_right = (ListView) findViewById(R.id.lv_right);
-        v_hidden = findViewById(R.id.v_hidden);
-        ll_hidden = (LinearLayout) findViewById(R.id.ll_hidden);
-        rl_area = (RelativeLayout) findViewById(R.id.rl_area);
-        tv_area = (TextView) findViewById(R.id.tv_area);
-        et_search = (EditText) findViewById(R.id.et_search);
-
-        mBtnBack.setOnClickListener(this);
-        v_hidden.setOnClickListener(this);
-        rl_area.setOnClickListener(this);
-
-        et_search.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                //用户输入的文本变化了 需要把当前页码置成1
-                currentPage = 1;
-                //当文本变化时触发事件
-                hospitalName = s.toString().replace(" ", "");
-                requestData();
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-            }
-        });
-
-        //点击软键盘上的搜索按钮
-        et_search.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-            @Override
-            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                if (actionId == EditorInfo.IME_ACTION_SEARCH) {
-                    hospitalName = et_search.getText().toString().replace(" ", "");
-                    if (!TextUtils.isEmpty(hospitalName)) {
-                        requestData();
-                    }
-                    return true;
-                }
-                return false;
-            }
-        });
-
-    }
 
     private void requestData() {
-        Log.i("aaa", selectProvince + ":" + selectCity + ":" + hospitalName);
+//        Log.i("aaa", selectProvince + ":" + selectCity + ":" + hospitalName);
 
         String province = selectProvince.contains("全部") ? "" : selectProvince;
         String city = selectCity.contains("全部") ? "" : selectCity;
@@ -221,18 +231,23 @@ public class BookingHospitalListActivity extends BaseActivity implements View.On
                     if (params.result == null) {
                         listView.onRefreshComplete();
                         Toast.makeText(BookingHospitalListActivity.this, "加载失败，请确认网络通畅", Toast.LENGTH_LONG).show();
+                        listView.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                listView.onRefreshComplete();
+                            }
+                        }, 1000);
                         return;
                     }
 
-                    listView.getRefreshableView().smoothScrollToPositionFromTop(0, 80, 100);
-                    listView.onRefreshComplete();
+//                    listView.getRefreshableView().smoothScrollToPositionFromTop(0, 80, 100);
+//                    listView.onRefreshComplete();
 
                     BookingHospitalList2B data = (BookingHospitalList2B) params.result;
                     MouldList<BookingHospitalList3B> everyList = data.getList();
                     if (everyList == null || everyList.size() == 0) {
-                        Toast.makeText(BookingHospitalListActivity.this, "暂无数据", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(BookingHospitalListActivity.this, "已经到最后一页", Toast.LENGTH_SHORT).show();
                     }
-
 
                     if (currentPage == 1) {
                         //刚进来时 加载第一页数据，或下拉刷新 重新加载数据 。这两种情况之前的数据都清掉
@@ -247,7 +262,16 @@ public class BookingHospitalListActivity extends BaseActivity implements View.On
                         listView.setAdapter(mAdapter);
                     } else {
                         //以后直接刷新
-                        mAdapter.notifyDataSetChanged();
+                    mAdapter.notifyDataSetChanged();
+                    listView.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            if (currentPage == 1) {
+                                listView.getRefreshableView().smoothScrollToPositionFromTop(0, 80, 100);//地区切换时，默认加载第一页数据，让其回到数据顶端
+                            }
+                            listView.onRefreshComplete();
+                        }
+                    }, 1000);
                     }
                 }
             });

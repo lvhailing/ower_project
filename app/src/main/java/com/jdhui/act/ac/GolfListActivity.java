@@ -35,7 +35,6 @@ public class GolfListActivity extends BaseActivity implements View.OnClickListen
     private ImageView mBtnBack;
     private MouldList<GolfList3B> totalList = new MouldList<>();
     private int currentPage = 1;    //当前页
-    private GolfList2B golf2B;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +48,15 @@ public class GolfListActivity extends BaseActivity implements View.OnClickListen
     private void initView() {
         mBtnBack = (ImageView) findViewById(R.id.iv_back);
         listView = (PullToRefreshListView) findViewById(R.id.listview);
+
+        // 下拉刷新
+        listView.getLoadingLayoutProxy(true, false).setPullLabel("下拉刷新");
+        listView.getLoadingLayoutProxy(true, false).setRefreshingLabel("更新中...");
+        listView.getLoadingLayoutProxy(true, false).setReleaseLabel("松开更新");
+        // 上拉加载更多，分页加载
+        listView.getLoadingLayoutProxy(false, true).setPullLabel("上拉加载更多");
+        listView.getLoadingLayoutProxy(false, true).setRefreshingLabel("加载中...");
+        listView.getLoadingLayoutProxy(false, true).setReleaseLabel("松开加载");
 
         mBtnBack.setOnClickListener(this);
     }
@@ -88,11 +96,14 @@ public class GolfListActivity extends BaseActivity implements View.OnClickListen
             HtmlRequest.getGolfList(GolfListActivity.this, currentPage + "", new BaseRequester.OnRequestListener() {
                 @Override
                 public void onRequestFinished(BaseParams params) {
-                    listView.getRefreshableView().smoothScrollToPositionFromTop(0, 80, 100);
-                    listView.onRefreshComplete();
-
                     if (params.result == null) {
                         Toast.makeText(GolfListActivity.this, "加载失败，请确认网络通畅", Toast.LENGTH_LONG).show();
+                        listView.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                listView.onRefreshComplete();
+                            }
+                        }, 1000);
                         return;
                     }
 
@@ -100,7 +111,6 @@ public class GolfListActivity extends BaseActivity implements View.OnClickListen
                     MouldList<GolfList3B> everyList = data.getList();
                     if ((everyList == null || everyList.size() == 0) && currentPage != 1) {
                         Toast.makeText(GolfListActivity.this, "已经到最后一页", Toast.LENGTH_SHORT).show();
-                        return;
                     }
 
                     if (currentPage == 1) {
@@ -111,6 +121,13 @@ public class GolfListActivity extends BaseActivity implements View.OnClickListen
 
                     //刷新数据
                     mAdapter.notifyDataSetChanged();
+
+                    listView.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            listView.onRefreshComplete();
+                        }
+                    }, 1000);
                 }
             });
         } catch (Exception e) {
