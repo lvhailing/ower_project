@@ -271,8 +271,6 @@ public class HtmlRequest extends BaseRequester {
      * @param listener   监听
      * @return 返回数据
      */
-
-
     public static String sentSMS(final Context context, String userMobile, String busiType, OnRequestListener listener) {
         final String data = HtmlLoadUtil.getSMS(userMobile, busiType);
         final String url = ApplicationConsts.URL_SMS;
@@ -324,12 +322,15 @@ public class HtmlRequest extends BaseRequester {
     /**
      * 通过手机号找回密码
      *
-     * @param context  上下文
-     * @param listener 监听
-     * @return 返回数据
+     * @param context
+     * @param mobile       用户手机号
+     * @param newPassword  修改后的密码
+     * @param validateCode 验证码
+     * @param userName     用户名
+     * @param listener
+     * @return
      */
     public static String findPWDbyPhone(final Context context, String mobile, String newPassword, String validateCode, String userName, OnRequestListener listener) {
-
         final String data = HtmlLoadUtil.findPWDbyPhone(mobile, newPassword, userName, validateCode);
         final String url = ApplicationConsts.URL_FINDPWDBYPHONE;
         String tid = registerId(Constants.TASK_TYPE_FINDPWDBYPHONE, url);
@@ -380,12 +381,12 @@ public class HtmlRequest extends BaseRequester {
     /**
      * 上传图片
      *
-     * @param context  上下文
-     * @param listener 监听
-     * @return 返回数据
+     * @param context
+     * @param photo    图片
+     * @param listener
+     * @return
      */
     public static String upLoadPhoto(final Context context, File photo, OnRequestListener listener) {
-
         final String data = HtmlLoadUtil.getUpLoadPhoto(photo);
         final String url = ApplicationConsts.URL_UPLOADPHOTO;
         String tid = registerId(Constants.TASK_TYPE_UPLOAD_PHOTO, url);
@@ -435,9 +436,9 @@ public class HtmlRequest extends BaseRequester {
     /**
      * 更多--我的信息
      *
-     * @param context  上下文
-     * @param userInfoId  用户编号
-     * @param listener  监听
+     * @param context    上下文
+     * @param userInfoId 用户编号
+     * @param listener   监听
      * @return
      */
     public static String getMyInfo(final Context context, String userInfoId, OnRequestListener listener) {
@@ -490,12 +491,12 @@ public class HtmlRequest extends BaseRequester {
     /**
      * 获取更多信息
      *
-     * @param context  上下文
-     * @param listener 监听
-     * @return 返回数据
+     * @param context
+     * @param userId   用户编号
+     * @param listener
+     * @return
      */
     public static String getMoreInfo(final Context context, String userId, OnRequestListener listener) {
-
         final String data = HtmlLoadUtil.getMoreInfo(userId);
         final String url = ApplicationConsts.URL_MORE_INFO;
         String tid = registerId(Constants.TASK_TYPE_MORE_INFO, url);
@@ -543,13 +544,13 @@ public class HtmlRequest extends BaseRequester {
         return tid;
     }
 
-
     /**
      * 资产首页
      *
-     * @param context  上下文
-     * @param listener 监听
-     * @return 返回数据
+     * @param context
+     * @param userId   用户ID
+     * @param listener
+     * @return
      */
     public static String accountIndex(final Context context, String userId, OnRequestListener listener) {
 //		String token = "";
@@ -586,11 +587,6 @@ public class HtmlRequest extends BaseRequester {
                         String data = DESUtil.decrypt(result);
                         Gson json = new Gson();
                         ResultAccountIndexContentBean b = json.fromJson(data, ResultAccountIndexContentBean.class);
-//								if(resultEncrypt(context,b.getCode())){
-//									return b.getData();
-//								}else{
-//									return null;
-//								}
                         resultEncrypt(context, b.getCode());
                         return b.getData();
                     }
@@ -668,13 +664,14 @@ public class HtmlRequest extends BaseRequester {
         return tid;
     }
 
-
     /**
      * 得到非保险产品列表
      *
-     * @param context  上下文
-     * @param listener 监听
-     * @return 返回数据
+     * @param context
+     * @param category 产品类型：取值有（optimum:固收，floating:浮动收益）
+     * @param page     页码
+     * @param listener
+     * @return
      */
     public static String getProductList(final Context context, String category, int page, OnRequestListener listener) {
         final String data = HtmlLoadUtil.getProductList(category, page);
@@ -726,9 +723,11 @@ public class HtmlRequest extends BaseRequester {
     /**
      * 得到保险产品列表
      *
-     * @param context  上下文
-     * @param listener 监听
-     * @return 返回数据
+     * @param context
+     * @param type     保险类型:healthInsurance健康险; accidentInsurance:意外险; lifeInsurance:人寿险; propertyInsurance:财产险; travelInsurance:旅游险;
+     * @param page     页码
+     * @param listener
+     * @return
      */
     public static String getInsuranceList(final Context context, String type, String page, OnRequestListener listener) {
         final String data = HtmlLoadUtil.getInsuranceList(type, page);
@@ -781,9 +780,10 @@ public class HtmlRequest extends BaseRequester {
     /**
      * 获取非保险产品详情
      *
-     * @param context  上下文
-     * @param listener 监听
-     * @return 返回数据
+     * @param context
+     * @param productId 产品ID
+     * @param listener
+     * @return
      */
     public static String getProductDetail(final Context context, String productId, OnRequestListener listener) {
         final String data = HtmlLoadUtil.getFixedProductDetail(productId);
@@ -835,12 +835,12 @@ public class HtmlRequest extends BaseRequester {
     /**
      * 获取保险产品详情
      *
-     * @param context  上下文
-     * @param listener 监听
-     * @return 返回数据
+     * @param context
+     * @param productId 产品ID
+     * @param listener
+     * @return
      */
     public static String getInsuranceProductDetail(final Context context, String productId, OnRequestListener listener) {
-
         final String data = HtmlLoadUtil.getFixedProductDetail(productId);
         final String url = ApplicationConsts.URL_INSURANCE_PRODUCT_DETAIL;
         String tid = registerId(Constants.TASK_TYPE_INSURANCE_PRODUCT_DETAIL, url);
@@ -891,9 +891,12 @@ public class HtmlRequest extends BaseRequester {
     /**
      * 获取非保险投资产品详情
      *
-     * @param context  上下文
-     * @param listener 监听
-     * @return 返回数据
+     * @param context
+     * @param userId   用户ID
+     * @param tenderId 订单编号
+     * @param type     固收:optimum;浮动收益:floating;
+     * @param listener
+     * @return
      */
     public static String getAssetProductDetail(final Context context, String userId, String tenderId, String type, OnRequestListener listener) {
         final String data = HtmlLoadUtil.getAssetFixedProductDetail(userId, tenderId, type);
@@ -946,9 +949,11 @@ public class HtmlRequest extends BaseRequester {
     /**
      * 获取保险投资产品详情
      *
-     * @param context  上下文
-     * @param listener 监听
-     * @return 返回数据
+     * @param context
+     * @param userId   用户ID
+     * @param tenderId 订单编号
+     * @param listener
+     * @return
      */
     public static String getInsuranceAssetProductDetail(final Context context, String userId, String tenderId, OnRequestListener listener) {
         final String data = HtmlLoadUtil.getAssetInsuranceProductDetail(userId, tenderId);
@@ -998,14 +1003,13 @@ public class HtmlRequest extends BaseRequester {
     }
 
     /**
-     * 最新公告和热销产品接口
+     * 产品--最新公告和热销产品接口
      *
      * @param context  上下文
      * @param listener 监听
      * @return 返回数据
      */
     public static String getProductIndex(final Context context, OnRequestListener listener) {
-
         final String data = HtmlLoadUtil.getProductIndex();
         final String url = ApplicationConsts.URL_PRODUCT_INDEX;
         String tid = registerId(Constants.TASK_TYPE_PRODUCT_INDEX, url);
@@ -1055,14 +1059,13 @@ public class HtmlRequest extends BaseRequester {
     }
 
     /**
-     * 获取轮播图
+     * 产品--获取轮播图
      *
      * @param context  上下文
      * @param listener 监听
      * @return 返回数据
      */
     public static String getCycleIndex(final Context context, OnRequestListener listener) {
-
         final String data = HtmlLoadUtil.getCycle("android");
         final String url = ApplicationConsts.URL_CYCLE_ADVERTISE_INDEX;
         String tid = registerId(Constants.TASK_TYPE_CYCLE_ADVICES_INDEX, url);
@@ -1082,7 +1085,6 @@ public class HtmlRequest extends BaseRequester {
                 }
                 client.post(url, entity);
                 String result = (String) client.getResult();
-//						Toast.makeText(context,"result=="+result,Toast.LENGTH_SHORT).show();
                 try {
                     if (isCancelled()) {
                         return null;
@@ -1090,7 +1092,6 @@ public class HtmlRequest extends BaseRequester {
                     if (result != null) {
                         String data = DESUtil.decrypt(result);
                         Gson json = new Gson();
-//								Toast.makeText(context,data.toString(),Toast.LENGTH_SHORT).show();
                         ResultCycleIndexContentBean b = json.fromJson(data, ResultCycleIndexContentBean.class);
                         return b.getData();
                     }
@@ -1172,16 +1173,14 @@ public class HtmlRequest extends BaseRequester {
      * 更多--产品预约
      *
      * @param context
-     * @param userInfoId
-     * @param category
-     * @param status
-     * @param page
+     * @param userInfoId 用户ID
+     * @param category   产品类型
+     * @param status     预约状态 （submit:待确认;confirm:已确认;cancel:无效预约）
+     * @param page       页码
      * @param listener
      * @return
      */
-
     public static String getProductOrderList(final Context context, String userInfoId, String category, String status, String page, OnRequestListener listener) {
-
         final String data = HtmlLoadUtil.getProductOrderList(userInfoId, category, status, page);
         final String url = ApplicationConsts.URL_PRODUCT_ORDER;
         String tid = registerId(Constants.TASK_TYPE_PRODUCT_ORDER, url);
@@ -1232,12 +1231,13 @@ public class HtmlRequest extends BaseRequester {
     /**
      * 更多--产品预约详情
      *
-     * @param context  上下文
-     * @param listener 监听
-     * @return 返回数据
+     * @param context
+     * @param id       用户ID
+     * @param category 产品类型
+     * @param listener
+     * @return
      */
     public static String getProOrderDetail(final Context context, String id, String category, OnRequestListener listener) {
-
         final String data = HtmlLoadUtil.getProOrderDetail(id, category);
         final String url = ApplicationConsts.URL_PRODUCT_ORDER_DETAIL;
         String tid = registerId(Constants.TASK_TYPE_PRODUCT_ORDER_DETAIL, url);
@@ -1288,9 +1288,11 @@ public class HtmlRequest extends BaseRequester {
     /**
      * 更多--服务预约列表
      *
-     * @param context  上下文
-     * @param listener 监听
-     * @return 返回数据
+     * @param context
+     * @param serviceItems 绿通就医：hospitalBooking  基因检测：geneticBooking  高尔夫球场：golfBooking  公务机包机：airplaneBooking
+     * @param page         页数
+     * @param listener
+     * @return
      */
     public static String getServiceOrderList(final Context context, String serviceItems, String page, OnRequestListener listener) {
         final String data = HtmlLoadUtil.getServicetOrderList(serviceItems, page);
@@ -1343,12 +1345,13 @@ public class HtmlRequest extends BaseRequester {
     /**
      * 更多--服务预约详情
      *
-     * @param context  上下文
-     * @param listener 监听
-     * @return 返回数据
+     * @param context
+     * @param serviceItems 绿通就医：hospitalBooking  基因检测：geneticBooking  高尔夫球场：golfBooking  公务机包机：airplaneBooking
+     * @param id           服务Id
+     * @param listener
+     * @return
      */
     public static String getServiceDetail(final Context context, String serviceItems, String id, OnRequestListener listener) {
-
         final String data = HtmlLoadUtil.getServiceDetail(serviceItems, id);
         final String url = ApplicationConsts.URL_SERVICE_DETAIL;
         String tid = registerId(Constants.TASK_TYPE_SERVICE_DETAIL, url);
@@ -1397,11 +1400,12 @@ public class HtmlRequest extends BaseRequester {
     }
 
     /**
-     * 君德公告
+     * 更多--君德公告
      *
      * @param context  上下文
+     * @param page     页码
      * @param listener 监听
-     * @return 返回数据
+     * @return
      */
     public static String getNoticeList(final Context context, int page, OnRequestListener listener) {
         final String data = HtmlLoadUtil.getNoticeList(page + "");
@@ -1458,11 +1462,12 @@ public class HtmlRequest extends BaseRequester {
     }
 
     /**
-     * 快讯
+     * 更多--快讯
      *
-     * @param context  上下文
-     * @param listener 监听
-     * @return 返回数据
+     * @param context
+     * @param page     页码
+     * @param listener
+     * @return
      */
     public static String getNewsList(final Context context, int page, OnRequestListener listener) {
         final String data = HtmlLoadUtil.getNewsList(page + "");
@@ -1515,9 +1520,11 @@ public class HtmlRequest extends BaseRequester {
     /**
      * 验证登录密码
      *
-     * @param context  上下文
-     * @param listener 监听
-     * @return 返回数据
+     * @param context
+     * @param userId   用户编号
+     * @param password 登录密码
+     * @param listener
+     * @return
      */
     public static String verifyPassWord(final Context context, String userId, String password, OnRequestListener listener) {
         final String data = HtmlLoadUtil.verifyPassWord(userId, password);
@@ -1571,9 +1578,11 @@ public class HtmlRequest extends BaseRequester {
     /**
      * 保存修改后手机号
      *
-     * @param context  上下文
-     * @param listener 监听
-     * @return 返回数据
+     * @param context
+     * @param mobile       修改后的手机号
+     * @param validateCode 验证码
+     * @param listener
+     * @return
      */
     public static String savePhone(final Context context, String mobile, String validateCode, OnRequestListener listener) {
         String userId = null;
@@ -1634,6 +1643,9 @@ public class HtmlRequest extends BaseRequester {
      * 修改登录密码
      *
      * @param context
+     * @param userId      用户ID
+     * @param oldpassword 旧密码
+     * @param newpassword 新密码
      * @param listener
      * @return
      */
@@ -1688,6 +1700,8 @@ public class HtmlRequest extends BaseRequester {
      * 保存修改后地址
      *
      * @param context
+     * @param userId   用户编号
+     * @param address  地址
      * @param listener
      * @return
      */
@@ -1741,9 +1755,11 @@ public class HtmlRequest extends BaseRequester {
     /**
      * 意见反馈
      *
-     * @param context  上下文
-     * @param listener 监听
-     * @return 返回数据
+     * @param context
+     * @param userId   用户编号
+     * @param content  用户反馈内容（200字以内）
+     * @param listener
+     * @return
      */
     public static String getAdviceData(final Context context, String userId, String content, OnRequestListener listener) {
         final String data = HtmlLoadUtil.feedBack(userId, content);
@@ -1798,9 +1814,11 @@ public class HtmlRequest extends BaseRequester {
     /**
      * 我同意该承诺、跳过 接口
      *
-     * @param context  上下文
-     * @param listener 监听
-     * @return 返回数据
+     * @param context
+     * @param userId            用户编号
+     * @param qualifiedInvestor 投资者类型：acceptable:合格投资者;   unacceptable:不合格投资者
+     * @param listener
+     * @return
      */
     public static String investorJudgeSave(final Context context, String userId, String qualifiedInvestor, OnRequestListener listener) {
         final String data = HtmlLoadUtil.investorJudgeSave(userId, qualifiedInvestor);
@@ -1855,9 +1873,21 @@ public class HtmlRequest extends BaseRequester {
     /**
      * 服务--提交预约医院
      *
-     * @param context  上下文
-     * @param listener 监听
-     * @return 返回数据
+     * @param context          上下文
+     * @param userId           当前用户Id
+     * @param hospitalId       医院Id
+     * @param departments      科室
+     * @param doctor           医生
+     * @param bookingTime      预约时间
+     * @param bakTimeOne       备选时间1
+     * @param bakTimeTwo       备选时间2
+     * @param illnessCondition 主诉病情
+     * @param bookingClient    预约人
+     * @param securityNum      社保号码
+     * @param clientPhone      预约人电话号
+     * @param clientIdNo       预约人身份证号
+     * @param listener         监听
+     * @return
      */
     public static String submitBookingHospital(final Context context, String userId, String hospitalId, String departments, String doctor, String bookingTime, String bakTimeOne, String bakTimeTwo, String illnessCondition, String bookingClient, String securityNum, String clientPhone, String clientIdNo, OnRequestListener listener) {
         final String data = HtmlLoadUtil.submitBookingHospital(userId, hospitalId, departments, doctor, bookingTime, bakTimeOne, bakTimeTwo, illnessCondition, bookingClient, securityNum, clientPhone, clientIdNo);
@@ -1911,9 +1941,13 @@ public class HtmlRequest extends BaseRequester {
     /**
      * 服务--展示预约医院列表
      *
-     * @param context  上下文
-     * @param listener 监听
-     * @return 返回数据
+     * @param context
+     * @param province     省份
+     * @param city         市级地区
+     * @param hospitalName 医院名称
+     * @param page         页码
+     * @param listener
+     * @return
      */
     public static String getBookingHospitalList(final Context context, String province, String city, String hospitalName, String page, OnRequestListener listener) {
         final String data = HtmlLoadUtil.getBookingHospitalList(province, hospitalName, city, page);
@@ -1968,8 +2002,9 @@ public class HtmlRequest extends BaseRequester {
      * 服务--展示预约基因检测列表
      *
      * @param context  上下文
+     * @param page     页数
      * @param listener 监听
-     * @return 返回数据
+     * @return
      */
     public static String getGeneticTestingList(final Context context, String page, OnRequestListener listener) {
         final String data = HtmlLoadUtil.getGeneticTestingList(page);
@@ -2023,9 +2058,10 @@ public class HtmlRequest extends BaseRequester {
     /**
      * 服务--展示预约高尔夫球场列表
      *
-     * @param context  上下文
-     * @param listener 监听
-     * @return 返回数据
+     * @param context
+     * @param page     页数
+     * @param listener
+     * @return
      */
     public static String getGolfList(final Context context, String page, OnRequestListener listener) {
         final String data = HtmlLoadUtil.getGolfList(page);
@@ -2079,9 +2115,10 @@ public class HtmlRequest extends BaseRequester {
     /**
      * 服务--展示预约基因检测详情
      *
-     * @param context  上下文
-     * @param listener 监听
-     * @return 返回数据
+     * @param context
+     * @param id       被点击的item的id
+     * @param listener
+     * @return
      */
     public static String getGeneticTestingDetail(final Context context, String id, OnRequestListener listener) {
         final String data = HtmlLoadUtil.getGeneticTestingDetail(id);
@@ -2135,9 +2172,15 @@ public class HtmlRequest extends BaseRequester {
     /**
      * 服务--提交基因检测预约
      *
-     * @param context  上下文
-     * @param listener 监听
-     * @return 返回数据
+     * @param context
+     * @param geneticTestingId 基因检测Id
+     * @param userSex          预约人性别
+     * @param userAge          预约人年龄
+     * @param userAddress      预约人地址
+     * @param bookingClient    预约人
+     * @param clientPhone      预约人电话号
+     * @param listener
+     * @return
      */
     public static String subGeneticTesting(final Context context, String geneticTestingId, String userSex, String userAge, String userAddress, String bookingClient, String clientPhone, OnRequestListener listener) {
         final String data = HtmlLoadUtil.subGeneticTesting(geneticTestingId, userSex, userAge, userAddress, bookingClient, clientPhone);
@@ -2191,9 +2234,13 @@ public class HtmlRequest extends BaseRequester {
     /**
      * 保险预约
      *
-     * @param context  上下文
-     * @param listener 监听
-     * @return 返回数据
+     * @param context
+     * @param productId     产品ID
+     * @param userInfoId    用户ID
+     * @param bookingRemark 预约备注
+     * @param bookingAmount 预约金额
+     * @param listener
+     * @return
      */
     public static String subBookingInsurance(final Context context, String productId, String userInfoId, String bookingRemark, String bookingAmount, OnRequestListener listener) {
         final String data = HtmlLoadUtil.subBookingInsurance(productId, userInfoId, bookingRemark, bookingAmount);
@@ -2247,9 +2294,14 @@ public class HtmlRequest extends BaseRequester {
     /**
      * 非保险预约
      *
-     * @param context  上下文
-     * @param listener 监听
-     * @return 返回数据
+     * @param context
+     * @param productId     产品ID
+     * @param userInfoId    用户ID
+     * @param bookingRemark 预约备注
+     * @param bookingAmount 预约金额
+     * @param type          取值有（optimum:固收，floating:浮动收益）
+     * @param listener
+     * @return
      */
     public static String subBookingProduct(final Context context, String productId, String userInfoId, String bookingRemark, String bookingAmount, String type, OnRequestListener listener) {
         final String data = HtmlLoadUtil.subBookingProduct(productId, userInfoId, bookingRemark, bookingAmount, type);
@@ -2303,9 +2355,10 @@ public class HtmlRequest extends BaseRequester {
     /**
      * 服务--高尔夫球场详情
      *
-     * @param context  上下文
-     * @param listener 监听
-     * @return 返回数据
+     * @param context
+     * @param id       高尔夫球场Id
+     * @param listener
+     * @return
      */
     public static String getGolfDetail(final Context context, String id, OnRequestListener listener) {
         final String data = HtmlLoadUtil.getGolfDetail(id);
@@ -2406,9 +2459,14 @@ public class HtmlRequest extends BaseRequester {
     /**
      * 服务--提交高尔夫球场预约
      *
-     * @param context  上下文
-     * @param listener 监听
-     * @return 返回数据
+     * @param context
+     * @param bookingTime 预约时间
+     * @param clientPhone 预约电话
+     * @param golfId      高尔夫球场Id
+     * @param peersOne    同行人1
+     * @param peersTwo    同行人2
+     * @param listener
+     * @return
      */
     public static String submitGolfDetail(final Context context, String bookingTime, String clientPhone, String golfId, String peersOne, String peersTwo, OnRequestListener listener) {
         final String data = HtmlLoadUtil.submitGolf(bookingTime, clientPhone, golfId, peersOne, peersTwo);
@@ -2463,6 +2521,7 @@ public class HtmlRequest extends BaseRequester {
      * 服务--显示服务首页图片
      *
      * @param context  上下文
+     * @param id       userId(可传可不传)
      * @param listener 监听
      * @return 返回数据
      */
@@ -2518,9 +2577,15 @@ public class HtmlRequest extends BaseRequester {
     /**
      * 更多--取消预约（服务详情页待确认状态时显示取消按钮）
      *
-     * @param context  上下文
-     * @param listener 监听
-     * @return 返回数据
+     * @param context
+     * @param id           服务id
+     * @param serviceItems 服务类型
+     * @param name         医院名称
+     * @param departments  科室
+     * @param bookingTime  预约时间
+     * @param golfName     高尔夫球场名称
+     * @param listener
+     * @return
      */
     public static String cancelBooking(final Context context, String id, String serviceItems, String name, String departments, String bookingTime, String golfName, OnRequestListener listener) {
         final String data = HtmlLoadUtil.cancelBooking(id, serviceItems, name, departments, bookingTime, golfName);

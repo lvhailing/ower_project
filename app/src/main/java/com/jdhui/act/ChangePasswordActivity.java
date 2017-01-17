@@ -21,8 +21,7 @@ import com.jdhui.uitls.DESUtil;
 import com.jdhui.uitls.PreferenceUtil;
 import com.jdhui.uitls.StringUtil;
 
-public class ChangePasswordActivity extends BaseActivity implements
-        OnClickListener {
+public class ChangePasswordActivity extends BaseActivity implements OnClickListener {
 
     private EditText edt_old, edt_new, edt_again;
     private Button btnOk;
@@ -149,26 +148,21 @@ public class ChangePasswordActivity extends BaseActivity implements
                 String pwdnew = edt_new.getText().toString();
                 String pwdnew2 = edt_again.getText().toString();
                 if (StringUtil.hasBlank(pwdnew2)) {
-                    Toast.makeText(ChangePasswordActivity.this, "密码中不能含有空格",
-                            Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ChangePasswordActivity.this, "密码中不能含有空格", Toast.LENGTH_SHORT).show();
                 } else {
                     if (pwdnew.equals(pwdnew2)) {
                         if (!StringUtil.hasSpecialWordOne(pwdnew2)) {
                             if (pwdnew.length() < 8 || pwdnew.length() > 16) {
-                                Toast.makeText(ChangePasswordActivity.this,
-                                        "密码长度在8-16个字符之间", Toast.LENGTH_SHORT)
-                                        .show();
+                                Toast.makeText(ChangePasswordActivity.this, "密码长度在8-16个字符之间", Toast.LENGTH_SHORT).show();
                             } else {
                                 requestData();
                             }
                         } else {
-                            Toast.makeText(ChangePasswordActivity.this,
-                                    "密码只能是字母和数字组合", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(ChangePasswordActivity.this, "密码只能是字母和数字组合", Toast.LENGTH_SHORT).show();
                         }
 
                     } else {
-                        Toast.makeText(ChangePasswordActivity.this,
-                                "两次密码输入不一致，请重新输入", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(ChangePasswordActivity.this, "两次密码输入不一致，请重新输入", Toast.LENGTH_SHORT).show();
                     }
                 }
                 break;
@@ -179,29 +173,24 @@ public class ChangePasswordActivity extends BaseActivity implements
 
     private void requestData() {
         try {
-            HtmlRequest.changePassword(ChangePasswordActivity.this, DESUtil.decrypt(PreferenceUtil.getUserId()), edt_old.getText().toString(), edt_new.getText().toString(),
-                    new BaseRequester.OnRequestListener() {
-                        @Override
-                        public void onRequestFinished(BaseParams params) {
-                            if (params.result != null) {
-                                ResultCodeContentBean bean = (ResultCodeContentBean) params.result;
-                                if (Boolean.parseBoolean(bean.getFlag())) {
-                                    Toast.makeText(ChangePasswordActivity.this,
-                                            "密码修改成功,请重新登录", Toast.LENGTH_SHORT)
-                                            .show();
-                                    UserLoadout out = new UserLoadout(
-                                            ChangePasswordActivity.this);
-                                    out.requestData();
-                                    finish();
-                                } else {
-                                    Toast.makeText(ChangePasswordActivity.this, bean.getMsg(), Toast.LENGTH_SHORT).show();
-                                }
-                            } else {
-                                Toast.makeText(ChangePasswordActivity.this,
-                                        "加载失败，请确认网络通畅", Toast.LENGTH_LONG).show();
-                            }
+            HtmlRequest.changePassword(ChangePasswordActivity.this, DESUtil.decrypt(PreferenceUtil.getUserId()), edt_old.getText().toString(), edt_new.getText().toString(), new BaseRequester.OnRequestListener() {
+                @Override
+                public void onRequestFinished(BaseParams params) {
+                    if (params.result != null) {
+                        ResultCodeContentBean bean = (ResultCodeContentBean) params.result;
+                        if (Boolean.parseBoolean(bean.getFlag())) {
+                            Toast.makeText(ChangePasswordActivity.this, "密码修改成功,请重新登录", Toast.LENGTH_SHORT).show();
+                            UserLoadout out = new UserLoadout(ChangePasswordActivity.this);
+                            out.requestData();
+                            finish();
+                        } else {
+                            Toast.makeText(ChangePasswordActivity.this, bean.getMsg(), Toast.LENGTH_SHORT).show();
                         }
-                    });
+                    } else {
+                        Toast.makeText(ChangePasswordActivity.this, "加载失败，请确认网络通畅", Toast.LENGTH_LONG).show();
+                    }
+                }
+            });
         } catch (Exception e) {
             e.printStackTrace();
         }
