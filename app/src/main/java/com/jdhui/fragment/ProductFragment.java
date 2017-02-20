@@ -45,7 +45,7 @@ import java.util.ArrayList;
  */
 public class ProductFragment extends Fragment implements View.OnClickListener, CycleAdapter.ImageCycleViewListener {
     private View mView;
-    private LinearLayout mViewPager;
+    private LinearLayout mViewPager; //顶部轮播图
     private LinearLayout mLinearLayout;
     private ArrayList<ImageBean> images;
     private ImageBean imgbean = null;
