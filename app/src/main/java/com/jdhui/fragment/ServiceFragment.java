@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 import com.jdhui.R;
+import com.jdhui.act.ac.LinerListActivity;
 import com.jdhui.act.ac.WebAirPlanBookingActivity;
 import com.jdhui.act.ac.GeneticTestingListActivity;
 import com.jdhui.act.ac.GolfListActivity;
@@ -33,10 +34,14 @@ public class ServiceFragment extends Fragment implements View.OnClickListener {
     private RelativeLayout rl_genetic; //基因检测
     private RelativeLayout rl_golf; //高尔夫球场地
     private RelativeLayout rl_plane; //公务机包机
-    private ImageView iv_hospital;
-    private ImageView iv_genetic;
-    private ImageView iv_golf;
-    private ImageView iv_plane;
+    private RelativeLayout rl_liner; //豪华邮轮游
+
+    private ImageView iv_hospital; //绿通就医背景图
+    private ImageView iv_genetic; //基因检测背景图
+    private ImageView iv_golf; //高尔夫球场地背景图
+    private ImageView iv_plane; //公务机包机背景图
+    private ImageView iv_liner; //豪华邮轮游背景图
+
     private MouldList<ServicePicture2B> data;
     private DisplayImageOptions options;
     private ImageLoader imageLoader = ImageLoader.getInstance();
@@ -53,9 +58,7 @@ public class ServiceFragment extends Fragment implements View.OnClickListener {
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
         if (isVisibleToUser) {
-
         }
-
     }
 
     private void initView(View view) {
@@ -63,11 +66,13 @@ public class ServiceFragment extends Fragment implements View.OnClickListener {
         rl_genetic = (RelativeLayout) view.findViewById(R.id.rl_genetic);
         rl_golf = (RelativeLayout) view.findViewById(R.id.rl_golf);
         rl_plane = (RelativeLayout) view.findViewById(R.id.rl_plane);
+        rl_liner = (RelativeLayout) view.findViewById(R.id.rl_liner);
 
         iv_hospital = (ImageView) view.findViewById(R.id.iv_hospital);
         iv_genetic = (ImageView) view.findViewById(R.id.iv_genetic);
         iv_golf = (ImageView) view.findViewById(R.id.iv_golf);
         iv_plane = (ImageView) view.findViewById(R.id.iv_plane);
+        iv_liner = (ImageView) view.findViewById(R.id.iv_liner);
 
         //缓存图片到本地
         options = new DisplayImageOptions.Builder()
@@ -88,6 +93,9 @@ public class ServiceFragment extends Fragment implements View.OnClickListener {
         requestData();
     }
 
+    /**
+     *  显示服务首页图片
+     */
     private void requestData() {
        /* String userId = null;
         try {
@@ -104,7 +112,6 @@ public class ServiceFragment extends Fragment implements View.OnClickListener {
                         setView();
                     }
                 }
-
             }
         });
     }
@@ -131,7 +138,6 @@ public class ServiceFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onResume() {
         super.onResume();
-
     }
 
     @Override
@@ -152,6 +158,10 @@ public class ServiceFragment extends Fragment implements View.OnClickListener {
             case R.id.rl_plane: //公务机包机预约
                 Intent intent4 = new Intent(getActivity(), WebAirPlanBookingActivity.class);
                 startActivity(intent4);
+                break;
+            case R.id.rl_liner: //豪华邮轮游预约
+                Intent intent5 = new Intent(getActivity(), LinerListActivity.class);
+                startActivity(intent5);
                 break;
 
         }

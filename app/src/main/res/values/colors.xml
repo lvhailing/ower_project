@@ -12,6 +12,7 @@
     <color name="bg_white_gray_d">#E5E5E5</color>
     <color name="bg_gray">#F5F5F5</color>
     <color name="bg_gray_gray">#CCCCCC</color>
+    <color name="bg_gray_liner">#e6e6e6</color>
 
 
     <!-- 按钮色值 -->

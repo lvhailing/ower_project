@@ -26,7 +26,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 轮播图adapter
+ * 轮播图 ViewPager
  */
 public class CycleAdapter extends ViewPager {
     private static final String tag = " CycleAdapter ";

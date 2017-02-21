@@ -223,6 +223,10 @@
             android:name=".act.ac.WebAirPlanBookingActivity"
             android:screenOrientation="portrait"/>
 
+        <activity
+            android:name=".act.ac.LinerListActivity"
+            android:screenOrientation="portrait"/>
+
 
         <!-- 通道保持服务 -->
         <service
