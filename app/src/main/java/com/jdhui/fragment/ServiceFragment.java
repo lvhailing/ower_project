@@ -87,6 +87,7 @@ public class ServiceFragment extends Fragment implements View.OnClickListener {
         rl_genetic.setOnClickListener(this);
         rl_golf.setOnClickListener(this);
         rl_plane.setOnClickListener(this);
+        rl_liner.setOnClickListener(this);
     }
 
     private void initData() {

@@ -26,11 +26,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 轮播图 ViewPager
+ * 轮播图 自定义的ViewPager
  */
 public class CycleAdapter extends ViewPager {
     private static final String tag = " CycleAdapter ";
-    private List<ImageView> imageViews;
+    private List<ImageView> imageViews;//存放imgView的集合
     private Context context;
     private List<View> dotList = new ArrayList<View>();
     private int lastPosition = 0;
@@ -40,7 +40,7 @@ public class CycleAdapter extends ViewPager {
     private DisplayImageOptions options;
     private MyPagerAdapter mpAdapter;
     private boolean isCycle = false;
-    private MouldList<ResultCycleIndexBean> images;
+    private MouldList<ResultCycleIndexBean> images; //用于保存后台返回的图片的集合
     private ImageLoader imageLoader = ImageLoader.getInstance();
     private int currentItem = 0;
     private int imgaeNum = 0;
@@ -149,7 +149,7 @@ public class CycleAdapter extends ViewPager {
 
         imageViews = new ArrayList<ImageView>();
         /*
-		 * for(int i=0;i<ids.length;i++){ imageView = new ImageView(context);
+         * for(int i=0;i<ids.length;i++){ imageView = new ImageView(context);
 		 * imageView.setBackgroundResource(ids[i]);
 		 * 
 		 * imageViews.add(imageView); }
@@ -159,6 +159,7 @@ public class CycleAdapter extends ViewPager {
         } else {
             imgaeNum = images.size();
         }
+
         if (images.size() < 3) {
             for (int k = 0; k < 4; k++) {
                 for (int i = 0; i < images.size(); i++) {
@@ -391,11 +392,11 @@ public class CycleAdapter extends ViewPager {
     }
 
     /**
-     * 轮播图点击事件
+     * 轮播图点击事件的回调接口
      */
-    public static interface ImageCycleViewListener {
+    public interface ImageCycleViewListener {
 
-        public void onImageClick(int postion, View imageView);
+        void onImageClick(int postion, View imageView);
     }
 
 }

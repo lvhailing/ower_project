@@ -50,7 +50,7 @@ public class ProductFragment extends Fragment implements View.OnClickListener, C
     private ArrayList<ImageBean> images;
     private ImageBean imgbean = null;
     private DisplayImageOptions options;
-    private CycleAdapter cycleAdapter;
+    private CycleAdapter cycleAdapter;//自定义viewPager
     private MyListView myListView;
     private ProductHotProductAdapter mHotProductAdapter;
     //    private BadgeViewOne mBadgeView;
