@@ -69,9 +69,9 @@ public class LinerListAdapter extends BaseAdapter {
                 textView.setGravity(Gravity.CENTER);
                 textView.setTextSize(16);
                 textView.setPadding(8, 8, 8, 8);
-                Drawable normal = generateDrawable(randomColor(), 10);
-                Drawable pressed = generateDrawable(randomColor(), 10);
-                textView.setBackgroundDrawable(generateSelector(pressed, normal));
+                Drawable normal = generateDrawable(Color.rgb(220, 220, 220), 10);
+//                Drawable pressed = generateDrawable(randomColor(), 10);
+                textView.setBackgroundDrawable(normal);
                 holder.framlayout.addView(textView);
             }
             convertView.setTag(holder);
@@ -82,7 +82,7 @@ public class LinerListAdapter extends BaseAdapter {
 
         return convertView;
     }
-
+    //点击太效果
     public static StateListDrawable generateSelector(Drawable pressed, Drawable normal) {
         StateListDrawable drawable = new StateListDrawable();
         drawable.addState(new int[]{android.R.attr.state_pressed}, pressed);//设置按下的图片
