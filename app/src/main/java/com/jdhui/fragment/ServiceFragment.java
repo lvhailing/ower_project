@@ -75,13 +75,7 @@ public class ServiceFragment extends Fragment implements View.OnClickListener {
         iv_liner = (ImageView) view.findViewById(R.id.iv_liner);
 
         //缓存图片到本地
-        options = new DisplayImageOptions.Builder()
-                .showImageForEmptyUri(R.drawable.banner_three)
-                .showImageOnFail(R.drawable.banner_three)
-                .resetViewBeforeLoading(true).cacheOnDisc(true)
-                .imageScaleType(ImageScaleType.EXACTLY)
-                .bitmapConfig(Bitmap.Config.RGB_565).considerExifParams(true)
-                .displayer(new FadeInBitmapDisplayer(300)).build();
+        options = new DisplayImageOptions.Builder().showImageForEmptyUri(R.drawable.banner_three).showImageOnFail(R.drawable.banner_three).resetViewBeforeLoading(true).cacheOnDisc(true).imageScaleType(ImageScaleType.EXACTLY).bitmapConfig(Bitmap.Config.RGB_565).considerExifParams(true).displayer(new FadeInBitmapDisplayer(300)).build();
 
         rl_hospital.setOnClickListener(this);
         rl_genetic.setOnClickListener(this);
@@ -95,7 +89,7 @@ public class ServiceFragment extends Fragment implements View.OnClickListener {
     }
 
     /**
-     *  显示服务首页图片
+     * 显示服务首页图片
      */
     private void requestData() {
        /* String userId = null;
@@ -121,17 +115,19 @@ public class ServiceFragment extends Fragment implements View.OnClickListener {
         for (ServicePicture2B item : data) {
             if (item.getType().equals("hospitalBooking")) {
 //                ImageLoader.getInstance().displayImage(item.getPicture(), iv_hospital);
-                imageLoader.displayImage(item.getPicture(), iv_hospital, options,null);
+                imageLoader.displayImage(item.getPicture(), iv_hospital, options, null);
 
             } else if (item.getType().equals("geneticBooking")) {
 //                ImageLoader.getInstance().displayImage(item.getPicture(), iv_genetic);
-                imageLoader.displayImage(item.getPicture(), iv_genetic, options,null);
+                imageLoader.displayImage(item.getPicture(), iv_genetic, options, null);
             } else if (item.getType().equals("golfBooking")) {
 //                ImageLoader.getInstance().displayImage(item.getPicture(), iv_golf);
-                imageLoader.displayImage(item.getPicture(), iv_golf, options,null);
+                imageLoader.displayImage(item.getPicture(), iv_golf, options, null);
             } else if (item.getType().equals("airplaneBooking")) {
 //                ImageLoader.getInstance().displayImage(item.getPicture(), iv_plane);
-                imageLoader.displayImage(item.getPicture(), iv_plane, options,null);
+                imageLoader.displayImage(item.getPicture(), iv_plane, options, null);
+            } else if (item.getType().equals("shipBooking")) {
+                imageLoader.displayImage(item.getPicture(), iv_liner, options, null);
             }
         }
     }

@@ -7,7 +7,6 @@ import com.jdhui.mould.types.IMouldType;
  * 服务--展示高尔夫球场列表  接收后台返回数据
  */
 public class GolfList3B implements IMouldType {
-
     private String id; //高尔夫球场id
     private String golfName; //高尔夫球场名称
     private String listPhoto; //列表图片

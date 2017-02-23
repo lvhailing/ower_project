@@ -17,14 +17,14 @@ public class ApplicationConsts {
 //	public static final String URL_DEBUG ="http://192.168.1.106:9999/junde-hui-app/";
 
     // 张殿阳
-//	public static final String URL_DEBUG ="http://192.168.1.138:9999/junde-hui-app/";
+    public static final String URL_DEBUG = "http://192.168.1.138:9998/junde-hui-app/";
 
     //张亚磊
 //	public static final String URL_DEBUG ="http://192.168.1.193:9997/junde-hui-app/";
 
 
     //测试环境
-	public static final String URL_DEBUG ="http://192.168.1.86:82/";
+//	public static final String URL_DEBUG ="http://192.168.1.86:82/";
 
 // 张殿阳
 //	public static final String URL_DEBUG ="http://192.168.1.138:9999/junde-hui-app/";
@@ -396,10 +396,15 @@ public class ApplicationConsts {
      */
     public static final String URL_SERVICE_BOOKING_CANCEL = EC_HOST + "service/booking/cancel";
 
+    /**
+     * 展示豪华游轮列表
+     */
+    public static final String URL_SERVICE_SHIP_LIST = EC_HOST + "service/luxuryShip/list";
 
-
-
-
+    /**
+     * 游轮详情
+     */
+    public static final String URL_SERVICE_SHIP_VIEW = EC_HOST + "service/luxuryShip/view";
 
 
     // 手势密码点的状态

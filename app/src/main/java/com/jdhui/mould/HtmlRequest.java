@@ -38,6 +38,7 @@ import com.jdhui.bean.mybean.GeneticTestingList1B;
 import com.jdhui.bean.mybean.GetGolfInfo1B;
 import com.jdhui.bean.mybean.GolfDetail1B;
 import com.jdhui.bean.mybean.GolfList1B;
+import com.jdhui.bean.mybean.LinerList1B;
 import com.jdhui.bean.mybean.Product1B;
 import com.jdhui.bean.mybean.ProductDetail1B;
 import com.jdhui.bean.mybean.Service1B;
@@ -2616,6 +2617,120 @@ public class HtmlRequest extends BaseRequester {
                         String data = DESUtil.decrypt(result);
                         Gson json = new Gson();
                         BookingInsurance1B b = json.fromJson(data, BookingInsurance1B.class);
+                        resultEncrypt(context, b.getCode());
+                        return b.getData();
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                } finally {
+                    unRegisterId(getTaskId());
+                }
+                return null;
+            }
+
+            @Override
+            public void onPostExecute(IMouldType result, BaseParams params) {
+                params.result = result;
+                params.sendResult();
+            }
+        });
+        return tid;
+    }
+
+    /**
+     * 服务--展示豪华游轮列表
+     *
+     * @param context
+     * @param page     页数
+     * @param listener
+     * @return
+     */
+    public static String getLinerList(final Context context, String page, OnRequestListener listener) {
+        final String data = HtmlLoadUtil.getLinerList(page);
+        final String url = ApplicationConsts.URL_SERVICE_SHIP_LIST;
+        String tid = registerId(Constants.TASK_TYPE_LINER_LIST, url);
+        if (tid == null) {
+            return null;
+        }
+        getTaskManager().addTask(new MouldAsyncTask(tid, buildParams(Constants.TASK_TYPE_LINER_LIST, context, listener, url, 0)) {
+            @Override
+            public IMouldType doTask(BaseParams params) {
+                SimpleHttpClient client = new SimpleHttpClient(context, SimpleHttpClient.RESULT_STRING);
+
+                HttpEntity entity = null;
+                try {
+                    entity = new StringEntity(data);
+                } catch (UnsupportedEncodingException e1) {
+                    e1.printStackTrace();
+                }
+
+                client.post(url, entity);
+                String result = (String) client.getResult();
+                try {
+                    if (isCancelled()) {
+                        return null;
+                    }
+                    if (result != null) {
+                        String data = DESUtil.decrypt(result);
+                        Gson json = new Gson();
+                        LinerList1B b = json.fromJson(data, LinerList1B.class);
+                        resultEncrypt(context, b.getCode());
+                        return b.getData();
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                } finally {
+                    unRegisterId(getTaskId());
+                }
+                return null;
+            }
+
+            @Override
+            public void onPostExecute(IMouldType result, BaseParams params) {
+                params.result = result;
+                params.sendResult();
+            }
+        });
+        return tid;
+    }
+
+    /**
+     * 服务--游轮详情
+     *
+     * @param context
+     * @param id       游轮Id
+     * @param listener
+     * @return
+     */
+    public static String getLinerDetail(final Context context, String id, OnRequestListener listener) {
+        final String data = HtmlLoadUtil.getLinerDetail(id);
+        final String url = ApplicationConsts.URL_SERVICE_SHIP_VIEW;
+        String tid = registerId(Constants.TASK_TYPE_SERVICE_LINER_VIEW, url);
+        if (tid == null) {
+            return null;
+        }
+        getTaskManager().addTask(new MouldAsyncTask(tid, buildParams(Constants.TASK_TYPE_SERVICE_LINER_VIEW, context, listener, url, 0)) {
+            @Override
+            public IMouldType doTask(BaseParams params) {
+                SimpleHttpClient client = new SimpleHttpClient(context, SimpleHttpClient.RESULT_STRING);
+
+                HttpEntity entity = null;
+                try {
+                    entity = new StringEntity(data);
+                } catch (UnsupportedEncodingException e1) {
+                    e1.printStackTrace();
+                }
+
+                client.post(url, entity);
+                String result = (String) client.getResult();
+                try {
+                    if (isCancelled()) {
+                        return null;
+                    }
+                    if (result != null) {
+                        String data = DESUtil.decrypt(result);
+                        Gson json = new Gson();
+                        GolfDetail1B b = json.fromJson(data, GolfDetail1B.class);
                         resultEncrypt(context, b.getCode());
                         return b.getData();
                     }

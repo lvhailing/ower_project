@@ -53,6 +53,7 @@
 
 
         <TextView
+            android:id="@+id/tv_liner_price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical|right"
@@ -77,6 +78,7 @@
                 android:textSize="12sp"/>
 
             <TextView
+                android:id="@+id/tv_liner_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
@@ -84,7 +86,7 @@
                 android:layout_toRightOf="@id/tv_tab"
                 android:text="皇家加勒比国际邮轮.海洋航行者号"
                 android:textColor="@color/txt_black"
-                android:textSize="18sp"/>
+                android:textSize="14sp"/>
 
         </RelativeLayout>
 

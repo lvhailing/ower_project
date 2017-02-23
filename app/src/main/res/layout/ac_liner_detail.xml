@@ -1,0 +1,344 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/bg_gray">
+
+    <RelativeLayout
+        android:id="@+id/rl_service_type"
+        android:layout_width="match_parent"
+        android:layout_height="51dp"
+        android:background="@color/red4">
+
+        <ImageView
+            android:id="@+id/iv_back"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:padding="5dp"
+            android:src="@drawable/back"/>
+
+        <TextView
+            android:id="@+id/tv_title_travel_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="澳洲之游"
+            android:textColor="@color/white"
+            android:textSize="18sp"/>
+    </RelativeLayout>
+
+
+    <com.jdhui.widget.PullUpToLoadMore
+        android:id="@+id/ptlm"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/rl_service_type"
+        android:background="@color/bg_gray"
+        android:orientation="vertical">
+
+        <com.jdhui.widget.MyScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="160dp">
+
+                    <ImageView
+                        android:id="@+id/iv_detail_photo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:layout_alignParentBottom="true"
+                        android:background="@color/bg_black">
+
+                        <TextView
+                            android:id="@+id/tv_ship_name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="12dp"
+                            android:background="@drawable/shape_bg_gray1"
+                            android:paddingBottom="2.5dp"
+                            android:paddingLeft="4.5dp"
+                            android:paddingRight="4.5dp"
+                            android:paddingTop="2.5dp"
+                            android:text="单船票"
+                            android:textColor="@color/gray_dark"
+                            android:textSize="12sp"/>
+
+                        <TextView
+                            android:id="@+id/tv_ship_price"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginRight="12dp"
+                            android:text="￥1675/人起"
+                            android:textColor="@color/white"
+                            android:textSize="12sp"/>
+                    </RelativeLayout>
+
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal">
+
+                        <TextView
+                            android:id="@+id/tv_travel_date"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="2晚3日"
+                            android:textColor="#333"
+                            android:textSize="16sp"/>
+
+                        <TextView
+                            android:id="@+id/tv_travel_name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="15dp"
+                            android:layout_toRightOf="@id/tv_travel_date"
+                            android:text="澳洲之游"
+                            android:textColor="#333"
+                            android:textSize="16sp"/>
+                    </RelativeLayout>
+
+                    <com.jdhui.widget.FlowLayoutView
+                        android:id="@+id/framlayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"/>
+
+                    <View
+                        style="@style/v_line_style"
+                        android:layout_gravity="bottom"
+                        android:layout_marginTop="10dp"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tv_gatewayPort_title"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:gravity="center_horizontal"
+                        android:text="途径港口"
+                        android:textColor="@color/gray"
+                        android:textSize="14sp"/>
+
+                    <TextView
+                        android:id="@+id/tv_gatewayPort"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:gravity="center_horizontal"
+                        android:text="途径港口"
+                        android:textColor="@color/txt_black"
+                        android:textSize="14sp"/>
+
+                    <View
+                        style="@style/v_line_style"
+                        android:layout_gravity="bottom"
+                        android:layout_marginTop="20dp"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tv_shipName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:gravity="center_horizontal"
+                        android:text="公主游轮·黄金公主号"
+                        android:textColor="@color/txt_black"
+                        android:textSize="14sp"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="22dp"
+                        android:orientation="horizontal"
+                        android:paddingBottom="15dp">
+
+                        <LinearLayout style="@style/Liner_message_Style">
+
+                            <TextView
+                                android:id="@+id/tv_liner_starLevel_one"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="4.0"
+                                android:textColor="@color/txt_black"
+                                android:textSize="12sp"/>
+
+                            <TextView
+                                android:id="@+id/tv_liner_starLevel_two"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="15dp"
+                                android:text="邮轮星级"
+                                android:textColor="@color/gray_d"
+                                android:textSize="10sp"/>
+                        </LinearLayout>
+
+                        <LinearLayout style="@style/Liner_message_Style">
+
+                            <TextView
+                                android:id="@+id/tv_passgerCapacity_one"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:ellipsize="end"
+                                android:singleLine="true"
+                                android:text="1990人"
+                                android:textColor="@color/txt_black"
+                                android:textSize="12sp"/>
+
+                            <TextView
+                                android:id="@+id/tv_passgerCapacity_two"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="15dp"
+                                android:text="载客量"
+                                android:textColor="@color/gray_d"
+                                android:textSize="10sp"/>
+                        </LinearLayout>
+
+                        <LinearLayout style="@style/Liner_message_Style">
+
+                            <TextView
+                                android:id="@+id/tv_buildYear_one"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:text="1998年"
+                                android:textColor="@color/txt_black"
+                                android:textSize="12sp"/>
+
+                            <TextView
+                                android:id="@+id/tv_buildYear_two"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="15dp"
+                                android:text="建造年份"
+                                android:textColor="@color/gray_d"
+                                android:textSize="10sp"/>
+                        </LinearLayout>
+
+                        <LinearLayout style="@style/Liner_message_Style">
+
+                            <TextView
+                                android:id="@+id/tv_tonnage_one"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:text="7700吨"
+                                android:textColor="@color/txt_black"
+                                android:textSize="12sp"/>
+
+                            <TextView
+                                android:id="@+id/tv_tonnage_two"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="15dp"
+                                android:text="吨位"
+                                android:textColor="@color/gray_d"
+                                android:textSize="10sp"/>
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:orientation="vertical"
+                    android:layout_weight="1"
+                    android:gravity="bottom">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:height="50dp"
+                        android:background="#b11"
+                        android:gravity="center"
+                        android:text="继续拖动查看图文详情"
+                        android:textColor="#000000"/>
+
+                </LinearLayout>
+            </LinearLayout>
+        </com.jdhui.widget.MyScrollView>
+
+        <com.jdhui.widget.MyScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_djk"/>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_djk"/>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_djk"/>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_djk"/>
+
+            </LinearLayout>
+        </com.jdhui.widget.MyScrollView>
+
+    </com.jdhui.widget.PullUpToLoadMore>
+    <!--<Button
+        android:id="@+id/btn_submit"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="12dp"
+        android:background="@drawable/shape_button_red"
+        android:gravity="center"
+        android:text="立即预约"
+        android:textColor="@color/white"
+        android:textSize="16sp"/>-->
+</RelativeLayout>

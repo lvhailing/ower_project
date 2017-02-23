@@ -33,6 +33,8 @@ import com.jdhui.bean.mybean.GeneticTestingDetail0B;
 import com.jdhui.bean.mybean.GeneticTestingList0B;
 import com.jdhui.bean.mybean.GolfDetail0B;
 import com.jdhui.bean.mybean.GolfList0B;
+import com.jdhui.bean.mybean.LinerDetail0B;
+import com.jdhui.bean.mybean.LinerList0B;
 import com.jdhui.bean.mybean.Product0B;
 import com.jdhui.bean.mybean.ProductDetail0B;
 import com.jdhui.bean.mybean.Service0B;
@@ -522,5 +524,23 @@ public class HtmlLoadUtil {
         return getResult(b);
     }
 
+    /**
+     * 服务--展示豪华游轮列表
+     *
+     * @return
+     */
+    public static String getLinerList(String page) {
+        LinerList0B b = new LinerList0B(page);
+        return getResult(b);
+    }
 
+    /**
+     * 服务--游轮详情
+     *
+     * @return
+     */
+    public static String getLinerDetail(String id) {
+        LinerDetail0B b = new LinerDetail0B(id);
+        return getResult(b);
+    }
 }

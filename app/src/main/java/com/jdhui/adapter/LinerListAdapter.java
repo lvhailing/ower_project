@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 import com.jdhui.R;
 import com.jdhui.bean.mybean.GolfList3B;
+import com.jdhui.bean.mybean.LinerList3B;
 import com.jdhui.mould.types.MouldList;
 import com.jdhui.widget.FlowLayoutView;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -28,15 +29,17 @@ public class LinerListAdapter extends BaseAdapter {
     private final Context context;
     private String[] mStringArray;
 
-    private MouldList<GolfList3B> list;
+    private MouldList<LinerList3B> list;
     private LayoutInflater inflater;
+    private String linerTag;
 
-    public LinerListAdapter(Context context, MouldList<GolfList3B> list) {
+    public LinerListAdapter(Context context, MouldList<LinerList3B> list) {
         this.context = context;
         this.list = list;
         inflater = LayoutInflater.from(context);
 
-        mStringArray = new String[]{"澳新.澳洲", "南太平洋.斐济", "北美", "南太平洋.夏威夷"};
+//        mStringArray = new String[]{"澳新·澳洲", "南太平洋·斐济", "北美", "南太平洋·夏威夷"};
+
     }
 
     @Override
@@ -61,33 +64,35 @@ public class LinerListAdapter extends BaseAdapter {
             holder = new Holder();
             convertView = inflater.inflate(R.layout.ac_liner_list_item, null);
             holder.tv_travel_date = (TextView) convertView.findViewById(R.id.tv_travel_date);
+            holder.tv_travel_name = (TextView) convertView.findViewById(R.id.tv_travel_name);
+            holder.tv_liner_price = (TextView) convertView.findViewById(R.id.tv_liner_price);
+            holder.tv_liner_name = (TextView) convertView.findViewById(R.id.tv_liner_name);
             holder.framlayout = (FlowLayoutView) convertView.findViewById(R.id.framlayout);
-            for (int i = 0; i < mStringArray.length; i++) {
-                final TextView textView = new TextView(context);
-                textView.setText(mStringArray[i]);
-                textView.setTextColor(Color.BLUE);
-                textView.setGravity(Gravity.CENTER);
-                textView.setTextSize(16);
-                textView.setPadding(8, 8, 8, 8);
-                Drawable normal = generateDrawable(Color.rgb(220, 220, 220), 10);
-//                Drawable pressed = generateDrawable(randomColor(), 10);
-                textView.setBackgroundDrawable(normal);
-                holder.framlayout.addView(textView);
-            }
             convertView.setTag(holder);
+
         } else {
             holder = (LinerListAdapter.Holder) convertView.getTag();
         }
 
+        holder.tv_travel_date.setText(list.get(position).getRouteDuration());
+        holder.tv_travel_name.setText(list.get(position).getRouteName());
+        holder.tv_liner_price.setText("￥" + list.get(position).getLowerTicketPrice() + "/人起");
+        holder.tv_liner_name.setText(list.get(position).getShipName());
+        linerTag = list.get(position).getRouteDestination();
 
+        mStringArray = linerTag.split(",");
+        for (int i = 0; i < mStringArray.length; i++) {
+            final TextView textView = new TextView(context);
+            textView.setText(mStringArray[i]);
+            textView.setTextColor(Color.BLACK);
+            textView.setGravity(Gravity.CENTER);
+            textView.setTextSize(12);
+            textView.setPadding(5, 5, 5, 5);
+            Drawable normal = generateDrawable(Color.rgb(220, 220, 220), 10);
+            textView.setBackgroundDrawable(normal);
+            holder.framlayout.addView(textView);
+        }
         return convertView;
-    }
-    //点击太效果
-    public static StateListDrawable generateSelector(Drawable pressed, Drawable normal) {
-        StateListDrawable drawable = new StateListDrawable();
-        drawable.addState(new int[]{android.R.attr.state_pressed}, pressed);//设置按下的图片
-        drawable.addState(new int[]{}, normal);//设置默认的图片
-        return drawable;
     }
 
     public GradientDrawable generateDrawable(int argb, float radius) {
@@ -98,22 +103,12 @@ public class LinerListAdapter extends BaseAdapter {
         return drawable;
     }
 
-    /**
-     * 随机生成漂亮的颜色
-     *
-     * @return
-     */
-    public int randomColor() {
-        Random random = new Random();
-        //如果值太大，会偏白，太小则会偏黑，所以需要对颜色的值进行范围限定
-        int red = random.nextInt(150) + 50;//50-199
-        int green = random.nextInt(150) + 50;//50-199
-        int blue = random.nextInt(150) + 50;//50-199
-        return Color.rgb(red, green, blue);//根据rgb混合生成一种新的颜色
-    }
 
     class Holder {
         TextView tv_travel_date;
+        TextView tv_travel_name;
+        TextView tv_liner_price;
+        TextView tv_liner_name;
         FlowLayoutView framlayout;
 
     }

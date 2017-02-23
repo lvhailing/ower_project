@@ -227,6 +227,9 @@
             android:name=".act.ac.LinerListActivity"
             android:screenOrientation="portrait"/>
 
+        <activity
+            android:name=".act.ac.LinerDetailActivity"
+            android:screenOrientation="portrait"/>
 
         <!-- 通道保持服务 -->
         <service

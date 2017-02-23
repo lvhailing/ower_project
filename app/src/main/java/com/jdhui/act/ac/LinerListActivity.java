@@ -12,10 +12,9 @@ import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.jdhui.R;
 import com.jdhui.act.BaseActivity;
-import com.jdhui.adapter.GolfListAdapter;
 import com.jdhui.adapter.LinerListAdapter;
-import com.jdhui.bean.mybean.GolfList2B;
-import com.jdhui.bean.mybean.GolfList3B;
+import com.jdhui.bean.mybean.LinerList2B;
+import com.jdhui.bean.mybean.LinerList3B;
 import com.jdhui.mould.BaseParams;
 import com.jdhui.mould.BaseRequester;
 import com.jdhui.mould.HtmlRequest;
@@ -28,7 +27,7 @@ public class LinerListActivity extends BaseActivity implements View.OnClickListe
     private ImageView mBtnBack;
     private PullToRefreshListView listView;
     private LinerListAdapter mAdapter;
-    private MouldList<GolfList3B> totalList = new MouldList<>();
+    private MouldList<LinerList3B> totalList = new MouldList<>();
     private int currentPage = 1;    //当前页
 
     @Override
@@ -75,10 +74,10 @@ public class LinerListActivity extends BaseActivity implements View.OnClickListe
             }
         });
 
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() { //item  点击监听
             @Override
             public void onItemClick(AdapterView<?> arg0, View arg1, int position, long arg3) {
-                Intent intent = new Intent(LinerListActivity.this, GolfDetailActivity.class);
+                Intent intent = new Intent(LinerListActivity.this, LinerDetailActivity.class);
                 intent.putExtra("id", totalList.get(position - 1).getId());
                 startActivity(intent);
             }
@@ -91,7 +90,7 @@ public class LinerListActivity extends BaseActivity implements View.OnClickListe
      */
     private void requestListData() {
         try {
-            HtmlRequest.getGolfList(LinerListActivity.this, currentPage + "", new BaseRequester.OnRequestListener() {
+            HtmlRequest.getLinerList(LinerListActivity.this, currentPage + "", new BaseRequester.OnRequestListener() {
                 @Override
                 public void onRequestFinished(BaseParams params) {
                     if (params.result == null) {
@@ -105,14 +104,14 @@ public class LinerListActivity extends BaseActivity implements View.OnClickListe
                         return;
                     }
 
-                    GolfList2B data = (GolfList2B) params.result;
-                    MouldList<GolfList3B> everyList = data.getList();
+                    LinerList2B data = (LinerList2B) params.result;
+                    MouldList<LinerList3B> everyList = data.getList();
                     if ((everyList == null || everyList.size() == 0) && currentPage != 1) {
                         Toast.makeText(LinerListActivity.this, "已经到最后一页", Toast.LENGTH_SHORT).show();
                     }
 
                     if (currentPage == 1) {
-                        //刚进来时 加载第一页数据，或下拉刷新 重新加载数据 。这两种情况之前的数据都清掉
+                        //刚进来时 加载第一页数据，或下拉刷新 重新加载数据 ,这两种情况之前的数据都清掉
                         totalList.clear();
                     }
                     totalList.addAll(everyList);

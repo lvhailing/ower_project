@@ -205,5 +205,13 @@ public class Constants {
      */
     public static final String TASK_TYPE_SERVICE_BOOKING_CANCEL = String.valueOf(index++);
 
+    /***
+     * 服务--展示豪华游轮列表
+     */
+    public static final String TASK_TYPE_LINER_LIST = String.valueOf(index++);
 
+    /***
+     * 服务--游轮详情
+     */
+    public static final String TASK_TYPE_SERVICE_LINER_VIEW = String.valueOf(index++);
 }
