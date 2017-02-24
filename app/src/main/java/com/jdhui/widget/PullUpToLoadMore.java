@@ -132,7 +132,7 @@ public class PullUpToLoadMore extends ViewGroup {
                     if (dy > 0 && currPosition == 0) {
                         if (dy >= scaledTouchSlop) {
                             isIntercept = true;//拦截事件
-                            lastY=y;
+                            lastY = y;
                         }
                     }
                 }
@@ -214,8 +214,6 @@ public class PullUpToLoadMore extends ViewGroup {
         }
     }
 
-
-
     //通过Scroller实现弹性滑动
     private void smoothScroll(int tartY) {
         int dy = tartY - getScrollY();
@@ -223,12 +221,11 @@ public class PullUpToLoadMore extends ViewGroup {
         invalidate();
     }
 
-
     //滚动到顶部
-    public void scrollToTop(){
+    public void scrollToTop() {
         smoothScroll(0);
-        currPosition=0;
-        topScrollView.smoothScrollTo(0,0);
+        currPosition = 0;
+        topScrollView.smoothScrollTo(0, 0);
     }
 
     @Override

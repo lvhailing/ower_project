@@ -406,6 +406,11 @@ public class ApplicationConsts {
      */
     public static final String URL_SERVICE_SHIP_VIEW = EC_HOST + "service/luxuryShip/view";
 
+    /**
+     * 游轮详情
+     */
+    public static final String URL_SERVICE_SHIP_VIEW_INFO = EC_HOST + "service/luxuryShip/view/info";
+
 
     // 手势密码点的状态
     public static final int POINT_STATE_NORMAL = 0; // 正常状态

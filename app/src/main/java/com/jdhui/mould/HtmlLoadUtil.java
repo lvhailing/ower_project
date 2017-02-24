@@ -34,6 +34,7 @@ import com.jdhui.bean.mybean.GeneticTestingList0B;
 import com.jdhui.bean.mybean.GolfDetail0B;
 import com.jdhui.bean.mybean.GolfList0B;
 import com.jdhui.bean.mybean.LinerDetail0B;
+import com.jdhui.bean.mybean.LinerInfo0B;
 import com.jdhui.bean.mybean.LinerList0B;
 import com.jdhui.bean.mybean.Product0B;
 import com.jdhui.bean.mybean.ProductDetail0B;
@@ -541,6 +542,16 @@ public class HtmlLoadUtil {
      */
     public static String getLinerDetail(String id) {
         LinerDetail0B b = new LinerDetail0B(id);
+        return getResult(b);
+    }
+
+    /**
+     * 服务--游轮详情之游轮信息
+     *
+     * @return
+     */
+    public static String getLinerInfo(String id) {
+        LinerInfo0B b = new LinerInfo0B(id);
         return getResult(b);
     }
 }

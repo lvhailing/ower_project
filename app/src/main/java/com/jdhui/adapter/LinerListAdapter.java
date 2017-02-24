@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.jdhui.R;
@@ -63,6 +64,7 @@ public class LinerListAdapter extends BaseAdapter {
         if (convertView == null) {
             holder = new Holder();
             convertView = inflater.inflate(R.layout.ac_liner_list_item, null);
+            holder.iv_liner_item = (ImageView) convertView.findViewById(R.id.iv_liner_item);
             holder.tv_travel_date = (TextView) convertView.findViewById(R.id.tv_travel_date);
             holder.tv_travel_name = (TextView) convertView.findViewById(R.id.tv_travel_name);
             holder.tv_liner_price = (TextView) convertView.findViewById(R.id.tv_liner_price);
@@ -73,6 +75,9 @@ public class LinerListAdapter extends BaseAdapter {
         } else {
             holder = (LinerListAdapter.Holder) convertView.getTag();
         }
+
+        //加载item背景图片
+        ImageLoader.getInstance().displayImage(list.get(position).getListPhoto(),  holder.iv_liner_item);
 
         holder.tv_travel_date.setText(list.get(position).getRouteDuration());
         holder.tv_travel_name.setText(list.get(position).getRouteName());
@@ -105,6 +110,7 @@ public class LinerListAdapter extends BaseAdapter {
 
 
     class Holder {
+        ImageView iv_liner_item;
         TextView tv_travel_date;
         TextView tv_travel_name;
         TextView tv_liner_price;

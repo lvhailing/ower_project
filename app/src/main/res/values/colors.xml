@@ -13,6 +13,7 @@
     <color name="bg_gray">#F5F5F5</color>
     <color name="bg_gray_gray">#CCCCCC</color>
     <color name="bg_gray_liner">#e6e6e6</color>
+    <color name="bg_up_line">#f99917</color>
 
 
     <!-- 按钮色值 -->

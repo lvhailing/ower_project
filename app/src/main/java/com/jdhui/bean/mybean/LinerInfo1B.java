@@ -2,11 +2,11 @@ package com.jdhui.bean.mybean;
 
 import com.jdhui.mould.types.IMouldType;
 
-public class LinerDetail1B implements IMouldType {
+public class LinerInfo1B implements IMouldType {
     private String check;
     private String code;
     private String msg;
-    private LinerDetail2B data;
+    private LinerInfo2B data;
 
     public String getCheck() {
         return check;
@@ -32,13 +32,13 @@ public class LinerDetail1B implements IMouldType {
         this.msg = msg;
     }
 
-    public LinerDetail2B getData() {
+
+    public LinerInfo2B getData() {
         return data;
     }
 
-    public void setData(LinerDetail2B data) {
+    public void setData(LinerInfo2B data) {
         this.data = data;
     }
-
 }
 

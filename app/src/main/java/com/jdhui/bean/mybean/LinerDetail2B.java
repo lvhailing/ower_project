@@ -7,14 +7,14 @@ import com.jdhui.mould.types.IMouldType;
  * 服务--游轮详情
  */
 public class LinerDetail2B implements IMouldType {
-    private LinerDetail3B golf;
+    private LinerDetail3B luxuryShip;
 
-    public LinerDetail3B getGolf() {
-        return golf;
+    public LinerDetail3B getLuxuryShip() {
+        return luxuryShip;
     }
 
-    public void setGolf(LinerDetail3B golf) {
-        this.golf = golf;
+    public void setLuxuryShip(LinerDetail3B luxuryShip) {
+        this.luxuryShip = luxuryShip;
     }
 }
 

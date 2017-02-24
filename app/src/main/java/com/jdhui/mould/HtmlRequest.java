@@ -38,6 +38,8 @@ import com.jdhui.bean.mybean.GeneticTestingList1B;
 import com.jdhui.bean.mybean.GetGolfInfo1B;
 import com.jdhui.bean.mybean.GolfDetail1B;
 import com.jdhui.bean.mybean.GolfList1B;
+import com.jdhui.bean.mybean.LinerDetail1B;
+import com.jdhui.bean.mybean.LinerInfo1B;
 import com.jdhui.bean.mybean.LinerList1B;
 import com.jdhui.bean.mybean.Product1B;
 import com.jdhui.bean.mybean.ProductDetail1B;
@@ -2730,7 +2732,63 @@ public class HtmlRequest extends BaseRequester {
                     if (result != null) {
                         String data = DESUtil.decrypt(result);
                         Gson json = new Gson();
-                        GolfDetail1B b = json.fromJson(data, GolfDetail1B.class);
+                        LinerDetail1B b = json.fromJson(data, LinerDetail1B.class);
+                        resultEncrypt(context, b.getCode());
+                        return b.getData();
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                } finally {
+                    unRegisterId(getTaskId());
+                }
+                return null;
+            }
+
+            @Override
+            public void onPostExecute(IMouldType result, BaseParams params) {
+                params.result = result;
+                params.sendResult();
+            }
+        });
+        return tid;
+    }
+
+    /**
+     * 游轮详情之游轮信息
+     * @param context
+     * @param id
+     * @param listener
+     * @return
+     */
+    public static String getLinerInfo(final Context context, String id, OnRequestListener listener) {
+        final String data = HtmlLoadUtil.getLinerInfo(id);
+        final String url = ApplicationConsts.URL_SERVICE_SHIP_VIEW_INFO;
+        String tid = registerId(Constants.TASK_TYPE_SERVICE_LINER_VIEW_INFO, url);
+        if (tid == null) {
+            return null;
+        }
+        getTaskManager().addTask(new MouldAsyncTask(tid, buildParams(Constants.TASK_TYPE_SERVICE_LINER_VIEW_INFO, context, listener, url, 0)) {
+            @Override
+            public IMouldType doTask(BaseParams params) {
+                SimpleHttpClient client = new SimpleHttpClient(context, SimpleHttpClient.RESULT_STRING);
+
+                HttpEntity entity = null;
+                try {
+                    entity = new StringEntity(data);
+                } catch (UnsupportedEncodingException e1) {
+                    e1.printStackTrace();
+                }
+
+                client.post(url, entity);
+                String result = (String) client.getResult();
+                try {
+                    if (isCancelled()) {
+                        return null;
+                    }
+                    if (result != null) {
+                        String data = DESUtil.decrypt(result);
+                        Gson json = new Gson();
+                        LinerInfo1B b = json.fromJson(data, LinerInfo1B.class);
                         resultEncrypt(context, b.getCode());
                         return b.getData();
                     }

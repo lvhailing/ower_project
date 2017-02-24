@@ -214,4 +214,9 @@ public class Constants {
      * 服务--游轮详情
      */
     public static final String TASK_TYPE_SERVICE_LINER_VIEW = String.valueOf(index++);
+
+    /***
+     * 服务--游轮详情
+     */
+    public static final String TASK_TYPE_SERVICE_LINER_VIEW_INFO = String.valueOf(index++);
 }

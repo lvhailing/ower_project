@@ -1,8 +1,10 @@
 package com.jdhui.act.ac;
 
-import android.content.Intent;
-import android.graphics.Paint;
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -10,8 +12,10 @@ import android.widget.TextView;
 
 import com.jdhui.R;
 import com.jdhui.act.BaseActivity;
-import com.jdhui.bean.mybean.GolfDetail2B;
-import com.jdhui.bean.mybean.GolfDetail3B;
+import com.jdhui.bean.mybean.LinerDetail2B;
+import com.jdhui.bean.mybean.LinerDetail3B;
+import com.jdhui.bean.mybean.LinerInfo2B;
+import com.jdhui.bean.mybean.LinerInfo3B;
 import com.jdhui.mould.BaseParams;
 import com.jdhui.mould.BaseRequester;
 import com.jdhui.mould.HtmlRequest;
@@ -19,15 +23,15 @@ import com.jdhui.widget.FlowLayoutView;
 import com.jdhui.widget.PullUpToLoadMore;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
+import java.util.ArrayList;
+
 /**
  * 服务--豪华邮轮游详情页
  */
 public class LinerDetailActivity extends BaseActivity implements View.OnClickListener {
     private ImageView mBtnBack;
-    private TextView tv_title_travel_name; //豪华邮轮游详情页title
     private ImageView iv_detail_photo;
-    private GolfDetail2B golf2B;
-    private GolfDetail3B detail;
+    private TextView tv_title_travel_name; //豪华邮轮游详情页title
     private String id; //游轮id
     private TextView tv_field_name;
     private TextView tv_ship_price;
@@ -42,6 +46,14 @@ public class LinerDetailActivity extends BaseActivity implements View.OnClickLis
     private TextView tv_passgerCapacity_one;//载客量
     private TextView tv_buildYear_one;//建造年份
     private TextView tv_tonnage_one;//吨位
+    private LinerDetail2B LinerDetail2B;
+    private LinerDetail3B detail;
+    private String linerTag;
+    private String[] mStringArray;
+
+
+    private LinerInfo2B LinerInfo2B;
+    private ArrayList<ArrayList<LinerInfo3B>> linerInfo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +66,8 @@ public class LinerDetailActivity extends BaseActivity implements View.OnClickLis
 
     private void initData() {
         requestDetailData();
+
+        requestLinerInfoData();
     }
 
     private void initView() {
@@ -80,30 +94,80 @@ public class LinerDetailActivity extends BaseActivity implements View.OnClickLis
 
     private void setView() {
         //加载图片
-        ImageLoader.getInstance().displayImage(detail.getGolfPhoto(), iv_detail_photo);
+        ImageLoader.getInstance().displayImage(detail.getInfoPhoto(), iv_detail_photo);
 
-        String type;
-        String price;
-        //高尔夫权限  not：优惠价  A1：嘉宾价  A2：会员价  VIP：会员价
-        if (detail.getGolfRights().equals("not")) {
-            type = "优惠价";
-            price = detail.getPreferenialPrice();
-        } else if (detail.getGolfRights().equals("A1")) {
-            type = "嘉宾价";
-            price = detail.getGuestPrice();
-        } else {
-            type = "会员价";
-            price = detail.getVipPrice();
+        linerTag = detail.getRouteDestination();
+        mStringArray = linerTag.split(",");
+        for (int i = 0; i < mStringArray.length; i++) {
+            final TextView textView = new TextView(this);
+            textView.setText(mStringArray[i]);
+            textView.setTextColor(Color.BLACK);
+            textView.setGravity(Gravity.CENTER);
+            textView.setTextSize(12);
+            textView.setPadding(5, 5, 5, 5);
+            Drawable normal = generateDrawable(Color.rgb(220, 220, 220), 10);
+            textView.setBackgroundDrawable(normal);
+            framlayout.addView(textView);
         }
-//        tv_type_price.setText(type);
-//        tv_field_price.setText(price + "￥");
-//        tv_original_price.setText(detail.getOriginalPrice() + "￥");
-//        tv_original_price.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG | Paint.ANTI_ALIAS_FLAG);// 设置中划线并加清晰
-//
-//
-//        tv_field_name.setText(detail.getGolfName());
-//        tv_address.setText(detail.getGolfAddress());
-//        tv_detail.setText(detail.getGolfBrief());
+
+        tv_title_travel_name.setText(detail.getRouteName());
+        tv_travel_date.setText(detail.getRouteDuration());
+        tv_travel_name.setText(detail.getRouteName());
+        tv_gatewayPort.setText(detail.getGatewayPort());
+        tv_ship_price.setText(detail.getLowerTicketPrice());
+        tv_shipName.setText(detail.getShipName());
+        tv_liner_starLevel_one.setText(detail.getStarLevel());
+        tv_passgerCapacity_one.setText(detail.getPassgerCapacity());
+        tv_buildYear_one.setText(detail.getBuildYear());
+        tv_tonnage_one.setText(detail.getTonnage());
+    }
+
+    public GradientDrawable generateDrawable(int argb, float radius) {
+        GradientDrawable drawable = new GradientDrawable();
+        drawable.setShape(GradientDrawable.RECTANGLE); //设置为矩形，默认就是矩形
+        drawable.setCornerRadius(radius); //设置圆角的半径
+        drawable.setColor(argb);
+        return drawable;
+    }
+
+    /**
+     * 请求游轮详情的数据
+     */
+    private void requestDetailData() {
+        HtmlRequest.getLinerDetail(this, id, new BaseRequester.OnRequestListener() {
+            @Override
+            public void onRequestFinished(BaseParams params) {
+                if (params != null) {
+                    LinerDetail2B = (LinerDetail2B) params.result;
+                    detail = LinerDetail2B.getLuxuryShip();
+                    if (detail != null) {
+                        setView();
+                    }
+                }
+            }
+        });
+    }
+
+    /**
+     * 请求邮轮信息
+     */
+    private void requestLinerInfoData() {
+        HtmlRequest.getLinerInfo(this, id, new BaseRequester.OnRequestListener() {
+            @Override
+            public void onRequestFinished(BaseParams params) {
+                if (params != null) {
+                    LinerInfo2B = (LinerInfo2B) params.result;
+                    linerInfo = LinerInfo2B.getVoyageInfo();
+                    if (linerInfo != null) {
+                        setNextPageView();
+                    }
+                }
+            }
+        });
+    }
+
+    private void setNextPageView() {
+
     }
 
     @Override
@@ -112,28 +176,7 @@ public class LinerDetailActivity extends BaseActivity implements View.OnClickLis
             case R.id.iv_back:
                 finish();
                 break;
-            case R.id.btn_submit:   //立即预约
-//                Intent intent = new Intent(LinerDetailActivity.this, SubBookingGolfActivity.class);
-//                intent.putExtra("id", id);
-//                intent.putExtra("name", detail.getGolfName());
-//                intent.putExtra("golfRights", detail.getGolfRights());//高尔夫权限  not：优惠价  A1：嘉宾价  A2和VIP（都显示）：会员价
-//                startActivity(intent);
-//                break;
         }
     }
 
-    private void requestDetailData() {  //请求游轮详情的数据
-        HtmlRequest.getLinerDetail(this, id, new BaseRequester.OnRequestListener() {
-            @Override
-            public void onRequestFinished(BaseParams params) {
-                if (params != null) {
-                    golf2B = (GolfDetail2B) params.result;
-//                    detail = golf2B.getGolf();
-                    if (detail != null) {
-//                        setView();
-                    }
-                }
-            }
-        });
-    }
 }

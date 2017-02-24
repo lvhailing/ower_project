@@ -35,7 +35,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/rl_service_type"
-        android:background="@color/bg_gray"
         android:orientation="vertical">
 
         <com.jdhui.widget.MyScrollView
@@ -50,7 +49,7 @@
 
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="160dp">
+                    android:layout_height="170dp">
 
                     <ImageView
                         android:id="@+id/iv_detail_photo"
@@ -59,12 +58,12 @@
 
                     <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="30dp"
+                        android:layout_height="38dp"
                         android:layout_alignParentBottom="true"
                         android:background="@color/bg_black">
 
                         <TextView
-                            android:id="@+id/tv_ship_name"
+                            android:id="@+id/tv_single_ticket"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentLeft="true"
@@ -80,6 +79,17 @@
                             android:textSize="12sp"/>
 
                         <TextView
+                            android:id="@+id/tv_shipName_up"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="5dp"
+                            android:layout_toRightOf="@id/tv_single_ticket"
+                            android:text="公主游轮·黄金公主号"
+                            android:textColor="@color/txt_white"
+                            android:textSize="12sp"/>
+
+                        <TextView
                             android:id="@+id/tv_ship_price"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -87,8 +97,8 @@
                             android:layout_centerVertical="true"
                             android:layout_marginRight="12dp"
                             android:text="￥1675/人起"
-                            android:textColor="@color/white"
-                            android:textSize="12sp"/>
+                            android:textColor="@color/txt_white"
+                            android:textSize="16sp"/>
                     </RelativeLayout>
 
                 </RelativeLayout>
@@ -96,8 +106,11 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:orientation="vertical">
+                    android:layout_marginTop="1dp"
+                    android:background="@color/white"
+                    android:orientation="vertical"
+                    android:paddingBottom="24dp"
+                    android:paddingTop="24dp">
 
                     <RelativeLayout
                         android:layout_width="wrap_content"
@@ -127,24 +140,26 @@
                         android:id="@+id/framlayout"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"/>
+                        android:layout_marginTop="6dp"/>
 
-                    <View
+                    <!--<View
                         style="@style/v_line_style"
                         android:layout_gravity="bottom"
-                        android:layout_marginTop="10dp"/>
+                        android:layout_marginTop="10dp"/>-->
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:background="@color/white"
                     android:orientation="vertical">
 
                     <TextView
                         android:id="@+id/tv_gatewayPort_title"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="20dp"
+                        android:layout_marginTop="24dp"
                         android:gravity="center_horizontal"
                         android:text="途径港口"
                         android:textColor="@color/gray"
@@ -154,21 +169,20 @@
                         android:id="@+id/tv_gatewayPort"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="15dp"
+                        android:layout_marginBottom="24dp"
+                        android:layout_marginTop="12dp"
                         android:gravity="center_horizontal"
                         android:text="途径港口"
                         android:textColor="@color/txt_black"
                         android:textSize="14sp"/>
 
-                    <View
-                        style="@style/v_line_style"
-                        android:layout_gravity="bottom"
-                        android:layout_marginTop="20dp"/>
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:background="@color/white"
                     android:orientation="vertical">
 
                     <TextView
@@ -279,21 +293,44 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:orientation="vertical"
                     android:layout_weight="1"
-                    android:gravity="bottom">
+                    android:gravity="bottom"
+                    android:orientation="vertical"
+                    android:paddingBottom="15dp">
 
-                    <TextView
+                    <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:height="50dp"
-                        android:background="#b11"
-                        android:gravity="center"
-                        android:text="继续拖动查看图文详情"
-                        android:textColor="#000000"/>
+                        android:layout_height="66dp">
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:src="@drawable/tab_lines"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:layout_centerVertical="true"
+                            android:background="@color/bg_gray"
+                            android:paddingLeft="8dp"
+                            android:paddingRight="8dp"
+                            android:text="继续拖动，查看更多消息"
+                            android:textColor="@color/txt_gray_light_l"/>
+                    </RelativeLayout>
+
 
                 </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="15dp"
+                    android:background="@color/bg_gray"/>
             </LinearLayout>
+
         </com.jdhui.widget.MyScrollView>
 
         <com.jdhui.widget.MyScrollView
@@ -306,31 +343,31 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <ImageView
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/bg_djk"/>
+                    android:orientation="vertical">
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/bg_djk"/>
+                    <android.support.v4.view.ViewPager
+                        xmlns:android="http://schemas.android.com/apk/res/android"
+                        android:id="@+id/vp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/bg_djk"/>
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/bg_djk"/>
+                    <View
+                        android:id="@+id/line"
+                        android:layout_width="0dp"
+                        android:layout_height="3dp"
+                        android:layout_alignParentBottom="true"
+                        android:background="#890002"/>
+                </LinearLayout>
 
             </LinearLayout>
         </com.jdhui.widget.MyScrollView>
 
     </com.jdhui.widget.PullUpToLoadMore>
-    <!--<Button
+
+    <Button
         android:id="@+id/btn_submit"
         android:layout_width="match_parent"
         android:layout_height="45dp"
@@ -340,5 +377,5 @@
         android:gravity="center"
         android:text="立即预约"
         android:textColor="@color/white"
-        android:textSize="16sp"/>-->
+        android:textSize="16sp"/>
 </RelativeLayout>

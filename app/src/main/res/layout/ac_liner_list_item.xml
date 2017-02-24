@@ -2,25 +2,44 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@color/white">
+    android:layout_height="130dp"
+    android:background="@color/bg_gray">
+
+    <ImageView
+        android:id="@+id/iv_liner_item"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/bg_normal"
+        android:scaleType="fitXY"/>
 
     <LinearLayout
         android:id="@+id/ll_trip"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:paddingLeft="10dp">
+        android:orientation="vertical">
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
+            android:background="@color/bg_black_trans"
             android:layout_marginTop="8dp">
+
+            <ImageView
+                android:id="@+id/iv_line"
+                android:layout_width="3dp"
+                android:layout_height="16dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:background="@drawable/shape_up_line"/>
 
             <TextView
                 android:id="@+id/tv_travel_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="6dp"
+                android:layout_toRightOf="@id/iv_line"
                 android:text="2晚3日"
                 android:textColor="#333"
                 android:textSize="16sp"/>
@@ -29,6 +48,7 @@
                 android:id="@+id/tv_travel_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
                 android:layout_marginLeft="15dp"
                 android:layout_toRightOf="@id/tv_travel_date"
                 android:text="澳洲之游"
@@ -36,20 +56,11 @@
                 android:textSize="16sp"/>
         </RelativeLayout>
 
-        <!-- <TextView
-             android:layout_width="wrap_content"
-             android:layout_height="wrap_content"
-             android:layout_marginTop="5dp"
-             android:background="@drawable/shape_line"
-             android:padding="5dp"
-             android:text="澳新.澳洲"
-             android:textColor="@color/txt_black"/>-->
-
         <com.jdhui.widget.FlowLayoutView
             android:id="@+id/framlayout"
-            android:layout_marginTop="5dp"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent"
+            android:layout_marginTop="5dp"/>
 
 
         <TextView
