@@ -2,8 +2,8 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="130dp"
-    android:background="@color/bg_gray">
+    android:layout_height="180dp"
+    android:minHeight="180dp">
 
     <ImageView
         android:id="@+id/iv_liner_item"
@@ -13,17 +13,19 @@
         android:background="@drawable/bg_normal"
         android:scaleType="fitXY"/>
 
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/ll_trip"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
         android:orientation="vertical">
 
         <RelativeLayout
+            android:id="@+id/rl_title"
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:background="@color/bg_black_trans"
-            android:layout_marginTop="8dp">
+            android:layout_marginTop="8dp"
+            android:background="@color/bg_black_trans">
 
             <ImageView
                 android:id="@+id/iv_line"
@@ -41,7 +43,7 @@
                 android:layout_marginLeft="6dp"
                 android:layout_toRightOf="@id/iv_line"
                 android:text="2晚3日"
-                android:textColor="#333"
+                android:textColor="@color/white"
                 android:textSize="16sp"/>
 
             <TextView
@@ -49,63 +51,62 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="15dp"
+                android:layout_marginLeft="10dp"
                 android:layout_toRightOf="@id/tv_travel_date"
                 android:text="澳洲之游"
-                android:textColor="#333"
+                android:textColor="@color/white"
                 android:textSize="16sp"/>
         </RelativeLayout>
 
         <com.jdhui.widget.FlowLayoutView
             android:id="@+id/framlayout"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/rl_title"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             android:layout_marginTop="5dp"/>
 
+        <TextView
+            android:id="@+id/tv_liner_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:paddingBottom="10dp"
+            android:text="皇家加勒比国际邮轮.海洋航行者号"
+            android:textColor="@color/white"
+            android:textSize="13sp"/>
 
         <TextView
             android:id="@+id/tv_liner_price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical|right"
-            android:layout_marginRight="15dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
+            android:includeFontPadding="false"
+            android:paddingBottom="10dp"
             android:text="￥1533/人起"
-            android:textColor="@color/txt_black"
+            android:textColor="@color/white"
             android:textSize="18sp"/>
 
-        <RelativeLayout
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/tv_tab"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="18dp">
-
-            <TextView
-                android:id="@+id/tv_tab"
-                android:layout_width="60dp"
-                android:layout_height="26dp"
-                android:background="@drawable/shape_bg_gray1"
-                android:gravity="center"
-                android:text="单船票"
-                android:textColor="@color/txt_black"
-                android:textSize="12sp"/>
-
-            <TextView
-                android:id="@+id/tv_liner_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="15dp"
-                android:layout_toRightOf="@id/tv_tab"
-                android:text="皇家加勒比国际邮轮.海洋航行者号"
-                android:textColor="@color/txt_black"
-                android:textSize="14sp"/>
-
-        </RelativeLayout>
-
-    </LinearLayout>
-
-    <View
-        style="@style/v_line_style"
-        android:layout_below="@id/ll_trip"
-        android:layout_marginTop="5dp"/>
-
+            android:layout_above="@id/tv_liner_name"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/shape_bg_unread_red"
+            android:gravity="center"
+            android:paddingBottom="3dp"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:paddingTop="3dp"
+            android:text="单船票"
+            android:textColor="@color/white"
+            android:textSize="13sp"/>
+    </RelativeLayout>
 </RelativeLayout>
