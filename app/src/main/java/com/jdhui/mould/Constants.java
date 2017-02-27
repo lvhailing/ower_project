@@ -168,6 +168,10 @@ public class Constants {
      * 服务--提交基因检测预约
      */
     public static final String TASK_TYPE_BOOKING_GENETICTESTING_ADD = String.valueOf(index++);
+    /***
+     * 邮轮提交预约
+     */
+    public static final String TASK_TYPE_BOOKING_SHIP = String.valueOf(index++);
 
 
     /***

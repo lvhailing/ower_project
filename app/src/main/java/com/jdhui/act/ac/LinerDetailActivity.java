@@ -1,5 +1,6 @@
 package com.jdhui.act.ac;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
@@ -35,7 +36,7 @@ public class LinerDetailActivity extends BaseActivity implements View.OnClickLis
     private String id; //游轮id
     private TextView tv_field_name;
     private TextView tv_ship_price;
-    private Button btn_submit;
+    private Button btn_submit; // 立即预约按钮
     private PullUpToLoadMore ptlm;
     private TextView tv_travel_date; //历时 如：2日3晚
     private TextView tv_travel_name; //旅行名称
@@ -87,9 +88,11 @@ public class LinerDetailActivity extends BaseActivity implements View.OnClickLis
         tv_passgerCapacity_one = (TextView) findViewById(R.id.tv_passgerCapacity_one);
         tv_buildYear_one = (TextView) findViewById(R.id.tv_buildYear_one);
         tv_tonnage_one = (TextView) findViewById(R.id.tv_tonnage_one);
+        btn_submit = (Button) findViewById(R.id.btn_submit);
 
 
         mBtnBack.setOnClickListener(this);
+        btn_submit.setOnClickListener(this);
     }
 
     private void setView() {
@@ -175,6 +178,11 @@ public class LinerDetailActivity extends BaseActivity implements View.OnClickLis
         switch (v.getId()) {
             case R.id.iv_back:
                 finish();
+                break;
+            case R.id.btn_submit: //立即预约 按钮
+                Intent intent = new Intent(this, SubBookingShipActivity.class);
+                intent.putExtra("shipId", id);
+                startActivity(intent);
                 break;
         }
     }

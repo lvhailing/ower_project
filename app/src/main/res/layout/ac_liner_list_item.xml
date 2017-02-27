@@ -1,29 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<RelativeLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="170dp"
-    android:minHeight="170dp">
-
-    <ImageView
-        android:id="@+id/iv_liner_item"
-        android:layout_width="match_parent"
-        android:layout_height="170dp"
-        android:layout_marginTop="5dp"
-        android:background="@drawable/bg_normal"
-        android:scaleType="fitXY"/>
+    android:minHeight="170dp"
+    android:orientation="vertical">
 
     <RelativeLayout
-        android:id="@+id/ll_trip"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="5dp"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/iv_liner_item"
+            android:layout_width="match_parent"
+            android:layout_height="170dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/bg_normal"
+            android:scaleType="fitXY"/>
+
 
         <RelativeLayout
             android:id="@+id/rl_title"
             android:layout_width="match_parent"
             android:layout_height="40dp"
+            android:layout_marginTop="5dp"
             android:background="@color/bg_black_trans">
 
             <ImageView
@@ -57,6 +57,7 @@
                 android:textSize="16sp"/>
         </RelativeLayout>
 
+
         <com.jdhui.widget.FlowLayoutLimitLine
             android:id="@+id/fl_remark"
             android:layout_width="match_parent"
@@ -66,35 +67,38 @@
             android:layout_marginRight="10dp"
             android:layout_marginTop="5dp"/>
 
+        <View
+            android:id="@+id/v_empty"
+            android:layout_width="match_parent"
+            android:layout_height="15dp"
+            android:layout_below="@id/fl_remark"
+            android:background="@color/transparent"/>
+
+        <TextView
+            android:id="@+id/tv_tab"
+            android:layout_width="56dp"
+            android:layout_height="24dp"
+            android:layout_below="@id/v_empty"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="28dp"
+            android:background="@drawable/bg_btn_single_ticket"
+            android:gravity="center"
+            android:text="单船票"
+            android:textColor="@color/txt_black"
+            android:textSize="12sp"/>
+
         <RelativeLayout
+            android:id="@+id/rl_bottom"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true">
-
-            <TextView
-                android:id="@+id/tv_tab"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:background="@drawable/shape_button_orange"
-                android:gravity="center"
-                android:paddingBottom="3dp"
-                android:paddingLeft="15dp"
-                android:paddingRight="15dp"
-                android:paddingTop="3dp"
-                android:text="单船票"
-                android:textColor="@color/white"
-                android:textSize="13sp"/>
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="10dp">
 
             <TextView
                 android:id="@+id/tv_liner_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/tv_tab"
                 android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginTop="5dp"
-                android:paddingBottom="10dp"
                 android:text="皇家加勒比国际邮轮.海洋航行者号"
                 android:textColor="@color/white"
                 android:textSize="13sp"/>
@@ -104,15 +108,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
-                android:layout_below="@id/tv_tab"
+                android:layout_marginBottom="5dp"
                 android:layout_marginRight="10dp"
-                android:layout_marginTop="5dp"
-                android:includeFontPadding="false"
-                android:paddingBottom="10dp"
                 android:text="￥1533/人起"
                 android:textColor="@color/white"
                 android:textSize="18sp"/>
-
         </RelativeLayout>
     </RelativeLayout>
-</RelativeLayout>
+
+</LinearLayout>

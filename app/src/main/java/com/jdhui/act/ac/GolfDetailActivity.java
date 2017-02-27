@@ -26,13 +26,25 @@ public class GolfDetailActivity extends BaseActivity implements View.OnClickList
     private GolfDetail2B golf2B;
     private GolfDetail3B detail;
     private String id; //高尔夫球场Id
-    private TextView tv_field_name;
+    private TextView tv_field_name; //高尔夫球场名称
     private TextView tv_address;
     private TextView tv_detail;
-    private TextView tv_original_price;
-    private TextView tv_type_price;
-    private TextView tv_field_price;
     private Button btn_submit;
+
+    private TextView tv_up_price_flag;
+    private TextView tv_up_preferential_price;
+    private TextView tv_up_original_price;
+
+    private TextView tv_down_price_flag;
+    private TextView tv_down_preferential_price;
+    private TextView tv_down_original_price;
+
+    private Number preferenialPrice;//平日优惠价
+    private Number preferenialPriceHoliday;//假日优惠价
+    private Number guestPrice;//平日嘉宾价
+    private Number guestPriceHoliday;//假日嘉宾价
+    private Number vipPrice;//平日会员价
+    private Number vipPriceHoliday;//假日会员价
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,9 +65,14 @@ public class GolfDetailActivity extends BaseActivity implements View.OnClickList
         mBtnBack = (ImageView) findViewById(R.id.iv_back);
         iv_detail_photo = (ImageView) findViewById(R.id.iv_detail_photo);
         tv_field_name = (TextView) findViewById(R.id.tv_field_name);
-        tv_field_price = (TextView) findViewById(R.id.tv_field_price);
-        tv_type_price = (TextView) findViewById(R.id.tv_type_price);
-        tv_original_price = (TextView) findViewById(R.id.tv_original_price);
+
+        tv_up_price_flag = (TextView) findViewById(R.id.tv_up_price_flag);
+        tv_up_preferential_price = (TextView) findViewById(R.id.tv_up_preferential_price);
+        tv_up_original_price = (TextView) findViewById(R.id.tv_up_original_price);
+        tv_down_price_flag = (TextView) findViewById(R.id.tv_down_price_flag);
+        tv_down_preferential_price = (TextView) findViewById(R.id.tv_down_preferential_price);
+        tv_down_original_price = (TextView) findViewById(R.id.tv_down_original_price);
+
         tv_address = (TextView) findViewById(R.id.tv_address);
         tv_detail = (TextView) findViewById(R.id.tv_detail);
         btn_submit = (Button) findViewById(R.id.btn_submit);
@@ -73,18 +90,47 @@ public class GolfDetailActivity extends BaseActivity implements View.OnClickList
         //高尔夫权限  not：优惠价  A1：嘉宾价  A2：会员价  VIP：会员价
         if (detail.getGolfRights().equals("not")) {
             type = "优惠价";
-            price = detail.getPreferenialPrice();
+            preferenialPrice = detail.getPreferenialPrice();
+            preferenialPriceHoliday = detail.getPreferenialPriceHoliday();
+
+            tv_up_price_flag.setText("平日优惠价");
+            tv_up_preferential_price.setText("￥:" + preferenialPrice);
+            tv_up_original_price.setText("￥" + detail.getOriginalPrice()); //平日原价
+
+            tv_down_price_flag.setText("假日优惠价");
+            tv_down_preferential_price.setText("￥:" + preferenialPriceHoliday);
+            tv_down_original_price.setText("￥" + detail.getOriginalPriceHoliday());
+
         } else if (detail.getGolfRights().equals("A1")) {
             type = "嘉宾价";
-            price = detail.getGuestPrice();
+            guestPrice = detail.getGuestPrice();
+            guestPriceHoliday = detail.getGuestPriceHoliday();
+
+            tv_up_price_flag.setText("平日嘉宾价");
+            tv_up_preferential_price.setText("￥:" + guestPrice);
+            tv_up_original_price.setText("￥" + detail.getOriginalPrice()); //平日原价
+
+            tv_down_price_flag.setText("假日嘉宾价");
+            tv_down_preferential_price.setText("￥:" + guestPriceHoliday);
+            tv_down_original_price.setText("￥" + detail.getOriginalPriceHoliday());
+
+
         } else {
             type = "会员价";
-            price = detail.getVipPrice();
+            vipPrice = detail.getVipPrice();
+            vipPriceHoliday = detail.getVipPriceHoliday();
+
+            tv_up_price_flag.setText("平日会员价");
+            tv_up_preferential_price.setText("￥:" + vipPrice);
+            tv_up_original_price.setText("￥" + detail.getOriginalPrice()); //平日原价
+
+            tv_down_price_flag.setText("假日会员价");
+            tv_down_preferential_price.setText("￥:" + vipPriceHoliday);
+            tv_down_original_price.setText("￥" + detail.getOriginalPriceHoliday());
         }
-        tv_type_price.setText(type);
-        tv_field_price.setText( price+"￥" );
-        tv_original_price.setText( detail.getOriginalPrice()+"￥" );
-        tv_original_price.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG | Paint.ANTI_ALIAS_FLAG);// 设置中划线并加清晰
+
+        tv_up_original_price.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG | Paint.ANTI_ALIAS_FLAG);// 设置中划线并加清晰
+        tv_down_original_price.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG | Paint.ANTI_ALIAS_FLAG);// 设置中划线并加清晰
 
 
         tv_field_name.setText(detail.getGolfName());

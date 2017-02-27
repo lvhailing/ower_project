@@ -46,6 +46,7 @@ import com.jdhui.bean.mybean.ProductDetail1B;
 import com.jdhui.bean.mybean.Service1B;
 import com.jdhui.bean.mybean.ServiceDetail1B;
 import com.jdhui.bean.mybean.ServicePicture1B;
+import com.jdhui.bean.mybean.SubBookingShip1B;
 import com.jdhui.bean.mybean.SubGeneticTesting1B;
 import com.jdhui.bean.mybean.SubmitBookingHospital1B;
 import com.jdhui.http.SimpleHttpClient;
@@ -1292,7 +1293,7 @@ public class HtmlRequest extends BaseRequester {
      * 更多--服务预约列表
      *
      * @param context
-     * @param serviceItems 绿通就医：hospitalBooking  基因检测：geneticBooking  高尔夫球场：golfBooking  公务机包机：airplaneBooking
+     * @param serviceItems 绿通就医：hospitalBooking  基因检测：geneticBooking  高尔夫球场：golfBooking  公务机包机：airplaneBooking  豪华游轮:luxuryShipBooking
      * @param page         页数
      * @param listener
      * @return
@@ -2789,6 +2790,56 @@ public class HtmlRequest extends BaseRequester {
                         String data = DESUtil.decrypt(result);
                         Gson json = new Gson();
                         LinerInfo1B b = json.fromJson(data, LinerInfo1B.class);
+                        resultEncrypt(context, b.getCode());
+                        return b.getData();
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                } finally {
+                    unRegisterId(getTaskId());
+                }
+                return null;
+            }
+
+            @Override
+            public void onPostExecute(IMouldType result, BaseParams params) {
+                params.result = result;
+                params.sendResult();
+            }
+        });
+        return tid;
+    }
+
+
+    public static String subBookingShip(final Context context, String clientPhone,  String shipId, String clientName, OnRequestListener listener) {
+        final String data = HtmlLoadUtil.subBookingShip(clientPhone, shipId, clientName);
+        final String url = ApplicationConsts.URL_SERVICE_BOOKINGLUXURYSHIP_ADD;
+        String tid = registerId(Constants.TASK_TYPE_BOOKING_SHIP, url);
+        if (tid == null) {
+            return null;
+        }
+        getTaskManager().addTask(new MouldAsyncTask(tid, buildParams(Constants.TASK_TYPE_BOOKING_SHIP, context, listener, url, 0)) {
+            @Override
+            public IMouldType doTask(BaseParams params) {
+                SimpleHttpClient client = new SimpleHttpClient(context, SimpleHttpClient.RESULT_STRING);
+
+                HttpEntity entity = null;
+                try {
+                    entity = new StringEntity(data);
+                } catch (UnsupportedEncodingException e1) {
+                    e1.printStackTrace();
+                }
+
+                client.post(url, entity);
+                String result = (String) client.getResult();
+                try {
+                    if (isCancelled()) {
+                        return null;
+                    }
+                    if (result != null) {
+                        String data = DESUtil.decrypt(result);
+                        Gson json = new Gson();
+                        SubBookingShip1B b = json.fromJson(data, SubBookingShip1B.class);
                         resultEncrypt(context, b.getCode());
                         return b.getData();
                     }

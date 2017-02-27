@@ -41,6 +41,7 @@ import com.jdhui.bean.mybean.ProductDetail0B;
 import com.jdhui.bean.mybean.Service0B;
 import com.jdhui.bean.mybean.ServiceDetail0B;
 import com.jdhui.bean.mybean.ServicePicture0B;
+import com.jdhui.bean.mybean.SubBookingShip0B;
 import com.jdhui.bean.mybean.SubGeneticTesting0B;
 import com.jdhui.bean.mybean.SubmitBookingGolf0B;
 import com.jdhui.bean.mybean.SubmitBookingHospital0B;
@@ -273,8 +274,9 @@ public class HtmlLoadUtil {
 
     /**
      * 资产--消息列表（入参）
+     *
      * @param userId 用户ID
-     * @param page 页码
+     * @param page   页码
      * @return 返回数据
      */
     public static String getMessageList(String userId, String page) {
@@ -408,10 +410,8 @@ public class HtmlLoadUtil {
     /**
      * 服务--提交预约医院
      */
-    public static String submitBookingHospital(String userId, String hospitalId, String departments, String doctor, String bookingTime, String bakTimeOne,
-                                               String bakTimeTwo, String illnessCondition, String bookingClient, String securityNum, String clientPhone, String clientIdNo) {
-        SubmitBookingHospital0B b = new SubmitBookingHospital0B(userId, hospitalId, departments, doctor, bookingTime, bakTimeOne, bakTimeTwo, illnessCondition,
-                bookingClient, securityNum, clientPhone, clientIdNo);
+    public static String submitBookingHospital(String userId, String hospitalId, String departments, String doctor, String bookingTime, String bakTimeOne, String bakTimeTwo, String illnessCondition, String bookingClient, String securityNum, String clientPhone, String clientIdNo) {
+        SubmitBookingHospital0B b = new SubmitBookingHospital0B(userId, hospitalId, departments, doctor, bookingTime, bakTimeOne, bakTimeTwo, illnessCondition, bookingClient, securityNum, clientPhone, clientIdNo);
         return getResult(b);
     }
 
@@ -520,8 +520,8 @@ public class HtmlLoadUtil {
      *
      * @return
      */
-    public static String getServicePicture( String id) {
-        ServicePicture0B b = new ServicePicture0B( id);
+    public static String getServicePicture(String id) {
+        ServicePicture0B b = new ServicePicture0B(id);
         return getResult(b);
     }
 
@@ -552,6 +552,16 @@ public class HtmlLoadUtil {
      */
     public static String getLinerInfo(String id) {
         LinerInfo0B b = new LinerInfo0B(id);
+        return getResult(b);
+    }
+
+    /**
+     * 邮轮提交预约
+     *
+     * @return
+     */
+    public static String subBookingShip(String clientPhone,  String shipId, String clientName) {
+        SubBookingShip0B b = new SubBookingShip0B(clientPhone, shipId, clientName);
         return getResult(b);
     }
 }

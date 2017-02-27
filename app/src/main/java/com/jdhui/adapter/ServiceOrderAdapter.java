@@ -51,7 +51,7 @@ public class ServiceOrderAdapter extends BaseAdapter {
             holder = (Holder) convertView.getTag();
         }
 
-        //serviceItems: 绿通就医：hospitalBooking、基因检测：geneticBooking、高尔夫球场：golfBooking  公务机包机：airplaneBooking
+        //serviceItems: 绿通就医：hospitalBooking、基因检测：geneticBooking、高尔夫球场：golfBooking  公务机包机：airplaneBooking  豪华游轮:luxuryShipBooking
         String str = list.get(position).getServiceItems();
         String name;
         if (str.equals("hospitalBooking")) {
@@ -60,6 +60,8 @@ public class ServiceOrderAdapter extends BaseAdapter {
             name = "基因检测";
         } else if (str.equals("golfBooking")) {
             name = "高尔夫球场";
+        } else if (str.equals("luxuryShipBooking")) {
+            name = "豪华邮轮游";
         } else {
             name = "公务机包机";
         }

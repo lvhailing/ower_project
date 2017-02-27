@@ -38,7 +38,7 @@ public class ServiceOrderActivity extends BaseActivity implements View.OnClickLi
     private View v_hidden; //隐藏的类型或状态布局背景
     private LinearLayout ll_hidden; //隐藏的类型布局
     private RelativeLayout rl_type; //全部 按钮
-    private TextView tv_0, tv_1, tv_2, tv_3, tv_4;  //类型的下面的text  tv_0：全部   tv_1：绿通就医  tv_2：基因检测  tv_3：高尔夫球场地   tv_4：公务机包机
+    private TextView tv_0, tv_1, tv_2, tv_3, tv_4, tv_5;  //类型的下面的text  tv_0：全部   tv_1：绿通就医  tv_2：基因检测  tv_3：高尔夫球场地   tv_4：公务机包机  tv_5:豪华邮轮游
 
     private int currentPage = 1;    //当前页
     private String type;    //当前服务类型
@@ -68,6 +68,7 @@ public class ServiceOrderActivity extends BaseActivity implements View.OnClickLi
         tv_2 = (TextView) findViewById(R.id.tv_2);
         tv_3 = (TextView) findViewById(R.id.tv_3);
         tv_4 = (TextView) findViewById(R.id.tv_4);
+        tv_5 = (TextView) findViewById(R.id.tv_5);
 
         // 下拉刷新
         listView.getLoadingLayoutProxy(true, false).setPullLabel("下拉刷新");
@@ -87,6 +88,7 @@ public class ServiceOrderActivity extends BaseActivity implements View.OnClickLi
         tv_2.setOnClickListener(this);
         tv_3.setOnClickListener(this);
         tv_4.setOnClickListener(this);
+        tv_5.setOnClickListener(this);
     }
 
     private void initData() {
@@ -114,7 +116,7 @@ public class ServiceOrderActivity extends BaseActivity implements View.OnClickLi
                 String type = totalList.get(position - 1).getServiceItems();
                 if (type.equals("airplaneBooking")) { //公务机包机预约详情
                     intent = new Intent(ServiceOrderActivity.this, ServicePlaneDetailActivity.class);
-                } else {  //绿通就医，基因检测，高尔夫球场等预约详情
+                } else {  //绿通就医，基因检测，高尔夫球场，豪华邮轮游等预约详情
                     intent = new Intent(ServiceOrderActivity.this, ServiceOrderDetailActivity.class);
                 }
                 intent.putExtra("serviceItems", type);
@@ -131,6 +133,9 @@ public class ServiceOrderActivity extends BaseActivity implements View.OnClickLi
 //        requestData();
     }
 
+    /**
+     *  请求服务列表数据
+     */
     private void requestData() {
         try {
             HtmlRequest.getServiceOrderList(ServiceOrderActivity.this, type, currentPage + "", new BaseRequester.OnRequestListener() {
@@ -273,6 +278,15 @@ public class ServiceOrderActivity extends BaseActivity implements View.OnClickLi
                 currentPage = 1;
                 type = "airplaneBooking";
                 mTvType.setText("公务机包机");
+                iv_select.setBackgroundResource(R.drawable.triangle_down_fill);
+                closeShopping();
+                totalList.clear();
+                requestData();
+                break;
+            case R.id.tv_5:  //豪华邮轮游
+                currentPage = 1;
+                type = "luxuryShipBooking";
+                mTvType.setText("豪华邮轮游");
                 iv_select.setBackgroundResource(R.drawable.triangle_down_fill);
                 closeShopping();
                 totalList.clear();

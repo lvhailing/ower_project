@@ -124,6 +124,14 @@
                 style="@style/product_text"
                 android:text="公务机包机"/>
 
+            <View
+                style="@style/product_text_line"/>
+
+            <TextView
+                android:id="@+id/tv_5"
+                style="@style/product_text"
+                android:text="豪华邮轮游"/>
+
         </LinearLayout>
     </RelativeLayout>
 </LinearLayout>

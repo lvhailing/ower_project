@@ -78,7 +78,7 @@ public class ServiceOrderDetailActivity extends BaseActivity implements View.OnC
     private RelativeLayout rl_tips; //顶部提示语布局
     private TextView mTvTitle;//顶部提示语
     private Button btn_cancel;
-    private TextView tv_id_num_name;        // 证件名称
+    private TextView tv_id_num_name; // 证件名称
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -149,7 +149,9 @@ public class ServiceOrderDetailActivity extends BaseActivity implements View.OnC
         requestDetailData();
     }
 
-
+    /**
+     * 请求服务详情页数据（公务机除外）
+     */
     private void requestDetailData() {
         HtmlRequest.getServiceDetail(this, serviceItems, id, new BaseRequester.OnRequestListener() {
             @Override
@@ -165,7 +167,7 @@ public class ServiceOrderDetailActivity extends BaseActivity implements View.OnC
     }
 
     private void setView() {
-        //绿通就医：hospitalBooking、基因检测：geneticBooking、高尔夫球场：golfBooking
+        //绿通就医：hospitalBooking、基因检测：geneticBooking、高尔夫球场：golfBooking、豪华游轮:luxuryShipBooking
 
         if (detail2B.getHospitalBooking() != null) {
             //是绿通就医
@@ -211,12 +213,12 @@ public class ServiceOrderDetailActivity extends BaseActivity implements View.OnC
             mTvPhone.setText(detail2B.getHospitalBooking().getClientPhone()); //联系电话
             mTvOrderTime.setText(detail2B.getHospitalBooking().getBookingTime()); //预约时间
 
-            mTvSpareTime1.setText(!TextUtils.isEmpty(detail2B.getHospitalBooking().getBakTimeOne())?detail2B.getHospitalBooking().getBakTimeOne():"--"); //备选时间1
-            mTvSpareTime2.setText(!TextUtils.isEmpty(detail2B.getHospitalBooking().getBakTimeTwo())?detail2B.getHospitalBooking().getBakTimeTwo():"--"); //备选时间2
+            mTvSpareTime1.setText(!TextUtils.isEmpty(detail2B.getHospitalBooking().getBakTimeOne()) ? detail2B.getHospitalBooking().getBakTimeOne() : "--"); //备选时间1
+            mTvSpareTime2.setText(!TextUtils.isEmpty(detail2B.getHospitalBooking().getBakTimeTwo()) ? detail2B.getHospitalBooking().getBakTimeTwo() : "--"); //备选时间2
             mTvOrderHospital.setText(detail2B.getHospitalBooking().getName()); //预约医院
             mTvOrderDepartment.setText(detail2B.getHospitalBooking().getDepartments()); //预约科室
-            mTvOrderDoctor.setText(!TextUtils.isEmpty(detail2B.getHospitalBooking().getDoctor())?detail2B.getHospitalBooking().getDoctor():"--"); //预约医生
-            mTvDescIllness.setText(!TextUtils.isEmpty(detail2B.getHospitalBooking().getIllnessCondition())?detail2B.getHospitalBooking().getIllnessCondition():"--"); //主诉病情
+            mTvOrderDoctor.setText(!TextUtils.isEmpty(detail2B.getHospitalBooking().getDoctor()) ? detail2B.getHospitalBooking().getDoctor() : "--"); //预约医生
+            mTvDescIllness.setText(!TextUtils.isEmpty(detail2B.getHospitalBooking().getIllnessCondition()) ? detail2B.getHospitalBooking().getIllnessCondition() : "--"); //主诉病情
             mTvSubTime.setText(detail2B.getHospitalBooking().getCreateTime()); //提交时间
 
         } else if (detail2B.getGeneticBooking() != null) {
@@ -270,8 +272,8 @@ public class ServiceOrderDetailActivity extends BaseActivity implements View.OnC
                 mLlTogether1.setVisibility(View.VISIBLE);
                 mLlTogether2.setVisibility(View.VISIBLE);
 
-                mTvTogether1.setText(!TextUtils.isEmpty(detail2B.getGolfBooking().getPeersOne())?detail2B.getGolfBooking().getPeersOne():"--");  //同行人1
-                mTvTogether2.setText(!TextUtils.isEmpty(detail2B.getGolfBooking().getPeersTwo())?detail2B.getGolfBooking().getPeersTwo():"--");  //同行人2
+                mTvTogether1.setText(!TextUtils.isEmpty(detail2B.getGolfBooking().getPeersOne()) ? detail2B.getGolfBooking().getPeersOne() : "--");  //同行人1
+                mTvTogether2.setText(!TextUtils.isEmpty(detail2B.getGolfBooking().getPeersTwo()) ? detail2B.getGolfBooking().getPeersTwo() : "--");  //同行人2
             }
 
             mLlOrderName.setVisibility(View.VISIBLE);
@@ -306,12 +308,12 @@ public class ServiceOrderDetailActivity extends BaseActivity implements View.OnC
             mTvOrderName.setText(detail2B.getGolfBooking().getName());  //预约人
 
             //idType  String     idCard: 身份证号  passport：护照  agencyCode：机构代码
-            if(!TextUtils.isEmpty(detail2B.getGolfBooking().getIdType())){
-                if(detail2B.getGolfBooking().getIdType().equals("idCard")){
+            if (!TextUtils.isEmpty(detail2B.getGolfBooking().getIdType())) {
+                if (detail2B.getGolfBooking().getIdType().equals("idCard")) {
                     tv_id_num_name.setText("身份证号:");
-                }else if(detail2B.getGolfBooking().getIdType().equals("passport")){
+                } else if (detail2B.getGolfBooking().getIdType().equals("passport")) {
                     tv_id_num_name.setText("护        照:");
-                }else if(detail2B.getGolfBooking().getIdType().equals("agencyCode")){
+                } else if (detail2B.getGolfBooking().getIdType().equals("agencyCode")) {
                     tv_id_num_name.setText("机构代码:");
                 }
             }
@@ -323,6 +325,38 @@ public class ServiceOrderDetailActivity extends BaseActivity implements View.OnC
             mTvVenueName.setText(detail2B.getGolfBooking().getGolfName());  //场馆名称
             mTvOrderTime.setText(detail2B.getGolfBooking().getBookingTime()); //预约时间
             mTvSubTime.setText(detail2B.getGolfBooking().getCreateTime()); //提交时间
+        } else if (detail2B.getLuxuryShipBooking() != null) {
+            //是豪华邮轮游
+            mTvOrderService.setText("豪华邮轮游");
+
+            mLlPhone.setVisibility(View.VISIBLE);//联系电话布局
+            mLlSubTime.setVisibility(View.VISIBLE);//提交时间布局
+
+            String status = detail2B.getLuxuryShipBooking().getBookingStatus();
+            if (status.equals("submit")) {
+                mTvOrderStatus.setText("待确认");
+
+                rl_tips.setVisibility(View.VISIBLE);
+                btn_cancel.setVisibility(View.VISIBLE);
+            } else if (status.equals("confirm")) {
+                mTvOrderStatus.setText("已确认");
+            } else if (status.equals("finish")) {
+                mTvOrderStatus.setText("已完成");
+            } else if (status.equals("unfinish")) {
+                mTvOrderStatus.setText("未完成");
+                rl_tips.setVisibility(View.VISIBLE);
+                mTvTitle.setText(detail2B.getHospitalBooking().getBookingRemark());
+            } else if (status.equals("refuse")) {
+                mTvOrderStatus.setText("已驳回");
+                rl_tips.setVisibility(View.VISIBLE);
+                mTvTitle.setText(detail2B.getHospitalBooking().getBookingRemark());
+            } else if (status.equals("cancel")) {
+                mTvOrderStatus.setText("已取消");
+            }
+
+            mTvPhone.setText(detail2B.getLuxuryShipBooking().getClientPhone());  //联系电话
+            mTvSubTime.setText(detail2B.getLuxuryShipBooking().getCreateTime()); //提交时间
+
         }
     }
 
