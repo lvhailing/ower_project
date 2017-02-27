@@ -113,11 +113,13 @@ public class LinerListAdapter extends BaseAdapter {
             textView.setTag(false);
             textView.setTextColor(Color.BLACK);
             textView.setTextSize(12);
+            textView.setBackgroundResource(R.drawable.bg_flag);
             textView.setIncludeFontPadding(false);
             textView.setGravity(Gravity.CENTER_VERTICAL);
+            textView.setGravity(Gravity.CENTER);
 
-            Drawable normal = generateDrawable(Color.rgb(220, 220, 220), 10);
-            textView.setBackgroundDrawable(normal);
+//            Drawable normal = generateDrawable(Color.rgb(220, 220, 220), 10);
+//            textView.setBackgroundDrawable(normal);
 //            textView.setBackgroundResource(R.drawable.rectangle_gray_4dp);
 
             int padding5dp = ViewUtils.dip2px(context, 5);

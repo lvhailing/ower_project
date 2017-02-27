@@ -5,14 +5,17 @@ import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
+import android.support.v4.view.ViewPager;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.jdhui.R;
 import com.jdhui.act.BaseActivity;
+import com.jdhui.adapter.LinerListAdapter;
 import com.jdhui.bean.mybean.LinerDetail2B;
 import com.jdhui.bean.mybean.LinerDetail3B;
 import com.jdhui.bean.mybean.LinerInfo2B;
@@ -20,6 +23,7 @@ import com.jdhui.bean.mybean.LinerInfo3B;
 import com.jdhui.mould.BaseParams;
 import com.jdhui.mould.BaseRequester;
 import com.jdhui.mould.HtmlRequest;
+import com.jdhui.uitls.ViewUtils;
 import com.jdhui.widget.FlowLayoutView;
 import com.jdhui.widget.PullUpToLoadMore;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -40,7 +44,7 @@ public class LinerDetailActivity extends BaseActivity implements View.OnClickLis
     private PullUpToLoadMore ptlm;
     private TextView tv_travel_date; //历时 如：2日3晚
     private TextView tv_travel_name; //旅行名称
-    private FlowLayoutView framlayout; //旅行名称标签
+    private FlowLayoutView remark; //旅行名称标签
     private TextView tv_gatewayPort; //途径港口
     private TextView tv_shipName; //邮轮名称
     private TextView tv_liner_starLevel_one; //邮轮星级
@@ -81,7 +85,7 @@ public class LinerDetailActivity extends BaseActivity implements View.OnClickLis
         tv_ship_price = (TextView) findViewById(R.id.tv_ship_price);
         tv_travel_date = (TextView) findViewById(R.id.tv_travel_date);
         tv_travel_name = (TextView) findViewById(R.id.tv_travel_name);
-        framlayout = (FlowLayoutView) findViewById(R.id.framlayout);
+        remark = (FlowLayoutView) findViewById(R.id.fl_remark);
         tv_gatewayPort = (TextView) findViewById(R.id.tv_gatewayPort);
         tv_shipName = (TextView) findViewById(R.id.tv_shipName);
         tv_liner_starLevel_one = (TextView) findViewById(R.id.tv_liner_starLevel_one);
@@ -101,7 +105,13 @@ public class LinerDetailActivity extends BaseActivity implements View.OnClickLis
 
         linerTag = detail.getRouteDestination();
         mStringArray = linerTag.split(",");
-        for (int i = 0; i < mStringArray.length; i++) {
+        if (mStringArray.length > 0) {
+            remark.setVisibility(View.VISIBLE);
+            setRemarks();
+        } else {
+            remark.setVisibility(View.GONE);
+        }
+       /* for (int i = 0; i < mStringArray.length; i++) {
             final TextView textView = new TextView(this);
             textView.setText(mStringArray[i]);
             textView.setTextColor(Color.BLACK);
@@ -110,8 +120,9 @@ public class LinerDetailActivity extends BaseActivity implements View.OnClickLis
             textView.setPadding(5, 5, 5, 5);
             Drawable normal = generateDrawable(Color.rgb(220, 220, 220), 10);
             textView.setBackgroundDrawable(normal);
-            framlayout.addView(textView);
-        }
+            fl_remark.addView(textView);
+        }*/
+
 
         tv_title_travel_name.setText(detail.getRouteName());
         tv_travel_date.setText(detail.getRouteDuration());
@@ -125,12 +136,26 @@ public class LinerDetailActivity extends BaseActivity implements View.OnClickLis
         tv_tonnage_one.setText(detail.getTonnage());
     }
 
-    public GradientDrawable generateDrawable(int argb, float radius) {
-        GradientDrawable drawable = new GradientDrawable();
-        drawable.setShape(GradientDrawable.RECTANGLE); //设置为矩形，默认就是矩形
-        drawable.setCornerRadius(radius); //设置圆角的半径
-        drawable.setColor(argb);
-        return drawable;
+    private void setRemarks() {
+        remark.removeAllViews();
+        for (int i = 0; i < mStringArray.length; i++) {
+            TextView textView = new TextView(this);
+            textView.setText(mStringArray[i]);
+            textView.setTag(false);
+            textView.setTextColor(Color.BLACK);
+            textView.setTextSize(12);
+            textView.setBackgroundResource(R.drawable.bg_flag);
+            textView.setIncludeFontPadding(false);
+            textView.setGravity(Gravity.CENTER_VERTICAL);
+            textView.setGravity(Gravity.CENTER);
+
+            int padding5dp = ViewUtils.dip2px(this, 5);
+            textView.setPadding(padding5dp, 0, padding5dp, 0);
+            LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(ViewPager.LayoutParams.WRAP_CONTENT, ViewUtils.dip2px(this, 24));
+            lp.setMargins(0, 0, ViewUtils.dip2px(this, 6), ViewUtils.dip2px(this, 6));
+            textView.setLayoutParams(lp);
+            remark.addView(textView);
+        }
     }
 
     /**
