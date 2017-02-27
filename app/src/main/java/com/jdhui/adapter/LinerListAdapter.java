@@ -4,24 +4,22 @@ import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
-import android.graphics.drawable.StateListDrawable;
+import android.support.v4.view.ViewPager;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.jdhui.R;
-import com.jdhui.bean.mybean.GolfList3B;
 import com.jdhui.bean.mybean.LinerList3B;
 import com.jdhui.mould.types.MouldList;
-import com.jdhui.widget.FlowLayoutView;
+import com.jdhui.uitls.ViewUtils;
+import com.jdhui.widget.FlowLayoutLimitLine;
 import com.nostra13.universalimageloader.core.ImageLoader;
-
-import java.util.Random;
 
 /**
  * 豪华邮轮游 adapter类
@@ -69,7 +67,8 @@ public class LinerListAdapter extends BaseAdapter {
             holder.tv_travel_name = (TextView) convertView.findViewById(R.id.tv_travel_name);
             holder.tv_liner_price = (TextView) convertView.findViewById(R.id.tv_liner_price);
             holder.tv_liner_name = (TextView) convertView.findViewById(R.id.tv_liner_name);
-            holder.framlayout = (FlowLayoutView) convertView.findViewById(R.id.framlayout);
+//            holder.framlayout = (FlowLayoutView) convertView.findViewById(R.id.framlayout);
+            holder.remark = (FlowLayoutLimitLine) convertView.findViewById(R.id.fl_remark);
             convertView.setTag(holder);
 
         } else {
@@ -77,7 +76,7 @@ public class LinerListAdapter extends BaseAdapter {
         }
 
         //加载item背景图片
-        ImageLoader.getInstance().displayImage(list.get(position).getListPhoto(),  holder.iv_liner_item);
+        ImageLoader.getInstance().displayImage(list.get(position).getListPhoto(), holder.iv_liner_item);
 
         holder.tv_travel_date.setText(list.get(position).getRouteDuration());
         holder.tv_travel_name.setText(list.get(position).getRouteName());
@@ -86,18 +85,48 @@ public class LinerListAdapter extends BaseAdapter {
         linerTag = list.get(position).getRouteDestination();
 
         mStringArray = linerTag.split(",");
+        if (mStringArray.length > 0) {
+            holder.remark.setVisibility(View.VISIBLE);
+            setRemarks(holder);
+        } else {
+            holder.remark.setVisibility(View.GONE);
+        }
+//        for (int i = 0; i < mStringArray.length; i++) {
+//            final TextView textView = new TextView(context);
+//            textView.setText(mStringArray[i]);
+//            textView.setTextColor(Color.BLACK);
+//            textView.setGravity(Gravity.CENTER);
+//            textView.setTextSize(12);
+//            textView.setPadding(5, 5, 5, 5);
+//            Drawable normal = generateDrawable(Color.rgb(220, 220, 220), 10);
+//            textView.setBackgroundDrawable(normal);
+//            holder.framlayout.addView(textView);
+//        }
+        return convertView;
+    }
+
+    private void setRemarks(Holder holder) {
+        holder.remark.removeAllViews();
         for (int i = 0; i < mStringArray.length; i++) {
-            final TextView textView = new TextView(context);
+            TextView textView = new TextView(context);
             textView.setText(mStringArray[i]);
+            textView.setTag(false);
             textView.setTextColor(Color.BLACK);
-            textView.setGravity(Gravity.CENTER);
             textView.setTextSize(12);
-            textView.setPadding(5, 5, 5, 5);
+            textView.setIncludeFontPadding(false);
+            textView.setGravity(Gravity.CENTER_VERTICAL);
+
             Drawable normal = generateDrawable(Color.rgb(220, 220, 220), 10);
             textView.setBackgroundDrawable(normal);
-            holder.framlayout.addView(textView);
+//            textView.setBackgroundResource(R.drawable.rectangle_gray_4dp);
+
+            int padding5dp = ViewUtils.dip2px(context, 5);
+            textView.setPadding(padding5dp, 0, padding5dp, 0);
+            LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(ViewPager.LayoutParams.WRAP_CONTENT, ViewUtils.dip2px(context, 24));
+            lp.setMargins(0, 0, ViewUtils.dip2px(context, 6), ViewUtils.dip2px(context, 6));
+            textView.setLayoutParams(lp);
+            holder.remark.addView(textView);
         }
-        return convertView;
     }
 
     public GradientDrawable generateDrawable(int argb, float radius) {
@@ -115,7 +144,8 @@ public class LinerListAdapter extends BaseAdapter {
         TextView tv_travel_name;
         TextView tv_liner_price;
         TextView tv_liner_name;
-        FlowLayoutView framlayout;
+        //        FlowLayoutView framlayout;
+        FlowLayoutLimitLine remark;
 
     }
 }

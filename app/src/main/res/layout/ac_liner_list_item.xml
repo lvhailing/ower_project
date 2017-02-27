@@ -58,9 +58,9 @@
                 android:textSize="16sp"/>
         </RelativeLayout>
 
-        <com.jdhui.widget.FlowLayoutView
-            android:id="@+id/framlayout"
-            android:layout_width="wrap_content"
+        <com.jdhui.widget.FlowLayoutLimitLine
+            android:id="@+id/fl_remark"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/rl_title"
             android:layout_marginLeft="10dp"
