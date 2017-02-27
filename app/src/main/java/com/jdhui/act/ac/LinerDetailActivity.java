@@ -2,12 +2,13 @@ package com.jdhui.act.ac;
 
 import android.content.Intent;
 import android.graphics.Color;
-import android.graphics.drawable.Drawable;
-import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
+import android.util.DisplayMetrics;
 import android.view.Gravity;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -15,7 +16,8 @@ import android.widget.TextView;
 
 import com.jdhui.R;
 import com.jdhui.act.BaseActivity;
-import com.jdhui.adapter.LinerListAdapter;
+import com.jdhui.adapter.MyBtmAdapter;
+import com.jdhui.adapter.MyTopAdapter;
 import com.jdhui.bean.mybean.LinerDetail2B;
 import com.jdhui.bean.mybean.LinerDetail3B;
 import com.jdhui.bean.mybean.LinerInfo2B;
@@ -29,6 +31,7 @@ import com.jdhui.widget.PullUpToLoadMore;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 服务--豪华邮轮游详情页
@@ -56,23 +59,154 @@ public class LinerDetailActivity extends BaseActivity implements View.OnClickLis
     private String linerTag;
     private String[] mStringArray;
 
-
     private LinerInfo2B LinerInfo2B;
     private ArrayList<ArrayList<LinerInfo3B>> linerInfo;
+
+    private LinearLayout vp_container_top;
+    private LinearLayout vp_container_point;
+    private ViewPager vpTop;
+    private ViewPager vpBtm;
+
+    private MyTopAdapter vpTopAdapter;
+    private MyBtmAdapter vpBtmAdapter;
+
+    private List<String> topList;
+    private List<LinerInfo3B> btmList;
+
+    private int screenWidth = 0;
+    private int dpHeng; //底部小圆点之间的间距
+    private int lastPosition = 0;   //记录上次的位置
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         baseSetContentView(R.layout.ac_liner_detail);
 
+        initMyData();
+
         initView();
         initData();
+
+        initPointGroup(btmList.size());
+    }
+
+    private void initMyData() {
+        // 獲取屏幕寬度
+        DisplayMetrics dm = getResources().getDisplayMetrics();
+        screenWidth = dm.widthPixels;
+
+        //模拟数据，有了真实数据要替换
+        topList = new ArrayList<>();
+//        topList.add("");
+        topList.add("100");
+        topList.add("200");
+        topList.add("300");
+//        topList.add("");
+
+        btmList = new ArrayList<>();
+        LinerInfo3B liner = new LinerInfo3B();
+        liner.setSeaviewRoom("1000");
+        LinerInfo3B liner2 = new LinerInfo3B();
+        liner2.setSeaviewRoom("2000");
+        btmList.add(liner);
+        btmList.add(liner2);
     }
 
     private void initData() {
         requestDetailData();
 
         requestLinerInfoData();
+
+        dpHeng = ViewUtils.dip2px(getApplicationContext(), 4);
+
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(screenWidth / 3, ViewGroup.LayoutParams.WRAP_CONTENT);
+        vpTop.setLayoutParams(params);
+        vpTopAdapter = new MyTopAdapter(topList, this);
+        vpTop.setAdapter(vpTopAdapter);
+        vpTop.setOffscreenPageLimit(3); // viewpager缓存页数
+        vpTop.setOnPageChangeListener(new MyTopChangeListener());
+
+        vpBtmAdapter = new MyBtmAdapter(btmList, this);
+        vpBtm.setAdapter(vpBtmAdapter);
+        vpBtm.setOnPageChangeListener(new MyBtmChangeListener());
+    }
+    private void initPointGroup(int size) {
+        vp_container_point.removeAllViews();
+        for (int i = 0; i < size; i++) {
+            ImageView point = new ImageView(this);
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+
+            params.leftMargin = dpHeng;
+            params.rightMargin = dpHeng;
+            params.bottomMargin = 0;
+            point.setLayoutParams(params);
+            if (i == 0) {
+                point.setBackgroundResource(R.drawable.vp_bg_orange);
+            } else {
+                point.setBackgroundResource(R.drawable.vp_bg_gray);
+            }
+            vp_container_point.addView(point);
+        }
+    }
+
+    private class MyTopChangeListener implements ViewPager.OnPageChangeListener {
+
+        public void onPageScrollStateChanged(int arg0) {
+        }
+
+        public void onPageScrolled(int arg0, float arg1, int arg2) {
+        }
+
+        public void onPageSelected(int position) {
+            if (position == 1) {
+                LinerInfo3B liner = new LinerInfo3B();
+                liner.setSeaviewRoom("5000");
+                LinerInfo3B liner2 = new LinerInfo3B();
+                liner2.setSeaviewRoom("6000");
+                btmList.clear();
+                btmList.add(liner);
+                btmList.add(liner2);
+            } else {
+                LinerInfo3B liner = new LinerInfo3B();
+                liner.setSeaviewRoom("8000");
+                LinerInfo3B liner2 = new LinerInfo3B();
+                liner2.setSeaviewRoom("9000");
+                btmList.clear();
+                btmList.add(liner);
+                btmList.add(liner2);
+            }
+            vpBtmAdapter.notifyDataSetChanged();
+            vpBtm.setCurrentItem(0);
+        }
+    }
+
+    private class MyBtmChangeListener implements ViewPager.OnPageChangeListener {
+
+        public void onPageScrollStateChanged(int arg0) {
+        }
+
+        public void onPageScrolled(int arg0, float arg1, int arg2) {
+        }
+
+        public void onPageSelected(int position) {
+            vp_container_point.getChildAt(position).setBackgroundResource(R.drawable.vp_bg_orange);
+            vp_container_point.getChildAt(lastPosition).setBackgroundResource(R.drawable.vp_bg_gray);
+            lastPosition = position;
+        }
+    }
+
+
+    @Override
+    protected void onDestroy() {
+        if (vpBtm != null) {
+            vpBtm.removeAllViews();
+            vpBtm = null;
+        }
+        if (vpTop != null) {
+            vpTop.removeAllViews();
+            vpTop = null;
+        }
+        super.onDestroy();
     }
 
     private void initView() {
@@ -93,6 +227,20 @@ public class LinerDetailActivity extends BaseActivity implements View.OnClickLis
         tv_buildYear_one = (TextView) findViewById(R.id.tv_buildYear_one);
         tv_tonnage_one = (TextView) findViewById(R.id.tv_tonnage_one);
         btn_submit = (Button) findViewById(R.id.btn_submit);
+
+        vpTop = (ViewPager) this.findViewById(R.id.vp_top);
+        vp_container_top = (LinearLayout) this.findViewById(R.id.vp_container_top);
+
+        vpBtm = (ViewPager) findViewById(R.id.vp_btm);
+        vp_container_point = (LinearLayout) findViewById(R.id.vp_container_point);
+
+        // 将父节点Layout事件分发给viewpager，否则只能滑动中间的一个view对象
+        vp_container_top.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                return vpTop.dispatchTouchEvent(event);
+            }
+        });
 
 
         mBtnBack.setOnClickListener(this);
