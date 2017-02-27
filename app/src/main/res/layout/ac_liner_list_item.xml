@@ -67,46 +67,53 @@
             android:layout_marginRight="10dp"
             android:layout_marginTop="5dp"/>
 
-        <TextView
-            android:id="@+id/tv_liner_name"
-            android:layout_width="wrap_content"
+        <RelativeLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:paddingBottom="10dp"
-            android:text="皇家加勒比国际邮轮.海洋航行者号"
-            android:textColor="@color/white"
-            android:textSize="13sp"/>
+            android:layout_alignParentBottom="true">
 
-        <TextView
-            android:id="@+id/tv_liner_price"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="10dp"
-            android:includeFontPadding="false"
-            android:paddingBottom="10dp"
-            android:text="￥1533/人起"
-            android:textColor="@color/white"
-            android:textSize="18sp"/>
+            <TextView
+                android:id="@+id/tv_tab"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:background="@drawable/shape_bg_unread_red"
+                android:gravity="center"
+                android:paddingBottom="3dp"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:paddingTop="3dp"
+                android:text="单船票"
+                android:textColor="@color/white"
+                android:textSize="13sp"/>
 
-        <TextView
-            android:id="@+id/tv_tab"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_above="@id/tv_liner_name"
-            android:layout_marginBottom="5dp"
-            android:layout_marginLeft="10dp"
-            android:background="@drawable/shape_bg_unread_red"
-            android:gravity="center"
-            android:paddingBottom="3dp"
-            android:paddingLeft="15dp"
-            android:paddingRight="15dp"
-            android:paddingTop="3dp"
-            android:text="单船票"
-            android:textColor="@color/white"
-            android:textSize="13sp"/>
+            <TextView
+                android:id="@+id/tv_liner_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_tab"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="5dp"
+                android:paddingBottom="10dp"
+                android:text="皇家加勒比国际邮轮.海洋航行者号"
+                android:textColor="@color/white"
+                android:textSize="13sp"/>
+
+            <TextView
+                android:id="@+id/tv_liner_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_below="@id/tv_tab"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="5dp"
+                android:includeFontPadding="false"
+                android:paddingBottom="10dp"
+                android:text="￥1533/人起"
+                android:textColor="@color/white"
+                android:textSize="18sp"/>
+
+        </RelativeLayout>
     </RelativeLayout>
 </RelativeLayout>
