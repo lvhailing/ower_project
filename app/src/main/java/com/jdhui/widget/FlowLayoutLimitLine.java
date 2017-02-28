@@ -29,8 +29,7 @@ public class FlowLayoutLimitLine extends ViewGroup {
 
     @Override
     protected LayoutParams generateDefaultLayoutParams() {
-        return new MarginLayoutParams(LayoutParams.MATCH_PARENT,
-                LayoutParams.MATCH_PARENT);
+        return new MarginLayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
     }
 
     /**
@@ -93,14 +92,11 @@ public class FlowLayoutLimitLine extends ViewGroup {
             // 测量每一个child的宽和高
             measureChild(child, widthMeasureSpec, heightMeasureSpec);
             // 得到child的lp
-            MarginLayoutParams lp = (MarginLayoutParams) child
-                    .getLayoutParams();
+            MarginLayoutParams lp = (MarginLayoutParams) child.getLayoutParams();
             // 当前子空间实际占据的宽度
-            int childWidth = child.getMeasuredWidth() + lp.leftMargin
-                    + lp.rightMargin;
+            int childWidth = child.getMeasuredWidth() + lp.leftMargin + lp.rightMargin;
             // 当前子空间实际占据的高度
-            int childHeight = child.getMeasuredHeight() + lp.topMargin
-                    + lp.bottomMargin;
+            int childHeight = child.getMeasuredHeight() + lp.topMargin + lp.bottomMargin;
             /**
              * 如果加入当前child，则超出最大宽度，则的到目前最大宽度给width，类加height 然后开启新行
              */
@@ -139,9 +135,7 @@ public class FlowLayoutLimitLine extends ViewGroup {
             }
 
         }
-        setMeasuredDimension((modeWidth == MeasureSpec.EXACTLY) ? sizeWidth
-                : width, (modeHeight == MeasureSpec.EXACTLY) ? sizeHeight
-                : height);
+        setMeasuredDimension((modeWidth == MeasureSpec.EXACTLY) ? sizeWidth : width, (modeHeight == MeasureSpec.EXACTLY) ? sizeHeight : height);
 
     }
 
@@ -167,8 +161,7 @@ public class FlowLayoutLimitLine extends ViewGroup {
         // 遍历所有的孩子
         for (int i = 0; i < cCount; i++) {
             View child = getChildAt(i);
-            MarginLayoutParams lp = (MarginLayoutParams) child
-                    .getLayoutParams();
+            MarginLayoutParams lp = (MarginLayoutParams) child.getLayoutParams();
             int childWidth = child.getMeasuredWidth();
             int childHeight = child.getMeasuredHeight();
 
@@ -189,8 +182,7 @@ public class FlowLayoutLimitLine extends ViewGroup {
              * 如果不需要换行，则累加
              */
             lineWidth += childWidth + lp.leftMargin + lp.rightMargin;
-            lineHeight = Math.max(lineHeight, childHeight + lp.topMargin
-                    + lp.bottomMargin);
+            lineHeight = Math.max(lineHeight, childHeight + lp.topMargin + lp.bottomMargin);
             lineViews.add(child);
         }
         // 记录最后一行
@@ -213,8 +205,7 @@ public class FlowLayoutLimitLine extends ViewGroup {
                 if (child.getVisibility() == View.GONE) {
                     continue;
                 }
-                MarginLayoutParams lp = (MarginLayoutParams) child
-                        .getLayoutParams();
+                MarginLayoutParams lp = (MarginLayoutParams) child.getLayoutParams();
 
                 // 计算childView的left,top,right,bottom
                 int lc = left + lp.leftMargin;
@@ -224,8 +215,7 @@ public class FlowLayoutLimitLine extends ViewGroup {
 
                 child.layout(lc, tc, rc, bc);
 
-                left += child.getMeasuredWidth() + lp.rightMargin
-                        + lp.leftMargin;
+                left += child.getMeasuredWidth() + lp.rightMargin + lp.leftMargin;
             }
             left = 0;
             top += lineHeight;

@@ -11,6 +11,9 @@ import com.jdhui.bean.mybean.LinerInfo3B;
 
 import java.util.List;
 
+/**
+ *  邮轮详情页第二屏 底部vp的Adapter
+ */
 public class MyBtmAdapter extends MyPagerAdapter {
     private List<LinerInfo3B> btmList;
     private Context context;

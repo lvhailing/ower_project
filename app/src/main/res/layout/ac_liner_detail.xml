@@ -136,7 +136,7 @@
                             android:textSize="16sp"/>
                     </RelativeLayout>
 
-                    <com.jdhui.widget.FlowLayoutView
+                    <com.jdhui.widget.FlowLayoutLimitLine
                         android:id="@+id/fl_remark"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"

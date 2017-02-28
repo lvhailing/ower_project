@@ -26,7 +26,7 @@ public class PullUpToLoadMore extends ViewGroup {
     int speed = 200;
     boolean isIntercept;
 
-    public boolean bottomScrollVIewIsInTop = false;
+    public boolean bottomScrollVIewIsInTop = true;
     public boolean topScrollViewIsBottom = false;
 
     public PullUpToLoadMore(Context context) {
@@ -142,7 +142,7 @@ public class PullUpToLoadMore extends ViewGroup {
 
                     //判断是否是向下滑动和是否在第二屏
                     if (dy < 0 && currPosition == 1) {
-                        if (Math.abs(dy) >= scaledTouchSlop) {
+                        if (Math.abs(dy) >= scaledTouchSlop+140) {
                             isIntercept = true;
                         }
                     }

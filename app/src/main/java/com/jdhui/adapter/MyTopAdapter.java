@@ -11,16 +11,21 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.jdhui.R;
+import com.jdhui.bean.mybean.LinerInfo3B;
 
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 邮轮详情页第二屏 顶部vp的Adapter
+ */
 public class MyTopAdapter extends PagerAdapter {
-    private List<String> topList;
+    private List<LinerInfo3B> topList;
     private List<View> viewList = new ArrayList<>();
     private Context context;
+    private LinerInfo3B item;
 
-    public MyTopAdapter(List<String> topList, Context context) {
+    public MyTopAdapter(List<LinerInfo3B> topList, Context context) {
         this.topList = topList;
         this.context = context;
     }
@@ -43,15 +48,25 @@ public class MyTopAdapter extends PagerAdapter {
     @Override
     public Object instantiateItem(ViewGroup container, int position) {
         View view = LayoutInflater.from(context).inflate(R.layout.item_liner_top, null);
-        String money = topList.get(position);
-        if (!TextUtils.isEmpty(money)) {
-            TextView tv_year = (TextView) view.findViewById(R.id.tv_year);
-            TextView tv_month = (TextView) view.findViewById(R.id.tv_month);
-            TextView tv_money = (TextView) view.findViewById(R.id.tv_money);
-            tv_year.setText("2017年");
-            tv_month.setText("第4月(第2期)");
-            tv_money.setText(money);
+        if (topList.size() != 0 && topList != null) {
+            item = topList.get(position);
         }
+
+        TextView tv_year = (TextView) view.findViewById(R.id.tv_year);
+        TextView tv_month = (TextView) view.findViewById(R.id.tv_month);
+        TextView tv_money = (TextView) view.findViewById(R.id.tv_money);
+
+        String shipCount = item.getShipCount();
+        String money = item.getLowerTicketPrice();
+        String date = item.getShipTime();
+        String year = date.substring(0, 4);
+        String month = date.substring(5, 7);
+
+
+        tv_year.setText(year + "年");
+        tv_month.setText(month + "月" + "[" + shipCount + "]");
+        tv_money.setText(money);
+
         viewList.add(view);
         container.addView(view);
         return view;
