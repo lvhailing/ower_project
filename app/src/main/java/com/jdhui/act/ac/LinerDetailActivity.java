@@ -27,6 +27,7 @@ import com.jdhui.mould.BaseRequester;
 import com.jdhui.mould.HtmlRequest;
 import com.jdhui.uitls.ViewUtils;
 import com.jdhui.widget.FlowLayoutLimitLine;
+import com.jdhui.widget.MyViewPager;
 import com.jdhui.widget.PullUpToLoadMore;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
@@ -63,8 +64,8 @@ public class LinerDetailActivity extends BaseActivity implements View.OnClickLis
 
     private LinearLayout vp_container_top;
     private LinearLayout vp_container_point;
-    private ViewPager vpTop;
-    private ViewPager vpBtm;
+    private MyViewPager vpTop;
+    private MyViewPager vpBtm;
 
     private MyTopAdapter vpTopAdapter;
     private MyBtmAdapter vpBtmAdapter;
@@ -102,10 +103,10 @@ public class LinerDetailActivity extends BaseActivity implements View.OnClickLis
         tv_tonnage_one = (TextView) findViewById(R.id.tv_tonnage_one);
         btn_submit = (Button) findViewById(R.id.btn_submit);
 
-        vpTop = (ViewPager) this.findViewById(R.id.vp_top);
+        vpTop = (MyViewPager) this.findViewById(R.id.vp_top);
         vp_container_top = (LinearLayout) this.findViewById(R.id.vp_container_top);
 
-        vpBtm = (ViewPager) findViewById(R.id.vp_btm);
+        vpBtm = (MyViewPager) findViewById(R.id.vp_btm);
         vp_container_point = (LinearLayout) findViewById(R.id.vp_container_point);
 
         // 将父节点Layout事件分发给viewpager，否则只能滑动中间的一个view对象

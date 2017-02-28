@@ -346,17 +346,17 @@
                 <LinearLayout
                     android:id="@+id/vp_container_top"
                     android:layout_width="match_parent"
-                    android:layout_height="100dp"
+                    android:layout_height="wrap_content"
                     android:background="@color/white"
                     android:clipChildren="false"
                     android:gravity="center_horizontal"
                     android:layerType="software"
                     android:orientation="vertical">
 
-                    <android.support.v4.view.ViewPager
+                    <com.jdhui.widget.MyViewPager
                         android:id="@+id/vp_top"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:clipChildren="false"/>
                 </LinearLayout>
 
@@ -373,7 +373,7 @@
                         android:background="@color/red4"/>
                 </LinearLayout>
 
-                <android.support.v4.view.ViewPager
+                <com.jdhui.widget.MyViewPager
                     android:id="@+id/vp_btm"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
