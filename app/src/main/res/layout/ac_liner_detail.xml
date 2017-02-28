@@ -340,14 +340,14 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="#F5F5F5"
+                android:background="@color/bg_gray"
                 android:orientation="vertical">
 
                 <LinearLayout
                     android:id="@+id/vp_container_top"
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
-                    android:background="#fff"
+                    android:background="@color/white"
                     android:clipChildren="false"
                     android:gravity="center_horizontal"
                     android:layerType="software"
@@ -363,7 +363,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="3dp"
-                    android:background="#fff"
+                    android:background="@color/white"
                     android:gravity="center_horizontal"
                     android:orientation="vertical">
 
@@ -376,9 +376,9 @@
                 <android.support.v4.view.ViewPager
                     android:id="@+id/vp_btm"
                     android:layout_width="match_parent"
-                    android:layout_height="300dp"
+                    android:layout_height="wrap_content"
                     android:layout_margin="15dp"
-                    android:background="#fff"/>
+                    android:background="@color/white"/>
 
                 <LinearLayout
                     android:layout_width="match_parent"

@@ -29,6 +29,7 @@ public class ServiceOrderDetailActivity extends BaseActivity implements View.OnC
     private TextView mTvOrderService; //预约服务
     private TextView mTvOrderStatus; //预约状态
     private TextView mTvOrderName; //预约人
+    private TextView mTvTravelName; //游行名称
     private TextView mTvSex; //性别
     private TextView mTvAge; //年龄
     private TextView mTvGeneticTestName; //基因 检测套餐
@@ -52,6 +53,7 @@ public class ServiceOrderDetailActivity extends BaseActivity implements View.OnC
     private ServiceDetail2B detail2B;
 
     private LinearLayout mLlOrderName; //预约人
+    private LinearLayout mLlTravelName; //游行名称
     private LinearLayout mLlSecurityNum; //社保号
     private LinearLayout mLlIdNum; //身份证号
     private LinearLayout mLlPhone; //联系电话
@@ -93,6 +95,7 @@ public class ServiceOrderDetailActivity extends BaseActivity implements View.OnC
         mBtnBack = (ImageView) findViewById(R.id.iv_back);
         mTvOrderService = (TextView) findViewById(R.id.tv_order_service);
         mTvOrderName = (TextView) findViewById(R.id.tv_order_name);
+        mTvTravelName = (TextView) findViewById(R.id.tv_travel_name);
         mTvOrderStatus = (TextView) findViewById(R.id.tv_order_status);
         mTvSex = (TextView) findViewById(R.id.tv_sex);
         mTvAge = (TextView) findViewById(R.id.tv_age);
@@ -116,6 +119,7 @@ public class ServiceOrderDetailActivity extends BaseActivity implements View.OnC
         mTvTitle = (TextView) findViewById(R.id.tv_title);
 
         mLlOrderName = (LinearLayout) findViewById(R.id.ll_order_name);
+        mLlTravelName = (LinearLayout) findViewById(R.id.ll_travel_name);
         mLlSecurityNum = (LinearLayout) findViewById(R.id.ll_security_num);
         mLlIdNum = (LinearLayout) findViewById(R.id.ll_id_num);
         mLlSpareTime1 = (LinearLayout) findViewById(R.id.ll_spare_time1);
@@ -329,6 +333,8 @@ public class ServiceOrderDetailActivity extends BaseActivity implements View.OnC
             //是豪华邮轮游
             mTvOrderService.setText("豪华邮轮游");
 
+            mLlTravelName.setVisibility(View.VISIBLE);//游行名称
+            mLlOrderName.setVisibility(View.VISIBLE);//预约人
             mLlPhone.setVisibility(View.VISIBLE);//联系电话布局
             mLlSubTime.setVisibility(View.VISIBLE);//提交时间布局
 
@@ -354,6 +360,7 @@ public class ServiceOrderDetailActivity extends BaseActivity implements View.OnC
                 mTvOrderStatus.setText("已取消");
             }
 
+            mTvOrderName.setText(detail2B.getLuxuryShipBooking().getClientPhone());  //预约人
             mTvPhone.setText(detail2B.getLuxuryShipBooking().getClientPhone());  //联系电话
             mTvSubTime.setText(detail2B.getLuxuryShipBooking().getCreateTime()); //提交时间
 
