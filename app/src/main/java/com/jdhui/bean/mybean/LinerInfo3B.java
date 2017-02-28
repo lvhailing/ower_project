@@ -7,7 +7,7 @@ import com.jdhui.mould.types.IMouldType;
  * 服务--游轮详情之游轮信息  接收后台返回数据
  */
 public class LinerInfo3B implements IMouldType {
-    private String passgstartPointerCapacity; //离港地点
+    private String startPoint; //离港地点
     private String endPiont; //抵港地点
     private String startTime; //离港时间
     private String endTime; //抵港时间
@@ -15,18 +15,18 @@ public class LinerInfo3B implements IMouldType {
     private String routeDuration; //历时
     private String shipId; //游轮Id
     private String shipTime; //游行时间
-    private String suiteRoom; //套房
     private String innerRoom; //内仓房
-    private String balconyRoom; //阳台房
     private String seaviewRoom; //海景房
+    private String balconyRoom; //阳台房
+    private String suiteRoom; //套房
     private String shipCount; //航期数
 
-    public String getPassgstartPointerCapacity() {
-        return passgstartPointerCapacity;
+    public String getStartPoint() {
+        return startPoint;
     }
 
-    public void setPassgstartPointerCapacity(String passgstartPointerCapacity) {
-        this.passgstartPointerCapacity = passgstartPointerCapacity;
+    public void setStartPoint(String startPoint) {
+        this.startPoint = startPoint;
     }
 
     public String getEndPiont() {
@@ -124,5 +124,6 @@ public class LinerInfo3B implements IMouldType {
     public void setShipCount(String shipCount) {
         this.shipCount = shipCount;
     }
+
 }
 

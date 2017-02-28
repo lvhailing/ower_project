@@ -58,12 +58,12 @@ public class MyTopAdapter extends MyPagerAdapter {
         String money = item.getLowerTicketPrice();
         String date = item.getShipTime();
         String year = date.substring(0, 4);
-        String month = date.substring(5, 7);
+        String month = date.substring(6, 7);
 
 
         tv_year.setText(year + "年");
-        tv_month.setText(month + "月" + "[" + shipCount + "]");
-        tv_money.setText(money);
+        tv_month.setText(month + "月" + "[" + shipCount + "航期]");
+        tv_money.setText("￥"+money+"/人起");
 
         viewList.add(view);
         container.addView(view);

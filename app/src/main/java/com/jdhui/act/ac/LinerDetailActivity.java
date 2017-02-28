@@ -174,7 +174,7 @@ public class LinerDetailActivity extends BaseActivity implements View.OnClickLis
         }
 
         public void onPageSelected(int position) {
-            vp_container_point.getChildAt(position).setBackgroundResource(R.drawable.vp_bg_orange);
+            vp_container_point.getChildAt(position).setBackgroundResource(R.drawable.vp_bg_black);
             vp_container_point.getChildAt(lastPosition).setBackgroundResource(R.drawable.vp_bg_gray);
             lastPosition = position;
         }
@@ -299,7 +299,7 @@ public class LinerDetailActivity extends BaseActivity implements View.OnClickLis
             params.bottomMargin = 0;
             point.setLayoutParams(params);
             if (i == 0) {
-                point.setBackgroundResource(R.drawable.vp_bg_orange);
+                point.setBackgroundResource(R.drawable.vp_bg_black);
             } else {
                 point.setBackgroundResource(R.drawable.vp_bg_gray);
             }

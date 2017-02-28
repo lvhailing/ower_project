@@ -33,6 +33,9 @@ public class ServiceDetail3B implements IMouldType {
     private String createTime; //绿通就医、高尔夫球场的提交时间
     private MouldList<PlaneMarchListBean> airplaneMarch;   //行程列表
 
+    private String clientName; //邮轮 预约人
+    private String routeName; //游行名称
+
     private String idType;      // idType  String     idCard: 身份证号  passport：护照  agencyCode：机构代码
 
     public String getIdType() {
@@ -233,6 +236,22 @@ public class ServiceDetail3B implements IMouldType {
 
     public void setBookingRemark(String bookingRemark) {
         this.bookingRemark = bookingRemark;
+    }
+
+    public String getClientName() {
+        return clientName;
+    }
+
+    public void setClientName(String clientName) {
+        this.clientName = clientName;
+    }
+
+    public String getRouteName() {
+        return routeName;
+    }
+
+    public void setRouteName(String routeName) {
+        this.routeName = routeName;
     }
 }
 

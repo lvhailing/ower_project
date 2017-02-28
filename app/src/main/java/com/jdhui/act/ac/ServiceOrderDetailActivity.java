@@ -360,7 +360,8 @@ public class ServiceOrderDetailActivity extends BaseActivity implements View.OnC
                 mTvOrderStatus.setText("已取消");
             }
 
-            mTvOrderName.setText(detail2B.getLuxuryShipBooking().getClientPhone());  //预约人
+            mTvTravelName.setText(detail2B.getLuxuryShipBooking().getRouteName());  //游行名称
+            mTvOrderName.setText(detail2B.getLuxuryShipBooking().getClientName());  //预约人
             mTvPhone.setText(detail2B.getLuxuryShipBooking().getClientPhone());  //联系电话
             mTvSubTime.setText(detail2B.getLuxuryShipBooking().getCreateTime()); //提交时间
 

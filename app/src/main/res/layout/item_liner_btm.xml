@@ -1,7 +1,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/white">
+                android:background="#fff">
 
     <RelativeLayout
         android:layout_width="wrap_content"
@@ -25,7 +25,7 @@
             android:textSize="18sp"/>
 
         <TextView
-            android:id="@+id/tv_passgstartPointerCapacity"
+            android:id="@+id/tv_startPoint"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/tv_start"
@@ -39,11 +39,11 @@
             android:id="@+id/tv_startTime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/tv_passgstartPointerCapacity"
+            android:layout_below="@id/tv_startPoint"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="3dp"
             android:text="2017.07.28"
-            android:textColor="#333"
+            android:textColor="@color/txt_black"
             android:textSize="14sp"/>
     </RelativeLayout>
 
@@ -58,8 +58,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
-            android:text="月3日2"
-            android:textColor="#000"
+            android:text="2晚3日"
+            android:textColor="@color/txt_black"
             android:textSize="18sp"/>
 
         <TextView
@@ -99,10 +99,10 @@
             android:background="@drawable/icon_end"/>
 
         <TextView
-            android:id="@+id/tv_endPiont"
+            android:id="@+id/tv_endPoint"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/tv_end"
+            android:layout_below="@id/tv_end"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="3dp"
             android:text="悉尼"
@@ -113,11 +113,11 @@
             android:id="@+id/tv_endTime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/tv_endPiont"
+            android:layout_below="@id/tv_endPoint"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="3dp"
             android:text="2017.07.28"
-            android:textColor="#333"
+            android:textColor="@color/txt_black"
             android:textSize="14sp"/>
     </RelativeLayout>
 
@@ -132,7 +132,7 @@
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginRight="40dp"
+            android:layout_marginRight="65dp"
             android:layout_weight="1"
             android:gravity="right"
             android:orientation="vertical">
@@ -142,7 +142,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="内舱房"
-                android:textColor="#333"
+                android:textColor="@color/txt_black"
                 android:textSize="14sp"/>
 
             <TextView
@@ -151,7 +151,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="3dp"
                 android:text="海景房"
-                android:textColor="#333"
+                android:textColor="@color/txt_black"
                 android:textSize="14sp"/>
 
             <TextView
@@ -160,7 +160,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="3dp"
                 android:text="阳台房"
-                android:textColor="#333"
+                android:textColor="@color/txt_black"
                 android:textSize="14sp"/>
 
             <TextView
@@ -169,14 +169,14 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="3dp"
                 android:text="套房"
-                android:textColor="#333"
+                android:textColor="@color/txt_black"
                 android:textSize="14sp"/>
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="40dp"
+            android:layout_marginLeft="65dp"
             android:layout_weight="1"
             android:orientation="vertical">
 
@@ -185,7 +185,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="￥1666/人起"
-                android:textColor="#333"
+                android:textColor="@color/txt_black"
                 android:textSize="14sp"/>
 
             <TextView
@@ -194,7 +194,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="3dp"
                 android:text="￥1666/人起"
-                android:textColor="#333"
+                android:textColor="@color/txt_black"
                 android:textSize="14sp"/>
 
             <TextView
@@ -203,7 +203,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="3dp"
                 android:text="￥1666/人起"
-                android:textColor="#333"
+                android:textColor="@color/txt_black"
                 android:textSize="14sp"/>
 
             <TextView
@@ -212,7 +212,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="3dp"
                 android:text="售罄"
-                android:textColor="#333"
+                android:textColor="@color/txt_black"
                 android:textSize="14sp"/>
         </LinearLayout>
     </LinearLayout>

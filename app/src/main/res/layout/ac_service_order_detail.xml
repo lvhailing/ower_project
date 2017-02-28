@@ -98,6 +98,21 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/ll_travel_name"
+                    style="@style/product_linearlayout"
+                    android:visibility="gone">
+
+                    <TextView
+                        style="@style/product_text_detail_lt"
+                        android:text="游行名称:"/>
+
+                    <TextView
+                        android:id="@+id/tv_travel_name"
+                        style="@style/product_text_detail_rt"
+                        android:text="aaaa"/>
+                </LinearLayout>
+
+                <LinearLayout
                     android:id="@+id/ll_order_name"
                     style="@style/product_linearlayout"
                     android:visibility="gone">
@@ -112,20 +127,6 @@
                         android:text="aaaa"/>
                 </LinearLayout>
 
-                <LinearLayout
-                    android:id="@+id/ll_travel_name"
-                    style="@style/product_linearlayout"
-                    android:visibility="gone">
-
-                    <TextView
-                        style="@style/product_text_detail_lt"
-                        android:text="游行名称:"/>
-
-                    <TextView
-                        android:id="@+id/tv_travel_name"
-                        style="@style/product_text_detail_rt"
-                        android:text="aaaa"/>
-                </LinearLayout>
 
                 <LinearLayout
                     android:id="@+id/ll_sex"
