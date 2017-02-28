@@ -18,8 +18,6 @@ import com.jdhui.R;
 import com.jdhui.act.BaseActivity;
 import com.jdhui.adapter.MyBtmAdapter;
 import com.jdhui.adapter.MyTopAdapter;
-import com.jdhui.bean.mybean.GetGolfInfo2B;
-import com.jdhui.bean.mybean.GolfList3B;
 import com.jdhui.bean.mybean.LinerDetail2B;
 import com.jdhui.bean.mybean.LinerDetail3B;
 import com.jdhui.bean.mybean.LinerInfo2B;
@@ -27,11 +25,8 @@ import com.jdhui.bean.mybean.LinerInfo3B;
 import com.jdhui.mould.BaseParams;
 import com.jdhui.mould.BaseRequester;
 import com.jdhui.mould.HtmlRequest;
-import com.jdhui.mould.types.MouldList;
-import com.jdhui.uitls.StringUtil;
 import com.jdhui.uitls.ViewUtils;
 import com.jdhui.widget.FlowLayoutLimitLine;
-import com.jdhui.widget.FlowLayoutView;
 import com.jdhui.widget.PullUpToLoadMore;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
@@ -74,10 +69,8 @@ public class LinerDetailActivity extends BaseActivity implements View.OnClickLis
     private MyTopAdapter vpTopAdapter;
     private MyBtmAdapter vpBtmAdapter;
 
-//    private List<String> topList;
-    private List<LinerInfo3B> btmList;
-
-    private MouldList<LinerInfo3B> topList = new MouldList<>();
+    private List<LinerInfo3B> topList = new ArrayList<>();
+    private List<LinerInfo3B> btmList = new ArrayList<>();
 
     private int screenWidth = 0;
     private int dpHeng; //底部小圆点之间的间距
@@ -88,137 +81,11 @@ public class LinerDetailActivity extends BaseActivity implements View.OnClickLis
         super.onCreate(savedInstanceState);
         baseSetContentView(R.layout.ac_liner_detail);
 
-        initMyData();
-
         initView();
         initData();
-
-        initPointGroup(btmList.size());
-    }
-
-    private void initMyData() {
-        // 获取屏幕宽度
-        DisplayMetrics dm = getResources().getDisplayMetrics();
-        screenWidth = dm.widthPixels;
-
-        //模拟数据
-//        topList = new ArrayList<>();
-//        topList.add("");
-//        topList.add("100");
-//        topList.add("200");
-//        topList.add("300");
-//        topList.add("");
-
-        btmList = new ArrayList<>();
-        LinerInfo3B liner = new LinerInfo3B();
-        liner.setSeaviewRoom("1000");
-        LinerInfo3B liner2 = new LinerInfo3B();
-        liner2.setSeaviewRoom("2000");
-        btmList.add(liner);
-        btmList.add(liner2);
-    }
-
-    private void initData() {
-        requestDetailData(); //请求游轮详情的数据
-
-        requestLinerInfoData(); //请求邮轮信息
-
-        dpHeng = ViewUtils.dip2px(getApplicationContext(), 4);
-
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(screenWidth / 3, ViewGroup.LayoutParams.WRAP_CONTENT);
-        vpTop.setLayoutParams(params);
-        vpTopAdapter = new MyTopAdapter(topList, this);
-        vpTop.setAdapter(vpTopAdapter);
-        vpTop.setOffscreenPageLimit(3); // viewpager缓存页数
-        vpTop.setOnPageChangeListener(new MyTopChangeListener());
-
-        vpBtmAdapter = new MyBtmAdapter(btmList, this);
-        vpBtm.setAdapter(vpBtmAdapter);
-        vpBtm.setOnPageChangeListener(new MyBtmChangeListener());
-    }
-
-    private void initPointGroup(int size) {
-        vp_container_point.removeAllViews();
-        for (int i = 0; i < size; i++) {
-            ImageView point = new ImageView(this);
-            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-
-            params.leftMargin = dpHeng;
-            params.rightMargin = dpHeng;
-            params.bottomMargin = 0;
-            point.setLayoutParams(params);
-            if (i == 0) {
-                point.setBackgroundResource(R.drawable.vp_bg_orange);
-            } else {
-                point.setBackgroundResource(R.drawable.vp_bg_gray);
-            }
-            vp_container_point.addView(point);
-        }
-    }
-
-    private class MyTopChangeListener implements ViewPager.OnPageChangeListener {
-
-        public void onPageScrollStateChanged(int arg0) {
-        }
-
-        public void onPageScrolled(int arg0, float arg1, int arg2) {
-        }
-
-        public void onPageSelected(int position) {
-            if (position == 1) {
-                LinerInfo3B liner = new LinerInfo3B();
-                liner.setSeaviewRoom("5000");
-                LinerInfo3B liner2 = new LinerInfo3B();
-                liner2.setSeaviewRoom("6000");
-                btmList.clear();
-                btmList.add(liner);
-                btmList.add(liner2);
-            } else {
-                LinerInfo3B liner = new LinerInfo3B();
-                liner.setSeaviewRoom("8000");
-                LinerInfo3B liner2 = new LinerInfo3B();
-                liner2.setSeaviewRoom("9000");
-                btmList.clear();
-                btmList.add(liner);
-                btmList.add(liner2);
-            }
-            vpBtmAdapter.notifyDataSetChanged();
-            vpBtm.setCurrentItem(0);
-        }
-    }
-
-    private class MyBtmChangeListener implements ViewPager.OnPageChangeListener {
-
-        public void onPageScrollStateChanged(int arg0) {
-        }
-
-        public void onPageScrolled(int arg0, float arg1, int arg2) {
-        }
-
-        public void onPageSelected(int position) {
-            vp_container_point.getChildAt(position).setBackgroundResource(R.drawable.vp_bg_orange);
-            vp_container_point.getChildAt(lastPosition).setBackgroundResource(R.drawable.vp_bg_gray);
-            lastPosition = position;
-        }
-    }
-
-
-    @Override
-    protected void onDestroy() {
-        if (vpBtm != null) {
-            vpBtm.removeAllViews();
-            vpBtm = null;
-        }
-        if (vpTop != null) {
-            vpTop.removeAllViews();
-            vpTop = null;
-        }
-        super.onDestroy();
     }
 
     private void initView() {
-        id = getIntent().getStringExtra("id");
-
         mBtnBack = (ImageView) findViewById(R.id.iv_back);
         tv_title_travel_name = (TextView) findViewById(R.id.tv_title_travel_name);
         ptlm = (PullUpToLoadMore) findViewById(R.id.ptlm);
@@ -249,58 +116,66 @@ public class LinerDetailActivity extends BaseActivity implements View.OnClickLis
             }
         });
 
-
         mBtnBack.setOnClickListener(this);
         btn_submit.setOnClickListener(this);
     }
 
-    /**
-     *  详情页第一屏数据展示
-     */
-    private void setView() {
-        //加载图片
-        ImageLoader.getInstance().displayImage(detail.getInfoPhoto(), iv_detail_photo);
+    private void initData() {
+        id = getIntent().getStringExtra("id");
 
-        linerTag = detail.getRouteDestination();
-        mStringArray = linerTag.split(",");
-        if (mStringArray.length > 0) {
-            remark.setVisibility(View.VISIBLE);
-            setRemarks();
-        } else {
-            remark.setVisibility(View.GONE);
-        }
+        dpHeng = ViewUtils.dip2px(getApplicationContext(), 4);
 
-        tv_title_travel_name.setText(detail.getRouteName());
-        tv_travel_date.setText(detail.getRouteDuration());
-        tv_travel_name.setText(detail.getRouteName());
-        tv_gatewayPort.setText(detail.getGatewayPort());
-        tv_ship_price.setText(detail.getLowerTicketPrice());
-        tv_shipName.setText(detail.getShipName());
-        tv_liner_starLevel_one.setText(detail.getStarLevel());
-        tv_passgerCapacity_one.setText(detail.getPassgerCapacity());
-        tv_buildYear_one.setText(detail.getBuildYear());
-        tv_tonnage_one.setText(detail.getTonnage());
+        DisplayMetrics dm = getResources().getDisplayMetrics();
+        screenWidth = dm.widthPixels;
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(screenWidth / 3, ViewGroup.LayoutParams.WRAP_CONTENT);
+        vpTop.setLayoutParams(params);
+
+        vpTopAdapter = new MyTopAdapter(topList, this);
+        vpTop.setAdapter(vpTopAdapter);
+        vpTop.setOffscreenPageLimit(3); // viewpager缓存页数
+        vpTop.setOnPageChangeListener(new MyTopChangeListener());
+
+        vpBtmAdapter = new MyBtmAdapter(btmList, this);
+        vpBtm.setAdapter(vpBtmAdapter);
+        vpBtm.setOnPageChangeListener(new MyBtmChangeListener());
+
+        requestDetailData(); //请求游轮详情的数据
+
+        requestLinerInfoData(); //请求邮轮信息
     }
 
-    private void setRemarks() {
-        remark.removeAllViews();
-        for (int i = 0; i < mStringArray.length; i++) {
-            TextView textView = new TextView(this);
-            textView.setText(mStringArray[i]);
-            textView.setTag(false);
-            textView.setTextColor(Color.BLACK);
-            textView.setTextSize(12);
-            textView.setBackgroundResource(R.drawable.bg_flag);
-            textView.setIncludeFontPadding(false);
-            textView.setGravity(Gravity.CENTER_VERTICAL);
-            textView.setGravity(Gravity.CENTER);
+    private class MyTopChangeListener implements ViewPager.OnPageChangeListener {
 
-            int padding5dp = ViewUtils.dip2px(this, 5);
-            textView.setPadding(padding5dp, 0, padding5dp, 0);
-            LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(ViewPager.LayoutParams.WRAP_CONTENT, ViewUtils.dip2px(this, 24));
-            lp.setMargins(0, 0, ViewUtils.dip2px(this, 6), ViewUtils.dip2px(this, 6));
-            textView.setLayoutParams(lp);
-            remark.addView(textView);
+        public void onPageScrollStateChanged(int arg0) {
+        }
+
+        public void onPageScrolled(int arg0, float arg1, int arg2) {
+        }
+
+        public void onPageSelected(int position) {
+            btmList.clear();
+            btmList.addAll(linerInfo.get(position));
+            vpBtmAdapter.notifyDataSetChanged();
+            //top vp切换后 保证btm的vp也回到第一个
+            vpBtm.setCurrentItem(0);
+
+            //初始化btm vp的小圆点
+            initPointGroup(btmList.size());
+        }
+    }
+
+    private class MyBtmChangeListener implements ViewPager.OnPageChangeListener {
+
+        public void onPageScrollStateChanged(int arg0) {
+        }
+
+        public void onPageScrolled(int arg0, float arg1, int arg2) {
+        }
+
+        public void onPageSelected(int position) {
+            vp_container_point.getChildAt(position).setBackgroundResource(R.drawable.vp_bg_orange);
+            vp_container_point.getChildAt(lastPosition).setBackgroundResource(R.drawable.vp_bg_gray);
+            lastPosition = position;
         }
     }
 
@@ -315,7 +190,7 @@ public class LinerDetailActivity extends BaseActivity implements View.OnClickLis
                     LinerDetail2B = (LinerDetail2B) params.result;
                     detail = LinerDetail2B.getLuxuryShip();
                     if (detail != null) {
-                        setView();
+                        setPrePageView();
                     }
                 }
             }
@@ -341,10 +216,94 @@ public class LinerDetailActivity extends BaseActivity implements View.OnClickLis
     }
 
     /**
+     * 详情页第一屏数据展示
+     */
+    private void setPrePageView() {
+        //加载图片
+        ImageLoader.getInstance().displayImage(detail.getInfoPhoto(), iv_detail_photo);
+
+        linerTag = detail.getRouteDestination();
+        mStringArray = linerTag.split(",");
+        if (mStringArray.length > 0) {
+            remark.setVisibility(View.VISIBLE);
+            setFlowRemarks();
+        } else {
+            remark.setVisibility(View.GONE);
+        }
+
+        tv_title_travel_name.setText(detail.getRouteName());
+        tv_travel_date.setText(detail.getRouteDuration());
+        tv_travel_name.setText(detail.getRouteName());
+        tv_gatewayPort.setText(detail.getGatewayPort());
+        tv_ship_price.setText(detail.getLowerTicketPrice());
+        tv_shipName.setText(detail.getShipName());
+        tv_liner_starLevel_one.setText(detail.getStarLevel());
+        tv_passgerCapacity_one.setText(detail.getPassgerCapacity());
+        tv_buildYear_one.setText(detail.getBuildYear());
+        tv_tonnage_one.setText(detail.getTonnage());
+    }
+
+    private void setFlowRemarks() {
+        remark.removeAllViews();
+        for (int i = 0; i < mStringArray.length; i++) {
+            TextView textView = new TextView(this);
+            textView.setText(mStringArray[i]);
+            textView.setTag(false);
+            textView.setTextColor(Color.BLACK);
+            textView.setTextSize(12);
+            textView.setBackgroundResource(R.drawable.bg_flag);
+            textView.setIncludeFontPadding(false);
+            textView.setGravity(Gravity.CENTER_VERTICAL);
+            textView.setGravity(Gravity.CENTER);
+
+            int padding5dp = ViewUtils.dip2px(this, 5);
+            textView.setPadding(padding5dp, 0, padding5dp, 0);
+            LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(ViewPager.LayoutParams.WRAP_CONTENT, ViewUtils.dip2px(this, 24));
+            lp.setMargins(0, 0, ViewUtils.dip2px(this, 6), ViewUtils.dip2px(this, 6));
+            textView.setLayoutParams(lp);
+            remark.addView(textView);
+        }
+    }
+
+    /**
      * 请求邮轮信息接口调成功后，界面展示数据
      */
     private void setNextPageView() {
+        //准备top vp数据
+        for (ArrayList<LinerInfo3B> list : linerInfo) {
+            if (list != null && list.size() > 0) {
+                topList.add(list.get(0));
+            }
+        }
+        //刷新top vp
+        vpTopAdapter.notifyDataSetChanged();
 
+        //准备btm vp数据
+        btmList.addAll(linerInfo.get(0));
+        //刷新btm vp
+        vpBtmAdapter.notifyDataSetChanged();
+
+        //初始化btm vp的小圆点
+        initPointGroup(btmList.size());
+    }
+
+    private void initPointGroup(int size) {
+        vp_container_point.removeAllViews();
+        for (int i = 0; i < size; i++) {
+            ImageView point = new ImageView(this);
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+
+            params.leftMargin = dpHeng;
+            params.rightMargin = dpHeng;
+            params.bottomMargin = 0;
+            point.setLayoutParams(params);
+            if (i == 0) {
+                point.setBackgroundResource(R.drawable.vp_bg_orange);
+            } else {
+                point.setBackgroundResource(R.drawable.vp_bg_gray);
+            }
+            vp_container_point.addView(point);
+        }
     }
 
     @Override
@@ -360,6 +319,19 @@ public class LinerDetailActivity extends BaseActivity implements View.OnClickLis
                 startActivity(intent);
                 break;
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        if (vpBtm != null) {
+            vpBtm.removeAllViews();
+            vpBtm = null;
+        }
+        if (vpTop != null) {
+            vpTop.removeAllViews();
+            vpTop = null;
+        }
+        super.onDestroy();
     }
 
 }

@@ -2,9 +2,7 @@ package com.jdhui.adapter;
 
 import android.content.Context;
 import android.graphics.Color;
-import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,7 +17,7 @@ import java.util.List;
 /**
  * 邮轮详情页第二屏 顶部vp的Adapter
  */
-public class MyTopAdapter extends PagerAdapter {
+public class MyTopAdapter extends MyPagerAdapter {
     private List<LinerInfo3B> topList;
     private List<View> viewList = new ArrayList<>();
     private Context context;
