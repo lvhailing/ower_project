@@ -1,7 +1,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="#fff">
+                android:background="@color/white">
 
     <RelativeLayout
         android:layout_width="wrap_content"
@@ -12,7 +12,7 @@
             android:id="@+id/iv_start"
             android:layout_width="20dp"
             android:layout_height="20dp"
-            android:background="@drawable/ic_launcher"/>
+            android:background="@drawable/icon_start"/>
 
         <TextView
             android:id="@+id/tv_start"
@@ -20,8 +20,8 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
             android:layout_toRightOf="@id/iv_start"
-            android:text="2017年"
-            android:textColor="#000"
+            android:text="出发"
+            android:textColor="@color/txt_black"
             android:textSize="18sp"/>
 
         <TextView
@@ -32,7 +32,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="3dp"
             android:text="纽约"
-            android:textColor="#333"
+            android:textColor="@color/txt_gray_light"
             android:textSize="14sp"/>
 
         <TextView
@@ -63,14 +63,16 @@
             android:textSize="18sp"/>
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="56dp"
+            android:layout_height="24dp"
+            android:gravity="center"
+            android:background="@drawable/bg_btn_single_ticket"
             android:layout_below="@id/tv_time"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="3dp"
             android:text="单船票"
-            android:textColor="#333"
-            android:textSize="14sp"/>
+            android:textColor="@color/gray_dark"
+            android:textSize="12sp"/>
     </RelativeLayout>
 
     <RelativeLayout
@@ -84,8 +86,8 @@
             android:id="@+id/tv_end"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="2017年"
-            android:textColor="#000"
+            android:text="返回"
+            android:textColor="@color/txt_black"
             android:textSize="18sp"/>
 
         <ImageView
@@ -94,7 +96,7 @@
             android:layout_height="20dp"
             android:layout_marginLeft="5dp"
             android:layout_toRightOf="@id/tv_end"
-            android:background="@drawable/ic_launcher"/>
+            android:background="@drawable/icon_end"/>
 
         <TextView
             android:id="@+id/tv_endPiont"
@@ -104,7 +106,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="3dp"
             android:text="悉尼"
-            android:textColor="#333"
+            android:textColor="@color/txt_gray_light"
             android:textSize="14sp"/>
 
         <TextView
