@@ -373,7 +373,7 @@
                     <View
                         android:layout_width="60dp"
                         android:layout_height="3dp"
-                        android:background="#f00"/>
+                        android:background="@color/red4"/>
                 </LinearLayout>
 
                 <android.support.v4.view.ViewPager

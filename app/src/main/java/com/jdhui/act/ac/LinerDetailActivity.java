@@ -91,11 +91,11 @@ public class LinerDetailActivity extends BaseActivity implements View.OnClickLis
     }
 
     private void initMyData() {
-        // 獲取屏幕寬度
+        // 获取屏幕宽度
         DisplayMetrics dm = getResources().getDisplayMetrics();
         screenWidth = dm.widthPixels;
 
-        //模拟数据，有了真实数据要替换
+        //模拟数据
         topList = new ArrayList<>();
 //        topList.add("");
         topList.add("100");
@@ -113,9 +113,9 @@ public class LinerDetailActivity extends BaseActivity implements View.OnClickLis
     }
 
     private void initData() {
-        requestDetailData();
+        requestDetailData(); //请求游轮详情的数据
 
-        requestLinerInfoData();
+        requestLinerInfoData(); //请求邮轮信息
 
         dpHeng = ViewUtils.dip2px(getApplicationContext(), 4);
 
