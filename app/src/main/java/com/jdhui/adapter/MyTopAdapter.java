@@ -75,21 +75,40 @@ public class MyTopAdapter extends MyPagerAdapter {
     @Override
     public void setPrimaryItem(View container, int position, Object object) {
         super.setPrimaryItem(container, position, object);
+        if (viewList.size() <= 0) {
+            return;
+        }
+
         if (oldPosition == -1) {
             //默认进来让第0个view聚焦 改变状态
             View oldView = viewList.get(0);
+            TextView tv_year_old = (TextView) oldView.findViewById(R.id.tv_year);
+            TextView tv_month_old = (TextView) oldView.findViewById(R.id.tv_month);
             TextView tv_money_old = (TextView) oldView.findViewById(R.id.tv_money);
-            tv_money_old.setTextColor(Color.parseColor("#ff0000"));
+
+            tv_year_old.setTextColor(Color.parseColor("#333333"));
+            tv_month_old.setTextColor(Color.parseColor("#333333"));
+            tv_money_old.setTextColor(Color.parseColor("#333333"));
         } else if (oldPosition != position) {
             //当前聚焦的view 改变状态
             View currentView = (View) object;
+            TextView tv_year_old = (TextView) currentView.findViewById(R.id.tv_year);
+            TextView tv_month_old = (TextView) currentView.findViewById(R.id.tv_month);
             TextView tv_money_current = (TextView) currentView.findViewById(R.id.tv_money);
-            tv_money_current.setTextColor(Color.parseColor("#ff0000"));
+
+            tv_year_old.setTextColor(Color.parseColor("#333333"));
+            tv_month_old.setTextColor(Color.parseColor("#333333"));
+            tv_money_current.setTextColor(Color.parseColor("#333333"));
 
             //上一次聚焦的view 恢复默认状态
             View oldView = viewList.get(oldPosition);
+            TextView tv_year_old1 = (TextView) oldView.findViewById(R.id.tv_year);
+            TextView tv_month_old1 = (TextView) oldView.findViewById(R.id.tv_month);
             TextView tv_money_old = (TextView) oldView.findViewById(R.id.tv_money);
-            tv_money_old.setTextColor(Color.parseColor("#000000"));
+
+            tv_year_old1.setTextColor(Color.parseColor("#959595"));
+            tv_month_old1.setTextColor(Color.parseColor("#959595"));
+            tv_money_old.setTextColor(Color.parseColor("#959595"));
         }
         oldPosition = position;
     }

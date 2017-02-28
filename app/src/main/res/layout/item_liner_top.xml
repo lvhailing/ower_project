@@ -12,7 +12,7 @@
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:layout_margin="5dp"
-        android:textColor="#000"
+        android:textColor="@color/txt_gray_light"
         android:textSize="14sp"/>
 
     <TextView
@@ -23,7 +23,7 @@
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:layout_margin="5dp"
-        android:textColor="#000"
+        android:textColor="@color/txt_gray_light"
         android:textSize="14sp"/>
 
     <TextView
@@ -34,6 +34,6 @@
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:layout_margin="5dp"
-        android:textColor="#000"
+        android:textColor="@color/txt_gray_light"
         android:textSize="14sp"/>
 </RelativeLayout>
