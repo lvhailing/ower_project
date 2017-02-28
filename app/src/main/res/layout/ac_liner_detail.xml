@@ -64,16 +64,13 @@
 
                         <TextView
                             android:id="@+id/tv_single_ticket"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_width="56dp"
+                            android:layout_height="24dp"
                             android:layout_alignParentLeft="true"
                             android:layout_centerVertical="true"
                             android:layout_marginLeft="12dp"
-                            android:background="@drawable/shape_bg_gray1"
-                            android:paddingBottom="2.5dp"
-                            android:paddingLeft="4.5dp"
-                            android:paddingRight="4.5dp"
-                            android:paddingTop="2.5dp"
+                            android:background="@drawable/bg_btn_single_ticket"
+                            android:gravity="center"
                             android:text="单船票"
                             android:textColor="@color/gray_dark"
                             android:textSize="12sp"/>

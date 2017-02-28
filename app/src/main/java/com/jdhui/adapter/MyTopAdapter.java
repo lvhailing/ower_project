@@ -52,9 +52,9 @@ public class MyTopAdapter extends PagerAdapter {
             item = topList.get(position);
         }
 
-        TextView tv_year = (TextView) view.findViewById(R.id.tv_year);
-        TextView tv_month = (TextView) view.findViewById(R.id.tv_month);
-        TextView tv_money = (TextView) view.findViewById(R.id.tv_money);
+        TextView tv_year = (TextView) view.findViewById(R.id.tv_year); //游行时间
+        TextView tv_month = (TextView) view.findViewById(R.id.tv_month); //航期数
+        TextView tv_money = (TextView) view.findViewById(R.id.tv_money); //最低票价
 
         String shipCount = item.getShipCount();
         String money = item.getLowerTicketPrice();

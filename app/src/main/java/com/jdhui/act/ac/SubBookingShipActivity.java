@@ -15,6 +15,7 @@ import android.widget.Toast;
 import com.jdhui.R;
 import com.jdhui.act.BaseActivity;
 import com.jdhui.act.MainActivity;
+import com.jdhui.bean.mybean.GetGolfInfo2B;
 import com.jdhui.bean.mybean.SubBookingShip2B;
 import com.jdhui.bean.mybean.SubGeneticTesting2B;
 import com.jdhui.dialog.SexDialog;
@@ -32,6 +33,8 @@ public class SubBookingShipActivity extends BaseActivity implements View.OnClick
     private EditText et_phone;
     private Button btn_submit; //提交预约 按钮
     private String shipId;//邮轮 id
+    private String userName;
+    private String mobile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +47,9 @@ public class SubBookingShipActivity extends BaseActivity implements View.OnClick
 
     private void initData() {
         shipId = getIntent().getStringExtra("shipId");
+
+        requestCustomerData(); //请求客户信息
+
     }
 
     private void initView() {
@@ -54,6 +60,23 @@ public class SubBookingShipActivity extends BaseActivity implements View.OnClick
 
         mBtnBack.setOnClickListener(this);
         btn_submit.setOnClickListener(this);
+    }
+
+    private void requestCustomerData() {
+        HtmlRequest.getInfo(this, new BaseRequester.OnRequestListener() {
+            @Override
+            public void onRequestFinished(BaseParams params) {
+                if (params != null) {
+                    GetGolfInfo2B info2B = (GetGolfInfo2B) params.result;
+                    if (info2B != null) {
+                        userName = info2B.getUserName();
+                        mobile = info2B.getUserMobile();
+                        et_name.setText(userName);
+                        et_phone.setText(mobile);
+                    }
+                }
+            }
+        });
     }
 
     @Override
@@ -70,10 +93,10 @@ public class SubBookingShipActivity extends BaseActivity implements View.OnClick
 
 
     private void submit() {
-        String name = et_name.getText().toString();
-        String phone = et_phone.getText().toString();
+//        String name = et_name.getText().toString();
+//        String phone = et_phone.getText().toString();
 
-        if (TextUtils.isEmpty(name)) {
+       /* if (TextUtils.isEmpty(name)) {
             Toast.makeText(SubBookingShipActivity.this, "请输入预约人", Toast.LENGTH_SHORT).show();
             return;
         }
@@ -81,9 +104,9 @@ public class SubBookingShipActivity extends BaseActivity implements View.OnClick
         if (!StringUtil.isMobileNO(phone)) {
             Toast.makeText(SubBookingShipActivity.this, "请输入正确的手机号", Toast.LENGTH_SHORT).show();
             return;
-        }
+        }*/
 
-        HtmlRequest.subBookingShip(this, phone, shipId, name, new BaseRequester.OnRequestListener() {
+        HtmlRequest.subBookingShip(this, mobile, shipId, userName, new BaseRequester.OnRequestListener() {
             @Override
             public void onRequestFinished(BaseParams params) {
                 if (params != null) {

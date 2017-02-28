@@ -18,6 +18,7 @@ import com.jdhui.R;
 import com.jdhui.act.BaseActivity;
 import com.jdhui.adapter.MyBtmAdapter;
 import com.jdhui.adapter.MyTopAdapter;
+import com.jdhui.bean.mybean.GetGolfInfo2B;
 import com.jdhui.bean.mybean.GolfList3B;
 import com.jdhui.bean.mybean.LinerDetail2B;
 import com.jdhui.bean.mybean.LinerDetail3B;
@@ -27,6 +28,7 @@ import com.jdhui.mould.BaseParams;
 import com.jdhui.mould.BaseRequester;
 import com.jdhui.mould.HtmlRequest;
 import com.jdhui.mould.types.MouldList;
+import com.jdhui.uitls.StringUtil;
 import com.jdhui.uitls.ViewUtils;
 import com.jdhui.widget.FlowLayoutLimitLine;
 import com.jdhui.widget.FlowLayoutView;
@@ -352,6 +354,7 @@ public class LinerDetailActivity extends BaseActivity implements View.OnClickLis
                 finish();
                 break;
             case R.id.btn_submit: //立即预约 按钮
+
                 Intent intent = new Intent(this, SubBookingShipActivity.class);
                 intent.putExtra("shipId", id);
                 startActivity(intent);

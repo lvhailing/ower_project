@@ -11,6 +11,7 @@ public class GetGolfInfo2B implements IMouldType {
     private String userName; //客户姓名
     private String userIdNo; //客户身份证
     private String idType;//idCard:身份证，passport：护照，agencyCode：机构代码
+    private String userMobile; //客户电话
 
 
     public String getUserName() {
@@ -35,6 +36,14 @@ public class GetGolfInfo2B implements IMouldType {
 
     public void setIdType(String idType) {
         this.idType = idType;
+    }
+
+    public String getUserMobile() {
+        return userMobile;
+    }
+
+    public void setUserMobile(String userMobile) {
+        this.userMobile = userMobile;
     }
 }
 
