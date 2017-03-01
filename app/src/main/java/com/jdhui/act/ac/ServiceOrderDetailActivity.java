@@ -351,11 +351,11 @@ public class ServiceOrderDetailActivity extends BaseActivity implements View.OnC
             } else if (status.equals("unfinish")) {
                 mTvOrderStatus.setText("未完成");
                 rl_tips.setVisibility(View.VISIBLE);
-                mTvTitle.setText(detail2B.getHospitalBooking().getBookingRemark());
+                mTvTitle.setText(detail2B.getLuxuryShipBooking().getBookingRemark());
             } else if (status.equals("refuse")) {
                 mTvOrderStatus.setText("已驳回");
                 rl_tips.setVisibility(View.VISIBLE);
-                mTvTitle.setText(detail2B.getHospitalBooking().getBookingRemark());
+                mTvTitle.setText(detail2B.getLuxuryShipBooking().getBookingRemark());
             } else if (status.equals("cancel")) {
                 mTvOrderStatus.setText("已取消");
             }

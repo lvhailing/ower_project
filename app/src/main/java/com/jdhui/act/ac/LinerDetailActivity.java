@@ -25,6 +25,7 @@ import com.jdhui.bean.mybean.LinerInfo3B;
 import com.jdhui.mould.BaseParams;
 import com.jdhui.mould.BaseRequester;
 import com.jdhui.mould.HtmlRequest;
+import com.jdhui.uitls.StringUtil;
 import com.jdhui.uitls.ViewUtils;
 import com.jdhui.widget.FlowLayoutLimitLine;
 import com.jdhui.widget.MyViewPager;
@@ -76,6 +77,7 @@ public class LinerDetailActivity extends BaseActivity implements View.OnClickLis
     private int screenWidth = 0;
     private int dpHeng; //底部小圆点之间的间距
     private int lastPosition = 0;   //记录上次的位置
+    private TextView tv_shipName_up; //图片底部显示的  游行名称
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,6 +91,7 @@ public class LinerDetailActivity extends BaseActivity implements View.OnClickLis
     private void initView() {
         mBtnBack = (ImageView) findViewById(R.id.iv_back);
         tv_title_travel_name = (TextView) findViewById(R.id.tv_title_travel_name);
+        tv_shipName_up = (TextView) findViewById(R.id.tv_shipName_up);
         ptlm = (PullUpToLoadMore) findViewById(R.id.ptlm);
         iv_detail_photo = (ImageView) findViewById(R.id.iv_detail_photo);
         tv_ship_price = (TextView) findViewById(R.id.tv_ship_price);
@@ -224,7 +227,10 @@ public class LinerDetailActivity extends BaseActivity implements View.OnClickLis
         ImageLoader.getInstance().displayImage(detail.getInfoPhoto(), iv_detail_photo);
 
         linerTag = detail.getRouteDestination();
-        mStringArray = linerTag.split(",");
+        if (linerTag.length() > 0) {
+            mStringArray = linerTag.split(",");
+        }
+
         if (mStringArray.length > 0) {
             remark.setVisibility(View.VISIBLE);
             setFlowRemarks();
@@ -232,11 +238,17 @@ public class LinerDetailActivity extends BaseActivity implements View.OnClickLis
             remark.setVisibility(View.GONE);
         }
 
-        tv_title_travel_name.setText(detail.getRouteName());
-        tv_travel_date.setText(detail.getRouteDuration());
-        tv_travel_name.setText(detail.getRouteName());
+        String routeName = detail.getRouteName();
+        String travelDate = detail.getRouteDuration();
+        String travelName = detail.getRouteName();
+        String shipPrice = detail.getLowerTicketPrice();
+
+        tv_title_travel_name.setText(routeName);
+        tv_shipName_up.setText(routeName);
+        tv_travel_date.setText(StringUtil.getResult(travelDate));
+        tv_travel_name.setText(StringUtil.getResult(travelName));
         tv_gatewayPort.setText(detail.getGatewayPort());
-        tv_ship_price.setText(detail.getLowerTicketPrice());
+        tv_ship_price.setText("￥" + shipPrice + "/人起");
         tv_shipName.setText(detail.getShipName());
         tv_liner_starLevel_one.setText(detail.getStarLevel());
         tv_passgerCapacity_one.setText(detail.getPassgerCapacity());

@@ -96,15 +96,15 @@ public class SubBookingShipActivity extends BaseActivity implements View.OnClick
 //        String name = et_name.getText().toString();
 //        String phone = et_phone.getText().toString();
 
-       /* if (TextUtils.isEmpty(name)) {
+        if (TextUtils.isEmpty(userName)) {
             Toast.makeText(SubBookingShipActivity.this, "请输入预约人", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        if (!StringUtil.isMobileNO(phone)) {
+        if (!StringUtil.isMobileNO(mobile)) {
             Toast.makeText(SubBookingShipActivity.this, "请输入正确的手机号", Toast.LENGTH_SHORT).show();
             return;
-        }*/
+        }
 
         HtmlRequest.subBookingShip(this, mobile, shipId, userName, new BaseRequester.OnRequestListener() {
             @Override

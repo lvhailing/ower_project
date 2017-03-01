@@ -29,7 +29,6 @@
             android:textSize="18sp"/>
     </RelativeLayout>
 
-
     <com.jdhui.widget.PullUpToLoadMore
         android:id="@+id/ptlm"
         android:layout_width="match_parent"
@@ -54,7 +53,8 @@
                     <ImageView
                         android:id="@+id/iv_detail_photo"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="170dp"
+                        android:scaleType="fitXY"/>
 
                     <RelativeLayout
                         android:layout_width="match_parent"
@@ -77,7 +77,7 @@
 
                         <TextView
                             android:id="@+id/tv_shipName_up"
-                            android:layout_width="match_parent"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_centerVertical="true"
                             android:layout_marginLeft="5dp"
@@ -110,9 +110,11 @@
                     android:paddingTop="24dp">
 
                     <RelativeLayout
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal">
+                        android:layout_marginLeft="12dp"
+                        android:layout_marginRight="12dp"
+                        android:gravity="center_horizontal">
 
                         <TextView
                             android:id="@+id/tv_travel_date"
@@ -317,7 +319,7 @@
                             android:background="@color/bg_gray"
                             android:paddingLeft="8dp"
                             android:paddingRight="8dp"
-                            android:text="继续拖动，查看更多消息"
+                            android:text="继续拖动，查看更多信息"
                             android:textColor="@color/txt_gray_light_l"/>
                     </RelativeLayout>
 
@@ -405,9 +407,11 @@
         android:layout_height="45dp"
         android:layout_alignParentBottom="true"
         android:layout_margin="12dp"
+        android:layout_marginBottom="20dp"
         android:background="@drawable/shape_button_red"
         android:gravity="center"
         android:text="立即预约"
         android:textColor="@color/white"
         android:textSize="16sp"/>
+
 </RelativeLayout>

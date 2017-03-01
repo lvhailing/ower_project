@@ -605,27 +605,34 @@ public class StringUtil {
      * @param mResource 1
      */
 
-    public static void changeButtonStyleZR(Button btn_wyk,
-                                           Button btn_djk, int btn, Resources mResource) {
+    public static void changeButtonStyleZR(Button btn_wyk, Button btn_djk, int btn, Resources mResource) {
 
         if (btn == btn_wyk.getId()) {
-            btn_wyk
-                    .setBackgroundResource(R.drawable.shape_left_blue_background);
+            btn_wyk.setBackgroundResource(R.drawable.shape_left_blue_background);
             btn_wyk.setTextColor(mResource.getColor(R.color.txt_white));
-            btn_djk
-                    .setBackgroundResource(R.drawable.shape_right_blue_two);
-            btn_djk.setTextColor(mResource
-                    .getColor(R.color.blue_two));
+            btn_djk.setBackgroundResource(R.drawable.shape_right_blue_two);
+            btn_djk.setTextColor(mResource.getColor(R.color.blue_two));
         } else if (btn == btn_djk.getId()) {
             btn_wyk.setBackgroundResource(R.drawable.shape_left_blue_two);
             btn_wyk.setTextColor(mResource.getColor(R.color.blue_two));
-            btn_djk
-                    .setBackgroundResource(R.drawable.shape_right_blue_background);
-            btn_djk.setTextColor(mResource
-                    .getColor(R.color.txt_white));
+            btn_djk.setBackgroundResource(R.drawable.shape_right_blue_background);
+            btn_djk.setTextColor(mResource .getColor(R.color.txt_white));
         }
 
     }
 
-
+    /**
+     *  字符串长度过长时以“...”显示
+     * @param str
+     * @return
+     */
+    public static String getResult(String str){
+        String result ;
+        if (str.length() > 6) {
+            result = str.substring(0, 6) + "...";
+        } else {
+            result = str;
+        }
+        return result;
+    }
 }

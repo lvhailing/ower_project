@@ -17,6 +17,7 @@ import android.widget.TextView;
 import com.jdhui.R;
 import com.jdhui.bean.mybean.LinerList3B;
 import com.jdhui.mould.types.MouldList;
+import com.jdhui.uitls.StringUtil;
 import com.jdhui.uitls.ViewUtils;
 import com.jdhui.widget.FlowLayoutLimitLine;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -78,10 +79,14 @@ public class LinerListAdapter extends BaseAdapter {
         //加载item背景图片
         ImageLoader.getInstance().displayImage(list.get(position).getListPhoto(), holder.iv_liner_item);
 
-        holder.tv_travel_date.setText(list.get(position).getRouteDuration());
-        holder.tv_travel_name.setText(list.get(position).getRouteName());
+        String travelDate = list.get(position).getRouteDuration();
+        String travelName = list.get(position).getRouteName();
+        String shipName = list.get(position).getShipName();
+
+        holder.tv_travel_date.setText(StringUtil.getResult(travelDate));
+        holder.tv_travel_name.setText(StringUtil.getResult(travelName));
         holder.tv_liner_price.setText("￥" + list.get(position).getLowerTicketPrice() + "/人起");
-        holder.tv_liner_name.setText(list.get(position).getShipName());
+        holder.tv_liner_name.setText(StringUtil.getResult(shipName));
         linerTag = list.get(position).getRouteDestination();
 
         mStringArray = linerTag.split(",");

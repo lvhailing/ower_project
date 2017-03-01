@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import com.jdhui.R;
 import com.jdhui.bean.mybean.LinerInfo3B;
+import com.jdhui.uitls.StringUtil;
 
 import java.util.List;
 
@@ -44,7 +45,7 @@ public class MyBtmAdapter extends MyPagerAdapter {
 
         View view = LayoutInflater.from(context).inflate(R.layout.item_liner_btm, null);
 
-        TextView tv_passgstartPointerCapacity = (TextView) view.findViewById(R.id.tv_startPoint); //离港地点
+        TextView tv_startPoint = (TextView) view.findViewById(R.id.tv_startPoint); //离港地点
         TextView tv_endPiont = (TextView) view.findViewById(R.id.tv_endPoint); //抵港地点
         TextView tv_startTime = (TextView) view.findViewById(R.id.tv_startTime); //离港时间
         TextView tv_endTime = (TextView) view.findViewById(R.id.tv_endTime); //抵港时间
@@ -56,11 +57,11 @@ public class MyBtmAdapter extends MyPagerAdapter {
         TextView tv_price_3 = (TextView) view.findViewById(R.id.tv_price_3);
         TextView tv_price_4 = (TextView) view.findViewById(R.id.tv_price_4);
 
-        tv_passgstartPointerCapacity.setText(liner.getStartPoint());
-        tv_endPiont.setText(liner.getEndPiont());
+        tv_startPoint.setText(StringUtil.getResult(liner.getStartPoint()));
+        tv_endPiont.setText(StringUtil.getResult(liner.getEndPiont()));
         tv_startTime.setText(liner.getStartTime());
         tv_endTime.setText(liner.getEndTime());
-        tv_time.setText(liner.getRouteDuration());
+        tv_time.setText(StringUtil.getResult(liner.getRouteDuration()));
         tv_price_1.setText(liner.getInnerRoom());
         tv_price_2.setText(liner.getSeaviewRoom());
         tv_price_3.setText(liner.getBalconyRoom());
