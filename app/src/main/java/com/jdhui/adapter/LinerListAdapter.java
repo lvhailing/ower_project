@@ -1,6 +1,7 @@
 package com.jdhui.adapter;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
@@ -20,7 +21,10 @@ import com.jdhui.mould.types.MouldList;
 import com.jdhui.uitls.StringUtil;
 import com.jdhui.uitls.ViewUtils;
 import com.jdhui.widget.FlowLayoutLimitLine;
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.assist.ImageScaleType;
+import com.nostra13.universalimageloader.core.display.FadeInBitmapDisplayer;
 
 /**
  * 豪华邮轮游 adapter类
@@ -76,8 +80,10 @@ public class LinerListAdapter extends BaseAdapter {
             holder = (LinerListAdapter.Holder) convertView.getTag();
         }
 
+        //缓存图片到本地
+        DisplayImageOptions options = new DisplayImageOptions.Builder().showImageForEmptyUri(R.drawable.bg_normal).showImageOnFail(R.drawable.bg_normal).resetViewBeforeLoading(true).cacheOnDisc(true).imageScaleType(ImageScaleType.EXACTLY).bitmapConfig(Bitmap.Config.RGB_565).considerExifParams(true).displayer(new FadeInBitmapDisplayer(300)).build();
         //加载item背景图片
-        ImageLoader.getInstance().displayImage(list.get(position).getListPhoto(), holder.iv_liner_item);
+        ImageLoader.getInstance().displayImage(list.get(position).getListPhoto(), holder.iv_liner_item,options);
 
         String travelDate = list.get(position).getRouteDuration();
         String travelName = list.get(position).getRouteName();

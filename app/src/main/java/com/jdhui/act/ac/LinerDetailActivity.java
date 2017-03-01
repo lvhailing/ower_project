@@ -77,7 +77,7 @@ public class LinerDetailActivity extends BaseActivity implements View.OnClickLis
     private int screenWidth = 0;
     private int dpHeng; //底部小圆点之间的间距
     private int lastPosition = 0;   //记录上次的位置
-    private TextView tv_shipName_up; //图片底部显示的  游行名称
+    private TextView tv_shipName_up; //图片底部显示的  邮轮名称
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -159,12 +159,18 @@ public class LinerDetailActivity extends BaseActivity implements View.OnClickLis
         public void onPageSelected(int position) {
             btmList.clear();
             btmList.addAll(linerInfo.get(position));
-            vpBtmAdapter.notifyDataSetChanged();
+
+            vpBtmAdapter = new MyBtmAdapter(btmList, LinerDetailActivity.this);
+            vpBtm.setAdapter(vpBtmAdapter);
+
+//            vpBtmAdapter.notifyDataSetChanged();
             //top vp切换后 保证btm的vp也回到第一个
             vpBtm.setCurrentItem(0);
 
             //初始化btm vp的小圆点
             initPointGroup(btmList.size());
+
+            lastPosition = 0;
         }
     }
 
@@ -244,9 +250,9 @@ public class LinerDetailActivity extends BaseActivity implements View.OnClickLis
         String shipPrice = detail.getLowerTicketPrice();
 
         tv_title_travel_name.setText(routeName);
-        tv_shipName_up.setText(routeName);
-        tv_travel_date.setText(StringUtil.getResult(travelDate));
-        tv_travel_name.setText(StringUtil.getResult(travelName));
+        tv_shipName_up.setText(StringUtil.getResult(detail.getShipName()));
+        tv_travel_date.setText(travelDate);
+        tv_travel_name.setText(travelName);
         tv_gatewayPort.setText(detail.getGatewayPort());
         tv_ship_price.setText("￥" + shipPrice + "/人起");
         tv_shipName.setText(detail.getShipName());

@@ -86,6 +86,7 @@
             android:id="@+id/tv_end"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="7dp"
             android:text="返回"
             android:textColor="@color/txt_black"
             android:textSize="18sp"/>

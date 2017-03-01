@@ -1,6 +1,7 @@
 package com.jdhui.adapter;
 
 import android.content.Context;
+import android.support.v4.view.PagerAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,7 +16,7 @@ import java.util.List;
 /**
  * 邮轮详情页第二屏 底部vp的Adapter
  */
-public class MyBtmAdapter extends MyPagerAdapter {
+public class MyBtmAdapter extends PagerAdapter {
     private List<LinerInfo3B> btmList;
     private Context context;
 

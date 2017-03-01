@@ -31,7 +31,6 @@ import com.jdhui.mould.types.MouldList;
  * 更多--服务预约列表
  */
 public class ServiceOrderActivity extends BaseActivity implements View.OnClickListener {
-    public final static int FLA_STATUS = 4003;  //取消服务预约后 服务状态的改变
     private PullToRefreshListView listView;
     private ServiceOrderAdapter mAdapter;
     private ImageView mBtnBack;
@@ -46,8 +45,6 @@ public class ServiceOrderActivity extends BaseActivity implements View.OnClickLi
     private boolean isOpened = false;   //动画是否开启
     private TextView mTvType;//服务类型  全部
     private ImageView iv_select; // "全部"后面的 小三角
-
-    private int index = -1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -124,26 +121,16 @@ public class ServiceOrderActivity extends BaseActivity implements View.OnClickLi
                 }
                 intent.putExtra("serviceItems", type);
                 intent.putExtra("id", totalList.get(position - 1).getId());
-                index = position - 1;
-                startActivityForResult(intent,FLA_STATUS);
+                startActivity(intent);
             }
         });
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == FLA_STATUS) {
-            totalList.get(index).setBookingStatus("cancel");
-            mAdapter.notifyDataSetChanged();
-        }
-    }
-
-    @Override
     protected void onResume() {
         super.onResume();
-//        currentPage = 1;
-//        requestData();
+        currentPage = 1;
+        requestData();
     }
 
     /**

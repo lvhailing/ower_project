@@ -75,7 +75,12 @@ public class ServiceFragment extends Fragment implements View.OnClickListener {
         iv_liner = (ImageView) view.findViewById(R.id.iv_liner);
 
         //缓存图片到本地
-        options = new DisplayImageOptions.Builder().showImageForEmptyUri(R.drawable.banner_three).showImageOnFail(R.drawable.banner_three).resetViewBeforeLoading(true).cacheOnDisc(true).imageScaleType(ImageScaleType.EXACTLY).bitmapConfig(Bitmap.Config.RGB_565).considerExifParams(true).displayer(new FadeInBitmapDisplayer(300)).build();
+        options = new DisplayImageOptions.Builder()
+                .showImageForEmptyUri(R.drawable.banner_three)
+                .showImageOnFail(R.drawable.banner_three).resetViewBeforeLoading(true)
+                .cacheOnDisc(true).imageScaleType(ImageScaleType.EXACTLY)
+                .bitmapConfig(Bitmap.Config.RGB_565).considerExifParams(true)
+                .displayer(new FadeInBitmapDisplayer(300)).build();
 
         rl_hospital.setOnClickListener(this);
         rl_genetic.setOnClickListener(this);
