@@ -33,8 +33,8 @@ public class SubBookingShipActivity extends BaseActivity implements View.OnClick
     private EditText et_phone;
     private Button btn_submit; //提交预约 按钮
     private String shipId;//邮轮 id
-    private String userName;
-    private String mobile;
+//    private String userName;
+//    private String mobile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,8 +69,8 @@ public class SubBookingShipActivity extends BaseActivity implements View.OnClick
                 if (params != null) {
                     GetGolfInfo2B info2B = (GetGolfInfo2B) params.result;
                     if (info2B != null) {
-                        userName = info2B.getUserName();
-                        mobile = info2B.getUserMobile();
+                        String userName = info2B.getUserName();
+                        String mobile = info2B.getUserMobile();
                         et_name.setText(userName);
                         et_phone.setText(mobile);
                     }
@@ -93,8 +93,8 @@ public class SubBookingShipActivity extends BaseActivity implements View.OnClick
 
 
     private void submit() {
-//        String name = et_name.getText().toString();
-//        String phone = et_phone.getText().toString();
+        String userName = et_name.getText().toString();
+        String mobile = et_phone.getText().toString();
 
         if (TextUtils.isEmpty(userName)) {
             Toast.makeText(SubBookingShipActivity.this, "请输入预约人", Toast.LENGTH_SHORT).show();

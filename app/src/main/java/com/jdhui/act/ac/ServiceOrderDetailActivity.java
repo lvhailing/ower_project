@@ -406,6 +406,9 @@ public class ServiceOrderDetailActivity extends BaseActivity implements View.OnC
             serviceItems = "golfBooking";
             golfName = detail2B.getGolfBooking().getGolfName();
             bookingTime = detail2B.getGolfBooking().getBookingTime();
+        } else if (detail2B.getLuxuryShipBooking() != null) {
+            //是豪华邮轮
+            serviceItems = "luxuryShipBooking";
         }
         HtmlRequest.cancelBooking(this, id, serviceItems, name, departments, bookingTime, golfName, new BaseRequester.OnRequestListener() {
             @Override
