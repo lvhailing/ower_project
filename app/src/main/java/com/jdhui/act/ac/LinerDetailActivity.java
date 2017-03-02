@@ -148,6 +148,9 @@ public class LinerDetailActivity extends BaseActivity implements View.OnClickLis
         requestLinerInfoData(); //请求邮轮信息
     }
 
+    /**
+     *  第二屏上面viewPager的滑动监听事件
+     */
     private class MyTopChangeListener implements ViewPager.OnPageChangeListener {
 
         public void onPageScrollStateChanged(int arg0) {
@@ -174,6 +177,9 @@ public class LinerDetailActivity extends BaseActivity implements View.OnClickLis
         }
     }
 
+    /**
+     *  第二屏下面viewPager的滑动监听事件
+     */
     private class MyBtmChangeListener implements ViewPager.OnPageChangeListener {
 
         public void onPageScrollStateChanged(int arg0) {
@@ -257,9 +263,9 @@ public class LinerDetailActivity extends BaseActivity implements View.OnClickLis
         tv_ship_price.setText("￥" + shipPrice + "/人起");
         tv_shipName.setText(detail.getShipName());
         tv_liner_starLevel_one.setText(detail.getStarLevel());
-        tv_passgerCapacity_one.setText(detail.getPassgerCapacity());
-        tv_buildYear_one.setText(detail.getBuildYear());
-        tv_tonnage_one.setText(detail.getTonnage());
+        tv_passgerCapacity_one.setText(detail.getPassgerCapacity() + "人");
+        tv_buildYear_one.setText(detail.getBuildYear() + "年");
+        tv_tonnage_one.setText(detail.getTonnage() + "吨");
     }
 
     private void setFlowRemarks() {

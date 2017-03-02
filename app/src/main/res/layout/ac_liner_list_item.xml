@@ -2,8 +2,8 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="170dp"
-    android:minHeight="170dp"
+    android:layout_height="180dp"
+    android:minHeight="180dp"
     android:orientation="vertical">
 
     <RelativeLayout
@@ -13,7 +13,7 @@
         <ImageView
             android:id="@+id/iv_liner_item"
             android:layout_width="match_parent"
-            android:layout_height="170dp"
+            android:layout_height="180dp"
             android:layout_marginTop="5dp"
             android:background="@drawable/bg_normal"
             android:scaleType="fitXY"/>
@@ -67,13 +67,6 @@
             android:layout_marginRight="10dp"
             android:layout_marginTop="5dp"/>
 
-       <!-- <View
-            android:id="@+id/v_empty"
-            android:layout_width="match_parent"
-            android:layout_height="5dp"
-            android:layout_below="@id/fl_remark"
-            android:background="@color/transparent"/>
--->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -81,13 +74,14 @@
             android:layout_marginBottom="5dp"
             android:orientation="vertical"
             >
+
             <TextView
                 android:id="@+id/tv_tab"
                 android:layout_width="56dp"
                 android:layout_height="24dp"
 
-                android:layout_marginLeft="10dp"
                 android:layout_marginBottom="5dp"
+                android:layout_marginLeft="10dp"
                 android:background="@drawable/bg_btn_single_ticket"
                 android:gravity="center"
                 android:text="单船票"
@@ -123,8 +117,6 @@
             </RelativeLayout>
 
         </LinearLayout>
-
-
 
 
     </RelativeLayout>

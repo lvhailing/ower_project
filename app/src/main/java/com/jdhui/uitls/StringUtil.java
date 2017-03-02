@@ -628,8 +628,8 @@ public class StringUtil {
      */
     public static String getResult(String str){
         String result ;
-        if (str.length() > 6) {
-            result = str.substring(0, 6) + "...";
+        if (str.length() > 7) {
+            result = str.substring(0, 7) + "...";
         } else {
             result = str;
         }
