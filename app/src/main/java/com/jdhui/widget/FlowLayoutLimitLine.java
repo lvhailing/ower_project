@@ -11,7 +11,7 @@ import java.util.List;
 public class FlowLayoutLimitLine extends ViewGroup {
 
     private int limitLine = -1;//若limitLine为-1,则不限制行数
-    private int limitItem = -1;//limitItem-1,则不限制每行个数
+    private int limitItem = -1;//若limitItem为-1,则不限制每行个数
 
     public FlowLayoutLimitLine(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -93,12 +93,12 @@ public class FlowLayoutLimitLine extends ViewGroup {
             measureChild(child, widthMeasureSpec, heightMeasureSpec);
             // 得到child的lp
             MarginLayoutParams lp = (MarginLayoutParams) child.getLayoutParams();
-            // 当前子空间实际占据的宽度
+            // 当前子控件实际占据的宽度
             int childWidth = child.getMeasuredWidth() + lp.leftMargin + lp.rightMargin;
-            // 当前子空间实际占据的高度
+            // 当前子控件实际占据的高度
             int childHeight = child.getMeasuredHeight() + lp.topMargin + lp.bottomMargin;
             /**
-             * 如果加入当前child，则超出最大宽度，则的到目前最大宽度给width，类加height 然后开启新行
+             * 如果加入当前child，则超出最大宽度，则得到目前最大宽度给width，类加height 然后开启新行
              */
             if (lineWidth + childWidth > sizeWidth) {
                 width = Math.max(lineWidth, childWidth);// 取最大的

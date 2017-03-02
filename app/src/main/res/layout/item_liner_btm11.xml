@@ -1,0 +1,231 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#fff"
+                android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/ll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:layout_weight="1">
+
+            <ImageView
+                android:id="@+id/iv_start"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:background="@drawable/icon_start"/>
+
+            <TextView
+                android:id="@+id/tv_start"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_toRightOf="@id/iv_start"
+                android:text="出发"
+                android:textColor="@color/txt_black"
+                android:textSize="18sp"/>
+
+            <TextView
+                android:id="@+id/tv_startPoint"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_start"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="3dp"
+                android:text="纽约"
+                android:textColor="@color/txt_gray_light"
+                android:textSize="14sp"/>
+
+            <TextView
+                android:id="@+id/tv_startTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_startPoint"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="3dp"
+                android:text="2017.07.28"
+                android:textColor="@color/txt_black"
+                android:textSize="14sp"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/tv_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginLeft="5dp"
+                android:text="2晚3日"
+                android:textColor="@color/txt_black"
+                android:textSize="18sp"/>
+
+            <TextView
+                android:layout_width="56dp"
+                android:layout_height="24dp"
+                android:layout_below="@id/tv_time"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="3dp"
+                android:background="@drawable/bg_btn_single_ticket"
+                android:gravity="center"
+                android:text="单船票"
+                android:textColor="@color/gray_dark"
+                android:textSize="12sp"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/tv_end"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="22dp"
+                android:text="返回"
+                android:textColor="@color/txt_black"
+                android:textSize="18sp"/>
+
+            <ImageView
+                android:id="@+id/iv_end"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginLeft="5dp"
+                android:layout_toRightOf="@id/tv_end"
+                android:background="@drawable/icon_end"/>
+
+            <TextView
+                android:id="@+id/tv_endPoint"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_end"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="3dp"
+                android:text="悉尼"
+                android:textColor="@color/txt_gray_light"
+                android:textSize="14sp"/>
+
+            <TextView
+                android:id="@+id/tv_endTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_endPoint"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="3dp"
+                android:text="2017.07.28"
+                android:textColor="@color/txt_black"
+                android:textSize="14sp"/>
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ll"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal"
+        android:paddingBottom="30dp">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="55dp"
+            android:layout_weight="1"
+            android:gravity="right"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="内舱房"
+                android:textColor="@color/txt_black"
+                android:textSize="14sp"/>
+
+            <TextView
+                android:id="@+id/tv_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:text="海景房"
+                android:textColor="@color/txt_black"
+                android:textSize="14sp"/>
+
+            <TextView
+                android:id="@+id/tv_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:text="阳台房"
+                android:textColor="@color/txt_black"
+                android:textSize="14sp"/>
+
+            <TextView
+                android:id="@+id/tv_4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:text="套房"
+                android:textColor="@color/txt_black"
+                android:textSize="14sp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="55dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_price_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="￥1666/人起"
+                android:textColor="@color/txt_black"
+                android:textSize="14sp"/>
+
+            <TextView
+                android:id="@+id/tv_price_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:text="￥1666/人起"
+                android:textColor="@color/txt_black"
+                android:textSize="14sp"/>
+
+            <TextView
+                android:id="@+id/tv_price_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:text="￥1666/人起"
+                android:textColor="@color/txt_black"
+                android:textSize="14sp"/>
+
+            <TextView
+                android:id="@+id/tv_price_4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:text="售罄"
+                android:textColor="@color/txt_black"
+                android:textSize="14sp"/>
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>
