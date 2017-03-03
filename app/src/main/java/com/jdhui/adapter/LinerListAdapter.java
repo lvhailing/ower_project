@@ -72,7 +72,6 @@ public class LinerListAdapter extends BaseAdapter {
             holder.tv_travel_name = (TextView) convertView.findViewById(R.id.tv_travel_name);
             holder.tv_liner_price = (TextView) convertView.findViewById(R.id.tv_liner_price);
             holder.tv_liner_name = (TextView) convertView.findViewById(R.id.tv_liner_name);
-//            holder.framlayout = (FlowLayoutView) convertView.findViewById(R.id.framlayout);
             holder.remark = (FlowLayoutLimitLine) convertView.findViewById(R.id.fl_remark);
             convertView.setTag(holder);
 
@@ -83,7 +82,7 @@ public class LinerListAdapter extends BaseAdapter {
         //缓存图片到本地
         DisplayImageOptions options = new DisplayImageOptions.Builder().showImageForEmptyUri(R.drawable.bg_normal).showImageOnFail(R.drawable.bg_normal).resetViewBeforeLoading(true).cacheOnDisc(true).imageScaleType(ImageScaleType.EXACTLY).bitmapConfig(Bitmap.Config.RGB_565).considerExifParams(true).displayer(new FadeInBitmapDisplayer(300)).build();
         //加载item背景图片
-        ImageLoader.getInstance().displayImage(list.get(position).getListPhoto(), holder.iv_liner_item,options);
+        ImageLoader.getInstance().displayImage(list.get(position).getListPhoto(), holder.iv_liner_item, options);
 
         String travelDate = list.get(position).getRouteDuration();
         String travelName = list.get(position).getRouteName();
@@ -98,21 +97,12 @@ public class LinerListAdapter extends BaseAdapter {
         mStringArray = linerTag.split(",");
         if (mStringArray.length > 0) {
             holder.remark.setVisibility(View.VISIBLE);
+//            holder.remark.setLimitLine(2);  //只让其显示两行，以防和下面的 单船票 标签重叠；
+
             setRemarks(holder);
         } else {
             holder.remark.setVisibility(View.GONE);
         }
-//        for (int i = 0; i < mStringArray.length; i++) {
-//            final TextView textView = new TextView(context);
-//            textView.setText(mStringArray[i]);
-//            textView.setTextColor(Color.BLACK);
-//            textView.setGravity(Gravity.CENTER);
-//            textView.setTextSize(12);
-//            textView.setPadding(5, 5, 5, 5);
-//            Drawable normal = generateDrawable(Color.rgb(220, 220, 220), 10);
-//            textView.setBackgroundDrawable(normal);
-//            holder.framlayout.addView(textView);
-//        }
         return convertView;
     }
 
@@ -129,10 +119,6 @@ public class LinerListAdapter extends BaseAdapter {
             textView.setGravity(Gravity.CENTER_VERTICAL);
             textView.setGravity(Gravity.CENTER);
 
-//            Drawable normal = generateDrawable(Color.rgb(220, 220, 220), 10);
-//            textView.setBackgroundDrawable(normal);
-//            textView.setBackgroundResource(R.drawable.rectangle_gray_4dp);
-
             int padding5dp = ViewUtils.dip2px(context, 5);
             textView.setPadding(padding5dp, 0, padding5dp, 0);
             LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(ViewPager.LayoutParams.WRAP_CONTENT, ViewUtils.dip2px(context, 24));
@@ -142,22 +128,12 @@ public class LinerListAdapter extends BaseAdapter {
         }
     }
 
-    public GradientDrawable generateDrawable(int argb, float radius) {
-        GradientDrawable drawable = new GradientDrawable();
-        drawable.setShape(GradientDrawable.RECTANGLE);//设置为矩形，默认就是矩形
-        drawable.setCornerRadius(radius);//设置圆角的半径
-        drawable.setColor(argb);
-        return drawable;
-    }
-
-
     class Holder {
         ImageView iv_liner_item;
         TextView tv_travel_date;
         TextView tv_travel_name;
         TextView tv_liner_price;
         TextView tv_liner_name;
-        //        FlowLayoutView framlayout;
         FlowLayoutLimitLine remark;
 
     }
