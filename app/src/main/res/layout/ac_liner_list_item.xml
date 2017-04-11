@@ -81,7 +81,7 @@
                 android:layout_marginLeft="10dp"
                 android:background="@drawable/bg_btn_single_ticket"
                 android:gravity="center"
-                android:text="单船票"
+                android:text=""
                 android:textColor="@color/txt_black"
                 android:textSize="12sp"/>
 

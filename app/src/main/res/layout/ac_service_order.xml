@@ -114,10 +114,13 @@
             <TextView
                 android:id="@+id/tv_3"
                 style="@style/product_text"
-                android:text="高尔夫球场地"/>
+                android:text="高尔夫球场地"
+                android:visibility="gone"
+                />
 
             <View
-                style="@style/product_text_line"/>
+                style="@style/product_text_line"
+                android:visibility="gone"/>
 
             <TextView
                 android:id="@+id/tv_4"

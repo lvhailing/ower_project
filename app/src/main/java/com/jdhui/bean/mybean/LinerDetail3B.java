@@ -19,6 +19,7 @@ public class LinerDetail3B implements IMouldType {
     private String passgerCapacity; //载客量
     private String buildYear; //建造年份
     private String tonnage; //吨位
+    private String ticketsType; //  seasonTicket:一价全含； oneTicket：单船票；
 
     public String getId() {
         return id;
@@ -114,6 +115,14 @@ public class LinerDetail3B implements IMouldType {
 
     public void setTonnage(String tonnage) {
         this.tonnage = tonnage;
+    }
+
+    public String getTicketsType() {
+        return ticketsType;
+    }
+
+    public void setTicketsType(String ticketsType) {
+        this.ticketsType = ticketsType;
     }
 }
 

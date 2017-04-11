@@ -78,6 +78,7 @@ public class LinerDetailActivity extends BaseActivity implements View.OnClickLis
     private int dpHeng; //底部小圆点之间的间距
     private int lastPosition = 0;   //记录上次的位置
     private TextView tv_shipName_up; //图片底部显示的  邮轮名称
+    private TextView tv_single_ticket;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,6 +92,7 @@ public class LinerDetailActivity extends BaseActivity implements View.OnClickLis
     private void initView() {
         mBtnBack = (ImageView) findViewById(R.id.iv_back);
         tv_title_travel_name = (TextView) findViewById(R.id.tv_title_travel_name);
+        tv_single_ticket = (TextView) findViewById(R.id.tv_single_ticket);
         tv_shipName_up = (TextView) findViewById(R.id.tv_shipName_up);
         ptlm = (PullUpToLoadMore) findViewById(R.id.ptlm);
         iv_detail_photo = (ImageView) findViewById(R.id.iv_detail_photo);
@@ -149,7 +151,7 @@ public class LinerDetailActivity extends BaseActivity implements View.OnClickLis
     }
 
     /**
-     *  第二屏上面viewPager的滑动监听事件
+     * 第二屏上面viewPager的滑动监听事件
      */
     private class MyTopChangeListener implements ViewPager.OnPageChangeListener {
 
@@ -178,7 +180,7 @@ public class LinerDetailActivity extends BaseActivity implements View.OnClickLis
     }
 
     /**
-     *  第二屏下面viewPager的滑动监听事件
+     * 第二屏下面viewPager的滑动监听事件
      */
     private class MyBtmChangeListener implements ViewPager.OnPageChangeListener {
 
@@ -254,8 +256,14 @@ public class LinerDetailActivity extends BaseActivity implements View.OnClickLis
         String travelDate = detail.getRouteDuration();
         String travelName = detail.getRouteName();
         String shipPrice = detail.getLowerTicketPrice();
+        String ticketsType = detail.getTicketsType();
 
         tv_title_travel_name.setText(routeName);
+        if (ticketsType.equals("seasonTicket")) {
+        tv_single_ticket.setText("一价全含");
+        }else if(ticketsType.equals("oneTicket")){
+        tv_single_ticket.setText("单船票");
+        }
         tv_shipName_up.setText(StringUtil.getResult(detail.getShipName()));
         tv_travel_date.setText(travelDate);
         tv_travel_name.setText(travelName);

@@ -71,6 +71,7 @@ public class LinerListAdapter extends BaseAdapter {
             holder.tv_travel_date = (TextView) convertView.findViewById(R.id.tv_travel_date);
             holder.tv_travel_name = (TextView) convertView.findViewById(R.id.tv_travel_name);
             holder.tv_liner_price = (TextView) convertView.findViewById(R.id.tv_liner_price);
+            holder.tv_tab = (TextView) convertView.findViewById(R.id.tv_tab);
             holder.tv_liner_name = (TextView) convertView.findViewById(R.id.tv_liner_name);
             holder.remark = (FlowLayoutLimitLine) convertView.findViewById(R.id.fl_remark);
             convertView.setTag(holder);
@@ -87,9 +88,15 @@ public class LinerListAdapter extends BaseAdapter {
         String travelDate = list.get(position).getRouteDuration();
         String travelName = list.get(position).getRouteName();
         String shipName = list.get(position).getShipName();
+        String ticketType = list.get(position).getTicketsType();
 
         holder.tv_travel_date.setText(StringUtil.getResult(travelDate));
         holder.tv_travel_name.setText(StringUtil.getResult(travelName));
+        if (ticketType.equals("seasonTicket")) {
+            holder.tv_tab.setText("一价全含");
+        } else if (ticketType.equals("oneTicket")) {
+            holder.tv_tab.setText("单船票");
+        }
         holder.tv_liner_price.setText("￥" + list.get(position).getLowerTicketPrice() + "/人起");
         holder.tv_liner_name.setText(StringUtil.getResult(shipName));
         linerTag = list.get(position).getRouteDestination();
@@ -133,6 +140,7 @@ public class LinerListAdapter extends BaseAdapter {
         TextView tv_travel_date;
         TextView tv_travel_name;
         TextView tv_liner_price;
+        TextView tv_tab;
         TextView tv_liner_name;
         FlowLayoutLimitLine remark;
 

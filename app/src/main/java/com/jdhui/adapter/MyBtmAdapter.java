@@ -51,6 +51,7 @@ public class MyBtmAdapter extends PagerAdapter {
         TextView tv_startTime = (TextView) view.findViewById(R.id.tv_startTime); //离港时间
         TextView tv_endTime = (TextView) view.findViewById(R.id.tv_endTime); //抵港时间
         TextView tv_time = (TextView) view.findViewById(R.id.tv_time);//历时 如：2晚3日
+        TextView tv_single_ticket = (TextView) view.findViewById(R.id.tv_single_ticket);//“单船票”或“一价全含”
 
         //四种房对应的价格（内舱房、海景房、阳台房、套房）
         TextView tv_price_1 = (TextView) view.findViewById(R.id.tv_price_1);
@@ -63,6 +64,14 @@ public class MyBtmAdapter extends PagerAdapter {
         tv_startTime.setText(liner.getStartTime());
         tv_endTime.setText(liner.getEndTime());
         tv_time.setText(StringUtil.getResult(liner.getRouteDuration()));
+        String ticketType = liner.getTicketsType();
+        if (ticketType.equals("seasonTicket")) {
+            tv_single_ticket.setText("一价全含");
+        } else if (ticketType.equals("oneTicket")) {
+            tv_single_ticket.setText("单船票");
+        }
+
+
         tv_price_1.setText(liner.getInnerRoom());
         tv_price_2.setText(liner.getSeaviewRoom());
         tv_price_3.setText(liner.getBalconyRoom());

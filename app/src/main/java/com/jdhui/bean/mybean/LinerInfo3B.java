@@ -20,6 +20,7 @@ public class LinerInfo3B implements IMouldType {
     private String balconyRoom; //阳台房
     private String suiteRoom; //套房
     private String shipCount; //航期数
+    private String ticketsType; //  seasonTicket:一价全含； oneTicket：单船票；
 
     public String getStartPoint() {
         return startPoint;
@@ -125,5 +126,12 @@ public class LinerInfo3B implements IMouldType {
         this.shipCount = shipCount;
     }
 
+    public String getTicketsType() {
+        return ticketsType;
+    }
+
+    public void setTicketsType(String ticketsType) {
+        this.ticketsType = ticketsType;
+    }
 }
 

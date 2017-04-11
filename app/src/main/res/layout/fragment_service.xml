@@ -124,7 +124,9 @@
                 android:id="@+id/rl_golf"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:minHeight="120dip">
+                android:minHeight="120dip"
+                android:visibility="gone"
+                >
 
                 <ImageView
                     android:id="@+id/iv_golf"

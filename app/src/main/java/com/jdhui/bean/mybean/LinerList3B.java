@@ -14,6 +14,7 @@ public class LinerList3B implements IMouldType {
     private String lowerTicketPrice; //最低票价
     private String shipName; //游轮名称
     private String listPhoto; //列表图片
+    private String ticketsType; //  seasonTicket:一价全含； oneTicket：单船票；
 
     public String getId() {
         return id;
@@ -69,6 +70,14 @@ public class LinerList3B implements IMouldType {
 
     public void setListPhoto(String listPhoto) {
         this.listPhoto = listPhoto;
+    }
+
+    public String getTicketsType() {
+        return ticketsType;
+    }
+
+    public void setTicketsType(String ticketsType) {
+        this.ticketsType = ticketsType;
     }
 }
 

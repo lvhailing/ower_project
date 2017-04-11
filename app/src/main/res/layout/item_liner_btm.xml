@@ -63,6 +63,7 @@
             android:textSize="18sp"/>
 
         <TextView
+            android:id="@+id/tv_single_ticket"
             android:layout_width="56dp"
             android:layout_height="24dp"
             android:gravity="center"
@@ -70,7 +71,7 @@
             android:layout_below="@id/tv_time"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="3dp"
-            android:text="单船票"
+            android:text=""
             android:textColor="@color/gray_dark"
             android:textSize="12sp"/>
     </RelativeLayout>

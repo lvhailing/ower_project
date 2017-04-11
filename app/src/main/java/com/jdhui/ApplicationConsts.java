@@ -16,15 +16,15 @@ public class ApplicationConsts {
     //代树理
 //	public static final String URL_DEBUG ="http://192.168.1.106:9999/junde-hui-app/";
 
-    // 张殿阳
-//    public static final String URL_DEBUG = "http://192.168.1.138:9999/junde-hui-app/";
+    // 张殿洋
+    public static final String URL_DEBUG = "http://192.168.1.138:9999/junde-hui-app/";
 
     //张亚磊
 //	public static final String URL_DEBUG ="http://192.168.1.193:9997/junde-hui-app/";
 
 
     //测试环境
-	public static final String URL_DEBUG ="http://192.168.1.86:82/";
+//	public static final String URL_DEBUG ="http://192.168.1.86:82/";
 
 // 张殿阳
 //	public static final String URL_DEBUG ="http://192.168.1.138:9999/junde-hui-app/";
