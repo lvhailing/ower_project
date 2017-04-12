@@ -57,7 +57,7 @@ public class LinerDetailActivity extends BaseActivity implements View.OnClickLis
     private TextView tv_tonnage_one;//吨位
     private LinerDetail2B LinerDetail2B;
     private LinerDetail3B detail;
-    private String linerTag;
+    private String linerTag; //游行地点
     private String[] mStringArray;
 
     private LinerInfo2B LinerInfo2B;
@@ -276,6 +276,9 @@ public class LinerDetailActivity extends BaseActivity implements View.OnClickLis
         tv_tonnage_one.setText(detail.getTonnage() + "吨");
     }
 
+    /**
+     * 遍历数组，设置游行地点标签；
+     */
     private void setFlowRemarks() {
         remark.removeAllViews();
         for (int i = 0; i < mStringArray.length; i++) {

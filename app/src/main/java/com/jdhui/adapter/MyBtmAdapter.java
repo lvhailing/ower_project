@@ -5,12 +5,17 @@ import android.support.v4.view.PagerAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.BaseAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.jdhui.R;
 import com.jdhui.bean.mybean.LinerInfo3B;
+import com.jdhui.bean.mybean.LinerInfo4B;
+import com.jdhui.mould.types.MouldList;
 import com.jdhui.uitls.StringUtil;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -19,6 +24,9 @@ import java.util.List;
 public class MyBtmAdapter extends PagerAdapter {
     private List<LinerInfo3B> btmList;
     private Context context;
+    private houseListAdapter mAdapter;
+    private ArrayList<LinerInfo4B> totalList;
+//    private MouldList<LinerInfo4B> totalList = new MouldList<>();
 
     public MyBtmAdapter(List<LinerInfo3B> btmList, Context context) {
         this.btmList = btmList;
@@ -52,12 +60,13 @@ public class MyBtmAdapter extends PagerAdapter {
         TextView tv_endTime = (TextView) view.findViewById(R.id.tv_endTime); //抵港时间
         TextView tv_time = (TextView) view.findViewById(R.id.tv_time);//历时 如：2晚3日
         TextView tv_single_ticket = (TextView) view.findViewById(R.id.tv_single_ticket);//“单船票”或“一价全含”
+        ListView house_list = (ListView) view.findViewById(R.id.house_list);//“单船票”或“一价全含”
 
-        //四种房对应的价格（内舱房、海景房、阳台房、套房）
-        TextView tv_price_1 = (TextView) view.findViewById(R.id.tv_price_1);
-        TextView tv_price_2 = (TextView) view.findViewById(R.id.tv_price_2);
-        TextView tv_price_3 = (TextView) view.findViewById(R.id.tv_price_3);
-        TextView tv_price_4 = (TextView) view.findViewById(R.id.tv_price_4);
+//        //四种房对应的价格（内舱房、海景房、阳台房、套房）
+//        TextView tv_price_1 = (TextView) view.findViewById(R.id.tv_price_1);
+//        TextView tv_price_2 = (TextView) view.findViewById(R.id.tv_price_2);
+//        TextView tv_price_3 = (TextView) view.findViewById(R.id.tv_price_3);
+//        TextView tv_price_4 = (TextView) view.findViewById(R.id.tv_price_4);
 
         tv_startPoint.setText(StringUtil.getResult(liner.getStartPoint()));
         tv_endPiont.setText(StringUtil.getResult(liner.getEndPiont()));
@@ -71,13 +80,71 @@ public class MyBtmAdapter extends PagerAdapter {
             tv_single_ticket.setText("单船票");
         }
 
+        totalList = liner.getCabinTypePrice();
+        if (totalList != null && totalList.size() > 0) {
+            if (mAdapter == null) {
+                mAdapter = new houseListAdapter();
+                house_list.setAdapter(mAdapter);
+            }
 
-        tv_price_1.setText(liner.getInnerRoom());
-        tv_price_2.setText(liner.getSeaviewRoom());
-        tv_price_3.setText(liner.getBalconyRoom());
-        tv_price_4.setText(liner.getSuiteRoom());
+            
+        }
+
+//        tv_price_1.setText(liner.getInnerRoom());
+//        tv_price_2.setText(liner.getSeaviewRoom());
+//        tv_price_3.setText(liner.getBalconyRoom());
+//        tv_price_4.setText(liner.getSuiteRoom());
         viewPager.addView(view);
         return view;
     }
 
+    private class houseListAdapter extends BaseAdapter {
+        public houseListAdapter() {
+        }
+
+        @Override
+        public int getCount() {
+            return mAdapter == null ? 0 : totalList.size();
+        }
+
+        @Override
+        public Object getItem(int i) {
+            return null;
+        }
+
+        @Override
+        public long getItemId(int i) {
+            return 0;
+        }
+
+
+        private LayoutInflater mInflater;//得到一个LayoutInfalter对象用来导入布局
+
+        @Override
+        public View getView(int position, View view, ViewGroup viewGroup) {
+            ViewHolder holder;
+            mInflater = LayoutInflater.from(context);
+            if (view == null) {
+                view = mInflater.inflate(R.layout.house_list_item, null);
+                holder = new ViewHolder();
+                holder.tv_house_type = (TextView) view.findViewById(R.id.tv_house_type);
+                holder.tv_house_price = (TextView) view.findViewById(R.id.tv_house_price);
+                view.setTag(holder);//绑定ViewHolder对象
+            } else {
+                holder = (ViewHolder) view.getTag();//取出ViewHolder对象
+            }
+            holder.tv_house_type.setText(totalList.get(position).getCabinType());
+            holder.tv_house_price.setText(totalList.get(position).getCabinPrice());
+
+
+            return view;
+        }
+
+    }
+
+    /*存放控件*/
+    public class ViewHolder {
+        public TextView tv_house_type; //房子的类型
+        public TextView tv_house_price; //房子的价格
+    }
 }

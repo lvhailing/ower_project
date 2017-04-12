@@ -3,6 +3,8 @@ package com.jdhui.bean.mybean;
 
 import com.jdhui.mould.types.IMouldType;
 
+import java.util.ArrayList;
+
 /**
  * 服务--游轮详情之游轮信息  接收后台返回数据
  */
@@ -21,6 +23,7 @@ public class LinerInfo3B implements IMouldType {
     private String suiteRoom; //套房
     private String shipCount; //航期数
     private String ticketsType; //  seasonTicket:一价全含； oneTicket：单船票；
+    private ArrayList<LinerInfo4B> cabinTypePrice;
 
     public String getStartPoint() {
         return startPoint;
@@ -132,6 +135,14 @@ public class LinerInfo3B implements IMouldType {
 
     public void setTicketsType(String ticketsType) {
         this.ticketsType = ticketsType;
+    }
+
+    public ArrayList<LinerInfo4B> getCabinTypePrice() {
+        return cabinTypePrice;
+    }
+
+    public void setCabinTypePrice(ArrayList<LinerInfo4B> cabinTypePrice) {
+        this.cabinTypePrice = cabinTypePrice;
     }
 }
 
