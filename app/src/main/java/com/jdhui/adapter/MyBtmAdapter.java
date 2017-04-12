@@ -12,7 +12,6 @@ import android.widget.TextView;
 import com.jdhui.R;
 import com.jdhui.bean.mybean.LinerInfo3B;
 import com.jdhui.bean.mybean.LinerInfo4B;
-import com.jdhui.mould.types.MouldList;
 import com.jdhui.uitls.StringUtil;
 
 import java.util.ArrayList;
@@ -24,13 +23,14 @@ import java.util.List;
 public class MyBtmAdapter extends PagerAdapter {
     private List<LinerInfo3B> btmList;
     private Context context;
-    private houseListAdapter mAdapter;
+    private HouseListAdapter mAdapter;
     private ArrayList<LinerInfo4B> totalList;
 //    private MouldList<LinerInfo4B> totalList = new MouldList<>();
 
     public MyBtmAdapter(List<LinerInfo3B> btmList, Context context) {
         this.btmList = btmList;
         this.context = context;
+        mAdapter = new HouseListAdapter();
     }
 
     @Override
@@ -82,12 +82,14 @@ public class MyBtmAdapter extends PagerAdapter {
 
         totalList = liner.getCabinTypePrice();
         if (totalList != null && totalList.size() > 0) {
-            if (mAdapter == null) {
-                mAdapter = new houseListAdapter();
                 house_list.setAdapter(mAdapter);
-            }
+//            if (mAdapter == null) {
+//                mAdapter = new HouseListAdapter();
+//            } else {
+//                mAdapter.notifyDataSetChanged();
+//            }
 
-            
+
         }
 
 //        tv_price_1.setText(liner.getInnerRoom());
@@ -98,13 +100,16 @@ public class MyBtmAdapter extends PagerAdapter {
         return view;
     }
 
-    private class houseListAdapter extends BaseAdapter {
-        public houseListAdapter() {
+    private LayoutInflater mInflater;//得到一个LayoutInfalter对象用来导入布局
+
+    private class HouseListAdapter extends BaseAdapter {
+        public HouseListAdapter() {
+            mInflater = LayoutInflater.from(context);
         }
 
         @Override
         public int getCount() {
-            return mAdapter == null ? 0 : totalList.size();
+            return totalList == null ? 0 : totalList.size();
         }
 
         @Override
@@ -118,12 +123,9 @@ public class MyBtmAdapter extends PagerAdapter {
         }
 
 
-        private LayoutInflater mInflater;//得到一个LayoutInfalter对象用来导入布局
-
         @Override
         public View getView(int position, View view, ViewGroup viewGroup) {
             ViewHolder holder;
-            mInflater = LayoutInflater.from(context);
             if (view == null) {
                 view = mInflater.inflate(R.layout.house_list_item, null);
                 holder = new ViewHolder();
