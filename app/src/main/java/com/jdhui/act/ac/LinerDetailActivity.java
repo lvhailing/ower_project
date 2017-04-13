@@ -61,7 +61,7 @@ public class LinerDetailActivity extends BaseActivity implements View.OnClickLis
     private String linerTag; //游行地点
     private String[] mStringArray;
 
-    private LinerInfo2B LinerInfo2B;
+    private LinerInfo2B linerInfo2B;
     private ArrayList<ArrayList<LinerInfo3B>> linerInfo;
 
     private LinearLayout vp_container_top;
@@ -223,16 +223,15 @@ public class LinerDetailActivity extends BaseActivity implements View.OnClickLis
         HtmlRequest.getLinerInfo(this, id, new BaseRequester.OnRequestListener() {
             @Override
             public void onRequestFinished(BaseParams params) {
-                if (params == null) {
+                if (params == null || params.result == null) {
                     Toast.makeText(LinerDetailActivity.this, "加载失败，请确认网络通畅", Toast.LENGTH_LONG).show();
                     return;
                 }
-                if (params.result == null) {
-                    Toast.makeText(LinerDetailActivity.this, "加载失败，请确认网络通畅", Toast.LENGTH_LONG).show();
+                linerInfo2B = (LinerInfo2B) params.result;
+                if (linerInfo2B == null) {
                     return;
                 }
-                LinerInfo2B = (LinerInfo2B) params.result;
-                linerInfo = LinerInfo2B.getVoyageInfo();
+                linerInfo = linerInfo2B.getVoyageInfo();
                 if (linerInfo != null && linerInfo.size() > 0) {
                     setNextPageView();
                 }

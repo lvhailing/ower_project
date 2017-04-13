@@ -26,11 +26,11 @@ public class MyBtmAdapter extends PagerAdapter {
     private Context context;
     private HouseListAdapter mAdapter;
     private ArrayList<LinerInfo4B> totalList;
-//    private MouldList<LinerInfo4B> totalList = new MouldList<>();
 
     public MyBtmAdapter(List<LinerInfo3B> btmList, Context context) {
         this.btmList = btmList;
         this.context = context;
+
         mAdapter = new HouseListAdapter();
     }
 
