@@ -17,7 +17,7 @@ public class ApplicationConsts {
 //	public static final String URL_DEBUG ="http://192.168.1.106:9999/junde-hui-app/";
 
     // 张殿洋
-    public static final String URL_DEBUG = "http://192.168.1.138:9999/junde-hui-app/";
+//    public static final String URL_DEBUG = "http://192.168.1.138:9999/junde-hui-app/";
 
     //张亚磊
 //	public static final String URL_DEBUG ="http://192.168.1.193:9997/junde-hui-app/";
@@ -33,7 +33,7 @@ public class ApplicationConsts {
 //	public static final String URL_DEBUG ="http://192.168.1.193:9996/junde-hui-app/";
 
     // 邢玉洁
-//    public static final String URL_DEBUG = "http://192.168.1.125:9999/junde-hui-app/";
+    public static final String URL_DEBUG = "http://192.168.1.125:9999/junde-hui-app/";
 
     // 正式环境IP M版
 //	 public static final String URL_DEBUG_M ="http://m.vjinke.com/";

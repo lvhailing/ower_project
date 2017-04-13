@@ -128,8 +128,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/rl_1"
         android:layout_marginTop="20dp"
-        android:orientation="horizontal"
-        android:paddingBottom="30dp">
+        android:paddingBottom="20dp"
+        android:orientation="horizontal" >
 
      <!--   <LinearLayout
             android:layout_width="0dp"
@@ -218,13 +218,20 @@
                 android:textSize="14sp"/>
         </LinearLayout>-->
 
-        <ListView
+      <!--  <ListView
             android:id="@+id/house_list"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="100dp"
             android:divider="#fff"
             android:scrollbars="none">
 
-        </ListView>
+        </ListView>-->
+        <com.jdhui.view.MyListView
+            android:id="@+id/lv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:divider="@null"
+            android:scrollbars="none"
+            android:listSelector="#00000000"/>
     </LinearLayout>
 </RelativeLayout>

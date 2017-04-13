@@ -109,9 +109,10 @@
                     android:paddingBottom="24dp"
                     android:paddingTop="24dp">
 
-                    <LinearLayout style="@style/Liner_message_Style"
-                                  android:layout_width="match_parent"
-                                  android:layout_height="match_parent">
+                    <LinearLayout
+                        style="@style/Liner_message_Style"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
 
                         <TextView
                             android:id="@+id/tv_buildYear_one"
@@ -130,6 +131,17 @@
                             android:text="建造年份"
                             android:textColor="@color/gray_d"
                             android:textSize="10sp"/>
+
+                        <TextView
+                            android:id="@+id/tv_shipName"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="15dp"
+                            android:layout_weight="1"
+                            android:gravity="center_horizontal"
+                            android:text="公主游轮·黄金公主号"
+                            android:textColor="@color/txt_black"
+                            android:textSize="14sp"/>
                     </LinearLayout>
 
                     <RelativeLayout
@@ -204,16 +216,6 @@
                     android:layout_marginTop="12dp"
                     android:background="@color/white"
                     android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/tv_shipName"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="15dp"
-                        android:gravity="center_horizontal"
-                        android:text="公主游轮·黄金公主号"
-                        android:textColor="@color/txt_black"
-                        android:textSize="14sp"/>
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -383,6 +385,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:paddingBottom="50dp"
                     android:orientation="vertical">
 
                     <LinearLayout
@@ -393,7 +396,13 @@
                         android:orientation="horizontal">
 
                     </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:background="#00000000"/>
                 </LinearLayout>
+
             </LinearLayout>
         </com.jdhui.widget.MyScrollView>
 

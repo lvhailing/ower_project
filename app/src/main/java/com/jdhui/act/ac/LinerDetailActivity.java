@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.jdhui.R;
 import com.jdhui.act.BaseActivity;
@@ -222,12 +223,18 @@ public class LinerDetailActivity extends BaseActivity implements View.OnClickLis
         HtmlRequest.getLinerInfo(this, id, new BaseRequester.OnRequestListener() {
             @Override
             public void onRequestFinished(BaseParams params) {
-                if (params != null) {
-                    LinerInfo2B = (LinerInfo2B) params.result;
-                    linerInfo = LinerInfo2B.getVoyageInfo();
-                    if (linerInfo != null) {
-                        setNextPageView();
-                    }
+                if (params == null) {
+                    Toast.makeText(LinerDetailActivity.this, "加载失败，请确认网络通畅", Toast.LENGTH_LONG).show();
+                    return;
+                }
+                if (params.result == null) {
+                    Toast.makeText(LinerDetailActivity.this, "加载失败，请确认网络通畅", Toast.LENGTH_LONG).show();
+                    return;
+                }
+                LinerInfo2B = (LinerInfo2B) params.result;
+                linerInfo = LinerInfo2B.getVoyageInfo();
+                if (linerInfo != null && linerInfo.size() > 0) {
+                    setNextPageView();
                 }
             }
         });
@@ -260,9 +267,9 @@ public class LinerDetailActivity extends BaseActivity implements View.OnClickLis
 
         tv_title_travel_name.setText(routeName);
         if (ticketsType.equals("seasonTicket")) {
-        tv_single_ticket.setText("一价全含");
-        }else if(ticketsType.equals("oneTicket")){
-        tv_single_ticket.setText("单船票");
+            tv_single_ticket.setText("一价全含");
+        } else if (ticketsType.equals("oneTicket")) {
+            tv_single_ticket.setText("单船票");
         }
         tv_shipName_up.setText(StringUtil.getResult(detail.getShipName()));
         tv_travel_date.setText(travelDate);

@@ -13,6 +13,7 @@ import com.jdhui.R;
 import com.jdhui.bean.mybean.LinerInfo3B;
 import com.jdhui.bean.mybean.LinerInfo4B;
 import com.jdhui.uitls.StringUtil;
+import com.jdhui.view.MyListView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -60,7 +61,7 @@ public class MyBtmAdapter extends PagerAdapter {
         TextView tv_endTime = (TextView) view.findViewById(R.id.tv_endTime); //抵港时间
         TextView tv_time = (TextView) view.findViewById(R.id.tv_time);//历时 如：2晚3日
         TextView tv_single_ticket = (TextView) view.findViewById(R.id.tv_single_ticket);//“单船票”或“一价全含”
-        ListView house_list = (ListView) view.findViewById(R.id.house_list);//“单船票”或“一价全含”
+        ListView house_list = (MyListView) view.findViewById(R.id.lv);//“单船票”或“一价全含”
 
 //        //四种房对应的价格（内舱房、海景房、阳台房、套房）
 //        TextView tv_price_1 = (TextView) view.findViewById(R.id.tv_price_1);
@@ -83,13 +84,6 @@ public class MyBtmAdapter extends PagerAdapter {
         totalList = liner.getCabinTypePrice();
         if (totalList != null && totalList.size() > 0) {
                 house_list.setAdapter(mAdapter);
-//            if (mAdapter == null) {
-//                mAdapter = new HouseListAdapter();
-//            } else {
-//                mAdapter.notifyDataSetChanged();
-//            }
-
-
         }
 
 //        tv_price_1.setText(liner.getInnerRoom());
