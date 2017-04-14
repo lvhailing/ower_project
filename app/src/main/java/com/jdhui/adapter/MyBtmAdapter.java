@@ -2,6 +2,7 @@ package com.jdhui.adapter;
 
 import android.content.Context;
 import android.support.v4.view.PagerAdapter;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,19 +25,20 @@ import java.util.List;
 public class MyBtmAdapter extends PagerAdapter {
     private List<LinerInfo3B> btmList;
     private Context context;
-    private HouseListAdapter mAdapter;
+    //    private HouseListAdapter mAdapter;
     private ArrayList<LinerInfo4B> totalList;
 
     public MyBtmAdapter(List<LinerInfo3B> btmList, Context context) {
         this.btmList = btmList;
         this.context = context;
 
-        mAdapter = new HouseListAdapter();
+//        mAdapter = new HouseListAdapter();
     }
 
     @Override
     public int getCount() {
         return btmList.size();
+
     }
 
     @Override
@@ -51,6 +53,7 @@ public class MyBtmAdapter extends PagerAdapter {
 
     @Override
     public Object instantiateItem(final ViewGroup viewPager, final int position) {
+//        Log.i("aaa", "底部vp数量 count" +btmList.size());
         final LinerInfo3B liner = btmList.get(position);
 
         View view = LayoutInflater.from(context).inflate(R.layout.item_liner_btm, null);
@@ -83,7 +86,12 @@ public class MyBtmAdapter extends PagerAdapter {
 
         totalList = liner.getCabinTypePrice();
         if (totalList != null && totalList.size() > 0) {
-                house_list.setAdapter(mAdapter);
+            HouseListAdapter mAdapter = new HouseListAdapter();
+            Log.i("aaa", "aaa ");
+            house_list.setAdapter(mAdapter);
+            mAdapter.notifyDataSetChanged();
+            Log.i("aaa", "bbb ");
+            Log.i("aaa", "mAdapter: " + mAdapter);
         }
 
 //        tv_price_1.setText(liner.getInnerRoom());
@@ -119,6 +127,7 @@ public class MyBtmAdapter extends PagerAdapter {
 
         @Override
         public View getView(int position, View view, ViewGroup viewGroup) {
+//            Log.i("aaa", "底部vp里listView的item数量 count" +totalList.size());
             ViewHolder holder;
             if (view == null) {
                 view = mInflater.inflate(R.layout.house_list_item, null);
@@ -131,7 +140,7 @@ public class MyBtmAdapter extends PagerAdapter {
             }
             holder.tv_house_type.setText(totalList.get(position).getCabinType());
             holder.tv_house_price.setText(totalList.get(position).getCabinPrice());
-
+            Log.i("aaa", "price:" + totalList.get(position).getCabinPrice());
 
             return view;
         }
