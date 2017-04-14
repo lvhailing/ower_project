@@ -58,7 +58,7 @@ public class MyTopAdapter extends MyPagerAdapter {
         String money = item.getLowerTicketPrice();
         String date = item.getShipTime();
         String year = date.substring(0, 4);
-        String month = date.substring(6, 7);
+        String month = date.substring(5, 7);
 
 
         tv_year.setText(year + "年");

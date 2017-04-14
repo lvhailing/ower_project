@@ -109,40 +109,29 @@
                     android:paddingBottom="24dp"
                     android:paddingTop="24dp">
 
-                    <LinearLayout
-                        style="@style/Liner_message_Style"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                    <!-- <LinearLayout
+                         style="@style/Liner_message_Style"
+                         android:layout_width="match_parent"
+                         android:layout_height="match_parent">
 
-                        <TextView
-                            android:id="@+id/tv_buildYear_one"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:text="1998年"
-                            android:textColor="@color/txt_black"
-                            android:textSize="12sp"/>
+                         <TextView
+                             android:id="@+id/tv_buildYear_one"
+                             android:layout_width="match_parent"
+                             android:layout_height="wrap_content"
+                             android:gravity="center"
+                             android:text="1998年"
+                             android:textColor="@color/txt_black"
+                             android:textSize="12sp"/>
 
-                        <TextView
-                            android:id="@+id/tv_buildYear_two"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="15dp"
-                            android:text="建造年份"
-                            android:textColor="@color/gray_d"
-                            android:textSize="10sp"/>
-
-                        <TextView
-                            android:id="@+id/tv_shipName"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="15dp"
-                            android:layout_weight="1"
-                            android:gravity="center_horizontal"
-                            android:text="公主游轮·黄金公主号"
-                            android:textColor="@color/txt_black"
-                            android:textSize="14sp"/>
-                    </LinearLayout>
+                         <TextView
+                             android:id="@+id/tv_buildYear_two"
+                             android:layout_width="wrap_content"
+                             android:layout_height="wrap_content"
+                             android:layout_marginTop="15dp"
+                             android:text="建造年份"
+                             android:textColor="@color/gray_d"
+                             android:textSize="10sp"/>
+                     </LinearLayout>-->
 
                     <RelativeLayout
                         android:layout_width="match_parent"
@@ -217,6 +206,17 @@
                     android:background="@color/white"
                     android:orientation="vertical">
 
+                    <TextView
+                        android:id="@+id/tv_shipName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:layout_weight="1"
+                        android:gravity="center_horizontal"
+                        android:text="公主游轮·黄金公主号"
+                        android:textColor="@color/txt_black"
+                        android:textSize="14sp"/>
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -262,6 +262,27 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="15dp"
                                 android:text="载客量"
+                                android:textColor="@color/gray_d"
+                                android:textSize="10sp"/>
+                        </LinearLayout>
+
+                        <LinearLayout style="@style/Liner_message_Style">
+
+                            <TextView
+                                android:id="@+id/tv_buildYear_one"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:text="1998年"
+                                android:textColor="@color/txt_black"
+                                android:textSize="12sp"/>
+
+                            <TextView
+                                android:id="@+id/tv_buildYear_two"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="15dp"
+                                android:text="建造年份"
                                 android:textColor="@color/gray_d"
                                 android:textSize="10sp"/>
                         </LinearLayout>
@@ -337,8 +358,8 @@
         <com.jdhui.widget.MyScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:scrollbars="none"
-            android:fillViewport="true">
+            android:fillViewport="true"
+            android:scrollbars="none">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -386,8 +407,8 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingBottom="50dp"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:paddingBottom="50dp">
 
                     <LinearLayout
                         android:id="@+id/vp_container_point"
