@@ -3,6 +3,7 @@ package com.jdhui.adapter;
 import android.content.Context;
 import android.graphics.Color;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -49,7 +50,6 @@ public class MyTopAdapter extends MyPagerAdapter {
         if (topList.size() != 0 && topList != null) {
             item = topList.get(position);
         }
-
         TextView tv_year = (TextView) view.findViewById(R.id.tv_year); //游行时间
         TextView tv_month = (TextView) view.findViewById(R.id.tv_month); //航期数
         TextView tv_money = (TextView) view.findViewById(R.id.tv_money); //最低票价

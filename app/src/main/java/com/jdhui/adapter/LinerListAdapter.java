@@ -41,9 +41,6 @@ public class LinerListAdapter extends BaseAdapter {
         this.context = context;
         this.list = list;
         inflater = LayoutInflater.from(context);
-
-//        mStringArray = new String[]{"澳新·澳洲", "南太平洋·斐济", "北美", "南太平洋·夏威夷"};
-
     }
 
     @Override
@@ -81,7 +78,13 @@ public class LinerListAdapter extends BaseAdapter {
         }
 
         //缓存图片到本地
-        DisplayImageOptions options = new DisplayImageOptions.Builder().showImageForEmptyUri(R.drawable.bg_normal).showImageOnFail(R.drawable.bg_normal).resetViewBeforeLoading(true).cacheOnDisc(true).imageScaleType(ImageScaleType.EXACTLY).bitmapConfig(Bitmap.Config.RGB_565).considerExifParams(true).displayer(new FadeInBitmapDisplayer(300)).build();
+        DisplayImageOptions options = new DisplayImageOptions.Builder()
+                .showImageForEmptyUri(R.drawable.bg_normal)
+                .showImageOnFail(R.drawable.bg_normal)
+                .resetViewBeforeLoading(true)
+                .cacheOnDisc(true).imageScaleType(ImageScaleType.EXACTLY)
+                .bitmapConfig(Bitmap.Config.RGB_565).considerExifParams(true)
+                .displayer(new FadeInBitmapDisplayer(300)).build();
         //加载item背景图片
         ImageLoader.getInstance().displayImage(list.get(position).getListPhoto(), holder.iv_liner_item, options);
 

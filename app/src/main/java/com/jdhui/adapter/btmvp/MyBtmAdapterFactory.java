@@ -47,7 +47,7 @@ public class MyBtmAdapterFactory {
         ArrayList<LinerInfo4B> totalList = liner.getCabinTypePrice();
         if (totalList != null && totalList.size() > 0) {
 
-            HouseListAdapter mAdapter = new HouseListAdapter(context, totalList);
+            CabinTypeListAdapter mAdapter = new CabinTypeListAdapter(context, totalList);
             house_list.setAdapter(mAdapter);
 
             Log.i("aaa", "mAdapter: " + mAdapter);

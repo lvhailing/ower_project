@@ -2,7 +2,6 @@ package com.jdhui.adapter;
 
 import android.content.Context;
 import android.support.v4.view.PagerAdapter;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -42,11 +41,7 @@ public class MyBtmAdapter extends PagerAdapter {
     public Object instantiateItem(final ViewGroup viewPager, final int position) {
         final LinerInfo3B liner = btmList.get(position);
         View view = new MyBtmAdapterFactory().getView(context, liner);
-        Log.i("aaa", "aaa");
-//        view.requestLayout();
-        Log.i("aaa", "bbb");
         viewPager.addView(view);
-        Log.i("aaa", "ccc");
         return view;
     }
 

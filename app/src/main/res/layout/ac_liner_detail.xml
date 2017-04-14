@@ -109,30 +109,6 @@
                     android:paddingBottom="24dp"
                     android:paddingTop="24dp">
 
-                    <!-- <LinearLayout
-                         style="@style/Liner_message_Style"
-                         android:layout_width="match_parent"
-                         android:layout_height="match_parent">
-
-                         <TextView
-                             android:id="@+id/tv_buildYear_one"
-                             android:layout_width="match_parent"
-                             android:layout_height="wrap_content"
-                             android:gravity="center"
-                             android:text="1998年"
-                             android:textColor="@color/txt_black"
-                             android:textSize="12sp"/>
-
-                         <TextView
-                             android:id="@+id/tv_buildYear_two"
-                             android:layout_width="wrap_content"
-                             android:layout_height="wrap_content"
-                             android:layout_marginTop="15dp"
-                             android:text="建造年份"
-                             android:textColor="@color/gray_d"
-                             android:textSize="10sp"/>
-                     </LinearLayout>-->
-
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -343,8 +319,6 @@
                             android:text="继续拖动，查看更多信息"
                             android:textColor="@color/txt_gray_light_l"/>
                     </RelativeLayout>
-
-
                 </LinearLayout>
 
                 <View
@@ -424,7 +398,6 @@
                         android:layout_height="30dp"
                         android:background="#00000000"/>
                 </LinearLayout>
-
             </LinearLayout>
         </com.jdhui.widget.MyScrollView>
 
@@ -442,5 +415,4 @@
         android:text="立即预约"
         android:textColor="@color/white"
         android:textSize="16sp"/>
-
 </RelativeLayout>
