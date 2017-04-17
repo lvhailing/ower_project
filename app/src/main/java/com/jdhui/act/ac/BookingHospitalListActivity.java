@@ -37,6 +37,7 @@ import com.jdhui.mould.BaseRequester;
 import com.jdhui.mould.HtmlRequest;
 import com.jdhui.mould.types.MouldList;
 import com.jdhui.uitls.DownloadUtils;
+import com.jdhui.uitls.ViewUtils;
 
 import java.util.List;
 
@@ -89,14 +90,8 @@ public class BookingHospitalListActivity extends BaseActivity implements View.On
         tv_area = (TextView) findViewById(R.id.tv_area);
         et_search = (EditText) findViewById(R.id.et_search);
 
-        // 下拉刷新
-        listView.getLoadingLayoutProxy(true, false).setPullLabel("下拉刷新");
-        listView.getLoadingLayoutProxy(true, false).setRefreshingLabel("更新中...");
-        listView.getLoadingLayoutProxy(true, false).setReleaseLabel("松开更新");
-        // 上拉加载更多，分页加载
-        listView.getLoadingLayoutProxy(false, true).setPullLabel("上拉加载更多");
-        listView.getLoadingLayoutProxy(false, true).setRefreshingLabel("加载中...");
-        listView.getLoadingLayoutProxy(false, true).setReleaseLabel("松开加载");
+        //PullToRefreshListView  上滑加载更多及下拉刷新
+        ViewUtils.slideAndDropDown(listView);
 
         mBtnBack.setOnClickListener(this);
         v_hidden.setOnClickListener(this);
