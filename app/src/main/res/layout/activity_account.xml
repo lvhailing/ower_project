@@ -32,7 +32,7 @@
     </RelativeLayout>
 
     <RelativeLayout
-        android:id="@+id/id_account_layout_modify_info"
+        android:id="@+id/rl_account_modify_info"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/id_account_txt_title"
@@ -60,12 +60,12 @@
         android:id="@+id/id_account_img_modify_info_lines"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/id_account_layout_modify_info"
+        android:layout_below="@id/rl_account_modify_info"
         android:scaleType="fitXY"
         android:src="@drawable/tab_lines"/>
 
     <RelativeLayout
-        android:id="@+id/id_account_layout_modify_phone"
+        android:id="@+id/rl_account_modify_phone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/id_account_img_modify_info_lines"
@@ -89,10 +89,10 @@
     </RelativeLayout>
 
     <RelativeLayout
-        android:id="@+id/id_account_layout_gesture_switch"
+        android:id="@+id/rl_account_gesture_switch"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/id_account_layout_modify_phone"
+        android:layout_below="@id/rl_account_modify_phone"
         android:layout_marginTop="10dp"
         android:background="@color/white"
         android:gravity="center"
@@ -121,12 +121,12 @@
         android:id="@+id/id_account_img_gesture_switch_lines"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/id_account_layout_gesture_switch"
+        android:layout_below="@+id/rl_account_gesture_switch"
         android:scaleType="fitXY"
         android:src="@drawable/tab_lines"/>
 
     <RelativeLayout
-        android:id="@+id/id_account_layout_gesture_change"
+        android:id="@+id/rl_account_gesture_change"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/id_account_img_gesture_switch_lines"
@@ -152,19 +152,19 @@
     </RelativeLayout>
 
     <ImageView
-        android:id="@+id/id_account_img_gesture_edit_lines"
+        android:id="@+id/iv_account_gesture_edit_lines"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/id_account_layout_gesture_change"
+        android:layout_below="@id/rl_account_gesture_change"
         android:scaleType="fitXY"
         android:src="@drawable/tab_lines"
         android:visibility="gone"/>
 
     <RelativeLayout
-        android:id="@+id/account_layout_change_password"
+        android:id="@+id/rl_account_change_psd"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/id_account_img_gesture_edit_lines"
+        android:layout_below="@id/iv_account_gesture_edit_lines"
         android:background="@color/white"
         android:padding="10dp">
 
@@ -185,7 +185,7 @@
     </RelativeLayout>
 
     <Button
-        android:id="@+id/account_btn_exit"
+        android:id="@+id/btn_account_exit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"

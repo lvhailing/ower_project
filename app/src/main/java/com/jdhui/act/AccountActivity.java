@@ -43,13 +43,13 @@ public class AccountActivity extends BaseActivity implements View.OnClickListene
         userInfoId = getIntent().getStringExtra("userInfoId");
 
         mImgBack = (ImageView) findViewById(R.id.id_img_back);
-        mLayoutMyInfo = (RelativeLayout) findViewById(R.id.id_account_layout_modify_info);
+        mLayoutMyInfo = (RelativeLayout) findViewById(R.id.rl_account_modify_info);
         mImageButton = (ImageButton) findViewById(R.id.accountset_recive);
-        mLayoutChangeGesture = (RelativeLayout) findViewById(R.id.id_account_layout_gesture_change);
-        mImgChangeGesTabLines = (ImageView) findViewById(R.id.id_account_img_gesture_edit_lines);
-        mLayoutModifyPhone = (RelativeLayout) findViewById(R.id.id_account_layout_modify_phone);
-        mLayoutChangePW = (RelativeLayout) findViewById(R.id.account_layout_change_password);
-        account_btn_exit = (Button) findViewById(R.id.account_btn_exit);
+        mLayoutChangeGesture = (RelativeLayout) findViewById(R.id.rl_account_gesture_change);
+        mImgChangeGesTabLines = (ImageView) findViewById(R.id.iv_account_gesture_edit_lines);
+        mLayoutModifyPhone = (RelativeLayout) findViewById(R.id.rl_account_modify_phone);
+        mLayoutChangePW = (RelativeLayout) findViewById(R.id.rl_account_change_psd);
+        account_btn_exit = (Button) findViewById(R.id.btn_account_exit);
 
         if (PreferenceUtil.isGestureChose()) {
             mImageButton.setImageResource(R.drawable.message2);
@@ -77,7 +77,7 @@ public class AccountActivity extends BaseActivity implements View.OnClickListene
             case R.id.id_img_back:
                 finish();
                 break;
-            case R.id.id_account_layout_modify_info:
+            case R.id.rl_account_modify_info:
                 Intent i_myInfo = new Intent(this, MyInfoActivity.class);
                 i_myInfo.putExtra("userInfoId", userInfoId);
                 startActivity(i_myInfo);
@@ -101,22 +101,22 @@ public class AccountActivity extends BaseActivity implements View.OnClickListene
                 }
                 PreferenceUtil.setFirstLogin(false);
                 break;
-            case R.id.id_account_layout_gesture_change: //修改手势密码 布局
+            case R.id.rl_account_gesture_change: //修改手势密码 布局
                 Intent i = new Intent(this, GestureVerifyActivity.class);
                 i.putExtra("from", ApplicationConsts.ACTIVITY_CHANGE_GESTURE);
                 i.putExtra("title", "修改手势密码");
                 i.putExtra("message", "请绘制旧的解锁图案");
                 startActivity(i);
                 break;
-            case R.id.id_account_layout_modify_phone: //修改手机号 布局
+            case R.id.rl_account_modify_phone: //修改手机号 布局
                 Intent i_modify_phone = new Intent(this, VerifyPassWordActivity.class);
                 startActivity(i_modify_phone);
                 break;
-            case R.id.account_layout_change_password: //修改登录密码 布局
+            case R.id.rl_account_change_psd: //修改登录密码 布局
                 Intent i_changePW = new Intent(this, ChangePasswordActivity.class);
                 startActivity(i_changePW);
                 break;
-            case R.id.account_btn_exit: //退出登录
+            case R.id.btn_account_exit: //退出登录
                 UserLoadout out = new UserLoadout(AccountActivity.this);
                 out.requestData();
                 break;
