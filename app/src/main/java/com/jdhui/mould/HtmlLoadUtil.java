@@ -564,4 +564,14 @@ public class HtmlLoadUtil {
         SubBookingShip0B b = new SubBookingShip0B(clientPhone, shipId, clientName);
         return getResult(b);
     }
+
+    /**
+     * 更多模块是否显示小红点
+     *
+     * @return
+     */
+    public static String getBulletinUnreadCount() {
+        String b = "";
+        return getResult(b);
+    }
 }

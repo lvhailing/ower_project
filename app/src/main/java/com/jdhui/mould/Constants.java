@@ -172,6 +172,10 @@ public class Constants {
      * 邮轮提交预约
      */
     public static final String TASK_TYPE_BOOKING_SHIP = String.valueOf(index++);
+    /***
+     * 更多模块是否显示小红点
+     */
+    public static final String TASK_TYPE_TAB_MORE = String.valueOf(index++);
 
 
     /***

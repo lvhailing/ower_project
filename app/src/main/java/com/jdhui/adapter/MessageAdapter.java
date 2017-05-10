@@ -43,7 +43,7 @@ public class MessageAdapter extends BaseAdapter {
         if (convertView == null) {
             holder = new Holder();
             convertView = inflater.inflate(R.layout.activity_message_item, null);
-            holder.tv_notice_item_title = (TextView) convertView.findViewById(R.id.id_notice_item_tv_title);
+            holder.tv_notice_item_title = (TextView) convertView.findViewById(R.id.tv_notice_item_title);
             holder.tv_notice_item_time = (TextView) convertView.findViewById(R.id.id_notice_item_tv_time);
             holder.tv_notice_item_content = (TextView) convertView.findViewById(R.id.id_notice_item_tv_content);
             holder.tv_flag = (TextView) convertView.findViewById(R.id.tv_flag);

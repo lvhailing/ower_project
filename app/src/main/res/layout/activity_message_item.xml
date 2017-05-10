@@ -30,7 +30,7 @@
                 android:textSize="12sp" />
 
             <TextView
-                android:id="@+id/id_notice_item_tv_title"
+                android:id="@+id/tv_notice_item_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"

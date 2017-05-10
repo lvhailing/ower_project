@@ -20,7 +20,7 @@
             android:orientation="vertical">
 
             <RelativeLayout
-                android:id="@+id/id_tab_more_layout_account"
+                android:id="@+id/rl_account_info"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -30,7 +30,7 @@
                 android:padding="10dp">
 
                 <com.jdhui.view.CircularImage
-                    android:id="@+id/id_tab_more_img_user"
+                    android:id="@+id/img_user_photo"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:layout_margin="5dp"
@@ -41,7 +41,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="5dp"
-                    android:layout_toRightOf="@+id/id_tab_more_img_user"
+                    android:layout_toRightOf="@+id/img_user_photo"
                     android:orientation="vertical">
 
                     <TextView
@@ -54,7 +54,7 @@
 
 
                     <TextView
-                        android:id="@+id/id_tab_more_tv_phone"
+                        android:id="@+id/tv_user_phone"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:padding="5dp"
@@ -130,18 +130,28 @@
                 android:src="@drawable/tab_lines"/>
 
             <RelativeLayout
-                android:id="@+id/id_tab_more_layout_notice"
+                android:id="@+id/rl_notice"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/white"
                 android:padding="10dp">
 
                 <TextView
+                    android:id="@+id/tv_notice"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="君德公告"
                     android:textColor="@color/txt_gray_dark"
                     android:textSize="16sp"/>
+
+                <ImageView
+                    android:id="@+id/iv_circle_red"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@id/tv_notice"
+                    android:layout_alignTop="@id/iv_more"
+                    android:src="@drawable/shape_circle_red"
+                    android:visibility="gone"/>
 
                 <ImageView
                     android:layout_width="wrap_content"
@@ -188,7 +198,7 @@
                 android:src="@drawable/tab_lines"/>
 
             <RelativeLayout
-                android:id="@+id/id_tab_more_layout_contact_us"
+                android:id="@+id/rl_contact_us"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/white"
@@ -228,7 +238,7 @@
                 android:src="@drawable/tab_lines"/>
 
             <RelativeLayout
-                android:id="@+id/id_tab_more_layout_about_us"
+                android:id="@+id/rl_about_us"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/white"
@@ -251,7 +261,7 @@
             </RelativeLayout>
 
             <RelativeLayout
-                android:id="@+id/id_tab_more_layout_service_clauses"
+                android:id="@+id/rl_service_clauses"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
@@ -281,7 +291,7 @@
                 android:src="@drawable/tab_lines"/>
 
             <RelativeLayout
-                android:id="@+id/id_tab_more_layout_agreement"
+                android:id="@+id/rl_agreement"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/white"
@@ -310,7 +320,7 @@
                 android:src="@drawable/tab_lines"/>
 
             <RelativeLayout
-                android:id="@+id/id_tab_more_layout_check_version"
+                android:id="@+id/rl_check_version"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/white"
@@ -339,7 +349,7 @@
                 android:src="@drawable/tab_lines"/>
 
             <RelativeLayout
-                android:id="@+id/id_tab_more_layout_feed_back"
+                android:id="@+id/rl_feed_back"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/white"
@@ -368,12 +378,11 @@
                 android:src="@drawable/tab_lines"/>
 
             <RelativeLayout
-                android:id="@+id/id_tab_more_layout_check_version_number"
+                android:id="@+id/rl_version_number"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/white"
                 android:padding="10dp">
-
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -383,16 +392,15 @@
                     android:textSize="16sp"/>
 
                 <TextView
-                    android:id="@+id/id_tab_more_tv_version_name"
+                    android:id="@+id/tv_version_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_toLeftOf="@+id/id_tab_more_img_version"
+                    android:layout_toLeftOf="@+id/iv_version"
                     android:textColor="@color/gray_d_d"
                     android:textSize="16sp"/>
 
-
                 <ImageView
-                    android:id="@+id/id_tab_more_img_version"
+                    android:id="@+id/iv_version"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"

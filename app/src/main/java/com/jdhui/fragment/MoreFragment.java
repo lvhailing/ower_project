@@ -15,6 +15,7 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -23,6 +24,7 @@ import com.jdhui.JdehuiApplication;
 import com.jdhui.R;
 import com.jdhui.act.AccountActivity;
 import com.jdhui.act.FeedBackActivity;
+import com.jdhui.act.MainActivity;
 import com.jdhui.act.ac.NewsActivity;
 import com.jdhui.act.NoticeActivity;
 import com.jdhui.act.ac.ProductOrderActivity;
@@ -30,6 +32,7 @@ import com.jdhui.act.WebActivity;
 import com.jdhui.act.ac.ServiceOrderActivity;
 import com.jdhui.bean.ResultCheckVersionContentBean;
 import com.jdhui.bean.ResultMoreInfoContentBean;
+import com.jdhui.bean.mybean.ResultRedDot2B;
 import com.jdhui.mould.BaseParams;
 import com.jdhui.mould.BaseRequester;
 import com.jdhui.mould.HtmlRequest;
@@ -57,16 +60,16 @@ import java.net.URLEncoder;
  */
 public class MoreFragment extends Fragment implements View.OnClickListener {
     private View view;
-    private RelativeLayout mLayoutAccount, mLayoutNotice, mLayoutContactUs, mLayoutAboutUs,
-            mLayoutServiceClauses, mLayoutAgreement, mLayoutCheckVersion, mLayoutFeedBack, mLayoutCheckVersionNumber;
-    private TextView mTvName, mTvPhone;
-    private CircularImage mImgPhoto;
-    private TextView mTvVersionName;
+    private RelativeLayout rl_account_info, rl_notice, rl_contact_us, mLayoutAboutUs, rl_service_clauses, rl_agreement, rl_check_version, rl_feed_back, rl_version_number;
+    private TextView mTvName, tv_user_phone;
+    private CircularImage img_user_photo;
+    private TextView tv_version_name;
     private ResultMoreInfoContentBean bean;
     private Context context;
     private RelativeLayout mRlProductOrder;  //产品预约；
     private RelativeLayout mRlServiceOrder;  //服务预约；
     private RelativeLayout mRlnews;  //君德快讯；
+    private ImageView iv_circle_red; // 小红点 （有未读新公告时显示）
 
 
     /**
@@ -84,50 +87,51 @@ public class MoreFragment extends Fragment implements View.OnClickListener {
 
     private void initView(View view) {
         context = getActivity();
-        mLayoutAccount = (RelativeLayout) view.findViewById(R.id.id_tab_more_layout_account);
+        rl_account_info = (RelativeLayout) view.findViewById(R.id.rl_account_info);
         mRlProductOrder = (RelativeLayout) view.findViewById(R.id.rl_product_order);
         mRlServiceOrder = (RelativeLayout) view.findViewById(R.id.rl_service_order);
         mRlnews = (RelativeLayout) view.findViewById(R.id.rl_news);
 
-        mLayoutNotice = (RelativeLayout) view.findViewById(R.id.id_tab_more_layout_notice);
-        mLayoutContactUs = (RelativeLayout) view.findViewById(R.id.id_tab_more_layout_contact_us);
-        mLayoutAboutUs = (RelativeLayout) view.findViewById(R.id.id_tab_more_layout_about_us);
-        mLayoutServiceClauses = (RelativeLayout) view.findViewById(R.id.id_tab_more_layout_service_clauses);
-        mLayoutAgreement = (RelativeLayout) view.findViewById(R.id.id_tab_more_layout_agreement);
-        mLayoutCheckVersion = (RelativeLayout) view.findViewById(R.id.id_tab_more_layout_check_version);
-        mLayoutFeedBack = (RelativeLayout) view.findViewById(R.id.id_tab_more_layout_feed_back);
-        mLayoutCheckVersionNumber = (RelativeLayout) view.findViewById(R.id.id_tab_more_layout_check_version_number);
+        rl_notice = (RelativeLayout) view.findViewById(R.id.rl_notice);
+        iv_circle_red = (ImageView) view.findViewById(R.id.iv_circle_red);
+        rl_contact_us = (RelativeLayout) view.findViewById(R.id.rl_contact_us);
+        mLayoutAboutUs = (RelativeLayout) view.findViewById(R.id.rl_about_us);
+        rl_service_clauses = (RelativeLayout) view.findViewById(R.id.rl_service_clauses);
+        rl_agreement = (RelativeLayout) view.findViewById(R.id.rl_agreement);
+        rl_check_version = (RelativeLayout) view.findViewById(R.id.rl_check_version);
+        rl_feed_back = (RelativeLayout) view.findViewById(R.id.rl_feed_back);
+        rl_version_number = (RelativeLayout) view.findViewById(R.id.rl_version_number);
 
-        mImgPhoto = (CircularImage) view.findViewById(R.id.id_tab_more_img_user);
+        img_user_photo = (CircularImage) view.findViewById(R.id.img_user_photo);
         mTvName = (TextView) view.findViewById(R.id.id_tab_more_tv_name);
-        mTvPhone = (TextView) view.findViewById(R.id.id_tab_more_tv_phone);
-        mTvVersionName = (TextView) view.findViewById(R.id.id_tab_more_tv_version_name);
-        mTvVersionName.setText(SystemInfo.sVersionName);
+        tv_user_phone = (TextView) view.findViewById(R.id.tv_user_phone);
+        tv_version_name = (TextView) view.findViewById(R.id.tv_version_name);
+        tv_version_name.setText(SystemInfo.sVersionName);
 
-        mLayoutAccount.setOnClickListener(this);
+        rl_account_info.setOnClickListener(this);
         mRlProductOrder.setOnClickListener(this);
         mRlServiceOrder.setOnClickListener(this);
         mRlnews.setOnClickListener(this);
-        mLayoutAccount.setClickable(false);
-        mLayoutNotice.setOnClickListener(this);
-        mLayoutContactUs.setOnClickListener(this);
+        rl_account_info.setClickable(false);
+        rl_notice.setOnClickListener(this);
+        rl_contact_us.setOnClickListener(this);
         mLayoutAboutUs.setOnClickListener(this);
-        mLayoutServiceClauses.setOnClickListener(this);
-        mLayoutAgreement.setOnClickListener(this);
-        mLayoutCheckVersion.setOnClickListener(this);
-        mLayoutFeedBack.setOnClickListener(this);
-        mLayoutCheckVersionNumber.setOnClickListener(this);
+        rl_service_clauses.setOnClickListener(this);
+        rl_agreement.setOnClickListener(this);
+        rl_check_version.setOnClickListener(this);
+        rl_feed_back.setOnClickListener(this);
+        rl_version_number.setOnClickListener(this);
 
     }
 
     private void initData() {
-
+        requestBulletinUnreadCount();
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.id_tab_more_layout_account:
+            case R.id.rl_account_info: //用户头像布局
                 Intent i_account = new Intent(context, AccountActivity.class);
                 i_account.putExtra("userInfoId", bean.getUserInfoId());
                 PreferenceUtil.setUserInfoId(bean.getUserInfoId());
@@ -145,11 +149,11 @@ public class MoreFragment extends Fragment implements View.OnClickListener {
                 Intent intent3 = new Intent(context, NewsActivity.class);
                 startActivity(intent3);
                 break;
-            case R.id.id_tab_more_layout_notice:  //君德公告；
+            case R.id.rl_notice:  //君德公告；
                 Intent i_notice = new Intent(context, NoticeActivity.class);
                 startActivity(i_notice);
                 break;
-            case R.id.id_tab_more_layout_contact_us:
+            case R.id.rl_contact_us: // 联系我们
                 CallServiceDialog dialog = new CallServiceDialog(getActivity(),
                         new CallServiceDialog.OnCallServiceChanged() {
                             @Override
@@ -166,32 +170,32 @@ public class MoreFragment extends Fragment implements View.OnClickListener {
                         }, "客服热线: \n " + getString(R.string.tellphone_num_format));
                 dialog.show();
                 break;
-            case R.id.id_tab_more_layout_about_us:
+            case R.id.rl_about_us: // 关于我们
                 Intent i_about_us = new Intent(context, WebActivity.class);
                 i_about_us.putExtra("type", WebActivity.WEBTYPE_ABOUT_US);
                 i_about_us.putExtra("title", "关于我们");
                 startActivity(i_about_us);
                 break;
-            case R.id.id_tab_more_layout_service_clauses: //服务条款
+            case R.id.rl_service_clauses: //服务条款
                 Intent i_service_clauses = new Intent(context, WebActivity.class);
                 i_service_clauses.putExtra("type", WebActivity.WEBTYPE_SERVERS);
                 i_service_clauses.putExtra("title", "服务条款");
                 startActivity(i_service_clauses);
                 break;
-            case R.id.id_tab_more_layout_agreement: //隐私协议
+            case R.id.rl_agreement: //隐私协议
                 Intent i_agreement = new Intent(context, WebActivity.class);
                 i_agreement.putExtra("type", WebActivity.WEBTYPE_AGREEMENTS);
                 i_agreement.putExtra("title", "隐私协议");
                 startActivity(i_agreement);
                 break;
-            case R.id.id_tab_more_layout_check_version:
+            case R.id.rl_check_version: // 检查更新
                 requestData();
                 break;
-            case R.id.id_tab_more_layout_feed_back:
+            case R.id.rl_feed_back: // 意见反馈
                 Intent i_feed_back = new Intent(context, FeedBackActivity.class);
                 startActivity(i_feed_back);
                 break;
-            case R.id.id_tab_more_layout_check_version_number:
+            case R.id.rl_version_number: // 版本号
                 Intent i_version_number = new Intent(context, WebActivity.class);
                 i_version_number.putExtra("type", WebActivity.WEBTYPE_VERSION_NUMBER);
                 i_version_number.putExtra("title", "版本号");
@@ -204,6 +208,29 @@ public class MoreFragment extends Fragment implements View.OnClickListener {
     public void onResume() {
         super.onResume();
         requestMoreInfoData();
+    }
+
+    /**
+     * 更多模块是否显示小红点（有未读公告时则显示）
+     */
+    private void requestBulletinUnreadCount() {
+        HtmlRequest.getBulletinUnreadCount(context, new BaseRequester.OnRequestListener() {
+            @Override
+            public void onRequestFinished(BaseParams params) {
+                if (params == null) {
+                    Toast.makeText(context, "加载失败，请确认网络通畅", Toast.LENGTH_LONG).show();
+                    return;
+                }
+                ResultRedDot2B bulletinUnreadCount = (ResultRedDot2B) params.result;
+                String unreadCount = bulletinUnreadCount.getNum();
+                int result = Integer.parseInt(unreadCount);
+                if (bulletinUnreadCount != null && !TextUtils.isEmpty(unreadCount) && result > 0) {
+                    iv_circle_red.setVisibility(View.VISIBLE);
+                } else {
+                    iv_circle_red.setVisibility(View.GONE);
+                }
+            }
+        });
     }
 
     /**
@@ -223,7 +250,7 @@ public class MoreFragment extends Fragment implements View.OnClickListener {
                 if (params.result != null) {
                     bean = (ResultMoreInfoContentBean) params.result;
                     setData(bean);
-                    mLayoutAccount.setClickable(true);
+                    rl_account_info.setClickable(true);
                 } else {
                     Toast.makeText(context, "加载失败，请确认网络通畅", Toast.LENGTH_LONG).show();
                 }
@@ -249,10 +276,10 @@ public class MoreFragment extends Fragment implements View.OnClickListener {
             super.onPostExecute(result);
 
             if (result != null) {
-                mImgPhoto.setImageBitmap(result);
+                img_user_photo.setImageBitmap(result);
                 saveBitmap(result);
             } else {
-                mImgPhoto.setImageDrawable(getResources().getDrawable(R.drawable.user_icon));
+                img_user_photo.setImageDrawable(getResources().getDrawable(R.drawable.user_icon));
             }
         }
 
@@ -303,17 +330,17 @@ public class MoreFragment extends Fragment implements View.OnClickListener {
     private void setData(ResultMoreInfoContentBean bean) {
         if (bean != null) {
             mTvName.setText(bean.getUserName());
-            mTvPhone.setText(StringUtil.replaceSubString(bean.getMobile()));
+            tv_user_phone.setText(StringUtil.replaceSubString(bean.getMobile()));
 
             String url = bean.getPictureServerURL();
             if (!TextUtils.isEmpty(url)) {
                 new ImageViewService().execute(url);
                 // Toast.makeText(activity,"成功", 0).show();
             } else {
-                mImgPhoto.setImageDrawable(context.getResources().getDrawable(R.drawable.user_icon));
+                img_user_photo.setImageDrawable(context.getResources().getDrawable(R.drawable.user_icon));
             }
         } else {
-            mImgPhoto.setImageDrawable(context.getResources().getDrawable(R.drawable.user_icon));
+            img_user_photo.setImageDrawable(context.getResources().getDrawable(R.drawable.user_icon));
         }
     }
 

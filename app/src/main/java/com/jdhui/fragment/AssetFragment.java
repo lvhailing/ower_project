@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.PieChart;
@@ -28,6 +29,7 @@ import com.jdhui.act.AssetFloatActivity;
 import com.jdhui.act.AssetInsuranceActivity;
 import com.jdhui.act.MessageActivity;
 import com.jdhui.bean.ResultAccountIndexBean;
+import com.jdhui.bean.mybean.ResultRedDot2B;
 import com.jdhui.mould.BaseParams;
 import com.jdhui.mould.BaseRequester;
 import com.jdhui.mould.HtmlRequest;
@@ -41,22 +43,21 @@ import java.util.ArrayList;
  * 底部导航---资产
  */
 public class AssetFragment extends Fragment implements View.OnClickListener {
-
     public final static int ASSET_REQUEST_CODE = 2001;
     private View view;
     private ImageView iv_asset_chosse_my_num;
     private TextView tv_asset_my_num;
     private boolean isshow = true;
     private PieChart mChart;
-    private RelativeLayout rl_fragment_asset_fixed, rl_fragment_asset_float, rl_fragment_asset_insurance; //固收、浮收、保险等对应的布局
+    private RelativeLayout rl_asset_fixed, rl_asset_float, rl_asset_insurance; //固收、浮收、保险等对应的布局
     private Context context;
-    private TextView tv_fragment_asset_passed; //是否合格投资者
-    private TextView tv_fragment_asset_steady;  //是否稳健型
-    private ImageView iv_fragment_asset_message; //消息
+    private TextView tv_asset_passed; //是否合格投资者
+    private TextView tv_asset_steady;  //是否稳健型
+    private ImageView iv_asset_message; //消息图片
 
-    private TextView tv_fragment_asset_fixed_product_totalnum; //固收类购买金额
-    private TextView tv_fragment_asset_floating_product_totalnum; //浮动类购买金额
-    private TextView tv_fragment_asset_insurance_product_totalnum; //保险类购买金额
+    private TextView tv_asset_fixed_product_totalnum; //固收类购买金额
+    private TextView tv_asset_floating_product_totalnum; //浮动类购买金额
+    private TextView tv_asset_insurance_product_totalnum; //保险类购买金额
     private ResultAccountIndexBean accountBean;
     private Activity mActivity;
     private TextView tv_asset_money; //总资产金额
@@ -76,16 +77,17 @@ public class AssetFragment extends Fragment implements View.OnClickListener {
         accountBean = new ResultAccountIndexBean();
         iv_asset_chosse_my_num = (ImageView) view.findViewById(R.id.iv_asset_chosse_my_num);
         tv_asset_my_num = (TextView) view.findViewById(R.id.tv_asset_my_num);
-        rl_fragment_asset_fixed = (RelativeLayout) view.findViewById(R.id.rl_fragment_asset_fixed);
-        rl_fragment_asset_float = (RelativeLayout) view.findViewById(R.id.rl_fragment_asset_float);
-        rl_fragment_asset_insurance = (RelativeLayout) view.findViewById(R.id.rl_fragment_asset_insurance);
-        tv_fragment_asset_passed = (TextView) view.findViewById(R.id.tv_fragment_asset_passed);
-        tv_fragment_asset_steady = (TextView) view.findViewById(R.id.tv_fragment_asset_steady);
-        tv_fragment_asset_fixed_product_totalnum = (TextView) view.findViewById(R.id.tv_fragment_asset_fixed_product_totalnum);
-        tv_fragment_asset_floating_product_totalnum = (TextView) view.findViewById(R.id.tv_fragment_asset_floating_product_totalnum);
-        tv_fragment_asset_insurance_product_totalnum = (TextView) view.findViewById(R.id.tv_fragment_asset_insurance_product_totalnum);
+        rl_asset_fixed = (RelativeLayout) view.findViewById(R.id.rl_asset_fixed);
+        rl_asset_float = (RelativeLayout) view.findViewById(R.id.rl_asset_float);
+        rl_asset_insurance = (RelativeLayout) view.findViewById(R.id.rl_fragment_asset_insurance);
+        tv_asset_passed = (TextView) view.findViewById(R.id.tv_asset_passed);
+        tv_asset_steady = (TextView) view.findViewById(R.id.tv_asset_steady);
+        tv_asset_fixed_product_totalnum = (TextView) view.findViewById(R.id.tv_asset_fixed_product_totalnum);
+        tv_asset_floating_product_totalnum = (TextView) view.findViewById(R.id.tv_asset_floating_product_totalnum);
+        tv_asset_insurance_product_totalnum = (TextView) view.findViewById(R.id.tv_asset_insurance_product_totalnum);
         tv_asset_money = (TextView) view.findViewById(R.id.tv_asset_money);
-        iv_fragment_asset_message = (ImageView) view.findViewById(R.id.iv_fragment_asset_message);
+        iv_asset_message = (ImageView) view.findViewById(R.id.iv_asset_message);
+        mChart = (PieChart) view.findViewById(R.id.chart1);
 
 
         if (isshow) {
@@ -95,11 +97,10 @@ public class AssetFragment extends Fragment implements View.OnClickListener {
         }
 
         iv_asset_chosse_my_num.setOnClickListener(this);
-        rl_fragment_asset_fixed.setOnClickListener(this);
-        rl_fragment_asset_float.setOnClickListener(this);
-        rl_fragment_asset_insurance.setOnClickListener(this);
-        iv_fragment_asset_message.setOnClickListener(this);
-        mChart = (PieChart) view.findViewById(R.id.chart1);
+        rl_asset_fixed.setOnClickListener(this);
+        rl_asset_float.setOnClickListener(this);
+        rl_asset_insurance.setOnClickListener(this);
+        iv_asset_message.setOnClickListener(this);
     }
 
     private void initAsset(boolean flag) { //flag 是否有数据  true有数据   false没数据
@@ -163,35 +164,35 @@ public class AssetFragment extends Fragment implements View.OnClickListener {
         if (!flag) {
             entries.add(new PieEntry(100));
         } else {
-            if(Integer.parseInt(accountBean.getOptimumAmountRate()) != 0&&Integer.parseInt(accountBean.getFloatingAmountRate()) != 0&&Integer.parseInt(accountBean.getInsuranceAmountRate()) != 0){
+            if (Integer.parseInt(accountBean.getOptimumAmountRate()) != 0 && Integer.parseInt(accountBean.getFloatingAmountRate()) != 0 && Integer.parseInt(accountBean.getInsuranceAmountRate()) != 0) {
                 int optimumrate = Integer.parseInt(accountBean.getOptimumAmountRate());
                 int floatrate = Integer.parseInt(accountBean.getFloatingAmountRate());
                 int insurancerate = Integer.parseInt(accountBean.getInsuranceAmountRate());
 
                 int flag_rate = optimumrate;
-                if(flag_rate<floatrate){
+                if (flag_rate < floatrate) {
                     flag_rate = floatrate;
                     entries.add(new PieEntry(optimumrate, ""));
-                    if(flag_rate<insurancerate){
+                    if (flag_rate < insurancerate) {
                         entries.add(new PieEntry(insurancerate, ""));
                         entries.add(new PieEntry(floatrate, ""));
-                    }else{
+                    } else {
                         entries.add(new PieEntry(floatrate, ""));
                         entries.add(new PieEntry(insurancerate, ""));
                     }
-                }else{
+                } else {
                     entries.add(new PieEntry(floatrate, ""));
-                    if(flag_rate<insurancerate){
+                    if (flag_rate < insurancerate) {
                         entries.add(new PieEntry(insurancerate, ""));
                         entries.add(new PieEntry(optimumrate, ""));
-                    }else{
+                    } else {
                         entries.add(new PieEntry(optimumrate, ""));
                         entries.add(new PieEntry(insurancerate, ""));
                     }
                 }
 
 
-            }else{
+            } else {
                 if (Integer.parseInt(accountBean.getOptimumAmountRate()) != 0) {
                     entries.add(new PieEntry(Integer.parseInt(accountBean.getOptimumAmountRate()), ""));
                 }
@@ -237,18 +238,18 @@ public class AssetFragment extends Fragment implements View.OnClickListener {
                         int floatrate = Integer.parseInt(accountBean.getFloatingAmountRate());
                         int insurancerate = Integer.parseInt(accountBean.getInsuranceAmountRate());
                         int flag_rate = optimumrate;
-                        if(flag_rate<floatrate){
+                        if (flag_rate < floatrate) {
                             flag_rate = floatrate;
-                            if(flag_rate<insurancerate){
-                                ints = new int[]{R.color.asset_fixed_income,  R.color.asset_insurance,R.color.asset_float_incomea};
-                            }else{
+                            if (flag_rate < insurancerate) {
+                                ints = new int[]{R.color.asset_fixed_income, R.color.asset_insurance, R.color.asset_float_incomea};
+                            } else {
                                 ints = new int[]{R.color.asset_fixed_income, R.color.asset_float_incomea, R.color.asset_insurance};
                             }
-                        }else{
-                            if(flag_rate<insurancerate){
-                                ints = new int[]{R.color.asset_float_incomea,R.color.asset_insurance,R.color.asset_fixed_income};
-                            }else{
-                                ints = new int[]{R.color.asset_float_incomea,R.color.asset_fixed_income,R.color.asset_insurance};
+                        } else {
+                            if (flag_rate < insurancerate) {
+                                ints = new int[]{R.color.asset_float_incomea, R.color.asset_insurance, R.color.asset_fixed_income};
+                            } else {
+                                ints = new int[]{R.color.asset_float_incomea, R.color.asset_fixed_income, R.color.asset_insurance};
                             }
                         }
 
@@ -346,50 +347,50 @@ public class AssetFragment extends Fragment implements View.OnClickListener {
 
 //        initAsset(true);
         if (accountBean != null) {
-            tv_fragment_asset_fixed_product_totalnum.setText(!TextUtils.isEmpty(accountBean.getOptimumAmount()) ? StringUtil.formatNum(accountBean.getOptimumAmount()) : "0.00");
-            tv_fragment_asset_floating_product_totalnum.setText(!TextUtils.isEmpty(accountBean.getFloatingAmount()) ? StringUtil.formatNum(accountBean.getFloatingAmount()) : "0.00");
-            tv_fragment_asset_insurance_product_totalnum.setText(!TextUtils.isEmpty(accountBean.getInsuranceAmount()) ? StringUtil.formatNum(accountBean.getInsuranceAmount()) : "0.00");
+            tv_asset_fixed_product_totalnum.setText(!TextUtils.isEmpty(accountBean.getOptimumAmount()) ? StringUtil.formatNum(accountBean.getOptimumAmount()) : "0.00");
+            tv_asset_floating_product_totalnum.setText(!TextUtils.isEmpty(accountBean.getFloatingAmount()) ? StringUtil.formatNum(accountBean.getFloatingAmount()) : "0.00");
+            tv_asset_insurance_product_totalnum.setText(!TextUtils.isEmpty(accountBean.getInsuranceAmount()) ? StringUtil.formatNum(accountBean.getInsuranceAmount()) : "0.00");
 
             if (!TextUtils.isEmpty(accountBean.getUnreadMessageNum())) {
                 if (accountBean.getUnreadMessageNum().equals("0")) {
-                    iv_fragment_asset_message.setImageResource(R.mipmap.img_message_0);
+                    iv_asset_message.setImageResource(R.mipmap.img_message_0);
                 } else if (accountBean.getUnreadMessageNum().equals("1")) {
-                    iv_fragment_asset_message.setImageResource(R.mipmap.img_message_1);
+                    iv_asset_message.setImageResource(R.mipmap.img_message_1);
                 } else if (accountBean.getUnreadMessageNum().equals("2")) {
-                    iv_fragment_asset_message.setImageResource(R.mipmap.img_message_2);
+                    iv_asset_message.setImageResource(R.mipmap.img_message_2);
                 } else if (accountBean.getUnreadMessageNum().equals("3")) {
-                    iv_fragment_asset_message.setImageResource(R.mipmap.img_message_3);
+                    iv_asset_message.setImageResource(R.mipmap.img_message_3);
                 } else if (accountBean.getUnreadMessageNum().equals("4")) {
-                    iv_fragment_asset_message.setImageResource(R.mipmap.img_message_4);
+                    iv_asset_message.setImageResource(R.mipmap.img_message_4);
                 } else if (accountBean.getUnreadMessageNum().equals("5")) {
-                    iv_fragment_asset_message.setImageResource(R.mipmap.img_message_5);
+                    iv_asset_message.setImageResource(R.mipmap.img_message_5);
                 } else if (accountBean.getUnreadMessageNum().equals("6")) {
-                    iv_fragment_asset_message.setImageResource(R.mipmap.img_message_6);
+                    iv_asset_message.setImageResource(R.mipmap.img_message_6);
                 } else if (accountBean.getUnreadMessageNum().equals("7")) {
-                    iv_fragment_asset_message.setImageResource(R.mipmap.img_message_7);
+                    iv_asset_message.setImageResource(R.mipmap.img_message_7);
                 } else if (accountBean.getUnreadMessageNum().equals("8")) {
-                    iv_fragment_asset_message.setImageResource(R.mipmap.img_message_8);
+                    iv_asset_message.setImageResource(R.mipmap.img_message_8);
                 } else if (accountBean.getUnreadMessageNum().equals("9")) {
-                    iv_fragment_asset_message.setImageResource(R.mipmap.img_message_9);
+                    iv_asset_message.setImageResource(R.mipmap.img_message_9);
                 } else if (Integer.parseInt(accountBean.getUnreadMessageNum()) > 9) {
-                    iv_fragment_asset_message.setImageResource(R.mipmap.img_message_10);
+                    iv_asset_message.setImageResource(R.mipmap.img_message_10);
                 } else {
-                    iv_fragment_asset_message.setImageResource(R.mipmap.img_message_0);
+                    iv_asset_message.setImageResource(R.mipmap.img_message_0);
                 }
             } else {
-                iv_fragment_asset_message.setImageResource(R.mipmap.img_message_0);
+                iv_asset_message.setImageResource(R.mipmap.img_message_0);
             }
 
 
             // acceptable:合格投资者;unacceptable:不合格投资者
             if (!TextUtils.isEmpty(accountBean.getQualifiedInvestor())) {
                 if (accountBean.getQualifiedInvestor().equals("acceptable")) {
-                    tv_fragment_asset_passed.setVisibility(View.VISIBLE);
+                    tv_asset_passed.setVisibility(View.VISIBLE);
                 } else {
-                    tv_fragment_asset_passed.setVisibility(View.GONE);
+                    tv_asset_passed.setVisibility(View.GONE);
                 }
             } else {
-                tv_fragment_asset_passed.setVisibility(View.GONE);
+                tv_asset_passed.setVisibility(View.GONE);
             }
 
 
@@ -397,29 +398,26 @@ public class AssetFragment extends Fragment implements View.OnClickListener {
 
             if (!TextUtils.isEmpty(accountBean.getUserType())) {
                 if (accountBean.getUserType().equals("conservative")) {
-                    tv_fragment_asset_steady.setText("保守型");
+                    tv_asset_steady.setText("保守型");
                 } else if (accountBean.getUserType().equals("steady")) {
-                    tv_fragment_asset_steady.setText("稳健型");
+                    tv_asset_steady.setText("稳健型");
                 } else if (accountBean.getUserType().equals("balance")) {
-                    tv_fragment_asset_steady.setText("平衡型");
+                    tv_asset_steady.setText("平衡型");
                 } else if (accountBean.getUserType().equals("growth")) {
-                    tv_fragment_asset_steady.setText("成长型");
+                    tv_asset_steady.setText("成长型");
                 } else if (accountBean.getUserType().equals("aggressive")) {
-                    tv_fragment_asset_steady.setText("进取型");
+                    tv_asset_steady.setText("进取型");
                 } else {
-                    tv_fragment_asset_steady.setVisibility(View.GONE);
+                    tv_asset_steady.setVisibility(View.GONE);
                 }
             } else {
-                tv_fragment_asset_steady.setVisibility(View.GONE);
+                tv_asset_steady.setVisibility(View.GONE);
             }
-
-
         } else {
-            tv_fragment_asset_fixed_product_totalnum.setText("0.00");
-            tv_fragment_asset_floating_product_totalnum.setText("0.00");
-            tv_fragment_asset_insurance_product_totalnum.setText("0.00");
+            tv_asset_fixed_product_totalnum.setText("0.00");
+            tv_asset_floating_product_totalnum.setText("0.00");
+            tv_asset_insurance_product_totalnum.setText("0.00");
         }
-
     }
 
     private void onclickAssetData() {
@@ -446,12 +444,12 @@ public class AssetFragment extends Fragment implements View.OnClickListener {
             case R.id.iv_asset_chosse_my_num: //总资产后的眼睛图标
                 onclickAssetData();
                 break;
-            case R.id.rl_fragment_asset_fixed:  //固定收益类
+            case R.id.rl_asset_fixed:  //固定收益类
                 Intent i_fixed = new Intent(mActivity, AssetFixedActivity.class);
                 mActivity.startActivityForResult(i_fixed, ASSET_REQUEST_CODE);
 
                 break;
-            case R.id.rl_fragment_asset_float: //浮动收益类
+            case R.id.rl_asset_float: //浮动收益类
                 Intent i_float = new Intent(mActivity, AssetFloatActivity.class);
                 mActivity.startActivityForResult(i_float, ASSET_REQUEST_CODE);
 
@@ -461,7 +459,7 @@ public class AssetFragment extends Fragment implements View.OnClickListener {
                 mActivity.startActivityForResult(i_insurance, ASSET_REQUEST_CODE);
 
                 break;
-            case R.id.iv_fragment_asset_message:  //消息列表
+            case R.id.iv_asset_message:  //消息列表
                 Intent i_messgae = new Intent(mActivity, MessageActivity.class);
                 mActivity.startActivityForResult(i_messgae, ASSET_REQUEST_CODE);
                 break;

@@ -20,11 +20,11 @@ public class ApplicationConsts {
 //    public static final String URL_DEBUG = "http://192.168.1.138:9999/junde-hui-app/";
 
     //张亚磊
-//	public static final String URL_DEBUG ="http://192.168.1.193:9997/junde-hui-app/";
+	public static final String URL_DEBUG ="http://192.168.1.193:9996/junde-hui-app/";
 
 
     //测试环境
-	public static final String URL_DEBUG ="http://192.168.1.86:82/";
+//	public static final String URL_DEBUG ="http://192.168.1.86:82/";
 
 // 张殿阳
 //	public static final String URL_DEBUG ="http://192.168.1.138:9999/junde-hui-app/";
@@ -415,6 +415,11 @@ public class ApplicationConsts {
      * 游轮提交预约
      */
     public static final String URL_SERVICE_BOOKINGLUXURYSHIP_ADD = EC_HOST + "service/bookingLuxuryShip/add";
+
+    /**
+     * 更多模块 是否显示小红点
+     */
+    public static final String URL_TAB_MORE = EC_HOST + "website/bulletin/getBulletinUnreadCount";
 
 
     // 手势密码点的状态

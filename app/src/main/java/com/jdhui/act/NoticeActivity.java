@@ -84,6 +84,9 @@ public class NoticeActivity extends BaseActivity implements View.OnClickListener
         super.onResume();
     }
 
+    /**
+     * 请求公告列表数据
+     */
     private void requestData() {
         HtmlRequest.getNoticeList(NoticeActivity.this, currentPage, new BaseRequester.OnRequestListener() {
             @Override

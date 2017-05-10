@@ -20,11 +20,13 @@ import android.widget.Toast;
 import com.jdhui.JdehuiApplication;
 import com.jdhui.R;
 import com.jdhui.bean.ResultCheckVersionContentBean;
+import com.jdhui.bean.mybean.ResultRedDot2B;
 import com.jdhui.fragment.AssetFragment;
 import com.jdhui.fragment.MoreFragment;
 import com.jdhui.fragment.ProductFragment;
 import com.jdhui.fragment.ServiceFragment;
 import com.jdhui.mould.BaseParams;
+import com.jdhui.mould.BaseRequester;
 import com.jdhui.mould.BaseRequester.OnRequestListener;
 import com.jdhui.mould.HtmlRequest;
 import com.jdhui.service.AppUpgradeService;
@@ -63,6 +65,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     private ProductFragment tab_product; //产品
     private ServiceFragment tab_service; //服务
     private MoreFragment tab_more; //更多
+    private ImageView mIvCircleRed;  // 小红点 （有未读新公告时显示）
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,7 +74,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         initView();
         initEvent();
         setSelect(0);
-        requestData();
+        initData();
     }
 
     @Override
@@ -94,6 +97,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         mIvProduct = (ImageView) findViewById(R.id.iv_product);
         mIvService = (ImageView) findViewById(R.id.iv_service);
         mIvMore = (ImageView) findViewById(R.id.iv_more);
+        mIvCircleRed = (ImageView) findViewById(R.id.iv_circle_red);
 
         mTvAsset = (TextView) findViewById(R.id.tv_asset);
         mTvProduct = (TextView) findViewById(R.id.tv_product);
@@ -145,6 +149,23 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
     }
 
+    private void initEvent() {
+        mLlTabAsset.setOnClickListener(this);
+        mLlTabProduct.setOnClickListener(this);
+        mLlTabService.setOnClickListener(this);
+        mLlTabMore.setOnClickListener(this);
+    }
+
+    private void setSelect(int i) {
+        setTab(i);
+        mViewPager.setCurrentItem(i);
+    }
+
+    private void initData() {
+        requestData();
+        requestBulletinUnreadCount();
+    }
+
     private void setTab(int currentItem) {
         resetImgs();
         switch (currentItem) {
@@ -187,44 +208,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         mTvMore.setTextColor(Color.parseColor("#999999"));
     }
 
-    private void initEvent() {
-        mLlTabAsset.setOnClickListener(this);
-        mLlTabProduct.setOnClickListener(this);
-        mLlTabService.setOnClickListener(this);
-        mLlTabMore.setOnClickListener(this);
-    }
-
-    @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if (keyCode == KeyEvent.KEYCODE_BACK) {
-            exitBy2Click(); // 调用双击退出函数
-        }
-        return false;
-    }
-
-    /**
-     * 双击退出函数
-     */
-    private static Boolean isExit = false;
-
-    private void exitBy2Click() {
-        Timer tExit = null;
-        if (isExit == false) {
-            isExit = true; // 准备退出
-            Toast.makeText(this, "再按一次退出程序", Toast.LENGTH_SHORT).show();
-            tExit = new Timer();
-            tExit.schedule(new TimerTask() {
-                @Override
-                public void run() {
-                    isExit = false; // 取消退出
-                }
-            }, 2000); // 如果2秒钟内没有按下返回键，则启动定时器取消掉刚才执行的任务
-
-        } else {
-            finish();
-        }
-    }
-
     @Override
     protected void onDestroy() {
         super.onDestroy();
@@ -235,6 +218,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     private File destDir = null;
     private File destFile = null;
 
+    /**
+     * 检查版本更新
+     */
     private void requestData() {
         HtmlRequest.checkVersion(MainActivity.this, TYPE, new OnRequestListener() {
             @Override
@@ -298,6 +284,29 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         });
     }
 
+    /**
+     * 更多模块是否显示小红点（有未读公告时则显示）
+     */
+    private void requestBulletinUnreadCount() {
+        HtmlRequest.getBulletinUnreadCount(MainActivity.this, new BaseRequester.OnRequestListener() {
+            @Override
+            public void onRequestFinished(BaseParams params) {
+                if (params == null) {
+                    Toast.makeText(MainActivity.this, "加载失败，请确认网络通畅", Toast.LENGTH_LONG).show();
+                    return;
+                }
+                ResultRedDot2B bulletinUnreadCount = (ResultRedDot2B) params.result;
+                String unreadCount = bulletinUnreadCount.getNum();
+                int result = Integer.parseInt(unreadCount);
+                if (bulletinUnreadCount != null && !TextUtils.isEmpty(unreadCount) && result > 0) {
+                    mIvCircleRed.setVisibility(View.VISIBLE);
+                } else {
+                    mIvCircleRed.setVisibility(View.GONE);
+                }
+            }
+        });
+    }
+
     private boolean isAppInstalled(String uri) {
         PackageManager pm = getPackageManager();
         boolean installed = false;
@@ -330,27 +339,20 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.ll_tab_asset:
+            case R.id.ll_tab_asset:  // 资产
                 setSelect(0);
                 break;
-            case R.id.ll_tab_product:
+            case R.id.ll_tab_product:  // 产品
                 setSelect(1);
                 break;
-            case R.id.ll_tab_service:
+            case R.id.ll_tab_service:  // 服务
                 setSelect(2);
-//                Intent intent = new Intent(this, SubBookingHospitalActivity.class);
-//                startActivity(intent);
                 break;
-            case R.id.ll_tab_more:
+            case R.id.ll_tab_more:  // 更多
                 setSelect(3);
                 break;
 
         }
-    }
-
-    private void setSelect(int i) {
-        setTab(i);
-        mViewPager.setCurrentItem(i);
     }
 
     @Override
@@ -362,4 +364,34 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         }
     }
 
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            exitBy2Click(); // 调用双击退出函数
+        }
+        return false;
+    }
+
+    /**
+     * 双击退出函数
+     */
+    private static Boolean isExit = false;
+
+    private void exitBy2Click() {
+        Timer tExit = null;
+        if (isExit == false) {
+            isExit = true; // 准备退出
+            Toast.makeText(this, "再按一次退出程序", Toast.LENGTH_SHORT).show();
+            tExit = new Timer();
+            tExit.schedule(new TimerTask() {
+                @Override
+                public void run() {
+                    isExit = false; // 取消退出
+                }
+            }, 2000); // 如果2秒钟内没有按下返回键，则启动定时器取消掉刚才执行的任务
+
+        } else {
+            finish();
+        }
+    }
 }
