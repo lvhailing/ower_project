@@ -88,7 +88,7 @@ public class WebActivity extends Activity implements View.OnClickListener {
             tv_web_title.setText(getIntent().getExtras().getString("title"));
 
         } else if (type.equals(WEBTYPE_NOTICE_DETAILS)) {// 公告详情
-            url = ApplicationConsts.URL_NOTICE_DETAILS + getIntent().getStringExtra("id");
+            url = ApplicationConsts.URL_NOTICE_DETAILS + getIntent().getStringExtra("id") + "/" + getIntent().getStringExtra("uid");
             tv_web_title.setText(getIntent().getExtras().getString("title"));
         } else if (type.equals(WEBTYPE_NEWS_DETAILS)) {// 快讯详情
             url = ApplicationConsts.URL_NEWS_DETAILS + getIntent().getStringExtra("id");

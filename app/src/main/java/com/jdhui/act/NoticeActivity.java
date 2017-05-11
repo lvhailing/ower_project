@@ -18,6 +18,8 @@ import com.jdhui.mould.BaseParams;
 import com.jdhui.mould.BaseRequester;
 import com.jdhui.mould.HtmlRequest;
 import com.jdhui.mould.types.MouldList;
+import com.jdhui.uitls.DESUtil;
+import com.jdhui.uitls.PreferenceUtil;
 import com.jdhui.uitls.ViewUtils;
 
 /**
@@ -29,6 +31,7 @@ public class NoticeActivity extends BaseActivity implements View.OnClickListener
     private ImageView mBtnBack;
     private MouldList<ResultNoticeContentBean> totalList = new MouldList<>();
     private int currentPage = 1;
+    private int currentPosItem = -1;  // 当前点击的item的位置
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,18 +73,39 @@ public class NoticeActivity extends BaseActivity implements View.OnClickListener
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() { //item 点击监听
             @Override
             public void onItemClick(AdapterView<?> arg0, View arg1, int position, long arg3) {
+                currentPosItem = position-1;
+
+                String userId = null;
+                try {
+                    userId = DESUtil.decrypt(PreferenceUtil.getUserId());
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
                 Intent i_web = new Intent(NoticeActivity.this, WebActivity.class);
                 i_web.putExtra("type", WebActivity.WEBTYPE_NOTICE_DETAILS);
                 i_web.putExtra("id", totalList.get(position - 1).getBulletinId());
                 i_web.putExtra("title", "详情");
-                startActivity(i_web);
+                i_web.putExtra("uid", userId);
+//                startActivity(i_web);
+                startActivityForResult(i_web, 1001);
             }
         });
     }
 
     @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == 1001) {
+//            currentPage = 1;
+//            requestData();
+            totalList.get(currentPosItem).setReadState("yes");
+            mAdapter.notifyDataSetChanged();
+        }
+    }
+
+    @Override
     public void onResume() {
         super.onResume();
+//        requestData();
     }
 
     /**
@@ -120,7 +144,6 @@ public class NoticeActivity extends BaseActivity implements View.OnClickListener
                 if (mAdapter == null) {
                     mAdapter = new NoticeAdapter(NoticeActivity.this, totalList);
                     listView.setAdapter(mAdapter);
-
                 } else {
                     mAdapter.notifyDataSetChanged();
                 }

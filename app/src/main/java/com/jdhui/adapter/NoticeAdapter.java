@@ -58,7 +58,7 @@ public class NoticeAdapter extends BaseAdapter {
         status = list.get(position).getReadState();
         if (status.equals("no")) {
             holder.iv_circle_red.setVisibility(View.VISIBLE);
-        }else {
+        }else if(status.equals("yes")) {
             holder.iv_circle_red.setVisibility(View.GONE);
         }
         holder.tv_notice_item_title.setText(list.get(position).getTitle());

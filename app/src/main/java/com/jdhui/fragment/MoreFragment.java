@@ -55,10 +55,13 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
 
+import static android.app.Activity.RESULT_OK;
+
 /**
  * 底部导航---更多
  */
 public class MoreFragment extends Fragment implements View.OnClickListener {
+    public final static int MORE_REQUEST_CODE = 1001;
     private View view;
     private RelativeLayout rl_account_info, rl_notice, rl_contact_us, mLayoutAboutUs, rl_service_clauses, rl_agreement, rl_check_version, rl_feed_back, rl_version_number;
     private TextView mTvName, tv_user_phone;
@@ -124,7 +127,7 @@ public class MoreFragment extends Fragment implements View.OnClickListener {
 
     }
 
-    private void initData() {
+    public void initData() {
         requestBulletinUnreadCount();
     }
 
@@ -151,23 +154,23 @@ public class MoreFragment extends Fragment implements View.OnClickListener {
                 break;
             case R.id.rl_notice:  //君德公告；
                 Intent i_notice = new Intent(context, NoticeActivity.class);
-                startActivity(i_notice);
+//                startActivity(i_notice);
+                startActivityForResult(i_notice, MORE_REQUEST_CODE);
                 break;
             case R.id.rl_contact_us: // 联系我们
-                CallServiceDialog dialog = new CallServiceDialog(getActivity(),
-                        new CallServiceDialog.OnCallServiceChanged() {
-                            @Override
-                            public void onConfim() {
-                                Intent intent = new Intent(Intent.ACTION_DIAL);
-                                Uri data = Uri.parse("tel:" + getString(R.string.tellphone_num));
-                                intent.setData(data);
-                                startActivity(intent);
-                            }
+                CallServiceDialog dialog = new CallServiceDialog(getActivity(), new CallServiceDialog.OnCallServiceChanged() {
+                    @Override
+                    public void onConfim() {
+                        Intent intent = new Intent(Intent.ACTION_DIAL);
+                        Uri data = Uri.parse("tel:" + getString(R.string.tellphone_num));
+                        intent.setData(data);
+                        startActivity(intent);
+                    }
 
-                            @Override
-                            public void onCancel() {
-                            }
-                        }, "客服热线: \n " + getString(R.string.tellphone_num_format));
+                    @Override
+                    public void onCancel() {
+                    }
+                }, "客服热线: \n " + getString(R.string.tellphone_num_format));
                 dialog.show();
                 break;
             case R.id.rl_about_us: // 关于我们
@@ -205,6 +208,13 @@ public class MoreFragment extends Fragment implements View.OnClickListener {
     }
 
     @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == MORE_REQUEST_CODE) {
+            requestBulletinUnreadCount();
+        }
+    }
+
+    @Override
     public void onResume() {
         super.onResume();
         requestMoreInfoData();
@@ -226,7 +236,7 @@ public class MoreFragment extends Fragment implements View.OnClickListener {
                 int result = Integer.parseInt(unreadCount);
                 if (bulletinUnreadCount != null && !TextUtils.isEmpty(unreadCount) && result > 0) {
                     iv_circle_red.setVisibility(View.VISIBLE);
-                } else {
+                } else if (bulletinUnreadCount != null && !TextUtils.isEmpty(unreadCount) && result == 0) {
                     iv_circle_red.setVisibility(View.GONE);
                 }
             }
@@ -312,8 +322,7 @@ public class MoreFragment extends Fragment implements View.OnClickListener {
         Bitmap bitmap = null;
         try {
             imgUrl = new URL(url);
-            HttpURLConnection conn = (HttpURLConnection) imgUrl
-                    .openConnection();
+            HttpURLConnection conn = (HttpURLConnection) imgUrl.openConnection();
             conn.setDoInput(true);
             conn.connect();
             InputStream is = conn.getInputStream();
@@ -353,87 +362,64 @@ public class MoreFragment extends Fragment implements View.OnClickListener {
      * 检查版本更新
      */
     private void requestData() {
-        HtmlRequest.checkVersion(context, TYPE,
-                new BaseRequester.OnRequestListener() {
+        HtmlRequest.checkVersion(context, TYPE, new BaseRequester.OnRequestListener() {
 
-                    @Override
+            @Override
 
-                    public void onRequestFinished(BaseParams params) {
-                        if (params.result != null) {
-                            final ResultCheckVersionContentBean b = (ResultCheckVersionContentBean) params.result;
-                            if (b != null) {
-                                //后台版本为已停运、未上线，不做处理
-                                if (!TextUtils.isEmpty(b.getVersion())) {
-                                    if (!b.getVersion().equals(SystemInfo.sVersionName)) {
+            public void onRequestFinished(BaseParams params) {
+                if (params.result != null) {
+                    final ResultCheckVersionContentBean b = (ResultCheckVersionContentBean) params.result;
+                    if (b != null) {
+                        //后台版本为已停运、未上线，不做处理
+                        if (!TextUtils.isEmpty(b.getVersion())) {
+                            if (!b.getVersion().equals(SystemInfo.sVersionName)) {
 
-                                        CheckVersionDialog dialog = new CheckVersionDialog(getActivity(),
-                                                new CheckVersionDialog.OnCheckVersion() {
+                                CheckVersionDialog dialog = new CheckVersionDialog(getActivity(), new CheckVersionDialog.OnCheckVersion() {
 
-                                                    @Override
-                                                    public void onConfim() {
-                                                        Intent updateIntent = new Intent(
-                                                                context,
-                                                                AppUpgradeService.class);
-                                                        updateIntent
-                                                                .putExtra(
-                                                                        "titleId",
-                                                                        R.string.app_chinesename);
-                                                        updateIntent
-                                                                .putExtra(
-                                                                        "downloadUrl",
-                                                                        // "http://114.113.238.90:40080/upload/app/vjinke.apk");
+                                    @Override
+                                    public void onConfim() {
+                                        Intent updateIntent = new Intent(context, AppUpgradeService.class);
+                                        updateIntent.putExtra("titleId", R.string.app_chinesename);
+                                        updateIntent.putExtra("downloadUrl",
+                                                // "http://114.113.238.90:40080/upload/app/vjinke.apk");
 //																ApplicationConsts.EC_HOST
 //																		+ b.getUrl()
-                                                                        b.getUrl());
-                                                        getActivity().startService(updateIntent);
-                                                    }
+                                                b.getUrl());
+                                        getActivity().startService(updateIntent);
+                                    }
 
-                                                    @Override
-                                                    public void onCancel() {
+                                    @Override
+                                    public void onCancel() {
 
-                                                    }
-                                                }, "发现新版本,是否更新");
-                                        dialog.show();
-                                    } else {
-                                        Toast.makeText(context, "已是最新版本", Toast.LENGTH_SHORT).show();
-                                        if (Environment
-                                                .getExternalStorageState()
-                                                .equals(Environment.MEDIA_MOUNTED)) {
-                                            if (destDir == null) {
-                                                destDir = new File(
-                                                        Environment
-                                                                .getExternalStorageDirectory()
-                                                                .getPath()
-                                                                + JdehuiApplication.mDownloadPath);
-                                            }
-                                            if (destDir.exists() || destDir.mkdirs()) {
-                                                destFile = new File(
-                                                        destDir.getPath()
-                                                                + "/"
-                                                                + URLEncoder
-                                                                .encode("http://114.113.238.90:40080/upload/app/vjinke.apk"));
-                                                if (destFile.exists()
-                                                        && destFile.isFile()
-                                                        && checkApkFile(destFile
-                                                        .getPath())) {
-                                                    destFile.delete();
-                                                }
-                                            }
+                                    }
+                                }, "发现新版本,是否更新");
+                                dialog.show();
+                            } else {
+                                Toast.makeText(context, "已是最新版本", Toast.LENGTH_SHORT).show();
+                                if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
+                                    if (destDir == null) {
+                                        destDir = new File(Environment.getExternalStorageDirectory().getPath() + JdehuiApplication.mDownloadPath);
+                                    }
+                                    if (destDir.exists() || destDir.mkdirs()) {
+                                        destFile = new File(destDir.getPath() + "/" + URLEncoder.encode("http://114.113.238.90:40080/upload/app/vjinke.apk"));
+                                        if (destFile.exists() && destFile.isFile() && checkApkFile(destFile.getPath())) {
+                                            destFile.delete();
                                         }
                                     }
                                 }
                             }
                         }
                     }
-                });
+                }
+            }
+        });
     }
 
     public boolean checkApkFile(String apkFilePath) {
         boolean result = false;
         try {
             PackageManager pManager = getActivity().getPackageManager();
-            PackageInfo pInfo = pManager.getPackageArchiveInfo(apkFilePath,
-                    PackageManager.GET_ACTIVITIES);
+            PackageInfo pInfo = pManager.getPackageArchiveInfo(apkFilePath, PackageManager.GET_ACTIVITIES);
             if (pInfo == null) {
                 result = false;
             } else {
@@ -445,4 +431,5 @@ public class MoreFragment extends Fragment implements View.OnClickListener {
         }
         return result;
     }
+
 }

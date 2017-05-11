@@ -83,6 +83,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         if (intent != null) {
             int tab = intent.getIntExtra("tab", 0);
             setSelect(tab);
+//            requestBulletinUnreadCount();
         }
     }
 
@@ -206,6 +207,12 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         mTvProduct.setTextColor(Color.parseColor("#999999"));
         mTvService.setTextColor(Color.parseColor("#999999"));
         mTvMore.setTextColor(Color.parseColor("#999999"));
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        requestBulletinUnreadCount();
     }
 
     @Override
@@ -361,6 +368,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         if (requestCode == AssetFragment.ASSET_REQUEST_CODE) {
 //			initData();
             tab_asset.initData();
+        } else  {
+//            tab_more.initData();
+            requestBulletinUnreadCount();
         }
     }
 

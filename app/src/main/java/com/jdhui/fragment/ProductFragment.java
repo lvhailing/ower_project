@@ -33,6 +33,8 @@ import com.jdhui.mould.BaseParams;
 import com.jdhui.mould.BaseRequester;
 import com.jdhui.mould.HtmlRequest;
 import com.jdhui.mould.types.MouldList;
+import com.jdhui.uitls.DESUtil;
+import com.jdhui.uitls.PreferenceUtil;
 import com.jdhui.view.MyListView;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.assist.ImageScaleType;
@@ -126,14 +128,7 @@ public class ProductFragment extends Fragment implements View.OnClickListener, C
     }
 
     private void initData() {
-        options = new DisplayImageOptions.Builder()
-                .showImageForEmptyUri(R.drawable.banner_one)
-                .showImageOnFail(R.drawable.banner_one)
-                .resetViewBeforeLoading(true).cacheOnDisc(true)
-                .imageScaleType(ImageScaleType.EXACTLY)
-                .bitmapConfig(Bitmap.Config.RGB_565)
-                .considerExifParams(true)
-                .displayer(new FadeInBitmapDisplayer(300)).build();
+        options = new DisplayImageOptions.Builder().showImageForEmptyUri(R.drawable.banner_one).showImageOnFail(R.drawable.banner_one).resetViewBeforeLoading(true).cacheOnDisc(true).imageScaleType(ImageScaleType.EXACTLY).bitmapConfig(Bitmap.Config.RGB_565).considerExifParams(true).displayer(new FadeInBitmapDisplayer(300)).build();
 
         requestCycleIndex();
     }
@@ -238,11 +233,19 @@ public class ProductFragment extends Fragment implements View.OnClickListener, C
                 startActivity(i_insurance);
                 break;
             case R.id.ll_fragment_product_notice: //公告的点击监听
+                String userId = null;
+                try {
+                    userId = DESUtil.decrypt(PreferenceUtil.getUserId());
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
                 if (productIndexBean != null) {
                     Intent i_web = new Intent(context, WebActivity.class);
                     i_web.putExtra("type", WebActivity.WEBTYPE_NOTICE_DETAILS);
                     i_web.putExtra("id", productIndexBean.getBulletin().getId());
                     i_web.putExtra("title", "详情");
+                    i_web.putExtra("uid", userId);
                     startActivity(i_web);
                 }
                 break;

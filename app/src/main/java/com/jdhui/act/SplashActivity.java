@@ -174,8 +174,7 @@ public class SplashActivity extends FragmentActivity {
                 indicator_imgs[i].setBackgroundResource(R.drawable.indicator);
             }
             // 改变当前背景图片为：选中
-            indicator_imgs[position]
-                    .setBackgroundResource(R.drawable.indicator_focused);
+            indicator_imgs[position].setBackgroundResource(R.drawable.indicator_focused);
 //			if(position==2){
 //				btn.setVisibility(View.VISIBLE);
 //				btn.setClickable(true);
@@ -195,22 +194,19 @@ public class SplashActivity extends FragmentActivity {
             switch (msg.what) {
                 case LOGIN:
                     if (PreferenceUtil.isGestureChose()) {
-                        Intent i = new Intent(SplashActivity.this,
-                                GestureVerifyActivity.class);
+                        Intent i = new Intent(SplashActivity.this, GestureVerifyActivity.class);
                         i.putExtra("from", ApplicationConsts.ACTIVITY_SPLASH);
                         i.putExtra("title", "手势密码登录");
                         i.putExtra("message", "请画出手势密码解锁");
                         startActivity(i);
                     } else {
-                        Intent iMain = new Intent(SplashActivity.this,
-                                MainActivity.class);
+                        Intent iMain = new Intent(SplashActivity.this, MainActivity.class);
                         startActivity(iMain);
                     }
                     finish();
                     break;
                 case NOLOGIN:
-                    Intent iLogin = new Intent(SplashActivity.this,
-                            LoginActivity.class);
+                    Intent iLogin = new Intent(SplashActivity.this, LoginActivity.class);
                 /*Intent iLogin= new Intent(SplashActivity.this,
                         MainActivity.class);*/
                     iLogin.putExtra("tomain", "6");
@@ -226,8 +222,7 @@ public class SplashActivity extends FragmentActivity {
                         //是否做过合格投资者判定  false:未做合格投资者判定 true:做过合格投资者判定
                         if (PreferenceUtil.getIsInvestor()) {
                             if (PreferenceUtil.isGestureChose()) {
-                                Toast.makeText(SplashActivity.this, "您还没有设置手势密码，请先设置手势密码",
-                                        Toast.LENGTH_LONG).show();
+                                Toast.makeText(SplashActivity.this, "您还没有设置手势密码，请先设置手势密码", Toast.LENGTH_LONG).show();
                                 Intent i_nopwd = new Intent();
                                 i_nopwd.putExtra("comeflag", 0);
                                 //控制登录后没有设置手势密码，点击设置手势密码的返回，跳到主页
@@ -236,8 +231,7 @@ public class SplashActivity extends FragmentActivity {
                                 i_nopwd.setClass(SplashActivity.this, GestureEditActivity.class);
                                 startActivity(i_nopwd);
                             } else {
-                                Intent i_Main = new Intent(SplashActivity.this,
-                                        MainActivity.class);
+                                Intent i_Main = new Intent(SplashActivity.this, MainActivity.class);
                                 startActivity(i_Main);
                             }
                         } else {
@@ -312,13 +306,10 @@ public class SplashActivity extends FragmentActivity {
      * @return
      */
     private boolean isFirstEnter(Context context, String className) {
-        if (context == null || className == null
-                || "".equalsIgnoreCase(className)) {
+        if (context == null || className == null || "".equalsIgnoreCase(className)) {
             return false;
         }
-        String mResultStr = context.getSharedPreferences(
-                SHAREDPREFERENCES_NAME, Context.MODE_PRIVATE).getString(
-                KEY_GUIDE_ACTIVITY, "");// 取得所有类名 如 com.my.MainActivity
+        String mResultStr = context.getSharedPreferences(SHAREDPREFERENCES_NAME, Context.MODE_PRIVATE).getString(KEY_GUIDE_ACTIVITY, "");// 取得所有类名 如 com.my.MainActivity
         if (mResultStr.equalsIgnoreCase("false")) {
             return false;
         } else {
