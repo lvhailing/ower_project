@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -61,7 +62,7 @@ import static android.app.Activity.RESULT_OK;
  * 底部导航---更多
  */
 public class MoreFragment extends Fragment implements View.OnClickListener {
-    public final static int MORE_REQUEST_CODE = 1001;
+//    public final static int MORE_REQUEST_CODE = 1001;
     private View view;
     private RelativeLayout rl_account_info, rl_notice, rl_contact_us, mLayoutAboutUs, rl_service_clauses, rl_agreement, rl_check_version, rl_feed_back, rl_version_number;
     private TextView mTvName, tv_user_phone;
@@ -155,7 +156,7 @@ public class MoreFragment extends Fragment implements View.OnClickListener {
             case R.id.rl_notice:  //君德公告；
                 Intent i_notice = new Intent(context, NoticeActivity.class);
 //                startActivity(i_notice);
-                startActivityForResult(i_notice, MORE_REQUEST_CODE);
+                startActivityForResult(i_notice, 1000);
                 break;
             case R.id.rl_contact_us: // 联系我们
                 CallServiceDialog dialog = new CallServiceDialog(getActivity(), new CallServiceDialog.OnCallServiceChanged() {
@@ -209,8 +210,17 @@ public class MoreFragment extends Fragment implements View.OnClickListener {
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == MORE_REQUEST_CODE) {
+        if (requestCode == 1000) {
             requestBulletinUnreadCount();
+        }
+    }
+
+
+    public void synchroData(int num) {
+        if (num == 3) {
+            iv_circle_red.setVisibility(View.VISIBLE);
+        } else {
+            iv_circle_red.setVisibility(View.GONE);
         }
     }
 
@@ -218,6 +228,8 @@ public class MoreFragment extends Fragment implements View.OnClickListener {
     public void onResume() {
         super.onResume();
         requestMoreInfoData();
+        requestBulletinUnreadCount();
+//        Log.i("hhh","moreFragment--onResume：调用接口了");
     }
 
     /**
@@ -234,10 +246,13 @@ public class MoreFragment extends Fragment implements View.OnClickListener {
                 ResultRedDot2B bulletinUnreadCount = (ResultRedDot2B) params.result;
                 String unreadCount = bulletinUnreadCount.getNum();
                 int result = Integer.parseInt(unreadCount);
+                MainActivity mActivity = (MainActivity) getActivity();
                 if (bulletinUnreadCount != null && !TextUtils.isEmpty(unreadCount) && result > 0) {
                     iv_circle_red.setVisibility(View.VISIBLE);
-                } else if (bulletinUnreadCount != null && !TextUtils.isEmpty(unreadCount) && result == 0) {
+                    mActivity.freshBulletinUnreadCount(1);
+                } else {
                     iv_circle_red.setVisibility(View.GONE);
+                    mActivity.freshBulletinUnreadCount(2);
                 }
             }
         });

@@ -11,6 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginRight="20dp"
+        android:layout_marginLeft="4dp"
         android:orientation="vertical">
 
         <ImageView
@@ -19,7 +20,7 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:src="@drawable/shape_circle_red"
-            android:visibility="gone"/>
+            android:visibility="visible"/>
 
         <RelativeLayout
             android:id="@+id/rl_notice_title"
@@ -28,23 +29,12 @@
             android:layout_toRightOf="@id/iv_circle_red"
             android:layout_margin="6dp">
 
-            <!--<TextView
-                android:id="@+id/tv_flag"
-                android:layout_width="33dp"
-                android:layout_height="16dp"
-                android:layout_centerVertical="true"
-                android:background="@drawable/shape_bg_unread_red"
-                android:gravity="center"
-                android:text="未读"
-                android:textColor="@color/white"
-                android:textSize="12sp"/>-->
-
             <TextView
                 android:id="@+id/tv_notice_item_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="5dp"
+                android:layout_marginLeft="4dp"
                 android:layout_marginRight="5dp"
                 android:layout_toLeftOf="@id/id_notice_item_tv_time"
                 android:layout_toRightOf="@id/tv_flag"
@@ -71,11 +61,10 @@
             android:ellipsize="end"
             android:maxLines="2"
             android:paddingBottom="10dp"
-            android:paddingLeft="10dp"
+           android:layout_marginLeft="10dp"
             android:paddingRight="10dp"
             android:text="新消息通知内容"
             android:textColor="@color/gray"/>
-
     </RelativeLayout>
 
     <ImageView
@@ -85,5 +74,4 @@
         android:layout_centerVertical="true"
         android:layout_marginRight="10dp"
         android:src="@mipmap/img_arrow_right"/>
-
 </RelativeLayout>

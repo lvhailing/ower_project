@@ -149,10 +149,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_toRightOf="@id/tv_notice"
-                    android:layout_marginLeft="3dp"
+                    android:layout_marginLeft="13dp"
                     android:layout_centerVertical="true"
                     android:src="@drawable/shape_circle_red"
-                    android:visibility="visible"/>
+                    android:visibility="gone"/>
 
                 <ImageView
                     android:layout_width="wrap_content"

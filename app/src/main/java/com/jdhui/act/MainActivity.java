@@ -10,6 +10,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageView;
@@ -66,6 +67,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     private ServiceFragment tab_service; //服务
     private MoreFragment tab_more; //更多
     private ImageView mIvCircleRed;  // 小红点 （有未读新公告时显示）
+    private int result;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,7 +85,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         if (intent != null) {
             int tab = intent.getIntExtra("tab", 0);
             setSelect(tab);
-//            requestBulletinUnreadCount();
         }
     }
 
@@ -131,6 +132,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             }
         };
         mViewPager.setAdapter(mAdapter);
+        mViewPager.setOffscreenPageLimit(3);
         mViewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
 
             @Override
@@ -160,6 +162,15 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     private void setSelect(int i) {
         setTab(i);
         mViewPager.setCurrentItem(i);
+        requestBulletinUnreadCount();
+
+        if (result > 0 && i == 3) {
+            tab_more.synchroData(3);
+//            Log.i("hhh", "有公告");
+        } else {
+//            Log.i("hhh", "暂无公告");
+
+        }
     }
 
     private void initData() {
@@ -213,6 +224,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     public void onResume() {
         super.onResume();
         requestBulletinUnreadCount();
+        Log.i("hhh", "Main--onresume：调用接口了！");
     }
 
     @Override
@@ -304,9 +316,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 }
                 ResultRedDot2B bulletinUnreadCount = (ResultRedDot2B) params.result;
                 String unreadCount = bulletinUnreadCount.getNum();
-                int result = Integer.parseInt(unreadCount);
+                result = Integer.parseInt(unreadCount);
                 if (bulletinUnreadCount != null && !TextUtils.isEmpty(unreadCount) && result > 0) {
                     mIvCircleRed.setVisibility(View.VISIBLE);
+                    tab_more.synchroData(3);
                 } else {
                     mIvCircleRed.setVisibility(View.GONE);
                 }
@@ -362,16 +375,24 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         }
     }
 
+    public void freshBulletinUnreadCount(int num) {
+        if (num == 1) {
+            mIvCircleRed.setVisibility(View.VISIBLE);
+        } else {
+            mIvCircleRed.setVisibility(View.GONE);
+        }
+    }
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == AssetFragment.ASSET_REQUEST_CODE) {
 //			initData();
             tab_asset.initData();
-        } else  {
-//            tab_more.initData();
+        } /*else  {
+            tab_more.initData();
             requestBulletinUnreadCount();
-        }
+        }*/
     }
 
     @Override
