@@ -166,10 +166,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
         if (result > 0 && i == 3) {
             tab_more.synchroData(3);
-//            Log.i("hhh", "有公告");
-        } else {
-//            Log.i("hhh", "暂无公告");
-
         }
     }
 
@@ -224,7 +220,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     public void onResume() {
         super.onResume();
         requestBulletinUnreadCount();
-        Log.i("hhh", "Main--onresume：调用接口了！");
+//        Log.i("hhh", "Main--onresume：调用接口了！");
     }
 
     @Override
