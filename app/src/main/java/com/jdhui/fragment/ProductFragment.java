@@ -157,7 +157,7 @@ public class ProductFragment extends Fragment implements View.OnClickListener, C
     }
 
     /**
-     * 模拟请求轮播图网络数据
+     * 请求轮播图数据
      */
     private void requestData() {
         cycleAdapter = new CycleAdapter(context, productcycleBean, options);
@@ -182,7 +182,7 @@ public class ProductFragment extends Fragment implements View.OnClickListener, C
     }
 
     /**
-     * 模拟请求热销产品网络数据
+     * 请求热销产品数据
      */
     private void initHotProductData() {
         if (!TextUtils.isEmpty(productIndexBean.getBulletin().getTopic())) {
@@ -262,6 +262,7 @@ public class ProductFragment extends Fragment implements View.OnClickListener, C
         }
     }
 
+    // 请求最新公告和热销产品 数据
     private void requestProductIndex() {
         HtmlRequest.getProductIndex(context, new BaseRequester.OnRequestListener() {
             @Override
@@ -280,6 +281,7 @@ public class ProductFragment extends Fragment implements View.OnClickListener, C
         });
     }
 
+    // 请求轮播图数据
     private void requestCycleIndex() {
         HtmlRequest.getCycleIndex(context, new BaseRequester.OnRequestListener() {
             @Override

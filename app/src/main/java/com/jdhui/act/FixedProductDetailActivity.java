@@ -33,9 +33,9 @@ public class FixedProductDetailActivity extends BaseActivity implements View.OnC
     private LinearLayout ll_fixed_product_detail_rengoujine; //认购金额
     private LinearLayout ll_fixed_product_detail_yujishouyi; //预计收益
 
-    private TextView tv_fixed_product_detail_touzifanwei;
-    private TextView tv_fixed_product_detail_fengkongcuoshi;
-    private TextView tv_fixed_product_detail_touziliangdian;
+    private TextView tv_fixed_product_detail_touzifanwei; //投资范围
+    private TextView tv_fixed_product_detail_fengkongcuoshi; // 投资措施
+    private TextView tv_fixed_product_detail_touziliangdian; // 投资亮点
     private ImageView iv_back;
 
     private TextView tv_fixed_product_detail_more_info;
