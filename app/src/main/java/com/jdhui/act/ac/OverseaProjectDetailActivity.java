@@ -19,6 +19,7 @@ import com.jdhui.bean.mybean.OverseaProjectDetail3B;
 import com.jdhui.mould.BaseParams;
 import com.jdhui.mould.BaseRequester;
 import com.jdhui.mould.HtmlRequest;
+import com.jdhui.view.TitleBar;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
 import java.util.ArrayList;
@@ -67,27 +68,27 @@ public class OverseaProjectDetailActivity extends BaseActivity implements View.O
         initData();
     }
 
-//    private void initTopTitle() {
-//        TitleBar title = (TitleBar) findViewById(R.id.rl_title);
-//        title.showLeftImg(true);
-//        title.setTitle(getResources().getString(R.string.title_null)).setLogo(R.drawable.icons, false).setIndicator(R.drawable.back).setCenterText(getResources()
-//             .getString(R.string.title_oversea_project_detail)).showMore(false).setOnActionListener(new TitleBar.OnActionListener() {
-//
-//            @Override
-//            public void onMenu(int id) {
-//            }
-//
-//            @Override
-//            public void onBack() {
-//                finish();
-//            }
-//
-//            @Override
-//            public void onAction(int id) {
-//
-//            }
-//        });
-//    }
+    private void initTopTitle() {
+        TitleBar title = (TitleBar) findViewById(R.id.titlebar);
+        title.showLeftImg(true);
+        title.setTitle(getResources().getString(R.string.title_null)).setLogo(R.drawable.icons, false).setIndicator(R.drawable.back).setCenterText(getResources()
+             .getString(R.string.title_oversea_project_detail)).showMore(false).setOnActionListener(new TitleBar.OnActionListener() {
+
+            @Override
+            public void onMenu(int id) {
+            }
+
+            @Override
+            public void onBack() {
+                finish();
+            }
+
+            @Override
+            public void onAction(int id) {
+
+            }
+        });
+    }
 
     private void initView() {
         pid = getIntent().getStringExtra("pid");

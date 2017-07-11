@@ -47,27 +47,27 @@ public class OverseaProjectListActivity extends BaseActivity implements View.OnC
         initData();
     }
 
-//    private void initTopTitle() {
-//        TitleBar title = (TitleBar) findViewById(R.id.rl_title);
-//        title.showLeftImg(true);
-//        title.setTitle(getResources().getString(R.string.title_null)).setLogo(R.drawable.icons, false).setIndicator(R.drawable.back)
-//             .setCenterText(getResources().getString(R.string.title_oversea_project)).showMore(false).setOnActionListener(new TitleBar.OnActionListener() {
-//
-//            @Override
-//            public void onMenu(int id) {
-//            }
-//
-//            @Override
-//            public void onBack() {
-//                finish();
-//            }
-//
-//            @Override
-//            public void onAction(int id) {
-//
-//            }
-//        });
-//    }
+    private void initTopTitle() {
+        TitleBar title = (TitleBar) findViewById(R.id.titlebar);
+        title.showLeftImg(true);
+        title.setTitle(getResources().getString(R.string.title_null)).setLogo(R.drawable.icons, false).setIndicator(R.drawable.back)
+             .setCenterText(getResources().getString(R.string.title_oversea_project)).showMore(false).setOnActionListener(new TitleBar.OnActionListener() {
+
+            @Override
+            public void onMenu(int id) {
+            }
+
+            @Override
+            public void onBack() {
+                finish();
+            }
+
+            @Override
+            public void onAction(int id) {
+
+            }
+        });
+    }
 
     private void initView() {
         vs = (ViewSwitcher) findViewById(R.id.vs);
