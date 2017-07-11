@@ -4,9 +4,9 @@
     android:layout_height="fill_parent"
     android:orientation="vertical" >
 
-   <!-- <include
+    <include
         android:id="@+id/rl_title"
-        layout="@layout/titlelayout_btn" />-->
+        layout="@layout/titlelayout_btn" />
 
     <include
         android:layout_width="fill_parent"

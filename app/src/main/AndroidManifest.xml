@@ -235,6 +235,14 @@
             android:name=".act.ac.SubBookingShipActivity"
             android:screenOrientation="portrait"/>
 
+        <activity
+            android:name=".act.ac.OverseaProjectListActivity"
+            android:screenOrientation="portrait"/>
+
+        <activity
+            android:name=".act.ac.OverseaProjectDetailActivity"
+            android:screenOrientation="portrait"/>
+
         <!-- 通道保持服务 -->
         <service
             android:name="com.alibaba.sdk.android.push.ChannelService"

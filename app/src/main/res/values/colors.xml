@@ -14,7 +14,7 @@
     <color name="bg_gray_gray">#CCCCCC</color>
     <color name="bg_gray_liner">#e6e6e6</color>
     <color name="bg_up_line">#f99917</color>
-
+    <color name="bg_line">#cfcfcf</color>
 
     <!-- 按钮色值 -->
     <color name="white">#fefefefe</color>
@@ -33,8 +33,8 @@
     <color name="title_bgnew">#ff3392c9</color>
     <color name="transparent">#00000000</color>
     <color name="green">#ff55ccaa</color>
-     <color name="green1">#090</color>
-     <color name="green2">#009900</color>
+    <color name="green1">#090</color>
+    <color name="green2">#009900</color>
     <color name="pink">#ffff4c4c</color>
     <color name="orange">#BC8856</color>
     <color name="orange_d">#ffc97300</color>
@@ -51,6 +51,7 @@
     <color name="txt_black">#FF333333</color>
     <color name="txt_orange">#ffff9911</color>
     <color name="txt_gray">#ffbbbbbb</color>
+    <color name="txt_light_gray">#b3b3b3</color>
     <color name="txt_gray_d">#ff666666</color>
     <color name="txt_white">#fff9f9f9</color>
     <color name="txt_orange_light">#F91</color>
@@ -66,7 +67,7 @@
     <color name="web_gray">#f0f2f5</color>
 
     <color name="holo_purple">#ff3392c9</color>
-	<color name="holo_purple2">#FFEDEDED</color>
+    <color name="holo_purple2">#FFEDEDED</color>
 
     <!--资产-->
 

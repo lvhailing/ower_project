@@ -39,6 +39,87 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+            <!-- 豪华邮轮 -->
+            <RelativeLayout
+                android:id="@+id/rl_liner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="120dip">
+
+                <ImageView
+                    android:id="@+id/iv_liner"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="fitXY"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="25dp"
+                    android:text="豪华邮轮游"
+                    android:textColor="@color/white"
+                    android:textSize="24sp"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="20dp"
+                    android:paddingBottom="15dp"
+                    android:text="豪华邮轮游预约"
+                    android:textColor="@color/txt_black"
+                    android:textSize="20sp"
+                    android:textStyle="bold"/>
+            </RelativeLayout>
+
+            <View
+                style="@style/v_line_style"
+                android:layout_alignParentBottom="true"/>
+
+            <!-- 海外资产配置 -->
+            <RelativeLayout
+                android:id="@+id/rl_oversea_asset"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="120dip">
+
+                <ImageView
+                    android:id="@+id/iv_asset"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="fitXY"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="25dp"
+                    android:text="海外资产配置"
+                    android:textColor="@color/white"
+                    android:textSize="24sp"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="20dp"
+                    android:paddingBottom="15dp"
+                    android:text="海外房产预约"
+                    android:textColor="@color/txt_black"
+                    android:textSize="20sp"
+                    android:textStyle="bold"/>
+            </RelativeLayout>
+
+            <View
+                style="@style/v_line_style"
+                android:layout_alignParentBottom="true"/>
+
+            <!-- 绿通就医 -->
             <RelativeLayout
                 android:id="@+id/rl_hospital"
                 android:layout_width="match_parent"
@@ -80,6 +161,7 @@
                 style="@style/v_line_style"
                 android:layout_alignParentBottom="true"/>
 
+            <!-- 基因检测 -->
             <RelativeLayout
                 android:id="@+id/rl_genetic"
                 android:layout_width="match_parent"
@@ -120,6 +202,7 @@
                 style="@style/v_line_style"
                 android:layout_alignParentBottom="true"/>
 
+            <!-- 高尔夫（暂时去掉了） -->
             <RelativeLayout
                 android:id="@+id/rl_golf"
                 android:layout_width="match_parent"
@@ -164,8 +247,10 @@
 
             <View
                 style="@style/v_line_style"
-                android:layout_alignParentBottom="true"/>
+                android:layout_alignParentBottom="true"
+                android:visibility="gone"/>
 
+            <!-- 公务机包机 -->
             <RelativeLayout
                 android:id="@+id/rl_plane"
                 android:layout_width="match_parent"
@@ -204,42 +289,6 @@
             <View
                 style="@style/v_line_style"
                 android:layout_alignParentBottom="true"/>
-
-            <RelativeLayout
-                android:id="@+id/rl_liner"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:minHeight="120dip">
-
-                <ImageView
-                    android:id="@+id/iv_liner"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:scaleType="fitXY"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="25dp"
-                    android:text="豪华邮轮游"
-                    android:textColor="@color/white"
-                    android:textSize="24sp"
-                    android:textStyle="bold"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginRight="20dp"
-                    android:paddingBottom="15dp"
-                    android:text="豪华邮轮游预约"
-                    android:textColor="@color/txt_black"
-                    android:textSize="20sp"
-                    android:textStyle="bold"/>
-            </RelativeLayout>
-
         </LinearLayout>
 
     </ScrollView>

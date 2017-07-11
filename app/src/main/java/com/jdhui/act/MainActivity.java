@@ -68,6 +68,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     private MoreFragment tab_more; //更多
     private ImageView mIvCircleRed;  // 小红点 （有未读新公告时显示）
     private int result;
+    private String unreadCount;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -311,9 +312,11 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                     return;
                 }
                 ResultRedDot2B bulletinUnreadCount = (ResultRedDot2B) params.result;
-                String unreadCount = bulletinUnreadCount.getNum();
-                result = Integer.parseInt(unreadCount);
-                if (bulletinUnreadCount != null && !TextUtils.isEmpty(unreadCount) && result > 0) {
+                if (bulletinUnreadCount != null) {
+                    unreadCount = bulletinUnreadCount.getNum();
+                    result = Integer.parseInt(unreadCount);
+                }
+                if (!TextUtils.isEmpty(unreadCount) && result > 0) {
                     mIvCircleRed.setVisibility(View.VISIBLE);
                     tab_more.synchroData(3);
                 } else {

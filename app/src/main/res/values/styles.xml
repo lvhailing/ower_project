@@ -41,7 +41,7 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">@dimen/title_bar_height_new</item>
         <item name="android:layout_alignParentTop">true</item>
-        <item name="android:background">@color/orange</item>
+        <item name="android:background">@color/red4</item>
     </style>
 
     <style name="TitleBar_Menu_New">
@@ -50,8 +50,8 @@
     </style>
 
     <style name="TitleBar_LeftButton">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">@dimen/title_bar_height_new</item>
+        <item name="android:layout_width">30dp</item>
+        <item name="android:layout_height">30dp</item>
         <item name="android:gravity">center</item>
     </style>
 

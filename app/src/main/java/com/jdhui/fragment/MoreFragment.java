@@ -62,7 +62,7 @@ import static android.app.Activity.RESULT_OK;
  * 底部导航---更多
  */
 public class MoreFragment extends Fragment implements View.OnClickListener {
-//    public final static int MORE_REQUEST_CODE = 1001;
+    //    public final static int MORE_REQUEST_CODE = 1001;
     private View view;
     private RelativeLayout rl_account_info, rl_notice, rl_contact_us, mLayoutAboutUs, rl_service_clauses, rl_agreement, rl_check_version, rl_feed_back, rl_version_number;
     private TextView mTvName, tv_user_phone;
@@ -74,12 +74,12 @@ public class MoreFragment extends Fragment implements View.OnClickListener {
     private RelativeLayout mRlServiceOrder;  //服务预约；
     private RelativeLayout mRlnews;  //君德快讯；
     private ImageView iv_circle_red; // 小红点 （有未读新公告时显示）
+    private String unreadCount;
+    private int result;
 
-
-    /**
-     * 图片保存SD卡位置
-     */
+    // 图片保存SD卡位置
     private final static String IMG_PATH = Environment.getExternalStorageDirectory() + "/jundehui/imgs/";
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -244,10 +244,12 @@ public class MoreFragment extends Fragment implements View.OnClickListener {
                     return;
                 }
                 ResultRedDot2B bulletinUnreadCount = (ResultRedDot2B) params.result;
-                String unreadCount = bulletinUnreadCount.getNum();
-                int result = Integer.parseInt(unreadCount);
+                if (bulletinUnreadCount != null) {
+                    unreadCount = bulletinUnreadCount.getNum();
+                    result = Integer.parseInt(unreadCount);
+                }
                 MainActivity mActivity = (MainActivity) getActivity();
-                if (bulletinUnreadCount != null && !TextUtils.isEmpty(unreadCount) && result > 0) {
+                if (!TextUtils.isEmpty(unreadCount) && result > 0) {
                     iv_circle_red.setVisibility(View.VISIBLE);
                     mActivity.freshBulletinUnreadCount(1);
                 } else {

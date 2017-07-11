@@ -34,7 +34,6 @@
     <string name="set_gesture_pattern_jump">跳过</string>
     <string name="reset_gesture_code">重新设置</string>
 
-
     <!-- 修改手势密码 -->
     <string name="changegesture_loginpwd">请输入登录密码</string>
     <string name="changephone_phone">手机号：</string>
@@ -57,7 +56,6 @@
     <string name="findpd_phoneauth">验证码</string>
     <string name="signup_time">秒后重新获取</string>
 
-
     <!-- title -->
     <string name="title_login">登录</string>
     <string name="title_changegesture">修改手势密码</string>
@@ -74,5 +72,9 @@
     <string name="tellphone_num">01052297188</string>
     <string name="tellphone_num_format">010-5229 7188</string>
     <string name="tellphone_num_format_name">客服热线: 010-5229 7188</string>
+
+    <string name="title_null"></string>
+    <string name="title_oversea_project">海外项目</string>
+    <string name="title_oversea_project_detail">项目详情</string>
 
 </resources>

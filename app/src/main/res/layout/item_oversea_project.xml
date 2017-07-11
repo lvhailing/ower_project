@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="180dp"
+    android:minHeight="180dp"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="10dp">
+
+        <ImageView
+            android:id="@+id/iv_oversea_house"
+            android:layout_width="match_parent"
+            android:layout_height="180dp"
+            android:background="@mipmap/bg_oversea_project_normal"
+            android:scaleType="fitXY"/>
+
+        <RelativeLayout
+            android:id="@+id/rl_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:background="@color/bg_black_trans"
+            android:paddingLeft="12dp"
+            android:paddingRight="12dp">
+
+            <TextView
+                android:id="@+id/tv_oversea_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:text="帕诺拉普吉岛海景公寓 (PANORA)"
+                android:textColor="@color/white"
+                android:textSize="16sp"/>
+
+            <TextView
+                android:id="@+id/tv_oversea_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_oversea_name"
+                android:layout_marginBottom="9dp"
+                android:layout_marginTop="9dp"
+                android:text="80万元起面积"
+                android:textColor="@color/white"
+                android:textSize="13sp"/>
+
+            <TextView
+                android:id="@+id/tv_oversea_area"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_oversea_name"
+                android:layout_marginBottom="9dp"
+                android:layout_marginLeft="18dp"
+                android:layout_marginTop="9dp"
+                android:layout_toRightOf="@id/tv_oversea_price"
+                android:text="80至230㎡"
+                android:textColor="@color/white"
+                android:textSize="13sp"/>
+        </RelativeLayout>
+    </RelativeLayout>
+</LinearLayout>

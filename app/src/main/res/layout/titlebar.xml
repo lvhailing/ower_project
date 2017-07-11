@@ -11,7 +11,6 @@
         android:layout_height="match_parent"
         android:layout_alignParentLeft="true"
         android:layout_marginLeft="10dp"
-        android:background="@drawable/title_selector"
         android:gravity="center_vertical"
         android:orientation="horizontal" >
 
@@ -25,10 +24,9 @@
         <ImageView
             android:id="@+id/top_title_leftbtn"
             style="@style/TitleBar_LeftButton"
-            android:layout_width="@dimen/title_bar_width_new"
             android:scaleType="fitXY"
             android:singleLine="true"
-            android:src="@drawable/icons"
+            android:src="@drawable/icon_logo"
             android:textSize="16sp" />
 
         <TextView
@@ -113,6 +111,5 @@
         android:gravity="center_vertical"
         android:orientation="horizontal" >
     </LinearLayout>
-
 
 </RelativeLayout>
