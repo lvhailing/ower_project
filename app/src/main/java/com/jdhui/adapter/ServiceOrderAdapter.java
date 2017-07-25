@@ -11,6 +11,7 @@ import com.jdhui.R;
 import com.jdhui.bean.mybean.Service3B;
 import com.jdhui.mould.types.MouldList;
 
+// 更多--服务预约列表 对应的adapter
 public class ServiceOrderAdapter extends BaseAdapter {
     private Context context;
     private MouldList<Service3B> list;
@@ -51,7 +52,7 @@ public class ServiceOrderAdapter extends BaseAdapter {
             holder = (Holder) convertView.getTag();
         }
 
-        //serviceItems: 绿通就医：hospitalBooking、基因检测：geneticBooking、高尔夫球场：golfBooking  公务机包机：airplaneBooking  豪华游轮:luxuryShipBooking
+        //serviceItems: 绿通就医：hospitalBooking、基因检测：geneticBooking、高尔夫球场：golfBooking  公务机包机：airplaneBooking  豪华游轮:luxuryShipBooking 海外置业房产:houseBooking 海外医疗:overseasBooking
         String str = list.get(position).getServiceItems();
         String name;
         if (str.equals("hospitalBooking")) {
@@ -62,6 +63,10 @@ public class ServiceOrderAdapter extends BaseAdapter {
             name = "高尔夫球场";
         } else if (str.equals("luxuryShipBooking")) {
             name = "豪华邮轮游";
+        } else if (str.equals("houseBooking")) {
+            name = "海外资产配置";
+        } else if (str.equals("overseasBooking")) {
+            name = "海外医疗";
         } else {
             name = "公务机包机";
         }

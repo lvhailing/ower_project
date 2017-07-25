@@ -15,7 +15,7 @@
             android:id="@+id/iv_oversea_house"
             android:layout_width="match_parent"
             android:layout_height="180dp"
-            android:background="@mipmap/bg_oversea_project_normal"
+            android:background="@mipmap/bg_show_img_empty"
             android:scaleType="fitXY"/>
 
         <RelativeLayout

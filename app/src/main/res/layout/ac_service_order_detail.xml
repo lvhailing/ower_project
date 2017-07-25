@@ -4,7 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/bg_gray"
-    android:orientation="vertical"
     android:paddingBottom="10dp">
 
     <RelativeLayout
@@ -84,6 +83,21 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/ll_order_project"
+                    style="@style/product_linearlayout"
+                    android:visibility="gone">
+
+                    <TextView
+                        style="@style/product_text_detail_lt"
+                        android:text="预约项目:"/>
+
+                    <TextView
+                        android:id="@+id/tv_order_project"
+                        style="@style/product_text_detail_rt"
+                        android:text=""/>
+                </LinearLayout>
+
+                <LinearLayout
                     android:id="@+id/ll_order_status"
                     style="@style/product_linearlayout">
 
@@ -109,7 +123,7 @@
                     <TextView
                         android:id="@+id/tv_travel_name"
                         style="@style/product_text_detail_rt"
-                        android:text="aaaa"/>
+                        android:text=""/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -124,7 +138,7 @@
                     <TextView
                         android:id="@+id/tv_order_name"
                         style="@style/product_text_detail_rt"
-                        android:text="aaaa"/>
+                        android:text=""/>
                 </LinearLayout>
 
 
@@ -140,7 +154,7 @@
                     <TextView
                         android:id="@+id/tv_sex"
                         style="@style/product_text_detail_rt"
-                        android:text="aaaa"/>
+                        android:text=""/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -380,6 +394,21 @@
 
                     <TextView
                         android:id="@+id/tv_desc_illness"
+                        style="@style/product_text_detail_rt"
+                        android:text=""/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_financial_planner"
+                    style="@style/product_linearlayout"
+                    android:visibility="gone">
+
+                    <TextView
+                        style="@style/product_text_detail_lt"
+                        android:text="专属理财师:"/>
+
+                    <TextView
+                        android:id="@+id/tv_financial_planner"
                         style="@style/product_text_detail_rt"
                         android:text=""/>
                 </LinearLayout>

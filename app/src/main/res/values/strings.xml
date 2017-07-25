@@ -56,7 +56,7 @@
     <string name="findpd_phoneauth">验证码</string>
     <string name="signup_time">秒后重新获取</string>
 
-    <!-- title -->
+    <!-- all titles -->
     <string name="title_login">登录</string>
     <string name="title_changegesture">修改手势密码</string>
     <string name="title_logintv">登录君德汇</string>
@@ -65,6 +65,7 @@
     <string name="title_gestureset">设置手势密码</string>
     <string name="title_gestureunlock">请解锁</string>
     <string name="title_changepwd">修改密码</string>
+    <string name="title_overseas_medical">海外医疗</string>
 
     <string name="feed_back_content">请输入您的意见及建议，我们将为您不断改进！</string>
 
@@ -76,5 +77,42 @@
     <string name="title_null"></string>
     <string name="title_oversea_project">海外项目</string>
     <string name="title_oversea_project_detail">项目详情</string>
+
+    <!-- 服务模块 -->
+    <string name="title_liner">豪华邮轮游</string>
+    <string name="title_liner_order">豪华邮轮游预约</string>
+
+    <string name="title_oversea_asset">海外资产配置</string>
+    <string name="title_oversea_house_order">海外房产预约</string>
+
+    <string name="title_hospital">绿通就医</string>
+    <string name="title_hospital_order">掌上预约国内专家号</string>
+
+    <string name="title_genetic">基因检测</string>
+    <string name="title_genetic_order">预约顶级医疗服务</string>
+
+    <string name="title_golf">高尔夫球场地</string>
+    <string name="title_golf_order">高尔夫球场地预约</string>
+
+    <string name="title_plane">公务机包机</string>
+    <string name="title_plane_order">公务机包机预约</string>
+
+    <string name="title_overseas_medical_service">海外医疗</string>
+    <string name="title_overseas_medical_order">海外医疗预约</string>
+    
+    <!-- 海外医疗页项目标题 -->
+    <string name="title_health_check">海外体检</string>
+    <string name="title_oversea_hospital">海外就医</string>
+    <string name="title_international_consultation">国际远程会诊</string>
+
+    <!-- 更多模块中的服务预约列表-->
+    <string name="title_service_order_all"> 全部</string>
+    <string name="title_service_order_hospital"> 绿通就医</string>
+    <string name="title_service_order_genetic"> 基因检测</string>
+    <string name="title_service_order_golf"> 高尔夫球场地</string>
+    <string name="title_service_order_airplane"> 公务机包机</string>
+    <string name="title_service_order_liner">豪华邮轮游</string>
+    <string name="title_service_order_oversea_asset"> 海外资产配置</string>
+    <string name="title_service_order_overseas_medical"> 海外医疗</string>
 
 </resources>

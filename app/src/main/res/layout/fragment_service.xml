@@ -44,6 +44,7 @@
                 android:id="@+id/rl_liner"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
                 android:minHeight="120dip">
 
                 <ImageView
@@ -53,26 +54,12 @@
                     android:scaleType="fitXY"/>
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="25dp"
-                    android:text="豪华邮轮游"
-                    android:textColor="@color/white"
-                    android:textSize="24sp"
-                    android:textStyle="bold"/>
+                    style="@style/allServices_title"
+                    android:text="@string/title_liner"/>
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginRight="20dp"
-                    android:paddingBottom="15dp"
-                    android:text="豪华邮轮游预约"
-                    android:textColor="@color/txt_black"
-                    android:textSize="20sp"
-                    android:textStyle="bold"/>
+                    style="@style/allServices_order"
+                    android:text="@string/title_liner_order"/>
             </RelativeLayout>
 
             <View
@@ -93,26 +80,12 @@
                     android:scaleType="fitXY"/>
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="25dp"
-                    android:text="海外资产配置"
-                    android:textColor="@color/white"
-                    android:textSize="24sp"
-                    android:textStyle="bold"/>
+                    style="@style/allServices_title"
+                    android:text="@string/title_oversea_asset"/>
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginRight="20dp"
-                    android:paddingBottom="15dp"
-                    android:text="海外房产预约"
-                    android:textColor="@color/txt_black"
-                    android:textSize="20sp"
-                    android:textStyle="bold"/>
+                    style="@style/allServices_order"
+                    android:text="@string/title_oversea_house_order"/>
             </RelativeLayout>
 
             <View
@@ -124,37 +97,21 @@
                 android:id="@+id/rl_hospital"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
                 android:minHeight="120dip">
 
                 <ImageView
                     android:id="@+id/iv_hospital"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:scaleType="fitXY"
-                    />
+                    android:scaleType="fitXY"/>
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="25dp"
-                    android:text="绿通就医"
-                    android:textColor="@color/white"
-                    android:textSize="24sp"
-                    android:textStyle="bold"/>
+                    style="@style/allServices_title"
+                    android:text="@string/title_hospital"/>
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginRight="20dp"
-                    android:paddingBottom="15dp"
-                    android:text="掌上预约国内专家号"
-                    android:textColor="@color/txt_black"
-                    android:textSize="20sp"
-                    android:textStyle="bold"/>
+                    style="@style/allServices_order"
+                    android:text="@string/title_hospital_order"/>
             </RelativeLayout>
 
             <View
@@ -176,26 +133,12 @@
                     />
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="25dp"
-                    android:text="基因检测"
-                    android:textColor="@color/white"
-                    android:textSize="24sp"
-                    android:textStyle="bold"/>
+                    style="@style/allServices_title"
+                    android:text="@string/title_genetic"/>
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginRight="20dp"
-                    android:paddingBottom="15dp"
-                    android:text="预约顶级医疗服务"
-                    android:textColor="@color/txt_black"
-                    android:textSize="20sp"
-                    android:textStyle="bold"/>
+                    style="@style/allServices_order"
+                    android:text="@string/title_genetic_order"/>
             </RelativeLayout>
 
             <View
@@ -208,8 +151,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:minHeight="120dip"
-                android:visibility="gone"
-                >
+                android:visibility="gone">
 
                 <ImageView
                     android:id="@+id/iv_golf"
@@ -218,30 +160,12 @@
                     android:scaleType="fitXY"/>
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginRight="20dp"
-                    android:paddingBottom="15dp"
-                    android:text="高尔夫球场地预约"
-                    android:textColor="@color/txt_black"
-                    android:textSize="20sp"
-                    android:textStyle="bold"/>
+                    style="@style/allServices_title"
+                    android:text="string/title_golf"/>
 
                 <TextView
-                    android:id="@+id/textView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentTop="true"
-                    android:layout_marginLeft="21dp"
-                    android:layout_marginStart="21dp"
-                    android:layout_marginTop="25dp"
-                    android:text="高尔夫球场地"
-                    android:textColor="@color/white"
-                    android:textSize="24sp"
+                    style="@style/allServices_order"
+                    android:text="@string/title_golf_order"
                     android:textStyle="bold"/>
             </RelativeLayout>
 
@@ -264,31 +188,40 @@
                     android:scaleType="fitXY"/>
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="25dp"
-                    android:text="公务机包机"
-                    android:textColor="@color/white"
-                    android:textSize="24sp"
-                    android:textStyle="bold"/>
+                    style="@style/allServices_title"
+                    android:text="@string/title_plane"/>
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginRight="20dp"
-                    android:paddingBottom="15dp"
-                    android:text="公务机包机预约"
-                    android:textColor="@color/txt_black"
-                    android:textSize="20sp"
-                    android:textStyle="bold"/>
+                    style="@style/allServices_order"
+                    android:text="@string/title_plane_order"/>
             </RelativeLayout>
 
             <View
                 style="@style/v_line_style"
                 android:layout_alignParentBottom="true"/>
+
+            <!-- 海外医疗 -->
+            <RelativeLayout
+                android:id="@+id/rl_overseas_medical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="120dip">
+
+                <ImageView
+                    android:id="@+id/iv_overseas_medical"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="fitXY"/>
+
+                <TextView
+                    style="@style/allServices_title"
+                    android:text="@string/title_overseas_medical_service"/>
+
+                <TextView
+                    style="@style/allServices_order"
+                    android:text="@string/title_overseas_medical_order"/>
+            </RelativeLayout>
+
         </LinearLayout>
 
     </ScrollView>

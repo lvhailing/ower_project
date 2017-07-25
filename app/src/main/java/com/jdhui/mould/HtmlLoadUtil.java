@@ -36,6 +36,8 @@ import com.jdhui.bean.mybean.GolfList0B;
 import com.jdhui.bean.mybean.LinerDetail0B;
 import com.jdhui.bean.mybean.LinerInfo0B;
 import com.jdhui.bean.mybean.LinerList0B;
+import com.jdhui.bean.mybean.OverseaProjectDetail0B;
+import com.jdhui.bean.mybean.OverseaProjectList0B;
 import com.jdhui.bean.mybean.Product0B;
 import com.jdhui.bean.mybean.ProductDetail0B;
 import com.jdhui.bean.mybean.Service0B;
@@ -43,6 +45,7 @@ import com.jdhui.bean.mybean.ServiceDetail0B;
 import com.jdhui.bean.mybean.ServicePicture0B;
 import com.jdhui.bean.mybean.SubBookingShip0B;
 import com.jdhui.bean.mybean.SubGeneticTesting0B;
+import com.jdhui.bean.mybean.SubOverseaProject0B;
 import com.jdhui.bean.mybean.SubmitBookingGolf0B;
 import com.jdhui.bean.mybean.SubmitBookingHospital0B;
 import com.jdhui.uitls.DESUtil;
@@ -574,4 +577,36 @@ public class HtmlLoadUtil {
         String b = "";
         return getResult(b);
     }
+
+    /**
+     * 服务--展示海外项目列表
+     *
+     * @return
+     */
+    public static String getOverseaList(String page) {
+        OverseaProjectList0B b = new OverseaProjectList0B(page);
+        return getResult(b);
+    }
+
+    /**
+     * 服务--展示海外项目详情
+     *
+     * @return
+     */
+    public static String getOverseaDetail(String pid) {
+        OverseaProjectDetail0B b = new OverseaProjectDetail0B(pid);
+        return getResult(b);
+    }
+
+    /**
+     * 服务--提交基因检测预约
+     *
+     * @return
+     */
+    public static String subOverseaProject(String client, String clientPhone, String houseId, String financial) {
+        SubOverseaProject0B b = new SubOverseaProject0B(client, clientPhone, houseId, financial);
+        return getResult(b);
+    }
+
+
 }

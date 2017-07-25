@@ -36,6 +36,7 @@ public class OverseaProjectListActivity extends BaseActivity implements View.OnC
     private MouldList<OverseaProjectList3B> totalList = new MouldList<>();
     private int currentPage = 1;    //当前页
     private ViewSwitcher vs;
+    private ImageView iv_back;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,29 +48,30 @@ public class OverseaProjectListActivity extends BaseActivity implements View.OnC
         initData();
     }
 
-    private void initTopTitle() {
-        TitleBar title = (TitleBar) findViewById(R.id.titlebar);
-        title.showLeftImg(true);
-        title.setTitle(getResources().getString(R.string.title_null)).setLogo(R.drawable.icons, false).setIndicator(R.drawable.back)
-             .setCenterText(getResources().getString(R.string.title_oversea_project)).showMore(false).setOnActionListener(new TitleBar.OnActionListener() {
-
-            @Override
-            public void onMenu(int id) {
-            }
-
-            @Override
-            public void onBack() {
-                finish();
-            }
-
-            @Override
-            public void onAction(int id) {
-
-            }
-        });
-    }
+//    private void initTopTitle() {
+//        TitleBar title = (TitleBar) findViewById(R.id.titlebar);
+//        title.showLeftImg(true);
+//        title.setTitle(getResources().getString(R.string.title_null)).setLogo(R.drawable.icons, false).setIndicator(R.drawable.back)
+//             .setCenterText(getResources().getString(R.string.title_oversea_project)).showMore(false).setOnActionListener(new TitleBar.OnActionListener() {
+//
+//            @Override
+//            public void onMenu(int id) {
+//            }
+//
+//            @Override
+//            public void onBack() {
+//                finish();
+//            }
+//
+//            @Override
+//            public void onAction(int id) {
+//
+//            }
+//        });
+//    }
 
     private void initView() {
+        iv_back = (ImageView) findViewById(R.id.iv_back);
         vs = (ViewSwitcher) findViewById(R.id.vs);
         TextView tv_empty = (TextView) findViewById(R.id.tv_empty);
         ImageView img_empty = (ImageView) findViewById(R.id.img_empty);
@@ -79,13 +81,15 @@ public class OverseaProjectListActivity extends BaseActivity implements View.OnC
         listView = (PullToRefreshListView) findViewById(R.id.listview);
         //PullToRefreshListView  上滑加载更多及下拉刷新
         ViewUtils.slideAndDropDown(listView);
+
+        iv_back.setOnClickListener(this);
     }
 
     private void initData() {
         mAdapter = new OverseaProjectAdapter(this, totalList);
         listView.setAdapter(mAdapter);
 
-//        requestListData();
+        requestListData();
 
         listView.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ListView>() {
             public void onRefresh(PullToRefreshBase<ListView> refreshView) {
@@ -96,7 +100,7 @@ public class OverseaProjectListActivity extends BaseActivity implements View.OnC
                     //上划加载下一页
                     currentPage++;
                 }
-//                requestListData();
+                requestListData();
             }
         });
 
@@ -114,73 +118,72 @@ public class OverseaProjectListActivity extends BaseActivity implements View.OnC
     @Override
     protected void onResume() {
         super.onResume();
-        currentPage = 1;
+//        currentPage = 1;
 //        requestListData();
-        listView.getRefreshableView().setSelection(0);
+//        listView.getRefreshableView().setSelection(0);
+    }
+
+
+    // 获取海外项目列表数据
+    private void requestListData() {
+        try {
+            HtmlRequest.getOverseaListData(OverseaProjectListActivity.this, currentPage + "", new BaseRequester.OnRequestListener() {
+                        @Override
+                        public void onRequestFinished(BaseParams params) {
+                            if (params.result == null) {
+                                vs.setDisplayedChild(1);
+                                Toast.makeText(OverseaProjectListActivity.this, "加载失败，请确认网络通畅", Toast.LENGTH_LONG).show();
+                                listView.postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        listView.onRefreshComplete();
+                                    }
+                                }, 1000);
+                                return;
+                            }
+
+                            OverseaProjectList2B data = (OverseaProjectList2B) params.result;
+                            MouldList<OverseaProjectList3B> everyList = data.getList();
+
+                            if ((everyList == null || everyList.size() == 0) && currentPage != 1) {
+                                Toast.makeText(OverseaProjectListActivity.this, "已显示全部", Toast.LENGTH_SHORT).show();
+                            }
+
+                            if (currentPage == 1) {
+                                //刚进来时 加载第一页数据，或下拉刷新 重新加载数据 。这两种情况之前的数据都清掉
+                                totalList.clear();
+                            }
+                            totalList.addAll(everyList);
+                            if (totalList.size() == 0) {
+                                vs.setDisplayedChild(1);
+                            } else {
+                                vs.setDisplayedChild(0);
+                            }
+                            //刷新数据
+                            mAdapter.notifyDataSetChanged();
+
+                            listView.postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+                                    listView.onRefreshComplete();
+                                }
+                            }, 1000);
+                        }
+
+                    }
+
+            );
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void onClick(View v) {
-
+        switch (v.getId()) {
+            case R.id.iv_back:
+                finish();
+                break;
+        }
     }
-
-    // 获取海外项目列表数据
-//    private void requestListData() {
-//        HashMap<String, Object> param = new HashMap<>();
-//        param.put("page", currentPage + "");
-//        param.put("userId", userId);
-//
-//        try {
-//            HtmlRequest.getOverseaListData(mContext, param, new BaseRequester.OnRequestListener() {
-//                        @Override
-//                        public void onRequestFinished(BaseParams params) {
-//                            if (params.result == null) {
-//                                vs.setDisplayedChild(1);
-//                                Toast.makeText(mContext, "加载失败，请确认网络通畅", Toast.LENGTH_LONG).show();
-//                                listView.postDelayed(new Runnable() {
-//                                    @Override
-//                                    public void run() {
-//                                        listView.onRefreshComplete();
-//                                    }
-//                                }, 1000);
-//                                return;
-//                            }
-//
-//                            OverseaProjectList2B data = (OverseaProjectList2B) params.result;
-//                            MouldList<OverseaProjectList3B> everyList = data.getList();
-//
-//                            if ((everyList == null || everyList.size() == 0) && currentPage != 1) {
-//                                Toast.makeText(mContext, "已显示全部", Toast.LENGTH_SHORT).show();
-//                            }
-//
-//                            if (currentPage == 1) {
-//                                //刚进来时 加载第一页数据，或下拉刷新 重新加载数据 。这两种情况之前的数据都清掉
-//                                totalList.clear();
-//                            }
-//                            totalList.addAll(everyList);
-//                            if (totalList.size() == 0) {
-//                                vs.setDisplayedChild(1);
-//                            } else {
-//                                vs.setDisplayedChild(0);
-//                            }
-//                            //刷新数据
-//                            mAdapter.notifyDataSetChanged();
-//
-//                            listView.postDelayed(new Runnable() {
-//                                @Override
-//                                public void run() {
-//                                    listView.onRefreshComplete();
-//                                }
-//                            }, 1000);
-//                        }
-//
-//                    }
-//
-//            );
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//    }
-
-
 }

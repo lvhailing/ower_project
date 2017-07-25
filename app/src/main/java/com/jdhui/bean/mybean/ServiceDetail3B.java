@@ -8,11 +8,11 @@ import com.jdhui.mould.types.MouldList;
  * 更多--服务预约详情  后台接口返回的数据
  */
 public class ServiceDetail3B implements IMouldType {
-    private String serviceItems; //服务类型，绿通就医：hospitalBooking、基因检测：geneticBooking、高尔夫球场：golfBooking  公务机包机：airplaneBooking
+    private String serviceItems; //服务类型（绿通就医：hospitalBooking、基因检测：geneticBooking、高尔夫球场：golfBooking  公务机包机：airplaneBooking  豪华游轮：luxuryShipBooking  海外资产配置：houseBooking）
     private String bookingClient; //绿通就医和基因检测的预约人
     private String securityNum; //社保号码
     private String clientIdNo; //绿通就医预约人身份证
-    private String clientPhone; //联系电话  (四种类型服务共用)
+    private String clientPhone; //联系电话  (六种类型服务共用)
     private String bookingTime; // 绿通就医、高尔夫球场的预约时间；基因检测的提交时间
     private String bakTimeOne; //备份时间一
     private String bakTimeTwo; //备份时间二
@@ -23,18 +23,23 @@ public class ServiceDetail3B implements IMouldType {
     private String userAddress; //客户地址
     private String userAge; //客户年龄
     private String userSex; //客户性别
-    private String bookingStatus; //预约状态 (四种类型服务共用)
-    private String bookingRemark; //驳回原因  (四种类型服务共用)
+    private String bookingStatus; //预约状态 (六种类型服务共用)
+    private String bookingRemark; //驳回原因  (六种类型服务共用)
     private String golfName; //场馆名称
     private String peersOne; //同行人1
     private String PeersTwo; //同行人2
     private String golfRight; //权限
     private String idNo; //高尔夫球场的身份证
-    private String createTime; //绿通就医、高尔夫球场的提交时间
+    private String createTime; //绿通就医、高尔夫球场、海外资产配置的提交时间
     private MouldList<PlaneMarchListBean> airplaneMarch;   //行程列表
 
     private String clientName; //邮轮 预约人
     private String routeName; //游行名称
+    private String client; // 海外置业房产预约人
+    private String financial; // 专属理财师
+    private String overseasType; // 海外医疗项目类型（体检：examination  就医：hospital   会诊：consultation）
+
+
 
     private String idType;      // idType  String     idCard: 身份证号  passport：护照  agencyCode：机构代码
 
@@ -252,6 +257,30 @@ public class ServiceDetail3B implements IMouldType {
 
     public void setRouteName(String routeName) {
         this.routeName = routeName;
+    }
+
+    public String getClient() {
+        return client;
+    }
+
+    public void setClient(String client) {
+        this.client = client;
+    }
+
+    public String getFinancial() {
+        return financial;
+    }
+
+    public void setFinancial(String financial) {
+        this.financial = financial;
+    }
+
+    public String getOverseasType() {
+        return overseasType;
+    }
+
+    public void setOverseasType(String overseasType) {
+        this.overseasType = overseasType;
     }
 }
 

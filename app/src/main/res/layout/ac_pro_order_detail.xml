@@ -42,9 +42,9 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="15dp"
             android:layout_marginRight="60dp"
+            android:layout_toLeftOf="@+id/id_arrow"
             android:text="君享20号现金管理投资基金"
             android:textColor="@color/txt_orange_gray"
-            android:layout_toLeftOf="@+id/id_arrow"
             android:textSize="16sp"/>
 
         <ImageView
@@ -99,6 +99,7 @@
                 style="@style/product_text_detail_rt"
                 android:text=""/>
         </LinearLayout>
+
         <LinearLayout
             style="@style/product_linearlayout">
 
@@ -137,6 +138,7 @@
                 style="@style/product_text_detail_rt"
                 android:text=""/>
         </LinearLayout>
+
         <LinearLayout
             style="@style/product_linearlayout">
 
@@ -149,6 +151,7 @@
                 style="@style/product_text_detail_rt"
                 android:text=""/>
         </LinearLayout>
+
         <LinearLayout
             style="@style/product_linearlayout">
 

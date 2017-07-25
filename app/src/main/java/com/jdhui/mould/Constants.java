@@ -177,6 +177,21 @@ public class Constants {
      */
     public static final String TASK_TYPE_TAB_MORE = String.valueOf(index++);
 
+    /***
+     *  服务 -- 海外项目列表
+     */
+    public static final String TASK_TYPE_PROJECT_LIST = String.valueOf(index++);
+
+    /***
+     *  服务 -- 海外项目详情
+     */
+    public static final String TASK_TYPE_PROJECT_DETAIL = String.valueOf(index++);
+
+    /***
+     * 服务--提交海外项目预约
+     */
+    public static final String TASK_TYPE_BOOKING_BOOKINGHOUSE_ADD = String.valueOf(index++);
+
 
     /***
      * 保险预约

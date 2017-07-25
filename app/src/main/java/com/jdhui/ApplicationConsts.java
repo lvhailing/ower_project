@@ -17,14 +17,14 @@ public class ApplicationConsts {
 //	public static final String URL_DEBUG ="http://192.168.1.106:9999/junde-hui-app/";
 
     // 张殿洋
-//    public static final String URL_DEBUG = "http://192.168.1.138:9999/junde-hui-app/";
+    public static final String URL_DEBUG = "http://192.168.1.138:9999/junde-hui-app/";
 
     //张亚磊
 //	public static final String URL_DEBUG ="http://192.168.1.193:9996/junde-hui-app/";
 
 
     //测试环境
-	public static final String URL_DEBUG ="http://192.168.1.86:82/";
+//	public static final String URL_DEBUG ="http://192.168.1.86:82/";
 
 // 张殿阳
 //	public static final String URL_DEBUG ="http://192.168.1.138:9999/junde-hui-app/";
@@ -234,7 +234,7 @@ public class ApplicationConsts {
     /**
      * 更多--服务预约列表
      */
-    public static final String URL_SERVICE_ORDER = EC_HOST + "/service/bookingList/list";
+    public static final String URL_SERVICE_ORDER = EC_HOST + "service/bookingList/list";
 
     /**
      * 服务预约详情
@@ -420,6 +420,22 @@ public class ApplicationConsts {
      * 更多模块 是否显示小红点
      */
     public static final String URL_TAB_MORE = EC_HOST + "website/bulletin/getBulletinUnreadCount";
+
+    /**
+     * 服务 -- 海外项目列表
+     */
+    public static final String URL_PROJECT_LIST = EC_HOST + "project/list";
+
+    /**
+     * 服务 -- 海外项目详情
+     */
+    public static final String URL_PROJECT_DETAIL = EC_HOST + "project/detail";
+
+    /**
+     * 提交海外项目预约
+     */
+    public static final String URL_SERVICE_BOOKINGHOUSE_ADD = EC_HOST + "service/bookingHouse/add";
+
 
 
     // 手势密码点的状态

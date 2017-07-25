@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.provider.Settings;
-import android.support.v4.app.FragmentActivity;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,13 +19,12 @@ import com.jdhui.wheel.widget.CustomProgressDialog;
 
 import java.util.ArrayList;
 
-public class BaseActivity extends FragmentActivity implements NetListener {
+public class BaseActivity extends AbsBaseActivity implements NetListener {
 
 //	private TitleBar title;
 	// private MyProgressDialog progressDialog;
 	private CustomProgressDialog dialog;
 	public static ArrayList<String> arrayList = new ArrayList<String>();
-	private BaseActivity mContext;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -34,8 +32,6 @@ public class BaseActivity extends FragmentActivity implements NetListener {
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.base);
 		JdehuiApplication apl = (JdehuiApplication) getApplicationContext();
-		mContext = this;
-
 		apl.registReceiver();
 
 		addMe();

@@ -5,7 +5,6 @@ import android.animation.AnimatorListenerAdapter;
 import android.animation.ObjectAnimator;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
@@ -39,7 +38,15 @@ public class ServiceOrderActivity extends BaseActivity implements View.OnClickLi
     private View v_hidden; //隐藏的类型或状态布局背景
     private LinearLayout ll_hidden; //隐藏的类型布局
     private RelativeLayout rl_type; //全部 按钮
-    private TextView tv_0, tv_1, tv_2, tv_3, tv_4, tv_5;  //类型的下面的text  tv_0：全部   tv_1：绿通就医  tv_2：基因检测  tv_3：高尔夫球场地   tv_4：公务机包机  tv_5:豪华邮轮游
+    //类型下面的text
+    private TextView tv_0;  //  全部
+    private TextView tv_1; //  绿通就医
+    private TextView tv_2; //  基因检测
+    private TextView tv_3; //  高尔夫球场地
+    private TextView tv_4; //  公务机包机
+    private TextView tv_5; //  豪华邮轮游
+    private TextView tv_6; //  海外资产配置
+    private TextView tv_7; // 海外医疗
 
     private int currentPage = 1;    //当前页
     private String type;    //当前服务类型
@@ -70,6 +77,8 @@ public class ServiceOrderActivity extends BaseActivity implements View.OnClickLi
         tv_3 = (TextView) findViewById(R.id.tv_3);
         tv_4 = (TextView) findViewById(R.id.tv_4);
         tv_5 = (TextView) findViewById(R.id.tv_5);
+        tv_6 = (TextView) findViewById(R.id.tv_6);
+        tv_7 = (TextView) findViewById(R.id.tv_7);
 
         //PullToRefreshListView  上滑加载更多及下拉刷新
         ViewUtils.slideAndDropDown(listView);
@@ -84,6 +93,8 @@ public class ServiceOrderActivity extends BaseActivity implements View.OnClickLi
         tv_3.setOnClickListener(this);
         tv_4.setOnClickListener(this);
         tv_5.setOnClickListener(this);
+        tv_6.setOnClickListener(this);
+        tv_7.setOnClickListener(this);
     }
 
     private void initData() {
@@ -111,7 +122,7 @@ public class ServiceOrderActivity extends BaseActivity implements View.OnClickLi
                 String type = totalList.get(position - 1).getServiceItems();
                 if (type.equals("airplaneBooking")) { //公务机包机预约详情
                     intent = new Intent(ServiceOrderActivity.this, ServicePlaneDetailActivity.class);
-                } else {  //绿通就医，基因检测，高尔夫球场，豪华邮轮游等预约详情
+                } else {  //绿通就医，基因检测，高尔夫球场，豪华邮轮游，海外资产配置，海外医疗等预约详情
                     intent = new Intent(ServiceOrderActivity.this, ServiceOrderDetailActivity.class);
                 }
                 intent.putExtra("serviceItems", type);
@@ -129,11 +140,12 @@ public class ServiceOrderActivity extends BaseActivity implements View.OnClickLi
     }
 
     /**
-     *  请求服务列表数据
+     * 请求服务列表数据
      */
     private void requestData() {
         try {
-            HtmlRequest.getServiceOrderList(ServiceOrderActivity.this, type, currentPage + "", new BaseRequester.OnRequestListener() {
+//            Log.i("bb", "当前页是：" + currentPage);
+            HtmlRequest.getServiceOrderListData(ServiceOrderActivity.this, type, currentPage + "", new BaseRequester.OnRequestListener() {
                 @Override
                 public void onRequestFinished(BaseParams params) {
                     if (params.result == null) {
@@ -235,6 +247,7 @@ public class ServiceOrderActivity extends BaseActivity implements View.OnClickLi
                 break;
             case R.id.tv_0:  //全部
                 currentPage = 1;
+//                Log.i("bb", "点全部时：" + currentPage);
                 type = "";
                 mTvType.setText("全部");
                 iv_select.setBackgroundResource(R.drawable.triangle_down_fill);
@@ -244,6 +257,7 @@ public class ServiceOrderActivity extends BaseActivity implements View.OnClickLi
                 break;
             case R.id.tv_1:  //绿通就医
                 currentPage = 1;
+//                Log.i("bb", "点绿通就医：" + currentPage);
                 type = "hospitalBooking";
                 mTvType.setText("绿通就医");
                 iv_select.setBackgroundResource(R.drawable.triangle_down_fill);
@@ -282,6 +296,26 @@ public class ServiceOrderActivity extends BaseActivity implements View.OnClickLi
                 currentPage = 1;
                 type = "luxuryShipBooking";
                 mTvType.setText("豪华邮轮游");
+                iv_select.setBackgroundResource(R.drawable.triangle_down_fill);
+                closeShopping();
+                totalList.clear();
+                requestData();
+                break;
+            case R.id.tv_6:  // 海外资产
+                currentPage = 1;
+//                Log.i("bb", "海外资产：" + currentPage);
+                type = "houseBooking";
+                mTvType.setText("海外资产配置");
+                iv_select.setBackgroundResource(R.drawable.triangle_down_fill);
+                closeShopping();
+                totalList.clear();
+                requestData();
+                break;
+            case R.id.tv_7:  // 海外医疗
+                currentPage = 1;
+//                Log.i("bb", "海外医疗：" + currentPage);
+                type = "overseasBooking";
+                mTvType.setText("海外医疗");
                 iv_select.setBackgroundResource(R.drawable.triangle_down_fill);
                 closeShopping();
                 totalList.clear();

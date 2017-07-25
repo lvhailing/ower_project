@@ -36,6 +36,9 @@ public class WebActivity extends Activity implements View.OnClickListener {
     public static final String WEBTYPE_SERVERS = "servers"; // 服务条款
     public static final String WEBTYPE_AGREEMENTS = "agreements"; // 隐私协议
     public static final String WEBTYPE_VERSION_NUMBER = "version_number"; // 版本号
+    public static final String WEBTYPE_HEALTH_CHECK = "health_check"; // 海外体检
+    public static final String WEBTYPE_OVERSEA_HOSPITAL = "oversea_hospital"; // 海外就医
+    public static final String WEBTYPE_INTERNATIONAL_CONSULTATION = "international_consultation"; // 国际远程会诊
 
     public String title;
     private TextView tv_web_title;
@@ -110,6 +113,15 @@ public class WebActivity extends Activity implements View.OnClickListener {
             tv_web_title.setText(getIntent().getExtras().getString("title"));
         } else if (type.equals(WEBTYPE_VERSION_NUMBER)) {//版本号
             url = ApplicationConsts.URL_VERSION_NUMBER + SystemInfo.sVersionName;
+            tv_web_title.setText(getIntent().getExtras().getString("title"));
+        }else if (type.equals(WEBTYPE_HEALTH_CHECK)) { // 海外体检
+//            url = ApplicationConsts.URL_VERSION_NUMBER + SystemInfo.sVersionName;
+            tv_web_title.setText(getIntent().getExtras().getString("title"));
+        }else if (type.equals(WEBTYPE_OVERSEA_HOSPITAL)) { // 海外就医
+//            url = ApplicationConsts.URL_VERSION_NUMBER + SystemInfo.sVersionName;
+            tv_web_title.setText(getIntent().getExtras().getString("title"));
+        }else if (type.equals(WEBTYPE_INTERNATIONAL_CONSULTATION)) { // 国际远程会诊
+//            url = ApplicationConsts.URL_VERSION_NUMBER + SystemInfo.sVersionName;
             tv_web_title.setText(getIntent().getExtras().getString("title"));
         }
 

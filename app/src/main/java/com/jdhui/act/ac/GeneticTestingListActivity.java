@@ -3,7 +3,6 @@ package com.jdhui.act.ac;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
@@ -16,7 +15,6 @@ import com.jdhui.R;
 import com.jdhui.act.BaseActivity;
 import com.jdhui.adapter.GeneticTestingListAdapter;
 import com.jdhui.bean.mybean.GeneticTestingDetail2B;
-import com.jdhui.bean.mybean.GeneticTestingDetail3B;
 import com.jdhui.bean.mybean.GeneticTestingList2B;
 import com.jdhui.bean.mybean.GeneticTestingList3B;
 import com.jdhui.dialog.GeneticTestingDialog;
@@ -32,7 +30,7 @@ import com.jdhui.uitls.ViewUtils;
 public class GeneticTestingListActivity extends BaseActivity implements View.OnClickListener {
     private PullToRefreshListView listView;
     private GeneticTestingListAdapter mAdapter;
-    private ImageView mBtnBack;
+    private ImageView iv_back;
     private MouldList<GeneticTestingList3B> totalList = new MouldList<>();
     private int currentPage = 1;    //当前页
     private GeneticTestingDetail2B detail2B;
@@ -47,13 +45,13 @@ public class GeneticTestingListActivity extends BaseActivity implements View.OnC
     }
 
     private void initView() {
-        mBtnBack = (ImageView) findViewById(R.id.iv_back);
+        iv_back = (ImageView) findViewById(R.id.iv_back);
         listView = (PullToRefreshListView) findViewById(R.id.listview);
 
         //PullToRefreshListView  上滑加载更多及下拉刷新
         ViewUtils.slideAndDropDown(listView);
 
-        mBtnBack.setOnClickListener(this);
+        iv_back.setOnClickListener(this);
     }
 
     private void initData() {

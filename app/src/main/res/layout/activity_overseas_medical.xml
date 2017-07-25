@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_gray"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/rl_service_type"
+        android:layout_width="match_parent"
+        android:layout_height="51dp"
+        android:background="@color/red4">
+
+        <ImageView
+            android:id="@+id/iv_back"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:padding="5dp"
+            android:src="@drawable/back"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="@string/title_overseas_medical"
+            android:textColor="@color/white"
+            android:textSize="18sp"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_overseas_medical_check"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/white"
+        android:layout_marginTop="8dp"
+        android:minHeight="50dp">
+
+        <ImageView
+            android:id="@+id/iv_overseas_medical_arrow1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="12dp"
+            android:src="@drawable/arrow"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="5dip"
+            android:layout_toLeftOf="@id/iv_overseas_medical_arrow1"
+            android:text="@string/title_health_check"
+            android:textColor="#333"
+            android:textSize="16sp"/>
+
+        <View
+            style="@style/v_line_style"
+            android:layout_alignParentBottom="true"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_overseas_medical_hospital"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/white"
+        android:minHeight="50dp">
+
+        <ImageView
+            android:id="@+id/iv_overseas_medical_arrow2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="12dp"
+            android:src="@drawable/arrow"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="5dip"
+            android:layout_toLeftOf="@id/iv_overseas_medical_arrow2"
+            android:text="@string/title_oversea_hospital"
+            android:textColor="#333"
+            android:textSize="16sp"/>
+
+        <View
+            style="@style/v_line_style"
+            android:layout_alignParentBottom="true"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_overseas_medical_consultation"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/white"
+        android:minHeight="50dp">
+
+        <ImageView
+            android:id="@+id/iv_overseas_medical_arrow3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="12dp"
+            android:src="@drawable/arrow"/>
+
+        <TextView
+            android:id="@+id/tv_genetic_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="5dip"
+            android:layout_toLeftOf="@id/iv_overseas_medical_arrow3"
+            android:text="@string/title_international_consultation"
+            android:textColor="#333"
+            android:textSize="16sp"/>
+
+        <View
+            style="@style/v_line_style"
+            android:layout_alignParentBottom="true"/>
+    </RelativeLayout>
+</LinearLayout>

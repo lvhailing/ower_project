@@ -26,7 +26,6 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="10dp"
                 android:background="@color/white"
-                android:orientation="horizontal"
                 android:padding="10dp">
 
                 <com.jdhui.view.CircularImage
@@ -45,16 +44,15 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/id_tab_more_tv_name"
+                        android:id="@+id/tv_customer_name"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:padding="5dp"
                         android:textColor="@color/txt_gray_dark"
                         android:textSize="16sp"/>
 
-
                     <TextView
-                        android:id="@+id/tv_user_phone"
+                        android:id="@+id/tv_customer_phone"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:padding="5dp"
@@ -148,9 +146,9 @@
                     android:id="@+id/iv_circle_red"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_toRightOf="@id/tv_notice"
-                    android:layout_marginLeft="13dp"
                     android:layout_centerVertical="true"
+                    android:layout_marginLeft="13dp"
+                    android:layout_toRightOf="@id/tv_notice"
                     android:src="@drawable/shape_circle_red"
                     android:visibility="gone"/>
 
@@ -350,7 +348,7 @@
                 android:src="@drawable/tab_lines"/>
 
             <RelativeLayout
-                android:id="@+id/rl_feed_back"
+                android:id="@+id/rl_feedback"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/white"
@@ -393,7 +391,7 @@
                     android:textSize="16sp"/>
 
                 <TextView
-                    android:id="@+id/tv_version_name"
+                    android:id="@+id/tv_version_num"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_toLeftOf="@+id/iv_version"

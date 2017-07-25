@@ -243,6 +243,19 @@
             android:name=".act.ac.OverseaProjectDetailActivity"
             android:screenOrientation="portrait"/>
 
+        <activity
+            android:name=".act.ac.ProjectBookingActivity"
+            android:screenOrientation="portrait"/>
+
+        <activity
+            android:name=".act.ac.OverseasMedicalBookingActivity"
+            android:screenOrientation="portrait"/>
+
+
+
+
+
+
         <!-- 通道保持服务 -->
         <service
             android:name="com.alibaba.sdk.android.push.ChannelService"

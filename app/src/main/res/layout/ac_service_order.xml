@@ -90,7 +90,7 @@
             <TextView
                 android:id="@+id/tv_0"
                 style="@style/product_text"
-                android:text="全部"/>
+                android:text="@string/title_service_order_all"/>
 
             <View
                 style="@style/product_text_line"/>
@@ -98,7 +98,7 @@
             <TextView
                 android:id="@+id/tv_1"
                 style="@style/product_text"
-                android:text="绿通就医"/>
+                android:text="@string/title_service_order_hospital"/>
 
             <View
                 style="@style/product_text_line"/>
@@ -106,7 +106,7 @@
             <TextView
                 android:id="@+id/tv_2"
                 style="@style/product_text"
-                android:text="基因检测"/>
+                android:text="@string/title_service_order_genetic"/>
 
             <View
                 style="@style/product_text_line"/>
@@ -114,7 +114,7 @@
             <TextView
                 android:id="@+id/tv_3"
                 style="@style/product_text"
-                android:text="高尔夫球场地"
+                android:text="@string/title_service_order_golf"
                 android:visibility="gone"
                 />
 
@@ -125,7 +125,7 @@
             <TextView
                 android:id="@+id/tv_4"
                 style="@style/product_text"
-                android:text="公务机包机"/>
+                android:text="@string/title_service_order_airplane"/>
 
             <View
                 style="@style/product_text_line"/>
@@ -133,7 +133,23 @@
             <TextView
                 android:id="@+id/tv_5"
                 style="@style/product_text"
-                android:text="豪华邮轮游"/>
+                android:text="@string/title_service_order_liner"/>
+
+            <View
+                style="@style/product_text_line"/>
+
+            <TextView
+                android:id="@+id/tv_6"
+                style="@style/product_text"
+                android:text="@string/title_service_order_oversea_asset"/>
+
+            <View
+                style="@style/product_text_line"/>
+
+            <TextView
+                android:id="@+id/tv_7"
+                style="@style/product_text"
+                android:text="@string/title_service_order_overseas_medical"/>
 
         </LinearLayout>
     </RelativeLayout>

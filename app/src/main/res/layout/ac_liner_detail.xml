@@ -200,7 +200,7 @@
                         android:orientation="horizontal"
                         android:paddingBottom="15dp">
 
-                        <LinearLayout style="@style/Liner_message_Style">
+                        <LinearLayout style="@style/linerMessage">
 
                             <TextView
                                 android:id="@+id/tv_liner_starLevel_one"
@@ -220,7 +220,7 @@
                                 android:textSize="10sp"/>
                         </LinearLayout>
 
-                        <LinearLayout style="@style/Liner_message_Style">
+                        <LinearLayout style="@style/linerMessage">
 
                             <TextView
                                 android:id="@+id/tv_passgerCapacity_one"
@@ -242,7 +242,7 @@
                                 android:textSize="10sp"/>
                         </LinearLayout>
 
-                        <LinearLayout style="@style/Liner_message_Style">
+                        <LinearLayout style="@style/linerMessage">
 
                             <TextView
                                 android:id="@+id/tv_buildYear_one"
@@ -263,7 +263,7 @@
                                 android:textSize="10sp"/>
                         </LinearLayout>
 
-                        <LinearLayout style="@style/Liner_message_Style">
+                        <LinearLayout style="@style/linerMessage">
 
                             <TextView
                                 android:id="@+id/tv_tonnage_one"

@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -30,6 +31,7 @@ import java.util.HashMap;
  */
 public class OverseaProjectDetailActivity extends BaseActivity implements View.OnClickListener {
     private ScrollView scrollView;
+    private ImageView iv_back;
     private boolean isShowHouse = false; //刚进来此页面时，项目居室内容默认是不显示的
     private boolean isShowFacilities = false; //刚进来此页面时，配套设施内容默认是不显示的
     private boolean isShowLocation = false; //刚进来此页面时，地理位置内容默认是不显示的
@@ -56,44 +58,22 @@ public class OverseaProjectDetailActivity extends BaseActivity implements View.O
     private ArrayList<String> houseTypeImgList;
 
     private RelativeLayout rl_pro_house, rl_pro_facilities, rl_pro_geographic_location; // 项目居室，配套设施，地理位置布局
-
+    private Button btn_oversea_detail_submit; // 立即预约
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         baseSetContentView(R.layout.ac_oversea_project_detail);
 
-//        initTopTitle();
         initView();
         initData();
-    }
-
-    private void initTopTitle() {
-        TitleBar title = (TitleBar) findViewById(R.id.titlebar);
-        title.showLeftImg(true);
-        title.setTitle(getResources().getString(R.string.title_null)).setLogo(R.drawable.icons, false).setIndicator(R.drawable.back).setCenterText(getResources()
-             .getString(R.string.title_oversea_project_detail)).showMore(false).setOnActionListener(new TitleBar.OnActionListener() {
-
-            @Override
-            public void onMenu(int id) {
-            }
-
-            @Override
-            public void onBack() {
-                finish();
-            }
-
-            @Override
-            public void onAction(int id) {
-
-            }
-        });
     }
 
     private void initView() {
         pid = getIntent().getStringExtra("pid");
 
         scrollView = (ScrollView) findViewById(R.id.scrollView);
+        iv_back = (ImageView) findViewById(R.id.iv_back);
         iv_oversea_detail = (ImageView) findViewById(R.id.iv_oversea_detail);
         iv_project_click = (ImageView) findViewById(R.id.iv_project_click);
         iv_support_facilities_click = (ImageView) findViewById(R.id.iv_support_facilities_click);
@@ -119,13 +99,16 @@ public class OverseaProjectDetailActivity extends BaseActivity implements View.O
         ll_pro_house_photos = (LinearLayout) findViewById(R.id.ll_pro_house_photos);
         ll_support_facilities = (LinearLayout) findViewById(R.id.ll_support_facilities);
         ll_geographic_location = (LinearLayout) findViewById(R.id.ll_geographic_location);
+        btn_oversea_detail_submit = (Button) findViewById(R.id.btn_oversea_detail_submit);
 
         vp = (ViewPager) findViewById(R.id.vp);
         tv_vp_page = (TextView) findViewById(R.id.tv_vp_page);
 
+        iv_back.setOnClickListener(this);
         rl_pro_house.setOnClickListener(this);
         rl_pro_facilities.setOnClickListener(this);
         rl_pro_geographic_location.setOnClickListener(this);
+        btn_oversea_detail_submit.setOnClickListener(this);
     }
 
     private void initData() {
@@ -179,12 +162,15 @@ public class OverseaProjectDetailActivity extends BaseActivity implements View.O
     protected void onResume() {
         super.onResume();
 //        scrollView.smoothScrollTo(0, 0);
-        requestDetailData();
+//        requestDetailData();
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
+            case R.id.iv_back: // 返回
+                finish();
+                break;
             case R.id.rl_pro_house:   // 项目居室
                 if (!isShowHouse) {
                     ll_pro_house_photos.setVisibility(View.VISIBLE);
@@ -221,6 +207,11 @@ public class OverseaProjectDetailActivity extends BaseActivity implements View.O
                     iv_geographic_location_click.setBackgroundResource(R.mipmap.icon_oversea_down);
                 }
                 break;
+            case R.id.btn_oversea_detail_submit: // 立即预约
+                Intent intent = new Intent(OverseaProjectDetailActivity.this, ProjectBookingActivity.class);
+                intent.putExtra("houseId", pid);
+                startActivity(intent);
+                break;
         }
     }
 
@@ -228,19 +219,17 @@ public class OverseaProjectDetailActivity extends BaseActivity implements View.O
      * 获取海外项目详情页的数据
      */
     private void requestDetailData() {
-        HashMap<String, Object> param = new HashMap<>();
-        param.put("pid", pid);
 
-//        HtmlRequest.getOverseaDetailData(this, param, new BaseRequester.OnRequestListener() {
-//            @Override
-//            public void onRequestFinished(BaseParams params) {
-//                if (params != null) {
-//                    overseaProjectDetail = (OverseaProjectDetail2B) params.result;
-//                    if (overseaProjectDetail != null) {
-//                        setView();
-//                    }
-//                }
-//            }
-//        });
+        HtmlRequest.getOverseaDetailData(this, pid, new BaseRequester.OnRequestListener() {
+            @Override
+            public void onRequestFinished(BaseParams params) {
+                if (params != null) {
+                    overseaProjectDetail = (OverseaProjectDetail2B) params.result;
+                    if (overseaProjectDetail != null) {
+                        setView();
+                    }
+                }
+            }
+        });
     }
 }

@@ -2,6 +2,7 @@ package com.jdhui.mould;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.webkit.CookieManager;
 import android.webkit.CookieSyncManager;
 
@@ -41,6 +42,8 @@ import com.jdhui.bean.mybean.GolfList1B;
 import com.jdhui.bean.mybean.LinerDetail1B;
 import com.jdhui.bean.mybean.LinerInfo1B;
 import com.jdhui.bean.mybean.LinerList1B;
+import com.jdhui.bean.mybean.OverseaProjectDetail1B;
+import com.jdhui.bean.mybean.OverseaProjectList1B;
 import com.jdhui.bean.mybean.Product1B;
 import com.jdhui.bean.mybean.ProductDetail1B;
 import com.jdhui.bean.mybean.ResultRedDot1B;
@@ -49,6 +52,7 @@ import com.jdhui.bean.mybean.ServiceDetail1B;
 import com.jdhui.bean.mybean.ServicePicture1B;
 import com.jdhui.bean.mybean.SubBookingShip1B;
 import com.jdhui.bean.mybean.SubGeneticTesting1B;
+import com.jdhui.bean.mybean.SubOverseaProject1B;
 import com.jdhui.bean.mybean.SubmitBookingHospital1B;
 import com.jdhui.http.SimpleHttpClient;
 import com.jdhui.mould.types.IMouldType;
@@ -1294,12 +1298,12 @@ public class HtmlRequest extends BaseRequester {
      * 更多--服务预约列表
      *
      * @param context
-     * @param serviceItems 绿通就医：hospitalBooking  基因检测：geneticBooking  高尔夫球场：golfBooking  公务机包机：airplaneBooking  豪华游轮:luxuryShipBooking
+     * @param serviceItems 绿通就医：hospitalBooking  基因检测：geneticBooking  高尔夫球场：golfBooking  公务机包机：airplaneBooking  豪华游轮:luxuryShipBooking  海外资产：houseBooking
      * @param page         页数
      * @param listener
      * @return
      */
-    public static String getServiceOrderList(final Context context, String serviceItems, String page, OnRequestListener listener) {
+    public static String getServiceOrderListData(final Context context, String serviceItems, String page, OnRequestListener listener) {
         final String data = HtmlLoadUtil.getServicetOrderList(serviceItems, page);
         final String url = ApplicationConsts.URL_SERVICE_ORDER;
         String tid = registerId(Constants.TASK_TYPE_SERVICE_ORDER, url);
@@ -2557,6 +2561,7 @@ public class HtmlRequest extends BaseRequester {
                     }
                     if (result != null) {
                         String data = DESUtil.decrypt(result);
+//                        Log.i("hh", "服务背景图：" + data);
                         Gson json = new Gson();
                         ServicePicture1B b = json.fromJson(data, ServicePicture1B.class);
                         resultEncrypt(context, b.getCode());
@@ -2872,7 +2877,8 @@ public class HtmlRequest extends BaseRequester {
     }
 
     /**
-     *  更多模块是否显示小红点
+     * 更多模块是否显示小红点
+     *
      * @param context
      * @param listener
      * @return
@@ -2925,5 +2931,181 @@ public class HtmlRequest extends BaseRequester {
         });
         return tid;
     }
+
+    /**
+     * 服务-- 海外项目列表
+     *
+     * @param context
+     * @param listener
+     * @return
+     */
+    public static String getOverseaListData(final Context context, String page, OnRequestListener listener) {
+        final String data = HtmlLoadUtil.getOverseaList(page);
+        final String url = ApplicationConsts.URL_PROJECT_LIST;
+        String tid = registerId(Constants.TASK_TYPE_PROJECT_LIST, url);
+        if (tid == null) {
+            return null;
+        }
+        getTaskManager().addTask(new MouldAsyncTask(tid, buildParams(Constants.TASK_TYPE_PROJECT_LIST, context, listener, url, 0)) {
+            @Override
+            public IMouldType doTask(BaseParams params) {
+                SimpleHttpClient client = new SimpleHttpClient(context, SimpleHttpClient.RESULT_STRING);
+
+                HttpEntity entity = null;
+                try {
+                    entity = new StringEntity(data);
+                } catch (UnsupportedEncodingException e1) {
+                    e1.printStackTrace();
+                }
+
+                client.post(url, entity);
+                String result = (String) client.getResult();
+                try {
+                    if (isCancelled()) {
+                        return null;
+                    }
+                    if (result != null) {
+                        String data = DESUtil.decrypt(result);
+//                        Log.i("aaa", "海外项目列表：" + data);
+                        Gson json = new Gson();
+                        OverseaProjectList1B b = json.fromJson(data, OverseaProjectList1B.class);
+                        resultEncrypt(context, b.getCode());
+                        return b.getData();
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                } finally {
+                    unRegisterId(getTaskId());
+                }
+                return null;
+            }
+
+            @Override
+            public void onPostExecute(IMouldType result, BaseParams params) {
+                params.result = result;
+                params.sendResult();
+            }
+        });
+        return tid;
+    }
+
+    /**
+     * 服务-- 海外项目详情
+     *
+     * @param context
+     * @param listener
+     * @return
+     */
+    public static String getOverseaDetailData(final Context context, String pid, OnRequestListener listener) {
+        final String data = HtmlLoadUtil.getOverseaDetail(pid);
+        final String url = ApplicationConsts.URL_PROJECT_DETAIL;
+        String tid = registerId(Constants.TASK_TYPE_PROJECT_DETAIL, url);
+        if (tid == null) {
+            return null;
+        }
+        getTaskManager().addTask(new MouldAsyncTask(tid, buildParams(Constants.TASK_TYPE_PROJECT_DETAIL, context, listener, url, 0)) {
+            @Override
+            public IMouldType doTask(BaseParams params) {
+                SimpleHttpClient client = new SimpleHttpClient(context, SimpleHttpClient.RESULT_STRING);
+
+                HttpEntity entity = null;
+                try {
+                    entity = new StringEntity(data);
+                } catch (UnsupportedEncodingException e1) {
+                    e1.printStackTrace();
+                }
+
+                client.post(url, entity);
+                String result = (String) client.getResult();
+                try {
+                    if (isCancelled()) {
+                        return null;
+                    }
+                    if (result != null) {
+                        String data = DESUtil.decrypt(result);
+                        Log.i("aaa", "海外项目详情：" + data);
+                        Gson json = new Gson();
+                        OverseaProjectDetail1B b = json.fromJson(data, OverseaProjectDetail1B.class);
+                        resultEncrypt(context, b.getCode());
+                        return b.getData();
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                } finally {
+                    unRegisterId(getTaskId());
+                }
+                return null;
+            }
+
+            @Override
+            public void onPostExecute(IMouldType result, BaseParams params) {
+                params.result = result;
+                params.sendResult();
+            }
+        });
+        return tid;
+    }
+
+    /**
+     * 海外项目提交预约
+     *
+     * @param context
+     * @param client
+     * @param clientPhone
+     * @param houseId
+     * @param financial
+     * @param listener
+     * @return
+     */
+    public static String subOverseaProject(final Context context, String client, String clientPhone, String houseId, String financial, OnRequestListener listener) {
+        final String data = HtmlLoadUtil.subOverseaProject(client, clientPhone, houseId, financial);
+        final String url = ApplicationConsts.URL_SERVICE_BOOKINGHOUSE_ADD;
+        String tid = registerId(Constants.TASK_TYPE_BOOKING_BOOKINGHOUSE_ADD, url);
+        if (tid == null) {
+            return null;
+        }
+        getTaskManager().addTask(new MouldAsyncTask(tid, buildParams(Constants.TASK_TYPE_BOOKING_BOOKINGHOUSE_ADD, context, listener, url, 0)) {
+            @Override
+            public IMouldType doTask(BaseParams params) {
+                SimpleHttpClient client = new SimpleHttpClient(context, SimpleHttpClient.RESULT_STRING);
+
+                HttpEntity entity = null;
+                try {
+                    entity = new StringEntity(data);
+                } catch (UnsupportedEncodingException e1) {
+                    e1.printStackTrace();
+                }
+
+                client.post(url, entity);
+                String result = (String) client.getResult();
+                try {
+                    if (isCancelled()) {
+                        return null;
+                    }
+                    if (result != null) {
+                        String data = DESUtil.decrypt(result);
+                        Log.i("aaa", "海外项目提交预约：" + data);
+                        Gson json = new Gson();
+                        SubOverseaProject1B b = json.fromJson(data, SubOverseaProject1B.class);
+                        resultEncrypt(context, b.getCode());
+                        return b.getData();
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                } finally {
+                    unRegisterId(getTaskId());
+                }
+                return null;
+            }
+
+            @Override
+            public void onPostExecute(IMouldType result, BaseParams params) {
+                params.result = result;
+                params.sendResult();
+            }
+        });
+        return tid;
+    }
+
 
 }

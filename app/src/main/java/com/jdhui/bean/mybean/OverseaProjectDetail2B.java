@@ -9,7 +9,6 @@ import java.util.ArrayList;
 
 // 海外项目详情
 public class OverseaProjectDetail2B implements IMouldType {
-    private MouldList<OverseaProjectDetail3B> list;
     private String pid; // 项目编号
     private String projectImg; // 项目展示图片地址
     private String name; // 项目名字
@@ -24,16 +23,7 @@ public class OverseaProjectDetail2B implements IMouldType {
     private ArrayList<String> houseTypeImg; // 项目居室图片
     private String supportFacility; // 配套设施
     private String geographyLocation; // 地理位置
-    private String flag;
-    private String msg;
 
-    public MouldList<OverseaProjectDetail3B> getList() {
-        return list;
-    }
-
-    public void setList(MouldList<OverseaProjectDetail3B> list) {
-        this.list = list;
-    }
 
     public String getPid() {
         return pid;
@@ -147,19 +137,4 @@ public class OverseaProjectDetail2B implements IMouldType {
         this.geographyLocation = geographyLocation;
     }
 
-    public String getFlag() {
-        return flag;
-    }
-
-    public void setFlag(String flag) {
-        this.flag = flag;
-    }
-
-    public String getMsg() {
-        return msg;
-    }
-
-    public void setMsg(String msg) {
-        this.msg = msg;
-    }
 }
