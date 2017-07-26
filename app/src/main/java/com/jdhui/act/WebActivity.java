@@ -11,17 +11,19 @@ import android.webkit.JavascriptInterface;
 import android.webkit.WebSettings.LayoutAlgorithm;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.jdhui.ApplicationConsts;
 import com.jdhui.R;
+import com.jdhui.act.ac.SubmitOverseasMedicalActivity;
 import com.jdhui.mould.HtmlRequest;
 import com.jdhui.uitls.ActivityStack;
 import com.jdhui.uitls.SystemInfo;
 
 public class WebActivity extends Activity implements View.OnClickListener {
-    private WebView mWebview;
+    private WebView webview;
     private String type = null;
     private String url = null;
     public static final String WEBTYPE_BANNER = "banner";            //轮播图
@@ -36,13 +38,15 @@ public class WebActivity extends Activity implements View.OnClickListener {
     public static final String WEBTYPE_SERVERS = "servers"; // 服务条款
     public static final String WEBTYPE_AGREEMENTS = "agreements"; // 隐私协议
     public static final String WEBTYPE_VERSION_NUMBER = "version_number"; // 版本号
-    public static final String WEBTYPE_HEALTH_CHECK = "health_check"; // 海外体检
-    public static final String WEBTYPE_OVERSEA_HOSPITAL = "oversea_hospital"; // 海外就医
-    public static final String WEBTYPE_INTERNATIONAL_CONSULTATION = "international_consultation"; // 国际远程会诊
+    public static final String WEBTYPE_EXAMINATION = "examination"; // 海外体检
+    public static final String WEBTYPE_HOSPITAL = "hospital"; // 海外就医
+    public static final String WEBTYPE_CONSULTATION = "consultation"; // 国际远程会诊
 
     public String title;
     private TextView tv_web_title;
-    private ImageView id_img_back;
+    private ImageView iv_back;
+    private Button btn_submit;
+    private String overseasType; // 海外医疗预约类型
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -60,26 +64,30 @@ public class WebActivity extends Activity implements View.OnClickListener {
         ActivityStack stack = ActivityStack.getActivityManage();
         stack.addActivity(this);
 
-        mWebview = (WebView) findViewById(R.id.webview_web);
+        webview = (WebView) findViewById(R.id.webview);
         tv_web_title = (TextView) findViewById(R.id.tv_web_title);
-        id_img_back = (ImageView) findViewById(R.id.id_img_back);
-        id_img_back.setOnClickListener(this);
+        iv_back = (ImageView) findViewById(R.id.iv_back);
+        btn_submit = (Button) findViewById(R.id.btn_submit);
 
-        mWebview.getSettings().setSupportZoom(true);
+
+        iv_back.setOnClickListener(this);
+        btn_submit.setOnClickListener(this);
+
+        webview.getSettings().setSupportZoom(true);
         // 设置出现缩放工具
-        mWebview.getSettings().setBuiltInZoomControls(true);
-        mWebview.setWebViewClient(new WebViewClient() {
+        webview.getSettings().setBuiltInZoomControls(true);
+        webview.setWebViewClient(new WebViewClient() {
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
                 view.loadUrl(url);
                 return true;
             }
         });
-        mWebview.getSettings().setLayoutAlgorithm(LayoutAlgorithm.NORMAL);
-        mWebview.getSettings().setUseWideViewPort(true);
+        webview.getSettings().setLayoutAlgorithm(LayoutAlgorithm.NORMAL);
+        webview.getSettings().setUseWideViewPort(true);
 
-        mWebview.getSettings().setJavaScriptEnabled(true);
-        mWebview.addJavascriptInterface(new MyJavaScriptinterface(), "click");
+        webview.getSettings().setJavaScriptEnabled(true);
+        webview.addJavascriptInterface(new MyJavaScriptinterface(), "click");
 
 
         if (type.equals(WEBTYPE_INSURANCE_DETAIL_DES)) { // 图文详情
@@ -114,21 +122,17 @@ public class WebActivity extends Activity implements View.OnClickListener {
         } else if (type.equals(WEBTYPE_VERSION_NUMBER)) {//版本号
             url = ApplicationConsts.URL_VERSION_NUMBER + SystemInfo.sVersionName;
             tv_web_title.setText(getIntent().getExtras().getString("title"));
-        }else if (type.equals(WEBTYPE_HEALTH_CHECK)) { // 海外体检
-//            url = ApplicationConsts.URL_VERSION_NUMBER + SystemInfo.sVersionName;
+        }else if (type.equals(WEBTYPE_EXAMINATION)) { // 海外体检
             tv_web_title.setText(getIntent().getExtras().getString("title"));
-        }else if (type.equals(WEBTYPE_OVERSEA_HOSPITAL)) { // 海外就医
-//            url = ApplicationConsts.URL_VERSION_NUMBER + SystemInfo.sVersionName;
+        }else if (type.equals(WEBTYPE_HOSPITAL)) { // 海外就医
             tv_web_title.setText(getIntent().getExtras().getString("title"));
-        }else if (type.equals(WEBTYPE_INTERNATIONAL_CONSULTATION)) { // 国际远程会诊
-//            url = ApplicationConsts.URL_VERSION_NUMBER + SystemInfo.sVersionName;
+        }else if (type.equals(WEBTYPE_CONSULTATION)) { // 国际远程会诊
             tv_web_title.setText(getIntent().getExtras().getString("title"));
         }
 
 
         HtmlRequest.synCookies(this, url);
-
-        mWebview.loadUrl(url);
+        webview.loadUrl(url);
 
     }
 
@@ -165,8 +169,20 @@ public class WebActivity extends Activity implements View.OnClickListener {
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.id_img_back:
+            case R.id.iv_back:
                 finish();
+                break;
+            case R.id.btn_submit:
+                if (type.equals(WEBTYPE_EXAMINATION)) {
+                    overseasType = "examination";
+                } else if (type.equals(WEBTYPE_HOSPITAL)) {
+                    overseasType = "hospital";
+                } else {
+                    overseasType = "consultation";
+                }
+                Intent intent = new Intent(WebActivity.this, SubmitOverseasMedicalActivity.class);
+                intent.putExtra("overseasType", overseasType);
+                startActivity(intent);
                 break;
         }
     }

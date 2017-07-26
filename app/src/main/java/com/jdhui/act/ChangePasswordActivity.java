@@ -25,7 +25,7 @@ public class ChangePasswordActivity extends BaseActivity implements OnClickListe
 
     private EditText edt_old, edt_new, edt_again;
     private Button btnOk;
-    private ImageView mBtnBack;
+    private ImageView iv_back;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -35,12 +35,12 @@ public class ChangePasswordActivity extends BaseActivity implements OnClickListe
     }
 
     private void initView() {
-        mBtnBack = (ImageView) findViewById(R.id.id_img_back);
+        iv_back = (ImageView) findViewById(R.id.iv_back);
         edt_again = (EditText) findViewById(R.id.changepwd_new2);
         edt_old = (EditText) findViewById(R.id.changepwd_old);
         edt_new = (EditText) findViewById(R.id.changepwd_new);
         btnOk = (Button) findViewById(R.id.changepwd_ok);
-        mBtnBack.setOnClickListener(this);
+        iv_back.setOnClickListener(this);
         btnOk.setOnClickListener(this);
         btnOk.setClickable(false);
         edt_again.addTextChangedListener(new TextWatcher() {
@@ -141,7 +141,7 @@ public class ChangePasswordActivity extends BaseActivity implements OnClickListe
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.id_img_back:
+            case R.id.iv_back:
                 finish();
                 break;
             case R.id.changepwd_ok:

@@ -31,7 +31,7 @@
     </RelativeLayout>
 
     <RelativeLayout
-        android:id="@+id/id_my_info_layout_photo"
+        android:id="@+id/rl_myinfo_photo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/rl_account_title"
@@ -49,7 +49,7 @@
             android:textSize="16sp"/>
 
         <ImageView
-            android:id="@+id/id_my_info_img_arrow"
+            android:id="@+id/iv_arrow"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
@@ -57,28 +57,28 @@
             android:src="@drawable/arrow"/>
 
         <com.jdhui.view.CircularImage
-            android:id="@+id/id_my_info_img_user"
+            android:id="@+id/iv_myinfo_user"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_centerVertical="true"
             android:layout_marginRight="10dp"
-            android:layout_toLeftOf="@+id/id_my_info_img_arrow"
+            android:layout_toLeftOf="@+id/iv_arrow"
             android:src="@drawable/user_photo"/>
     </RelativeLayout>
 
     <ImageView
-        android:id="@+id/id_my_info_layout_photo_img"
+        android:id="@+id/iv_line"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/id_my_info_layout_photo"
+        android:layout_below="@+id/rl_myinfo_photo"
         android:scaleType="fitXY"
         android:src="@drawable/tab_lines"/>
 
     <RelativeLayout
-        android:id="@+id/id_my_info_layout_name"
+        android:id="@+id/rl_myinfo_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/id_my_info_layout_photo_img"
+        android:layout_below="@+id/iv_line"
         android:background="@color/white"
         android:padding="15dp">
 
@@ -90,7 +90,7 @@
             android:textSize="16sp"/>
 
         <TextView
-            android:id="@+id/id_my_info_tv_name"
+            android:id="@+id/tv_myinfo_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
@@ -100,18 +100,18 @@
     </RelativeLayout>
 
     <ImageView
-        android:id="@+id/id_my_info_layout_name_img"
+        android:id="@+id/iv_myinfo_line"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/id_my_info_layout_name"
+        android:layout_below="@+id/rl_myinfo_name"
         android:scaleType="fitXY"
         android:src="@drawable/tab_lines"/>
 
     <RelativeLayout
-        android:id="@+id/id_my_info_layout_idcard"
+        android:id="@+id/rl_myinfo_idcard"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/id_my_info_layout_name_img"
+        android:layout_below="@+id/iv_myinfo_line"
         android:background="@color/white"
         android:padding="15dp">
 
@@ -124,7 +124,7 @@
             android:textSize="16sp"/>
 
         <TextView
-            android:id="@+id/id_my_info_tv_idcard"
+            android:id="@+id/tv_myinfo_idcard"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
@@ -134,10 +134,10 @@
     </RelativeLayout>
 
     <ImageView
-        android:id="@+id/id_my_info_layout_idcard_img"
+        android:id="@+id/iv_idcard_line"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/id_my_info_layout_idcard"
+        android:layout_below="@+id/rl_myinfo_idcard"
         android:scaleType="fitXY"
         android:src="@drawable/tab_lines"/>
 
@@ -175,10 +175,10 @@
        </LinearLayout>-->
 
     <RelativeLayout
-        android:id="@+id/id_my_info_layout_address"
+        android:id="@+id/rl_myinfo_address"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/id_my_info_layout_idcard_img"
+        android:layout_below="@+id/iv_idcard_line"
         android:background="@color/white"
         android:padding="15dp">
 
@@ -190,7 +190,7 @@
             android:textSize="16sp"/>
 
         <TextView
-            android:id="@+id/id_my_info_tv_adress"
+            android:id="@+id/tv_myinfo_adress"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
@@ -200,7 +200,7 @@
     </RelativeLayout>
 
     <Button
-        android:id="@+id/id_my_info_btn_save"
+        android:id="@+id/btn_myinfo_save"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"

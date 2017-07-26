@@ -6,13 +6,13 @@
     android:background="@color/white"
     android:orientation="vertical">
     <RelativeLayout
-        android:id="@+id/id_insurance_product_detail_txt_title"
+        android:id="@+id/rl_web_title"
         android:layout_width="match_parent"
         android:layout_height="51dp"
         android:background="@color/red4">
 
         <ImageView
-            android:id="@+id/id_img_back"
+            android:id="@+id/iv_back"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_centerVertical="true"
@@ -44,11 +44,11 @@
 
     </RelativeLayout>
     <WebView xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/webview_web"
+        android:id="@+id/webview"
         android:layout_weight="1"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/id_insurance_product_detail_txt_title"
+        android:layout_below="@id/rl_web_title"
         android:background="@color/white"
         android:orientation="vertical" />
     <LinearLayout
@@ -63,13 +63,13 @@
         android:orientation="horizontal"
         android:layout_alignParentBottom="true">
         <ImageView
-            android:layout_below="@+id/webview_web"
+            android:layout_below="@+id/webview"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:src="@drawable/phone_white"
             android:padding="5dp"/>
         <TextView
-            android:layout_below="@+id/webview_web"
+            android:layout_below="@+id/webview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/tellphone_num_format_name"

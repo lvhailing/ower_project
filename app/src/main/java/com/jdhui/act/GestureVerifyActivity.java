@@ -36,7 +36,7 @@ import java.util.Observer;
 public class GestureVerifyActivity extends BaseActivity implements android.view.View.OnClickListener, Observer {
     private TextView txtTitle;
     private TextView txtMessage;
-    private ImageView imgBack;
+    private ImageView iv_back;
     private TextView mTextTip;
     private FrameLayout mGestureContainer;
     private GestureContentView mGestureContentView;
@@ -69,7 +69,7 @@ public class GestureVerifyActivity extends BaseActivity implements android.view.
     }
 
     private void initView() {
-        imgBack = (ImageView) findViewById(R.id.id_img_back);
+        iv_back = (ImageView) findViewById(R.id.iv_back);
         txtTitle = (TextView) findViewById(R.id.id_txt_title_verify);
         txtMessage = (TextView) findViewById(R.id.text_title_message);
         mTextTip = (TextView) findViewById(R.id.text_title_message);
@@ -79,7 +79,7 @@ public class GestureVerifyActivity extends BaseActivity implements android.view.
         txtTitle.setText(titleName);
         mTextTip.setText(message);
 
-        imgBack.setOnClickListener(this);
+        iv_back.setOnClickListener(this);
 
 		/*if(netHint_2!=null){
             netHint_2.setVisibility(View.GONE);
@@ -101,7 +101,7 @@ public class GestureVerifyActivity extends BaseActivity implements android.view.
             mTextForget.setText("忘记手势密码");
             mTextForget.setOnClickListener(this);
         } else if (from.equals(ApplicationConsts.ACTIVITY_SPLASH)) {
-            imgBack.setVisibility(View.GONE);
+            iv_back.setVisibility(View.GONE);
             mTextForget.setText("忘记手势密码");
             mTextForget.setOnClickListener(this);
         } else if (from.equals(ApplicationConsts.ACTIVITY_GESEDIT)) {
@@ -244,7 +244,7 @@ public class GestureVerifyActivity extends BaseActivity implements android.view.
                 }, "忘记手势密码，需要重新登录并设置手势密码");
                 dialog.show();
                 break;
-            case R.id.id_img_back:
+            case R.id.iv_back:
                 this.finish();
                 break;
             default:

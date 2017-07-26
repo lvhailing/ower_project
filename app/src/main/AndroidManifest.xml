@@ -169,11 +169,11 @@
             android:screenOrientation="portrait"/>
 
         <activity
-            android:name=".act.ac.ProductOrderActivity"
+            android:name=".act.ac.ProductBookingActivity"
             android:screenOrientation="portrait"/>
 
         <activity
-            android:name=".act.ac.ProOrderDetailActivity"
+            android:name=".act.ac.ProjectBookingDetailActivity"
             android:screenOrientation="portrait"/>
 
         <activity
@@ -185,7 +185,7 @@
             android:screenOrientation="portrait"/>
 
         <activity
-            android:name=".act.ac.SubBookingHospitalActivity"
+            android:name=".act.ac.SubmitHospitalActivity"
             android:screenOrientation="portrait"/>
         <!-- android:theme="@android:style/Theme.Holo.Light"-->
 
@@ -199,11 +199,11 @@
             android:screenOrientation="portrait"/>
 
         <activity
-            android:name=".act.ac.SubGeneticTestingActivity"
+            android:name=".act.ac.SubmitGeneticTestingActivity"
             android:screenOrientation="portrait"/>
 
         <activity
-            android:name=".act.ac.SubBookingGolfActivity"
+            android:name=".act.ac.SubmitGolfActivity"
             android:screenOrientation="portrait"/>
         <!--android:theme="@android:style/Theme.Holo.Light"-->
 
@@ -232,7 +232,7 @@
             android:screenOrientation="portrait"/>
 
         <activity
-            android:name=".act.ac.SubBookingShipActivity"
+            android:name=".act.ac.SubmitLinerActivity"
             android:screenOrientation="portrait"/>
 
         <activity
@@ -249,6 +249,10 @@
 
         <activity
             android:name=".act.ac.OverseasMedicalBookingActivity"
+            android:screenOrientation="portrait"/>
+
+        <activity
+            android:name=".act.ac.SubmitOverseasMedicalActivity"
             android:screenOrientation="portrait"/>
 
 

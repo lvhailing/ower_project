@@ -27,7 +27,7 @@ import com.jdhui.view.CallServiceDialog;
 public class FeedBackActivity extends BaseActivity implements OnClickListener{
 	private EditText et_advice_input;
 	private Button btn_setting_advice;
-	private ImageView mImgBack;
+	private ImageView iv_back;
 	private TextView txtCall;
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -43,7 +43,7 @@ public class FeedBackActivity extends BaseActivity implements OnClickListener{
 	}
 
 	private void initView() {
-		mImgBack= (ImageView) findViewById(R.id.id_img_back);
+		iv_back = (ImageView) findViewById(R.id.iv_back);
 		et_advice_input = (EditText) findViewById(R.id.et_advice_input);
 		btn_setting_advice = (Button) findViewById(R.id.btn_setting_advice);
 		txtCall= (TextView) findViewById(R.id.id_txt_call);
@@ -54,7 +54,7 @@ public class FeedBackActivity extends BaseActivity implements OnClickListener{
 				R.color.gray_dark, R.color.orange, R.color.gray_dark,
 				13, 13, 13, 0, 0, 0));
 		txtCall.setOnClickListener(this);
-		mImgBack.setOnClickListener(this);
+		iv_back.setOnClickListener(this);
 		btn_setting_advice.setOnClickListener(this);
 		btn_setting_advice.setClickable(false);
 		et_advice_input.addTextChangedListener(new TextWatcher() {
@@ -143,7 +143,7 @@ public class FeedBackActivity extends BaseActivity implements OnClickListener{
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()){
-			case R.id.id_img_back:
+			case R.id.iv_back:
 				finish();
 				break;
 			case R.id.btn_setting_advice:

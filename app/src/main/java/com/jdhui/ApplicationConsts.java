@@ -332,6 +332,11 @@ public class ApplicationConsts {
     public static final String URL_VERSION_NUMBER = EC_HOST + "android/version?num=";
 
     /**
+     *  海外医疗(三个H5页面)
+     */
+    public static final String URL_OVERSEAS_MEDICAL = EC_HOST + "service/bookingOverseas/";
+
+    /**
      * 提交预约医院
      */
     public static final String URL_SERVICE_BOOKINGHOSPITAL = EC_HOST + "service/bookingHospital/add";
@@ -360,6 +365,11 @@ public class ApplicationConsts {
      * 提交基因检测预约
      */
     public static final String URL_SERVICE_BOOKINGGENETICTESTING_ADD = EC_HOST + "service/bookingGeneticBooking/add";
+
+    /**
+     * 提交海外医疗预约
+     */
+    public static final String URL_SERVICE_BOOKINGOVERSEAS_ADD = EC_HOST + "service/bookingOverseas/add";
 
     /**
      * 保险预约

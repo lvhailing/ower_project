@@ -7,13 +7,13 @@
     android:orientation="vertical">
 
     <RelativeLayout
-        android:id="@+id/id_insurance_product_detail_txt_title"
+        android:id="@+id/rl_web_title"
         android:layout_width="match_parent"
         android:layout_height="51dp"
         android:background="@color/red4">
 
         <ImageView
-            android:id="@+id/id_img_back"
+            android:id="@+id/iv_back"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_centerVertical="true"
@@ -31,10 +31,10 @@
     </RelativeLayout>
 
     <WebView
-        android:id="@+id/webview_web"
+        android:id="@+id/webview"
         android:layout_width="fill_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/id_insurance_product_detail_txt_title"
+        android:layout_below="@+id/rl_web_title"
         android:layout_marginBottom="61dp"
         android:background="@color/white"
         android:orientation="vertical"/>

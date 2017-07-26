@@ -27,7 +27,7 @@ import com.jdhui.view.MyListView;
  * Created by hasee on 2016/8/10.
  */
 public class AssetFloatDetailActivity extends BaseActivity implements View.OnClickListener {
-    private ImageView idImgBack;
+    private ImageView iv_back;
     private TextView tvAssetFloatTitle;     //产品标题
     private TextView tvAssetFloatCall;      //年度报告
     private TextView tvAssetFloatName;      //产品名称
@@ -68,7 +68,7 @@ public class AssetFloatDetailActivity extends BaseActivity implements View.OnCli
     }
 
     private void assignViews() {
-        idImgBack = (ImageView) findViewById(R.id.id_img_back);
+        iv_back = (ImageView) findViewById(R.id.iv_back);
         tvAssetFloatTitle = (TextView) findViewById(R.id.tv_asset_float_title);
         tvAssetFloatCall = (TextView) findViewById(R.id.tv_asset_float_call);
         tvAssetFloatName = (TextView) findViewById(R.id.tv_asset_float_name);
@@ -85,7 +85,7 @@ public class AssetFloatDetailActivity extends BaseActivity implements View.OnCli
         myListView = (MyListView) findViewById(R.id.lv);
         sv_asset_float_detail = (ScrollView) findViewById(R.id.sv_asset_float_detail);
 
-        idImgBack.setOnClickListener(this);
+        iv_back.setOnClickListener(this);
         tvAssetFloatCall.setOnClickListener(this);
         ll_asset_float.setOnClickListener(this);
     }
@@ -149,7 +149,7 @@ public class AssetFloatDetailActivity extends BaseActivity implements View.OnCli
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.id_img_back:
+            case R.id.iv_back:
                 finish();
                 break;
             case R.id.tv_asset_float_call: //年度报告 按钮

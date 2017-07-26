@@ -356,7 +356,7 @@ public class LinerDetailActivity extends BaseActivity implements View.OnClickLis
                 break;
             case R.id.btn_submit: //立即预约 按钮
 
-                Intent intent = new Intent(this, SubBookingShipActivity.class);
+                Intent intent = new Intent(this, SubmitLinerActivity.class);
                 intent.putExtra("shipId", id);
                 startActivity(intent);
                 break;

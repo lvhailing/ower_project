@@ -17,7 +17,7 @@ import com.jdhui.act.ac.OverseasMedicalBookingActivity;
 import com.jdhui.act.ac.WebAirPlanBookingActivity;
 import com.jdhui.act.ac.GeneticTestingListActivity;
 import com.jdhui.act.ac.GolfListActivity;
-import com.jdhui.act.ac.SubBookingHospitalActivity;
+import com.jdhui.act.ac.SubmitHospitalActivity;
 import com.jdhui.bean.mybean.ServicePicture2B;
 import com.jdhui.mould.BaseParams;
 import com.jdhui.mould.BaseRequester;
@@ -160,7 +160,7 @@ public class ServiceFragment extends Fragment implements View.OnClickListener {
                 startActivity(intent);
                 break;
             case R.id.rl_hospital: //绿通就医
-                intent = new Intent(getActivity(), SubBookingHospitalActivity.class);
+                intent = new Intent(getActivity(), SubmitHospitalActivity.class);
                 startActivity(intent);
                 break;
             case R.id.rl_genetic: //基因检测

@@ -53,6 +53,7 @@ import com.jdhui.bean.mybean.ServicePicture1B;
 import com.jdhui.bean.mybean.SubBookingShip1B;
 import com.jdhui.bean.mybean.SubGeneticTesting1B;
 import com.jdhui.bean.mybean.SubOverseaProject1B;
+import com.jdhui.bean.mybean.SubOverseasMedical1B;
 import com.jdhui.bean.mybean.SubmitBookingHospital1B;
 import com.jdhui.http.SimpleHttpClient;
 import com.jdhui.mould.types.IMouldType;
@@ -3084,9 +3085,68 @@ public class HtmlRequest extends BaseRequester {
                     }
                     if (result != null) {
                         String data = DESUtil.decrypt(result);
-                        Log.i("aaa", "海外项目提交预约：" + data);
+//                        Log.i("aaa", "海外项目提交预约：" + data);
                         Gson json = new Gson();
                         SubOverseaProject1B b = json.fromJson(data, SubOverseaProject1B.class);
+                        resultEncrypt(context, b.getCode());
+                        return b.getData();
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                } finally {
+                    unRegisterId(getTaskId());
+                }
+                return null;
+            }
+
+            @Override
+            public void onPostExecute(IMouldType result, BaseParams params) {
+                params.result = result;
+                params.sendResult();
+            }
+        });
+        return tid;
+    }
+
+    /**
+     * 服务-- 海外医疗预约
+     * @param context
+     * @param client
+     * @param clientPhone
+     * @param overseasType
+     * @param financial
+     * @param listener
+     * @return
+     */
+    public static String submitOverseasMedical(final Context context, String client, String clientPhone, String overseasType, String financial,  OnRequestListener listener) {
+        final String data = HtmlLoadUtil.subOverseasMedical(client, clientPhone, overseasType, financial);
+        final String url = ApplicationConsts.URL_SERVICE_BOOKINGOVERSEAS_ADD;
+        String tid = registerId(Constants.TASK_TYPE_BOOKING_GENETICTESTING_ADD, url);
+        if (tid == null) {
+            return null;
+        }
+        getTaskManager().addTask(new MouldAsyncTask(tid, buildParams(Constants.TASK_TYPE_BOOKING_GENETICTESTING_ADD, context, listener, url, 0)) {
+            @Override
+            public IMouldType doTask(BaseParams params) {
+                SimpleHttpClient client = new SimpleHttpClient(context, SimpleHttpClient.RESULT_STRING);
+
+                HttpEntity entity = null;
+                try {
+                    entity = new StringEntity(data);
+                } catch (UnsupportedEncodingException e1) {
+                    e1.printStackTrace();
+                }
+
+                client.post(url, entity);
+                String result = (String) client.getResult();
+                try {
+                    if (isCancelled()) {
+                        return null;
+                    }
+                    if (result != null) {
+                        String data = DESUtil.decrypt(result);
+                        Gson json = new Gson();
+                        SubOverseasMedical1B b = json.fromJson(data, SubOverseasMedical1B.class);
                         resultEncrypt(context, b.getCode());
                         return b.getData();
                     }

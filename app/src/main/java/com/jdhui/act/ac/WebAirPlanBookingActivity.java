@@ -16,7 +16,6 @@ import android.widget.Toast;
 
 import com.jdhui.ApplicationConsts;
 import com.jdhui.R;
-import com.jdhui.act.BaseActivity;
 import com.jdhui.mould.HtmlRequest;
 import com.jdhui.uitls.ActivityStack;
 import com.jdhui.uitls.DESUtil;
@@ -53,9 +52,9 @@ public class WebAirPlanBookingActivity extends Activity implements View.OnClickL
         } catch (Exception e) {
             e.printStackTrace();
         }
-        mWebview = (WebView) findViewById(R.id.webview_web);
+        mWebview = (WebView) findViewById(R.id.webview);
         tv_web_title = (TextView) findViewById(R.id.tv_web_title);
-        id_img_back = (ImageView) findViewById(R.id.id_img_back);
+        id_img_back = (ImageView) findViewById(R.id.iv_back);
         id_img_back.setOnClickListener(this);
 
         mWebview.getSettings().setSupportZoom(true);
@@ -102,7 +101,7 @@ public class WebAirPlanBookingActivity extends Activity implements View.OnClickL
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.id_img_back:
+            case R.id.iv_back:
                 finish();
                 break;
         }

@@ -28,7 +28,7 @@ import com.nostra13.universalimageloader.core.ImageLoader;
  * Created by hasee on 2016/8/11.
  */
 public class InsuranceProductDetailActivity extends BaseActivity implements View.OnClickListener {
-    private ImageView id_img_back;
+    private ImageView iv_back;
     private ImageView iv_insurance_product_title_pic; //顶部展示的图片
     private TextView tv_insurance_product_detail_name; //保险产品名
     private RelativeLayout rl_insurance_product_detail_des; //图文详情
@@ -58,7 +58,7 @@ public class InsuranceProductDetailActivity extends BaseActivity implements View
 
     public void initView() {
         productId = getIntent().getStringExtra("productId");
-        id_img_back = (ImageView) findViewById(R.id.id_img_back);
+        iv_back = (ImageView) findViewById(R.id.iv_back);
         iv_insurance_product_title_pic = (ImageView) findViewById(R.id.iv_insurance_product_title_pic);
 
         rl_insurance_product_detail_des = (RelativeLayout) findViewById(R.id.rl_insurance_product_detail_des);
@@ -81,7 +81,7 @@ public class InsuranceProductDetailActivity extends BaseActivity implements View
 //        ll_insurance_product_detail_fengxiantixing.setVisibility(View.GONE);
 
         rl_insurance_product_detail_des.setOnClickListener(this);
-        id_img_back.setOnClickListener(this);
+        iv_back.setOnClickListener(this);
         btn_order.setOnClickListener(this);
 
 
@@ -91,7 +91,7 @@ public class InsuranceProductDetailActivity extends BaseActivity implements View
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.id_img_back:
+            case R.id.iv_back:
                 finish();
                 break;
             case R.id.rl_insurance_product_detail_des:      //图文详情

@@ -39,7 +39,7 @@ public class AssetFixedDetailActivity extends BaseActivity implements View.OnCli
     private TextView tv_asset_fixed_fuxinjiange;    //付息间隔
     private TextView tv_asset_fixed_beizhu;         //备注
 
-    private ImageView id_img_back;
+    private ImageView iv_back;
     private String tenderId;
     private String productName;
     private ResultAssetFixedProductDetailBean assetFixedBean;
@@ -68,7 +68,7 @@ public class AssetFixedDetailActivity extends BaseActivity implements View.OnCli
 
         assetFixedBean = new ResultAssetFixedProductDetailBean();
 
-        id_img_back = (ImageView) findViewById(R.id.id_img_back);
+        iv_back = (ImageView) findViewById(R.id.iv_back);
         tv_asset_fixed_call = (TextView) findViewById(R.id.tv_asset_fixed_call);
         tv_asset_fixed_title = (TextView) findViewById(R.id.tv_asset_fixed_title);
         tv_asset_fixed_name = (TextView) findViewById(R.id.tv_asset_fixed_name);
@@ -85,7 +85,7 @@ public class AssetFixedDetailActivity extends BaseActivity implements View.OnCli
         myListView = (MyListView) findViewById(R.id.lv);
         sv_asset_fixed_detail = (ScrollView) findViewById(R.id.sv_asset_fixed_detail);
 
-        id_img_back.setOnClickListener(this);
+        iv_back.setOnClickListener(this);
         tv_asset_fixed_call.setOnClickListener(this);
         ll_asset_fixed.setOnClickListener(this);
     }
@@ -156,7 +156,7 @@ public class AssetFixedDetailActivity extends BaseActivity implements View.OnCli
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.id_img_back:
+            case R.id.iv_back:
                 finish();
                 break;
             case R.id.tv_asset_fixed_call://年度报告

@@ -34,7 +34,7 @@ public class FindPassWordActivity extends BaseActivity implements View.OnClickLi
     private boolean flag = true;
     private int button = 0;
     private String btnString;
-    private ImageView mImgBack;
+    private ImageView iv_back;
     private EditText findpd_newnickname;
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +44,7 @@ public class FindPassWordActivity extends BaseActivity implements View.OnClickLi
         initData();
     }
     private void initView() {
-        mImgBack= (ImageView) findViewById(R.id.id_img_back);
+        iv_back = (ImageView) findViewById(R.id.iv_back);
         btnGetSMS = (Button) findViewById(R.id.findpd_getSMS);
         btnOk = (Button) findViewById(R.id.findpd_ok);
         edtPhone = (EditText) findViewById(R.id.findpd_phone);
@@ -52,7 +52,7 @@ public class FindPassWordActivity extends BaseActivity implements View.OnClickLi
         edtNewAgain = (EditText) findViewById(R.id.findpd_newpwd2);
         edtAuth = (EditText) findViewById(R.id.findpd_authcode);
         findpd_newnickname = (EditText) findViewById(R.id.findpd_newnickname);
-        mImgBack.setOnClickListener(this);
+        iv_back.setOnClickListener(this);
         btnOk.setOnClickListener(this);
         btnGetSMS.setOnClickListener(this);
         btnOk.setClickable(false);
@@ -371,7 +371,7 @@ public class FindPassWordActivity extends BaseActivity implements View.OnClickLi
                     }
                 }
                 break;
-            case R.id.id_img_back:
+            case R.id.iv_back:
                 finish();
                 break;
             default:

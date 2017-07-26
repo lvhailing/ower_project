@@ -27,7 +27,7 @@ import com.jdhui.view.MyListView;
  * Created by hasee on 2016/8/10.
  */
 public class AssetInsuranceDetailActivity extends BaseActivity implements View.OnClickListener {
-    private ImageView idImgBack;
+    private ImageView iv_back;
     private TextView tvAssetInsuranceNumber;
     private TextView tvAssetInsuranceCall;
     private TextView tvAssetInsuranceName;
@@ -72,7 +72,7 @@ public class AssetInsuranceDetailActivity extends BaseActivity implements View.O
     }
 
     private void assignViews() {
-        idImgBack = (ImageView) findViewById(R.id.id_img_back);
+        iv_back = (ImageView) findViewById(R.id.iv_back);
         tvAssetInsuranceNumber = (TextView) findViewById(R.id.tv_asset_insurance_number);
         tvAssetInsuranceCall = (TextView) findViewById(R.id.tv_asset_insurance_call);
         tvAssetInsuranceName = (TextView) findViewById(R.id.tv_asset_insurance_name);
@@ -92,7 +92,7 @@ public class AssetInsuranceDetailActivity extends BaseActivity implements View.O
         myListView = (MyListView) findViewById(R.id.lv);
         sv_asset_insurance_detail = (ScrollView) findViewById(R.id.sv_asset_insurance_detail);
 
-        idImgBack.setOnClickListener(this);
+        iv_back.setOnClickListener(this);
         tvAssetInsuranceCall.setOnClickListener(this);
         ll_asset_insurance.setOnClickListener(this);
 
@@ -144,7 +144,7 @@ public class AssetInsuranceDetailActivity extends BaseActivity implements View.O
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.id_img_back:
+            case R.id.iv_back:
                 finish();
                 break;
             case R.id.tv_asset_insurance_call:      //年度报告

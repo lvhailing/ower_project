@@ -26,7 +26,7 @@ public class AccountActivity extends BaseActivity implements View.OnClickListene
     private RelativeLayout mLayoutChangeGesture; //修改手势密码 布局
     private RelativeLayout mLayoutChangePW; //修改登录密码 布局
     private ImageView mImgChangeGesTabLines;
-    private ImageView mImgBack;
+    private ImageView iv_back;
     private Button account_btn_exit;
     private String tomain = null;
     private String userInfoId = null;
@@ -42,7 +42,7 @@ public class AccountActivity extends BaseActivity implements View.OnClickListene
     private void initView() {
         userInfoId = getIntent().getStringExtra("userInfoId");
 
-        mImgBack = (ImageView) findViewById(R.id.id_img_back);
+        iv_back = (ImageView) findViewById(R.id.iv_back);
         mLayoutMyInfo = (RelativeLayout) findViewById(R.id.rl_account_modify_info);
         mImageButton = (ImageButton) findViewById(R.id.accountset_recive);
         mLayoutChangeGesture = (RelativeLayout) findViewById(R.id.rl_account_gesture_change);
@@ -61,7 +61,7 @@ public class AccountActivity extends BaseActivity implements View.OnClickListene
             mImgChangeGesTabLines.setVisibility(View.GONE);
         }
 
-        mImgBack.setOnClickListener(this);
+        iv_back.setOnClickListener(this);
         mLayoutMyInfo.setOnClickListener(this);
         mImageButton.setOnClickListener(this);
         mLayoutChangeGesture.setOnClickListener(this);
@@ -74,7 +74,7 @@ public class AccountActivity extends BaseActivity implements View.OnClickListene
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.id_img_back:
+            case R.id.iv_back:
                 finish();
                 break;
             case R.id.rl_account_modify_info:

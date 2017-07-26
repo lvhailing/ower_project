@@ -145,7 +145,7 @@ public class GolfDetailActivity extends BaseActivity implements View.OnClickList
                 finish();
                 break;
             case R.id.btn_submit:   //立即预约
-                Intent intent = new Intent(GolfDetailActivity.this, SubBookingGolfActivity.class);
+                Intent intent = new Intent(GolfDetailActivity.this, SubmitGolfActivity.class);
                 intent.putExtra("id", id);
                 intent.putExtra("name", detail.getGolfName());
                 intent.putExtra("golfRights", detail.getGolfRights());//高尔夫权限  not：优惠价  A1：嘉宾价  A2和VIP（都显示）：会员价

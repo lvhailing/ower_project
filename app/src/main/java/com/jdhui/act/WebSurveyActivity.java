@@ -29,18 +29,17 @@ import com.jdhui.uitls.PreferenceUtil;
 
 public class WebSurveyActivity extends Activity implements View.OnClickListener {
 
-    private WebView mWebview;
+    private WebView webview;
     private String type = null;
     private String url = null;
     public static final String WEBTYPE_SURVEY = "survey"; // 问卷调查
     public static final String WEBTYPE_ASSESSMENT = "assessment"; //问卷评估
     public static final String WEBTYPE_INVESTOR_COMMITMENT = "investor_commitment"; //投资者承诺函
 
-
     public String title;
     public String btnInfo;
     private TextView tv_web_title;
-    private ImageView id_img_back;
+    private ImageView iv_back;
     private Button btn_bottom;
     private String userId;
     private ActivityStack stack;
@@ -65,20 +64,20 @@ public class WebSurveyActivity extends Activity implements View.OnClickListener 
             e.printStackTrace();
         }
 
-        mWebview = (WebView) findViewById(R.id.webview_web);
+        webview = (WebView) findViewById(R.id.webview);
         tv_web_title = (TextView) findViewById(R.id.tv_web_title);
-        id_img_back = (ImageView) findViewById(R.id.id_img_back);
+        iv_back = (ImageView) findViewById(R.id.iv_back);
         btn_bottom = (Button) findViewById(R.id.btn_web_bottom);
 
-        id_img_back.setOnClickListener(this);
+        iv_back.setOnClickListener(this);
         btn_bottom.setOnClickListener(this);
 
-        mWebview.getSettings().setSupportZoom(true);
+        webview.getSettings().setSupportZoom(true);
         // 设置出现缩放工具
-        mWebview.getSettings().setBuiltInZoomControls(true);
-        mWebview.getSettings().setLayoutAlgorithm(LayoutAlgorithm.NORMAL);
-        mWebview.getSettings().setJavaScriptEnabled(true);
-        mWebview.setWebViewClient(new WebViewClient() {
+        webview.getSettings().setBuiltInZoomControls(true);
+        webview.getSettings().setLayoutAlgorithm(LayoutAlgorithm.NORMAL);
+        webview.getSettings().setJavaScriptEnabled(true);
+        webview.setWebViewClient(new WebViewClient() {
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
                 view.loadUrl(url);
@@ -95,7 +94,7 @@ public class WebSurveyActivity extends Activity implements View.OnClickListener 
             url = ApplicationConsts.URL_ASSESSMENT + userId;
             tv_web_title.setText(getIntent().getExtras().getString("title"));
             btn_bottom.setText(getIntent().getExtras().getString("btnInfo"));
-            id_img_back.setVisibility(View.GONE);
+            iv_back.setVisibility(View.GONE);
 
         } else if (type.equals(WEBTYPE_INVESTOR_COMMITMENT)) { //投资者承诺函
             url = ApplicationConsts.URL_INVESTOR_COMMITMENT + userId;
@@ -106,7 +105,7 @@ public class WebSurveyActivity extends Activity implements View.OnClickListener 
 
         HtmlRequest.synCookies(this, url);
 
-        mWebview.loadUrl(url);
+        webview.loadUrl(url);
 
     }
 
@@ -168,7 +167,7 @@ public class WebSurveyActivity extends Activity implements View.OnClickListener 
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.id_img_back:
+            case R.id.iv_back:
                 if (type.equals(WEBTYPE_SURVEY)) {
                     UserLoadout out = new UserLoadout(WebSurveyActivity.this);
                     out.requestData();

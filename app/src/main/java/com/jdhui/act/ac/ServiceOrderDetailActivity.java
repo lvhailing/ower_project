@@ -318,19 +318,18 @@ public class ServiceOrderDetailActivity extends BaseActivity implements View.OnC
             ll_order_project.setVisibility(View.VISIBLE); // 预约项目 布局
             ll_order_name.setVisibility(View.VISIBLE);//预约人 布局
             ll_phone.setVisibility(View.VISIBLE);//联系电话 布局
-            ll_financial_planner.setVisibility(View.VISIBLE); // 专属理财师布局
-            ll_sub_time.setVisibility(View.VISIBLE);//提交时间布局
-
+            ll_financial_planner.setVisibility(View.VISIBLE); // 专属理财师 布局
+            ll_sub_time.setVisibility(View.VISIBLE);//提交时间 布局
 
             if (detail2B.getOverseasBooking().getOverseasType() != null) {
                 overseasType = detail2B.getOverseasBooking().getOverseasType();
             }
-            String type = "";
+            String type;
             if (overseasType.equals("examination")) {
                 type = "海外体检";
             } else if (overseasType.equals("hospital")) {
                 type = "海外就医";
-            } else if (overseasType.equals("consultation")) {
+            } else {
                 type = "国际远程会诊";
             }
             tv_order_project.setText(type); // 预约项目
@@ -415,6 +414,9 @@ public class ServiceOrderDetailActivity extends BaseActivity implements View.OnC
         } else if (detail2B.getHouseBooking() != null) {
             // 海外资产配置
             serviceItems = "houseBooking";
+        } else if (detail2B.getOverseasBooking() != null) {
+            // 海外医疗
+            serviceItems = "overseasBooking";
         }
 
         // 点取消按钮时调接口

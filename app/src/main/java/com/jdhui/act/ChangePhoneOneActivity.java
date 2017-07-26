@@ -21,7 +21,7 @@ import com.jdhui.uitls.StringUtil;
  * 修改手机号
  */
 public class ChangePhoneOneActivity extends BaseActivity implements View.OnClickListener{
-    private ImageView mImgBack;
+    private ImageView iv_back;
     private EditText mEditInput;
     private ImageView mBtnDelete;
     private Button mBtnNext;
@@ -34,7 +34,7 @@ public class ChangePhoneOneActivity extends BaseActivity implements View.OnClick
         initView();
     }
     private void initView() {
-        mImgBack= (ImageView) findViewById(R.id.id_img_back);
+        iv_back = (ImageView) findViewById(R.id.iv_back);
         mEditInput= (EditText) findViewById(R.id.id_inut_pw);
         mTvInfo= (TextView) findViewById(R.id.id_change_phone_one_info);
         mBtnDelete= (ImageView) findViewById(R.id.id_btn_delete);
@@ -48,7 +48,7 @@ public class ChangePhoneOneActivity extends BaseActivity implements View.OnClick
         String phoneNum=StringUtil.replaceSubString(phone);
         mTvInfo.setText("当前手机号："+ phoneNum);
         }
-        mImgBack.setOnClickListener(this);
+        iv_back.setOnClickListener(this);
         mBtnDelete.setOnClickListener(this);
         mBtnNext.setOnClickListener(this);
         mBtnNext.setClickable(false);
@@ -82,7 +82,7 @@ public class ChangePhoneOneActivity extends BaseActivity implements View.OnClick
     @Override
     public void onClick(View v) {
         switch (v.getId()){
-            case R.id.id_img_back:
+            case R.id.iv_back:
                 finish();
                 break;
             case R.id.id_btn_delete:

@@ -109,7 +109,7 @@ public class GeneticTestingListActivity extends BaseActivity implements View.OnC
         dialog.subGeneticTestingDialog(new GeneticTestingDialog.MyCallback() {
             @Override
             public void onMyclick(Dialog ad) {
-                Intent intent = new Intent(GeneticTestingListActivity.this, SubGeneticTestingActivity.class);
+                Intent intent = new Intent(GeneticTestingListActivity.this, SubmitGeneticTestingActivity.class);
                 intent.putExtra("id", detail2B.getGeneticTesting().getId());  //基因检测 id
                 intent.putExtra("name", detail2B.getGeneticTesting().getName());    //基因检测套餐名字
                 startActivity(intent);

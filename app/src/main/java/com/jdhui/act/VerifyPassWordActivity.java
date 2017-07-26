@@ -22,12 +22,13 @@ import com.jdhui.uitls.PreferenceUtil;
 /**
  * 验证登陆密码
  */
-public class VerifyPassWordActivity extends BaseActivity implements View.OnClickListener{
-    private ImageView mImgBack;
+public class VerifyPassWordActivity extends BaseActivity implements View.OnClickListener {
+    private ImageView iv_back;
     private EditText mEditInput;
     private ImageView mBtnDelete;
     private Button mBtnNext;
     private String userId;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,24 +36,24 @@ public class VerifyPassWordActivity extends BaseActivity implements View.OnClick
         initView();
 
     }
+
     private void initView() {
-        mImgBack= (ImageView) findViewById(R.id.id_img_back);
-        mEditInput= (EditText) findViewById(R.id.id_inut_pw);
-        mBtnDelete= (ImageView) findViewById(R.id.id_btn_delete);
-        mBtnNext= (Button) findViewById(R.id.id_btn_next);
-        mImgBack.setOnClickListener(this);
+        iv_back = (ImageView) findViewById(R.id.iv_back);
+        mEditInput = (EditText) findViewById(R.id.id_inut_pw);
+        mBtnDelete = (ImageView) findViewById(R.id.id_btn_delete);
+        mBtnNext = (Button) findViewById(R.id.id_btn_next);
+
+        iv_back.setOnClickListener(this);
         mBtnDelete.setOnClickListener(this);
         mBtnNext.setOnClickListener(this);
         mBtnNext.setClickable(false);
         mEditInput.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
             }
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
             }
 
             @Override
@@ -73,53 +74,50 @@ public class VerifyPassWordActivity extends BaseActivity implements View.OnClick
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
-            case R.id.id_img_back:
+        switch (v.getId()) {
+            case R.id.iv_back:
                 finish();
                 break;
             case R.id.id_btn_delete:
                 mEditInput.setText("");
                 break;
             case R.id.id_btn_next:
-                String password=mEditInput.getText().toString();
-                if(!TextUtils.isEmpty(password)){
-                            requestData(password);
-                }else{
-                    Toast.makeText(VerifyPassWordActivity.this,
-                            "登录密码为空", Toast.LENGTH_LONG).show();
+                String password = mEditInput.getText().toString();
+                if (!TextUtils.isEmpty(password)) {
+                    requestData(password);
+                } else {
+                    Toast.makeText(VerifyPassWordActivity.this, "登录密码为空", Toast.LENGTH_LONG).show();
                 }
                 break;
 
-
         }
     }
+
     private void requestData(String password) {
         try {
-            userId=  DESUtil.decrypt(PreferenceUtil.getUserId());
+            userId = DESUtil.decrypt(PreferenceUtil.getUserId());
         } catch (Exception e) {
             e.printStackTrace();
         }
         try {
-            HtmlRequest.verifyPassWord(VerifyPassWordActivity.this,userId,password,
-                    new BaseRequester.OnRequestListener() {
+            HtmlRequest.verifyPassWord(VerifyPassWordActivity.this, userId, password, new BaseRequester.OnRequestListener() {
 
-                        @Override
-                        public void onRequestFinished(BaseParams params) {
-                            if (params.result != null) {
-                                ResultVerifyPassWordContent data = (ResultVerifyPassWordContent) params.result;
-                               if (data.getFlag().equals("true")){
-                                   Toast.makeText(VerifyPassWordActivity.this,data.getMsg(), Toast.LENGTH_LONG).show();
-                                   Intent i_next=new Intent(VerifyPassWordActivity.this,ChangePhoneOneActivity.class);
-                                   startActivity(i_next);
-                               }else{
-                                   Toast.makeText(VerifyPassWordActivity.this,data.getMsg(), Toast.LENGTH_LONG).show();
-                               }
-                            } else {
-                                Toast.makeText(VerifyPassWordActivity.this,
-                                        "加载失败，请确认网络通畅", Toast.LENGTH_LONG).show();
-                            }
-                        }
-                    });
+                @Override
+                public void onRequestFinished(BaseParams params) {
+                    if (params.result == null) {
+                        Toast.makeText(VerifyPassWordActivity.this, "加载失败，请确认网络通畅", Toast.LENGTH_LONG).show();
+                        return;
+                    }
+                    ResultVerifyPassWordContent data = (ResultVerifyPassWordContent) params.result;
+                    if (data.getFlag().equals("true")) {
+                        Toast.makeText(VerifyPassWordActivity.this, data.getMsg(), Toast.LENGTH_LONG).show();
+                        Intent i_next = new Intent(VerifyPassWordActivity.this, ChangePhoneOneActivity.class);
+                        startActivity(i_next);
+                    } else {
+                        Toast.makeText(VerifyPassWordActivity.this, data.getMsg(), Toast.LENGTH_LONG).show();
+                    }
+                }
+            });
         } catch (Exception e) {
             e.printStackTrace();
         }

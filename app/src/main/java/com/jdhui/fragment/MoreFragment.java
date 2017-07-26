@@ -27,7 +27,7 @@ import com.jdhui.act.FeedBackActivity;
 import com.jdhui.act.MainActivity;
 import com.jdhui.act.ac.NewsActivity;
 import com.jdhui.act.NoticeActivity;
-import com.jdhui.act.ac.ProductOrderActivity;
+import com.jdhui.act.ac.ProductBookingActivity;
 import com.jdhui.act.WebActivity;
 import com.jdhui.act.ac.ServiceOrderActivity;
 import com.jdhui.bean.ResultCheckVersionContentBean;
@@ -148,7 +148,7 @@ public class MoreFragment extends Fragment implements View.OnClickListener {
                 startActivity(i_account);
                 break;
             case R.id.rl_product_order:  //产品预约
-                Intent intent1 = new Intent(context, ProductOrderActivity.class);
+                Intent intent1 = new Intent(context, ProductBookingActivity.class);
                 startActivity(intent1);
                 break;
             case R.id.rl_service_order:  //服务预约；

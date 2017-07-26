@@ -13,7 +13,6 @@ import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.jdhui.R;
 import com.jdhui.adapter.MessageAdapter;
 import com.jdhui.bean.ResultMessageListBean;
-import com.jdhui.bean.ResultMessageListContentBean;
 import com.jdhui.mould.BaseParams;
 import com.jdhui.mould.BaseRequester;
 import com.jdhui.mould.HtmlRequest;
@@ -29,7 +28,7 @@ public class MessageActivity extends BaseActivity implements View.OnClickListene
     public final static int MESSAGE_RESUEST_CODE = 4003;  //已读消息请求码
     private PullToRefreshListView listView;
     private MessageAdapter mAdapter;
-    private ImageView mBtnBack;
+    private ImageView iv_back;
     private MouldList<ResultMessageListBean> totalList = new MouldList<>();
     private int index = -1;
     private int currentPage = 1;
@@ -43,13 +42,13 @@ public class MessageActivity extends BaseActivity implements View.OnClickListene
     }
 
     private void initView() {
-        mBtnBack = (ImageView) findViewById(R.id.id_img_back);
+        iv_back = (ImageView) findViewById(R.id.iv_back);
         listView = (PullToRefreshListView) findViewById(R.id.listview);
 
         //PullToRefreshListView  上滑加载更多及下拉刷新
         ViewUtils.slideAndDropDown(listView);
 
-        mBtnBack.setOnClickListener(this);
+        iv_back.setOnClickListener(this);
     }
 
     private void initData() {
@@ -93,7 +92,7 @@ public class MessageActivity extends BaseActivity implements View.OnClickListene
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.id_img_back:
+            case R.id.iv_back:
                 finish();
                 break;
         }

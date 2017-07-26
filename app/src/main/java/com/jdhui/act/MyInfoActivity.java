@@ -14,7 +14,6 @@ import android.text.TextUtils;
 import android.util.Base64;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -54,34 +53,27 @@ import java.net.URL;
  */
 public class MyInfoActivity extends BaseActivity implements View.OnClickListener {
     private ImageView iv_back;
-    private RelativeLayout mLayoutPhoto; // 头像 布局
-    private ImageView mImgPhoto; //用户头像
-    private Button mBtnSave;
+    private RelativeLayout rl_myinfo_photo; // 头像 布局
+    private ImageView iv_myinfo_user; //用户头像
+    private Button btn_myinfo_save;
     private Bitmap newZoomImage;
-
-    /**
-     * 表示选择的是相机--1
-     */
-    private static int CAMERA_REQUEST_CODE = 1;
-    /**
-     * 表示选择的是相册--2
-     */
-    private static int GALLERY_REQUEST_CODE = 2;
-    /**
-     * 表示选择的是裁剪--3
-     */
-    private static int CROP_REQUEST_CODE = 3;
-
-    /**
-     * 图片保存SD卡位置
-     */
-    private final static String IMG_PATH = Environment.getExternalStorageDirectory() + "/Jdehui/imgs/";
-
     private ResultMyInfoContentBean bean;
     private String userInfoId = null; //用户信息ID （用户编号）
-    private TextView mTvName, mTvID;//身份证\护照\机构代码
-    private TextView mTvAdress;
+    private TextView tv_myinfo_name, tv_myinfo_idcard;//身份证\护照\机构代码
+    private TextView tv_myinfo_adress;
     private TextView tv_id_no;
+
+    // 表示选择的是相机--1
+    private static int CAMERA_REQUEST_CODE = 1;
+
+   // 表示选择的是相册--2
+    private static int GALLERY_REQUEST_CODE = 2;
+
+   // 表示选择的是裁剪--3
+    private static int CROP_REQUEST_CODE = 3;
+
+    // 图片保存SD卡位置
+    private final static String IMG_PATH = Environment.getExternalStorageDirectory() + "/Jdehui/imgs/";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -98,17 +90,17 @@ public class MyInfoActivity extends BaseActivity implements View.OnClickListener
         userInfoId = getIntent().getStringExtra("userInfoId");
 
         iv_back = (ImageView) findViewById(R.id.iv_back);
-        mLayoutPhoto = (RelativeLayout) findViewById(R.id.id_my_info_layout_photo);
-        mImgPhoto = (ImageView) findViewById(R.id.id_my_info_img_user);
-        mTvName = (TextView) findViewById(R.id.id_my_info_tv_name);
+        rl_myinfo_photo = (RelativeLayout) findViewById(R.id.rl_myinfo_photo);
+        iv_myinfo_user = (ImageView) findViewById(R.id.iv_myinfo_user);
+        tv_myinfo_name = (TextView) findViewById(R.id.tv_myinfo_name);
         tv_id_no = (TextView) findViewById(R.id.tv_id_no);
-        mTvID = (TextView) findViewById(R.id.id_my_info_tv_idcard);
-        mTvAdress = (TextView) findViewById(R.id.id_my_info_tv_adress);
-        mBtnSave = (Button) findViewById(R.id.id_my_info_btn_save);
+        tv_myinfo_idcard = (TextView) findViewById(R.id.tv_myinfo_idcard);
+        tv_myinfo_adress = (TextView) findViewById(R.id.tv_myinfo_adress);
+        btn_myinfo_save = (Button) findViewById(R.id.btn_myinfo_save);
 
         iv_back.setOnClickListener(this);
-        mLayoutPhoto.setOnClickListener(this);
-        mBtnSave.setOnClickListener(this);
+        rl_myinfo_photo.setOnClickListener(this);
+        btn_myinfo_save.setOnClickListener(this);
     }
 
     /**
@@ -131,26 +123,26 @@ public class MyInfoActivity extends BaseActivity implements View.OnClickListener
     private void setData(ResultMyInfoContentBean bean) {
         if (bean != null) {
             String url = bean.getPictureServerURL();
-            mTvName.setText(bean.getUserName());
+            tv_myinfo_name.setText(bean.getUserName());
             if (bean.getIdType().equals("idCard")) { //idCard:身份证
                 tv_id_no.setText("身份证");
-                mTvID.setText(StringUtil.replaceSubStringID(bean.getIdNo()));
+                tv_myinfo_idcard.setText(StringUtil.replaceSubStringID(bean.getIdNo()));
             } else if (bean.getIdType().equals("passport")) {  // passport：护照
                 tv_id_no.setText("护照");
-                mTvID.setText(bean.getIdNo());
+                tv_myinfo_idcard.setText(bean.getIdNo());
             } else if (bean.getIdType().equals("agencyCode")) { // agencyCode：机构代码
                 tv_id_no.setText("机构代码");
-                mTvID.setText(bean.getIdNo());
+                tv_myinfo_idcard.setText(bean.getIdNo());
             }
-            mTvAdress.setText(bean.getAddress());
+            tv_myinfo_adress.setText(bean.getAddress());
             if (!TextUtils.isEmpty(url)) {
                 new ImageViewService().execute(url);
                 // Toast.makeText(activity,"成功", 0).show();
             } else {
-                mImgPhoto.setImageDrawable(getResources().getDrawable(R.drawable.user_photo));
+                iv_myinfo_user.setImageDrawable(getResources().getDrawable(R.drawable.user_photo));
             }
         } else {
-            mImgPhoto.setImageDrawable(getResources().getDrawable(R.drawable.user_photo));
+            iv_myinfo_user.setImageDrawable(getResources().getDrawable(R.drawable.user_photo));
         }
     }
 
@@ -161,11 +153,11 @@ public class MyInfoActivity extends BaseActivity implements View.OnClickListener
             case R.id.iv_back:
                 finish();
                 break;
-            case R.id.id_my_info_layout_photo:
+            case R.id.rl_myinfo_photo:
                 selectPhoto();
                 break;
-            case R.id.id_my_info_btn_save:
-                String address = mTvAdress.getText().toString();
+            case R.id.btn_myinfo_save:
+                String address = tv_myinfo_adress.getText().toString();
                 if (TextUtils.isEmpty(address)) {
                     Toast.makeText(MyInfoActivity.this, "请输入地址", Toast.LENGTH_LONG).show();
                 } else {
@@ -372,7 +364,7 @@ public class MyInfoActivity extends BaseActivity implements View.OnClickListener
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
             if (msg.what == 1) {
-                mImgPhoto.setImageBitmap(newZoomImage);
+                iv_myinfo_user.setImageBitmap(newZoomImage);
             } else {
             }
         }
@@ -408,10 +400,10 @@ public class MyInfoActivity extends BaseActivity implements View.OnClickListener
                         new ImageViewService().execute(url);
                         // Toast.makeText(activity,"成功", 0).show();
                     } else {
-                        mImgPhoto.setImageDrawable(getResources().getDrawable(R.drawable.user_photo));
+                        iv_myinfo_user.setImageDrawable(getResources().getDrawable(R.drawable.user_photo));
                     }
                 } else {
-                    mImgPhoto.setImageDrawable(getResources().getDrawable(R.drawable.user_photo));
+                    iv_myinfo_user.setImageDrawable(getResources().getDrawable(R.drawable.user_photo));
                 }
             }
         });
@@ -435,10 +427,10 @@ public class MyInfoActivity extends BaseActivity implements View.OnClickListener
             super.onPostExecute(result);
 
             if (result != null) {
-                mImgPhoto.setImageBitmap(result);
+                iv_myinfo_user.setImageBitmap(result);
                 saveBitmap(result);
             } else {
-                mImgPhoto.setImageDrawable(getResources().getDrawable(R.drawable.user_default));
+                iv_myinfo_user.setImageDrawable(getResources().getDrawable(R.drawable.user_default));
             }
         }
 
