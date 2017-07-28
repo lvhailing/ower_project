@@ -5,6 +5,7 @@ import com.jdhui.bean.AppTypeBean;
 import com.jdhui.bean.AssetInsuranceProductIdBean;
 import com.jdhui.bean.AssetProductIdBean;
 import com.jdhui.bean.ChangePWDBean;
+import com.jdhui.bean.CheckPhoneBean;
 import com.jdhui.bean.CheckVersionBean;
 import com.jdhui.bean.EcryptBean;
 import com.jdhui.bean.FeedBackBean;
@@ -119,7 +120,7 @@ public class HtmlLoadUtil {
     }
 
     /**
-     * 获取短信
+     * 获取验证码
      *
      * @param userMobile
      * @param busiType
@@ -362,12 +363,18 @@ public class HtmlLoadUtil {
     }
 
     /**
-     * 保存修改后手机号
+     * 保存修改后手机号(修改手机号（二）)
      *
      * @return
      */
     public static String savePhone(String userId, String mobile, String validateCode) {
         SavePhoneBean b = new SavePhoneBean(userId, mobile, validateCode);
+        return getResult(b);
+    }
+
+    // 修改手机号（一）
+    public static String checkPhone(String userId, String mobile) {
+        CheckPhoneBean b = new CheckPhoneBean(userId, mobile);
         return getResult(b);
     }
 
@@ -564,7 +571,7 @@ public class HtmlLoadUtil {
      *
      * @return
      */
-    public static String subBookingShip(String clientPhone,  String shipId, String clientName) {
+    public static String subBookingShip(String clientPhone, String shipId, String clientName) {
         SubBookingShip0B b = new SubBookingShip0B(clientPhone, shipId, clientName);
         return getResult(b);
     }
@@ -611,6 +618,7 @@ public class HtmlLoadUtil {
 
     /**
      * 服务--提交海外医疗预约
+     *
      * @param client
      * @param clientPhone
      * @param overseasType

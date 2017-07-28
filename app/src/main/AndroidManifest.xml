@@ -173,7 +173,7 @@
             android:screenOrientation="portrait"/>
 
         <activity
-            android:name=".act.ac.ProjectBookingDetailActivity"
+            android:name=".act.ac.ProductBookingDetailActivity"
             android:screenOrientation="portrait"/>
 
         <activity
@@ -236,15 +236,15 @@
             android:screenOrientation="portrait"/>
 
         <activity
-            android:name=".act.ac.OverseaProjectListActivity"
+            android:name=".act.ac.OverseaHouseListActivity"
             android:screenOrientation="portrait"/>
 
         <activity
-            android:name=".act.ac.OverseaProjectDetailActivity"
+            android:name=".act.ac.OverseaHouseDetailActivity"
             android:screenOrientation="portrait"/>
 
         <activity
-            android:name=".act.ac.ProjectBookingActivity"
+            android:name=".act.ac.SubmitOverseaHouseActivity"
             android:screenOrientation="portrait"/>
 
         <activity

@@ -47,12 +47,14 @@ public class WebActivity extends Activity implements View.OnClickListener {
     private ImageView iv_back;
     private Button btn_submit;
     private String overseasType; // 海外医疗预约类型
+    private int flag; // 以此标志来判断是否显示“立即预约”按钮
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_web);
+        flag = getIntent().getIntExtra("flag", 0);
         type = getIntent().getStringExtra("type");
         url = getIntent().getStringExtra("url");
         initView();
@@ -67,8 +69,15 @@ public class WebActivity extends Activity implements View.OnClickListener {
         webview = (WebView) findViewById(R.id.webview);
         tv_web_title = (TextView) findViewById(R.id.tv_web_title);
         iv_back = (ImageView) findViewById(R.id.iv_back);
+        View V_web_empty = findViewById(R.id.V_web_empty);
         btn_submit = (Button) findViewById(R.id.btn_submit);
-
+        if (flag == 100) {
+            V_web_empty.setVisibility(View.VISIBLE);
+            btn_submit.setVisibility(View.VISIBLE);
+        } else {
+            V_web_empty.setVisibility(View.GONE);
+            btn_submit.setVisibility(View.GONE);
+        }
 
         iv_back.setOnClickListener(this);
         btn_submit.setOnClickListener(this);
@@ -122,11 +131,11 @@ public class WebActivity extends Activity implements View.OnClickListener {
         } else if (type.equals(WEBTYPE_VERSION_NUMBER)) {//版本号
             url = ApplicationConsts.URL_VERSION_NUMBER + SystemInfo.sVersionName;
             tv_web_title.setText(getIntent().getExtras().getString("title"));
-        }else if (type.equals(WEBTYPE_EXAMINATION)) { // 海外体检
+        } else if (type.equals(WEBTYPE_EXAMINATION)) { // 海外体检
             tv_web_title.setText(getIntent().getExtras().getString("title"));
-        }else if (type.equals(WEBTYPE_HOSPITAL)) { // 海外就医
+        } else if (type.equals(WEBTYPE_HOSPITAL)) { // 海外就医
             tv_web_title.setText(getIntent().getExtras().getString("title"));
-        }else if (type.equals(WEBTYPE_CONSULTATION)) { // 国际远程会诊
+        } else if (type.equals(WEBTYPE_CONSULTATION)) { // 国际远程会诊
             tv_web_title.setText(getIntent().getExtras().getString("title"));
         }
 

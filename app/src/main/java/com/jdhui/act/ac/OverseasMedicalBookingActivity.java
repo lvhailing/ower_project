@@ -17,14 +17,12 @@ import com.jdhui.act.WebActivity;
  * Created by rui on 2017/7/21.
  */
 public class OverseasMedicalBookingActivity extends BaseActivity implements View.OnClickListener {
-
-    //   examination体检    hospital就医   consultation会诊
-
     private ImageView iv_back;
     private RelativeLayout rl_overseas_medical_check; // 海外体检
     private RelativeLayout rl_overseas_medical_hospital; // 海外就医
     private RelativeLayout rl_overseas_medical_consultation; // 国际远程会诊
     private Intent intent;
+    private int isFromOverseasMedical = 100;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,26 +52,26 @@ public class OverseasMedicalBookingActivity extends BaseActivity implements View
                 break;
             case R.id.rl_overseas_medical_check: // 海外体检
                 intent = new Intent(OverseasMedicalBookingActivity.this, WebActivity.class);
+                intent.putExtra("flag", isFromOverseasMedical);
                 intent.putExtra("type", WebActivity.WEBTYPE_EXAMINATION);
                 intent.putExtra("title", "海外体检");
-                intent.putExtra("url", ApplicationConsts.URL_OVERSEAS_MEDICAL /*+ "overseasType="*/ + "examination");
-                Log.i("aaa", "地址：" + ApplicationConsts.URL_OVERSEAS_MEDICAL + "overseasType=" + "examination");
+                intent.putExtra("url", ApplicationConsts.URL_OVERSEAS_MEDICAL  + "examination");
                 startActivity(intent);
                 break;
             case R.id.rl_overseas_medical_hospital: // 海外就医
                 intent = new Intent(OverseasMedicalBookingActivity.this, WebActivity.class);
+                intent.putExtra("flag", isFromOverseasMedical);
                 intent.putExtra("type", WebActivity.WEBTYPE_HOSPITAL);
                 intent.putExtra("title", "海外就医");
-                intent.putExtra("url", ApplicationConsts.URL_OVERSEAS_MEDICAL /*+ "overseasType="*/ + "hospital");
-                Log.i("aaa", "地址：" + ApplicationConsts.URL_OVERSEAS_MEDICAL + "overseasType=" + "hospital");
+                intent.putExtra("url", ApplicationConsts.URL_OVERSEAS_MEDICAL + "hospital");
                 startActivity(intent);
                 break;
             case R.id.rl_overseas_medical_consultation: // 国际远程会诊
                 intent = new Intent(OverseasMedicalBookingActivity.this, WebActivity.class);
+                intent.putExtra("flag", isFromOverseasMedical);
                 intent.putExtra("type", WebActivity.WEBTYPE_CONSULTATION);
                 intent.putExtra("title", "海外远程会议");
-                intent.putExtra("url", ApplicationConsts.URL_OVERSEAS_MEDICAL /*+ "overseasType="*/ + "consultation");
-                Log.i("aaa", "地址：" + ApplicationConsts.URL_OVERSEAS_MEDICAL + "overseasType=" + "consultation");
+                intent.putExtra("url", ApplicationConsts.URL_OVERSEAS_MEDICAL  + "consultation");
                 startActivity(intent);
                 break;
 

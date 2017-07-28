@@ -26,16 +26,16 @@ import com.jdhui.uitls.DESUtil;
 import com.jdhui.uitls.PreferenceUtil;
 
 /**
- * 修改手机号
+ * 修改手机号二
  */
 public class ChangePhoneTwoActivity extends BaseActivity implements View.OnClickListener {
     private ImageView iv_back;
-    private EditText mEditInput;
-    private ImageView mBtnDelete;
-    private Button mBtnNext;
+    private ImageView iv_delete;
+    private Button btn_submit;
     private String phone = null;
-    private TextView mTvPhone;
-    private Button btnGetSMS;
+    private TextView tv_change_phone_number;
+    private EditText et_identifying_code; // 输入验证码
+    private Button btn_identifying_code; // 获取验证码
     private boolean smsflag = false;
     private MyHandler mHandler;
     private int time = 60;
@@ -47,26 +47,25 @@ public class ChangePhoneTwoActivity extends BaseActivity implements View.OnClick
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         baseSetContentView(R.layout.activity_change_phone_two);
-        phone = getIntent().getStringExtra("phone");
+
         initView();
         initData();
     }
 
     private void initView() {
-
         iv_back = (ImageView) findViewById(R.id.iv_back);
-        mTvPhone = (TextView) findViewById(R.id.id_change_phone_tv_number);
-        mTvPhone.setText("手机号:" + phone);
-        btnGetSMS = (Button) findViewById(R.id.changephone_getSMS);
-        mEditInput = (EditText) findViewById(R.id.id_inut_verify_code);
-        mBtnDelete = (ImageView) findViewById(R.id.id_btn_delete);
-        mBtnNext = (Button) findViewById(R.id.id_btn_next);
+        tv_change_phone_number = (TextView) findViewById(R.id.tv_change_phone_number);
+        btn_identifying_code = (Button) findViewById(R.id.btn_identifying_code);
+        et_identifying_code = (EditText) findViewById(R.id.et_identifying_code);
+        iv_delete = (ImageView) findViewById(R.id.iv_delete);
+        btn_submit = (Button) findViewById(R.id.btn_submit);
+
         iv_back.setOnClickListener(this);
-        btnGetSMS.setOnClickListener(this);
-        mBtnDelete.setOnClickListener(this);
-        mBtnNext.setOnClickListener(this);
-        mBtnNext.setClickable(false);
-        mEditInput.addTextChangedListener(new TextWatcher() {
+        btn_identifying_code.setOnClickListener(this);
+        iv_delete.setOnClickListener(this);
+        btn_submit.setOnClickListener(this);
+        btn_submit.setClickable(false);
+        et_identifying_code.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
@@ -80,17 +79,25 @@ public class ChangePhoneTwoActivity extends BaseActivity implements View.OnClick
             @Override
             public void afterTextChanged(Editable editable) {
                 if (TextUtils.isEmpty(editable)) {
-                    mBtnDelete.setVisibility(View.GONE);
-                    mBtnNext.setBackgroundResource(R.drawable.shape_button_gray_gray);
-                    mBtnNext.setClickable(false);
+                    iv_delete.setVisibility(View.GONE);
+                    btn_submit.setBackgroundResource(R.drawable.shape_button_gray_gray);
+                    btn_submit.setClickable(false);
                 } else {
-                    mBtnDelete.setVisibility(View.VISIBLE);
-                    mBtnNext.setBackgroundResource(R.drawable.shape_button_red);
-                    mBtnNext.setClickable(true);
+                    iv_delete.setVisibility(View.VISIBLE);
+                    btn_submit.setBackgroundResource(R.drawable.shape_button_red);
+                    btn_submit.setClickable(true);
                 }
 
             }
         });
+    }
+
+    private void initData() {
+        phone = getIntent().getStringExtra("phone");
+        tv_change_phone_number.setText("手机号:" + phone);
+
+        mHandler = new MyHandler();
+        btnString = getResources().getString(R.string.signup_time);
     }
 
     @Override
@@ -99,14 +106,14 @@ public class ChangePhoneTwoActivity extends BaseActivity implements View.OnClick
             case R.id.iv_back:
                 finish();
                 break;
-            case R.id.id_btn_delete:
-                mEditInput.setText("");
+            case R.id.iv_delete: // 删除输入的验证码
+                et_identifying_code.setText("");
                 break;
-            case R.id.changephone_getSMS:
+            case R.id.btn_identifying_code: // 获取验证码
                 requestSMS();
                 break;
-            case R.id.id_btn_next:
-                String validateCode = mEditInput.getText().toString();
+            case R.id.btn_submit: // 提交
+                String validateCode = et_identifying_code.getText().toString();
                 if (!TextUtils.isEmpty(validateCode)) {
                     requestData(phone, validateCode);
                 } else {
@@ -126,25 +133,20 @@ public class ChangePhoneTwoActivity extends BaseActivity implements View.OnClick
             @Override
             public void onRequestFinished(BaseParams params) {
                 ResultSentSMSContentBean b = (ResultSentSMSContentBean) params.result;
-                if (b != null) {
-                    if (Boolean.parseBoolean(b.getResult())) {
-                        Toast.makeText(ChangePhoneTwoActivity.this, b.getMessage(), Toast.LENGTH_LONG).show();
-                        smsflag = true;
-                        startThread();
-                    } else {
-                        smsflag = false;
-                        Toast.makeText(ChangePhoneTwoActivity.this, b.getMessage(), Toast.LENGTH_LONG).show();
-                    }
-                } else {
+                if (b == null) {
                     Toast.makeText(ChangePhoneTwoActivity.this, "加载失败，请确认网络通畅", Toast.LENGTH_LONG).show();
+                    return;
+                }
+                if (Boolean.parseBoolean(b.getResult())) {
+                    Toast.makeText(ChangePhoneTwoActivity.this, b.getMessage(), Toast.LENGTH_LONG).show();
+                    smsflag = true;
+                    startThread();
+                } else {
+                    smsflag = false;
+                    Toast.makeText(ChangePhoneTwoActivity.this, b.getMessage(), Toast.LENGTH_LONG).show();
                 }
             }
         });
-    }
-
-    private void initData() {
-        mHandler = new MyHandler();
-        btnString = getResources().getString(R.string.signup_time);
     }
 
     private void startThread() {
@@ -168,16 +170,16 @@ public class ChangePhoneTwoActivity extends BaseActivity implements View.OnClick
 
     private void setButtonStyle(int time) {
         if (time == 0) {
-            btnGetSMS.setText(getResources().getString(R.string.findpd_getphoneauth));
-            btnGetSMS.setClickable(true);
-            btnGetSMS.setTextColor(getResources().getColor(R.color.txt_white));
-            btnGetSMS.setBackgroundResource(R.drawable.shape_button_red);
+            btn_identifying_code.setText(getResources().getString(R.string.findpd_getphoneauth));
+            btn_identifying_code.setClickable(true);
+            btn_identifying_code.setTextColor(getResources().getColor(R.color.txt_white));
+            btn_identifying_code.setBackgroundResource(R.drawable.shape_button_red);
         } else {
             if (time <= 59) {
-                btnGetSMS.setClickable(false);
-                btnGetSMS.setBackgroundResource(R.drawable.shape_button_gray_verify);
-                btnGetSMS.setTextColor(getResources().getColor(R.color.txt_gray));
-                btnGetSMS.setText(time + btnString);
+                btn_identifying_code.setClickable(false);
+                btn_identifying_code.setBackgroundResource(R.drawable.shape_button_gray_verify);
+                btn_identifying_code.setTextColor(getResources().getColor(R.color.txt_gray));
+                btn_identifying_code.setText(time + btnString);
             }
         }
     }
@@ -208,6 +210,11 @@ public class ChangePhoneTwoActivity extends BaseActivity implements View.OnClick
         }
     };
 
+    /**
+     * 点提交按钮时调接口
+     * @param mobile
+     * @param validateCode
+     */
     private void requestData(String mobile, String validateCode) {
         HtmlRequest.savePhone(ChangePhoneTwoActivity.this, mobile, validateCode, new BaseRequester.OnRequestListener() {
 
@@ -223,7 +230,7 @@ public class ChangePhoneTwoActivity extends BaseActivity implements View.OnClick
                             e.printStackTrace();
                         }
                         Intent intent = new Intent(ChangePhoneTwoActivity.this, AccountActivity.class);
-                        intent.putExtra("userInfoId",PreferenceUtil.getUserInfoId());
+                        intent.putExtra("userInfoId", PreferenceUtil.getUserInfoId());
                         startActivity(intent);
 
                         //栈里只留MainActivity

@@ -20,7 +20,7 @@ import com.jdhui.uitls.StringUtil;
 /**
  * 更多--产品预约的 预约详情
  */
-public class ProjectBookingDetailActivity extends BaseActivity implements View.OnClickListener {
+public class ProductBookingDetailActivity extends BaseActivity implements View.OnClickListener {
     private ImageView mIvBack;
     private TextView mTvTitle;
     private RelativeLayout mRlProName; //产品名称  布局

@@ -14,7 +14,7 @@ import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.jdhui.R;
 import com.jdhui.act.BaseActivity;
-import com.jdhui.adapter.OverseaProjectAdapter;
+import com.jdhui.adapter.OverseaHouseAdapter;
 import com.jdhui.bean.mybean.OverseaProjectList2B;
 import com.jdhui.bean.mybean.OverseaProjectList3B;
 import com.jdhui.mould.BaseParams;
@@ -22,53 +22,27 @@ import com.jdhui.mould.BaseRequester;
 import com.jdhui.mould.HtmlRequest;
 import com.jdhui.mould.types.MouldList;
 import com.jdhui.uitls.ViewUtils;
-import com.jdhui.view.TitleBar;
-
-import java.util.HashMap;
 
 
 /**
- * 服务-- 海外项目列表
+ * 服务-- 海外房产项目列表
  */
-public class OverseaProjectListActivity extends BaseActivity implements View.OnClickListener {
+public class OverseaHouseListActivity extends BaseActivity implements View.OnClickListener {
+    private ImageView iv_back;
     private PullToRefreshListView listView;
-    private OverseaProjectAdapter mAdapter;
+    private OverseaHouseAdapter mAdapter;
     private MouldList<OverseaProjectList3B> totalList = new MouldList<>();
     private int currentPage = 1;    //当前页
     private ViewSwitcher vs;
-    private ImageView iv_back;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         baseSetContentView(R.layout.ac_oversea_project);
 
-//        initTopTitle();
         initView();
         initData();
     }
-
-//    private void initTopTitle() {
-//        TitleBar title = (TitleBar) findViewById(R.id.titlebar);
-//        title.showLeftImg(true);
-//        title.setTitle(getResources().getString(R.string.title_null)).setLogo(R.drawable.icons, false).setIndicator(R.drawable.back)
-//             .setCenterText(getResources().getString(R.string.title_oversea_project)).showMore(false).setOnActionListener(new TitleBar.OnActionListener() {
-//
-//            @Override
-//            public void onMenu(int id) {
-//            }
-//
-//            @Override
-//            public void onBack() {
-//                finish();
-//            }
-//
-//            @Override
-//            public void onAction(int id) {
-//
-//            }
-//        });
-//    }
 
     private void initView() {
         iv_back = (ImageView) findViewById(R.id.iv_back);
@@ -86,7 +60,7 @@ public class OverseaProjectListActivity extends BaseActivity implements View.OnC
     }
 
     private void initData() {
-        mAdapter = new OverseaProjectAdapter(this, totalList);
+        mAdapter = new OverseaHouseAdapter(this, totalList);
         listView.setAdapter(mAdapter);
 
         requestListData();
@@ -107,7 +81,7 @@ public class OverseaProjectListActivity extends BaseActivity implements View.OnC
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> arg0, View arg1, int position, long arg3) {
-                Intent intent = new Intent(OverseaProjectListActivity.this, OverseaProjectDetailActivity.class);
+                Intent intent = new Intent(OverseaHouseListActivity.this, OverseaHouseDetailActivity.class);
                 intent.putExtra("pid", totalList.get(position - 1).getPid());
                 startActivity(intent);
             }
@@ -118,21 +92,18 @@ public class OverseaProjectListActivity extends BaseActivity implements View.OnC
     @Override
     protected void onResume() {
         super.onResume();
-//        currentPage = 1;
-//        requestListData();
-//        listView.getRefreshableView().setSelection(0);
     }
 
 
     // 获取海外项目列表数据
     private void requestListData() {
         try {
-            HtmlRequest.getOverseaListData(OverseaProjectListActivity.this, currentPage + "", new BaseRequester.OnRequestListener() {
+            HtmlRequest.getOverseaListData(OverseaHouseListActivity.this, currentPage + "", new BaseRequester.OnRequestListener() {
                         @Override
                         public void onRequestFinished(BaseParams params) {
                             if (params.result == null) {
                                 vs.setDisplayedChild(1);
-                                Toast.makeText(OverseaProjectListActivity.this, "加载失败，请确认网络通畅", Toast.LENGTH_LONG).show();
+                                Toast.makeText(OverseaHouseListActivity.this, "加载失败，请确认网络通畅", Toast.LENGTH_LONG).show();
                                 listView.postDelayed(new Runnable() {
                                     @Override
                                     public void run() {
@@ -146,7 +117,7 @@ public class OverseaProjectListActivity extends BaseActivity implements View.OnC
                             MouldList<OverseaProjectList3B> everyList = data.getList();
 
                             if ((everyList == null || everyList.size() == 0) && currentPage != 1) {
-                                Toast.makeText(OverseaProjectListActivity.this, "已显示全部", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(OverseaHouseListActivity.this, "已显示全部", Toast.LENGTH_SHORT).show();
                             }
 
                             if (currentPage == 1) {

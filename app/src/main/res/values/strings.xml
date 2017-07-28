@@ -115,4 +115,7 @@
     <string name="title_service_order_oversea_asset"> 海外资产配置</string>
     <string name="title_service_order_overseas_medical"> 海外医疗</string>
 
+
+    <string name="tips_service_booking_detail"> 请保持电话畅通我们会尽快与您进行联系！</string>
+
 </resources>

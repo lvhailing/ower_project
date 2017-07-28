@@ -76,7 +76,10 @@ public class SubmitOverseasMedicalActivity extends BaseActivity implements View.
             return;
         }
 
-        if (!StringUtil.isMobileNO(phone)) {
+        if (TextUtils.isEmpty(phone)) {
+            Toast.makeText(SubmitOverseasMedicalActivity.this, "请输入联系电话", Toast.LENGTH_SHORT).show();
+            return;
+        }else if (!StringUtil.isMobileNO(phone)) {
             Toast.makeText(SubmitOverseasMedicalActivity.this, "请输入正确的手机号", Toast.LENGTH_SHORT).show();
             return;
         }

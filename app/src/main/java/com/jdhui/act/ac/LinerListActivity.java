@@ -25,7 +25,7 @@ import com.jdhui.uitls.ViewUtils;
  * 服务--豪华邮轮游列表
  */
 public class LinerListActivity extends BaseActivity implements View.OnClickListener {
-    private ImageView mBtnBack;
+    private ImageView iv_back;
     private PullToRefreshListView listView;
     private LinerListAdapter mAdapter;
     private MouldList<LinerList3B> totalList = new MouldList<>();
@@ -41,13 +41,13 @@ public class LinerListActivity extends BaseActivity implements View.OnClickListe
     }
 
     private void initView() {
-        mBtnBack = (ImageView) findViewById(R.id.iv_back);
+        iv_back = (ImageView) findViewById(R.id.iv_back);
         listView = (PullToRefreshListView) findViewById(R.id.listview);
 
         //PullToRefreshListView  上滑加载更多及下拉刷新
         ViewUtils.slideAndDropDown(listView);
 
-        mBtnBack.setOnClickListener(this);
+        iv_back.setOnClickListener(this);
     }
 
     private void initData() {

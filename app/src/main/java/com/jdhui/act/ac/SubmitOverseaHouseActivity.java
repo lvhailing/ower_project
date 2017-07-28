@@ -12,16 +12,16 @@ import android.widget.Toast;
 import com.jdhui.R;
 import com.jdhui.act.BaseActivity;
 import com.jdhui.act.MainActivity;
-import com.jdhui.bean.mybean.SubGeneticTesting2B;
 import com.jdhui.bean.mybean.SubOverseaProject2B;
 import com.jdhui.mould.BaseParams;
 import com.jdhui.mould.BaseRequester;
 import com.jdhui.mould.HtmlRequest;
+import com.jdhui.uitls.StringUtil;
 
 /**
- * 服务--提交海外项目预约
+ * 服务--提交海外房产项目预约
  */
-public class ProjectBookingActivity extends BaseActivity implements View.OnClickListener {
+public class SubmitOverseaHouseActivity extends BaseActivity implements View.OnClickListener {
     private ImageView iv_back;
     private EditText et_name; // 预约人
     private EditText et_phone; // 预约人电话
@@ -73,15 +73,18 @@ public class ProjectBookingActivity extends BaseActivity implements View.OnClick
         String financialPlanner = et_financial_planner.getText().toString();
 
         if (TextUtils.isEmpty(name)) {
-            Toast.makeText(ProjectBookingActivity.this, "请输入预约人", Toast.LENGTH_SHORT).show();
+            Toast.makeText(SubmitOverseaHouseActivity.this, "请输入预约人", Toast.LENGTH_SHORT).show();
             return;
         }
         if (TextUtils.isEmpty(phone)) {
-            Toast.makeText(ProjectBookingActivity.this, "请输入联系电话", Toast.LENGTH_SHORT).show();
+            Toast.makeText(SubmitOverseaHouseActivity.this, "请输入联系电话", Toast.LENGTH_SHORT).show();
+            return;
+        } else if (!StringUtil.isMobileNO(phone)) {
+            Toast.makeText(SubmitOverseaHouseActivity.this, "请输入正确的手机号", Toast.LENGTH_SHORT).show();
             return;
         }
         if (TextUtils.isEmpty(financialPlanner)) {
-            Toast.makeText(ProjectBookingActivity.this, "请输入专属理财师", Toast.LENGTH_SHORT).show();
+            Toast.makeText(SubmitOverseaHouseActivity.this, "请输入专属理财师", Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -89,19 +92,19 @@ public class ProjectBookingActivity extends BaseActivity implements View.OnClick
             @Override
             public void onRequestFinished(BaseParams params) {
                 if (params == null) {
-                    Toast.makeText(ProjectBookingActivity.this, "加载失败，请确认网络通畅", Toast.LENGTH_LONG).show();
+                    Toast.makeText(SubmitOverseaHouseActivity.this, "加载失败，请确认网络通畅", Toast.LENGTH_LONG).show();
                     return;
 
                 }
                 SubOverseaProject2B OverseaProjectData = (SubOverseaProject2B) params.result;
                 if (OverseaProjectData != null) {
                     if (Boolean.parseBoolean(OverseaProjectData.getFlag())) {
-                        Toast.makeText(ProjectBookingActivity.this, "预约成功", Toast.LENGTH_LONG).show();
-                        Intent intent = new Intent(ProjectBookingActivity.this, MainActivity.class);
+                        Toast.makeText(SubmitOverseaHouseActivity.this, "预约成功", Toast.LENGTH_LONG).show();
+                        Intent intent = new Intent(SubmitOverseaHouseActivity.this, MainActivity.class);
                         intent.putExtra("tab", 2);
                         startActivity(intent);
                     } else {
-                        Toast.makeText(ProjectBookingActivity.this, "预约失败，请您检查提交信息", Toast.LENGTH_LONG).show();
+                        Toast.makeText(SubmitOverseaHouseActivity.this, "预约失败，请您检查提交信息", Toast.LENGTH_LONG).show();
                     }
                 }
             }

@@ -128,6 +128,9 @@ public class Constants {
      * 保存修改后手机号
      */
     public static final String TASK_TYPE_SAVE_PHONE = String.valueOf(index++);
+
+    // 验证修改的手机号
+    public static final String TASK_TYPE_CHECK_PHONE = String.valueOf(index++);
     /***
      * 修改密码
      */

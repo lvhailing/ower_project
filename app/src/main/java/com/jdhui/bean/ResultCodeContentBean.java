@@ -4,7 +4,6 @@ package com.jdhui.bean;
 import com.jdhui.mould.types.IMouldType;
 
 public class ResultCodeContentBean implements IMouldType {
-
 	private String flag;
 	private String msg;
 

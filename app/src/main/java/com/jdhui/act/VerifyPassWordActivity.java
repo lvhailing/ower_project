@@ -39,9 +39,9 @@ public class VerifyPassWordActivity extends BaseActivity implements View.OnClick
 
     private void initView() {
         iv_back = (ImageView) findViewById(R.id.iv_back);
-        mEditInput = (EditText) findViewById(R.id.id_inut_pw);
-        mBtnDelete = (ImageView) findViewById(R.id.id_btn_delete);
-        mBtnNext = (Button) findViewById(R.id.id_btn_next);
+        mEditInput = (EditText) findViewById(R.id.et_new_phone);
+        mBtnDelete = (ImageView) findViewById(R.id.iv_delete);
+        mBtnNext = (Button) findViewById(R.id.btn_submit);
 
         iv_back.setOnClickListener(this);
         mBtnDelete.setOnClickListener(this);
@@ -78,10 +78,10 @@ public class VerifyPassWordActivity extends BaseActivity implements View.OnClick
             case R.id.iv_back:
                 finish();
                 break;
-            case R.id.id_btn_delete:
+            case R.id.iv_delete:
                 mEditInput.setText("");
                 break;
-            case R.id.id_btn_next:
+            case R.id.btn_submit:
                 String password = mEditInput.getText().toString();
                 if (!TextUtils.isEmpty(password)) {
                     requestData(password);

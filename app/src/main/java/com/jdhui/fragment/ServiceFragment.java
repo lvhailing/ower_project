@@ -12,7 +12,7 @@ import android.widget.RelativeLayout;
 
 import com.jdhui.R;
 import com.jdhui.act.ac.LinerListActivity;
-import com.jdhui.act.ac.OverseaProjectListActivity;
+import com.jdhui.act.ac.OverseaHouseListActivity;
 import com.jdhui.act.ac.OverseasMedicalBookingActivity;
 import com.jdhui.act.ac.WebAirPlanBookingActivity;
 import com.jdhui.act.ac.GeneticTestingListActivity;
@@ -156,7 +156,7 @@ public class ServiceFragment extends Fragment implements View.OnClickListener {
                 startActivity(intent);
                 break;
             case R.id.rl_oversea_asset: // 海外资产配置
-                intent = new Intent(getActivity(), OverseaProjectListActivity.class);
+                intent = new Intent(getActivity(), OverseaHouseListActivity.class);
                 startActivity(intent);
                 break;
             case R.id.rl_hospital: //绿通就医

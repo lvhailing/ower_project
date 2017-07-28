@@ -219,7 +219,7 @@
     <style name="product_text_detail_rt">
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_weight">1.8</item>
+        <item name="android:layout_weight">1.6</item>
         <item name="android:layout_marginLeft">5dp</item>
         <item name="android:layout_marginRight">10dp</item>
         <item name="android:textColor">@color/txt_black</item>
@@ -230,7 +230,7 @@
     <style name="product_text_detail_rt_service">
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_weight">1.8</item>
+        <item name="android:layout_weight">1.6</item>
         <item name="android:layout_marginLeft">5dp</item>
         <item name="android:layout_marginRight">10dp</item>
         <item name="android:textColor">@color/orange_d</item>

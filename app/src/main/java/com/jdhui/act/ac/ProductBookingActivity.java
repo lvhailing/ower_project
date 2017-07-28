@@ -86,7 +86,7 @@ public class ProductBookingActivity extends BaseActivity implements View.OnClick
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> arg0, View arg1, int position, long arg3) {
-                Intent intent = new Intent(ProductBookingActivity.this, ProjectBookingDetailActivity.class);
+                Intent intent = new Intent(ProductBookingActivity.this, ProductBookingDetailActivity.class);
                 intent.putExtra("id", totalList.get(position - 1).getId());
                 intent.putExtra("productName", totalList.get(position - 1).getProductName());
                 intent.putExtra("category", totalList.get(position - 1).getCategory());

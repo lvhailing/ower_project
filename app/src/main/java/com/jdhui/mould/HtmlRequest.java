@@ -1587,9 +1587,8 @@ public class HtmlRequest extends BaseRequester {
 
     /**
      * 保存修改后手机号
-     *
      * @param context
-     * @param mobile       修改后的手机号
+     * @param mobile  修改后的手机号
      * @param validateCode 验证码
      * @param listener
      * @return
@@ -1619,6 +1618,67 @@ public class HtmlRequest extends BaseRequester {
                     e1.printStackTrace();
                 }
                 // HtmlRequest.synCookies(context, url);
+                client.post(url, entity);
+                String result = (String) client.getResult();
+                try {
+                    if (isCancelled()) {
+                        return null;
+                    }
+                    if (result != null) {
+                        String data = DESUtil.decrypt(result);
+                        Gson json = new Gson();
+                        ResultCodeBean b = json.fromJson(data, ResultCodeBean.class);
+                        resultEncrypt(context, b.getCode());
+                        return b.getData();
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                } finally {
+                    unRegisterId(getTaskId());
+                }
+                return null;
+            }
+
+            @Override
+            public void onPostExecute(IMouldType result, BaseParams params) {
+                params.result = result;
+                params.sendResult();
+            }
+        });
+        return tid;
+    }
+
+    /**
+     * 修改手机号(验证新输入的手机号是否已经注册过)
+     * @param context
+     * @param mobile
+     * @param listener
+     * @return
+     */
+    public static String checkPhone(final Context context, String mobile,  OnRequestListener listener) {
+        String userId = null;
+        try {
+            userId = DESUtil.decrypt(PreferenceUtil.getUserId());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        final String data = HtmlLoadUtil.checkPhone(userId, mobile);
+        final String url = ApplicationConsts.URL_MOBILE_CHECK;
+        String tid = registerId(Constants.TASK_TYPE_CHECK_PHONE, url);
+        if (tid == null) {
+            return null;
+        }
+        getTaskManager().addTask(new MouldAsyncTask(tid, buildParams(Constants.TASK_TYPE_CHECK_PHONE, context, listener, url, 0)) {
+
+            @Override
+            public IMouldType doTask(BaseParams params) {
+                SimpleHttpClient client = new SimpleHttpClient(context, SimpleHttpClient.RESULT_STRING);
+                HttpEntity entity = null;
+                try {
+                    entity = new StringEntity(data);
+                } catch (UnsupportedEncodingException e1) {
+                    e1.printStackTrace();
+                }
                 client.post(url, entity);
                 String result = (String) client.getResult();
                 try {

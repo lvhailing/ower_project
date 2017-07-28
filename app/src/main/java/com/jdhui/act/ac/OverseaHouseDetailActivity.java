@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -16,20 +15,17 @@ import com.jdhui.R;
 import com.jdhui.act.BaseActivity;
 import com.jdhui.adapter.HouseDetailAdapter;
 import com.jdhui.bean.mybean.OverseaProjectDetail2B;
-import com.jdhui.bean.mybean.OverseaProjectDetail3B;
 import com.jdhui.mould.BaseParams;
 import com.jdhui.mould.BaseRequester;
 import com.jdhui.mould.HtmlRequest;
-import com.jdhui.view.TitleBar;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 /**
  * 海外项目详情
  */
-public class OverseaProjectDetailActivity extends BaseActivity implements View.OnClickListener {
+public class OverseaHouseDetailActivity extends BaseActivity implements View.OnClickListener {
     private ScrollView scrollView;
     private ImageView iv_back;
     private boolean isShowHouse = false; //刚进来此页面时，项目居室内容默认是不显示的
@@ -208,7 +204,7 @@ public class OverseaProjectDetailActivity extends BaseActivity implements View.O
                 }
                 break;
             case R.id.btn_oversea_detail_submit: // 立即预约
-                Intent intent = new Intent(OverseaProjectDetailActivity.this, ProjectBookingActivity.class);
+                Intent intent = new Intent(OverseaHouseDetailActivity.this, SubmitOverseaHouseActivity.class);
                 intent.putExtra("houseId", pid);
                 startActivity(intent);
                 break;
