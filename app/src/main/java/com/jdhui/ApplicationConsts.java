@@ -404,7 +404,8 @@ public class ApplicationConsts {
     /**
      * 显示服务首页图片
      */
-    public static final String URL_TURN_SERVICE_PICTURE = EC_HOST + "turn/servicePicture";
+//    public static final String URL_TURN_SERVICE_PICTURE = EC_HOST + "turn/servicePicture";
+    public static final String URL_TURN_SERVICE_PICTURE = EC_HOST + "turn/servicePicture/NewVersion";
 
     /**
      * 更多--取消服务预约
