@@ -22,7 +22,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:text="浮动收益"
+            android:text="@string/title_floating_income"
             android:textColor="@color/white"
             android:textSize="18sp"/>
     </RelativeLayout>

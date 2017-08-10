@@ -7,8 +7,8 @@ import com.jdhui.mould.types.IMouldType;
  */
 public class FixedProductDetailRateReginBean implements IMouldType {
 
-    private String amount;          //认购金额
-    private String rate;            //预期收益
+    private String amount; // 认购金额
+    private String rate;  // 预期收益
 
     public String getAmount() {
         return amount;

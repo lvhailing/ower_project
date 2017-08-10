@@ -28,16 +28,16 @@ import com.jdhui.view.MyListView;
  */
 public class AssetFixedDetailActivity extends BaseActivity implements View.OnClickListener {
 
-    private TextView tv_asset_fixed_call;           //年度报告
-    private TextView tv_asset_fixed_title;          //产品标题
-    private TextView tv_asset_fixed_name;           //产品名称
-    private TextView tv_asset_fixed_goumaijine;     //购买金额
-    private TextView tv_asset_fixed_yujishouyi;     //预计收益
-    private TextView tv_asset_fixed_chanpinqixian;  //产品期限
-    private TextView tv_asset_fixed_goumairiqi;     //购买日期
-    private TextView tv_asset_fixed_chengliriqi;    //成立日期
-    private TextView tv_asset_fixed_fuxinjiange;    //付息间隔
-    private TextView tv_asset_fixed_beizhu;         //备注
+    private TextView tv_fixed_annual_report; //年度报告
+    private TextView tv_asset_fixed_title; //产品标题
+    private TextView tv_fixed_product_name; //产品名称
+    private TextView tv_fixed_purchase_amount; //购买金额
+    private TextView tv_fixed_performance_benchmark; //预计收益
+    private TextView tv_fixed_product_deadline;  //产品期限
+    private TextView tv_fixed_purchase_date; //购买日期
+    private TextView tv_fixed_register_date; //成立日期
+    private TextView tv_fixed_interest_interval; //付息间隔
+    private TextView tv_fixed_remarks; //备注
 
     private ImageView iv_back;
     private String tenderId;
@@ -69,16 +69,16 @@ public class AssetFixedDetailActivity extends BaseActivity implements View.OnCli
         assetFixedBean = new ResultAssetFixedProductDetailBean();
 
         iv_back = (ImageView) findViewById(R.id.iv_back);
-        tv_asset_fixed_call = (TextView) findViewById(R.id.tv_asset_fixed_call);
+        tv_fixed_annual_report = (TextView) findViewById(R.id.tv_fixed_annual_report);
         tv_asset_fixed_title = (TextView) findViewById(R.id.tv_asset_fixed_title);
-        tv_asset_fixed_name = (TextView) findViewById(R.id.tv_asset_fixed_name);
-        tv_asset_fixed_goumaijine = (TextView) findViewById(R.id.tv_asset_fixed_goumaijine);
-        tv_asset_fixed_yujishouyi = (TextView) findViewById(R.id.tv_asset_fixed_yujishouyi);
-        tv_asset_fixed_chanpinqixian = (TextView) findViewById(R.id.tv_asset_fixed_chanpinqixian);
-        tv_asset_fixed_goumairiqi = (TextView) findViewById(R.id.tv_asset_fixed_goumairiqi);
-        tv_asset_fixed_chengliriqi = (TextView) findViewById(R.id.tv_asset_fixed_chengliriqi);
-        tv_asset_fixed_fuxinjiange = (TextView) findViewById(R.id.tv_asset_fixed_fuxinjiange);
-        tv_asset_fixed_beizhu = (TextView) findViewById(R.id.tv_asset_fixed_beizhu);
+        tv_fixed_product_name = (TextView) findViewById(R.id.tv_fixed_product_name);
+        tv_fixed_purchase_amount = (TextView) findViewById(R.id.tv_fixed_purchase_amount);
+        tv_fixed_performance_benchmark = (TextView) findViewById(R.id.tv_fixed_performance_benchmark);
+        tv_fixed_product_deadline = (TextView) findViewById(R.id.tv_fixed_product_deadline);
+        tv_fixed_purchase_date = (TextView) findViewById(R.id.tv_fixed_purchase_date);
+        tv_fixed_register_date = (TextView) findViewById(R.id.tv_fixed_register_date);
+        tv_fixed_interest_interval = (TextView) findViewById(R.id.tv_fixed_interest_interval);
+        tv_fixed_remarks = (TextView) findViewById(R.id.tv_fixed_remarks);
         tv_asset_fixed_unitnet = (TextView) findViewById(R.id.tv_asset_fixed_unitnet);
         ll_asset_fixed_unitnet = (LinearLayout) findViewById(R.id.ll_asset_fixed_unitnet);
         ll_asset_fixed = (RelativeLayout) findViewById(R.id.ll_asset_fixed);
@@ -86,30 +86,30 @@ public class AssetFixedDetailActivity extends BaseActivity implements View.OnCli
         sv_asset_fixed_detail = (ScrollView) findViewById(R.id.sv_asset_fixed_detail);
 
         iv_back.setOnClickListener(this);
-        tv_asset_fixed_call.setOnClickListener(this);
+        tv_fixed_annual_report.setOnClickListener(this);
         ll_asset_fixed.setOnClickListener(this);
     }
 
     public void setView() {
         tv_asset_fixed_title.setText(productName);
-        tv_asset_fixed_name.setText(assetFixedBean.getProductName());
-        tv_asset_fixed_goumaijine.setText(StringUtil.formatNum(assetFixedBean.getTenderAmount()));
-        tv_asset_fixed_yujishouyi.setText(assetFixedBean.getAnnualRate());
-        tv_asset_fixed_chanpinqixian.setText(assetFixedBean.getTimeLimit());
-        tv_asset_fixed_goumairiqi.setText(assetFixedBean.getPurchaseDate());
-        tv_asset_fixed_chengliriqi.setText(assetFixedBean.getEstablishmentDate());
+        tv_fixed_product_name.setText(assetFixedBean.getProductName());
+        tv_fixed_purchase_amount.setText(StringUtil.formatNum(assetFixedBean.getTenderAmount()));
+        tv_fixed_performance_benchmark.setText(assetFixedBean.getAnnualRate());
+        tv_fixed_product_deadline.setText(assetFixedBean.getTimeLimit());
+        tv_fixed_purchase_date.setText(assetFixedBean.getPurchaseDate());
+        tv_fixed_register_date.setText(assetFixedBean.getEstablishmentDate());
 
         String repayType = assetFixedBean.getRepayType();
         if (repayType.equals("monthPayment")) {
-            tv_asset_fixed_fuxinjiange.setText("按月付息，到期还本");
+            tv_fixed_interest_interval.setText("按月付息，到期还本");
         } else if (repayType.equals("quarterPayment")) {
-            tv_asset_fixed_fuxinjiange.setText("按季付息，到期还本");
+            tv_fixed_interest_interval.setText("按季付息，到期还本");
         } else if (repayType.equals("halfYearPayment")) {
-            tv_asset_fixed_fuxinjiange.setText("按半年付息，到期还本");
+            tv_fixed_interest_interval.setText("按半年付息，到期还本");
         } else if (repayType.equals("yearPayment")) {
-            tv_asset_fixed_fuxinjiange.setText("按年付息，到期还本");
+            tv_fixed_interest_interval.setText("按年付息，到期还本");
         } else if (repayType.equals("oneTimePayment")) {
-            tv_asset_fixed_fuxinjiange.setText("一次性还本息");
+            tv_fixed_interest_interval.setText("一次性还本息");
         }
 
         //产品净值的判断 （后台返回“无”时不显示）
@@ -123,16 +123,16 @@ public class AssetFixedDetailActivity extends BaseActivity implements View.OnCli
 
         String remark = assetFixedBean.getRemark();
         if (remark.equals("无")) {
-            tv_asset_fixed_beizhu.setText("暂无备注");
+            tv_fixed_remarks.setText("暂无备注");
         } else {
-            tv_asset_fixed_beizhu.setText(remark);
+            tv_fixed_remarks.setText(remark);
         }
 
         if (assetFixedBean.getIsAnnualReport().equals("yes")) { // 是否有年度报告	 yes:有;  no:无
-            tv_asset_fixed_call.setVisibility(View.VISIBLE);
+            tv_fixed_annual_report.setVisibility(View.VISIBLE);
         } else {
-            tv_asset_fixed_call.setClickable(false);
-            tv_asset_fixed_call.setVisibility(View.GONE);
+            tv_fixed_annual_report.setClickable(false);
+            tv_fixed_annual_report.setVisibility(View.GONE);
         }
 
         MouldList<InterestListBean> interestList = assetFixedBean.getInterestList();
@@ -159,7 +159,7 @@ public class AssetFixedDetailActivity extends BaseActivity implements View.OnCli
             case R.id.iv_back:
                 finish();
                 break;
-            case R.id.tv_asset_fixed_call://年度报告
+            case R.id.tv_fixed_annual_report://年度报告
                 Intent i_web = new Intent();
                 i_web.setClass(this, WebActivity.class);
                 i_web.putExtra("id", assetFixedBean.getProductId());
@@ -168,7 +168,7 @@ public class AssetFixedDetailActivity extends BaseActivity implements View.OnCli
                 startActivity(i_web);
 
                 break;
-            case R.id.ll_asset_fixed:
+            case R.id.ll_asset_fixed: // 固收产品名称
                 if (assetFixedBean != null) {
                     Intent i_fixedProductDetail = new Intent();
                     i_fixedProductDetail.setClass(AssetFixedDetailActivity.this, FixedProductDetailActivity.class);
@@ -182,6 +182,9 @@ public class AssetFixedDetailActivity extends BaseActivity implements View.OnCli
         }
     }
 
+    /**
+     * 获取非保险投资产品详情数据
+     */
     private void requestAssetFixedDetail() {
         String userId = null;
         try {

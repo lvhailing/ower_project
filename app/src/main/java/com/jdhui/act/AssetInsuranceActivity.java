@@ -54,7 +54,7 @@ public class AssetInsuranceActivity extends BaseActivity implements View.OnClick
 
         iv_back = (ImageView) findViewById(R.id.iv_back);
         listView = (PullToRefreshListView) findViewById(R.id.listview);
-        tv_asset_insurance_number = (TextView) findViewById(R.id.tv_asset_insurance_number);
+        tv_asset_insurance_number = (TextView) findViewById(R.id.tv_asset_insurance_name);
 
         //PullToRefreshListView  上滑加载更多及下拉刷新
         ViewUtils.slideAndDropDown(listView);

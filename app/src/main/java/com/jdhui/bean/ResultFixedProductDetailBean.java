@@ -14,7 +14,7 @@ public class ResultFixedProductDetailBean implements IMouldType {
     private String unitNet;//产品净值
     private String annualRateType;//预计收益类型(direct:直接显示;region:区间显示)
     private String annualRateDirect;    //预期收益-直接显示
-    private MouldList<FixedProductDetailRateReginBean> annualRateRegion;    //区间显示
+    private MouldList<FixedProductDetailRateReginBean> annualRateRegion;  // 区间显示
 
     private String repayType; //付息间隔
     private String establishmentDate;    //成立日期

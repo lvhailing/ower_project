@@ -21,6 +21,9 @@ import com.jdhui.uitls.DESUtil;
 import com.jdhui.uitls.PreferenceUtil;
 import com.jdhui.uitls.StringUtil;
 
+/**
+ *  修改登录密码
+ */
 public class ChangePasswordActivity extends BaseActivity implements OnClickListener {
 
     private EditText edt_old, edt_new, edt_again;

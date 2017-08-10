@@ -29,20 +29,20 @@ import com.nostra13.universalimageloader.core.ImageLoader;
  */
 public class InsuranceProductDetailActivity extends BaseActivity implements View.OnClickListener {
     private ImageView iv_back;
-    private ImageView iv_insurance_product_title_pic; //顶部展示的图片
+    private ImageView iv_insurance_product; //顶部展示的图片
     private TextView tv_insurance_product_detail_name; //保险产品名
     private RelativeLayout rl_insurance_product_detail_des; //图文详情
     private TextView tv_insurance_product_detail_type; //保险类型
     private TextView tv_insurance_product_detail_des; //保险简介
-    private TextView tv_insurance_product_detail_baoxiangongsi; //保险公司
-    private TextView tv_insurance_product_detail_toubaofangshi; //投保方式
-    private TextView tv_insurance_product_detail_toubaofanwei;  //投保范围
-    private TextView tv_insurance_product_detail_baoxianqijian; //保险期间
-    private TextView tv_insurance_product_detail_jiaofeifangshi; //交费方式
-    private TextView tv_insurance_product_detail_fengxiantixing; //风险提醒
+    private TextView tv_insurance_company_name; //保险公司
+    private TextView tv_insuring_way; //投保方式
+    private TextView tv_insurance_coverage;  //投保范围
+    private TextView tv_insurance_period; //保险期间
+    private TextView tv_insurance_payment_methods; //交费方式
+    private TextView tv_insurance_risk_warning; //风险提醒
 
-    private LinearLayout ll_insurance_product_detail_toubaofangshi;
-    private LinearLayout ll_insurance_product_detail_fengxiantixing;
+    private LinearLayout ll_insurance_insuring_way;
+    private LinearLayout ll_insurance_risk_warning;
     private String productId = null;
     private ResultInsuranceProductDetailBean insuranceDetailBean;
     private Button btn_order; //立即预约
@@ -59,26 +59,26 @@ public class InsuranceProductDetailActivity extends BaseActivity implements View
     public void initView() {
         productId = getIntent().getStringExtra("productId");
         iv_back = (ImageView) findViewById(R.id.iv_back);
-        iv_insurance_product_title_pic = (ImageView) findViewById(R.id.iv_insurance_product_title_pic);
+        iv_insurance_product = (ImageView) findViewById(R.id.iv_insurance_product);
 
         rl_insurance_product_detail_des = (RelativeLayout) findViewById(R.id.rl_insurance_product_detail_des);
 
         tv_insurance_product_detail_name = (TextView) findViewById(R.id.tv_insurance_product_detail_name);
         tv_insurance_product_detail_type = (TextView) findViewById(R.id.tv_insurance_product_detail_type);
         tv_insurance_product_detail_des = (TextView) findViewById(R.id.tv_insurance_product_detail_des);
-        tv_insurance_product_detail_baoxiangongsi = (TextView) findViewById(R.id.tv_insurance_product_detail_baoxiangongsi);
-        tv_insurance_product_detail_toubaofangshi = (TextView) findViewById(R.id.tv_insurance_product_detail_toubaofangshi);
-        tv_insurance_product_detail_toubaofanwei = (TextView) findViewById(R.id.tv_insurance_product_detail_toubaofanwei);
-        tv_insurance_product_detail_baoxianqijian = (TextView) findViewById(R.id.tv_insurance_product_detail_baoxianqijian);
-        tv_insurance_product_detail_jiaofeifangshi = (TextView) findViewById(R.id.tv_insurance_product_detail_jiaofeifangshi);
-        tv_insurance_product_detail_fengxiantixing = (TextView) findViewById(R.id.tv_insurance_product_detail_fengxiantixing);
-        ll_insurance_product_detail_toubaofangshi = (LinearLayout) findViewById(R.id.ll_insurance_product_detail_toubaofangshi);
-        ll_insurance_product_detail_fengxiantixing = (LinearLayout) findViewById(R.id.ll_insurance_product_detail_fengxiantixing);
+        tv_insurance_company_name = (TextView) findViewById(R.id.tv_insurance_company_name);
+        tv_insuring_way = (TextView) findViewById(R.id.tv_insuring_way);
+        tv_insurance_coverage = (TextView) findViewById(R.id.tv_insurance_coverage);
+        tv_insurance_period = (TextView) findViewById(R.id.tv_insurance_period);
+        tv_insurance_payment_methods = (TextView) findViewById(R.id.tv_insurance_payment_methods);
+        tv_insurance_risk_warning = (TextView) findViewById(R.id.tv_insurance_risk_warning);
+        ll_insurance_insuring_way = (LinearLayout) findViewById(R.id.ll_insurance_insuring_way);
+        ll_insurance_risk_warning = (LinearLayout) findViewById(R.id.ll_insurance_risk_warning);
         btn_order = (Button) findViewById(R.id.btn_order);
 
 
-//        ll_insurance_product_detail_toubaofangshi.setVisibility(View.GONE);
-//        ll_insurance_product_detail_fengxiantixing.setVisibility(View.GONE);
+//        ll_insurance_insuring_way.setVisibility(View.GONE);
+//        ll_insurance_risk_warning.setVisibility(View.GONE);
 
         rl_insurance_product_detail_des.setOnClickListener(this);
         iv_back.setOnClickListener(this);
@@ -94,7 +94,7 @@ public class InsuranceProductDetailActivity extends BaseActivity implements View
             case R.id.iv_back:
                 finish();
                 break;
-            case R.id.rl_insurance_product_detail_des:      //图文详情
+            case R.id.rl_insurance_product_detail_des: // 图文详情
                 Intent i_web = new Intent();
                 i_web.setClass(this, WebActivity.class);
                 i_web.putExtra("id", productId);
@@ -102,7 +102,7 @@ public class InsuranceProductDetailActivity extends BaseActivity implements View
                 i_web.putExtra("title", "图文详情");
                 startActivity(i_web);
                 break;
-            case R.id.btn_order://立即预约
+            case R.id.btn_order: // 立即预约
                 showDialog();
                 break;
 
@@ -119,8 +119,6 @@ public class InsuranceProductDetailActivity extends BaseActivity implements View
                     if (insuranceDetailBean != null) {
                         setView();
                     }
-
-
                 }
 
             }
@@ -129,7 +127,6 @@ public class InsuranceProductDetailActivity extends BaseActivity implements View
     }
 
     public void setView() {
-
         insuranceName = insuranceDetailBean.getProductName();
         tv_insurance_product_detail_name.setText(insuranceName);
 
@@ -147,30 +144,29 @@ public class InsuranceProductDetailActivity extends BaseActivity implements View
 
 
         tv_insurance_product_detail_des.setText(insuranceDetailBean.getRecommendations());
-        tv_insurance_product_detail_baoxiangongsi.setText(insuranceDetailBean.getCompanyName());
+        tv_insurance_company_name.setText(insuranceDetailBean.getCompanyName());
         if (TextUtils.isEmpty(insuranceDetailBean.getGuaranteeType())) {
-            ll_insurance_product_detail_toubaofangshi.setVisibility(View.GONE);
+            ll_insurance_insuring_way.setVisibility(View.GONE);
         } else {
-            ll_insurance_product_detail_toubaofangshi.setVisibility(View.VISIBLE);
-            tv_insurance_product_detail_toubaofangshi.setText(insuranceDetailBean.getGuaranteeType());
+            ll_insurance_insuring_way.setVisibility(View.VISIBLE);
+            tv_insuring_way.setText(insuranceDetailBean.getGuaranteeType());
         }
 
-
-        tv_insurance_product_detail_toubaofanwei.setText(insuranceDetailBean.getInsuranceCoverage());
-        tv_insurance_product_detail_baoxianqijian.setText(insuranceDetailBean.getTimeLimit());
-        tv_insurance_product_detail_jiaofeifangshi.setText(insuranceDetailBean.getPayType());
+        tv_insurance_coverage.setText(insuranceDetailBean.getInsuranceCoverage());
+        tv_insurance_period.setText(insuranceDetailBean.getTimeLimit());
+        tv_insurance_payment_methods.setText(insuranceDetailBean.getPayType());
         if (TextUtils.isEmpty(insuranceDetailBean.getRiskTips())) {
-            ll_insurance_product_detail_fengxiantixing.setVisibility(View.GONE);
+            ll_insurance_risk_warning.setVisibility(View.GONE);
         } else {
-            ll_insurance_product_detail_fengxiantixing.setVisibility(View.VISIBLE);
-            tv_insurance_product_detail_fengxiantixing.setText(insuranceDetailBean.getRiskTips());
+            ll_insurance_risk_warning.setVisibility(View.VISIBLE);
+            tv_insurance_risk_warning.setText(insuranceDetailBean.getRiskTips());
         }
-        ImageLoader.getInstance().displayImage(insuranceDetailBean.getAdvertisePictue(), iv_insurance_product_title_pic);
+        ImageLoader.getInstance().displayImage(insuranceDetailBean.getAdvertisePictue(), iv_insurance_product);
     }
 
     //产品预约对话框
     private void showDialog() {
-        BookingDialog dialog = new BookingDialog(this, insuranceName,new BookingDialog.MyCallback() {
+        BookingDialog dialog = new BookingDialog(this, insuranceName, new BookingDialog.MyCallback() {
             @Override
             public void onMyclick(Dialog ad, String money, String remarks) {
                 requestData(money, remarks, ad);
@@ -180,7 +176,7 @@ public class InsuranceProductDetailActivity extends BaseActivity implements View
         dialog.subBookingDialog();
     }
 
-    private void requestData(String money, String remarks,final Dialog ad) {
+    private void requestData(String money, String remarks, final Dialog ad) {
         try {
             String userInfoId = DESUtil.decrypt(PreferenceUtil.getUserId());
             HtmlRequest.subBookingInsurance(this, productId, userInfoId, remarks, money, new BaseRequester.OnRequestListener() {
@@ -188,15 +184,15 @@ public class InsuranceProductDetailActivity extends BaseActivity implements View
                 public void onRequestFinished(BaseParams params) {
                     if (params != null) {
                         BookingInsurance2B insurance2B = (BookingInsurance2B) params.result;
-                        if (insurance2B != null) {
-                            if (!Boolean.parseBoolean(insurance2B.getMessage())) {
-                                Toast.makeText(InsuranceProductDetailActivity.this, "预约成功", Toast.LENGTH_LONG).show();
-                                ad.dismiss();
-                            } else {
-                                Toast.makeText(InsuranceProductDetailActivity.this, "预约失败，请您检查提交信息", Toast.LENGTH_LONG).show();
-                            }
-                        } else {
+                        if (insurance2B == null) {
                             Toast.makeText(InsuranceProductDetailActivity.this, "加载失败，请确认网络通畅", Toast.LENGTH_LONG).show();
+                            return;
+                        }
+                        if (!Boolean.parseBoolean(insurance2B.getMessage())) {
+                            Toast.makeText(InsuranceProductDetailActivity.this, "预约成功", Toast.LENGTH_LONG).show();
+                            ad.dismiss();
+                        } else {
+                            Toast.makeText(InsuranceProductDetailActivity.this, "预约失败，请您检查提交信息", Toast.LENGTH_LONG).show();
                         }
                     }
                 }

@@ -28,17 +28,17 @@ import com.jdhui.view.MyListView;
  */
 public class AssetFloatDetailActivity extends BaseActivity implements View.OnClickListener {
     private ImageView iv_back;
-    private TextView tvAssetFloatTitle;     //产品标题
-    private TextView tvAssetFloatCall;      //年度报告
-    private TextView tvAssetFloatName;      //产品名称
-    private TextView tvAssetFloatGoumaijine;    //购买金额
-    private TextView tvAssetFloatYujishouyi;    //预计收益
-    private TextView tvAssetFloatChanpinqixian; //产品期限
-    private TextView tvAssetFloatGoumairiqi;    //购买日期
-    private TextView tvAssetFloatChengliriqi;   //成立日期
-    private TextView tvAssetFloatFuxijiange;   //付息间隔
-    private TextView tvAssetFloatBeizhu;        //备注
-    private RelativeLayout ll_asset_float;  //浮收产品名称
+    private TextView tv_asset_float_title; // 产品标题
+    private TextView tv_asset_float_call; // 年度报告
+    private TextView tv_asset_float_name; // 产品名称
+    private TextView tv_float_purchase_amount; // 购买金额
+    private TextView tv_float_performance_benchmark; // 预计收益
+    private TextView tv_float_product_deadline; // 产品期限
+    private TextView tv_float_purchase_date; // 购买日期
+    private TextView tv_float_register_date; // 成立日期
+    private TextView tv_asset_float_interest_interval; // 付息间隔
+    private TextView tv_float_remarks; // 备注
+    private RelativeLayout ll_asset_float;  // 浮收产品名称
 
     private String tenderId;
     private String productName;
@@ -60,63 +60,60 @@ public class AssetFloatDetailActivity extends BaseActivity implements View.OnCli
     private void initView() {
         tenderId = getIntent().getStringExtra("tenderId");
         productName = getIntent().getStringExtra("productName");
-        assignViews();
+
+        iv_back = (ImageView) findViewById(R.id.iv_back);
+        tv_asset_float_title = (TextView) findViewById(R.id.tv_asset_float_title);
+        tv_asset_float_call = (TextView) findViewById(R.id.tv_asset_float_call);
+        tv_asset_float_name = (TextView) findViewById(R.id.tv_asset_float_name);
+        tv_float_purchase_amount = (TextView) findViewById(R.id.tv_float_purchase_amount);
+        tv_float_performance_benchmark = (TextView) findViewById(R.id.tv_float_performance_benchmark);
+        tv_float_product_deadline = (TextView) findViewById(R.id.tv_float_product_deadline);
+        tv_float_purchase_date = (TextView) findViewById(R.id.tv_float_purchase_date);
+        tv_float_register_date = (TextView) findViewById(R.id.tv_float_register_date);
+        tv_asset_float_interest_interval = (TextView) findViewById(R.id.tv_asset_float_interest_interval);
+        tv_float_remarks = (TextView) findViewById(R.id.tv_float_remarks);
+        tv_asset_float_unitnet = (TextView) findViewById(R.id.tv_asset_float_unitnet);
+        ll_asset_float = (RelativeLayout) findViewById(R.id.ll_asset_float);
+        ll_asset_float_unitnet = (LinearLayout) findViewById(R.id.ll_asset_float_unitnet);
+        myListView = (MyListView) findViewById(R.id.lv);
+        sv_asset_float_detail = (ScrollView) findViewById(R.id.scrollview);
+
+        iv_back.setOnClickListener(this);
+        tv_asset_float_call.setOnClickListener(this);
+        ll_asset_float.setOnClickListener(this);
     }
 
     private void initData() {
         requestAssetFixedDetail();
     }
 
-    private void assignViews() {
-        iv_back = (ImageView) findViewById(R.id.iv_back);
-        tvAssetFloatTitle = (TextView) findViewById(R.id.tv_asset_float_title);
-        tvAssetFloatCall = (TextView) findViewById(R.id.tv_asset_float_call);
-        tvAssetFloatName = (TextView) findViewById(R.id.tv_asset_float_name);
-        tvAssetFloatGoumaijine = (TextView) findViewById(R.id.tv_asset_float_goumaijine);
-        tvAssetFloatYujishouyi = (TextView) findViewById(R.id.tv_asset_float_yujishouyi);
-        tvAssetFloatChanpinqixian = (TextView) findViewById(R.id.tv_asset_float_chanpinqixian);
-        tvAssetFloatGoumairiqi = (TextView) findViewById(R.id.tv_asset_float_goumairiqi);
-        tvAssetFloatChengliriqi = (TextView) findViewById(R.id.tv_asset_float_chengliriqi);
-        tvAssetFloatFuxijiange = (TextView) findViewById(R.id.tv_asset_float_fuxijiange);
-        tvAssetFloatBeizhu = (TextView) findViewById(R.id.tv_asset_float_beizhu);
-        tv_asset_float_unitnet = (TextView) findViewById(R.id.tv_asset_float_unitnet);
-        ll_asset_float = (RelativeLayout) findViewById(R.id.ll_asset_float);
-        ll_asset_float_unitnet = (LinearLayout) findViewById(R.id.ll_asset_float_unitnet);
-        myListView = (MyListView) findViewById(R.id.lv);
-        sv_asset_float_detail = (ScrollView) findViewById(R.id.sv_asset_float_detail);
-
-        iv_back.setOnClickListener(this);
-        tvAssetFloatCall.setOnClickListener(this);
-        ll_asset_float.setOnClickListener(this);
-    }
-
     public void setView() {
-        tvAssetFloatTitle.setText(productName);
-        tvAssetFloatName.setText(assetFixedBean.getProductName());
-        tvAssetFloatGoumaijine.setText(StringUtil.formatNum(assetFixedBean.getTenderAmount()));
-        tvAssetFloatYujishouyi.setText(assetFixedBean.getAnnualRate());
-        tvAssetFloatChanpinqixian.setText(assetFixedBean.getTimeLimit());
-        tvAssetFloatGoumairiqi.setText(assetFixedBean.getPurchaseDate());
-        tvAssetFloatChengliriqi.setText(assetFixedBean.getEstablishmentDate());
+        tv_asset_float_title.setText(productName);
+        tv_asset_float_name.setText(assetFixedBean.getProductName());
+        tv_float_purchase_amount.setText(StringUtil.formatNum(assetFixedBean.getTenderAmount()));
+        tv_float_performance_benchmark.setText(assetFixedBean.getAnnualRate());
+        tv_float_product_deadline.setText(assetFixedBean.getTimeLimit());
+        tv_float_purchase_date.setText(assetFixedBean.getPurchaseDate());
+        tv_float_register_date.setText(assetFixedBean.getEstablishmentDate());
 
         String remark = assetFixedBean.getRemark();
         if (remark.equals("无")) {
-            tvAssetFloatBeizhu.setText("暂无备注");
+            tv_float_remarks.setText("暂无备注");
         } else {
-            tvAssetFloatBeizhu.setText(remark);
+            tv_float_remarks.setText(remark);
         }
 
         String repayType = assetFixedBean.getRepayType();
         if (repayType.equals("monthPayment")) {
-            tvAssetFloatFuxijiange.setText("按月付息，到期还本");
+            tv_asset_float_interest_interval.setText("按月付息，到期还本");
         } else if (repayType.equals("quarterPayment")) {
-            tvAssetFloatFuxijiange.setText("按季付息，到期还本");
+            tv_asset_float_interest_interval.setText("按季付息，到期还本");
         } else if (repayType.equals("halfYearPayment")) {
-            tvAssetFloatFuxijiange.setText("按半年付息，到期还本");
+            tv_asset_float_interest_interval.setText("按半年付息，到期还本");
         } else if (repayType.equals("yearPayment")) {
-            tvAssetFloatFuxijiange.setText("按年付息，到期还本");
+            tv_asset_float_interest_interval.setText("按年付息，到期还本");
         } else if (repayType.equals("oneTimePayment")) {
-            tvAssetFloatFuxijiange.setText("一次性还本息");
+            tv_asset_float_interest_interval.setText("一次性还本息");
         }
 
         //产品净值的判断 （后台返回“无”时不显示）
@@ -128,11 +125,11 @@ public class AssetFloatDetailActivity extends BaseActivity implements View.OnCli
         }
 
         if (assetFixedBean.getIsAnnualReport().equals("yes")) { // 是否有年度报告	 yes:有;  no:无
-            tvAssetFloatCall.setVisibility(View.VISIBLE);
-            tvAssetFloatCall.setClickable(true);
+            tv_asset_float_call.setVisibility(View.VISIBLE);
+            tv_asset_float_call.setClickable(true);
         } else {
-            tvAssetFloatCall.setVisibility(View.GONE);
-            tvAssetFloatCall.setClickable(false);
+            tv_asset_float_call.setVisibility(View.GONE);
+            tv_asset_float_call.setClickable(false);
         }
 
         MouldList<InterestListBean> interestList = assetFixedBean.getInterestList();
@@ -143,7 +140,7 @@ public class AssetFloatDetailActivity extends BaseActivity implements View.OnCli
         //设置还款方案
         AssetFixedDetailAdapter adapter = new AssetFixedDetailAdapter(this, interestList);
         myListView.setAdapter(adapter);
-        sv_asset_float_detail.smoothScrollTo(0,0);
+        sv_asset_float_detail.smoothScrollTo(0, 0);
     }
 
     @Override
@@ -174,6 +171,9 @@ public class AssetFloatDetailActivity extends BaseActivity implements View.OnCli
         }
     }
 
+    /**
+     * 获取非保险投资产品详情数据
+     */
     private void requestAssetFixedDetail() {
         String userId = null;
         try {

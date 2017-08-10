@@ -27,44 +27,39 @@ import com.jdhui.uitls.ViewUtils;
  * Created by hasee on 2016/8/11.
  */
 public class FixedProductDetailActivity extends BaseActivity implements View.OnClickListener {
-    private String productType = null; //optimum:固收，floating:浮动收益
-    private String productId = null;
 
-    private LinearLayout ll_fixed_product_detail_rengoujine; //认购金额
-    private LinearLayout ll_fixed_product_detail_yujishouyi; //预计收益
-
-    private TextView tv_fixed_product_detail_touzifanwei; //投资范围
-    private TextView tv_fixed_product_detail_fengkongcuoshi; // 投资措施
-    private TextView tv_fixed_product_detail_touziliangdian; // 投资亮点
     private ImageView iv_back;
+    private LinearLayout ll_fixed_subscription_amount; //认购金额
+    private LinearLayout ll_fixed_performance_benchmark_year; //预计收益
+    // 直接显示产品净值和预期收益
+    private LinearLayout ll_fixed_net_product;
+    private LinearLayout ll_fixed_performance_benchmark;
+    private LinearLayout ll_fixed_product_detail_profit;  // 区间显示预期收益
 
+    private TextView tv_fixed_investment_scope; //投资范围
+    private TextView tv_fixed_risk_control_measures; // 投资措施
+    private TextView tv_fixed_investment_highlights; // 投资亮点
+    private TextView tv_fixed_product_detail_name; //产品名称
+    private TextView tv_fixed_product_scale;  //产品规模
+    private TextView tv_fixed_product_detail_touzimenkan;  //投资门槛
+    private TextView tv_fixed_product_deadline;  //产品期限
+    private TextView tv_fixed_net_product;  //产品净值
+    private TextView tv_fixed_performance_benchmark;  //预期收益
+    private TextView tv_fixed_interest_interval;  //付息间隔
+    private TextView tv_fixed_register_date;  //成立日期
+    private TextView tv_risk_type;//风险类型 ( conservative:保守型;  steady:稳健型; growth:成长型;  aggressive:进取型;)
+    private TextView tv_fixed_management_fee;  //管理费
+    private TextView tv_fixed_trust_fee;  //托管费
+    private TextView tv_fixed_administrator;  //管理人
+    private TextView tv_fixed_custodian;  //托管人
+    private Button btn_order; //立即预约
+    private String productName;
     private TextView tv_fixed_product_detail_more_info;
 
     private ResultFixedProductDetailBean fixedDetailBean;
     private String annualRateType = null; // 预计收益类型(direct:直接显示;region:区间显示)
-
-    // 直接显示产品净值和预期收益
-    private LinearLayout ll_fixed_product_detail_chanpinjingzhi;
-    private LinearLayout ll_fixed_product_detail_yuqishouyi;
-
-    // 区间显示预期收益
-    private LinearLayout ll_fixed_product_detail_profit;
-
-    private TextView tv_fixed_product_detail_name; //产品名称
-    private TextView tv_fixed_product_detail_chanpinguimo;  //产品规模
-    private TextView tv_fixed_product_detail_touzimenkan;  //投资门槛
-    private TextView tv_fixed_product_detail_chanpinqixian;  //产品期限
-    private TextView tv_fixed_product_detail_chanpinjingzhi;  //产品净值
-    private TextView tv_fixed_product_detail_yujishouyi;  //预期收益
-    private TextView tv_fixed_product_detail_fuxijiange;  //付息间隔
-    private TextView tv_fixed_product_detail_chengliriqi;  //成立日期
-    private TextView tv_risk_type;//风险类型 ( conservative:保守型;  steady:稳健型; growth:成长型;  aggressive:进取型;)
-    private TextView tv_fixed_product_detail_guanlifei;  //管理费
-    private TextView tv_fixed_product_detail_tuoguanfei;  //托管费
-    private TextView tv_fixed_product_detail_guanliren;  //管理人
-    private TextView tv_fixed_product_detail_tuoguanren;  //托管人
-    private Button btn_order; //立即预约
-    private String productName;
+    private String productType = null; //optimum:固收，floating:浮动收益
+    private String productId = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,38 +79,36 @@ public class FixedProductDetailActivity extends BaseActivity implements View.OnC
         fixedDetailBean = new ResultFixedProductDetailBean();
 
         iv_back = (ImageView) findViewById(R.id.iv_back);
-        ll_fixed_product_detail_rengoujine = (LinearLayout) findViewById(R.id.ll_fixed_product_detail_rengoujine);
-        ll_fixed_product_detail_yujishouyi = (LinearLayout) findViewById(R.id.ll_fixed_product_detail_yujishouyi);
-
-        tv_fixed_product_detail_touzifanwei = (TextView) findViewById(R.id.tv_fixed_product_detail_touzifanwei);
-        tv_fixed_product_detail_fengkongcuoshi = (TextView) findViewById(R.id.tv_fixed_product_detail_fengkongcuoshi);
-        tv_fixed_product_detail_touziliangdian = (TextView) findViewById(R.id.tv_fixed_product_detail_touziliangdian);
-        tv_fixed_product_detail_more_info = (TextView) findViewById(R.id.tv_fixed_product_detail_more_info);
-
-        ll_fixed_product_detail_chanpinjingzhi = (LinearLayout) findViewById(R.id.ll_fixed_product_detail_chanpinjingzhi);
-        ll_fixed_product_detail_yuqishouyi = (LinearLayout) findViewById(R.id.ll_fixed_product_detail_yuqishouyi);
+        ll_fixed_subscription_amount = (LinearLayout) findViewById(R.id.ll_fixed_subscription_amount);
+        ll_fixed_performance_benchmark_year = (LinearLayout) findViewById(R.id.ll_fixed_performance_benchmark_year);
+        ll_fixed_net_product = (LinearLayout) findViewById(R.id.ll_fixed_net_product);
+        ll_fixed_performance_benchmark = (LinearLayout) findViewById(R.id.ll_fixed_performance_benchmark);
         ll_fixed_product_detail_profit = (LinearLayout) findViewById(R.id.ll_fixed_product_detail_profit);
 
+        tv_fixed_investment_scope = (TextView) findViewById(R.id.tv_fixed_investment_scope);
+        tv_fixed_risk_control_measures = (TextView) findViewById(R.id.tv_fixed_risk_control_measures);
+        tv_fixed_investment_highlights = (TextView) findViewById(R.id.tv_fixed_investment_highlights);
+        tv_fixed_product_detail_more_info = (TextView) findViewById(R.id.tv_fixed_product_detail_more_info);
         tv_fixed_product_detail_name = (TextView) findViewById(R.id.tv_fixed_product_detail_name);
-        tv_fixed_product_detail_chanpinguimo = (TextView) findViewById(R.id.tv_fixed_product_detail_chanpinguimo);
-        tv_fixed_product_detail_touzimenkan = (TextView) findViewById(R.id.tv_fixed_product_detail_touzimenkan);
-        tv_fixed_product_detail_chanpinqixian = (TextView) findViewById(R.id.tv_fixed_product_detail_chanpinqixian);
-        tv_fixed_product_detail_chanpinjingzhi = (TextView) findViewById(R.id.tv_fixed_product_detail_chanpinjingzhi);
-        tv_fixed_product_detail_yujishouyi = (TextView) findViewById(R.id.tv_fixed_product_detail_yujishouyi);
-        tv_fixed_product_detail_fuxijiange = (TextView) findViewById(R.id.tv_fixed_product_detail_fuxijiange);
-        tv_fixed_product_detail_chengliriqi = (TextView) findViewById(R.id.tv_fixed_product_detail_chengliriqi);
-        tv_fixed_product_detail_guanlifei = (TextView) findViewById(R.id.tv_fixed_product_detail_guanlifei);
-        tv_fixed_product_detail_tuoguanfei = (TextView) findViewById(R.id.tv_fixed_product_detail_tuoguanfei);
-        tv_fixed_product_detail_guanliren = (TextView) findViewById(R.id.tv_fixed_product_detail_guanliren);
-        tv_fixed_product_detail_tuoguanren = (TextView) findViewById(R.id.tv_fixed_product_detail_tuoguanren);
+        tv_fixed_product_scale = (TextView) findViewById(R.id.tv_fixed_product_scale);
+        tv_fixed_product_detail_touzimenkan = (TextView) findViewById(R.id.tv_fixed_product_investment_threshold);
+        tv_fixed_product_deadline = (TextView) findViewById(R.id.tv_fixed_product_deadline);
+        tv_fixed_net_product = (TextView) findViewById(R.id.tv_fixed_net_product);
+        tv_fixed_performance_benchmark = (TextView) findViewById(R.id.tv_fixed_performance_benchmark);
+        tv_fixed_interest_interval = (TextView) findViewById(R.id.tv_fixed_interest_interval);
+        tv_fixed_register_date = (TextView) findViewById(R.id.tv_fixed_register_date);
+        tv_fixed_management_fee = (TextView) findViewById(R.id.tv_fixed_management_fee);
+        tv_fixed_trust_fee = (TextView) findViewById(R.id.tv_fixed_trust_fee);
+        tv_fixed_administrator = (TextView) findViewById(R.id.tv_fixed_administrator);
+        tv_fixed_custodian = (TextView) findViewById(R.id.tv_fixed_custodian);
         tv_risk_type = (TextView) findViewById(R.id.tv_risk_type);
         btn_order = (Button) findViewById(R.id.btn_order);
 
 
         iv_back.setOnClickListener(this);
-        tv_fixed_product_detail_touzifanwei.setOnClickListener(this);
-        tv_fixed_product_detail_fengkongcuoshi.setOnClickListener(this);
-        tv_fixed_product_detail_touziliangdian.setOnClickListener(this);
+        tv_fixed_investment_scope.setOnClickListener(this);
+        tv_fixed_risk_control_measures.setOnClickListener(this);
+        tv_fixed_investment_highlights.setOnClickListener(this);
         btn_order.setOnClickListener(this);
     }
 
@@ -123,30 +116,30 @@ public class FixedProductDetailActivity extends BaseActivity implements View.OnC
         annualRateType = fixedDetailBean.getAnnualRateType();
         if (!TextUtils.isEmpty(annualRateType)) {
             if (annualRateType.equals("direct")) { // 业绩比较基准直接显示
-                ll_fixed_product_detail_yuqishouyi.setVisibility(View.VISIBLE);
+                ll_fixed_performance_benchmark.setVisibility(View.VISIBLE);
                 ll_fixed_product_detail_profit.setVisibility(View.GONE);
-                tv_fixed_product_detail_yujishouyi.setText(fixedDetailBean.getAnnualRateDirect());
+                tv_fixed_performance_benchmark.setText(fixedDetailBean.getAnnualRateDirect());
             } else if (annualRateType.equals("region")) { // 业绩比较基准区间显示
-                ll_fixed_product_detail_yuqishouyi.setVisibility(View.GONE);
+                ll_fixed_performance_benchmark.setVisibility(View.GONE);
                 ll_fixed_product_detail_profit.setVisibility(View.VISIBLE);
 
                 for (int i = 0; i < fixedDetailBean.getAnnualRateRegion().size(); i++) {
                     addView(fixedDetailBean.getAnnualRateRegion().get(i).getAmount(), fixedDetailBean.getAnnualRateRegion().get(i).getRate());
                 }
             } else {
-                ll_fixed_product_detail_yuqishouyi.setVisibility(View.VISIBLE);
+                ll_fixed_performance_benchmark.setVisibility(View.VISIBLE);
                 ll_fixed_product_detail_profit.setVisibility(View.GONE);
             }
         } else {
-            ll_fixed_product_detail_yuqishouyi.setVisibility(View.VISIBLE);
+            ll_fixed_performance_benchmark.setVisibility(View.VISIBLE);
             ll_fixed_product_detail_profit.setVisibility(View.GONE);
         }
 
         if (!TextUtils.isEmpty(fixedDetailBean.getUnitNet())) {  //判断产品净值是否可见
-            ll_fixed_product_detail_chanpinjingzhi.setVisibility(View.VISIBLE);
-            tv_fixed_product_detail_chanpinjingzhi.setText(fixedDetailBean.getUnitNet());
+            ll_fixed_net_product.setVisibility(View.VISIBLE);
+            tv_fixed_net_product.setText(fixedDetailBean.getUnitNet());
         } else {
-            ll_fixed_product_detail_chanpinjingzhi.setVisibility(View.GONE);
+            ll_fixed_net_product.setVisibility(View.GONE);
         }
         String flag = fixedDetailBean.getEstablishedFlag();
         if (Boolean.parseBoolean(flag)) {  //判断立即预约按钮是否可见 false:未成立；true:成立（只有未成立时显示立即预约按钮）
@@ -156,9 +149,9 @@ public class FixedProductDetailActivity extends BaseActivity implements View.OnC
         }
 
         if (!TextUtils.isEmpty(fixedDetailBean.getEstablishmentDate())) { //成立日期
-            tv_fixed_product_detail_chengliriqi.setText(fixedDetailBean.getEstablishmentDate());
+            tv_fixed_register_date.setText(fixedDetailBean.getEstablishmentDate());
         } else {
-            tv_fixed_product_detail_chengliriqi.setText("无");
+            tv_fixed_register_date.setText("无");
         }
 
         String riskType = fixedDetailBean.getRiskType();
@@ -174,36 +167,36 @@ public class FixedProductDetailActivity extends BaseActivity implements View.OnC
 
         productName = fixedDetailBean.getProductName();
         tv_fixed_product_detail_name.setText(productName);
-        tv_fixed_product_detail_chanpinguimo.setText(fixedDetailBean.getAmount());
+        tv_fixed_product_scale.setText(fixedDetailBean.getAmount());
 
         tv_fixed_product_detail_touzimenkan.setText(fixedDetailBean.getTenderCondition());
-        tv_fixed_product_detail_chanpinqixian.setText(fixedDetailBean.getTimeLimit());
+        tv_fixed_product_deadline.setText(fixedDetailBean.getTimeLimit());
 
         String repayType = fixedDetailBean.getRepayType();
         if (repayType.equals("monthPayment")) {
-            tv_fixed_product_detail_fuxijiange.setText("按月付息，到期还本");
+            tv_fixed_interest_interval.setText("按月付息，到期还本");
         } else if (repayType.equals("quarterPayment")) {
-            tv_fixed_product_detail_fuxijiange.setText("按季付息，到期还本");
+            tv_fixed_interest_interval.setText("按季付息，到期还本");
         } else if (repayType.equals("halfYearPayment")) {
-            tv_fixed_product_detail_fuxijiange.setText("按半年付息，到期还本");
+            tv_fixed_interest_interval.setText("按半年付息，到期还本");
         } else if (repayType.equals("yearPayment")) {
-            tv_fixed_product_detail_fuxijiange.setText("按年付息，到期还本");
+            tv_fixed_interest_interval.setText("按年付息，到期还本");
         } else if (repayType.equals("oneTimePayment")) {
-            tv_fixed_product_detail_fuxijiange.setText("一次性还本息");
+            tv_fixed_interest_interval.setText("一次性还本息");
         }
 
-        tv_fixed_product_detail_guanlifei.setText(fixedDetailBean.getAdministrativeFee());
-        tv_fixed_product_detail_tuoguanfei.setText(fixedDetailBean.getTrusteeFee());
-        tv_fixed_product_detail_guanliren.setText(fixedDetailBean.getAdministrator());
-        tv_fixed_product_detail_tuoguanren.setText(fixedDetailBean.getTrustee());
+        tv_fixed_management_fee.setText(fixedDetailBean.getAdministrativeFee());
+        tv_fixed_trust_fee.setText(fixedDetailBean.getTrusteeFee());
+        tv_fixed_administrator.setText(fixedDetailBean.getAdministrator());
+        tv_fixed_custodian.setText(fixedDetailBean.getTrustee());
 
-        tv_fixed_product_detail_touzifanwei.setTextColor(getResources().getColor(R.color.txt_black_light));
-        tv_fixed_product_detail_fengkongcuoshi.setTextColor(getResources().getColor(R.color.txt_gray_light_l));
-        tv_fixed_product_detail_touziliangdian.setTextColor(getResources().getColor(R.color.txt_gray_light_l));
+        tv_fixed_investment_scope.setTextColor(getResources().getColor(R.color.txt_black_light));
+        tv_fixed_risk_control_measures.setTextColor(getResources().getColor(R.color.txt_gray_light_l));
+        tv_fixed_investment_highlights.setTextColor(getResources().getColor(R.color.txt_gray_light_l));
 
-        tv_fixed_product_detail_touzifanwei.setBackgroundResource(R.color.white);
-        tv_fixed_product_detail_fengkongcuoshi.setBackgroundResource(R.color.bg_gray);
-        tv_fixed_product_detail_touziliangdian.setBackgroundResource(R.color.bg_gray);
+        tv_fixed_investment_scope.setBackgroundResource(R.color.white);
+        tv_fixed_risk_control_measures.setBackgroundResource(R.color.bg_gray);
+        tv_fixed_investment_highlights.setBackgroundResource(R.color.bg_gray);
 
         tv_fixed_product_detail_more_info.setText(fixedDetailBean.getInvestCoverage());
 
@@ -224,8 +217,8 @@ public class FixedProductDetailActivity extends BaseActivity implements View.OnC
         params.gravity = Gravity.CENTER_HORIZONTAL;
         params.setMargins(0, ViewUtils.dip2px(this, 10.0f), 0, ViewUtils.dip2px(this, 10.0f));
         t_rengou.setLayoutParams(params);
-        ll_fixed_product_detail_rengoujine.addView(i_line);
-        ll_fixed_product_detail_rengoujine.addView(t_rengou);
+        ll_fixed_subscription_amount.addView(i_line);
+        ll_fixed_subscription_amount.addView(t_rengou);
 
         TextView t_yujishouyi = new TextView(this);
         t_yujishouyi.setText(profit + "%");
@@ -236,8 +229,8 @@ public class FixedProductDetailActivity extends BaseActivity implements View.OnC
         i_line_r.setBackgroundResource(R.color.bg_gray);
         i_line_r.setLayoutParams(params_line);
 
-        ll_fixed_product_detail_yujishouyi.addView(i_line_r);
-        ll_fixed_product_detail_yujishouyi.addView(t_yujishouyi);
+        ll_fixed_performance_benchmark_year.addView(i_line_r);
+        ll_fixed_performance_benchmark_year.addView(t_yujishouyi);
 
     }
 
@@ -247,42 +240,42 @@ public class FixedProductDetailActivity extends BaseActivity implements View.OnC
             case R.id.iv_back:
                 finish();
                 break;
-            case R.id.tv_fixed_product_detail_touzifanwei: //投资范围
-                tv_fixed_product_detail_touzifanwei.setTextColor(getResources().getColor(R.color.txt_black_light));
-                tv_fixed_product_detail_fengkongcuoshi.setTextColor(getResources().getColor(R.color.txt_gray_light_l));
-                tv_fixed_product_detail_touziliangdian.setTextColor(getResources().getColor(R.color.txt_gray_light_l));
+            case R.id.tv_fixed_investment_scope: //投资范围
+                tv_fixed_investment_scope.setTextColor(getResources().getColor(R.color.txt_black_light));
+                tv_fixed_risk_control_measures.setTextColor(getResources().getColor(R.color.txt_gray_light_l));
+                tv_fixed_investment_highlights.setTextColor(getResources().getColor(R.color.txt_gray_light_l));
 
-                tv_fixed_product_detail_touzifanwei.setBackgroundResource(R.color.white);
-                tv_fixed_product_detail_fengkongcuoshi.setBackgroundResource(R.color.bg_gray);
-                tv_fixed_product_detail_touziliangdian.setBackgroundResource(R.color.bg_gray);
+                tv_fixed_investment_scope.setBackgroundResource(R.color.white);
+                tv_fixed_risk_control_measures.setBackgroundResource(R.color.bg_gray);
+                tv_fixed_investment_highlights.setBackgroundResource(R.color.bg_gray);
 
 //                tv_fixed_product_detail_more_info.setText("11投资范围本基金资金用于华物资本投资公司持有的北京秉红嘉盛创业投资有限公司的股权收益权");
                 if (fixedDetailBean != null) {
                     tv_fixed_product_detail_more_info.setText(!TextUtils.isEmpty(fixedDetailBean.getInvestCoverage()) ? fixedDetailBean.getInvestCoverage() : "");
                 }
                 break;
-            case R.id.tv_fixed_product_detail_fengkongcuoshi:  //风控措施
-                tv_fixed_product_detail_touzifanwei.setTextColor(getResources().getColor(R.color.txt_gray_light_l));
-                tv_fixed_product_detail_fengkongcuoshi.setTextColor(getResources().getColor(R.color.txt_black_light));
-                tv_fixed_product_detail_touziliangdian.setTextColor(getResources().getColor(R.color.txt_gray_light_l));
+            case R.id.tv_fixed_risk_control_measures:  //风控措施
+                tv_fixed_investment_scope.setTextColor(getResources().getColor(R.color.txt_gray_light_l));
+                tv_fixed_risk_control_measures.setTextColor(getResources().getColor(R.color.txt_black_light));
+                tv_fixed_investment_highlights.setTextColor(getResources().getColor(R.color.txt_gray_light_l));
 
-                tv_fixed_product_detail_touzifanwei.setBackgroundResource(R.color.bg_gray);
-                tv_fixed_product_detail_fengkongcuoshi.setBackgroundResource(R.color.white);
-                tv_fixed_product_detail_touziliangdian.setBackgroundResource(R.color.bg_gray);
+                tv_fixed_investment_scope.setBackgroundResource(R.color.bg_gray);
+                tv_fixed_risk_control_measures.setBackgroundResource(R.color.white);
+                tv_fixed_investment_highlights.setBackgroundResource(R.color.bg_gray);
 
 //                tv_fixed_product_detail_more_info.setText("222风控措施本基金资金用于华物资本投资公司持有的北京秉红嘉盛创业投资有限公司的股权收益权");
                 if (fixedDetailBean != null) {
                     tv_fixed_product_detail_more_info.setText(!TextUtils.isEmpty(fixedDetailBean.getControlMeasures()) ? fixedDetailBean.getControlMeasures() : "");
                 }
                 break;
-            case R.id.tv_fixed_product_detail_touziliangdian: //投资亮点
-                tv_fixed_product_detail_touzifanwei.setTextColor(getResources().getColor(R.color.txt_gray_light_l));
-                tv_fixed_product_detail_fengkongcuoshi.setTextColor(getResources().getColor(R.color.txt_gray_light_l));
-                tv_fixed_product_detail_touziliangdian.setTextColor(getResources().getColor(R.color.txt_black_light));
+            case R.id.tv_fixed_investment_highlights: //投资亮点
+                tv_fixed_investment_scope.setTextColor(getResources().getColor(R.color.txt_gray_light_l));
+                tv_fixed_risk_control_measures.setTextColor(getResources().getColor(R.color.txt_gray_light_l));
+                tv_fixed_investment_highlights.setTextColor(getResources().getColor(R.color.txt_black_light));
 
-                tv_fixed_product_detail_touzifanwei.setBackgroundResource(R.color.bg_gray);
-                tv_fixed_product_detail_fengkongcuoshi.setBackgroundResource(R.color.bg_gray);
-                tv_fixed_product_detail_touziliangdian.setBackgroundResource(R.color.white);
+                tv_fixed_investment_scope.setBackgroundResource(R.color.bg_gray);
+                tv_fixed_risk_control_measures.setBackgroundResource(R.color.bg_gray);
+                tv_fixed_investment_highlights.setBackgroundResource(R.color.white);
 
 //                tv_fixed_product_detail_more_info.setText("333投资亮点本基金资金用于华物资本投资公司持有的北京秉红嘉盛创业投资有限公司的股权收益权");
                 if (fixedDetailBean != null) {

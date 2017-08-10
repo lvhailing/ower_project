@@ -48,7 +48,7 @@ public class AssetFixedAdapter extends BaseAdapter {
         if(view==null){
             holder = new Holder();
             view = inflater.inflate(R.layout.activity_asset_fixed_item,null);
-            holder.tv_asset_fixed_name = (TextView) view.findViewById(R.id.tv_asset_fixed_name);
+            holder.tv_asset_fixed_name = (TextView) view.findViewById(R.id.tv_fixed_product_name);
             holder.tv_asset_fixed_count = (TextView) view.findViewById(R.id.tv_asset_fixed_count);
             holder.tv_asset_fixed_scale = (TextView) view.findViewById(R.id.tv_asset_fixed_scale);
             view.setTag(holder);

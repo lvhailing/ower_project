@@ -9,6 +9,7 @@
     <string name="btn_true">确认</string>
     <string name="app_id">vjinke</string>
     <string name="order_load_toast">正在加载数据，请稍候…</string>
+
     <!-- uitl -->
     <string name="net_fail_text">当前网络不可用，点此检查网络设置</string>
     <string name="home_transfer_reast">剩余 &lt;font color= #ff9911 &gt;%s&lt;/font&gt; 天</string>
@@ -66,8 +67,77 @@
     <string name="title_gestureunlock">请解锁</string>
     <string name="title_changepwd">修改密码</string>
     <string name="title_overseas_medical">海外医疗</string>
+    <string name="title_fixed_income">固定收益</string>
+    <string name="title_floating_income">浮动收益</string>
+    <string name="title_investment_details">投资详情</string>
+    <string name="title_product_info">产品信息</string>
 
+    <string name="products_purchase_amount">该类产品购买金额</string>
     <string name="feed_back_content">请输入您的意见及建议，我们将为您不断改进！</string>
+
+    <!-- all buttons-->
+    <string name="btn_login_out">退出登录</string>
+    <string name="btn_order">立即预约</string>
+
+    <!--产品  固收和浮收的产品详情（产品信息）-->
+    <string name="product_scale">产品规模：</string>
+    <string name="investment_threshold">投资门槛：</string>
+    <string name="risk_type">风险类型：</string>
+    <string name="management_fee">管&#160;&#160;理&#160;&#160;费：</string>
+    <string name="trust_fee">托&#160;&#160;管&#160;&#160;费：</string>
+    <string name="administrator">管&#160;&#160;理&#160;&#160;人：</string>
+    <string name="custodian">托&#160;&#160;管&#160;&#160;人：</string>
+    <string name="subscription_amount">认购金额(万元)</string>
+    <string name="performance_benchmark_year">业绩比较基准(年)</string>
+    <string name="investment_scope">投资范围</string>
+    <string name="risk_control_measures">风控措施</string>
+    <string name="investment_highlights">投资亮点</string>
+
+
+    <!--保险的产品信息页-->
+    <string name="insurance_company">保险公司：</string>
+    <string name="insuring_way">投保方式：</string>
+    <string name="insurance_coverage">投保范围：</string>
+    <string name="insurance_period">保险期间：</string>
+    <string name="payment_methods">交费方式：</string>
+    <string name="risk_warning">风险提醒：</string>
+    <string name="graphic_details">图文详情</string>
+
+    <!-- 投资详情页面-->
+    <string name="product_name">产品名称：</string>
+    <string name="product_type">产品类型：</string>
+    <string name="purchase_amount">购买金额：</string>
+    <string name="performance_benchmark">业绩比较基准：</string>
+    <string name="product_deadline">产品期限：</string>
+    <string name="net_product">产品净值：</string>
+    <string name="purchase_date">购买日期：</string>
+    <string name="register_date">成立日期：</string>
+    <string name="interest_interval">付息间隔：</string>
+    <string name="remarks">备&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;注：</string>
+    <string name="repayment_date">还款日期</string>
+    <string name="interest">利息  (元)</string>
+    <string name="total_principal_and_interest">本息合计  (元)</string>
+    <string name="tips">说明：每期实际还款日期、金额以最终到账为准，本产品最终解释权归北京君德财富投资管理有限公司所有  (元)</string>
+    <string name="annual_report">年度报告</string>
+    <string name="insurance_date">投保日期：</string>
+    <string name="payment_period">缴费期间：</string>
+    <string name="sum_insured">保&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;额：</string>
+    <string name="insurance_premium">保&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;费：</string>
+    <string name="effective_date">生效日期：</string>
+    <string name="renewal_date">续费日期：</string>
+    <string name="insurance_applicant">投&#160;&#160;保&#160;&#160;人：</string>
+    <string name="insured_person">被&#160;&#160;保&#160;&#160;人：</string>
+    <string name="beneficiary">受  益  人：</string>
+    <string name="bonus_date">分红日期</string>
+    <string name="dividend_amount">分红金额  (元)</string>
+
+
+    <!-- 帐户中心页面-->
+    <string name="look_and_change_info">查看或修改个人信息</string>
+    <string name="change_phone">修改手机号</string>
+    <string name="gesture_cipher">手势密码</string>
+    <string name="change_gesture_cipher">修改手势密码</string>
+    <string name="change_login_password">修改登录密码</string>
 
     <!-- tel -->
     <string name="tellphone_num">01052297188</string>
@@ -99,7 +169,7 @@
 
     <string name="title_overseas_medical_service">海外医疗</string>
     <string name="title_overseas_medical_order">海外医疗预约</string>
-    
+
     <!-- 海外医疗页项目标题 -->
     <string name="title_health_check">海外体检</string>
     <string name="title_oversea_hospital">海外就医</string>
@@ -114,7 +184,6 @@
     <string name="title_service_order_liner">豪华邮轮游</string>
     <string name="title_service_order_oversea_asset"> 海外资产配置</string>
     <string name="title_service_order_overseas_medical"> 海外医疗</string>
-
 
     <string name="tips_service_booking_detail"> 请保持电话畅通我们会尽快与您进行联系！</string>
 

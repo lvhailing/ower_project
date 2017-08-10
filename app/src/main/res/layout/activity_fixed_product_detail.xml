@@ -25,7 +25,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:text="产品信息"
+            android:text="@string/title_product_info"
             android:textColor="@color/white"
             android:textSize="18sp"/>
     </RelativeLayout>
@@ -85,10 +85,31 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="产品规模："/>
+                        android:text="@string/product_scale"/>
 
                     <TextView
-                        android:id="@+id/tv_fixed_product_detail_chanpinguimo"
+                        android:id="@+id/tv_fixed_product_scale"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:textColor="@color/bg_black"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="8dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/investment_threshold"/>
+
+                    <TextView
+                        android:id="@+id/tv_fixed_product_investment_threshold"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text=""
@@ -106,10 +127,10 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="投资门槛："/>
+                        android:text="@string/product_deadline"/>
 
                     <TextView
-                        android:id="@+id/tv_fixed_product_detail_touzimenkan"
+                        android:id="@+id/tv_fixed_product_deadline"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text=""
@@ -117,28 +138,7 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="8dip"
-                    android:layout_marginLeft="10dip"
-                    android:layout_marginTop="8dip"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="产品期限："/>
-
-                    <TextView
-                        android:id="@+id/tv_fixed_product_detail_chanpinqixian"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text=""
-                        android:textColor="@color/bg_black"/>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/ll_fixed_product_detail_chanpinjingzhi"
+                    android:id="@+id/ll_fixed_net_product"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dip"
@@ -150,10 +150,10 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="产品净值："/>
+                        android:text="@string/net_product"/>
 
                     <TextView
-                        android:id="@+id/tv_fixed_product_detail_chanpinjingzhi"
+                        android:id="@+id/tv_fixed_net_product"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text=""
@@ -161,7 +161,7 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/ll_fixed_product_detail_yuqishouyi"
+                    android:id="@+id/ll_fixed_performance_benchmark"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dip"
@@ -173,10 +173,10 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="业绩比较基准："/>
+                        android:text="@string/performance_benchmark"/>
 
                     <TextView
-                        android:id="@+id/tv_fixed_product_detail_yujishouyi"
+                        android:id="@+id/tv_fixed_performance_benchmark"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text=""
@@ -194,10 +194,10 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="付息间隔："/>
+                        android:text="@string/interest_interval"/>
 
                     <TextView
-                        android:id="@+id/tv_fixed_product_detail_fuxijiange"
+                        android:id="@+id/tv_fixed_interest_interval"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text=""
@@ -215,10 +215,10 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="成立日期："/>
+                        android:text="@string/register_date"/>
 
                     <TextView
-                        android:id="@+id/tv_fixed_product_detail_chengliriqi"
+                        android:id="@+id/tv_fixed_register_date"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text=""
@@ -236,7 +236,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="风险类型："/>
+                        android:text="@string/risk_type"/>
 
                     <TextView
                         android:id="@+id/tv_risk_type"
@@ -257,10 +257,10 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="管&#160;&#160;理&#160;&#160;费："/>
+                        android:text="@string/management_fee"/>
 
                     <TextView
-                        android:id="@+id/tv_fixed_product_detail_guanlifei"
+                        android:id="@+id/tv_fixed_management_fee"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text=""
@@ -278,10 +278,10 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="托&#160;&#160;管&#160;&#160;费："/>
+                        android:text="@string/trust_fee"/>
 
                     <TextView
-                        android:id="@+id/tv_fixed_product_detail_tuoguanfei"
+                        android:id="@+id/tv_fixed_trust_fee"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text=""
@@ -299,10 +299,10 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="管&#160;&#160;理&#160;&#160;人："/>
+                        android:text="@string/administrator"/>
 
                     <TextView
-                        android:id="@+id/tv_fixed_product_detail_guanliren"
+                        android:id="@+id/tv_fixed_administrator"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text=""
@@ -320,10 +320,10 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="托&#160;&#160;管&#160;&#160;人："/>
+                        android:text="@string/custodian"/>
 
                     <TextView
-                        android:id="@+id/tv_fixed_product_detail_tuoguanren"
+                        android:id="@+id/tv_fixed_custodian"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text=""
@@ -341,7 +341,7 @@
                 android:orientation="horizontal">
 
                 <LinearLayout
-                    android:id="@+id/ll_fixed_product_detail_rengoujine"
+                    android:id="@+id/ll_fixed_subscription_amount"
                     android:layout_width="0dip"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -354,11 +354,11 @@
                         android:layout_gravity="center_horizontal"
                         android:layout_marginBottom="10dip"
                         android:layout_marginTop="10dip"
-                        android:text="认购金额(万元)"/>
+                        android:text="@string/subscription_amount"/>
 
                     <ImageView
                         android:layout_width="match_parent"
-                        android:layout_height="1dip"
+                        android:layout_height="1dp"
                         android:background="@color/bg_gray"
                         android:visibility="gone"
                         />
@@ -367,8 +367,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
-                        android:layout_marginBottom="10dip"
-                        android:layout_marginTop="10dip"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginTop="10dp"
                         android:text="50300"
                         android:textColor="@color/bg_black"
                         android:visibility="gone"
@@ -376,10 +376,10 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/ll_fixed_product_detail_yujishouyi"
-                    android:layout_width="0dip"
+                    android:id="@+id/ll_fixed_performance_benchmark_year"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="1dip"
+                    android:layout_marginLeft="1dp"
                     android:layout_weight="1"
                     android:background="@color/white"
                     android:orientation="vertical">
@@ -388,9 +388,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
-                        android:layout_marginBottom="10dip"
-                        android:layout_marginTop="10dip"
-                        android:text="业绩比较基准(年)"/>
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginTop="10dp"
+                        android:text="@string/performance_benchmark_year"/>
 
                     <ImageView
                         android:layout_width="match_parent"
@@ -403,8 +403,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
-                        android:layout_marginBottom="10dip"
-                        android:layout_marginTop="10dip"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginTop="10dp"
                         android:text="0.9%"
                         android:textColor="@color/bg_black"
                         android:visibility="gone"/>
@@ -415,7 +415,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/ll_fixed_product_detail_profit"
-                android:layout_marginTop="12dip"
+                android:layout_marginTop="12dp"
                 android:orientation="vertical"
                 android:paddingBottom="75dp">
 
@@ -425,7 +425,7 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:id="@+id/tv_fixed_product_detail_touzifanwei"
+                        android:id="@+id/tv_fixed_investment_scope"
                         android:layout_width="0dip"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -433,29 +433,29 @@
                         android:gravity="center"
                         android:paddingBottom="10dip"
                         android:paddingTop="10dip"
-                        android:text="投资范围"
+                        android:text="@string/investment_scope"
                         android:textColor="@color/txt_black_light"/>
 
                     <TextView
-                        android:id="@+id/tv_fixed_product_detail_fengkongcuoshi"
+                        android:id="@+id/tv_fixed_risk_control_measures"
                         android:layout_width="0dip"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="center"
                         android:paddingBottom="10dip"
                         android:paddingTop="10dip"
-                        android:text="风控措施"
+                        android:text="@string/risk_control_measures"
                         android:textColor="@color/txt_gray_light_l"/>
 
                     <TextView
-                        android:id="@+id/tv_fixed_product_detail_touziliangdian"
+                        android:id="@+id/tv_fixed_investment_highlights"
                         android:layout_width="0dip"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:paddingBottom="10dip"
-                        android:paddingTop="10dip"
-                        android:text="投资亮点"
+                        android:paddingBottom="10dp"
+                        android:paddingTop="10dp"
+                        android:text="@string/investment_highlights"
                         android:textColor="@color/txt_gray_light_l"/>
 
                 </LinearLayout>
@@ -465,7 +465,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/white"
-                    android:padding="10dip"
+                    android:padding="10dp"
                     android:text=""/>
 
             </LinearLayout>
@@ -482,7 +482,7 @@
         android:layout_marginTop="11dp"
         android:background="@drawable/shape_center_orange"
         android:gravity="center"
-        android:text="立即预约"
+        android:text="@string/btn_order"
         android:textColor="@color/white"
         android:visibility="gone"/>
 </RelativeLayout>

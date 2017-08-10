@@ -48,7 +48,7 @@
             android:textColor="@color/txt_orange_gray"/>
 
         <TextView
-            android:id="@+id/tv_asset_insurance_number"
+            android:id="@+id/tv_asset_insurance_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"

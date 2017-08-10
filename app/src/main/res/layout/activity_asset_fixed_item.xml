@@ -31,7 +31,7 @@
         android:layout_marginLeft="15dp"
         >
         <TextView
-            android:id="@+id/tv_asset_fixed_name"
+            android:id="@+id/tv_fixed_product_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="华物量化均太一号"
