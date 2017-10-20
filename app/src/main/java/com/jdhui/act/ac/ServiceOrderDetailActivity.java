@@ -179,8 +179,10 @@ public class ServiceOrderDetailActivity extends BaseActivity implements View.OnC
     }
 
     private void setView() {
-        //绿通就医：hospitalBooking; 基因检测：geneticBooking; 高尔夫球场：golfBooking; 豪华游轮:luxuryShipBooking;  海外资产配置：houseBooking;
-
+        /**
+         * 绿通就医：hospitalBooking; 基因检测：geneticBooking; 高尔夫球场：golfBooking;
+         * 豪华游轮:luxuryShipBooking;  海外资产配置：houseBooking; 私人摄影：photographyBooking；
+         */
         if (detail2B.getHospitalBooking() != null) {
             //是绿通就医
             tv_order_service.setText("绿通就医");
@@ -273,7 +275,6 @@ public class ServiceOrderDetailActivity extends BaseActivity implements View.OnC
 
             tv_id_num.setText(detail2B.getGolfBooking().getIdNo());  //身份证
 
-
             tv_phone.setText(detail2B.getGolfBooking().getClientPhone());  //联系电话
             tv_venue_name.setText(detail2B.getGolfBooking().getGolfName());  //场馆名称
             tv_order_time.setText(detail2B.getGolfBooking().getBookingTime()); //预约时间
@@ -340,6 +341,22 @@ public class ServiceOrderDetailActivity extends BaseActivity implements View.OnC
             tv_order_name.setText(detail2B.getOverseasBooking().getClient());  //预约人
             tv_phone.setText(detail2B.getOverseasBooking().getClientPhone());  //联系电话
             tv_sub_time.setText(detail2B.getOverseasBooking().getCreateTime()); //提交时间
+        } else if (detail2B.getPhotographyBooking()!=null) {
+            // 私人摄影
+            tv_order_service.setText("私人订制摄影盛宴"); // 预约的服务
+            ll_order_name.setVisibility(View.VISIBLE);//预约人 布局
+            ll_phone.setVisibility(View.VISIBLE);//联系电话 布局
+            ll_financial_planner.setVisibility(View.VISIBLE); // 专属理财师 布局
+            ll_sub_time.setVisibility(View.VISIBLE);//提交时间 布局
+
+            // 预约状态
+            String status = detail2B.getPhotographyBooking().getBookingStatus();
+            changeStatus(status,detail2B.getPhotographyBooking().getBookingRemark());
+            tv_order_name.setText(detail2B.getPhotographyBooking().getClient());  //预约人
+            tv_phone.setText(detail2B.getPhotographyBooking().getClientPhone());  //联系电话
+            tv_financial_planner.setText(detail2B.getPhotographyBooking().getFinancial());  // 专属理财师
+            tv_sub_time.setText(detail2B.getPhotographyBooking().getCreateTime()); //提交时间
+
         }
 
     }
@@ -417,6 +434,9 @@ public class ServiceOrderDetailActivity extends BaseActivity implements View.OnC
         } else if (detail2B.getOverseasBooking() != null) {
             // 海外医疗
             serviceItems = "overseasBooking";
+        }else if (detail2B.getPhotographyBooking()!= null) {
+            // 私人摄影
+            serviceItems = "photographyBooking";
         }
 
         // 点取消按钮时调接口

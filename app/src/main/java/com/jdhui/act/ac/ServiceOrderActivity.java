@@ -47,6 +47,7 @@ public class ServiceOrderActivity extends BaseActivity implements View.OnClickLi
     private TextView tv_5; //  豪华邮轮游
     private TextView tv_6; //  海外资产配置
     private TextView tv_7; // 海外医疗
+    private TextView tv_8; // 私人摄影
 
     private int currentPage = 1;    //当前页
     private String type;    //当前服务类型
@@ -79,6 +80,7 @@ public class ServiceOrderActivity extends BaseActivity implements View.OnClickLi
         tv_5 = (TextView) findViewById(R.id.tv_5);
         tv_6 = (TextView) findViewById(R.id.tv_6);
         tv_7 = (TextView) findViewById(R.id.tv_7);
+        tv_8 = (TextView) findViewById(R.id.tv_8);
 
         //PullToRefreshListView  上滑加载更多及下拉刷新
         ViewUtils.slideAndDropDown(listView);
@@ -95,6 +97,7 @@ public class ServiceOrderActivity extends BaseActivity implements View.OnClickLi
         tv_5.setOnClickListener(this);
         tv_6.setOnClickListener(this);
         tv_7.setOnClickListener(this);
+        tv_8.setOnClickListener(this);
     }
 
     private void initData() {
@@ -122,7 +125,7 @@ public class ServiceOrderActivity extends BaseActivity implements View.OnClickLi
                 String type = totalList.get(position - 1).getServiceItems();
                 if (type.equals("airplaneBooking")) { //公务机包机预约详情
                     intent = new Intent(ServiceOrderActivity.this, ServicePlaneDetailActivity.class);
-                } else {  //绿通就医，基因检测，高尔夫球场，豪华邮轮游，海外资产配置，海外医疗等预约详情
+                } else {  //绿通就医，基因检测，高尔夫球场，豪华邮轮游，海外资产配置，海外医疗，私人摄影等预约详情
                     intent = new Intent(ServiceOrderActivity.this, ServiceOrderDetailActivity.class);
                 }
                 intent.putExtra("serviceItems", type);
@@ -316,6 +319,15 @@ public class ServiceOrderActivity extends BaseActivity implements View.OnClickLi
 //                Log.i("bb", "海外医疗：" + currentPage);
                 type = "overseasBooking";
                 mTvType.setText("海外医疗");
+                iv_select.setBackgroundResource(R.drawable.triangle_down_fill);
+                closeShopping();
+                totalList.clear();
+                requestData();
+                break;
+            case R.id.tv_8:// 私人摄影
+                currentPage = 1;
+                type = "photographyBooking";
+                mTvType.setText("私人订制摄影盛宴");
                 iv_select.setBackgroundResource(R.drawable.triangle_down_fill);
                 closeShopping();
                 totalList.clear();

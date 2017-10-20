@@ -57,9 +57,9 @@
                     android:id="@+id/tv_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="15dip"
                     android:layout_marginLeft="15dp"
                     android:layout_marginTop="15dip"
-                    android:layout_marginBottom="15dip"
                     android:text="请保持电话畅通我们会尽快与您进行联系！"
                     android:textColor="@color/txt_orange"
                     android:textSize="16sp"/>
@@ -100,7 +100,6 @@
                         android:text=""/>
                 </LinearLayout>
 
-
                 <LinearLayout
                     android:id="@+id/ll_phone"
                     style="@style/product_linearlayout">
@@ -114,11 +113,11 @@
                         style="@style/product_text_detail_rt"
                         android:text=""/>
                 </LinearLayout>
+
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="1dip"
-                    android:src="@color/bg_gray"
-                    />
+                    android:src="@color/bg_gray"/>
 
                 <com.jdhui.view.MyListView
                     android:id="@+id/lv"

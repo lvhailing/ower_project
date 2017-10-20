@@ -149,6 +149,9 @@
     <string name="title_oversea_project_detail">项目详情</string>
 
     <!-- 服务模块 -->
+    <string name="title_photograph">私人订制摄影盛宴</string>
+    <string name="title_photograph_order">私人订制预约</string>
+
     <string name="title_liner">豪华邮轮游</string>
     <string name="title_liner_order">豪华邮轮游预约</string>
 
@@ -184,7 +187,32 @@
     <string name="title_service_order_liner">豪华邮轮游</string>
     <string name="title_service_order_oversea_asset"> 海外资产配置</string>
     <string name="title_service_order_overseas_medical"> 海外医疗</string>
+    <string name="title_service_order_photography">私人订制摄影盛宴</string>
+
 
     <string name="tips_service_booking_detail"> 请保持电话畅通我们会尽快与您进行联系！</string>
 
+    <!-- 私人定制摄影相关文字 -->
+    <string name="introduction_photography">君德财富联手七彩云南顶级珠宝、YST时尚摄影团第，为尊贵的您打造一场私人订制的摄影盛宴。让财富与奢华碰撞，让高定服饰与珠宝融合，留下一个最美的身影，述说一个故事。</string>
+    <string name="introduction_photography2">在这里有专业的团队、以用心的服务、视尚的视角，定义美，诠释爱！</string>
+    <string name="title_experience_project">预约免费体验，您可尊享：</string>
+    <string name="experience_project1">【化妆】提供专属化妆造型3组</string>
+    <string name="experience_project2">【拍摄】知名签约摄影师拍摄3组</string>
+    <string name="experience_project3">【风格】清新自然、成熟性感、高贵典雅</string>
+    <string name="experience_project4">【服饰】知名高定服饰品牌</string>
+    <string name="experience_project5">【珠宝】珍藏级各类珠宝任选2-3套搭配拍摄</string>
+    <string name="experience_project6">【赠品】十寸精雕版画1台，数码精修底片3张</string>
+    <string name="experience_project7">【提示】可自带私服2套，彰显自己的个性品位</string>
+    <string name="photography_team">摄影团队</string>
+    <string name="photography_production">往期作品</string>
+    <string name="Photographer1">摄影师<b>Michael</b></string>
+    <string name="Photographer2">摄影师<b>Jason</b></string>
+    <string name="Photographer3">造型师<b>Lisa</b></string>
+    <string name="Photographer4">造型师<b>Jenny</b></string>
+    <string name="Photographer5">珠宝设计师<b>陈瑾</b></string>
+
+    <string name="layout_photographer3_item1"> 从业6年 </string>
+    <string name="layout_photographer3_item2">国家注册高级化妆师</string>
+    <string name="layout_photographer3_item3"> 在<b>&#060;&#060;大学一年级&#062;&#062;</b>等电视剧中担任造型指导 </string>
+    <string name="layout_photographer3_item4"> 中央电视台合作化妆师 </string>
 </resources>

@@ -67,6 +67,8 @@ public class ServiceOrderAdapter extends BaseAdapter {
             name = "海外资产配置";
         } else if (str.equals("overseasBooking")) {
             name = "海外医疗";
+        } else if (str.equals("photographyBooking")) {
+            name = "私人订制摄影盛宴";
         } else {
             name = "公务机包机";
         }

@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_gray"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/rl_service_type"
+        android:layout_width="match_parent"
+        android:layout_height="51dp"
+        android:background="@color/red4">
+
+        <ImageView
+            android:id="@+id/iv_back"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:padding="5dp"
+            android:src="@drawable/back"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="摄影预约"
+            android:textColor="@color/white"
+            android:textSize="18sp"/>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/rl_service_type"
+        android:layout_marginTop="10dp"
+        android:background="@color/white"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp">
+
+            <TextView
+                style="@style/tv_style"
+                android:text="预约人"/>
+
+            <EditText
+                android:id="@+id/et_name"
+                style="@style/et_style"
+                android:hint="请输入预约人"
+                android:maxLength="10"
+                android:maxLines="1"/>
+        </LinearLayout>
+
+        <View
+            style="@style/v_line_style"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp">
+
+            <TextView
+                style="@style/tv_style"
+                android:text="联系电话"/>
+
+            <EditText
+                android:id="@+id/et_phone"
+                style="@style/et_style"
+                android:hint="请输入联系电话"
+                android:inputType="phone"
+                android:maxLength="11"
+                android:maxLines="1"/>
+
+        </LinearLayout>
+
+        <View
+            style="@style/v_line_style"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp">
+
+            <TextView
+                style="@style/tv_style"
+                android:text="专属理财师"/>
+
+            <EditText
+                android:id="@+id/et_financial_planner"
+                style="@style/et_style"
+                android:hint="请输入专属理财师"
+                android:maxLength="10"
+                android:maxLines="1"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_submit"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/shape_button_red"
+        android:text="提交预约"
+        android:textColor="@color/white"/>
+
+</RelativeLayout>

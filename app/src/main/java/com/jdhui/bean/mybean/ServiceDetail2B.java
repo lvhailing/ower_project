@@ -15,6 +15,7 @@ public class ServiceDetail2B implements IMouldType {
     private ServiceDetail3B luxuryShipBooking; //豪华邮轮游
     private ServiceDetail3B houseBooking; // 海外资产配置
     private ServiceDetail3B overseasBooking; // 海外医疗
+    private ServiceDetail3B photographyBooking; // 私人摄影
 
     public ServiceDetail3B getHospitalBooking() {
         return hospitalBooking;
@@ -70,6 +71,14 @@ public class ServiceDetail2B implements IMouldType {
 
     public void setOverseasBooking(ServiceDetail3B overseasBooking) {
         this.overseasBooking = overseasBooking;
+    }
+
+    public ServiceDetail3B getPhotographyBooking() {
+        return photographyBooking;
+    }
+
+    public void setPhotographyBooking(ServiceDetail3B photographyBooking) {
+        this.photographyBooking = photographyBooking;
     }
 }
 

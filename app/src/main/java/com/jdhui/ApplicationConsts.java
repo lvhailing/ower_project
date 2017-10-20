@@ -4,8 +4,8 @@ public class ApplicationConsts {
     public static final int REL_DEBUG = 1;// 线下服务器
     public static final int REL_OFFICIAL = 2;// 正式服务器
 
-    public static int RELEASE_FLAG = REL_DEBUG;            //测试环境
-//	public static int RELEASE_FLAG = REL_OFFICIAL;          //正式环境
+//    public static int RELEASE_FLAG = REL_DEBUG;            //测试环境
+	public static int RELEASE_FLAG = REL_OFFICIAL;          //正式环境
 
     // 线下服务器开关,线下地址优先级高于预发布地址
     public static final boolean DEBUG = RELEASE_FLAG == REL_DEBUG;
@@ -375,6 +375,11 @@ public class ApplicationConsts {
      * 提交海外医疗预约
      */
     public static final String URL_SERVICE_BOOKINGOVERSEAS_ADD = EC_HOST + "service/bookingOverseas/add";
+
+    /**
+     * 提交私人摄影预约
+     */
+    public static final String URL_SERVICE_BOOKINGPHOTOGRAPHY_ADD = EC_HOST + "service/bookingPhotography/add";
 
     /**
      * 保险预约

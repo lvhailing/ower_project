@@ -12,6 +12,7 @@ import android.widget.RelativeLayout;
 
 import com.jdhui.R;
 import com.jdhui.act.ac.LinerListActivity;
+import com.jdhui.act.ac.OrderPhotographyActivity;
 import com.jdhui.act.ac.OverseaHouseListActivity;
 import com.jdhui.act.ac.OverseasMedicalBookingActivity;
 import com.jdhui.act.ac.WebAirPlanBookingActivity;
@@ -32,6 +33,7 @@ import com.nostra13.universalimageloader.core.display.FadeInBitmapDisplayer;
  * 底部导航---服务
  */
 public class ServiceFragment extends Fragment implements View.OnClickListener {
+    private RelativeLayout rl_photograph; // 私人定制摄影
     private RelativeLayout rl_liner; //豪华邮轮游
     private RelativeLayout rl_oversea_asset; // 海外资产配置
     private RelativeLayout rl_hospital; // 绿通就医
@@ -40,6 +42,7 @@ public class ServiceFragment extends Fragment implements View.OnClickListener {
     private RelativeLayout rl_plane; // 公务机包机
     private RelativeLayout rl_overseas_medical; // 海外医疗
 
+    private ImageView iv_photograph; // 私人定制摄影背景图
     private ImageView iv_liner; // 豪华邮轮游背景图
     private ImageView iv_asset; // 海外资产配置
     private ImageView iv_hospital; // 绿通就医背景图
@@ -69,6 +72,7 @@ public class ServiceFragment extends Fragment implements View.OnClickListener {
     }
 
     private void initView(View view) {
+        rl_photograph = (RelativeLayout) view.findViewById(R.id.rl_photograph);
         rl_liner = (RelativeLayout) view.findViewById(R.id.rl_liner);
         rl_oversea_asset = (RelativeLayout) view.findViewById(R.id.rl_oversea_asset);
         rl_hospital = (RelativeLayout) view.findViewById(R.id.rl_hospital);
@@ -77,6 +81,7 @@ public class ServiceFragment extends Fragment implements View.OnClickListener {
         rl_plane = (RelativeLayout) view.findViewById(R.id.rl_plane);
         rl_overseas_medical = (RelativeLayout) view.findViewById(R.id.rl_overseas_medical);
 
+        iv_photograph = (ImageView) view.findViewById(R.id.iv_photograph);
         iv_liner = (ImageView) view.findViewById(R.id.iv_liner);
         iv_asset = (ImageView) view.findViewById(R.id.iv_asset);
         iv_hospital = (ImageView) view.findViewById(R.id.iv_hospital);
@@ -86,8 +91,13 @@ public class ServiceFragment extends Fragment implements View.OnClickListener {
         iv_overseas_medical = (ImageView) view.findViewById(R.id.iv_overseas_medical);
 
         //缓存图片到本地
-        options = new DisplayImageOptions.Builder().showImageForEmptyUri(R.mipmap.bg_show_img_empty).showImageOnFail(R.mipmap.bg_show_img_empty).resetViewBeforeLoading(true).cacheOnDisc(true).imageScaleType(ImageScaleType.EXACTLY).bitmapConfig(Bitmap.Config.RGB_565).considerExifParams(true).displayer(new FadeInBitmapDisplayer(300)).build();
+        options = new DisplayImageOptions.Builder().showImageForEmptyUri(R.mipmap.bg_show_img_empty)
+                .showImageOnFail(R.mipmap.bg_show_img_empty).resetViewBeforeLoading(true).cacheOnDisc(true)
+                .imageScaleType(ImageScaleType.EXACTLY).bitmapConfig(Bitmap.Config.RGB_565).considerExifParams(true)
+                .displayer(new FadeInBitmapDisplayer(300)).build();
 
+        // 各种服务点击监听
+        rl_photograph.setOnClickListener(this);
         rl_liner.setOnClickListener(this);
         rl_oversea_asset.setOnClickListener(this);
         rl_hospital.setOnClickListener(this);
@@ -125,19 +135,17 @@ public class ServiceFragment extends Fragment implements View.OnClickListener {
             } else if (item.getType().equals("houseBooking")) { // 海外资产配置
                 imageLoader.displayImage(item.getPicture(), iv_asset, options, null);
             } else if (item.getType().equals("hospitalBooking")) { // 绿通就医
-//                ImageLoader.getInstance().displayImage(item.getPicture(), iv_hospital);
                 imageLoader.displayImage(item.getPicture(), iv_hospital, options, null);
             } else if (item.getType().equals("geneticBooking")) { // 基因检测
-//                ImageLoader.getInstance().displayImage(item.getPicture(), iv_genetic);
                 imageLoader.displayImage(item.getPicture(), iv_genetic, options, null);
-            } else if (item.getType().equals("golfBooking")) { // 高尔夫
-//                ImageLoader.getInstance().displayImage(item.getPicture(), iv_golf);
+            } else if (item.getType().equals("golfBooking")) { // 高尔夫（暂时去掉了）
                 imageLoader.displayImage(item.getPicture(), iv_golf, options, null);
-            } else if (item.getType().equals("airplaneBooking")) { // 公务机
-//                ImageLoader.getInstance().displayImage(item.getPicture(), iv_plane);
+            } else if (item.getType().equals("airplaneBooking")) { // 公务机包机
                 imageLoader.displayImage(item.getPicture(), iv_plane, options, null);
             } else if (item.getType().equals("overseasBooking")) { // 海外医疗
                 imageLoader.displayImage(item.getPicture(), iv_overseas_medical, options, null);
+            }else if (item.getType().equals("photographyBooking")) { // 私人摄影盛宴
+                imageLoader.displayImage(item.getPicture(), iv_photograph, options, null);
             }
 
         }
@@ -151,6 +159,10 @@ public class ServiceFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
+            case R.id.rl_photograph: // 私人定制摄影预约
+                intent = new Intent(getActivity(), OrderPhotographyActivity.class);
+                startActivity(intent);
+                break;
             case R.id.rl_liner: //豪华邮轮游预约
                 intent = new Intent(getActivity(), LinerListActivity.class);
                 startActivity(intent);

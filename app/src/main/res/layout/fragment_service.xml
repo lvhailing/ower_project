@@ -39,13 +39,39 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+            <!-- 私人定制摄影盛宴 -->
+            <RelativeLayout
+                android:id="@+id/rl_photograph"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:minHeight="120dp">
+
+                <ImageView
+                    android:id="@+id/iv_photograph"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="fitXY"/>
+
+                <TextView
+                    style="@style/allServices_title"
+                    android:text="@string/title_photograph"/>
+
+                <TextView
+                    style="@style/allServices_order"
+                    android:text="@string/title_photograph_order"/>
+            </RelativeLayout>
+
+            <View
+                style="@style/v_line_style"
+                android:layout_alignParentBottom="true"/>
+
             <!-- 豪华邮轮 -->
             <RelativeLayout
                 android:id="@+id/rl_liner"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:minHeight="120dip">
+                android:minHeight="120dp">
 
                 <ImageView
                     android:id="@+id/iv_liner"
@@ -71,7 +97,7 @@
                 android:id="@+id/rl_oversea_asset"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:minHeight="120dip">
+                android:minHeight="120dp">
 
                 <ImageView
                     android:id="@+id/iv_asset"
@@ -97,7 +123,7 @@
                 android:id="@+id/rl_hospital"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:minHeight="120dip">
+                android:minHeight="120dp">
 
                 <ImageView
                     android:id="@+id/iv_hospital"
@@ -123,14 +149,13 @@
                 android:id="@+id/rl_genetic"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:minHeight="120dip">
+                android:minHeight="120dp">
 
                 <ImageView
                     android:id="@+id/iv_genetic"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:scaleType="fitXY"
-                    />
+                    android:scaleType="fitXY"/>
 
                 <TextView
                     style="@style/allServices_title"
@@ -150,7 +175,7 @@
                 android:id="@+id/rl_golf"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:minHeight="120dip"
+                android:minHeight="120dp"
                 android:visibility="gone">
 
                 <ImageView
@@ -179,7 +204,7 @@
                 android:id="@+id/rl_plane"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:minHeight="120dip">
+                android:minHeight="120dp">
 
                 <ImageView
                     android:id="@+id/iv_plane"
@@ -205,7 +230,7 @@
                 android:id="@+id/rl_overseas_medical"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:minHeight="120dip">
+                android:minHeight="120dp">
 
                 <ImageView
                     android:id="@+id/iv_overseas_medical"

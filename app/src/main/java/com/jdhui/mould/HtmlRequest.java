@@ -54,6 +54,7 @@ import com.jdhui.bean.mybean.SubBookingShip1B;
 import com.jdhui.bean.mybean.SubGeneticTesting1B;
 import com.jdhui.bean.mybean.SubOverseaProject1B;
 import com.jdhui.bean.mybean.SubOverseasMedical1B;
+import com.jdhui.bean.mybean.SubPhotography1B;
 import com.jdhui.bean.mybean.SubmitBookingHospital1B;
 import com.jdhui.http.SimpleHttpClient;
 import com.jdhui.mould.types.IMouldType;
@@ -1299,7 +1300,9 @@ public class HtmlRequest extends BaseRequester {
      * 更多--服务预约列表
      *
      * @param context
-     * @param serviceItems 绿通就医：hospitalBooking  基因检测：geneticBooking  高尔夫球场：golfBooking  公务机包机：airplaneBooking  豪华游轮:luxuryShipBooking  海外资产：houseBooking
+     * @param serviceItems 绿通就医：hospitalBooking  基因检测：geneticBooking  高尔夫球场：golfBooking
+     *                     公务机包机：airplaneBooking  豪华游轮:luxuryShipBooking  海外资产：houseBooking
+     *                     私人摄影：photographyBooking
      * @param page         页数
      * @param listener
      * @return
@@ -1356,7 +1359,9 @@ public class HtmlRequest extends BaseRequester {
      * 更多--服务预约详情
      *
      * @param context
-     * @param serviceItems 绿通就医：hospitalBooking  基因检测：geneticBooking  高尔夫球场：golfBooking  公务机包机：airplaneBooking
+     * @param serviceItems 绿通就医：hospitalBooking  基因检测：geneticBooking  高尔夫球场：golfBooking
+     *                     公务机包机：airplaneBooking  豪华游轮:luxuryShipBooking  海外资产：houseBooking
+     *                     私人摄影：photographyBooking
      * @param id           服务Id
      * @param listener
      * @return
@@ -2622,7 +2627,7 @@ public class HtmlRequest extends BaseRequester {
                     }
                     if (result != null) {
                         String data = DESUtil.decrypt(result);
-//                        Log.i("hh", "服务背景图：" + data);
+                        Log.i("hh", "服务背景图：" + data);
                         Gson json = new Gson();
                         ServicePicture1B b = json.fromJson(data, ServicePicture1B.class);
                         resultEncrypt(context, b.getCode());
@@ -3084,7 +3089,7 @@ public class HtmlRequest extends BaseRequester {
                     }
                     if (result != null) {
                         String data = DESUtil.decrypt(result);
-                        Log.i("aaa", "海外项目详情：" + data);
+//                        Log.i("aaa", "海外项目详情：" + data);
                         Gson json = new Gson();
                         OverseaProjectDetail1B b = json.fromJson(data, OverseaProjectDetail1B.class);
                         resultEncrypt(context, b.getCode());
@@ -3171,21 +3176,21 @@ public class HtmlRequest extends BaseRequester {
     /**
      * 服务-- 海外医疗预约
      * @param context
-     * @param client
-     * @param clientPhone
-     * @param overseasType
-     * @param financial
+     * @param client  // 预约人
+     * @param clientPhone // 联系电话
+     * @param overseasType // 海外医疗类型
+     * @param financial // 专属理财师
      * @param listener
      * @return
      */
     public static String submitOverseasMedical(final Context context, String client, String clientPhone, String overseasType, String financial,  OnRequestListener listener) {
         final String data = HtmlLoadUtil.subOverseasMedical(client, clientPhone, overseasType, financial);
         final String url = ApplicationConsts.URL_SERVICE_BOOKINGOVERSEAS_ADD;
-        String tid = registerId(Constants.TASK_TYPE_BOOKING_GENETICTESTING_ADD, url);
+        String tid = registerId(Constants.TASK_TYPE_BOOKING_OVERSEASMEDICAL_ADD, url);
         if (tid == null) {
             return null;
         }
-        getTaskManager().addTask(new MouldAsyncTask(tid, buildParams(Constants.TASK_TYPE_BOOKING_GENETICTESTING_ADD, context, listener, url, 0)) {
+        getTaskManager().addTask(new MouldAsyncTask(tid, buildParams(Constants.TASK_TYPE_BOOKING_OVERSEASMEDICAL_ADD, context, listener, url, 0)) {
             @Override
             public IMouldType doTask(BaseParams params) {
                 SimpleHttpClient client = new SimpleHttpClient(context, SimpleHttpClient.RESULT_STRING);
@@ -3207,6 +3212,65 @@ public class HtmlRequest extends BaseRequester {
                         String data = DESUtil.decrypt(result);
                         Gson json = new Gson();
                         SubOverseasMedical1B b = json.fromJson(data, SubOverseasMedical1B.class);
+                        resultEncrypt(context, b.getCode());
+                        return b.getData();
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                } finally {
+                    unRegisterId(getTaskId());
+                }
+                return null;
+            }
+
+            @Override
+            public void onPostExecute(IMouldType result, BaseParams params) {
+                params.result = result;
+                params.sendResult();
+            }
+        });
+        return tid;
+    }
+
+    /**
+     *  提交私人摄影预约
+     * @param context
+     * @param client // 预约人
+     * @param clientPhone // 联系电话
+     * @param financial // 专属理财师
+     * @param listener
+     * @return
+     */
+    public static String submitPhotography(final Context context, String client, String clientPhone, String financial,  OnRequestListener listener) {
+        final String data = HtmlLoadUtil.subPhotography(client, clientPhone, financial);
+        final String url = ApplicationConsts.URL_SERVICE_BOOKINGPHOTOGRAPHY_ADD;
+        String tid = registerId(Constants.TASK_TYPE_BOOKING_PHOTOGRAPHY_ADD, url);
+        if (tid == null) {
+            return null;
+        }
+        getTaskManager().addTask(new MouldAsyncTask(tid, buildParams(Constants.TASK_TYPE_BOOKING_PHOTOGRAPHY_ADD, context, listener, url, 0)) {
+            @Override
+            public IMouldType doTask(BaseParams params) {
+                SimpleHttpClient client = new SimpleHttpClient(context, SimpleHttpClient.RESULT_STRING);
+
+                HttpEntity entity = null;
+                try {
+                    entity = new StringEntity(data);
+                } catch (UnsupportedEncodingException e1) {
+                    e1.printStackTrace();
+                }
+
+                client.post(url, entity);
+                String result = (String) client.getResult();
+                try {
+                    if (isCancelled()) {
+                        return null;
+                    }
+                    if (result != null) {
+                        String data = DESUtil.decrypt(result);
+                        Log.i("aaa", "私人摄影盛宴提交预约：" + data);
+                        Gson json = new Gson();
+                        SubPhotography1B b = json.fromJson(data, SubPhotography1B.class);
                         resultEncrypt(context, b.getCode());
                         return b.getData();
                     }

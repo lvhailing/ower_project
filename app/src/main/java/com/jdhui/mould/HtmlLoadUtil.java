@@ -48,6 +48,7 @@ import com.jdhui.bean.mybean.SubBookingShip0B;
 import com.jdhui.bean.mybean.SubGeneticTesting0B;
 import com.jdhui.bean.mybean.SubOverseaProject0B;
 import com.jdhui.bean.mybean.SubOverseasMedical0B;
+import com.jdhui.bean.mybean.SubPhotography0B;
 import com.jdhui.bean.mybean.SubmitBookingGolf0B;
 import com.jdhui.bean.mybean.SubmitBookingHospital0B;
 import com.jdhui.uitls.DESUtil;
@@ -619,14 +620,26 @@ public class HtmlLoadUtil {
     /**
      * 服务--提交海外医疗预约
      *
-     * @param client
-     * @param clientPhone
-     * @param overseasType
-     * @param financial
+     * @param client // 预约人
+     * @param clientPhone // 预约电话
+     * @param overseasType // 海外医疗预约类型
+     * @param financial // 专属理财师
      * @return
      */
     public static String subOverseasMedical(String client, String clientPhone, String overseasType, String financial) {
         SubOverseasMedical0B b = new SubOverseasMedical0B(client, clientPhone, overseasType, financial);
+        return getResult(b);
+    }
+
+    /**
+     *
+     * @param client  // 预约人
+     * @param clientPhone // 预约电话
+     * @param financial // 专属理财师
+     * @return
+     */
+    public static String subPhotography(String client, String clientPhone,String financial) {
+        SubPhotography0B b = new SubPhotography0B(client, clientPhone,financial);
         return getResult(b);
     }
 

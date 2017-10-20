@@ -11,7 +11,7 @@ public class Service3B implements IMouldType {
     private String id; //服务 id
 
     // 服务类型( 绿通就医：hospitalBooking、基因检测：geneticBooking、高尔夫球场：golfBooking  公务机包机：airplaneBooking
-    // 豪华游轮:luxuryShipBooking  海外资产配置：houseBooking 海外医疗:overseasBooking )
+    // 豪华游轮:luxuryShipBooking  海外资产配置：houseBooking 海外医疗:overseasBooking 、私人摄影：photographyBooking)
     private String serviceItems;
 
     private String createTime; //预约时间

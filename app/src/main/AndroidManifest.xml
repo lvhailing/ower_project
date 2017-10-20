@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          android:installLocation="preferExternal"
           package="com.jdhui">
 
     <uses-permission android:name="android.permission.ACCESS_DOWNLOAD_MANAGER"/>
@@ -95,12 +96,10 @@
         <activity
             android:name=".act.MessageActivity"
             android:screenOrientation="portrait"/>
-
         <activity
             android:name=".act.LoginActivity"
             android:launchMode="singleTask"
-            android:screenOrientation="portrait"
-            />
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".act.MainActivity"
             android:launchMode="singleTask"
@@ -253,6 +252,14 @@
 
         <activity
             android:name=".act.ac.SubmitOverseasMedicalActivity"
+            android:screenOrientation="portrait"/>
+
+        <activity
+            android:name=".act.ac.OrderPhotographyActivity"
+            android:screenOrientation="portrait"/>
+
+        <activity
+            android:name=".act.ac.SubmitPhotographyActivity"
             android:screenOrientation="portrait"/>
 
 
