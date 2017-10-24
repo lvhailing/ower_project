@@ -2,6 +2,7 @@ package com.jdhui.net;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
@@ -57,10 +58,9 @@ public class UserLogin extends Observable {
 
         String STORE_NAME = "PushTestReceiver";
         SharedPreferences settings = context.getSharedPreferences(STORE_NAME, MODE_PRIVATE);
-        String appid = settings.getString("channelId", "");
+        String appId = settings.getString("channelId", "");
 
-
-        String data = HtmlLoadUtil.frontLogin(username, password, "", appid);
+        String data = HtmlLoadUtil.frontLogin(username, password, "", appId);
 //		String data = HtmlLoadUtil.frontLogin(username, password, "");
         PersistentCookieStore myCookieStore = new PersistentCookieStore(context);
         asyncHttpClient.setCookieStore(myCookieStore);
@@ -75,7 +75,6 @@ public class UserLogin extends Observable {
             @Override
             public void onSuccess(String content) {
                 super.onSuccess(content);
-
             }
 
             @Override
@@ -94,6 +93,7 @@ public class UserLogin extends Observable {
                 String result = null;
                 try {
                     result = DESUtil.decrypt(content.toString());
+                    Log.i("aaa", "登录接口：" + result);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -122,7 +122,6 @@ public class UserLogin extends Observable {
                     } else {
                         Toast.makeText(context, b.getData().getMessage(), Toast.LENGTH_LONG).show();
                     }
-
                 } else {
                     PreferenceUtil.setAutoLoginAccount("");
                     PreferenceUtil.setAutoLoginPwd("");

@@ -19,8 +19,8 @@ public class ResultUserLoginContentBean implements IMouldType {
 	// setMessage(message);
 	// }
 	// {flag=true, message=, nickName=aaaasw, userId=14120415074007298439}
-	public ResultUserLoginContentBean(String flag, String message,
-			String userId, String nickName, String mobile,String questionnaireRecordFlag,String qualifiedInvestorFlag,String totalAmountFlag) {
+	public ResultUserLoginContentBean(String flag, String message, String userId, String nickName, String mobile,
+									  String questionnaireRecordFlag,String qualifiedInvestorFlag,String totalAmountFlag) {
 		setFlag(flag);
 		setMessage(message);
 		setUserId(userId);

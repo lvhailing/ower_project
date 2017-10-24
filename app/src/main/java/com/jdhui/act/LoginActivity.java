@@ -245,7 +245,6 @@ public class LoginActivity extends BaseActivity implements OnClickListener, Obse
 
         //设置已登录标记
         PreferenceUtil.setLogin(true);
-
         //非第一次登录 比如退出登录来的
         if (!PreferenceUtil.isFirstLogin()) {
             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
@@ -287,8 +286,6 @@ public class LoginActivity extends BaseActivity implements OnClickListener, Obse
                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                     startActivity(intent);
                 }
-
-
             } else {    //是否做过合格投资者判定 否
                 if (PreferenceUtil.getTotalAmount()) {  //判断账户资产是否大于300万
                     Intent i_commitment = new Intent(this, WebSurveyActivity.class);
