@@ -26,7 +26,6 @@ public class UserLogin extends Observable {
     private static final int MODE_PRIVATE = 0;
 
     private UserLogin() {
-
     }
 
     public void notifyObservers(Object data) {

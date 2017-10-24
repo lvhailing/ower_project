@@ -213,12 +213,12 @@ public class LoginActivity extends BaseActivity implements OnClickListener, Obse
                         judgeUser(userName, password);
                     }
                 }
+                break;
+            case R.id.btn_login_forget_password: // 忘记密码
+                Intent intent = new Intent(this, FindPassWordActivity.class);
+                startActivity(intent);
+                break;
 
-                break;
-            case R.id.btn_login_forget_password:
-                Intent i_findpw = new Intent(this, FindPassWordActivity.class);
-                startActivity(i_findpw);
-                break;
             default:
                 break;
         }
