@@ -30,7 +30,7 @@
         >
 
         <EditText
-            android:id="@+id/id_login_edit_username"
+            android:id="@+id/et_login_username"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
@@ -44,10 +44,10 @@
             android:textColorHint="#DBDBDB"/>
 
         <EditText
-            android:id="@+id/id_login_edit_password"
+            android:id="@+id/et_login_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/id_login_edit_username"
+            android:layout_below="@id/et_login_username"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:layout_marginTop="10dp"
@@ -58,10 +58,10 @@
             android:textColorHint="#DBDBDB"/>
 
         <TextView
-            android:id="@+id/id_login_txt_call"
+            android:id="@+id/tv_login_customer_phone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/id_login_edit_password"
+            android:layout_below="@+id/et_login_password"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="25dp"
             android:drawableLeft="@mipmap/img_login_phone"
@@ -74,10 +74,10 @@
 
 
     <Button
-        android:id="@+id/id_login_btn_login"
+        android:id="@+id/btn_login"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/id_login_btn_findpw"
+        android:layout_above="@+id/btn_login_forget_password"
         android:layout_marginBottom="10dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
@@ -86,7 +86,7 @@
         android:textColor="@color/white"/>
 
     <Button
-        android:id="@+id/id_login_btn_findpw"
+        android:id="@+id/btn_login_forget_password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"

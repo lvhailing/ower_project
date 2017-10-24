@@ -34,9 +34,11 @@ import java.util.Observer;
  * 登陆界面
  */
 public class LoginActivity extends BaseActivity implements OnClickListener, Observer {
-    private EditText edtUsername, edtPassword;
-    private Button btnLogin, btn_find;
-    private TextView txtCall;
+    private EditText loginUerName; // 用户名称
+    private EditText  loginPassword; // 登录密码
+    private Button btnLogin ; // 登录
+    private Button btnLoginForgetPassword; // 忘记密码
+    private TextView customerPhone; // 客服电话
     private Resources mResource;
     private int requestCode = 5;
     private ResultUserLoginContentBean bean;
@@ -46,7 +48,7 @@ public class LoginActivity extends BaseActivity implements OnClickListener, Obse
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         initView();
-        initData();
+//        initData();
     }
 
     private void initView() {
@@ -61,12 +63,12 @@ public class LoginActivity extends BaseActivity implements OnClickListener, Obse
             Toast.makeText(this, "账户信息已过期，请重新登录", Toast.LENGTH_LONG).show();
             tomain = "6";
         }
-        edtUsername = (EditText) findViewById(R.id.id_login_edit_username);
-        edtPassword = (EditText) findViewById(R.id.id_login_edit_password);
+        loginUerName = (EditText) findViewById(R.id.et_login_username);
+        loginPassword = (EditText) findViewById(R.id.et_login_password);
 
-        txtCall = (TextView) findViewById(R.id.id_login_txt_call);
-        btnLogin = (Button) findViewById(R.id.id_login_btn_login);
-        btn_find = (Button) findViewById(R.id.id_login_btn_findpw);
+        customerPhone = (TextView) findViewById(R.id.tv_login_customer_phone);
+        btnLogin = (Button) findViewById(R.id.btn_login);
+        btnLoginForgetPassword = (Button) findViewById(R.id.btn_login_forget_password);
 
         String userName = "";
         try {
@@ -75,28 +77,26 @@ public class LoginActivity extends BaseActivity implements OnClickListener, Obse
             e.printStackTrace();
         }
         if (!TextUtils.isEmpty(userName)) {
-            edtUsername.setText(userName);
-            edtPassword.setFocusable(true);
-            edtPassword.requestFocus();
-            edtPassword.setFocusableInTouchMode(true);
+            loginUerName.setText(userName);
+            loginPassword.setFocusable(true);
+            loginPassword.requestFocus();
+            loginPassword.setFocusableInTouchMode(true);
         }
 
-
-        txtCall.setOnClickListener(this);
+        customerPhone.setOnClickListener(this);
         btnLogin.setOnClickListener(this);
-        btn_find.setOnClickListener(this);
+        btnLoginForgetPassword.setOnClickListener(this);
         btnLogin.setClickable(false);
 
-        edtUsername.addTextChangedListener(new TextWatcher() {
+        loginUerName.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
             }
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 if (!TextUtils.isEmpty(charSequence)) {
-                    if (!TextUtils.isEmpty(edtPassword.getText().toString())) {
+                    if (!TextUtils.isEmpty(loginPassword.getText().toString())) {
                         btnLogin.setClickable(true);
                         btnLogin.setBackgroundResource(R.drawable.shape_button_red);
                     } else {
@@ -111,20 +111,18 @@ public class LoginActivity extends BaseActivity implements OnClickListener, Obse
 
             @Override
             public void afterTextChanged(Editable editable) {
-
             }
         });
 
-        edtPassword.addTextChangedListener(new TextWatcher() {
+        loginPassword.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
             }
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 if (!TextUtils.isEmpty(charSequence)) {
-                    if (!TextUtils.isEmpty(edtUsername.getText().toString())) {
+                    if (!TextUtils.isEmpty(loginUerName.getText().toString())) {
                         btnLogin.setClickable(true);
                         btnLogin.setBackgroundResource(R.drawable.shape_button_red);
                     } else {
@@ -139,7 +137,6 @@ public class LoginActivity extends BaseActivity implements OnClickListener, Obse
 
             @Override
             public void afterTextChanged(Editable editable) {
-
             }
         });
     }
@@ -156,7 +153,7 @@ public class LoginActivity extends BaseActivity implements OnClickListener, Obse
                     boolean isOK = data.getExtras().getBoolean("isSignupOK");
                     if (isOK) {
                         String name = data.getExtras().getString("username");
-                        edtUsername.setText(name);
+                        loginUerName.setText(name);
                     }
                 }
             }
@@ -188,7 +185,7 @@ public class LoginActivity extends BaseActivity implements OnClickListener, Obse
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.id_login_txt_call: //客服热线
+            case R.id.tv_login_customer_phone: // 客服热线
                 CallServiceDialog dialog = new CallServiceDialog(this, new OnCallServiceChanged() {
                     @Override
                     public void onConfim() {
@@ -204,21 +201,21 @@ public class LoginActivity extends BaseActivity implements OnClickListener, Obse
                 }, "客服热线: \n " + getString(R.string.tellphone_num_format));
                 dialog.show();
                 break;
-            case R.id.id_login_btn_login:
-                String user = edtUsername.getText().toString();
-                String pass = edtPassword.getText().toString();
-                if (TextUtils.isEmpty(user)) {
+            case R.id.btn_login: // 登录
+                String userName = loginUerName.getText().toString();
+                String password = loginPassword.getText().toString();
+                if (TextUtils.isEmpty(userName)) {
                     Toast.makeText(LoginActivity.this, "请输入用户名", Toast.LENGTH_SHORT).show();
                 } else {
-                    if (TextUtils.isEmpty(pass)) {
+                    if (TextUtils.isEmpty(password)) {
                         Toast.makeText(LoginActivity.this, "请输入用户密码", Toast.LENGTH_SHORT).show();
                     } else {
-                        judgeUser(user, pass);
+                        judgeUser(userName, password);
                     }
                 }
 
                 break;
-            case R.id.id_login_btn_findpw:
+            case R.id.btn_login_forget_password:
                 Intent i_findpw = new Intent(this, FindPassWordActivity.class);
                 startActivity(i_findpw);
                 break;

@@ -49,8 +49,7 @@ public class StringUtil {
         return MD5Encode(text.getBytes());
     }
 
-    public static String eregi_replace(String strFrom, String strTo,
-                                       String strTarget) {
+    public static String eregi_replace(String strFrom, String strTo, String strTarget) {
         String strPattern = "(?i)" + strFrom;
         Pattern p = Pattern.compile(strPattern);
         Matcher m = p.matcher(strTarget);
@@ -240,8 +239,7 @@ public class StringUtil {
                 c[i] = (char) 32;
                 continue;
             }
-            if (c[i] > 65280 && c[i] < 65375)
-                c[i] = (char) (c[i] - 65248);
+            if (c[i] > 65280 && c[i] < 65375) c[i] = (char) (c[i] - 65248);
         }
         return new String(c);
     }
@@ -301,9 +299,7 @@ public class StringUtil {
 
     public static String base64UrlEncode(String host, String url) {
         try {
-            url = host
-                    + Base64.encodeToString(url.getBytes("utf-8"),
-                    Base64.NO_WRAP);
+            url = host + Base64.encodeToString(url.getBytes("utf-8"), Base64.NO_WRAP);
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
@@ -326,11 +322,13 @@ public class StringUtil {
 		 */
         // String telRegex = "[1][34578]\\d{9}";//
         // "[1]"代表第1位为数字1，"[358]"代表第二位可以为3、5、8中的一个，"\\d{9}"代表后面是可以是0～9的数字，有9位。
-        String telRegex = "^((145|147)|(15[^4])|(17[6-8])|((13|18)[0-9]))\\d{8}$";
-        if (TextUtils.isEmpty(mobiles))
+//        String telRegex = "^((145|147)|(15[^4])|(17[6-8])|((13|18)[0-9]))\\d{8}$";
+        String telRegex = "^[1](3|4|5|6|7|8|9)[0-9]{9}$";
+        if (TextUtils.isEmpty(mobiles)) {
             return false;
-        else
+        } else {
             return mobiles.matches(telRegex);
+        }
     }
 
     /**
@@ -405,31 +403,15 @@ public class StringUtil {
      * @param index3
      * @return
      */
-    public static SpannableStringBuilder setTextStyle(Context context,
-                                                      String str1, String str2, String str3, int color1, int color2,
-                                                      int color3, int size1, int size2, int size3, int index1,
-                                                      int index2, int index3) {
+    public static SpannableStringBuilder setTextStyle(Context context, String str1, String str2, String str3, int color1, int color2, int color3, int size1, int size2, int size3, int index1, int index2, int index3) {
         SpannableStringBuilder style = new SpannableStringBuilder(str3);
         // SpannableStringBuilder实现CharSequence接口
-        style.setSpan(new AbsoluteSizeSpan(ViewUtils.sp2px(context, size1)), 0,
-                str1.length() - index1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-        style.setSpan(new AbsoluteSizeSpan(ViewUtils.sp2px(context, size2)),
-                str1.length() - index1, str2.length() - index2,
-                Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-        style.setSpan(new AbsoluteSizeSpan(ViewUtils.sp2px(context, size3)),
-                str2.length() - index2, str3.length() - index3,
-                Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-        style.setSpan(
-                new ForegroundColorSpan(context.getResources().getColor(color1)),
-                0, str1.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-        style.setSpan(
-                new ForegroundColorSpan(context.getResources().getColor(color2)),
-                str1.length(), str2.length(),
-                Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-        style.setSpan(
-                new ForegroundColorSpan(context.getResources().getColor(color3)),
-                str2.length(), str3.length(),
-                Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        style.setSpan(new AbsoluteSizeSpan(ViewUtils.sp2px(context, size1)), 0, str1.length() - index1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        style.setSpan(new AbsoluteSizeSpan(ViewUtils.sp2px(context, size2)), str1.length() - index1, str2.length() - index2, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        style.setSpan(new AbsoluteSizeSpan(ViewUtils.sp2px(context, size3)), str2.length() - index2, str3.length() - index3, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        style.setSpan(new ForegroundColorSpan(context.getResources().getColor(color1)), 0, str1.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        style.setSpan(new ForegroundColorSpan(context.getResources().getColor(color2)), str1.length(), str2.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        style.setSpan(new ForegroundColorSpan(context.getResources().getColor(color3)), str2.length(), str3.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         return style;
     }
 
@@ -577,20 +559,15 @@ public class StringUtil {
     public static void changeButtonStyle(Button btn_contacts, Button btn_invest, int btn, Resources mResource) {
 
         if (btn == btn_contacts.getId()) {
-            btn_contacts
-                    .setBackgroundResource(R.color.white);
+            btn_contacts.setBackgroundResource(R.color.white);
             btn_contacts.setTextColor(mResource.getColor(R.color.orange));
-            btn_invest
-                    .setBackgroundResource(R.color.gray);
-            btn_invest.setTextColor(mResource
-                    .getColor(R.color.white));
+            btn_invest.setBackgroundResource(R.color.gray);
+            btn_invest.setTextColor(mResource.getColor(R.color.white));
         } else if (btn == btn_invest.getId()) {
             btn_contacts.setBackgroundResource(R.color.gray);
             btn_contacts.setTextColor(mResource.getColor(R.color.white));
-            btn_invest
-                    .setBackgroundResource(R.color.white);
-            btn_invest.setTextColor(mResource
-                    .getColor(R.color.orange));
+            btn_invest.setBackgroundResource(R.color.white);
+            btn_invest.setTextColor(mResource.getColor(R.color.orange));
         }
 
     }
@@ -616,18 +593,19 @@ public class StringUtil {
             btn_wyk.setBackgroundResource(R.drawable.shape_left_blue_two);
             btn_wyk.setTextColor(mResource.getColor(R.color.blue_two));
             btn_djk.setBackgroundResource(R.drawable.shape_right_blue_background);
-            btn_djk.setTextColor(mResource .getColor(R.color.txt_white));
+            btn_djk.setTextColor(mResource.getColor(R.color.txt_white));
         }
 
     }
 
     /**
-     *  字符串长度过长时以“...”显示
+     * 字符串长度过长时以“...”显示
+     *
      * @param str
      * @return
      */
-    public static String getResult(String str){
-        String result ;
+    public static String getResult(String str) {
+        String result;
         if (str.length() > 7) {
             result = str.substring(0, 7) + "...";
         } else {

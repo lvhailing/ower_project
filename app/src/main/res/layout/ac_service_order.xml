@@ -83,7 +83,7 @@
         <LinearLayout
             android:id="@+id/ll_hidden"
             android:layout_width="match_parent"
-            android:layout_height="318dp"
+            android:layout_height="308dp"
             android:orientation="vertical"
             android:visibility="gone">
 

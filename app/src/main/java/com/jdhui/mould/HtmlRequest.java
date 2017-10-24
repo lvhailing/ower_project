@@ -1392,6 +1392,7 @@ public class HtmlRequest extends BaseRequester {
                     }
                     if (result != null) {
                         String data = DESUtil.decrypt(result);
+//                        Log.i("aaa", "更多模块--服务预约详情：" + data);
                         Gson json = new Gson();
                         ServiceDetail1B b = json.fromJson(data, ServiceDetail1B.class);
                         resultEncrypt(context, b.getCode());
@@ -2627,7 +2628,7 @@ public class HtmlRequest extends BaseRequester {
                     }
                     if (result != null) {
                         String data = DESUtil.decrypt(result);
-                        Log.i("hh", "服务背景图：" + data);
+//                        Log.i("aaa", "服务背景图：" + data);
                         Gson json = new Gson();
                         ServicePicture1B b = json.fromJson(data, ServicePicture1B.class);
                         resultEncrypt(context, b.getCode());
@@ -2976,6 +2977,7 @@ public class HtmlRequest extends BaseRequester {
                     }
                     if (result != null) {
                         String data = DESUtil.decrypt(result);
+                        Log.i("aaa", "更多模块小红点接口数据：" + data);
                         Gson json = new Gson();
                         ResultRedDot1B b = json.fromJson(data, ResultRedDot1B.class);
                         resultEncrypt(context, b.getCode());
