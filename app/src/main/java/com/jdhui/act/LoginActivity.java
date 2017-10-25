@@ -47,7 +47,7 @@ public class LoginActivity extends BaseActivity implements OnClickListener, Obse
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        
+
         initListener();
         initView();
     }
