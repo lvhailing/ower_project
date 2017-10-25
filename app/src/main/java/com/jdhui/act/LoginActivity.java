@@ -47,8 +47,18 @@ public class LoginActivity extends BaseActivity implements OnClickListener, Obse
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        
+        initListener();
         initView();
-//        initData();
+    }
+
+    private void initListener() {
+        //注册观察者
+        UserLogin.getInstance().addObserver(this);
+        //注册广播
+//        IntentFilter filter = new IntentFilter();
+//        filter.addAction("mybroadcast");
+//        registerReceiver(broadcastReceiver, filter);
     }
 
     private void initView() {
@@ -141,9 +151,6 @@ public class LoginActivity extends BaseActivity implements OnClickListener, Obse
         });
     }
 
-    private void initData() {
-    }
-
     //获取焦点改变背景
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -164,10 +171,10 @@ public class LoginActivity extends BaseActivity implements OnClickListener, Obse
     @Override
     protected void onResume() {
         super.onResume();
-        UserLogin.getInstance().addObserver(this);
-        IntentFilter filter = new IntentFilter();
-        filter.addAction("mybroadcast");
-        registerReceiver(broadcastReceiver, filter);
+//        UserLogin.getInstance().addObserver(this);
+//        IntentFilter filter = new IntentFilter();
+//        filter.addAction("mybroadcast");
+//        registerReceiver(broadcastReceiver, filter);
     }
 
     @Override
@@ -178,7 +185,7 @@ public class LoginActivity extends BaseActivity implements OnClickListener, Obse
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        unregisterReceiver(broadcastReceiver);
+//        unregisterReceiver(broadcastReceiver);
         UserLogin.getInstance().deleteObserver(this);
     }
 
@@ -228,12 +235,12 @@ public class LoginActivity extends BaseActivity implements OnClickListener, Obse
         UserLogin.getInstance().userlogining(LoginActivity.this, user, pass, "");
     }
 
-    private BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            finish();
-        }
-    };
+//    private BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
+//        @Override
+//        public void onReceive(Context context, Intent intent) {
+//            finish();
+//        }
+//    };
 
     @Override
     public void update(Observable observable, Object data) {
