@@ -35,8 +35,8 @@ import java.util.Observer;
  */
 public class LoginActivity extends BaseActivity implements OnClickListener, Observer {
     private EditText loginUerName; // 用户名称
-    private EditText  loginPassword; // 登录密码
-    private Button btnLogin ; // 登录
+    private EditText loginPassword; // 登录密码
+    private Button btnLogin; // 登录
     private Button btnLoginForgetPassword; // 忘记密码
     private TextView customerPhone; // 客服电话
     private Resources mResource;
@@ -245,69 +245,101 @@ public class LoginActivity extends BaseActivity implements OnClickListener, Obse
 
         //设置已登录标记
         PreferenceUtil.setLogin(true);
-        //非第一次登录 比如退出登录来的
-        if (!PreferenceUtil.isFirstLogin()) {
-            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-            startActivity(intent);
-//            Intent intent = new Intent(LoginActivity.this, GestureVerifyActivity.class);
-//            intent.putExtra("from", ApplicationConsts.ACTIVITY_SPLASH);
-//            intent.putExtra("title", "手势密码登录");
-//            intent.putExtra("message", "请画出手势密码解锁");
-//            startActivity(intent);
-            finish();
-            return;
-        }
 
-        //第一次登录
-        PreferenceUtil.setFirstLogin(false);    //设置非第一次登录标记
-        if (PreferenceUtil.getIsAnswer()) { //判断是否答题  true:已答题
-            if (PreferenceUtil.getIsInvestor()) {   //是否做过合格投资者判定
-                if (PreferenceUtil.isGestureChose()) {  //是否开启了手势密码 是
-                    if (TextUtils.isEmpty(PreferenceUtil.getGesturePwd())) {    //是否设置过手势密码
-                        //手势密码为空证明没设置过 去设置界面
-                        Intent i = new Intent(LoginActivity.this, GestureEditActivity.class);
-                        i.putExtra("back_from_change_gesture", "back_from_change_gesture");
-                        i.putExtra("comeflag", 1);
-                        if (tomain != null) {
-                            i.putExtra("tomain", tomain);
-                        }
-                        i.putExtra("title", R.string.title_gestureset);
-                        startActivity(i);
-                    } else {
-                        //否则 设置过，去验证界面
-                        Intent intent = new Intent(LoginActivity.this, GestureVerifyActivity.class);
-                        intent.putExtra("from", ApplicationConsts.ACTIVITY_SPLASH);
-                        intent.putExtra("title", "手势密码登录");
-                        intent.putExtra("message", "请画出手势密码解锁");
-                        startActivity(intent);
-                    }
-                } else {
-                    //手势密码是关闭的 则直接去主界面 不用验证
-                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                    startActivity(intent);
-                }
-            } else {    //是否做过合格投资者判定 否
-                if (PreferenceUtil.getTotalAmount()) {  //判断账户资产是否大于300万
-                    Intent i_commitment = new Intent(this, WebSurveyActivity.class);
-                    i_commitment.putExtra("type", WebSurveyActivity.WEBTYPE_INVESTOR_COMMITMENT);
-                    i_commitment.putExtra("title", "投资者承诺函");
-                    i_commitment.putExtra("btnInfo", "我同意该承诺");
-                    startActivity(i_commitment);
-                } else {    //判断账户资产是否大于300万 否
-                    Intent i_judge = new Intent(this, WebInvestorJudgeActivity.class);
-                    i_judge.putExtra("type", WebInvestorJudgeActivity.WEBTYPE_INVESTOR_JUDGE);
-                    i_judge.putExtra("title", "投资者判定");
-                    i_judge.putExtra("btnInfo", "400-80-88888");
-                    startActivity(i_judge);
-                }
-            }
-        } else {//判断是否答题  false:未答题
+        //先判断是否答题
+        if (!PreferenceUtil.getIsAnswer()) {
+            //如果未答题，去答题
             Intent i_survey = new Intent(LoginActivity.this, WebSurveyActivity.class);
             i_survey.putExtra("type", WebSurveyActivity.WEBTYPE_SURVEY);
             i_survey.putExtra("title", "问卷调查");
             i_survey.putExtra("btnInfo", "开始答题");
             startActivity(i_survey);
+            finish();
+            return;
         }
+
+        //是否做过合格投资者判定
+        if (!PreferenceUtil.getIsInvestor()) {
+            //如果未判定
+            if (PreferenceUtil.getTotalAmount()) {  //判断账户资产是否大于300万，是
+                Intent i_commitment = new Intent(this, WebSurveyActivity.class);
+                i_commitment.putExtra("type", WebSurveyActivity.WEBTYPE_INVESTOR_COMMITMENT);
+                i_commitment.putExtra("title", "投资者承诺函");
+                i_commitment.putExtra("btnInfo", "我同意该承诺");
+                startActivity(i_commitment);
+            } else {    //判断账户资产是否大于300万， 否
+                Intent i_judge = new Intent(this, WebInvestorJudgeActivity.class);
+                i_judge.putExtra("type", WebInvestorJudgeActivity.WEBTYPE_INVESTOR_JUDGE);
+                i_judge.putExtra("title", "投资者判定");
+                i_judge.putExtra("btnInfo", "400-80-88888");
+                startActivity(i_judge);
+            }
+            finish();
+            return;
+        }
+
+        //非第一次登录 比如退出登录来的
+        if (!PreferenceUtil.isFirstLogin()) {
+            // 如果开启并且手势密码不为空，则去验证手势密码
+            if (PreferenceUtil.isGestureOpen()) {
+                if (!TextUtils.isEmpty(PreferenceUtil.getGesturePwd())) {
+                    Intent intent = new Intent(LoginActivity.this, GestureVerifyActivity.class);
+                    intent.putExtra("from", ApplicationConsts.ACTIVITY_SPLASH);
+                    intent.putExtra("title", "手势密码登录");
+                    intent.putExtra("message", "请画出手势密码解锁");
+                    startActivity(intent);
+                    finish();
+                } else {
+                    //手势密码为空，没设置过 去设置界面
+                    Intent i = new Intent(LoginActivity.this, GestureEditActivity.class);
+                    i.putExtra("back_from_change_gesture", "back_from_change_gesture");
+                    i.putExtra("comeflag", 1);
+                    if (tomain != null) {
+                        i.putExtra("tomain", tomain);
+                    }
+                    i.putExtra("title", R.string.title_gestureset);
+                    startActivity(i);
+                    finish();
+                }
+            } else { // 手势密码为空，则不用验证，直接去主页
+                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                startActivity(intent);
+                finish();
+            }
+            return;
+        }
+
+        // 是第一次登录
+        //1 设置标记，非第一次登录
+        PreferenceUtil.setFirstLogin(false);
+        //2 再判断是否开启了手势密码
+        if (!PreferenceUtil.isGestureOpen()) {
+            // 如果没开启，则直接去主界面 不用验证
+            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+            startActivity(intent);
+            finish();
+            return;
+        }
+        //3 再判断是否设置过手势密码
+        if (TextUtils.isEmpty(PreferenceUtil.getGesturePwd())) {
+            //手势密码为空，没设置过 去设置界面
+            Intent i = new Intent(LoginActivity.this, GestureEditActivity.class);
+            i.putExtra("back_from_change_gesture", "back_from_change_gesture");
+            i.putExtra("comeflag", 1);
+            if (tomain != null) {
+                i.putExtra("tomain", tomain);
+            }
+            i.putExtra("title", R.string.title_gestureset);
+            startActivity(i);
+            finish();
+            return;
+        }
+        //设置过，去验证界面
+        Intent intent = new Intent(LoginActivity.this, GestureVerifyActivity.class);
+        intent.putExtra("from", ApplicationConsts.ACTIVITY_SPLASH);
+        intent.putExtra("title", "手势密码登录");
+        intent.putExtra("message", "请画出手势密码解锁");
+        startActivity(intent);
         finish();
     }
 

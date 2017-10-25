@@ -36,7 +36,7 @@ public class UserLoadout {
                 PreferenceUtil.setUserNickName("");
                 PreferenceUtil.setCookie("");
                 PreferenceUtil.setIsShowAsset(true);
-                PreferenceUtil.setGestureChose(true);
+                PreferenceUtil.setGestureOpen(true);
 
 
                 // i.putExtra("result", "exit");

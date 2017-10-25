@@ -140,7 +140,7 @@ public class PreferenceUtil {
      *
      * @param is
      */
-    public static void setGestureChose(boolean is) {
+    public static void setGestureOpen(boolean is) {
         getUserSharedPreferences().edit().putBoolean(getUserId() + "c", is).commit();
     }
 
@@ -149,7 +149,7 @@ public class PreferenceUtil {
      *
      * @return
      */
-    public static boolean isGestureChose() {
+    public static boolean isGestureOpen() {
         return getUserSharedPreferences().getBoolean(getUserId() + "c", true);
     }
 
@@ -408,7 +408,7 @@ public class PreferenceUtil {
      * 获取问卷调查是否答题
      */
     public static Boolean getIsAnswer() {
-        return getUserSharedPreferences().getBoolean("isAnswer", true);
+        return getUserSharedPreferences().getBoolean("isAnswer", false);
     }
 
     /**
@@ -425,7 +425,7 @@ public class PreferenceUtil {
      * 获取是否做过合格投资者判定
      */
     public static Boolean getIsInvestor() {
-        return getUserSharedPreferences().getBoolean("isInvestor", true);
+        return getUserSharedPreferences().getBoolean("isInvestor", false);
     }
 
     /**

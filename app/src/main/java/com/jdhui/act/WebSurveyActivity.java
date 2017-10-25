@@ -33,8 +33,8 @@ public class WebSurveyActivity extends Activity implements View.OnClickListener 
     private String type = null;
     private String url = null;
     public static final String WEBTYPE_SURVEY = "survey"; // 问卷调查
-    public static final String WEBTYPE_ASSESSMENT = "assessment"; //问卷评估
-    public static final String WEBTYPE_INVESTOR_COMMITMENT = "investor_commitment"; //投资者承诺函
+    public static final String WEBTYPE_ASSESSMENT = "assessment"; // 问卷评估
+    public static final String WEBTYPE_INVESTOR_COMMITMENT = "investor_commitment"; // 投资者承诺函
 
     public String title;
     public String btnInfo;
@@ -176,30 +176,27 @@ public class WebSurveyActivity extends Activity implements View.OnClickListener 
                     finish();
                 }
                 break;
-            case R.id.btn_web_bottom:
-                //点击开始答题
-                if (type.equals(WEBTYPE_SURVEY)) {
+            case R.id.btn_web_bottom: // 开始答题
+                if (type.equals(WEBTYPE_SURVEY)) { // 如果是“问卷调查”页，点过“开始答题”按钮后跳转到“填写问卷”页
                     Intent i_survey = new Intent(this, WebWrittenActivity.class);
                     i_survey.putExtra("type", WebWrittenActivity.WEBTYPE_WRITTEN);
                     i_survey.putExtra("title", "填写问卷");
                     startActivity(i_survey);
-
-                } else if (type.equals(WEBTYPE_ASSESSMENT)) {
-                    //判断账户资产是否大于300万
-                    if (PreferenceUtil.getTotalAmount()) {
+                } else if (type.equals(WEBTYPE_ASSESSMENT)) { // 如果是“问卷评估”，再判断账户资产是否大于300万
+                    if (PreferenceUtil.getTotalAmount()) { // 账户资产大于300万，跳转“投资者承诺函”页
                         Intent i_commitment = new Intent(this, WebSurveyActivity.class);
                         i_commitment.putExtra("type", WebSurveyActivity.WEBTYPE_INVESTOR_COMMITMENT);
                         i_commitment.putExtra("title", "投资者承诺函");
                         i_commitment.putExtra("btnInfo", "我同意该承诺");
                         startActivity(i_commitment);
-                    } else {
+                    } else { // 账户资产小于300万，跳转“投资者判定”页
                         Intent i_judge = new Intent(this, WebInvestorJudgeActivity.class);
                         i_judge.putExtra("type", WebInvestorJudgeActivity.WEBTYPE_INVESTOR_JUDGE);
                         i_judge.putExtra("title", "投资者判定");
                         i_judge.putExtra("btnInfo", "400-80-88888");
                         startActivity(i_judge);
                     }
-                } else if (type.equals(WEBTYPE_INVESTOR_COMMITMENT)) {
+                } else if (type.equals(WEBTYPE_INVESTOR_COMMITMENT)) { // 投资者承诺函
                     try {
                         userId = DESUtil.decrypt(PreferenceUtil.getUserId());
                     } catch (Exception e) {
@@ -212,27 +209,34 @@ public class WebSurveyActivity extends Activity implements View.OnClickListener 
         }
     }
 
+    /**
+     * 我同意该承诺、跳过 接口
+     *
+     * @param userId
+     * @param qualifiedInvestor
+     */
     private void requestData(String userId, String qualifiedInvestor) {
         HtmlRequest.investorJudgeSave(WebSurveyActivity.this, userId, qualifiedInvestor, new BaseRequester.OnRequestListener() {
 
             @Override
             public void onRequestFinished(BaseParams params) {
                 ResultCodeContentBean b = (ResultCodeContentBean) params.result;
-                if (b != null) {
-                    if (Boolean.parseBoolean(b.getFlag())) {
-                        PreferenceUtil.setIsInvestor(true);
-                        Toast.makeText(WebSurveyActivity.this, b.getMsg(), Toast.LENGTH_LONG).show();
-                        Intent i_nopwd = new Intent();
-                        i_nopwd.putExtra("comeflag", 0);
-                        i_nopwd.putExtra("title", R.string.title_gestureset);
-                        i_nopwd.setClass(WebSurveyActivity.this, GestureEditActivity.class);
-                        startActivity(i_nopwd);
-                        stack.removeAllActivity();
-                    } else {
-                        Toast.makeText(WebSurveyActivity.this, b.getMsg(), Toast.LENGTH_LONG).show();
-                    }
-                } else {
+                if (b == null) {
                     Toast.makeText(WebSurveyActivity.this, "加载失败，请确认网络通畅", Toast.LENGTH_LONG).show();
+                    return;
+                }
+                if (Boolean.parseBoolean(b.getFlag())) {
+                    PreferenceUtil.setIsInvestor(true);
+                    Toast.makeText(WebSurveyActivity.this, b.getMsg(), Toast.LENGTH_LONG).show();
+
+                    Intent i_nopwd = new Intent();
+                    i_nopwd.putExtra("comeflag", 0);
+                    i_nopwd.putExtra("title", R.string.title_gestureset);
+                    i_nopwd.setClass(WebSurveyActivity.this, GestureEditActivity.class);
+                    startActivity(i_nopwd);
+                    stack.removeAllActivity();
+                } else {
+                    Toast.makeText(WebSurveyActivity.this, b.getMsg(), Toast.LENGTH_LONG).show();
                 }
             }
         });

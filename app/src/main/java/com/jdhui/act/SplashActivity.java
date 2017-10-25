@@ -193,7 +193,7 @@ public class SplashActivity extends FragmentActivity {
             super.handleMessage(msg);
             switch (msg.what) {
                 case LOGIN:
-                    if (PreferenceUtil.isGestureChose()) {
+                    if (PreferenceUtil.isGestureOpen()) {
                         Intent i = new Intent(SplashActivity.this, GestureVerifyActivity.class);
                         i.putExtra("from", ApplicationConsts.ACTIVITY_SPLASH);
                         i.putExtra("title", "手势密码登录");
@@ -221,7 +221,7 @@ public class SplashActivity extends FragmentActivity {
                     if (PreferenceUtil.getIsAnswer()) {
                         //是否做过合格投资者判定  false:未做合格投资者判定 true:做过合格投资者判定
                         if (PreferenceUtil.getIsInvestor()) {
-                            if (PreferenceUtil.isGestureChose()) {
+                            if (PreferenceUtil.isGestureOpen()) {
                                 Toast.makeText(SplashActivity.this, "您还没有设置手势密码，请先设置手势密码", Toast.LENGTH_LONG).show();
                                 Intent i_nopwd = new Intent();
                                 i_nopwd.putExtra("comeflag", 0);

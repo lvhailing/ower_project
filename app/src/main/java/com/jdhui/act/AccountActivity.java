@@ -51,7 +51,7 @@ public class AccountActivity extends BaseActivity implements View.OnClickListene
         mLayoutChangePW = (RelativeLayout) findViewById(R.id.rl_account_change_psd);
         account_btn_exit = (Button) findViewById(R.id.btn_account_exit);
 
-        if (PreferenceUtil.isGestureChose()) {
+        if (PreferenceUtil.isGestureOpen()) {
             mImageButton.setImageResource(R.drawable.message2);
             mLayoutChangeGesture.setVisibility(View.VISIBLE);
             mImgChangeGesTabLines.setVisibility(View.VISIBLE);
@@ -83,7 +83,7 @@ public class AccountActivity extends BaseActivity implements View.OnClickListene
                 startActivity(i_myInfo);
                 break;
             case R.id.accountset_recive://帐户中心页面  手势密码的开关按钮
-                if (PreferenceUtil.isGestureChose()) {
+                if (PreferenceUtil.isGestureOpen()) {
                     Intent i = new Intent(this, GestureVerifyActivity.class);
                     i.putExtra("from", ApplicationConsts.ACTIVITY_ACCOUNT);
                     i.putExtra("title", "手势密码登录");
@@ -129,7 +129,7 @@ public class AccountActivity extends BaseActivity implements View.OnClickListene
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == 1000) {
             if (resultCode == 2000) {
-                PreferenceUtil.setGestureChose(false);
+                PreferenceUtil.setGestureOpen(false);
                 mImageButton.setImageResource(R.drawable.message1);
                 mLayoutChangeGesture.setVisibility(View.GONE);
                 mImgChangeGesTabLines.setVisibility(View.GONE);
@@ -154,7 +154,7 @@ public class AccountActivity extends BaseActivity implements View.OnClickListene
         public void onReceive(Context context, Intent data) {
             String actionName = data.getAction();
             if (actionName.equals(myActionName)) {
-                PreferenceUtil.setGestureChose(true);
+                PreferenceUtil.setGestureOpen(true);
                 mImageButton.setImageResource(R.drawable.message2);
                 mLayoutChangeGesture.setVisibility(View.VISIBLE);
                 mImgChangeGesTabLines.setVisibility(View.VISIBLE);

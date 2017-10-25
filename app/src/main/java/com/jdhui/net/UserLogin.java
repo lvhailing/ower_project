@@ -110,7 +110,7 @@ public class UserLogin extends Observable {
                             PreferenceUtil.setUserNickName(b.getData().getNickName());
 //									PreferenceUtil.setToken(DESUtil.encrypt(b.getData() .getToken()));
                             PreferenceUtil.setLogin(true);
-//                                    PreferenceUtil.setGestureChose(true);
+//                                    PreferenceUtil.setGestureOpen(true);
 
                             PreferenceUtil.setIsAnswer(Boolean.parseBoolean(b.getData().getQuestionnaireRecordFlag()));
                             PreferenceUtil.setIsInvestor(Boolean.parseBoolean(b.getData().getQualifiedInvestorFlag()));

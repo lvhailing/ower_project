@@ -218,14 +218,14 @@ public class GestureEditActivity extends BaseActivity implements OnClickListener
                 if (comeFlag == 1) {
                     Intent iMain = new Intent(GestureEditActivity.this, MainActivity.class);
                     startActivity(iMain);
-                    PreferenceUtil.setGestureChose(false);
+                    PreferenceUtil.setGestureOpen(false);
                     PreferenceUtil.setFirstLogin(true);
                     PreferenceUtil.setGesturePwd("");
                     finish();
                 } else if (back_from_splah != null) { //控制登录后没有设置手势密码，点击设置手势密码的返回，跳到主页
                     Intent iMain = new Intent(GestureEditActivity.this, MainActivity.class);
                     startActivity(iMain);
-                    PreferenceUtil.setGestureChose(false);
+                    PreferenceUtil.setGestureOpen(false);
                     PreferenceUtil.setFirstLogin(true);
                     PreferenceUtil.setGesturePwd("");
                     finish();
@@ -249,7 +249,7 @@ public class GestureEditActivity extends BaseActivity implements OnClickListener
                         }
                     }
                     if (!"skip_from_account".equals(skip)) {
-                        PreferenceUtil.setGestureChose(false);
+                        PreferenceUtil.setGestureOpen(false);
                         PreferenceUtil.setFirstLogin(true);
                         PreferenceUtil.setGesturePwd("");
                         finish();
@@ -286,7 +286,7 @@ public class GestureEditActivity extends BaseActivity implements OnClickListener
             if (comeFlag == 1) {
                 Intent iMain = new Intent(GestureEditActivity.this, MainActivity.class);
                 startActivity(iMain);
-                PreferenceUtil.setGestureChose(false);
+                PreferenceUtil.setGestureOpen(false);
                 PreferenceUtil.setFirstLogin(true);
                 PreferenceUtil.setGesturePwd("");
                 finish();
@@ -294,7 +294,7 @@ public class GestureEditActivity extends BaseActivity implements OnClickListener
             } else if (back_from_splah != null) { //控制登录后没有设置手势密码，点击设置手势密码的返回，跳到主页
                 Intent iMain = new Intent(GestureEditActivity.this, MainActivity.class);
                 startActivity(iMain);
-                PreferenceUtil.setGestureChose(false);
+                PreferenceUtil.setGestureOpen(false);
                 PreferenceUtil.setFirstLogin(true);
                 PreferenceUtil.setGesturePwd("");
                 finish();

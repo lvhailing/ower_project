@@ -1891,7 +1891,7 @@ public class HtmlRequest extends BaseRequester {
      * 我同意该承诺、跳过 接口
      *
      * @param context
-     * @param userId            用户编号
+     * @param userId   用户编号
      * @param qualifiedInvestor 投资者类型：acceptable:合格投资者;   unacceptable:不合格投资者
      * @param listener
      * @return
