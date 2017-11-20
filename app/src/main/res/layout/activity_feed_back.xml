@@ -1,85 +1,88 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:tools="http://schemas.android.com/tools"
-	android:layout_width="match_parent"
-	android:layout_height="match_parent"
-	android:background="@color/bg_gray"
-	android:orientation="vertical" >
-
-	<RelativeLayout
-		android:id="@+id/id_account_txt_title"
-		android:layout_width="match_parent"
-		android:layout_height="51dp"
-		android:background="@color/red4">
-
-		<ImageView
-			android:id="@+id/iv_back"
-			android:layout_width="30dp"
-			android:layout_height="30dp"
-			android:src="@drawable/back"
-			android:layout_centerVertical="true"
-			android:layout_marginLeft="10dp"
-			android:padding="5dp"/>
-		<TextView
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:text="意见反馈"
-			android:layout_centerInParent="true"
-			android:textColor="@color/white"
-			android:textSize="18sp" />
-	</RelativeLayout>
-
-	<LinearLayout
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:orientation="vertical"
-		android:layout_below="@+id/id_account_txt_title">
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/bg_gray"
+                android:orientation="vertical">
 
     <RelativeLayout
+        android:id="@+id/id_account_txt_title"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" >
-		<EditText 
-		    android:id="@+id/et_advice_input"
-		    android:layout_width="match_parent"
-		    android:layout_height="wrap_content"
-		    android:background="@color/white"
-		    android:layout_marginTop="10dip"
-			android:textColorHint="@color/edit_gray_light"
-		    android:padding="8dip"
-		    android:inputType="textMultiLine"
-		    android:gravity="top"
-		    android:minLines="10"
-		    android:maxLength="200"
-		    android:hint="@string/feed_back_content"
-		    android:textSize="14sp"
-		    />
+        android:layout_height="51dp"
+        android:background="@color/red4">
 
-        <Button
-            android:id="@+id/btn_setting_advice"
-            android:layout_width="match_parent"
+        <ImageView
+            android:id="@+id/iv_back"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:padding="5dp"
+            android:src="@drawable/back"/>
+
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="2dip"
-            android:layout_marginLeft="10dip"
-            android:layout_marginRight="10dip"
-			android:layout_below="@id/et_advice_input"
-            android:background="@drawable/shape_button_gray_gray"
-            android:text="提交"
-            android:textColor="@color/txt_white"
-			android:layout_marginTop="10dp"/>
-		<TextView
-			android:id="@+id/id_txt_call"
-			android:layout_below="@+id/btn_setting_advice"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_centerHorizontal="true"
-			android:textColor="@color/edit_gray_light"
-			android:layout_marginTop="15dp"
-			android:gravity="center"
-			android:drawablePadding="5dp"
-			android:textSize="13sp"
-			android:paddingBottom="15dp"
-			/>
+            android:layout_centerInParent="true"
+            android:text="意见反馈"
+            android:textColor="@color/white"
+            android:textSize="18sp"/>
     </RelativeLayout>
 
-</LinearLayout>
-	</RelativeLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/id_account_txt_title"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <EditText
+                android:id="@+id/et_advice_input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dip"
+                android:background="@color/white"
+                android:gravity="top"
+                android:hint="@string/feed_back_content"
+                android:inputType="textMultiLine"
+                android:maxLength="200"
+                android:minLines="10"
+                android:padding="8dip"
+                android:textColorHint="@color/edit_gray_light"
+                android:textSize="14sp"
+                />
+
+            <Button
+                android:id="@+id/btn_setting_advice"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/et_advice_input"
+                android:layout_marginBottom="2dip"
+                android:layout_marginLeft="10dip"
+                android:layout_marginRight="10dip"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/shape_button_gray_gray"
+                android:text="提交"
+                android:textColor="@color/txt_white"/>
+
+            <TextView
+                android:id="@+id/id_txt_call"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/btn_setting_advice"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="15dp"
+                android:drawablePadding="5dp"
+                android:gravity="center"
+                android:paddingBottom="15dp"
+                android:textColor="@color/edit_gray_light"
+                android:textSize="13sp"
+                />
+        </RelativeLayout>
+
+    </LinearLayout>
+</RelativeLayout>

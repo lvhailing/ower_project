@@ -122,3 +122,17 @@
 -dontwarn org.android.spdy.**
 -dontwarn org.android.agoo.**
 
+
+# afinal混淆
+ -dontwarn com.jdhui.db.afinal.**
+ -dontwarn com.jdhui.db.model.**
+ -keep class com.jdhui.db.afinal.** { *; }
+ -keep public class * extends com.jdhui.db.afinal.**
+ -keep class com.jdhui.db.model.** {*; }
+ -keep public interface com.jdhui.db.afinal.** {*;}
+ -keepattributes Signature
+ -keepattributes *Annotation*
+
+
+
+
