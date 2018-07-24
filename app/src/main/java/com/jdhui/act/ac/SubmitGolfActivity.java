@@ -60,7 +60,7 @@ public class SubmitGolfActivity extends BaseActivity implements View.OnClickList
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        baseSetContentView(R.layout.ac_booking_golf);
+        baseSetContentView(R.layout.activity_booking_golf);
 
         initView();
         initData();

@@ -4,8 +4,8 @@ public class ApplicationConsts {
     public static final int REL_DEBUG = 1;// 线下服务器
     public static final int REL_OFFICIAL = 2;// 正式服务器
 
-//    public static int RELEASE_FLAG = REL_DEBUG;            //测试环境
-	public static int RELEASE_FLAG = REL_OFFICIAL;          //正式环境
+    public static int RELEASE_FLAG = REL_DEBUG;            //测试环境
+//	public static int RELEASE_FLAG = REL_OFFICIAL;          //正式环境
 
     // 线下服务器开关,线下地址优先级高于预发布地址
     public static final boolean DEBUG = RELEASE_FLAG == REL_DEBUG;
@@ -22,9 +22,12 @@ public class ApplicationConsts {
     //张亚磊
 //	public static final String URL_DEBUG ="http://192.168.1.193:9996/junde-hui-app/";
 
+    // 沈南
+	public static final String URL_DEBUG ="http://192.168.1.138:9999/junde-hui-app/";
+
 
     //测试环境
-	public static final String URL_DEBUG ="http://192.168.1.86:82/";
+//	public static final String URL_DEBUG ="http://192.168.1.86:82/";
 
 // 张殿阳
 //	public static final String URL_DEBUG ="http://192.168.1.138:9999/junde-hui-app/";
@@ -36,7 +39,7 @@ public class ApplicationConsts {
 //    public static final String URL_DEBUG = "http://192.168.1.125:9999/junde-hui-app/";
 
     // 正式环境IP M版
-//	 public static final String URL_DEBUG_M ="http://m.vjinke.com/";
+	 public static final String URL_DEBUG_M ="http://m.vjinke.com/";
 
 
     // 正式环境IP

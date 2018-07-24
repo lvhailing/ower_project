@@ -9,7 +9,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.jdhui.R;
-import com.jdhui.bean.mybean.GeneticTestingList3B;
 import com.jdhui.bean.mybean.GolfList3B;
 import com.jdhui.mould.types.MouldList;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -44,7 +43,7 @@ public class GolfListAdapter extends BaseAdapter {
         Holder holder = null;
         if (convertView == null) {
             holder = new Holder();
-            convertView = inflater.inflate(R.layout.ac_golf_list_item, null);
+            convertView = inflater.inflate(R.layout.activity_golf_list_item, null);
             holder.iv_photo = (ImageView) convertView.findViewById(R.id.iv_photo);
             holder.tv_golf_name = (TextView) convertView.findViewById(R.id.tv_golf_name);
             convertView.setTag(holder);

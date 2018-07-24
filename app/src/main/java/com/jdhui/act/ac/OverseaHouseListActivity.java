@@ -38,7 +38,7 @@ public class OverseaHouseListActivity extends BaseActivity implements View.OnCli
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        baseSetContentView(R.layout.ac_oversea_project);
+        baseSetContentView(R.layout.activity_oversea_project);
 
         initView();
         initData();

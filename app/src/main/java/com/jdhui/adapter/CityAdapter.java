@@ -43,7 +43,7 @@ public class CityAdapter extends BaseAdapter {
         CityAdapter.Holder holder = null;
         if (convertView == null) {
             holder = new CityAdapter.Holder();
-            convertView = inflater.inflate(R.layout.ac_hospital_list_province_city_item, null);
+            convertView = inflater.inflate(R.layout.activity_hospital_list_province_city_item, null);
             holder.tv_name = (TextView) convertView.findViewById(R.id.tv_name);
             holder.rl = (RelativeLayout) convertView.findViewById(R.id.rl);
             convertView.setTag(holder);

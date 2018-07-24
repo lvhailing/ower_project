@@ -45,7 +45,7 @@ public class ProvinceAdapter extends BaseAdapter {
         Holder holder = null;
         if (convertView == null) {
             holder = new Holder();
-            convertView = inflater.inflate(R.layout.ac_hospital_list_province_city_item, null);
+            convertView = inflater.inflate(R.layout.activity_hospital_list_province_city_item, null);
             holder.rl = (RelativeLayout) convertView.findViewById(R.id.rl);
             holder.tv_name = (TextView) convertView.findViewById(R.id.tv_name);
             convertView.setTag(holder);

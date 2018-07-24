@@ -596,6 +596,7 @@ public class HtmlRequest extends BaseRequester {
                     }
                     if (result != null) {
                         String data = DESUtil.decrypt(result);
+                        Log.i("jdh", "首页数据： " + data);
                         Gson json = new Gson();
                         ResultAccountIndexContentBean b = json.fromJson(data, ResultAccountIndexContentBean.class);
                         resultEncrypt(context, b.getCode());

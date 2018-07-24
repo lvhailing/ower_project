@@ -55,7 +55,7 @@
                 ptr:ptrAnimationStyle="flip"
                 ptr:ptrMode="both"/>
 
-            <include layout="@layout/ac_empty_view"/>
+            <include layout="@layout/activity_empty_view"/>
         </ViewSwitcher>
 
     </RelativeLayout>

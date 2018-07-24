@@ -8,7 +8,6 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.jdhui.R;
-import com.jdhui.bean.mybean.InterestListBean;
 import com.jdhui.bean.mybean.PlaneMarchListBean;
 import com.jdhui.mould.types.MouldList;
 
@@ -43,7 +42,7 @@ public class PlaneDetailAdapter extends BaseAdapter {
         Holder holder = null;
         if (convertView == null) {
             holder = new Holder();
-            convertView = inflater.inflate(R.layout.ac_plane_detail_item, null);
+            convertView = inflater.inflate(R.layout.activity_plane_detail_item, null);
             holder.tv_numbers = (TextView) convertView.findViewById(R.id.tv_numbers);
             holder.tv_strat_city = (TextView) convertView.findViewById(R.id.tv_strat_city);
             holder.tv_end_city = (TextView) convertView.findViewById(R.id.tv_end_city);

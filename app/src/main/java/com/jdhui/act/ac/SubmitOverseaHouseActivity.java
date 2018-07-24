@@ -32,7 +32,7 @@ public class SubmitOverseaHouseActivity extends BaseActivity implements View.OnC
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        baseSetContentView(R.layout.ac_project_booking);
+        baseSetContentView(R.layout.activity_project_booking);
 
         initView();
         initData();

@@ -3,8 +3,6 @@ package com.jdhui.adapter;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Color;
-import android.graphics.drawable.Drawable;
-import android.graphics.drawable.GradientDrawable;
 import android.support.v4.view.ViewPager;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -63,7 +61,7 @@ public class LinerListAdapter extends BaseAdapter {
         Holder holder = null;
         if (convertView == null) {
             holder = new Holder();
-            convertView = inflater.inflate(R.layout.ac_liner_list_item, null);
+            convertView = inflater.inflate(R.layout.activity_liner_list_item, null);
             holder.iv_liner_item = (ImageView) convertView.findViewById(R.id.iv_liner_item);
             holder.tv_travel_date = (TextView) convertView.findViewById(R.id.tv_travel_date);
             holder.tv_travel_name = (TextView) convertView.findViewById(R.id.tv_travel_name);

@@ -58,7 +58,7 @@ public class ServiceOrderActivity extends BaseActivity implements View.OnClickLi
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        baseSetContentView(R.layout.ac_service_order);
+        baseSetContentView(R.layout.activity_service_order);
 
         initView();
         initData();

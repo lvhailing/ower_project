@@ -15,7 +15,6 @@ import com.jdhui.adapter.PlaneDetailAdapter;
 import com.jdhui.bean.mybean.BookingInsurance2B;
 import com.jdhui.bean.mybean.PlaneMarchListBean;
 import com.jdhui.bean.mybean.ServiceDetail2B;
-import com.jdhui.bean.mybean.SubGeneticTesting2B;
 import com.jdhui.mould.BaseParams;
 import com.jdhui.mould.BaseRequester;
 import com.jdhui.mould.HtmlRequest;
@@ -44,7 +43,7 @@ public class ServicePlaneDetailActivity extends BaseActivity implements View.OnC
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        baseSetContentView(R.layout.ac_service_plane_detail);
+        baseSetContentView(R.layout.activity_service_plane_detail);
 
         initView();
         initData();

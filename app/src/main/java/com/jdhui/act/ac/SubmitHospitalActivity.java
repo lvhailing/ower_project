@@ -61,7 +61,7 @@ public class SubmitHospitalActivity extends BaseActivity implements View.OnClick
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        baseSetContentView(R.layout.ac_booking_hospital);
+        baseSetContentView(R.layout.activity_booking_hospital);
 
         initView();
     }

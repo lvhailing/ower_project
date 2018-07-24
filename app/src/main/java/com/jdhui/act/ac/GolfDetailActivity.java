@@ -49,7 +49,7 @@ public class GolfDetailActivity extends BaseActivity implements View.OnClickList
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        baseSetContentView(R.layout.ac_golf_detail);
+        baseSetContentView(R.layout.activity_golf_detail);
 
         initView();
         initData();

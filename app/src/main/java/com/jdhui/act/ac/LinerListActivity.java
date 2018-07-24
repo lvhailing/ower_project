@@ -34,7 +34,7 @@ public class LinerListActivity extends BaseActivity implements View.OnClickListe
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        baseSetContentView(R.layout.ac_liner_list);
+        baseSetContentView(R.layout.activity_liner_list);
 
         initView();
         initData();

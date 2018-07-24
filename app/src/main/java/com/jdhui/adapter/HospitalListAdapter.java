@@ -9,7 +9,6 @@ import android.widget.TextView;
 
 import com.jdhui.R;
 import com.jdhui.bean.mybean.BookingHospitalList3B;
-import com.jdhui.bean.mybean.Product3B;
 import com.jdhui.mould.types.MouldList;
 
 public class HospitalListAdapter extends BaseAdapter {
@@ -42,7 +41,7 @@ public class HospitalListAdapter extends BaseAdapter {
         Holder holder = null;
         if (convertView == null) {
             holder = new Holder();
-            convertView = inflater.inflate(R.layout.ac_hospital_list_item, null);
+            convertView = inflater.inflate(R.layout.activity_hospital_list_item, null);
             holder.tv_hospita_name = (TextView) convertView.findViewById(R.id.tv_hospita_name);
             holder.tv_hospital_level = (TextView) convertView.findViewById(R.id.tv_hospital_level);
             convertView.setTag(holder);

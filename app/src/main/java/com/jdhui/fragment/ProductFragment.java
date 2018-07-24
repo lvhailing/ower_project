@@ -128,7 +128,10 @@ public class ProductFragment extends Fragment implements View.OnClickListener, C
     }
 
     private void initData() {
-        options = new DisplayImageOptions.Builder().showImageForEmptyUri(R.drawable.banner_one).showImageOnFail(R.drawable.banner_one).resetViewBeforeLoading(true).cacheOnDisc(true).imageScaleType(ImageScaleType.EXACTLY).bitmapConfig(Bitmap.Config.RGB_565).considerExifParams(true).displayer(new FadeInBitmapDisplayer(300)).build();
+        options = new DisplayImageOptions.Builder().showImageForEmptyUri(R.drawable.banner_one)
+                .showImageOnFail(R.drawable.banner_one).resetViewBeforeLoading(true).cacheOnDisc(true)
+                .imageScaleType(ImageScaleType.EXACTLY).bitmapConfig(Bitmap.Config.RGB_565)
+                .considerExifParams(true).displayer(new FadeInBitmapDisplayer(300)).build();
 
         requestCycleIndex();
     }
@@ -243,7 +246,7 @@ public class ProductFragment extends Fragment implements View.OnClickListener, C
                 if (productIndexBean != null) {
                     Intent i_web = new Intent(context, WebActivity.class);
                     i_web.putExtra("type", WebActivity.WEBTYPE_NOTICE_DETAILS);
-                    i_web.putExtra("id", productIndexBean.getBulletin().getId());
+                    i_web.putExtra("bulletinId", productIndexBean.getBulletin().getId());
                     i_web.putExtra("title", "详情");
                     i_web.putExtra("uid", userId);
                     startActivity(i_web);
@@ -251,11 +254,12 @@ public class ProductFragment extends Fragment implements View.OnClickListener, C
                 break;
             case R.id.tv_fragment_product_notice:
                 if (productIndexBean != null) {
-                    Intent i_web = new Intent(context, WebActivity.class);
-                    i_web.putExtra("type", WebActivity.WEBTYPE_NOTICE_DETAILS);
-                    i_web.putExtra("id", productIndexBean.getBulletin().getId());
-                    i_web.putExtra("title", "详情");
-                    startActivity(i_web);
+//                    Intent i_web = new Intent(context, WebActivity.class);
+//                    i_web.putExtra("type", WebActivity.WEBTYPE_NOTICE_DETAILS);
+//                    i_web.putExtra("bulletinId", productIndexBean.getBulletin().getId());
+//                    i_web.putExtra("title", "详情");
+//                    i_web.putExtra("uid", userId);
+//                    startActivity(i_web);
                 }
 
                 break;

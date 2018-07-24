@@ -34,7 +34,7 @@ public class SubmitLinerActivity extends BaseActivity implements View.OnClickLis
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        baseSetContentView(R.layout.ac_sub_booking_ship);
+        baseSetContentView(R.layout.activity_sub_booking_ship);
 
         initView();
         initData();

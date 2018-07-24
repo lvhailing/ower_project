@@ -41,7 +41,7 @@ public class SubmitGeneticTestingActivity extends BaseActivity implements View.O
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        baseSetContentView(R.layout.ac_sub_genetic_testing);
+        baseSetContentView(R.layout.activity_sub_genetic_testing);
 
         initView();
         initData();

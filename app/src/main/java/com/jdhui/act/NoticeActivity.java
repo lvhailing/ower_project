@@ -83,7 +83,7 @@ public class NoticeActivity extends BaseActivity implements View.OnClickListener
                 }
                 Intent i_web = new Intent(NoticeActivity.this, WebActivity.class);
                 i_web.putExtra("type", WebActivity.WEBTYPE_NOTICE_DETAILS);
-                i_web.putExtra("id", totalList.get(position - 1).getBulletinId());
+                i_web.putExtra("bulletinId", totalList.get(position - 1).getBulletinId());
                 i_web.putExtra("title", "详情");
                 i_web.putExtra("uid", userId);
 //                startActivity(i_web);

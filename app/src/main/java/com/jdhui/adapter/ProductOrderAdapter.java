@@ -43,7 +43,7 @@ public class ProductOrderAdapter extends BaseAdapter {
         Holder holder = null;
         if (convertView == null) {
             holder = new Holder();
-            convertView = inflater.inflate(R.layout.ac_product_order_item, null);
+            convertView = inflater.inflate(R.layout.activity_product_order_item, null);
             holder.tv_pro_name = (TextView) convertView.findViewById(R.id.tv_pro_name);
             holder.tv_pro_status = (TextView) convertView.findViewById(R.id.tv_status);
             holder.tv_order_time = (TextView) convertView.findViewById(R.id.tv_order_time);

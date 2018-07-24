@@ -59,7 +59,7 @@ public class OverseaHouseDetailActivity extends BaseActivity implements View.OnC
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        baseSetContentView(R.layout.ac_oversea_project_detail);
+        baseSetContentView(R.layout.activity_oversea_project_detail);
 
         initView();
         initData();

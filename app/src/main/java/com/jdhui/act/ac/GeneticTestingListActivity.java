@@ -38,7 +38,7 @@ public class GeneticTestingListActivity extends BaseActivity implements View.OnC
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        baseSetContentView(R.layout.ac_booking_genetictesting);
+        baseSetContentView(R.layout.activity_booking_genetictesting);
 
         initView();
         initData();

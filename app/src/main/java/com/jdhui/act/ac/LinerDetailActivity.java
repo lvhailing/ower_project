@@ -84,7 +84,7 @@ public class LinerDetailActivity extends BaseActivity implements View.OnClickLis
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        baseSetContentView(R.layout.ac_liner_detail);
+        baseSetContentView(R.layout.activity_liner_detail);
 
         initView();
         initData();

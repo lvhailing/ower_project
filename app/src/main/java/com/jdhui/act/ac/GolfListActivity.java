@@ -1,6 +1,5 @@
 package com.jdhui.act.ac;
 
-import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -13,14 +12,9 @@ import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.jdhui.R;
 import com.jdhui.act.BaseActivity;
-import com.jdhui.adapter.GeneticTestingListAdapter;
 import com.jdhui.adapter.GolfListAdapter;
-import com.jdhui.bean.mybean.GeneticTestingDetail2B;
-import com.jdhui.bean.mybean.GeneticTestingList2B;
-import com.jdhui.bean.mybean.GeneticTestingList3B;
 import com.jdhui.bean.mybean.GolfList2B;
 import com.jdhui.bean.mybean.GolfList3B;
-import com.jdhui.dialog.GeneticTestingDialog;
 import com.jdhui.mould.BaseParams;
 import com.jdhui.mould.BaseRequester;
 import com.jdhui.mould.HtmlRequest;
@@ -40,7 +34,7 @@ public class GolfListActivity extends BaseActivity implements View.OnClickListen
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        baseSetContentView(R.layout.ac_golf_list);
+        baseSetContentView(R.layout.activity_golf_list);
 
         initView();
         initData();

@@ -43,7 +43,7 @@ public class ServiceOrderAdapter extends BaseAdapter {
         Holder holder = null;
         if (convertView == null) {
             holder = new Holder();
-            convertView = inflater.inflate(R.layout.ac_service_order_item, null);
+            convertView = inflater.inflate(R.layout.activity_service_order_item, null);
             holder.tv_name = (TextView) convertView.findViewById(R.id.tv_name);
             holder.tv_time = (TextView) convertView.findViewById(R.id.tv_time);
             holder.tv_status = (TextView) convertView.findViewById(R.id.tv_status);

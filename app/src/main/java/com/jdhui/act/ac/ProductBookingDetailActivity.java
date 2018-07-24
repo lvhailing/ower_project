@@ -43,7 +43,7 @@ public class ProductBookingDetailActivity extends BaseActivity implements View.O
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        baseSetContentView(R.layout.ac_pro_order_detail);
+        baseSetContentView(R.layout.activity_pro_order_detail);
         initView();
         initData();
     }

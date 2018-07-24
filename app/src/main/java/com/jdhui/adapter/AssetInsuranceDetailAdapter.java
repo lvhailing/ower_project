@@ -10,7 +10,6 @@ import android.widget.TextView;
 
 import com.jdhui.R;
 import com.jdhui.bean.mybean.BonusListBean;
-import com.jdhui.bean.mybean.InterestListBean;
 import com.jdhui.mould.types.MouldList;
 import com.jdhui.uitls.StringUtil;
 
@@ -45,7 +44,7 @@ public class AssetInsuranceDetailAdapter extends BaseAdapter {
         Holder holder = null;
         if (convertView == null) {
             holder = new Holder();
-            convertView = inflater.inflate(R.layout.ac_asset_insurance_detail_item, null);
+            convertView = inflater.inflate(R.layout.item_asset_insurance_detail, null);
             holder.tv_date = (TextView) convertView.findViewById(R.id.tv_date);
             holder.tv_dividend_amount = (TextView) convertView.findViewById(R.id.tv_dividend_amount);
             convertView.setTag(holder);

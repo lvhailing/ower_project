@@ -382,7 +382,7 @@ public class AssetFragment extends Fragment implements View.OnClickListener {
             }
 
 
-            // acceptable:合格投资者;unacceptable:不合格投资者
+            // acceptable:合格投资者;    unacceptable:不合格投资者
             if (!TextUtils.isEmpty(accountBean.getQualifiedInvestor())) {
                 if (accountBean.getQualifiedInvestor().equals("acceptable")) {
                     tv_asset_passed.setVisibility(View.VISIBLE);
@@ -394,8 +394,7 @@ public class AssetFragment extends Fragment implements View.OnClickListener {
             }
 
 
-            // conservative:保守型;steady:稳健型;balance:平衡型;growth:成长型;aggressive:进取型;
-
+            // conservative:保守型;  steady:稳健型;  balance:平衡型;  growth:成长型;  aggressive:进取型;
             if (!TextUtils.isEmpty(accountBean.getUserType())) {
                 if (accountBean.getUserType().equals("conservative")) {
                     tv_asset_steady.setText("保守型");

@@ -58,7 +58,7 @@ public class ProductBookingActivity extends BaseActivity implements View.OnClick
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        baseSetContentView(R.layout.ac_product_order);
+        baseSetContentView(R.layout.activity_product_order);
 
         initView();
         initData();
